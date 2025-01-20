@@ -1,0 +1,222 @@
+@interface CSVoiceTriggerAssetMetaUpdateMonitor
++ (id)sharedInstance;
+- (CSVoiceTriggerAssetMetaUpdateMonitor)init;
+- (const)_asssetMetaUpdatedKey;
+- (void)_didReceiveNewVoiceTriggerAssetMetaData;
+- (void)_notifyObserver:(id)a3;
+- (void)_startMonitoringWithQueue:(id)a3;
+- (void)_stopMonitoring;
+- (void)notifyNewVoiceTriggerAssetMetaDataUpdated;
+@end
+
+@implementation CSVoiceTriggerAssetMetaUpdateMonitor
+
+- (CSVoiceTriggerAssetMetaUpdateMonitor)init
+{
+  v3.receiver = self;
+  v3.super_class = (Class)&OBJC_CLASS___CSVoiceTriggerAssetMetaUpdateMonitor;
+  result = -[CSVoiceTriggerAssetMetaUpdateMonitor init](&v3, "init");
+  if (result)
+  {
+    result->_notifyToken = -1;
+    result->_gibraltarMacNotifyToken = -1;
+    result->_darwinNotifyToken = -1;
+  }
+
+  return result;
+}
+
+- (void)notifyNewVoiceTriggerAssetMetaDataUpdated
+{
+}
+
+- (const)_asssetMetaUpdatedKey
+{
+  unsigned int v2 = +[CSUtils supportMphAssets](&OBJC_CLASS___CSUtils, "supportMphAssets");
+  uint64_t v3 = CSIsIPad();
+  if ((_DWORD)v3)
+  {
+    v5 = "com.apple.MobileAsset.VoiceTriggerHSAssetsIPad.ma.cached-metadata-updated";
+    v6 = "com.apple.MobileAsset.VoiceTriggerAssetsIPad.ma.cached-metadata-updated";
+    goto LABEL_5;
+  }
+
+  if (CSIsWatch(v3, v4))
+  {
+    v5 = "com.apple.MobileAsset.VoiceTriggerHSAssetsWatch.ma.cached-metadata-updated";
+    v6 = "com.apple.MobileAsset.VoiceTriggerAssetsWatch.ma.cached-metadata-updated";
+LABEL_5:
+    if (v2) {
+      return v6;
+    }
+    else {
+      return v5;
+    }
+  }
+
+  if ((CSIsHorseman() & 1) != 0) {
+    return "com.apple.MobileAsset.VoiceTriggerAssetsMarsh.ma.cached-metadata-updated";
+  }
+  if ((CSIsOSX() & 1) != 0) {
+    return "com.apple.MobileAsset.VoiceTriggerAssetsASMac.ma.cached-metadata-updated";
+  }
+  if ((CSIsTV() & 1) != 0) {
+    return "com.apple.MobileAsset.VoiceTriggerAssetsTV.ma.cached-metadata-updated";
+  }
+  int v8 = CSIsIOS();
+  v9 = "com.apple.MobileAsset.VoiceTriggerHSAssets.ma.cached-metadata-updated";
+  if (v2) {
+    v9 = "com.apple.MobileAsset.VoiceTriggerAssets.ma.cached-metadata-updated";
+  }
+  if (v8) {
+    return v9;
+  }
+  else {
+    return "com.apple.MobileAsset.VoiceTriggerAssets.ma.cached-metadata-updated";
+  }
+}
+
+- (void)_startMonitoringWithQueue:(id)a3
+{
+  uint64_t v4 = (dispatch_queue_s *)a3;
+  if (self->_notifyToken == -1)
+  {
+    handler[0] = _NSConcreteStackBlock;
+    handler[1] = 3221225472LL;
+    handler[2] = sub_100011B5C;
+    handler[3] = &unk_10001CAB0;
+    handler[4] = self;
+    notify_register_dispatch( -[CSVoiceTriggerAssetMetaUpdateMonitor _asssetMetaUpdatedKey](self, "_asssetMetaUpdatedKey"),  &self->_notifyToken,  v4,  handler);
+    v5 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+    if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+    {
+      *(_DWORD *)buf = 136315138;
+      v12 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _startMonitoringWithQueue:]";
+      _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "%s Start monitoring : VoiceTrigger Asset meta update",  buf,  0xCu);
+    }
+  }
+
+  if (CSIsGibraltarMac())
+  {
+    if (self->_gibraltarMacNotifyToken == -1)
+    {
+      v9[0] = _NSConcreteStackBlock;
+      v9[1] = 3221225472LL;
+      v9[2] = sub_100011B64;
+      v9[3] = &unk_10001CAB0;
+      v9[4] = self;
+      notify_register_dispatch( "com.apple.MobileAsset.VoiceTriggerAssetsMac.ma.cached-metadata-updated",  &self->_gibraltarMacNotifyToken,  v4,  v9);
+      v6 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+      if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+      {
+        *(_DWORD *)buf = 136315138;
+        v12 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _startMonitoringWithQueue:]";
+        _os_log_impl( (void *)&_mh_execute_header,  v6,  OS_LOG_TYPE_DEFAULT,  "%s Start monitoring : Gibraltar VoiceTrigger Asset meta update",  buf,  0xCu);
+      }
+    }
+  }
+
+  if (((CSIsOSX() & 1) != 0 || CSIsIOS()) && self->_darwinNotifyToken == -1)
+  {
+    v8[0] = _NSConcreteStackBlock;
+    v8[1] = 3221225472LL;
+    v8[2] = sub_100011B6C;
+    v8[3] = &unk_10001CAB0;
+    v8[4] = self;
+    notify_register_dispatch( "com.apple.MobileAsset.VoiceTriggerAssetsStudioDisplay.ma.cached-metadata-updated",  &self->_darwinNotifyToken,  v4,  v8);
+    v7 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+    if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+    {
+      *(_DWORD *)buf = 136315138;
+      v12 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _startMonitoringWithQueue:]";
+      _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "%s Start monitoring : Studio Display VoiceTrigger Asset meta update",  buf,  0xCu);
+    }
+  }
+}
+
+- (void)_stopMonitoring
+{
+  int notifyToken = self->_notifyToken;
+  if (notifyToken != -1)
+  {
+    notify_cancel(notifyToken);
+    self->_int notifyToken = -1;
+    uint64_t v4 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+    if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+    {
+      int v9 = 136315138;
+      v10 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _stopMonitoring]";
+      _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "%s Stop monitoring : VoiceTrigger Asset meta update",  (uint8_t *)&v9,  0xCu);
+    }
+  }
+
+  if (CSIsGibraltarMac())
+  {
+    int gibraltarMacNotifyToken = self->_gibraltarMacNotifyToken;
+    if (gibraltarMacNotifyToken != -1)
+    {
+      notify_cancel(gibraltarMacNotifyToken);
+      self->_int gibraltarMacNotifyToken = -1;
+      v6 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+      if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+      {
+        int v9 = 136315138;
+        v10 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _stopMonitoring]";
+        _os_log_impl( (void *)&_mh_execute_header,  v6,  OS_LOG_TYPE_DEFAULT,  "%s Stop monitoring : Gibraltar VoiceTrigger Asset meta update",  (uint8_t *)&v9,  0xCu);
+      }
+    }
+  }
+
+  if ((CSIsOSX() & 1) != 0 || CSIsIOS())
+  {
+    int darwinNotifyToken = self->_darwinNotifyToken;
+    if (darwinNotifyToken != -1)
+    {
+      notify_cancel(darwinNotifyToken);
+      self->_int darwinNotifyToken = -1;
+      int v8 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+      if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+      {
+        int v9 = 136315138;
+        v10 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _stopMonitoring]";
+        _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "%s Stop monitoring : Studio Display VoiceTrigger Asset meta update",  (uint8_t *)&v9,  0xCu);
+      }
+    }
+  }
+
+- (void)_didReceiveNewVoiceTriggerAssetMetaData
+{
+  uint64_t v3 = (os_log_s *)CSLogContextFacilityCoreSpeech;
+  if (os_log_type_enabled(CSLogContextFacilityCoreSpeech, OS_LOG_TYPE_DEFAULT))
+  {
+    *(_DWORD *)buf = 136315138;
+    v6 = "-[CSVoiceTriggerAssetMetaUpdateMonitor _didReceiveNewVoiceTriggerAssetMetaData]";
+    _os_log_impl( (void *)&_mh_execute_header,  v3,  OS_LOG_TYPE_DEFAULT,  "%s New VoiceTrigger asset metadata is available",  buf,  0xCu);
+  }
+
+  v4[0] = _NSConcreteStackBlock;
+  v4[1] = 3221225472LL;
+  v4[2] = sub_100011B50;
+  v4[3] = &unk_10001CAD8;
+  v4[4] = self;
+  -[CSVoiceTriggerAssetMetaUpdateMonitor enumerateObserversInQueue:](self, "enumerateObserversInQueue:", v4);
+}
+
+- (void)_notifyObserver:(id)a3
+{
+  id v4 = a3;
+  -[CSVoiceTriggerAssetMetaUpdateMonitor notifyObserver:](self, "notifyObserver:", v4);
+  if ((objc_opt_respondsToSelector(v4, "CSVoiceTriggerAssetMetaUpdateMonitor:didReceiveNewVoiceTriggerAssetMetaData:") & 1) != 0) {
+    [v4 CSVoiceTriggerAssetMetaUpdateMonitor:self didReceiveNewVoiceTriggerAssetMetaData:1];
+  }
+}
+
++ (id)sharedInstance
+{
+  if (qword_100022D20 != -1) {
+    dispatch_once(&qword_100022D20, &stru_10001CA88);
+  }
+  return (id)qword_100022D18;
+}
+
+@end

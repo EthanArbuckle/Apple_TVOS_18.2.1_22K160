@@ -1,0 +1,53 @@
+@interface ParagraphCollectionViewCell
+- (BOOL)canBecomeFocused;
+- (_TtC8AppStore16DynamicTypeLabel)accessibilityTextLabel;
+- (_TtC8AppStore27ParagraphCollectionViewCell)initWithFrame:(CGRect)a3;
+- (void)layoutSubviews;
+- (void)prepareForReuse;
+@end
+
+@implementation ParagraphCollectionViewCell
+
+- (_TtC8AppStore27ParagraphCollectionViewCell)initWithFrame:(CGRect)a3
+{
+  return (_TtC8AppStore27ParagraphCollectionViewCell *)sub_100035B44( a3.origin.x,  a3.origin.y,  a3.size.width,  a3.size.height);
+}
+
+- (BOOL)canBecomeFocused
+{
+  return 0;
+}
+
+- (void)layoutSubviews
+{
+  v2 = self;
+  sub_100035D88();
+}
+
+- (void)prepareForReuse
+{
+  v4.receiver = self;
+  v4.super_class = (Class)swift_getObjectType(self);
+  v2 = (char *)v4.receiver;
+  -[BaseCollectionViewCell prepareForReuse](&v4, "prepareForReuse");
+  objc_msgSend( *(id *)&v2[OBJC_IVAR____TtC8AppStore27ParagraphCollectionViewCell_textLabel],  "setText:",  0,  v4.receiver,  v4.super_class);
+  v3 = &v2[OBJC_IVAR____TtC8AppStore27ParagraphCollectionViewCell_lineLengthLimit];
+  *(void *)v3 = 0LL;
+  v3[8] = 1;
+  [v2 setNeedsLayout];
+}
+
+- (_TtC8AppStore16DynamicTypeLabel)accessibilityTextLabel
+{
+  return (_TtC8AppStore16DynamicTypeLabel *)objc_retainAutoreleaseReturnValue(*(id *)((char *)&self->super.super.super.super.super.super.isa
+                                                                                    + OBJC_IVAR____TtC8AppStore27ParagraphCollectionViewCell_textLabel));
+}
+
+- (void).cxx_destruct
+{
+  objc_release(*(id *)((char *)&self->super.super.super.super.super.super.isa
+                     + OBJC_IVAR____TtC8AppStore27ParagraphCollectionViewCell_textLabel));
+  sub_1000077E0( (uint64_t)self + OBJC_IVAR____TtC8AppStore27ParagraphCollectionViewCell_itemLayoutContext,  (uint64_t *)&unk_1002E1D40);
+}
+
+@end

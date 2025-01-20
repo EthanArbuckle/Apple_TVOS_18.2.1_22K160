@@ -1,0 +1,14 @@
+@interface CSDMessagingConversationParticipantDidJoinContext
+- (_TtC44com_apple_NeighborhoodActivityConduitService49CSDMessagingConversationParticipantDidJoinContext)init;
+@end
+
+@implementation CSDMessagingConversationParticipantDidJoinContext
+
+- (_TtC44com_apple_NeighborhoodActivityConduitService49CSDMessagingConversationParticipantDidJoinContext)init
+{
+  result = (_TtC44com_apple_NeighborhoodActivityConduitService49CSDMessagingConversationParticipantDidJoinContext *)_swift_stdlib_reportUnimplementedInitializer("com_apple_NeighborhoodActivityConduitService.CSDMessagingConversationParticipantDidJoinContext", 94LL, "init()", 6LL, 0LL);
+  __break(1u);
+  return result;
+}
+
+@end

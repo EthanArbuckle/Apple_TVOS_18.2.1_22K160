@@ -1,0 +1,21 @@
+@interface TVNowPlayingServiceAppDelegate
+- (UIWindow)window;
+- (void)setWindow:(id)a3;
+@end
+
+@implementation TVNowPlayingServiceAppDelegate
+
+- (UIWindow)window
+{
+  return self->_window;
+}
+
+- (void)setWindow:(id)a3
+{
+}
+
+- (void).cxx_destruct
+{
+}
+
+@end

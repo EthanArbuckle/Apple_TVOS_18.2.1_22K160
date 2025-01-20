@@ -1,0 +1,1101 @@
+@interface CKKSTLKShare
++ (BOOL)supportsSecureCoding;
++ (id)share:(id)a3 as:(id)a4 to:(id)a5 epoch:(int64_t)a6 poisoned:(int64_t)a7 error:(id *)a8;
+- (BOOL)isEqual:(id)a3;
+- (BOOL)signatureVerifiesWithPeerSet:(id)a3 ckrecord:(id)a4 error:(id *)a5;
+- (BOOL)verifySignature:(id)a3 verifyingPeer:(id)a4 ckrecord:(id)a5 error:(id *)a6;
+- (CKKSTLKShare)initWithCoder:(id)a3;
+- (CKRecordZoneID)zoneID;
+- (NSData)receiverPublicEncryptionKeySPKI;
+- (NSData)signature;
+- (NSData)wrappedTLK;
+- (NSString)receiverPeerID;
+- (NSString)senderPeerID;
+- (NSString)tlkUUID;
+- (id)copyWithZone:(_NSZone *)a3;
+- (id)dataForSigning:(id)a3;
+- (id)description;
+- (id)init:(id)a3 sender:(id)a4 receiver:(id)a5 curve:(int64_t)a6 version:(unint64_t)a7 epoch:(int64_t)a8 poisoned:(int64_t)a9 zoneID:(id)a10;
+- (id)initForKey:(id)a3 senderPeerID:(id)a4 recieverPeerID:(id)a5 receiverEncPublicKeySPKI:(id)a6 curve:(int64_t)a7 version:(unint64_t)a8 epoch:(int64_t)a9 poisoned:(int64_t)a10 wrappedKey:(id)a11 signature:(id)a12 zoneID:(id)a13;
+- (id)recoverTLK:(id)a3 trustedPeers:(id)a4 ckrecord:(id)a5 error:(id *)a6;
+- (id)signRecord:(id)a3 ckrecord:(id)a4 error:(id *)a5;
+- (id)unwrapUsing:(id)a3 error:(id *)a4;
+- (id)wrap:(id)a3 publicKey:(id)a4 error:(id *)a5;
+- (int64_t)curve;
+- (int64_t)epoch;
+- (int64_t)poisoned;
+- (unint64_t)version;
+- (void)encodeWithCoder:(id)a3;
+- (void)setCurve:(int64_t)a3;
+- (void)setEpoch:(int64_t)a3;
+- (void)setPoisoned:(int64_t)a3;
+- (void)setReceiverPeerID:(id)a3;
+- (void)setReceiverPublicEncryptionKeySPKI:(id)a3;
+- (void)setSenderPeerID:(id)a3;
+- (void)setSignature:(id)a3;
+- (void)setTlkUUID:(id)a3;
+- (void)setVersion:(unint64_t)a3;
+- (void)setWrappedTLK:(id)a3;
+- (void)setZoneID:(id)a3;
+@end
+
+@implementation CKKSTLKShare
+
+- (id)init:(id)a3 sender:(id)a4 receiver:(id)a5 curve:(int64_t)a6 version:(unint64_t)a7 epoch:(int64_t)a8 poisoned:(int64_t)a9 zoneID:(id)a10
+{
+  id v16 = a3;
+  id v17 = a4;
+  id v18 = a5;
+  id v19 = a10;
+  v32.receiver = self;
+  v32.super_class = (Class)&OBJC_CLASS___CKKSTLKShare;
+  v20 = -[CKKSTLKShare init](&v32, "init");
+  v21 = v20;
+  if (v20)
+  {
+    objc_storeStrong((id *)&v20->_zoneID, a10);
+    v21->_curve = a6;
+    v21->_version = a7;
+    uint64_t v22 = objc_claimAutoreleasedReturnValue([v16 uuid]);
+    tlkUUID = v21->_tlkUUID;
+    v21->_tlkUUID = (NSString *)v22;
+
+    uint64_t v24 = objc_claimAutoreleasedReturnValue([v18 peerID]);
+    receiverPeerID = v21->_receiverPeerID;
+    v21->_receiverPeerID = (NSString *)v24;
+
+    v26 = (void *)objc_claimAutoreleasedReturnValue([v18 publicEncryptionKey]);
+    uint64_t v27 = objc_claimAutoreleasedReturnValue([v26 keyData]);
+    receiverPublicEncryptionKeySPKI = v21->_receiverPublicEncryptionKeySPKI;
+    v21->_receiverPublicEncryptionKeySPKI = (NSData *)v27;
+
+    uint64_t v29 = objc_claimAutoreleasedReturnValue([v17 peerID]);
+    senderPeerID = v21->_senderPeerID;
+    v21->_senderPeerID = (NSString *)v29;
+
+    v21->_epoch = a8;
+    v21->_poisoned = a9;
+  }
+
+  return v21;
+}
+
+- (id)initForKey:(id)a3 senderPeerID:(id)a4 recieverPeerID:(id)a5 receiverEncPublicKeySPKI:(id)a6 curve:(int64_t)a7 version:(unint64_t)a8 epoch:(int64_t)a9 poisoned:(int64_t)a10 wrappedKey:(id)a11 signature:(id)a12 zoneID:(id)a13
+{
+  id v18 = a3;
+  id v19 = a4;
+  id obj = a5;
+  id v20 = a5;
+  id v27 = a6;
+  id v31 = a6;
+  id v21 = a11;
+  id v22 = a12;
+  id v30 = a13;
+  v32.receiver = self;
+  v32.super_class = (Class)&OBJC_CLASS___CKKSTLKShare;
+  v23 = -[CKKSTLKShare init](&v32, "init");
+  uint64_t v24 = v23;
+  if (v23)
+  {
+    objc_storeStrong((id *)&v23->_zoneID, a13);
+    objc_storeStrong((id *)&v24->_tlkUUID, a3);
+    objc_storeStrong((id *)&v24->_senderPeerID, a4);
+    objc_storeStrong((id *)&v24->_receiverPeerID, obj);
+    objc_storeStrong((id *)&v24->_receiverPublicEncryptionKeySPKI, v27);
+    v24->_curve = a7;
+    v24->_version = a8;
+    v24->_epoch = a9;
+    v24->_poisoned = a10;
+    objc_storeStrong((id *)&v24->_wrappedTLK, a11);
+    objc_storeStrong((id *)&v24->_signature, a12);
+  }
+
+  return v24;
+}
+
+- (id)description
+{
+  v3 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare tlkUUID](self, "tlkUUID"));
+  v4 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+  v5 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+  v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"<CKKSTLKShareCore(%@): recv:%@ send:%@>",  v3,  v4,  v5));
+
+  return v6;
+}
+
+- (id)wrap:(id)a3 publicKey:(id)a4 error:(id *)a5
+{
+  id v8 = a3;
+  id v9 = a4;
+  v10 = objc_autoreleasePoolPush();
+  id v19 = 0LL;
+  v11 = (void *)objc_claimAutoreleasedReturnValue([v8 serializeAsProtobuf:&v19]);
+  id v12 = v19;
+  objc_autoreleasePoolPop(v10);
+  if (v11)
+  {
+    id v13 = objc_msgSend( [_SFIESOperation alloc],  "initWithCurve:",  -[CKKSTLKShare curve](self, "curve"));
+    v14 = (void *)objc_claimAutoreleasedReturnValue([v13 encrypt:v11 withKey:v9 error:a5]);
+    v15 = objc_autoreleasePoolPush();
+    id v16 = -[NSKeyedArchiver initRequiringSecureCoding:]( objc_alloc(&OBJC_CLASS___NSKeyedArchiver),  "initRequiringSecureCoding:",  1LL);
+    [v14 encodeWithCoder:v16];
+    id v17 = (void *)objc_claimAutoreleasedReturnValue(-[NSKeyedArchiver encodedData](v16, "encodedData"));
+
+    objc_autoreleasePoolPop(v15);
+  }
+
+  else
+  {
+    id v17 = 0LL;
+    if (a5) {
+      *a5 = v12;
+    }
+  }
+
+  return v17;
+}
+
+- (id)unwrapUsing:(id)a3 error:(id *)a4
+{
+  id v6 = a3;
+  v7 = objc_alloc(&OBJC_CLASS___NSKeyedUnarchiver);
+  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+  id v9 = -[NSKeyedUnarchiver initForReadingFromData:error:](v7, "initForReadingFromData:error:", v8, 0LL);
+
+  id v10 = [[_SFIESCiphertext alloc] initWithCoder:v9];
+  -[NSKeyedUnarchiver finishDecoding](v9, "finishDecoding");
+  id v11 = objc_msgSend([_SFIESOperation alloc], "initWithCurve:", -[CKKSTLKShare curve](self, "curve"));
+  id v12 = (void *)objc_claimAutoreleasedReturnValue([v6 encryptionKey]);
+
+  id v17 = 0LL;
+  id v13 = (void *)objc_claimAutoreleasedReturnValue([v11 decrypt:v10 withKey:v12 error:&v17]);
+  id v14 = v17;
+
+  if (!v13 || v14)
+  {
+    v15 = 0LL;
+    if (a4) {
+      *a4 = v14;
+    }
+  }
+
+  else
+  {
+    v15 = (void *)objc_claimAutoreleasedReturnValue( +[CKKSKeychainBackedKey loadFromProtobuf:error:]( &OBJC_CLASS___CKKSKeychainBackedKey,  "loadFromProtobuf:error:",  v13,  a4));
+  }
+
+  return v15;
+}
+
+- (id)dataForSigning:(id)a3
+{
+  id v4 = a3;
+  v5 = objc_autoreleasePoolPush();
+  id v6 = objc_alloc_init(&OBJC_CLASS___NSMutableData);
+  unint64_t v63 = -[CKKSTLKShare version](self, "version");
+  -[NSMutableData appendBytes:length:](v6, "appendBytes:length:", &v63, 8LL);
+  v7 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+  id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 dataUsingEncoding:4]);
+  -[NSMutableData appendData:](v6, "appendData:", v8);
+
+  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+  id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 dataUsingEncoding:4]);
+  -[NSMutableData appendData:](v6, "appendData:", v10);
+
+  id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+  -[NSMutableData appendData:](v6, "appendData:", v11);
+
+  int64_t v62 = -[CKKSTLKShare curve](self, "curve");
+  -[NSMutableData appendBytes:length:](v6, "appendBytes:length:", &v62, 8LL);
+  int64_t v61 = -[CKKSTLKShare epoch](self, "epoch");
+  -[NSMutableData appendBytes:length:](v6, "appendBytes:length:", &v61, 8LL);
+  int64_t v60 = -[CKKSTLKShare poisoned](self, "poisoned");
+  -[NSMutableData appendBytes:length:](v6, "appendBytes:length:", &v60, 8LL);
+  if (v4)
+  {
+    v46 = v5;
+    v50 = v6;
+    id v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    __int128 v56 = 0u;
+    __int128 v57 = 0u;
+    __int128 v58 = 0u;
+    __int128 v59 = 0u;
+    v47 = v4;
+    id v13 = (void *)objc_claimAutoreleasedReturnValue([v4 allKeys]);
+    id v14 = [v13 countByEnumeratingWithState:&v56 objects:v65 count:16];
+    if (v14)
+    {
+      id v15 = v14;
+      uint64_t v16 = *(void *)v57;
+      do
+      {
+        for (i = 0LL; i != v15; i = (char *)i + 1)
+        {
+          if (*(void *)v57 != v16) {
+            objc_enumerationMutation(v13);
+          }
+          id v18 = *(void **)(*((void *)&v56 + 1) + 8LL * (void)i);
+          if (([v18 isEqualToString:@"sender"] & 1) == 0
+            && ([v18 isEqualToString:@"receiver"] & 1) == 0
+            && ([v18 isEqualToString:@"receiverPublicEncryptionKey"] & 1) == 0
+            && ([v18 isEqualToString:@"curve"] & 1) == 0
+            && ([v18 isEqualToString:@"epoch"] & 1) == 0
+            && ([v18 isEqualToString:@"poisoned"] & 1) == 0
+            && ([v18 isEqualToString:@"signature"] & 1) == 0
+            && ([v18 isEqualToString:@"version"] & 1) == 0
+            && ([v18 isEqualToString:@"parentkeyref"] & 1) == 0
+            && ([v18 isEqualToString:@"wrappedkey"] & 1) == 0
+            && ([v18 hasPrefix:@"server_"] & 1) == 0)
+          {
+            v48 = (void *)objc_claimAutoreleasedReturnValue([v47 objectForKeyedSubscript:v18]);
+            [v12 setObject:v48 forKeyedSubscript:v18];
+          }
+        }
+
+        id v15 = [v13 countByEnumeratingWithState:&v56 objects:v65 count:16];
+      }
+
+      while (v15);
+    }
+
+    id v19 = (void *)objc_claimAutoreleasedReturnValue([v12 allKeys]);
+    id v20 = (void *)objc_claimAutoreleasedReturnValue([v19 sortedArrayUsingSelector:"compare:"]);
+
+    __int128 v54 = 0u;
+    __int128 v55 = 0u;
+    __int128 v52 = 0u;
+    __int128 v53 = 0u;
+    id v21 = v20;
+    id v22 = [v21 countByEnumeratingWithState:&v52 objects:v64 count:16];
+    id v6 = v50;
+    if (v22)
+    {
+      id v23 = v22;
+      uint64_t v24 = &AAAccountClassPrimary_ptr;
+      v25 = &AAAccountClassPrimary_ptr;
+      uint64_t v26 = *(void *)v53;
+      do
+      {
+        id v27 = 0LL;
+        id v49 = v23;
+        do
+        {
+          if (*(void *)v53 != v26) {
+            objc_enumerationMutation(v21);
+          }
+          v28 = (void *)objc_claimAutoreleasedReturnValue( [v12 objectForKeyedSubscript:*(void *)(*((void *)&v52 + 1) + 8 * (void)v27)]);
+          uint64_t v30 = objc_opt_class(v24[291], v29);
+          if ((objc_opt_isKindOfClass(v28, v30) & 1) != 0)
+          {
+            objc_super v32 = (NSISO8601DateFormatter *)objc_claimAutoreleasedReturnValue([v28 dataUsingEncoding:4]);
+            -[NSMutableData appendData:](v6, "appendData:", v32);
+LABEL_28:
+
+            goto LABEL_35;
+          }
+
+          uint64_t v33 = objc_opt_class(v25[259], v31);
+          if ((objc_opt_isKindOfClass(v28, v33) & 1) != 0)
+          {
+            -[NSMutableData appendData:](v6, "appendData:", v28);
+          }
+
+          else
+          {
+            uint64_t v35 = objc_opt_class(&OBJC_CLASS___NSDate, v34);
+            if ((objc_opt_isKindOfClass(v28, v35) & 1) != 0)
+            {
+              objc_super v32 = objc_alloc_init(&OBJC_CLASS___NSISO8601DateFormatter);
+              v37 = (void *)objc_claimAutoreleasedReturnValue(-[NSISO8601DateFormatter stringForObjectValue:](v32, "stringForObjectValue:", v28));
+              uint64_t v38 = v26;
+              v39 = v24;
+              id v40 = v21;
+              v41 = v12;
+              v42 = v25;
+              v43 = (void *)objc_claimAutoreleasedReturnValue([v37 dataUsingEncoding:4]);
+              -[NSMutableData appendData:](v50, "appendData:", v43);
+
+              v25 = v42;
+              id v12 = v41;
+              id v21 = v40;
+              uint64_t v24 = v39;
+              uint64_t v26 = v38;
+              id v23 = v49;
+
+              id v6 = v50;
+              goto LABEL_28;
+            }
+
+            uint64_t v44 = objc_opt_class(&OBJC_CLASS___NSNumber, v36);
+            if ((objc_opt_isKindOfClass(v28, v44) & 1) != 0)
+            {
+              id v51 = (id)0xAAAAAAAAAAAAAAAALL;
+              id v51 = [v28 unsignedLongLongValue];
+              -[NSMutableData appendBytes:length:](v6, "appendBytes:length:", &v51, 8LL);
+            }
+          }
+
+- (id)signRecord:(id)a3 ckrecord:(id)a4 error:(id *)a5
+{
+  id v8 = a4;
+  id v9 = a3;
+  id v10 = objc_alloc(&OBJC_CLASS____SFEC_X962SigningOperation);
+  id v11 = objc_msgSend( [_SFECKeySpecifier alloc],  "initWithCurve:",  -[CKKSTLKShare curve](self, "curve"));
+  id v12 = objc_alloc_init(&OBJC_CLASS____SFSHA256DigestOperation);
+  id v13 = [v10 initWithKeySpecifier:v11 digestOperation:v12];
+
+  id v14 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare dataForSigning:](self, "dataForSigning:", v8));
+  id v15 = (void *)objc_claimAutoreleasedReturnValue([v13 sign:v14 withKey:v9 error:a5]);
+
+  uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v15 signature]);
+  return v16;
+}
+
+- (BOOL)verifySignature:(id)a3 verifyingPeer:(id)a4 ckrecord:(id)a5 error:(id *)a6
+{
+  id v10 = a3;
+  id v11 = a4;
+  id v12 = a5;
+  id v13 = (void *)objc_claimAutoreleasedReturnValue([v11 publicSigningKey]);
+
+  if (v13)
+  {
+    id v14 = objc_alloc(&OBJC_CLASS____SFEC_X962SigningOperation);
+    id v15 = objc_msgSend( [_SFECKeySpecifier alloc],  "initWithCurve:",  -[CKKSTLKShare curve](self, "curve"));
+    id v16 = objc_alloc_init(&OBJC_CLASS____SFSHA256DigestOperation);
+    id v17 = [v14 initWithKeySpecifier:v15 digestOperation:v16];
+
+    id v18 = objc_alloc(&OBJC_CLASS____SFSignedData);
+    id v19 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare dataForSigning:](self, "dataForSigning:", v12));
+    id v20 = [v18 initWithData:v19 signature:v10];
+
+    id v21 = (void *)objc_claimAutoreleasedReturnValue([v11 publicSigningKey]);
+    id v22 = (void *)objc_claimAutoreleasedReturnValue([v17 verify:v20 withKey:v21 error:a6]);
+    LOBYTE(a6) = v22 != 0LL;
+  }
+
+  else
+  {
+    id v23 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare zoneID](self, "zoneID"));
+    uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue([v23 zoneName]);
+    id v25 = sub_1000AA6AC(@"ckksshare", v24);
+    uint64_t v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+
+    if (os_log_type_enabled(v26, OS_LOG_TYPE_ERROR))
+    {
+      *(_DWORD *)buf = 138412290;
+      id v30 = v11;
+      _os_log_impl((void *)&_mh_execute_header, v26, OS_LOG_TYPE_ERROR, "no signing key for peer: %@", buf, 0xCu);
+    }
+
+    if (a6)
+    {
+      id v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Peer(%@) has no signing key",  v11));
+      *a6 = (id)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:description:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:description:",  @"CKKSErrorDomain",  37LL,  v27));
+
+      LOBYTE(a6) = 0;
+    }
+  }
+
+  return (char)a6;
+}
+
+- (BOOL)signatureVerifiesWithPeerSet:(id)a3 ckrecord:(id)a4 error:(id *)a5
+{
+  id v8 = a3;
+  id v35 = a4;
+  __int128 v37 = 0u;
+  __int128 v38 = 0u;
+  __int128 v39 = 0u;
+  __int128 v40 = 0u;
+  id v9 = v8;
+  id v10 = [v9 countByEnumeratingWithState:&v37 objects:v47 count:16];
+  if (v10)
+  {
+    id v11 = v10;
+    objc_super v32 = a5;
+    id v12 = 0LL;
+    uint64_t v13 = *(void *)v38;
+    uint64_t v33 = *(void *)v38;
+    while (2)
+    {
+      id v14 = 0LL;
+      id v34 = v11;
+      do
+      {
+        if (*(void *)v38 != v13) {
+          objc_enumerationMutation(v9);
+        }
+        id v15 = *(void **)(*((void *)&v37 + 1) + 8LL * (void)v14);
+        id v16 = (void *)objc_claimAutoreleasedReturnValue([v15 peerID]);
+        id v17 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+        unsigned int v18 = [v16 isEqualToString:v17];
+
+        if (v18)
+        {
+          id v19 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature"));
+          id v36 = 0LL;
+          unsigned int v20 = -[CKKSTLKShare verifySignature:verifyingPeer:ckrecord:error:]( self,  "verifySignature:verifyingPeer:ckrecord:error:",  v19,  v15,  v35,  &v36);
+          id v21 = v36;
+
+          if (v21)
+          {
+            id v22 = v12;
+            id v23 = v9;
+            uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare zoneID](self, "zoneID"));
+            id v25 = (void *)objc_claimAutoreleasedReturnValue([v24 zoneName]);
+            id v26 = sub_1000AA6AC(@"ckksshare", v25);
+            id v27 = (os_log_s *)objc_claimAutoreleasedReturnValue(v26);
+
+            if (os_log_type_enabled(v27, OS_LOG_TYPE_ERROR))
+            {
+              *(_DWORD *)buf = 138412802;
+              v42 = self;
+              __int16 v43 = 2112;
+              uint64_t v44 = v15;
+              __int16 v45 = 2112;
+              id v46 = v21;
+              _os_log_impl( (void *)&_mh_execute_header,  v27,  OS_LOG_TYPE_ERROR,  "signature didn't verify for %@ %@: %@",  buf,  0x20u);
+            }
+
+            id v12 = v21;
+            id v9 = v23;
+            uint64_t v13 = v33;
+            id v11 = v34;
+          }
+
+          if (v20)
+          {
+
+            BOOL v28 = 1;
+            goto LABEL_21;
+          }
+        }
+
+        id v14 = (char *)v14 + 1;
+      }
+
+      while (v11 != v14);
+      id v11 = [v9 countByEnumeratingWithState:&v37 objects:v47 count:16];
+      if (v11) {
+        continue;
+      }
+      break;
+    }
+
+    a5 = v32;
+    if (v32)
+    {
+      if (!v12) {
+        goto LABEL_19;
+      }
+      id v12 = v12;
+      BOOL v28 = 0;
+      *objc_super v32 = v12;
+    }
+
+    else
+    {
+      BOOL v28 = 0;
+    }
+  }
+
+  else
+  {
+
+    if (a5)
+    {
+LABEL_19:
+      uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+      id v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"No TLK share from %@",  v29));
+      *a5 = (id)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:description:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:description:",  @"CKKSErrorDomain",  35LL,  v30));
+    }
+
+    BOOL v28 = 0;
+    id v12 = 0LL;
+  }
+
+- (id)copyWithZone:(_NSZone *)a3
+{
+  id v4 = objc_msgSend(objc_msgSend((id)objc_opt_class(self, a2), "allocWithZone:", a3), "init");
+  objc_msgSend(v4, "setCurve:", -[CKKSTLKShare curve](self, "curve"));
+  objc_msgSend(v4, "setVersion:", -[CKKSTLKShare version](self, "version"));
+  v5 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare tlkUUID](self, "tlkUUID"));
+  id v6 = [v5 copy];
+  [v4 setTlkUUID:v6];
+
+  v7 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+  id v8 = [v7 copy];
+  [v4 setSenderPeerID:v8];
+
+  objc_msgSend(v4, "setEpoch:", -[CKKSTLKShare epoch](self, "epoch"));
+  objc_msgSend(v4, "setPoisoned:", -[CKKSTLKShare poisoned](self, "poisoned"));
+  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+  id v10 = [v9 copy];
+  [v4 setWrappedTLK:v10];
+
+  id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature"));
+  id v12 = [v11 copy];
+  [v4 setSignature:v12];
+
+  uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+  id v14 = [v13 copy];
+  [v4 setReceiverPeerID:v14];
+
+  id v15 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPublicEncryptionKeySPKI](self, "receiverPublicEncryptionKeySPKI"));
+  id v16 = [v15 copy];
+  [v4 setReceiverPublicEncryptionKeySPKI:v16];
+
+  return v4;
+}
+
+- (void)encodeWithCoder:(id)a3
+{
+  id v4 = a3;
+  v5 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare zoneID](self, "zoneID"));
+  [v4 encodeObject:v5 forKey:@"zoneID"];
+
+  objc_msgSend(v4, "encodeInt64:forKey:", -[CKKSTLKShare curve](self, "curve"), @"curve");
+  objc_msgSend(v4, "encodeInt64:forKey:", -[CKKSTLKShare version](self, "version"), @"version");
+  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare tlkUUID](self, "tlkUUID"));
+  [v4 encodeObject:v6 forKey:@"tlkUUID"];
+
+  v7 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+  [v4 encodeObject:v7 forKey:@"senderPeerID"];
+
+  objc_msgSend(v4, "encodeInt64:forKey:", -[CKKSTLKShare epoch](self, "epoch"), @"epoch");
+  objc_msgSend(v4, "encodeInt64:forKey:", -[CKKSTLKShare poisoned](self, "poisoned"), @"poisoned");
+  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+  [v4 encodeObject:v8 forKey:@"wrappedTLK"];
+
+  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature"));
+  [v4 encodeObject:v9 forKey:@"signature"];
+
+  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+  [v4 encodeObject:v10 forKey:@"receiverPeerID"];
+
+  id v11 = (id)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPublicEncryptionKeySPKI](self, "receiverPublicEncryptionKeySPKI"));
+  [v4 encodeObject:v11 forKey:@"receiverSPKI"];
+}
+
+- (CKKSTLKShare)initWithCoder:(id)a3
+{
+  id v4 = a3;
+  v35.receiver = self;
+  v35.super_class = (Class)&OBJC_CLASS___CKKSTLKShare;
+  id v6 = -[CKKSTLKShare init](&v35, "init");
+  if (v6)
+  {
+    id v7 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(CKRecordZoneID, v5),  @"zoneID");
+    uint64_t v8 = objc_claimAutoreleasedReturnValue(v7);
+    zoneID = v6->_zoneID;
+    v6->_zoneID = (CKRecordZoneID *)v8;
+
+    v6->_curve = (int64_t)[v4 decodeInt64ForKey:@"curve"];
+    v6->_version = (unint64_t)[v4 decodeInt64ForKey:@"version"];
+    id v11 = objc_msgSend(v4, "decodeObjectOfClass:forKey:", objc_opt_class(NSString, v10), @"tlkUUID");
+    uint64_t v12 = objc_claimAutoreleasedReturnValue(v11);
+    tlkUUID = v6->_tlkUUID;
+    v6->_tlkUUID = (NSString *)v12;
+
+    id v15 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(NSString, v14),  @"senderPeerID");
+    uint64_t v16 = objc_claimAutoreleasedReturnValue(v15);
+    senderPeerID = v6->_senderPeerID;
+    v6->_senderPeerID = (NSString *)v16;
+
+    v6->_epoch = (int64_t)[v4 decodeInt64ForKey:@"epoch"];
+    v6->_poisoned = (int64_t)[v4 decodeInt64ForKey:@"poisoned"];
+    id v19 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(NSData, v18),  @"wrappedTLK");
+    uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+    wrappedTLK = v6->_wrappedTLK;
+    v6->_wrappedTLK = (NSData *)v20;
+
+    id v23 = objc_msgSend(v4, "decodeObjectOfClass:forKey:", objc_opt_class(NSData, v22), @"signature");
+    uint64_t v24 = objc_claimAutoreleasedReturnValue(v23);
+    signature = v6->_signature;
+    v6->_signature = (NSData *)v24;
+
+    id v27 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(NSString, v26),  @"receiverPeerID");
+    uint64_t v28 = objc_claimAutoreleasedReturnValue(v27);
+    receiverPeerID = v6->_receiverPeerID;
+    v6->_receiverPeerID = (NSString *)v28;
+
+    id v31 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(NSData, v30),  @"receiverSPKI");
+    uint64_t v32 = objc_claimAutoreleasedReturnValue(v31);
+    receiverPublicEncryptionKeySPKI = v6->_receiverPublicEncryptionKeySPKI;
+    v6->_receiverPublicEncryptionKeySPKI = (NSData *)v32;
+  }
+
+  return v6;
+}
+
+- (BOOL)isEqual:(id)a3
+{
+  id v4 = a3;
+  uint64_t v6 = objc_opt_class(&OBJC_CLASS___CKKSTLKShare, v5);
+  if ((objc_opt_isKindOfClass(v4, v6) & 1) != 0)
+  {
+    id v7 = v4;
+    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare tlkUUID](self, "tlkUUID"));
+    id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 tlkUUID]);
+    if (![v8 isEqualToString:v9])
+    {
+      unsigned __int8 v14 = 0;
+LABEL_37:
+
+      goto LABEL_38;
+    }
+
+    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare zoneID](self, "zoneID"));
+    id v11 = (void *)objc_claimAutoreleasedReturnValue([v7 zoneID]);
+    if (![v10 isEqual:v11])
+    {
+      unsigned __int8 v14 = 0;
+LABEL_36:
+
+      goto LABEL_37;
+    }
+
+    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+    uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v7 senderPeerID]);
+    v47 = v12;
+    if (![v12 isEqualToString:v13])
+    {
+      unsigned __int8 v14 = 0;
+LABEL_35:
+
+      goto LABEL_36;
+    }
+
+    uint64_t v46 = objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+    if (v46 || (__int128 v40 = (void *)objc_claimAutoreleasedReturnValue([v7 receiverPeerID])) != 0)
+    {
+      __int16 v45 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPeerID](self, "receiverPeerID"));
+      uint64_t v44 = (void *)objc_claimAutoreleasedReturnValue([v7 receiverPeerID]);
+      if (!objc_msgSend(v45, "isEqual:"))
+      {
+        unsigned __int8 v14 = 0;
+        goto LABEL_32;
+      }
+
+      int v43 = 1;
+    }
+
+    else
+    {
+      __int128 v40 = 0LL;
+      int v43 = 0;
+    }
+
+    uint64_t v15 = objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPublicEncryptionKeySPKI](self, "receiverPublicEncryptionKeySPKI"));
+    if (v15
+      || (__int128 v38 = (void *)objc_claimAutoreleasedReturnValue([v7 receiverPublicEncryptionKeySPKI])) != 0)
+    {
+      uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare receiverPublicEncryptionKeySPKI](self, "receiverPublicEncryptionKeySPKI"));
+      v41 = (void *)objc_claimAutoreleasedReturnValue([v7 receiverPublicEncryptionKeySPKI]);
+      v42 = v16;
+      if (!objc_msgSend(v16, "isEqual:"))
+      {
+        unsigned __int8 v14 = 0;
+        uint64_t v18 = (void *)v15;
+        goto LABEL_29;
+      }
+
+      __int128 v39 = (void *)v15;
+      int v17 = 1;
+    }
+
+    else
+    {
+      __int128 v38 = 0LL;
+      __int128 v39 = 0LL;
+      int v17 = 0;
+    }
+
+    id v19 = -[CKKSTLKShare epoch](self, "epoch");
+    if (v19 != [v7 epoch]
+      || (id v20 = -[CKKSTLKShare curve](self, "curve"), v20 != [v7 curve])
+      || (id v21 = -[CKKSTLKShare poisoned](self, "poisoned"), v21 != [v7 poisoned]))
+    {
+      unsigned __int8 v14 = 0;
+      uint64_t v18 = v39;
+      if (!v17) {
+        goto LABEL_30;
+      }
+      goto LABEL_29;
+    }
+
+    uint64_t v18 = v39;
+    uint64_t v37 = objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+    if (v37 || (uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue([v7 wrappedTLK])) != 0)
+    {
+      char v35 = v17;
+      uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare wrappedTLK](self, "wrappedTLK"));
+      uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue([v7 wrappedTLK]);
+      id v34 = v22;
+      if (!objc_msgSend(v22, "isEqual:"))
+      {
+        unsigned __int8 v14 = 0;
+        LOBYTE(v17) = v35;
+        goto LABEL_48;
+      }
+
+      int v32 = 1;
+      LOBYTE(v17) = v35;
+    }
+
+    else
+    {
+      uint64_t v30 = 0LL;
+      int v32 = 0;
+    }
+
+    id v36 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature"));
+    if (v36 || (uint64_t v28 = objc_claimAutoreleasedReturnValue([v7 signature])) != 0)
+    {
+      id v31 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature", v28, v30));
+      id v25 = (void *)objc_claimAutoreleasedReturnValue([v7 signature]);
+      unsigned __int8 v14 = [v31 isEqual:v25];
+
+      if (v36)
+      {
+
+        uint64_t v18 = v39;
+        if (!v32) {
+          goto LABEL_49;
+        }
+        goto LABEL_48;
+      }
+
+      uint64_t v18 = v39;
+      id v27 = v29;
+    }
+
+    else
+    {
+      id v27 = 0LL;
+      unsigned __int8 v14 = 1;
+    }
+
+    if ((v32 & 1) == 0)
+    {
+LABEL_49:
+      uint64_t v26 = (void *)v37;
+      if (!v37)
+      {
+
+        uint64_t v26 = 0LL;
+      }
+
+      if ((v17 & 1) == 0)
+      {
+LABEL_30:
+        if (v18)
+        {
+
+          if (v43) {
+            goto LABEL_32;
+          }
+        }
+
+        else
+        {
+
+          if ((v43 & 1) != 0)
+          {
+LABEL_32:
+            id v23 = (void *)v46;
+
+            if (v46)
+            {
+LABEL_34:
+
+              goto LABEL_35;
+            }
+
+- (id)recoverTLK:(id)a3 trustedPeers:(id)a4 ckrecord:(id)a5 error:(id *)a6
+{
+  id v9 = a3;
+  id v10 = a4;
+  id v11 = a5;
+  __int128 v36 = 0u;
+  __int128 v37 = 0u;
+  __int128 v38 = 0u;
+  __int128 v39 = 0u;
+  id v12 = [v10 countByEnumeratingWithState:&v36 objects:v40 count:16];
+  if (v12)
+  {
+    id v13 = v12;
+    id v33 = v11;
+    id v34 = v9;
+    unsigned __int8 v14 = 0LL;
+    uint64_t v15 = *(void *)v37;
+    do
+    {
+      for (i = 0LL; i != v13; i = (char *)i + 1)
+      {
+        if (*(void *)v37 != v15) {
+          objc_enumerationMutation(v10);
+        }
+        int v17 = *(void **)(*((void *)&v36 + 1) + 8LL * (void)i);
+        uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v17 peerID]);
+        id v19 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare senderPeerID](self, "senderPeerID"));
+        unsigned int v20 = [v18 isEqualToString:v19];
+
+        if (v20)
+        {
+          id v21 = v17;
+
+          unsigned __int8 v14 = v21;
+        }
+      }
+
+      id v13 = [v10 countByEnumeratingWithState:&v36 objects:v40 count:16];
+    }
+
+    while (v13);
+    id v11 = v33;
+    id v9 = v34;
+    if (v14)
+    {
+      uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare signature](self, "signature"));
+      unsigned int v23 = -[CKKSTLKShare verifySignature:verifyingPeer:ckrecord:error:]( self,  "verifySignature:verifyingPeer:ckrecord:error:",  v22,  v14,  v33,  a6);
+
+      if (v23)
+      {
+        uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare unwrapUsing:error:](self, "unwrapUsing:error:", v34, a6));
+        if (v24)
+        {
+          id v25 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSTLKShare tlkUUID](self, "tlkUUID"));
+          uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue([v24 uuid]);
+          unsigned __int8 v27 = [v25 isEqualToString:v26];
+
+          if ((v27 & 1) != 0)
+          {
+            id v28 = v24;
+            id v29 = 0LL;
+LABEL_24:
+
+            goto LABEL_25;
+          }
+
+          id v31 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Signed UUID doesn't match unsigned UUID for %@",  self));
+          id v29 = (id)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:description:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:description:",  @"CKKSErrorDomain",  20LL,  v31));
+
+          if (a6)
+          {
+            id v29 = v29;
+            id v28 = 0LL;
+            *a6 = v29;
+            goto LABEL_24;
+          }
+        }
+
+        else
+        {
+          id v29 = 0LL;
+        }
+
+        id v28 = 0LL;
+        goto LABEL_24;
+      }
+
+      id v29 = 0LL;
+      goto LABEL_19;
+    }
+  }
+
+  uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"No trusted peer signed %@",  self));
+  id v29 = (id)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:description:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:description:",  @"CKKSErrorDomain",  19LL,  v30));
+
+  if (!a6)
+  {
+    unsigned __int8 v14 = 0LL;
+LABEL_19:
+    id v28 = 0LL;
+    goto LABEL_25;
+  }
+
+  id v29 = v29;
+  unsigned __int8 v14 = 0LL;
+  id v28 = 0LL;
+  *a6 = v29;
+LABEL_25:
+
+  return v28;
+}
+
+- (int64_t)curve
+{
+  return self->_curve;
+}
+
+- (void)setCurve:(int64_t)a3
+{
+  self->_curve = a3;
+}
+
+- (unint64_t)version
+{
+  return self->_version;
+}
+
+- (void)setVersion:(unint64_t)a3
+{
+  self->_version = a3;
+}
+
+- (NSString)tlkUUID
+{
+  return (NSString *)objc_getProperty(self, a2, 24LL, 1);
+}
+
+- (void)setTlkUUID:(id)a3
+{
+}
+
+- (NSString)receiverPeerID
+{
+  return (NSString *)objc_getProperty(self, a2, 32LL, 1);
+}
+
+- (void)setReceiverPeerID:(id)a3
+{
+}
+
+- (NSData)receiverPublicEncryptionKeySPKI
+{
+  return (NSData *)objc_getProperty(self, a2, 40LL, 1);
+}
+
+- (void)setReceiverPublicEncryptionKeySPKI:(id)a3
+{
+}
+
+- (NSString)senderPeerID
+{
+  return (NSString *)objc_getProperty(self, a2, 48LL, 1);
+}
+
+- (void)setSenderPeerID:(id)a3
+{
+}
+
+- (int64_t)epoch
+{
+  return self->_epoch;
+}
+
+- (void)setEpoch:(int64_t)a3
+{
+  self->_epoch = a3;
+}
+
+- (int64_t)poisoned
+{
+  return self->_poisoned;
+}
+
+- (void)setPoisoned:(int64_t)a3
+{
+  self->_poisoned = a3;
+}
+
+- (NSData)wrappedTLK
+{
+  return (NSData *)objc_getProperty(self, a2, 72LL, 1);
+}
+
+- (void)setWrappedTLK:(id)a3
+{
+}
+
+- (NSData)signature
+{
+  return (NSData *)objc_getProperty(self, a2, 80LL, 1);
+}
+
+- (void)setSignature:(id)a3
+{
+}
+
+- (CKRecordZoneID)zoneID
+{
+  return (CKRecordZoneID *)objc_getProperty(self, a2, 88LL, 1);
+}
+
+- (void)setZoneID:(id)a3
+{
+}
+
+- (void).cxx_destruct
+{
+}
+
++ (BOOL)supportsSecureCoding
+{
+  return 1;
+}
+
++ (id)share:(id)a3 as:(id)a4 to:(id)a5 epoch:(int64_t)a6 poisoned:(int64_t)a7 error:(id *)a8
+{
+  id v13 = a3;
+  id v14 = a4;
+  id v15 = a5;
+  uint64_t v16 = objc_alloc(&OBJC_CLASS___CKKSTLKShare);
+  int v17 = (void *)objc_claimAutoreleasedReturnValue([v13 zoneID]);
+  id v18 = -[CKKSTLKShare init:sender:receiver:curve:version:epoch:poisoned:zoneID:]( v16,  "init:sender:receiver:curve:version:epoch:poisoned:zoneID:",  v13,  v14,  v15,  4LL,  0LL,  a6,  a7,  v17);
+
+  id v19 = (void *)objc_claimAutoreleasedReturnValue([v15 publicEncryptionKey]);
+  id v35 = 0LL;
+  unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue([v18 wrap:v13 publicKey:v19 error:&v35]);
+  id v21 = v35;
+  [v18 setWrappedTLK:v20];
+
+  if (v21)
+  {
+    uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue([v13 zoneID]);
+    unsigned int v23 = (void *)objc_claimAutoreleasedReturnValue([v22 zoneName]);
+    id v24 = sub_1000AA6AC(@"ckksshare", v23);
+    id v25 = (os_log_s *)objc_claimAutoreleasedReturnValue(v24);
+
+    if (!os_log_type_enabled(v25, OS_LOG_TYPE_ERROR)) {
+      goto LABEL_8;
+    }
+    *(_DWORD *)buf = 138412546;
+    id v37 = v13;
+    __int16 v38 = 2112;
+    id v39 = v21;
+    uint64_t v26 = "couldn't share %@ (wrap failed): %@";
+    goto LABEL_7;
+  }
+
+  unsigned __int8 v27 = (void *)objc_claimAutoreleasedReturnValue([v14 signingKey]);
+  id v34 = 0LL;
+  id v28 = (void *)objc_claimAutoreleasedReturnValue([v18 signRecord:v27 ckrecord:0 error:&v34]);
+  id v21 = v34;
+  [v18 setSignature:v28];
+
+  if (!v21)
+  {
+    id v32 = v18;
+    goto LABEL_12;
+  }
+
+  id v29 = (void *)objc_claimAutoreleasedReturnValue([v13 zoneID]);
+  uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue([v29 zoneName]);
+  id v31 = sub_1000AA6AC(@"ckksshare", v30);
+  id v25 = (os_log_s *)objc_claimAutoreleasedReturnValue(v31);
+
+  if (os_log_type_enabled(v25, OS_LOG_TYPE_ERROR))
+  {
+    *(_DWORD *)buf = 138412546;
+    id v37 = v13;
+    __int16 v38 = 2112;
+    id v39 = v21;
+    uint64_t v26 = "couldn't share %@ (signing failed): %@";
+LABEL_7:
+    _os_log_impl((void *)&_mh_execute_header, v25, OS_LOG_TYPE_ERROR, v26, buf, 0x16u);
+  }
+
+@end

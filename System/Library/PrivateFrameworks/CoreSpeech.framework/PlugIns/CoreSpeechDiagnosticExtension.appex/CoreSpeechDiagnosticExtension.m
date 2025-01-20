@@ -1,0 +1,23 @@
+int64_t sub_100003874(id a1, DEAttachmentItem *a2, DEAttachmentItem *a3)
+{
+  DEAttachmentItem *v4;
+  void *v5;
+  void *v6;
+  id v7;
+  v4 = a2;
+  v5 = (void *)objc_claimAutoreleasedReturnValue(-[DEAttachmentItem modificationDate](a3, "modificationDate"));
+  v6 = (void *)objc_claimAutoreleasedReturnValue(-[DEAttachmentItem modificationDate](v4, "modificationDate"));
+
+  v7 = [v5 compare:v6];
+  return (int64_t)v7;
+}
+
+void sub_1000038E0(id a1)
+{
+  byte_100008150 = os_variant_has_internal_diagnostics("com.apple.corespeech");
+}
+
+id objc_msgSend_subarrayWithRange_(void *a1, const char *a2, ...)
+{
+  return objc_msgSend(a1, "subarrayWithRange:");
+}

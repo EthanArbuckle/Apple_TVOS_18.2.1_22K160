@@ -1,0 +1,71 @@
+@interface UARPSupportedAccessoryA3046Simulated
++ (id)appleModelNumber;
++ (id)modelName;
++ (unsigned)productID;
++ (unsigned)vendorID;
+- (UARPSupportedAccessoryA3046Simulated)init;
+@end
+
+@implementation UARPSupportedAccessoryA3046Simulated
+
+- (UARPSupportedAccessoryA3046Simulated)init
+{
+  v9.receiver = self;
+  v9.super_class = (Class)&OBJC_CLASS___UARPSupportedAccessoryA3046Simulated;
+  v2 = -[UARPSupportedAccessoryUSB init](&v9, sel_init);
+  if (v2)
+  {
+    v3 = +[UARPSupportedAccessoryA3046Simulated appleModelNumber]( &OBJC_CLASS___UARPSupportedAccessoryA3046Simulated,  "appleModelNumber");
+    -[UARPSupportedAccessory setAppleModelNumber:](v2, "setAppleModelNumber:", v3);
+    v4 = +[UARPSupportedAccessoryA3046Simulated modelName](&OBJC_CLASS___UARPSupportedAccessoryA3046Simulated, "modelName");
+    -[UARPSupportedAccessory setModelName:](v2, "setModelName:", v4);
+
+    -[UARPSupportedAccessory setIsSimulator:](v2, "setIsSimulator:", 1LL);
+    v5 = +[UARPSupportedAccessoryA3046 appleModelNumber](&OBJC_CLASS___UARPSupportedAccessoryA3046, "appleModelNumber");
+    -[UARPSupportedAccessory setMobileAssetAppleModelNumber:](v2, "setMobileAssetAppleModelNumber:", v5);
+
+    v6 = -[UARPAccessoryHardwareUSB initWithVendorID:productID:]( objc_alloc(&OBJC_CLASS___UARPAccessoryHardwareUSB),  "initWithVendorID:productID:",  +[UARPSupportedAccessoryA3046Simulated vendorID]( &OBJC_CLASS___UARPSupportedAccessoryA3046Simulated,  "vendorID"),  +[UARPSupportedAccessoryA3046Simulated productID]( &OBJC_CLASS___UARPSupportedAccessoryA3046Simulated,  "productID"));
+    hwID = v2->hwID;
+    v2->hwID = v6;
+
+    -[UARPSupportedAccessory setHardwareID:](v2, "setHardwareID:", v2->hwID);
+  }
+
+  return v2;
+}
+
++ (id)appleModelNumber
+{
+  v2 = (void *)NSString;
+  v3 = +[UARPSupportedAccessoryA3046 appleModelNumber](&OBJC_CLASS___UARPSupportedAccessoryA3046, "appleModelNumber");
+  [v2 stringWithFormat:@"%@-SIM", v3];
+  v4 = (void *)objc_claimAutoreleasedReturnValue();
+
+  return v4;
+}
+
++ (unsigned)vendorID
+{
+  return 1093;
+}
+
++ (unsigned)productID
+{
+  return +[UARPSupportedAccessoryA3046 productID](&OBJC_CLASS___UARPSupportedAccessoryA3046, "productID");
+}
+
++ (id)modelName
+{
+  v2 = (void *)NSString;
+  v3 = +[UARPSupportedAccessoryA3046 modelName](&OBJC_CLASS___UARPSupportedAccessoryA3046, "modelName");
+  [v2 stringWithFormat:@"%@ [Simulator]", v3];
+  v4 = (void *)objc_claimAutoreleasedReturnValue();
+
+  return v4;
+}
+
+- (void).cxx_destruct
+{
+}
+
+@end

@@ -1,0 +1,10 @@
+@interface IOHIDEventSystemConnectionRemoveVirtualService
+@end
+
+@implementation IOHIDEventSystemConnectionRemoveVirtualService
+
+void ___IOHIDEventSystemConnectionRemoveVirtualService_block_invoke(uint64_t a1)
+{
+}
+
+@end
