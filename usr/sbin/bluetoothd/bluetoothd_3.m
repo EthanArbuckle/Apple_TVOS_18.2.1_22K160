@@ -26936,7 +26936,7 @@ LABEL_198:
   [v192 setObject:v199 forKeyedSubscript:@"scanParams.window"];
 
   LOWORD(v200) = *((_WORD *)v249 + 4);
-  uint64_t v201 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", (double)v200 * 0.625));
+  uint64_t v201 = (void *)[NSNumber numberWithDouble:v200 * 0.625];
   [v192 setObject:v201 forKeyedSubscript:@"scanParams.windowLPCore"];
 
   LOWORD(v202) = *((_WORD *)v249 + 5);
@@ -26953,10 +26953,10 @@ LABEL_198:
   uint64_t v207 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v249[15]));
   [v192 setObject:v207 forKeyedSubscript:@"scanParams.scanningPhys"];
 
-  uint64_t v208 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v249[16]));
+  uint64_t v208 = (void *)[NSNumber numberWithBool:v249[16]];
   [v192 setObject:v208 forKeyedSubscript:@"scanParams.retainDuplicates"];
 
-  uint64_t v209 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v249[17]));
+  uint64_t v209 = (void *)[NSNumber numberWithUnsignedChar:v249[17]];
   [v192 setObject:v209 forKeyedSubscript:@"scanParams.priorityConfig"];
 
   uint64_t v210 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v249[18]));
@@ -26968,7 +26968,7 @@ LABEL_198:
   uint64_t v212 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *((unsigned __int16 *)v249 + 11)));
   [v192 setObject:v212 forKeyedSubscript:@"scanParams.scanCoreCoexQueryPeriod"];
 
-  uint64_t v213 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v249[24]));
+  uint64_t v213 = (void *)[NSNumber numberWithBool:v249[24]];
   [v192 setObject:v213 forKeyedSubscript:@"scanParams.isPrioritizedOverBT"];
 
   uint64_t v214 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v249[25]));
@@ -26983,7 +26983,7 @@ LABEL_198:
   unsigned __int16 v217 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v251));
   [v192 setObject:v217 forKeyedSubscript:@"daemonWindow"];
 
-  uint64_t v218 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v238));
+  uint64_t v218 = (void *)[NSNumber numberWithInt:v238];
   [v192 setObject:v218 forKeyedSubscript:@"minScanLevel"];
 
   uint64_t v219 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  100 * v190 / v191));
@@ -26992,10 +26992,10 @@ LABEL_198:
   uint64_t v220 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", BYTE4(v237) & 1));
   [v192 setObject:v220 forKeyedSubscript:@"allowInPause"];
 
-  uint64_t v221 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v235));
+  uint64_t v221 = (void *)[NSNumber numberWithBool:v235];
   [v192 setObject:v221 forKeyedSubscript:@"scanLPCoreEnable"];
 
-  uint64_t v222 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v234));
+  uint64_t v222 = (void *)[NSNumber numberWithBool:v234];
   [v192 setObject:v222 forKeyedSubscript:@"isScanCoreEnabled"];
 
   uint64_t v223 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v253 & v240));
@@ -27004,7 +27004,7 @@ LABEL_198:
   uint64_t v224 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v241 & 1));
   [v192 setObject:v224 forKeyedSubscript:@"isPriorityCritical"];
 
-  uint64_t v225 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v243 & 1));
+  uint64_t v225 = (void *)[NSNumber numberWithBool:v243 & 1];
   [v192 setObject:v225 forKeyedSubscript:@"isPrioritizedOverBT"];
 
   uint64_t v226 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v237 & 1));
@@ -54453,7 +54453,7 @@ LABEL_175:
               }
             }
 
-            uint64_t v90 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(v100 + 320) objectForKeyedSubscript:*v62]);
+            uint64_t v90 = (void *)[*(id *)(v100 + 320) objectForKeyedSubscript:*v62];
             uint64_t v91 = v90;
 
             goto LABEL_105;
@@ -54651,7 +54651,7 @@ LABEL_74:
   sub_100494C98(v25, a7);
   uint64_t v68 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v67));
   sub_10027B2AC((uint64_t)v68, v24, v69, v68, BYTE5(v104));
-  uint64_t v70 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(v100 + 304) objectForKey:v19]);
+  uint64_t v70 = (void *)[*(id *)(v100 + 304) objectForKey:v19];
   if (v70)
   {
     uint64_t v71 = (os_log_s *)qword_1008F7680;

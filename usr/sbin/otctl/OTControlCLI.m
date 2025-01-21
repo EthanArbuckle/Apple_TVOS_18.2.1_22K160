@@ -82,7 +82,7 @@
   objc_super v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_100010B18;
@@ -103,7 +103,7 @@
   objc_super v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_100010A8C;
@@ -124,7 +124,7 @@
   objc_super v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_100010A00;
@@ -145,7 +145,7 @@
   objc_super v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_100010974;
@@ -166,7 +166,7 @@
   id v15 = a3;
   id v16 = a4;
   id v17 = a5;
-  v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a8));
+  v18 = [NSDate dateWithTimeIntervalSinceNow:a8];
   uint64_t v32 = 0LL;
   v33 = &v32;
   uint64_t v34 = 0x2020000000LL;
@@ -178,7 +178,7 @@
   do
   {
     char *v14 = 0;
-    v19 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+    v19 = [self control];
     v24[0] = _NSConcreteStackBlock;
     v24[1] = 3221225472LL;
     v24[2] = sub_1000108A8;
@@ -216,25 +216,25 @@
   [v19 setPasswordEquivalentToken:v21];
   [v19 setAuthenticationAppleID:v17];
 
-  v22 = (void *)objc_claimAutoreleasedReturnValue([v18 altDSID]);
+  v22 = [v18 altDSID];
   [v19 setAltDSID:v22];
 
-  uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue([v18 contextID]);
+  uint64_t v23 = (void *)[v18 contextID];
   [v19 setContext:v23];
 
-  v24 = (void *)objc_claimAutoreleasedReturnValue([v18 containerName]);
+  v24 = [v18 containerName];
   [v19 setContainerName:v24];
 
   [v19 setIsGuitarfish:v9];
   id v32 = 0LL;
-  id v25 = (void *)objc_claimAutoreleasedReturnValue( +[OTClique resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:]( &OBJC_CLASS___OTClique,  "resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:",  v19,  v15,  v14,  a9,  &v32));
+  id v25 = [OBJC_CLASS___OTClique resetProtectedData:v19 idmsTargetContext:v15 idmsCuttlefishPassword:v14 notifyIdMS:a9 error:&v32];
 
   id v26 = v32;
   v27 = v26;
   if (!v25 || v26)
   {
     v29 = __stderrp;
-    id v30 = objc_claimAutoreleasedReturnValue([v26 description]);
+    id v30 = [v26 description];
     fprintf(v29, "resetProtectedData failed: %s\n", (const char *)[v30 UTF8String]);
 
     int v28 = 1;
@@ -253,20 +253,20 @@
 {
   id v27 = a4;
   id v5 = a3;
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"peerID"]);
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"permanentInfo"]);
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"model_id"]);
+  v6 = [v5 objectForKeyedSubscript:@"peerID"];
+  v7 = [v5 objectForKeyedSubscript:@"permanentInfo"];
+  uint64_t v8 = (void *)[v7 objectForKeyedSubscript:@"model_id"];
 
-  BOOL v9 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"permanentInfo"]);
-  id v26 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"epoch"]);
+  BOOL v9 = [v5 objectForKeyedSubscript:@"permanentInfo"];
+  id v26 = [v9 objectForKeyedSubscript:@"epoch"];
 
-  BOOL v10 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"stableInfo"]);
-  int v11 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"device_name"]);
+  BOOL v10 = [v5 objectForKeyedSubscript:@"stableInfo"];
+  int v11 = (void *)[v10 objectForKeyedSubscript:@"device_name"];
 
-  v12 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"stableInfo"]);
-  v13 = (void *)objc_claimAutoreleasedReturnValue([v12 objectForKeyedSubscript:@"serial_number"]);
+  v12 = [v5 objectForKeyedSubscript:@"stableInfo"];
+  v13 = [v12 objectForKeyedSubscript:@"serial_number"];
 
-  id v14 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"stableInfo"]);
+  id v14 = [v5 objectForKeyedSubscript:@"stableInfo"];
   id v15 = (void *)objc_claimAutoreleasedReturnValue([v14 objectForKeyedSubscript:@"os_version"]);
 
   if (v27) {
@@ -284,7 +284,7 @@
   id v21 = v13;
   v22 = (const char *)[v21 UTF8String];
   id v23 = v15;
-  printf( "%s%s hw:'%s' name:'%s' serial: '%s' os:'%s' epoch:%d\n",  v25,  v24,  v18,  v20,  v22,  (const char *)[v23 UTF8String],  objc_msgSend(v26, "intValue"));
+  printf( "%s%s hw:'%s' name:'%s' serial: '%s' os:'%s' epoch:%d\n",  v25,  v24,  v18,  v20,  v22,  (const char *)[v23 UTF8String],  [v26 intValue]);
 }
 
 - (void)printCRKWithPeer:(id)a3 information:(id)a4 prefix:(id)a5
@@ -292,8 +292,8 @@
   id v7 = a3;
   id v8 = a5;
   id v9 = a4;
-  BOOL v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"uuid"]);
-  int v11 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"kind"]);
+  BOOL v10 = [v9 objectForKeyedSubscript:@"uuid"];
+  int v11 = (void *)[v9 objectForKeyedSubscript:@"kind"];
 
   if (v8) {
     v12 = (const char *)[v8 UTF8String];
@@ -337,7 +337,7 @@
           objc_enumerationMutation(v10);
         }
         id v17 = *(void **)(*((void *)&v24 + 1) + 8LL * (void)i);
-        id v18 = (void *)objc_claimAutoreleasedReturnValue([v12 objectForKeyedSubscript:v17]);
+        id v18 = [v12 objectForKeyedSubscript:v17];
         if (v18)
         {
           if ([v17 isEqualToString:v11])
@@ -359,7 +359,7 @@
 
         else
         {
-          v22 = (void *)objc_claimAutoreleasedReturnValue([v23 objectForKeyedSubscript:v17]);
+          v22 = (void *)[v23 objectForKeyedSubscript:v17];
           if (v22) {
             -[OTControlCLI printCRKWithPeer:information:prefix:]( self,  "printCRKWithPeer:information:prefix:",  v17,  v22,  @"    CRK: ");
           }
@@ -388,17 +388,17 @@
     if (v5)
     {
       v58 = @"error";
-      v36 = (void *)objc_claimAutoreleasedReturnValue([v8 description]);
+      v36 = [v8 description];
       v59 = v36;
       int v37 = 1;
-      v38 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v59,  &v58,  1LL));
+      v38 = [NSDictionary dictionaryWithObjects:forKeys:count:&v59, &v58, 1LL];
       sub_10000D8EC(v38);
     }
 
     else
     {
       v39 = __stderrp;
-      id v40 = objc_claimAutoreleasedReturnValue([v8 description]);
+      id v40 = [v8 description];
       fprintf(v39, "fetching escrow records failed: %s\n", (const char *)[v40 UTF8String]);
 
       int v37 = 1;
@@ -419,7 +419,7 @@
       printf("Successfully fetched %lu record%s.\n", v10, v12);
     }
 
-    id v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+    id v13 = [NSMutableArray array];
     __int128 v54 = 0u;
     __int128 v55 = 0u;
     __int128 v56 = 0u;
@@ -440,13 +440,13 @@
             objc_enumerationMutation(obj);
           }
           id v18 = *(void **)(*((void *)&v54 + 1) + 8LL * (void)v17);
-          id v19 = (void *)objc_claimAutoreleasedReturnValue([v18 escrowInformationMetadata]);
-          uint64_t v20 = objc_claimAutoreleasedReturnValue([v19 peerInfo]);
+          id v19 = [v18 escrowInformationMetadata];
+          uint64_t v20 = [v19 peerInfo];
           if (!v20)
           {
 
 LABEL_17:
-            uint64_t v29 = objc_claimAutoreleasedReturnValue([v18 recordId]);
+            uint64_t v29 = [v18 recordId];
 LABEL_18:
             id v30 = (void *)v29;
             [v13 addObject:v29];
@@ -455,28 +455,28 @@ LABEL_18:
           }
 
           id v21 = (void *)v20;
-          v22 = (void *)objc_claimAutoreleasedReturnValue([v18 escrowInformationMetadata]);
-          id v23 = objc_claimAutoreleasedReturnValue([v22 peerInfo]);
+          v22 = [v18 escrowInformationMetadata];
+          id v23 = [v22 peerInfo];
           id v24 = [v23 bytes];
 
           if (!v24) {
             goto LABEL_17;
           }
           id v53 = 0LL;
-          __int128 v25 = (void *)objc_claimAutoreleasedReturnValue([v18 escrowInformationMetadata]);
-          __int128 v26 = (void *)objc_claimAutoreleasedReturnValue([v25 peerInfo]);
+          __int128 v25 = (void *)[v18 escrowInformationMetadata];
+          __int128 v26 = (void *)[v25 peerInfo];
           uint64_t v27 = SOSPeerInfoCreateFromData(kCFAllocatorDefault, &v53, v26);
 
           if (v27)
           {
             uint64_t PeerID = SOSPeerInfoGetPeerID(v27);
-            uint64_t v29 = objc_claimAutoreleasedReturnValue(PeerID);
+            uint64_t v29 = [PeerID autorelease];
             goto LABEL_18;
           }
 
           id v31 = v53;
           id v32 = __stderrp;
-          id v33 = objc_claimAutoreleasedReturnValue([v53 description]);
+          id v33 = [v53 description];
           fprintf(v32, "Failed SOSPeerInfoCreateFromData: %s\n", (const char *)[v33 UTF8String]);
 
 LABEL_19:
@@ -495,7 +495,7 @@ LABEL_19:
     {
       v61 = @"escrowRecords";
       v62 = v13;
-      id v35 = (id)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v62,  &v61,  1LL));
+      id v35 = [NSDictionary dictionaryWithObjects:forKeys:count:v62, v61, 1LL];
       sub_10000D8EC(v35);
       id v7 = v46;
     }
@@ -546,10 +546,10 @@ LABEL_19:
   else {
     uint64_t v7 = 0LL;
   }
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([a3 makeConfigurationContext]);
+  id v8 = [a3 makeConfigurationContext];
   [v8 setEscrowFetchSource:v7];
   id v13 = 0LL;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(+[OTClique fetchEscrowRecords:error:](&OBJC_CLASS___OTClique, "fetchEscrowRecords:error:", v8, &v13));
+  id v9 = [OTClique fetchEscrowRecords:v8 error:&v13];
   id v10 = v13;
   int v11 = -[OTControlCLI checkAndPrintEscrowRecords:error:json:]( self,  "checkAndPrintEscrowRecords:error:json:",  v9,  v10,  v5);
 
@@ -565,10 +565,10 @@ LABEL_19:
   else {
     uint64_t v7 = 0LL;
   }
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([a3 makeConfigurationContext]);
+  id v8 = [a3 makeConfigurationContext];
   [v8 setEscrowFetchSource:v7];
   id v13 = 0LL;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue( +[OTClique fetchAllEscrowRecords:error:]( &OBJC_CLASS___OTClique,  "fetchAllEscrowRecords:error:",  v8,  &v13));
+  id v9 = [OBJC_CLASS___OTClique fetchAllEscrowRecords:v8 error:&v13];
   id v10 = v13;
   int v11 = -[OTControlCLI checkAndPrintEscrowRecords:error:json:]( self,  "checkAndPrintEscrowRecords:error:json:",  v9,  v10,  v5);
 
@@ -587,27 +587,27 @@ LABEL_19:
   id v18 = objc_alloc_init(&OBJC_CLASS___OTCDPRecoveryInformation);
   [v17 setCdpInfo:v18];
 
-  id v19 = (void *)objc_claimAutoreleasedReturnValue([v17 cdpInfo]);
+  id v19 = (void *)[v17 cdpInfo];
   [v19 setRecoverySecret:v16];
 
-  uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v17 cdpInfo]);
+  uint64_t v20 = (void *)[v17 cdpInfo];
   [v20 setContainsIcdpData:1];
 
-  id v21 = (void *)objc_claimAutoreleasedReturnValue([v17 cdpInfo]);
+  id v21 = (void *)[v17 cdpInfo];
   [v21 setUsesMultipleIcsc:1];
 
   id v22 = objc_alloc_init(&OBJC_CLASS___OTEscrowAuthenticationInformation);
   [v17 setAuthInfo:v22];
 
-  id v23 = (void *)objc_claimAutoreleasedReturnValue([v17 authInfo]);
+  id v23 = [v17 authInfo];
   [v23 setAuthenticationAppleid:v15];
 
   id v24 = sub_10000D5A8(v15, 0LL);
   __int128 v25 = (void *)objc_claimAutoreleasedReturnValue(v24);
-  __int128 v26 = (void *)objc_claimAutoreleasedReturnValue([v17 authInfo]);
+  __int128 v26 = (void *)[v17 authInfo];
   [v26 setAuthenticationPassword:v25];
 
-  uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue([v13 makeConfigurationContext]);
+  uint64_t v27 = (void *)[v13 makeConfigurationContext];
   int v28 = v27;
   if (v8) {
     uint64_t v29 = 2LL;
@@ -619,14 +619,14 @@ LABEL_19:
   [v28 setOverrideForSetupAccountScript:v9];
   id v67 = 0LL;
   v60 = v28;
-  id v30 = (void *)objc_claimAutoreleasedReturnValue(+[OTClique fetchEscrowRecords:error:](&OBJC_CLASS___OTClique, "fetchEscrowRecords:error:", v28, &v67));
+  id v30 = [OTClique fetchEscrowRecords:v28 error:&v67];
   id v31 = v67;
   id v32 = v31;
   v59 = v30;
   if (!v30 || v31)
   {
     v45 = __stderrp;
-    id v46 = objc_claimAutoreleasedReturnValue([v31 description]);
+    id v46 = [v31 description];
     fprintf(v45, "Failed to fetch escrow records: %s\n", (const char *)[v46 UTF8String]);
 
     int v47 = 1;
@@ -657,8 +657,8 @@ LABEL_8:
         }
         v38 = *(void **)(*((void *)&v63 + 1) + 8 * v37);
         id v62 = 0LL;
-        v39 = (void *)objc_claimAutoreleasedReturnValue([v38 escrowInformationMetadata]);
-        id v40 = (void *)objc_claimAutoreleasedReturnValue([v39 peerInfo]);
+        v39 = [v38 escrowInformationMetadata];
+        id v40 = [v39 peerInfo];
         uint64_t v41 = SOSPeerInfoCreateFromData(kCFAllocatorDefault, &v62, v40);
 
         if (v41)
@@ -671,7 +671,7 @@ LABEL_8:
               goto LABEL_23;
             }
             id v13 = v57;
-            __int128 v49 = (void *)objc_claimAutoreleasedReturnValue([v57 makeConfigurationContext]);
+            __int128 v49 = (void *)[v57 makeConfigurationContext];
             [v49 setEscrowFetchSource:2];
             id v61 = 0LL;
             __int128 v50 = (void *)objc_claimAutoreleasedReturnValue( +[OTClique performEscrowRecovery:cdpContext:escrowRecord:error:]( &OBJC_CLASS___OTClique,  "performEscrowRecovery:cdpContext:escrowRecord:error:",  v49,  v58,  v48,  &v61));
@@ -680,7 +680,7 @@ LABEL_8:
             if (!v50 || v51)
             {
               __int128 v52 = __stderrp;
-              id v53 = objc_claimAutoreleasedReturnValue([v51 description]);
+              id v53 = [v51 description];
               fprintf(v52, "Escrow recovery failed: %s\n", (const char *)[v53 UTF8String]);
 
               int v47 = 1;
@@ -700,7 +700,7 @@ LABEL_8:
         {
           id v42 = v62;
           uint64_t v43 = __stderrp;
-          id v44 = objc_claimAutoreleasedReturnValue([v62 description]);
+          id v44 = [v62 description];
           fprintf(v43, "Failed SOSPeerInfoCreateFromData: %s\n", (const char *)[v44 UTF8String]);
         }
 
@@ -738,54 +738,54 @@ LABEL_26:
   id v11 = objc_alloc_init(&OBJC_CLASS___OTCDPRecoveryInformation);
   [v10 setCdpInfo:v11];
 
-  id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 cdpInfo]);
+  id v12 = (void *)[v10 cdpInfo];
   [v12 setRecoverySecret:v8];
 
-  id v13 = (void *)objc_claimAutoreleasedReturnValue([v10 cdpInfo]);
+  id v13 = (void *)[v10 cdpInfo];
   [v13 setContainsIcdpData:1];
 
-  id v14 = (void *)objc_claimAutoreleasedReturnValue([v10 cdpInfo]);
+  id v14 = [v10 cdpInfo];
   [v14 setSilentRecoveryAttempt:1];
 
-  id v15 = (void *)objc_claimAutoreleasedReturnValue([v10 cdpInfo]);
+  id v15 = [v10 cdpInfo];
   [v15 setUsesMultipleIcsc:1];
 
   id v16 = objc_alloc_init(&OBJC_CLASS___OTEscrowAuthenticationInformation);
   [v10 setAuthInfo:v16];
 
-  id v17 = (void *)objc_claimAutoreleasedReturnValue([v10 authInfo]);
+  id v17 = [v10 authInfo];
   [v17 setAuthenticationAppleid:v9];
 
   id v18 = sub_10000D5A8(v9, 0LL);
   id v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
 
-  uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v10 authInfo]);
+  uint64_t v20 = (void *)[v10 authInfo];
   [v20 setAuthenticationPassword:v19];
 
-  id v21 = (void *)objc_claimAutoreleasedReturnValue([v7 makeConfigurationContext]);
+  id v21 = [v7 makeConfigurationContext];
   id v32 = 0LL;
-  id v22 = (void *)objc_claimAutoreleasedReturnValue(+[OTClique fetchEscrowRecords:error:](&OBJC_CLASS___OTClique, "fetchEscrowRecords:error:", v21, &v32));
+  id v22 = [OBJC_CLASS___OTClique fetchEscrowRecords:v21 error:&v32];
   id v23 = v32;
 
   if (!v22 || v23)
   {
     uint64_t v27 = __stderrp;
-    id v25 = objc_claimAutoreleasedReturnValue([v23 description]);
+    id v25 = [v23 description];
     fprintf(v27, "Failed to fetch escrow records: %s.\n", (const char *)[v25 UTF8String]);
 LABEL_8:
     int v26 = 1;
     goto LABEL_9;
   }
 
-  id v24 = (void *)objc_claimAutoreleasedReturnValue([v7 makeConfigurationContext]);
+  id v24 = [v7 makeConfigurationContext];
   id v31 = 0LL;
-  id v25 = (id)objc_claimAutoreleasedReturnValue( +[OTClique performSilentEscrowRecovery:cdpContext:allRecords:error:]( &OBJC_CLASS___OTClique,  "performSilentEscrowRecovery:cdpContext:allRecords:error:",  v24,  v10,  v22,  &v31));
+  id v25 = [OBJC_CLASS___OTClique performSilentEscrowRecovery:v24 cdpContext:v10 allRecords:v22 error:&v31];
   id v23 = v31;
 
   if (!v25 || v23)
   {
     int v28 = __stderrp;
-    id v29 = objc_claimAutoreleasedReturnValue([v23 description]);
+    id v29 = [v23 description];
     fprintf(v28, "Escrow recovery failed: %s\n", (const char *)[v29 UTF8String]);
 
     goto LABEL_8;
@@ -802,20 +802,20 @@ LABEL_9:
 {
   id v3 = a3;
   id v4 = objc_alloc(&OBJC_CLASS___OTClique);
-  BOOL v5 = (void *)objc_claimAutoreleasedReturnValue([v3 makeConfigurationContext]);
+  BOOL v5 = [v3 makeConfigurationContext];
   id v6 = [v4 initWithContextData:v5];
 
   if (v6)
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v3 makeConfigurationContext]);
+    id v7 = [v3 makeConfigurationContext];
     id v54 = 0LL;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( +[OTClique fetchAllEscrowRecords:error:]( &OBJC_CLASS___OTClique,  "fetchAllEscrowRecords:error:",  v7,  &v54));
+    id v8 = [OBJC_CLASS___OTClique fetchAllEscrowRecords:v7 error:&v54];
     id v9 = v54;
 
     if (!v8 || v9)
     {
       id v33 = __stderrp;
-      id v10 = objc_claimAutoreleasedReturnValue([v9 description]);
+      id v10 = [v9 description];
       fprintf(v33, "Failed to fetch escrow records: %s.\n", (const char *)[v10 UTF8String]);
     }
 
@@ -868,8 +868,8 @@ LABEL_9:
                       objc_enumerationMutation(v18);
                     }
                     id v30 = *(void **)(*((void *)&v45 + 1) + 8LL * (void)j);
-                    id v31 = objc_claimAutoreleasedReturnValue([v13 recordId]);
-                    printf( "%s has recoverable view: %s\n", (const char *)[v31 UTF8String], (const char *)objc_msgSend(v30, "UTF8String"));
+                    id v31 = [v13 recordId];
+                    printf( "%s has recoverable view: %s\n", (const char *)[v31 UTF8String], (const char *)[v30 UTF8String]);
                   }
 
                   id v27 = [v18 countByEnumeratingWithState:&v45 objects:v55 count:16];
@@ -893,13 +893,13 @@ LABEL_9:
             {
               id v44 = v14;
               id v17 = __stderrp;
-              id v18 = objc_claimAutoreleasedReturnValue([v13 recordId]);
+              id v18 = [v13 recordId];
               id v19 = (const char *)[v18 UTF8String];
               uint64_t v20 = v11;
               id v21 = v6;
               id v22 = v10;
               id v23 = v15;
-              id v24 = objc_claimAutoreleasedReturnValue([v15 description]);
+              id v24 = [v15 description];
               id v35 = (const char *)[v24 UTF8String];
               id v25 = v17;
               id v14 = v44;
@@ -944,7 +944,7 @@ LABEL_31:
   id v12 = &v11;
   uint64_t v13 = 0x2020000000LL;
   int v14 = 1;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v7 = [self control];
   v9[0] = _NSConcreteStackBlock;
   v9[1] = 3221225472LL;
   v9[2] = sub_10000FF6C;
@@ -1075,7 +1075,7 @@ LABEL_31:
   dispatch_time_t v16 = &v15;
   uint64_t v17 = 0x2020000000LL;
   int v18 = 1;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v11 = [self control];
   v13[0] = _NSConcreteStackBlock;
   v13[1] = 3221225472LL;
   v13[2] = sub_10000FB30;
@@ -1119,7 +1119,7 @@ LABEL_31:
   dispatch_semaphore_t v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  BOOL v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10000F978;
@@ -1142,7 +1142,7 @@ LABEL_31:
   int v15 = &v14;
   uint64_t v16 = 0x2020000000LL;
   int v17 = 1;
-  int v11 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  int v11 = (void *)[self control];
   v13[0] = _NSConcreteStackBlock;
   v13[1] = 3221225472LL;
   v13[2] = sub_10000F8EC;
@@ -1185,7 +1185,7 @@ LABEL_31:
   id v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  BOOL v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10000F78C;
@@ -1258,7 +1258,7 @@ LABEL_31:
   }
 
   dispatch_semaphore_t v13 = &v27;
-  uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a6));
+  uint64_t v14 = (void *)[NSDate dateWithTimeIntervalSinceNow:a6];
   uint64_t v28 = 0LL;
   id v29 = &v28;
   uint64_t v30 = 0x2020000000LL;
@@ -1300,7 +1300,7 @@ LABEL_8:
   id v13 = a4;
   id v14 = a5;
   id v15 = a6;
-  id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a7));
+  id v16 = [NSDate dateWithTimeIntervalSinceNow:a7];
   uint64_t v40 = 0LL;
   int v41 = &v40;
   uint64_t v42 = 0x2020000000LL;
@@ -1330,7 +1330,7 @@ LABEL_8:
           do
           {
             *((_BYTE *)v23 + 24) = 0;
-            uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+            uint64_t v24 = (void *)[self control];
             v31[0] = _NSConcreteStackBlock;
             v31[1] = 3221225472LL;
             v31[2] = sub_10000F528;
@@ -1350,7 +1350,7 @@ LABEL_8:
         else
         {
           uint64_t v26 = __stderrp;
-          id v27 = objc_claimAutoreleasedReturnValue([v22 description]);
+          id v27 = [v22 description];
           fprintf(v26, "failed to create OTCustodianRecoveryKey: %s\n", (const char *)[v27 UTF8String]);
 
           int v25 = 1;
@@ -1391,7 +1391,7 @@ LABEL_8:
   id v13 = a4;
   id v14 = a5;
   id v15 = a6;
-  id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a7));
+  id v16 = [NSDate dateWithTimeIntervalSinceNow:a7];
   uint64_t v40 = 0LL;
   int v41 = &v40;
   uint64_t v42 = 0x2020000000LL;
@@ -1421,7 +1421,7 @@ LABEL_8:
           do
           {
             *((_BYTE *)v23 + 24) = 0;
-            uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+            uint64_t v24 = (void *)[self control];
             v31[0] = _NSConcreteStackBlock;
             v31[1] = 3221225472LL;
             v31[2] = sub_10000F45C;
@@ -1441,7 +1441,7 @@ LABEL_8:
         else
         {
           uint64_t v26 = __stderrp;
-          id v27 = objc_claimAutoreleasedReturnValue([v22 description]);
+          id v27 = [v22 description];
           fprintf(v26, "failed to create OTCustodianRecoveryKey: %s\n", (const char *)[v27 UTF8String]);
 
           int v25 = 1;
@@ -1480,7 +1480,7 @@ LABEL_8:
 {
   id v8 = a3;
   id v9 = a4;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a5));
+  id v10 = [NSDate dateWithTimeIntervalSinceNow:a5];
   uint64_t v25 = 0LL;
   uint64_t v26 = &v25;
   uint64_t v27 = 0x2020000000LL;
@@ -1497,7 +1497,7 @@ LABEL_8:
     do
     {
       *((_BYTE *)v12 + 24) = 0;
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v16));
+      id v13 = [self control:v16];
       v17[0] = _NSConcreteStackBlock;
       v17[1] = 3221225472LL;
       v17[2] = sub_10000F390;
@@ -1531,7 +1531,7 @@ LABEL_8:
 {
   id v8 = a3;
   id v9 = a4;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a5));
+  id v10 = [NSDate dateWithTimeIntervalSinceNow:a5];
   uint64_t v25 = 0LL;
   uint64_t v26 = &v25;
   uint64_t v27 = 0x2020000000LL;
@@ -1548,7 +1548,7 @@ LABEL_8:
     do
     {
       *((_BYTE *)v12 + 24) = 0;
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v16));
+      id v13 = [self control:v16];
       v17[0] = _NSConcreteStackBlock;
       v17[1] = 3221225472LL;
       v17[2] = sub_10000F28C;
@@ -1585,7 +1585,7 @@ LABEL_8:
   id v9 = &v8;
   uint64_t v10 = 0x2020000000LL;
   int v11 = 1;
-  BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  BOOL v5 = [self control];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10000F200;
@@ -1614,7 +1614,7 @@ LABEL_8:
   if (!v6 || v7)
   {
     int v11 = __stderrp;
-    id v12 = objc_claimAutoreleasedReturnValue([v7 description]);
+    id v12 = [v7 description];
     fprintf(v11, "failed to create recovery key: %s\n", (const char *)[v12 UTF8String]);
 
     int v10 = *((_DWORD *)v19 + 6);
@@ -1622,7 +1622,7 @@ LABEL_8:
 
   else
   {
-    id v9 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+    id v9 = [self control];
     v14[0] = _NSConcreteStackBlock;
     v14[1] = 3221225472LL;
     v14[2] = sub_10000F164;
@@ -1646,7 +1646,7 @@ LABEL_8:
   id v15 = &v14;
   uint64_t v16 = 0x2020000000LL;
   int v17 = 1;
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  uint64_t v8 = (void *)[self control];
   v11[0] = _NSConcreteStackBlock;
   v11[1] = 3221225472LL;
   v11[2] = sub_10000F0C8;
@@ -1664,7 +1664,7 @@ LABEL_8:
 
 - (int)checkRecoveryKeyWithArguments:(id)a3
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([a3 makeConfigurationContext]);
+  id v3 = [a3 makeConfigurationContext];
   id v12 = 0LL;
   unsigned int v4 = +[OTClique isRecoveryKeySet:error:](&OBJC_CLASS___OTClique, "isRecoveryKeySet:error:", v3, &v12);
   id v5 = v12;
@@ -1672,7 +1672,7 @@ LABEL_8:
   if (v5)
   {
     id v7 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v8 = [v5 description];
     fprintf(v7, "check recovery key failed: %s\n", (const char *)[v8 UTF8String]);
 
     int v9 = 1;
@@ -1699,7 +1699,7 @@ LABEL_8:
   id v15 = &v14;
   uint64_t v16 = 0x2020000000LL;
   int v17 = 1;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v8 = [self control];
   v11[0] = _NSConcreteStackBlock;
   v11[1] = 3221225472LL;
   v11[2] = sub_10000F00C;
@@ -1748,7 +1748,7 @@ LABEL_8:
   do
   {
     char *v13 = 0;
-    id v15 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+    id v15 = -[OTControlCLI control](self, "control");
     v19[0] = _NSConcreteStackBlock;
     v19[1] = 3221225472LL;
     v19[2] = sub_10000EF00;
@@ -1776,7 +1776,7 @@ LABEL_8:
 {
   id v8 = &v23;
   id v9 = a3;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a5));
+  id v10 = [NSDate dateWithTimeIntervalSinceNow:a5];
   uint64_t v24 = 0LL;
   uint64_t v25 = &v24;
   uint64_t v26 = 0x2020000000LL;
@@ -1788,7 +1788,7 @@ LABEL_8:
   do
   {
     *id v8 = 0;
-    int v11 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+    int v11 = (void *)[self control];
     v15[0] = _NSConcreteStackBlock;
     v15[1] = 3221225472LL;
     v15[2] = sub_10000EE04;
@@ -1817,7 +1817,7 @@ LABEL_8:
   id v13 = a4;
   id v14 = a5;
   id v15 = a6;
-  id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a7));
+  id v16 = [NSDate dateWithTimeIntervalSinceNow:a7];
   uint64_t v39 = 0LL;
   uint64_t v40 = &v39;
   uint64_t v41 = 0x2020000000LL;
@@ -1866,7 +1866,7 @@ LABEL_8:
 
         else
         {
-          id v26 = objc_claimAutoreleasedReturnValue([v22 description]);
+          id v26 = [v22 description];
           printf("failed to create OTInheritanceKey: %s\n", (const char *)[v26 UTF8String]);
 
           int v25 = 1;
@@ -1907,7 +1907,7 @@ LABEL_8:
   id v13 = a4;
   id v14 = a5;
   id v15 = a6;
-  id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a7));
+  id v16 = [NSDate dateWithTimeIntervalSinceNow:a7];
   uint64_t v40 = 0LL;
   uint64_t v41 = &v40;
   uint64_t v42 = 0x2020000000LL;
@@ -1937,7 +1937,7 @@ LABEL_8:
           do
           {
             *((_BYTE *)v23 + 24) = 0;
-            uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+            uint64_t v24 = (void *)[self control];
             v31[0] = _NSConcreteStackBlock;
             v31[1] = 3221225472LL;
             v31[2] = sub_10000EC84;
@@ -1957,7 +1957,7 @@ LABEL_8:
         else
         {
           id v26 = __stderrp;
-          id v27 = objc_claimAutoreleasedReturnValue([v22 description]);
+          id v27 = [v22 description];
           fprintf(v26, "failed to create OTInheritanceKey: %s\n", (const char *)[v27 UTF8String]);
 
           int v25 = 1;
@@ -1998,7 +1998,7 @@ LABEL_8:
   id v13 = a4;
   id v14 = a5;
   id v15 = a6;
-  id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a7));
+  id v16 = [NSDate dateWithTimeIntervalSinceNow:a7];
   uint64_t v40 = 0LL;
   uint64_t v41 = &v40;
   uint64_t v42 = 0x2020000000LL;
@@ -2028,7 +2028,7 @@ LABEL_8:
           do
           {
             *((_BYTE *)v23 + 24) = 0;
-            uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+            uint64_t v24 = (void *)[self control];
             v31[0] = _NSConcreteStackBlock;
             v31[1] = 3221225472LL;
             v31[2] = sub_10000EBB8;
@@ -2048,7 +2048,7 @@ LABEL_8:
         else
         {
           id v26 = __stderrp;
-          id v27 = objc_claimAutoreleasedReturnValue([v22 description]);
+          id v27 = [v22 description];
           fprintf(v26, "failed to create OTInheritanceKey: %s\n", (const char *)[v27 UTF8String]);
 
           int v25 = 1;
@@ -2087,7 +2087,7 @@ LABEL_8:
 {
   id v8 = a3;
   id v9 = a4;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a5));
+  id v10 = [NSDate dateWithTimeIntervalSinceNow:a5];
   uint64_t v25 = 0LL;
   id v26 = &v25;
   uint64_t v27 = 0x2020000000LL;
@@ -2104,7 +2104,7 @@ LABEL_8:
     do
     {
       *((_BYTE *)v12 + 24) = 0;
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v16));
+      id v13 = -[OTControlCLI control:v16];
       v17[0] = _NSConcreteStackBlock;
       v17[1] = 3221225472LL;
       v17[2] = sub_10000EAEC;
@@ -2138,7 +2138,7 @@ LABEL_8:
 {
   id v8 = a3;
   id v9 = a4;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a5));
+  id v10 = [NSDate dateWithTimeIntervalSinceNow:a5];
   uint64_t v25 = 0LL;
   id v26 = &v25;
   uint64_t v27 = 0x2020000000LL;
@@ -2155,7 +2155,7 @@ LABEL_8:
     do
     {
       *((_BYTE *)v12 + 24) = 0;
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v16));
+      id v13 = [self control:v16];
       v17[0] = _NSConcreteStackBlock;
       v17[1] = 3221225472LL;
       v17[2] = sub_10000E9E8;
@@ -2239,7 +2239,7 @@ LABEL_8:
           do
           {
             *((_BYTE *)v27 + 24) = 0;
-            int v28 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+            int v28 = (void *)[self control];
             v38[0] = _NSConcreteStackBlock;
             v38[1] = 3221225472LL;
             v38[2] = sub_10000E8DC;
@@ -2260,7 +2260,7 @@ LABEL_8:
         else
         {
           id v29 = __stderrp;
-          id v30 = objc_claimAutoreleasedReturnValue([v26 description]);
+          id v30 = [v26 description];
           fprintf(v29, "failed to create OTInheritanceKey: %s\n", (const char *)[v30 UTF8String]);
 
           int v21 = 1;
@@ -2319,7 +2319,7 @@ LABEL_20:
     id v25 = 0LL;
   }
 
-  id v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a8));
+  id v17 = [NSDate dateWithTimeIntervalSinceNow:a8];
   uint64_t v36 = 0LL;
   id v37 = &v36;
   uint64_t v38 = 0x2020000000LL;
@@ -2339,7 +2339,7 @@ LABEL_20:
       do
       {
         *((_BYTE *)v20 + 24) = 0;
-        int v21 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+        int v21 = (void *)[self control];
         v27[0] = _NSConcreteStackBlock;
         v27[1] = 3221225472LL;
         v27[2] = sub_10000E640;
@@ -2381,7 +2381,7 @@ LABEL_14:
 - (int)disableWebAccessWithArguments:(id)a3 timeout:(double)a4
 {
   id v15 = a3;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a4));
+  id v6 = [NSDate dateWithTimeIntervalSinceNow:a4];
   uint64_t v24 = 0LL;
   id v25 = &v24;
   uint64_t v26 = 0x2020000000LL;
@@ -2399,7 +2399,7 @@ LABEL_14:
   do
   {
     *((_BYTE *)v9 + 24) = 0;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v14));
+    id v10 = [self control:v14];
     v16[0] = _NSConcreteStackBlock;
     v16[1] = 3221225472LL;
     v16[2] = sub_10000E574;
@@ -2425,7 +2425,7 @@ LABEL_14:
 - (int)enableWebAccessWithArguments:(id)a3 timeout:(double)a4
 {
   id v15 = a3;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a4));
+  id v6 = [NSDate dateWithTimeIntervalSinceNow:a4];
   uint64_t v24 = 0LL;
   id v25 = &v24;
   uint64_t v26 = 0x2020000000LL;
@@ -2443,7 +2443,7 @@ LABEL_14:
   do
   {
     *((_BYTE *)v9 + 24) = 0;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v14));
+    id v10 = -[OTControlCLI control:v14];
     v16[0] = _NSConcreteStackBlock;
     v16[1] = 3221225472LL;
     v16[2] = sub_10000E4A8;
@@ -2469,7 +2469,7 @@ LABEL_14:
 - (int)enableWalrusWithArguments:(id)a3 timeout:(double)a4
 {
   id v15 = a3;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a4));
+  id v6 = [NSDate dateWithTimeIntervalSinceNow:a4];
   uint64_t v24 = 0LL;
   id v25 = &v24;
   uint64_t v26 = 0x2020000000LL;
@@ -2487,7 +2487,7 @@ LABEL_14:
   do
   {
     *((_BYTE *)v9 + 24) = 0;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v14));
+    id v10 = [self control:v14];
     v16[0] = _NSConcreteStackBlock;
     v16[1] = 3221225472LL;
     v16[2] = sub_10000E3DC;
@@ -2513,7 +2513,7 @@ LABEL_14:
 - (int)disableWalrusWithArguments:(id)a3 timeout:(double)a4
 {
   id v15 = a3;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a4));
+  id v6 = [NSDate dateWithTimeIntervalSinceNow:a4];
   uint64_t v24 = 0LL;
   id v25 = &v24;
   uint64_t v26 = 0x2020000000LL;
@@ -2531,7 +2531,7 @@ LABEL_14:
   do
   {
     *((_BYTE *)v9 + 24) = 0;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control", v14));
+    id v10 = [self control:v14];
     v16[0] = _NSConcreteStackBlock;
     v16[1] = 3221225472LL;
     v16[2] = sub_10000E310;
@@ -2561,7 +2561,7 @@ LABEL_14:
   id v13 = &v12;
   uint64_t v14 = 0x2020000000LL;
   int v15 = 1;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v7 = [self control];
   v10[0] = _NSConcreteStackBlock;
   v10[1] = 3221225472LL;
   v10[2] = sub_10000E0A4;
@@ -2582,19 +2582,19 @@ LABEL_14:
   BOOL v7 = a5;
   BOOL v8 = a4;
   id v9 = a3;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 makeConfigurationContext]);
+  id v10 = [v9 makeConfigurationContext];
   if (v8)
   {
     uint64_t v28 = 0LL;
     BOOL v11 = (id *)&v28;
-    uint64_t v12 = objc_claimAutoreleasedReturnValue( +[OTClique fetchAccountWideSettingsDefaultWithForceFetch:configuration:error:]( &OBJC_CLASS___OTClique,  "fetchAccountWideSettingsDefaultWithForceFetch:configuration:error:",  v7,  v10,  &v28));
+    uint64_t v12 = [OBJC_CLASS___OTClique fetchAccountWideSettingsDefaultWithForceFetch:v7 configuration:v10 error:&v28];
   }
 
   else
   {
     uint64_t v27 = 0LL;
     BOOL v11 = (id *)&v27;
-    uint64_t v12 = objc_claimAutoreleasedReturnValue( +[OTClique fetchAccountWideSettingsWithForceFetch:configuration:error:]( &OBJC_CLASS___OTClique,  "fetchAccountWideSettingsWithForceFetch:configuration:error:",  v7,  v10,  &v27));
+    uint64_t v12 = [OTClique fetchAccountWideSettingsWithForceFetch:v7 configuration:v10 error:&v27];
   }
 
   id v13 = (void *)v12;
@@ -2605,17 +2605,17 @@ LABEL_14:
     if (v6)
     {
       BOOL v31 = @"error";
-      id v15 = (id)objc_claimAutoreleasedReturnValue([v14 description]);
+      id v15 = [v14 description];
       id v32 = v15;
       int v16 = 1;
-      id v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v32,  &v31,  1LL));
+      id v17 = [NSDictionary dictionaryWithObjects:forKeys:count:&v32, &v31, 1LL];
       sub_10000D8EC(v17);
     }
 
     else
     {
       uint64_t v22 = __stderrp;
-      id v15 = objc_claimAutoreleasedReturnValue([v14 description]);
+      id v15 = [v14 description];
       fprintf(v22, "Failed to fetch account wide settings: %s\n", (const char *)[v15 UTF8String]);
       int v16 = 1;
     }
@@ -2626,14 +2626,14 @@ LABEL_14:
     if (v6)
     {
       v29[0] = @"walrus";
-      id v18 = (void *)objc_claimAutoreleasedReturnValue([v13 walrus]);
-      id v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( NSNumber,  "numberWithBool:",  [v18 enabled]));
+      id v18 = [v13 walrus];
+      id v19 = [NSNumber numberWithBool:[v18 enabled]];
       v29[1] = @"webAccess";
       v30[0] = v19;
-      uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v13 webAccess]);
+      uint64_t v20 = (void *)[v13 webAccess];
       int v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( NSNumber,  "numberWithBool:",  [v20 enabled]));
       v30[1] = v21;
-      id v15 = (id)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v30,  v29,  2LL));
+      id v15 = [NSDictionary dictionaryWithObjects:v30 forKeys:v29 count:2];
 
       sub_10000D8EC(v15);
     }
@@ -2641,13 +2641,13 @@ LABEL_14:
     else
     {
       puts("successfully fetched account wide settings!");
-      char v23 = (void *)objc_claimAutoreleasedReturnValue([v13 walrus]);
+      char v23 = (void *)[v13 walrus];
       else {
         uint64_t v24 = @"NO";
       }
       printf("walrus enabled? %s\n", (const char *)-[__CFString UTF8String](v24, "UTF8String"));
 
-      id v15 = (id)objc_claimAutoreleasedReturnValue([v13 webAccess]);
+      id v15 = [v13 webAccess];
       else {
         id v25 = @"NO";
       }
@@ -2668,7 +2668,7 @@ LABEL_14:
   int v16 = &v15;
   uint64_t v17 = 0x2020000000LL;
   int v18 = 1;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  id v10 = [self control];
   v13[0] = _NSConcreteStackBlock;
   v13[1] = 3221225472LL;
   v13[2] = sub_10000DF8C;
@@ -2686,7 +2686,7 @@ LABEL_14:
 - (int)printAccountMetadataWithArguments:(id)a3 json:(BOOL)a4
 {
   id v6 = a3;
-  BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  BOOL v7 = [self control];
   v9[0] = _NSConcreteStackBlock;
   v9[1] = 3221225472LL;
   v9[2] = sub_10000DE3C;
@@ -2704,7 +2704,7 @@ LABEL_14:
   id v13 = &v12;
   uint64_t v14 = 0x2020000000LL;
   int v15 = 1;
-  BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[OTControlCLI control](self, "control"));
+  BOOL v7 = [self control];
   v10[0] = _NSConcreteStackBlock;
   v10[1] = 3221225472LL;
   v10[2] = sub_10000D7D4;
@@ -2732,13 +2732,13 @@ LABEL_14:
   [v12 setPasswordEquivalentToken:v14];
   [v12 setAuthenticationAppleID:v10];
 
-  int v15 = (void *)objc_claimAutoreleasedReturnValue([v11 altDSID]);
+  int v15 = (void *)[v11 altDSID];
   [v12 setAltDSID:v15];
 
-  int v16 = (void *)objc_claimAutoreleasedReturnValue([v11 contextID]);
+  int v16 = (void *)[v11 contextID];
   [v12 setContext:v16];
 
-  uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v11 containerName]);
+  uint64_t v17 = (void *)[v11 containerName];
   [v12 setContainerName:v17];
 
   [v12 setIsGuitarfish:v6];
@@ -2749,7 +2749,7 @@ LABEL_14:
   if (v19 || (v18 & 1) == 0)
   {
     uint64_t v22 = __stderrp;
-    id v23 = objc_claimAutoreleasedReturnValue([v19 description]);
+    id v23 = [v19 description];
     fprintf(v22, "Failed to wipe account data: %s\n", (const char *)[v23 UTF8String]);
 
     int v21 = 1;
@@ -2781,29 +2781,29 @@ LABEL_14:
 {
   id v3 = a3;
   unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithDictionary:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithDictionary:",  v3));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"contextDump"]);
+  id v5 = [v4 objectForKeyedSubscript:@"contextDump"];
 
   if (v5)
   {
-    BOOL v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"contextDump"]);
-    BOOL v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithDictionary:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithDictionary:",  v6));
+    BOOL v6 = [v4 objectForKeyedSubscript:@"contextDump"];
+    BOOL v7 = +[NSMutableDictionary dictionaryWithDictionary:v6];
 
     [v4 setObject:v7 forKeyedSubscript:@"contextDump"];
-    int v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"self"]);
+    int v8 = (void *)[v7 objectForKeyedSubscript:@"self"];
 
     if (v8)
     {
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"self"]);
-      id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"dynamicInfo"]);
+      id v9 = [v7 objectForKeyedSubscript:@"self"];
+      id v10 = [v9 objectForKeyedSubscript:@"dynamicInfo"];
 
       if (v10)
       {
-        id v11 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"dynamicInfo"]);
-        id v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:@"included"]);
+        id v11 = (void *)[v9 objectForKeyedSubscript:@"dynamicInfo"];
+        id v12 = [v11 objectForKeyedSubscript:@"included"];
         if (v12)
         {
           id v13 = objc_alloc(&OBJC_CLASS___NSSet);
-          uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:@"included"]);
+          uint64_t v14 = (void *)[v11 objectForKeyedSubscript:@"included"];
           uint64_t v34 = -[NSSet initWithArray:](v13, "initWithArray:", v14);
         }
 
@@ -2812,11 +2812,11 @@ LABEL_14:
           uint64_t v34 = objc_alloc_init(&OBJC_CLASS___NSSet);
         }
 
-        int v16 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:@"excluded"]);
+        int v16 = (void *)[v11 objectForKeyedSubscript:@"excluded"];
         if (v16)
         {
           uint64_t v17 = objc_alloc(&OBJC_CLASS___NSSet);
-          unsigned __int8 v18 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:@"excluded"]);
+          unsigned __int8 v18 = (void *)[v11 objectForKeyedSubscript:@"excluded"];
           id v19 = -[NSSet initWithArray:](v17, "initWithArray:", v18);
         }
 
@@ -2825,19 +2825,19 @@ LABEL_14:
           id v19 = objc_alloc_init(&OBJC_CLASS___NSSet);
         }
 
-        uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"custodian_recovery_keys"]);
+        uint64_t v20 = (void *)[v7 objectForKeyedSubscript:@"custodian_recovery_keys"];
         if (v20)
         {
           id v30 = v9;
           id v32 = v4;
           id v33 = v3;
-          int v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+          int v21 = [NSMutableArray array];
           __int128 v35 = 0u;
           __int128 v36 = 0u;
           __int128 v37 = 0u;
           __int128 v38 = 0u;
           BOOL v31 = v7;
-          uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"custodian_recovery_keys"]);
+          uint64_t v22 = (void *)[v7 objectForKeyedSubscript:@"custodian_recovery_keys"];
           id v23 = [v22 countByEnumeratingWithState:&v35 objects:v39 count:16];
           if (v23)
           {
@@ -2851,7 +2851,7 @@ LABEL_14:
                   objc_enumerationMutation(v22);
                 }
                 uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithDictionary:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithDictionary:",  *(void *)(*((void *)&v35 + 1) + 8LL * (void)i)));
-                uint64_t v28 = (void *)objc_claimAutoreleasedReturnValue([v27 objectForKeyedSubscript:@"peerID"]);
+                uint64_t v28 = (void *)[v27 objectForKeyedSubscript:@"peerID"];
                 if (-[NSSet containsObject:](v34, "containsObject:", v28)) {
                   [v27 setObject:&__kCFBooleanTrue forKeyedSubscript:@"trusted_by_self"];
                 }

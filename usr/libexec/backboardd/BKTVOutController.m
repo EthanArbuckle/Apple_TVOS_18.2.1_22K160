@@ -15,42 +15,42 @@
 - (BKTVOutController)init
 {
   v34.receiver = self;
-  v34.super_class = (Class)&OBJC_CLASS___BKTVOutController;
-  v2 = -[BKTVOutController init](&v34, "init");
+  [v34 setSuperclass:[BKTVOutController class]];
+  BKTVOutController *v2 = [[BKTVOutController alloc] init];
   if (v2)
   {
     uint64_t Serial = BSDispatchQueueCreateSerial(@"com.apple.backboardd.BKTVOutController.workQueue");
     workQueue = v2->_workQueue;
     v2->_workQueue = (OS_dispatch_queue *)Serial;
 
-    v5 = -[BKDisplayCloneMirroringManager initWithDisplayProvider:]( objc_alloc(&OBJC_CLASS___BKDisplayCloneMirroringManager),  "initWithDisplayProvider:",  v2);
+    BKDisplayCloneMirroringManager *v5 = [[BKDisplayCloneMirroringManager alloc] initWithDisplayProvider:v2];
     queue_cloneMirrorManager = v2->_queue_cloneMirrorManager;
     v2->_queue_cloneMirrorManager = v5;
 
-    v27 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
-    v7 = (void *)objc_claimAutoreleasedReturnValue([v27 displayWithName:@"TVOut"]);
+    v27 = [CAWindowServer serverIfRunning];
+    v7 = [v27 displayWithName:@"TVOut"];
     if (v7)
     {
       id v8 = sub_1000195F8();
-      v9 = (void *)objc_claimAutoreleasedReturnValue(v8);
+      v9 = [v8 autorelease];
 
       if (v7 == v9) {
         v2->_queue_forceTVOutMode = 1;
       }
     }
 
-    v26 = (void *)objc_claimAutoreleasedReturnValue(+[CADisplay TVOutDisplay](&OBJC_CLASS___CADisplay, "TVOutDisplay"));
+    v26 = [CADisplay TVOutDisplay];
     [v26 addObserver:v2 forKeyPath:@"currentMode" options:0 context:0];
     DarwinNotifyCenter = CFNotificationCenterGetDarwinNotifyCenter();
     CFNotificationCenterAddObserver( DarwinNotifyCenter,  v2,  (CFNotificationCallback)sub_1000443DC,  @"com.apple.iapd.videoout.SettingsChanged",  0LL,  CFNotificationSuspensionBehaviorDeliverImmediately);
     LocalCenter = CFNotificationCenterGetLocalCenter();
     CFNotificationCenterAddObserver( LocalCenter,  v2,  (CFNotificationCallback)sub_1000443F0,  @"kIAPDServerDiedNotification",  0LL,  CFNotificationSuspensionBehaviorDeliverImmediately);
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-    v13 = (void *)objc_claimAutoreleasedReturnValue(+[BKTetherController sharedInstance](&OBJC_CLASS___BKTetherController, "sharedInstance"));
+    v12 = [NSNotificationCenter defaultCenter];
+    v13 = [BKTetherController sharedInstance];
     [v12 addObserver:v2 selector:"_tetherSettingChanged:" name:@"BKTetherControllerTetherStateChangedNotification" object:v13];
 
-    v14 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
-    uint64_t v15 = objc_claimAutoreleasedReturnValue([v14 addSystemShellObserver:v2 reason:@"BKTVOutController"]);
+    v14 = [BKSystemShellSentinel sharedInstance];
+    uint64_t v15 = [v14 addSystemShellObserver:v2 reason:@"BKTVOutController"];
     systemShellObserving = v2->_systemShellObserving;
     v2->_systemShellObserving = (BSInvalidatable *)v15;
 
@@ -64,7 +64,7 @@
     __int128 v30 = 0u;
     __int128 v31 = 0u;
     v19 = v17;
-    id v20 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v19,  "countByEnumeratingWithState:objects:count:",  &v28,  v35,  16LL);
+    [v19 countByEnumeratingWithState:v28 objects:v35 count:16];
     if (v20)
     {
       id v21 = v20;
@@ -78,10 +78,10 @@
           }
           v24 = *(void **)(*((void *)&v28 + 1) + 8LL * (void)i);
           [v24 addObserver:v2 forKeyPath:@"availableModes" options:0 context:@"Wireless"];
-          -[BKTVOutController observeValueForKeyPath:ofObject:change:context:]( v2,  "observeValueForKeyPath:ofObject:change:context:",  @"availableModes",  v24,  0LL,  @"Wireless");
+          [v2 observeValueForKeyPath:@"availableModes" ofObject:v24 change:nil context:@"Wireless"];
         }
 
-        id v21 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v19,  "countByEnumeratingWithState:objects:count:",  &v28,  v35,  16LL);
+        [v19 countByEnumeratingWithState:v28 objects:v35 count:16];
       }
 
       while (v21);
@@ -91,7 +91,7 @@
     {
       sub_100043F20((uint64_t)v2, 1, v7);
       [v18 addObserver:v2 forKeyPath:@"availableModes" options:0 context:@"PurpleTVOut"];
-      -[BKTVOutController observeValueForKeyPath:ofObject:change:context:]( v2,  "observeValueForKeyPath:ofObject:change:context:",  @"availableModes",  v18,  0LL,  @"PurpleTVOut");
+      [v2 observeValueForKeyPath:@"availableModes" ofObject:nil change:nil context:@"PurpleTVOut"];
     }
   }
 
@@ -106,19 +106,19 @@
     CFNotificationCenterRemoveObserver(DarwinNotifyCenter, 0LL, @"com.apple.iapd.videoout.SettingsChanged", 0LL);
     LocalCenter = CFNotificationCenterGetLocalCenter();
     CFNotificationCenterRemoveObserver(LocalCenter, 0LL, @"kIAPDServerDiedNotification", 0LL);
-    v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v5 = [NSNotificationCenter defaultCenter];
     [v5 removeObserver:self name:@"BKTetherControllerTetherStateChangedNotification" object:0];
   }
 
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS___BKTVOutController;
-  -[BKTVOutController dealloc](&v6, "dealloc");
+  v6.super_class = [BKTVOutController class];
+  [v6 dealloc];
 }
 
 - (NSArray)windowServerDisplays
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 displays]);
+  v2 = [CAWindowServer serverIfRunning];
+  v3 = (void *)[v2 displays];
 
   return (NSArray *)v3;
 }
@@ -126,8 +126,8 @@
 - (id)windowServerDisplayForDisplayIdentifier:(unsigned int)a3
 {
   uint64_t v3 = *(void *)&a3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 displayWithDisplayId:v3]);
+  v4 = [CAWindowServer serverIfRunning];
+  v5 = (void *)[v4 displayWithDisplayId:v3];
 
   return v5;
 }
@@ -142,8 +142,8 @@
     __int128 v19 = 0u;
     __int128 v16 = 0u;
     __int128 v17 = 0u;
-    objc_super v6 = (void *)objc_claimAutoreleasedReturnValue(+[CADisplay displays](&OBJC_CLASS___CADisplay, "displays", 0LL));
-    id v7 = [v6 countByEnumeratingWithState:&v16 objects:v20 count:16];
+    NSArray *v6 = [CADisplay displays];
+    id v7 = [v6 countByEnumeratingWithState:v16 objects:v20 count:16];
     if (v7)
     {
       id v8 = v7;
@@ -163,7 +163,7 @@
           }
         }
 
-        id v8 = [v6 countByEnumeratingWithState:&v16 objects:v20 count:16];
+        id v8 = [v6 countByEnumeratingWithState:v16 objects:v20 count:16];
         if (v8) {
           continue;
         }
@@ -180,7 +180,7 @@ LABEL_12:
     id v12 = 0LL;
   }
 
-  v13 = (void *)objc_claimAutoreleasedReturnValue([v12 availableModes]);
+  v13 = (void *)[v12 availableModes];
   BOOL v14 = [v13 count] != 0;
 
   return v14;
@@ -188,7 +188,7 @@ LABEL_12:
 
 - (BOOL)supportCloningToDisplay:(id)a3
 {
-  unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue([a3 name]);
+  unsigned int v4 = (void *)[a3 name];
   if ([v4 isEqualToString:@"Wireless"])
   {
     BOOL v5 = 1;
@@ -212,7 +212,7 @@ LABEL_12:
   id v10 = a3;
   id v11 = a4;
   id v12 = a5;
-  uint64_t v14 = objc_opt_class(&OBJC_CLASS___CADisplay, v13);
+  uint64_t v14 = [CADisplay class];
   id v15 = v11;
   __int128 v16 = v15;
   if (v14)
@@ -258,7 +258,7 @@ LABEL_12:
       if (!(_DWORD)v23)
       {
         uint64_t v27 = BKLogDisplay(v23);
-        id v21 = (os_log_s *)objc_claimAutoreleasedReturnValue(v27);
+        os_log_s *v21 = v27;
         if (os_log_type_enabled(v21, OS_LOG_TYPE_DEFAULT))
         {
           *(_DWORD *)buf = 138543874;

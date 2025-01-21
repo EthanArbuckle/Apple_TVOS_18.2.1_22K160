@@ -295,7 +295,7 @@
   {
     for (int i = 0; i != 6; ++i)
     {
-      int v4 = (_BYTE *)objc_claimAutoreleasedReturnValue( -[BTVCLinkAgent _getBTVCLinkAdvertiserSet:]( self,  "_getBTVCLinkAdvertiserSet:",  i));
+      int v4 = [_getBTVCLinkAdvertiserSet:](self,  "_getBTVCLinkAdvertiserSet:",  i);
       if (v4) {
         v4[8] = 0;
       }
@@ -346,7 +346,7 @@
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "%s, handle:%d advertisingParameters:%@",  (uint8_t *)&v10,  0x1Cu);
   }
 
-  uint64_t v8 = objc_claimAutoreleasedReturnValue(-[BTVCLinkAgent _getBTVCLinkAdvertiserSet:](self, "_getBTVCLinkAdvertiserSet:", v4));
+  uint64_t v8 = [self _getBTVCLinkAdvertiserSet:v4];
   uint64_t v9 = (void *)v8;
   if (v8) {
     [*(id *)(v8 + 24) addEntriesFromDictionary:v6];
@@ -399,7 +399,7 @@
       uint64_t v6 = v6;
       do
       {
-        int v10 = (_BYTE *)objc_claimAutoreleasedReturnValue( -[BTVCLinkAgent _getBTVCLinkAdvertiserSet:]( self,  "_getBTVCLinkAdvertiserSet:",  *a5));
+        int v10 = [_getBTVCLinkAdvertiserSet:]( self,  "_getBTVCLinkAdvertiserSet:",  *a5);
         if (v10) {
           v10[8] = v7;
         }
@@ -415,7 +415,7 @@
     {
       for (int i = 0; i != 6; ++i)
       {
-        v20 = (_BYTE *)objc_claimAutoreleasedReturnValue( -[BTVCLinkAgent _getBTVCLinkAdvertiserSet:]( self,  "_getBTVCLinkAdvertiserSet:",  i));
+        v20 = [_getBTVCLinkAdvertiserSet:](self, "_getBTVCLinkAdvertiserSet:", i);
         if (v20) {
           v20[8] = 0;
         }
@@ -424,12 +424,12 @@
 
     if (v7)
     {
-      id v21 = objc_msgSend( (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](NSMutableArray, "array")),  "init");
+      id v21 = [NSMutableArray array];
       if (v21)
       {
         for (int j = 0; j != 6; ++j)
         {
-          uint64_t v23 = objc_claimAutoreleasedReturnValue(-[BTVCLinkAgent _getBTVCLinkAdvertiserSet:](self, "_getBTVCLinkAdvertiserSet:", j));
+          uint64_t v23 = [self _getBTVCLinkAdvertiserSet:j];
           v24 = (void *)v23;
           if (v23 && *(_BYTE *)(v23 + 8))
           {
@@ -672,7 +672,7 @@ LABEL_60:
         goto LABEL_63;
       }
 
-      uint64_t v10 = objc_claimAutoreleasedReturnValue(objc_msgSend(v60, "objectAtIndex:"));
+      uint64_t v10 = [v60 objectAtIndex:];
 
       v72 = (void *)v10;
       if (!v10)
@@ -707,7 +707,7 @@ LABEL_60:
       memset(buf, 0, sizeof(buf));
       uint64_t v79 = 0LL;
       uint64_t NSNumber = NSDictionaryGetNSNumber(v10, @"et", &v80);
-      v78 = (void *)objc_claimAutoreleasedReturnValue(NSNumber);
+      v78 = (void *)[NSNumber autorelease];
       if (v80) {
         break;
       }
@@ -721,7 +721,7 @@ LABEL_60:
 
       CFTypeID TypeID = CFDataGetTypeID();
       uint64_t TypedValue = CFDictionaryGetTypedValue(v10, @"pa", TypeID, &v80);
-      id v70 = (id)objc_claimAutoreleasedReturnValue(TypedValue);
+      id v70 = TypedValue;
       if (v80)
       {
         int v48 = 0;
@@ -848,7 +848,7 @@ LABEL_60:
           _os_log_impl( (void *)&_mh_execute_header,  v24,  OS_LOG_TYPE_DEFAULT,  "%s EventType:0x%04X, AddressType:0x%02X, PeerAddress:%llX, primaryPHY:0x%02X, secondaryPHY:0x%02X, advertisi ngSID:0x%02X, txPower:0x%02X, rssi:0x%02X, periodicAdvInterval:0x%02X, directAddressType:0x%02X, directAddre ss:0x%llX, DataLength:%d",  v81,  0x5Cu);
         }
 
-        v35 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCLinkAgent advReportReceiveHandler](self, "advReportReceiveHandler"));
+        v35 = [self advReportReceiveHandler];
         BOOL v36 = v35 == 0LL;
 
         if (!v36)

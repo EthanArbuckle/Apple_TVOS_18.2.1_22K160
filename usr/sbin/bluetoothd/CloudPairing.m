@@ -109,11 +109,11 @@ LABEL_31:
 
   if ((MGGetBoolAnswer(@"bluetooth-le") & 1) != 0)
   {
-    uint64_t v5 = objc_claimAutoreleasedReturnValue(+[NSArray array](&OBJC_CLASS___NSArray, "array"));
+    uint64_t v5 = [NSArray array];
     cloudLocalUUIDs = v2->_cloudLocalUUIDs;
     v2->_cloudLocalUUIDs = (NSArray *)v5;
 
-    uint64_t v7 = objc_claimAutoreleasedReturnValue(+[NSArray array](&OBJC_CLASS___NSArray, "array"));
+    uint64_t v7 = [NSArray array];
     cloudidsIdentifiers = v2->_cloudidsIdentifiers;
     v2->_cloudidsIdentifiers = (NSArray *)v7;
 
@@ -130,7 +130,7 @@ LABEL_31:
     v2->_requestedKeyTypes = v15;
 
     v2->_keyLength = 16LL;
-    uint64_t v17 = objc_claimAutoreleasedReturnValue(-[CloudPairing deviceName](v2, "deviceName"));
+    uint64_t v17 = [v2 deviceName];
     localDeviceName = v2->_localDeviceName;
     v2->_localDeviceName = (NSString *)v17;
 
@@ -144,11 +144,11 @@ LABEL_31:
       }
     }
 
-    uint64_t v20 = objc_claimAutoreleasedReturnValue(+[NSMutableArray arrayWithCapacity:](&OBJC_CLASS___NSMutableArray, "arrayWithCapacity:", 1LL));
+    uint64_t v20 = [+[NSMutableArray arrayWithCapacity:](&OBJC_CLASS___NSMutableArray, "arrayWithCapacity:", 1LL) autorelease];
     cloudDevices = v2->_cloudDevices;
     v2->_cloudDevices = (NSMutableArray *)v20;
 
-    uint64_t v22 = objc_claimAutoreleasedReturnValue(+[NSMutableArray arrayWithCapacity:](&OBJC_CLASS___NSMutableArray, "arrayWithCapacity:", 1LL));
+    uint64_t v22 = [NSMutableArray arrayWithCapacity:1LL];
     cloudUploadedKeys = v2->_cloudUploadedKeys;
     v2->_cloudUploadedKeys = (NSMutableArray *)v22;
 
@@ -320,12 +320,12 @@ LABEL_32:
     -[CloudPairing setMultipleAdvInitialized:](self, "setMultipleAdvInitialized:", v3);
     if (-[CloudPairing multipleAdvInitialized](self, "multipleAdvInitialized"))
     {
-      BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+      BOOL v8 = [self currentUserRandomAddress];
       BOOL v9 = v8 == 0LL;
 
       if (!v9)
       {
-        v10 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+        v10 = [self currentUserRandomAddress];
         -[CloudPairing updateRandomAddressContinuityAdvInstance:]( self,  "updateRandomAddressContinuityAdvInstance:",  v10);
       }
     }
@@ -412,7 +412,7 @@ LABEL_32:
     v15 = (os_log_s *)(id)qword_1008F7588;
     if (os_log_type_enabled(v15, OS_LOG_TYPE_DEFAULT))
     {
-      v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  self->_cloudPublicKey,  64LL));
+      v16 = [NSData dataWithBytes:self->_cloudPublicKey length:64LL];
       int v21 = 138412290;
       uint64_t v22 = v16;
       _os_log_impl( (void *)&_mh_execute_header,  v15,  OS_LOG_TYPE_DEFAULT,  "_cloudPublicKey: [ %@ ]",  (uint8_t *)&v21,  0xCu);
@@ -421,7 +421,7 @@ LABEL_32:
     uint64_t v17 = (os_log_s *)(id)qword_1008F7588;
     if (os_log_type_enabled(v17, OS_LOG_TYPE_DEFAULT))
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  self->_cloudNonce,  16LL));
+      v18 = [NSData dataWithBytes:self->_cloudNonce length:16];
       int v21 = 138412290;
       uint64_t v22 = v18;
       _os_log_impl((void *)&_mh_execute_header, v17, OS_LOG_TYPE_DEFAULT, "_cloudNonce: [ %@ ]", (uint8_t *)&v21, 0xCu);
@@ -463,7 +463,7 @@ LABEL_32:
       handler[3] = &unk_10089A2E0;
       objc_copyWeak(&v16, (id *)buf);
       xpc_connection_set_event_handler((xpc_connection_t)v4, handler);
-      __int128 v8 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[CloudPairing serialQueue](self, "serialQueue"));
+      __int128 v8 = (dispatch_queue_s *)[self serialQueue];
       xpc_connection_set_target_queue((xpc_connection_t)v4, v8);
 
       xpc_connection_resume((xpc_connection_t)v4);
@@ -505,7 +505,7 @@ LABEL_32:
 
   if (v4 == &_xpc_error_connection_invalid)
   {
-    __int128 v9 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    __int128 v9 = (void *)[self serverConnection];
     BOOL v10 = v9 == 0LL;
 
 LABEL_14:
@@ -555,12 +555,12 @@ LABEL_14:
     if (!strcmp(string, "manateeUdpateStatus"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      v18 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kUploadStatus"]);
+      v18 = [v17 objectForKey:@"kUploadStatus"];
       BOOL v19 = v18 == 0LL;
 
       if (!v19)
       {
-        uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kUploadStatus"]);
+        uint64_t v20 = (void *)[v17 objectForKey:@"kUploadStatus"];
         unsigned int v21 = [v20 BOOLValue];
 
         if (v21) {
@@ -574,15 +574,15 @@ LABEL_14:
     if (!strcmp(string, "SignInStatusChanged"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kSignInStatus"]);
+      uint64_t v22 = (void *)[v17 objectForKey:@"kSignInStatus"];
       BOOL v23 = v22 == 0LL;
 
       if (!v23)
       {
-        uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kSignInStatus"]);
+        uint64_t v24 = (void *)[v17 objectForKey:@"kSignInStatus"];
         id v25 = [v24 BOOLValue];
 
-        v26 = (__CFString *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kSignInAppleID"]);
+        v26 = [v17 objectForKey:@"kSignInAppleID"];
         -[CloudPairing setICloudSignedIn:](self, "setICloudSignedIn:", v25);
         uint64_t v27 = objc_opt_class(&OBJC_CLASS___NSString);
         if ((objc_opt_isKindOfClass(v26, v27) & 1) == 0)
@@ -606,12 +606,12 @@ LABEL_14:
     if (!strcmp(string, "MasterKeysAvailable"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      v30 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kMasterKeyBlob"]);
+      v30 = (void *)[v17 objectForKey:@"kMasterKeyBlob"];
       BOOL v31 = v30 == 0LL;
 
       if (!v31)
       {
-        id v32 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kMasterKeyBlob"]);
+        id v32 = [v17 objectForKey:@"kMasterKeyBlob"];
         id v33 = [v32 length];
         id v34 = v32;
         id v35 = [v34 bytes];
@@ -625,7 +625,7 @@ LABEL_14:
     if (!strcmp(string, "MasterKeysNotAvailable"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      v37 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kMasterKeyBlob"]);
+      v37 = [v17 objectForKey:@"kMasterKeyBlob"];
       BOOL v38 = v37 == 0LL;
 
       if (!v38)
@@ -640,8 +640,8 @@ LABEL_14:
     if (!strcmp(string, "DeviceInfoAvailable"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      v40 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kDeviceInfoBlob"]);
-      v41 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKeyedSubscript:@"loginID"]);
+      v40 = (void *)[v17 objectForKey:@"kDeviceInfoBlob"];
+      v41 = [v17 objectForKeyedSubscript:@"loginID"];
       v550.__r_.__value_.__s.__data_[0] = 0;
       memset(v544, 0, 24);
       if (qword_1008D60C0 != -1) {
@@ -683,12 +683,12 @@ LABEL_14:
     if (!strcmp(string, "DeviceInfoUploadStatus"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      id v44 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kUploadStatus"]);
+      id v44 = [v17 objectForKey:@"kUploadStatus"];
       BOOL v45 = v44 == 0LL;
 
       if (!v45)
       {
-        char v46 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kUploadStatus"]);
+        char v46 = (void *)[v17 objectForKey:@"kUploadStatus"];
         id v47 = [v46 BOOLValue];
 
         uint64_t v48 = sub_1002E9258();
@@ -701,12 +701,12 @@ LABEL_14:
     if (!strcmp(string, "ManateeBlobUpdate"))
     {
       id v17 = (id)_CFXPCCreateCFObjectFromXPCMessage(v9);
-      v53 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kDeviceInfoBlob"]);
+      v53 = (void *)[v17 objectForKey:@"kDeviceInfoBlob"];
       BOOL v54 = v53 == 0LL;
 
       if (!v54)
       {
-        v55 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kDeviceInfoBlob"]);
+        v55 = (void *)[v17 objectForKey:@"kDeviceInfoBlob"];
         id v56 = [v55 length];
         v58 = (char *)&v452 - ((__chkstk_darwin(v56, v57) + 15) & 0xFFFFFFFFFFFFFFF0LL);
         bzero(v58, (size_t)v56);
@@ -728,7 +728,7 @@ LABEL_14:
       if (v62) {
         goto LABEL_110;
       }
-      v63 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kDeleteSuccess"]);
+      v63 = (void *)[v17 objectForKey:@"kDeleteSuccess"];
       unsigned int v64 = [v63 BOOLValue];
 
       uint64_t v65 = qword_1008F7588;
@@ -756,12 +756,12 @@ LABEL_14:
           _os_log_impl( (void *)&_mh_execute_header,  v70,  OS_LOG_TYPE_INFO,  "Process forceManateeUpgrade: %@",  (uint8_t *)v544,  0xCu);
         }
 
-        v71 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kEncryptionSupport"]);
+        v71 = (void *)[v17 objectForKey:@"kEncryptionSupport"];
         BOOL v72 = v71 == 0LL;
 
         if (!v72)
         {
-          v73 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kEncryptionSupport"]);
+          v73 = (void *)[v17 objectForKey:@"kEncryptionSupport"];
           unsigned int v74 = [v73 BOOLValue];
 
           if (v74)
@@ -784,11 +784,11 @@ LABEL_14:
         }
 
         id v17 = (id)_CFXPCCreateCFObjectFromXPCObject(v9);
-        *(void *)&__int128 v480 = objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudPairingKeyTypes"]);
-        v77 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudPairingKeyLength"]);
+        *(void *)&__int128 v480 = [v17 objectForKey:@"kCloudPairingKeyTypes"];
+        v77 = (void *)[v17 objectForKey:@"kCloudPairingKeyLength"];
         id v78 = [v77 unsignedIntegerValue];
 
-        v79 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKeyedSubscript:@"kLocalRandomAddress"]);
+        v79 = (void *)[v17 objectForKeyedSubscript:@"kLocalRandomAddress"];
         v80 = (void *)objc_claimAutoreleasedReturnValue( -[CloudPairing generateKeyDictForTypes:keyLength:forAddress:]( self,  "generateKeyDictForTypes:keyLength:forAddress:",  (void)v480,  v78,  v79));
         v81 = (os_log_s *)(id)qword_1008F7588;
         BOOL v82 = os_log_type_enabled(v81, OS_LOG_TYPE_INFO);
@@ -797,7 +797,7 @@ LABEL_14:
           int v84 = IsAppleInternalBuild(v82, v83);
           v85 = v80;
           if (!v84) {
-            v85 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v80 count]));
+            v85 = [NSNumber numberWithUnsignedInteger:v80.count];
           }
           LODWORD(v544[0].__r_.__value_.__l.__data_) = 138412290;
           *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words + 4) = (std::string::size_type)v85;
@@ -813,11 +813,11 @@ LABEL_14:
       if (!strcmp(string, "CloudPairingComplete"))
       {
         id v17 = (id)_CFXPCCreateCFObjectFromXPCObject(v9);
-        uint64_t v86 = objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudPairingCompleteResponse"]);
-        uint64_t v87 = objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudPairingLocalKeys"]);
+        uint64_t v86 = [v17 objectForKey:@"kCloudPairingCompleteResponse"];
+        uint64_t v87 = [v17 objectForKey:@"kCloudPairingLocalKeys"];
         *(void *)&__int128 v479 = v87;
-        *(void *)&__int128 v480 = objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudDeviceUniqueID"]);
-        v88 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudPairingProtocolID"]);
+        *(void *)&__int128 v480 = [v17 objectForKey:@"kCloudDeviceUniqueID"];
+        v88 = (void *)[v17 objectForKey:@"kCloudPairingProtocolID"];
         v89 = (os_log_s *)qword_1008F7588;
         if (os_log_type_enabled((os_log_t)qword_1008F7588, OS_LOG_TYPE_DEFAULT))
         {
@@ -839,7 +839,7 @@ LABEL_14:
           }
 
           v560 = @"kCloudPairingID";
-          v93 = (void *)objc_claimAutoreleasedReturnValue([v90 UUIDString]);
+          v93 = [v90 UUIDString];
           v561 = v93;
           v94 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v561,  &v560,  1LL));
           -[CloudPairing cloudpairdReplyMsg:args:](self, "cloudpairdReplyMsg:args:", v4, v94);
@@ -883,7 +883,7 @@ LABEL_14:
         v558 = @"kSuccess";
         v98 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v544[0].__r_.__value_.__l.__size_ + 24)));
         v559 = v98;
-        v99 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v559,  &v558,  1LL));
+        v99 = (void *)[NSDictionary dictionaryWithObjects:forKeys:count:&v559, &v558, 1LL];
         -[CloudPairing cloudpairdReplyMsg:args:](self, "cloudpairdReplyMsg:args:", v4, v99);
 
         v100 = (os_log_s *)qword_1008F7588;
@@ -906,7 +906,7 @@ LABEL_14:
           _os_log_impl( (void *)&_mh_execute_header,  v101,  OS_LOG_TYPE_INFO,  "Process FetchPublicAddress",  (uint8_t *)v544,  2u);
         }
 
-        v102 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+        v102 = [self publicAddress];
         BOOL v103 = v102 == 0LL;
 
         if (v103)
@@ -917,16 +917,16 @@ LABEL_14:
         else
         {
           v556 = @"kPublicAddress";
-          v104 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+          v104 = (void *)[self publicAddress];
           v557 = v104;
-          v105 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v557,  &v556,  1LL));
+          v105 = [NSDictionary dictionaryWithObjects:forKeys:count:&v557, &v556, 1LL];
           -[CloudPairing cloudpairdReplyMsg:args:](self, "cloudpairdReplyMsg:args:", v4, v105);
         }
 
         id v17 = (id)qword_1008F7588;
         if (os_log_type_enabled((os_log_t)v17, OS_LOG_TYPE_INFO))
         {
-          v119 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+          v119 = (void *)[self publicAddress];
           LODWORD(v544[0].__r_.__value_.__l.__data_) = 138412290;
           *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words + 4) = (std::string::size_type)v119;
           _os_log_impl( (void *)&_mh_execute_header,  (os_log_t)v17,  OS_LOG_TYPE_INFO,  "Replying FetchPublicAddress: %@",  (uint8_t *)v544,  0xCu);
@@ -948,7 +948,7 @@ LABEL_14:
             _os_log_impl( (void *)&_mh_execute_header,  v113,  OS_LOG_TYPE_DEFAULT,  "MUC - Process RemoveCloudPairedDevice: %@",  (uint8_t *)v544,  0xCu);
           }
 
-          v114 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCloudDeviceID"]);
+          v114 = (void *)[v17 objectForKey:@"kCloudDeviceID"];
           if (v114 && (uint64_t v115 = objc_opt_class(&OBJC_CLASS___NSString), (objc_opt_isKindOfClass(v114, v115) & 1) != 0))
           {
             v116 = (os_log_s *)qword_1008F7588;
@@ -1003,7 +1003,7 @@ LABEL_14:
             _os_log_impl( (void *)&_mh_execute_header,  v135,  OS_LOG_TYPE_INFO,  "Process checkIn: %@",  (uint8_t *)v544,  0xCu);
           }
 
-          v136 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kCheckInVersion"]);
+          v136 = [v17 objectForKey:@"kCheckInVersion"];
           v137 = v136;
           if (v136)
           {
@@ -1015,10 +1015,10 @@ LABEL_14:
               }
             }
 
-            v139 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kIDSLocalDeviceUniqueID"]);
+            v139 = (void *)[v17 objectForKey:@"kIDSLocalDeviceUniqueID"];
             uint64_t v140 = objc_opt_class(&OBJC_CLASS___NSString);
             if ((objc_opt_isKindOfClass(v139, v140) & 1) != 0) {
-              *(void *)&__int128 v480 = objc_claimAutoreleasedReturnValue([v17 objectForKey:@"kIDSLocalDeviceUniqueID"]);
+              *(void *)&__int128 v480 = [v17 objectForKey:@"kIDSLocalDeviceUniqueID"];
             }
             else {
               *(void *)&__int128 v480 = 0LL;
@@ -1035,20 +1035,20 @@ LABEL_14:
               _os_log_impl( (void *)&_mh_execute_header,  v141,  OS_LOG_TYPE_DEFAULT,  "MUC - sending BTUUID-IDS device mapping %@ for local IDS %@",  (uint8_t *)v544,  0x16u);
             }
 
-            v142 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-            v143 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+            v142 = [NSMutableDictionary dictionary];
+            v143 = [self publicAddress];
             BOOL v144 = v143 == 0LL;
 
             if (!v144)
             {
-              v145 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+              v145 = [self publicAddress];
               [v142 setObject:v145 forKey:@"kPublicAddress"];
             }
 
             v146 = (os_log_s *)(id)qword_1008F7588;
             if (os_log_type_enabled(v146, OS_LOG_TYPE_INFO))
             {
-              v147 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+              v147 = (void *)[self publicAddress];
               LODWORD(v544[0].__r_.__value_.__l.__data_) = 138412290;
               *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words + 4) = (std::string::size_type)v147;
               _os_log_impl( (void *)&_mh_execute_header,  v146,  OS_LOG_TYPE_INFO,  "Check in replying with Public Address: %@",  (uint8_t *)v544,  0xCu);
@@ -1074,15 +1074,15 @@ LABEL_14:
 
           if (sub_1002E9258() && v17)
           {
-            *(void *)&__int128 v480 = objc_claimAutoreleasedReturnValue([v17 objectForKeyedSubscript:@"devices"]);
+            *(void *)&__int128 v480 = [v17 objectForKeyedSubscript:@"devices"];
             uint64_t v122 = objc_opt_class(&OBJC_CLASS___NSData);
             if ((objc_opt_isKindOfClass(v480, v122) & 1) != 0)
             {
               v555[0] = objc_opt_class(&OBJC_CLASS___NSArray);
               v555[1] = objc_opt_class(&OBJC_CLASS___NSString);
               v555[2] = objc_opt_class(&OBJC_CLASS___BTCloudDevice);
-              v123 = (void *)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:count:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:count:",  v555,  3LL));
-              v124 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v123));
+              v123 = [NSArray arrayWithObjects:v555, 3LL];
+              v124 = [NSSet setWithArray:v123];
               *(void *)&__int128 v479 = objc_claimAutoreleasedReturnValue( +[NSKeyedUnarchiver unarchivedObjectOfClasses:fromData:error:]( &OBJC_CLASS___NSKeyedUnarchiver,  "unarchivedObjectOfClasses:fromData:error:",  v124,  (void)v480,  0LL));
 
               if ((void)v479)
@@ -1111,7 +1111,7 @@ LABEL_14:
                         if ((objc_opt_isKindOfClass(v130, v131) & 1) != 0)
                         {
                           uint64_t v132 = sub_1002E9258();
-                          id v133 = objc_claimAutoreleasedReturnValue([v130 bluetoothAddress]);
+                          id v133 = [v130 bluetoothAddress];
                           sub_10002418C(v519, (char *)[v133 UTF8String]);
                           (*(void (**)(uint64_t, void **))(*(void *)v132 + 184LL))(v132, v519);
                           if (v520 < 0) {
@@ -1155,8 +1155,8 @@ LABEL_14:
                 v549[0] = objc_opt_class(&OBJC_CLASS___NSArray);
                 v549[1] = objc_opt_class(&OBJC_CLASS___NSString);
                 v549[2] = objc_opt_class(&OBJC_CLASS___BTCloudDeviceSupportInformation);
-                v150 = (void *)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:count:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:count:",  v549,  3LL));
-                v151 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v150));
+                v150 = [NSArray arrayWithObjects:count:v549, 3LL];
+                v151 = [NSSet setWithArray:v150];
                 *(void *)&__int128 v478 = objc_claimAutoreleasedReturnValue( +[NSKeyedUnarchiver unarchivedObjectOfClasses:fromData:error:]( &OBJC_CLASS___NSKeyedUnarchiver,  "unarchivedObjectOfClasses:fromData:error:",  v151,  (void)v479,  0LL));
 
                 if ((void)v478)
@@ -1260,7 +1260,7 @@ LABEL_14:
               v262 = (os_log_s *)(id)qword_1008F7600;
               if (os_log_type_enabled(v262, OS_LOG_TYPE_DEFAULT))
               {
-                id v263 = objc_claimAutoreleasedReturnValue([v17 debugDescription]);
+                id v263 = [v17 debugDescription];
                 id v264 = [v263 UTF8String];
                 LODWORD(v544[0].__r_.__value_.__l.__data_) = 136446210;
                 *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words + 4) = (std::string::size_type)v264;
@@ -1276,7 +1276,7 @@ LABEL_14:
                 unsigned int v266 = v17 ? v265 : 0;
                 if (v266 == 1)
                 {
-                  id v468 = (id)objc_claimAutoreleasedReturnValue([v17 objectForKeyedSubscript:@"records"]);
+                  id v468 = [v17 objectForKeyedSubscript:@"records"];
                   uint64_t v267 = objc_opt_class(&OBJC_CLASS___NSData);
                   if ((objc_opt_isKindOfClass(v468, v267) & 1) != 0)
                   {
@@ -1284,8 +1284,8 @@ LABEL_14:
                     v541[1] = objc_opt_class(&OBJC_CLASS___NSString);
                     v541[2] = objc_opt_class(&OBJC_CLASS___BTMagicPairingSettings);
                     v268 = (void *)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:count:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:count:",  v541,  3LL));
-                    v269 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v268));
-                    id v463 = (id)objc_claimAutoreleasedReturnValue( +[NSKeyedUnarchiver unarchivedObjectOfClasses:fromData:error:]( &OBJC_CLASS___NSKeyedUnarchiver,  "unarchivedObjectOfClasses:fromData:error:",  v269,  v468,  0LL));
+                    v269 = [NSSet setWithArray:v268];
+                    id v463 = [NSKeyedUnarchiver unarchivedObjectOfClasses:v269 fromData:v468 error:0LL];
 
                     if (v463)
                     {
@@ -1354,7 +1354,7 @@ LABEL_14:
                               __int16 v491 = 0;
                               unsigned int v490 = 0;
                               memset(v551, 0, sizeof(v551));
-                              id v274 = objc_claimAutoreleasedReturnValue([(id) v480 bluetoothAddress]);
+                              id v274 = [v480 bluetoothAddress];
                               sub_10002418C(v551, (char *)[v274 UTF8String]);
 
                               if (SHIBYTE(v551[2]) >= 0) {
@@ -1402,10 +1402,10 @@ LABEL_416:
                                       0x24u);
                                   }
 
-                                  v282 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 vendorID]);
+                                  v282 = [v480 vendorID];
                                   int v283 = [v282 integerValue];
 
-                                  v284 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 productID]);
+                                  v284 = [v480 productID];
                                   id v285 = [v284 integerValue];
 
                                   if (v283 && (_DWORD)v285)
@@ -1438,7 +1438,7 @@ LABEL_416:
                                   }
 
                                   v289 = (void *)objc_claimAutoreleasedReturnValue( +[CBProductInfo productInfoWithProductID:]( &OBJC_CLASS___CBProductInfo,  "productInfoWithProductID:",  v285,  (void)v452,  *((void *)&v452 + 1)));
-                                  v290 = (void *)objc_claimAutoreleasedReturnValue([v289 productName]);
+                                  v290 = [v289 productName];
 
                                   if (v290
                                     && ([v290 isEqualToString:@"Unknown"] & 1) == 0
@@ -1489,7 +1489,7 @@ LABEL_416:
                                     }
                                   }
 
-                                  v298 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 name]);
+                                  v298 = [v480 name];
                                   BOOL v299 = [v298 length] == 0;
 
                                   if (!v299)
@@ -1501,7 +1501,7 @@ LABEL_416:
                                       v301 = (v544[0].__r_.__value_.__s.__size_ & 0x80u) == 0
                                            ? v544
                                            : (std::string *)v544[0].__r_.__value_.__r.__words[0];
-                                      id v302 = objc_claimAutoreleasedReturnValue([(id) v480 name]);
+                                      id v302 = [v480 name];
                                       id v303 = [v302 UTF8String];
                                       LODWORD(v550.__r_.__value_.__l.__data_) = v471;
                                       *(std::string::size_type *)((char *)v550.__r_.__value_.__r.__words + 4) = (std::string::size_type)v301;
@@ -1510,14 +1510,14 @@ LABEL_416:
                                       _os_log_impl( (void *)&_mh_execute_header,  v300,  OS_LOG_TYPE_DEFAULT,  "Cloud: Magic Settings updating %{public}s username to -> %{private}s",  (uint8_t *)&v550,  0x16u);
                                     }
 
-                                    v304 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 name]);
+                                    v304 = [v480 name];
                                     sub_10002418C(v544, (char *)[v304 utf8ValueSafe]);
                                     sub_1003D17B0(v478, v544, 0);
 
                                     uint64_t v305 = sub_1002E9258();
-                                    id v306 = objc_claimAutoreleasedReturnValue([(id) v480 bluetoothAddress]);
+                                    id v306 = [v480 bluetoothAddress];
                                     sub_10002418C(v483, (char *)[v306 UTF8String]);
-                                    v307 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 name]);
+                                    v307 = (void *)[v480 name];
                                     sub_10002418C(v481, (char *)[v307 utf8ValueSafe]);
                                     (*(void (**)(uint64_t, void **, void **))(*(void *)v305 + 176LL))( v305,  v483,  v481);
                                     if (v482 < 0) {
@@ -1555,18 +1555,18 @@ LABEL_479:
                                       _os_log_impl( (void *)&_mh_execute_header,  v309,  OS_LOG_TYPE_DEFAULT,  "Cloud: Magic Settings No Name for device: %s",  (uint8_t *)&v550,  0xCu);
                                     }
 
-                                    v311 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing cloudClient](self, "cloudClient"));
-                                    v312 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 bluetoothAddress]);
+                                    v311 = [self cloudClient];
+                                    v312 = (void *)[v480 bluetoothAddress];
                                     [v311 deviceRecord:v312 completion:&stru_10089A328];
                                   }
 
-                                  v313 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 deviceIDFeatureBitsV1]);
+                                  v313 = (void *)[v480 deviceIDFeatureBitsV1];
                                   BOOL v314 = [v313 length] == 0;
 
                                   if (!v314)
                                   {
                                     LODWORD(v550.__r_.__value_.__l.__data_) = 0;
-                                    id v315 = objc_claimAutoreleasedReturnValue([(id) v480 deviceIDFeatureBitsV1]);
+                                    id v315 = [v480 deviceIDFeatureBitsV1];
                                     sub_10002418C(v544, (char *)[v315 UTF8String]);
                                     int v316 = std::stoul(v544, 0LL, 0);
 
@@ -1591,7 +1591,7 @@ LABEL_479:
                                     }
                                   }
 
-                                  v321 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 deviceIDFeatureBitsV2]);
+                                  v321 = [v480 deviceIDFeatureBitsV2];
                                   BOOL v322 = [v321 length] == 0;
 
                                   if (!v322)
@@ -1629,47 +1629,47 @@ LABEL_479:
                                   v327 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 accessoryKey]);
                                   if ([v327 length] == (id)16)
                                   {
-                                    v328 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 accessoryHint]);
+                                    v328 = [v480 accessoryHint];
                                     if ([v328 length] == (id)16)
                                     {
-                                      v329 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 encryptionKey]);
+                                      v329 = [v480 encryptionKey];
                                       if ([v329 length] == (id)16)
                                       {
-                                        v330 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 irk]);
+                                        v330 = (void *)[v480 irk];
                                         if ([v330 length] == (id)16)
                                         {
-                                          id v466 = (id)objc_claimAutoreleasedReturnValue([(id)v480 ratchet]);
+                                          id v466 = [v480 ratchet];
                                           if ([v466 length])
                                           {
-                                            id v464 = (id)objc_claimAutoreleasedReturnValue([(id)v480 settingsMask]);
+                                            id v464 = [v480 settingsMask];
                                             if ([v464 length])
                                             {
-                                              id v462 = (id)objc_claimAutoreleasedReturnValue([(id)v480 supportedServices]);
+                                              id v462 = [v480 supportedServices];
                                               if ([v462 length])
                                               {
-                                                id v460 = (id)objc_claimAutoreleasedReturnValue([(id)v480 buttonModes]);
+                                                id v460 = [v480 buttonModes];
                                                 if ([v460 length])
                                                 {
-                                                  id v459 = (id)objc_claimAutoreleasedReturnValue([(id)v480 color]);
+                                                  id v459 = [v480 color];
                                                   if ([v459 length])
                                                   {
-                                                    v331 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 listeningServices]);
+                                                    v331 = (void *)[v480 listeningServices];
                                                     BOOL v456 = [v331 length] == 0;
 
                                                     if (!v456)
                                                     {
                                                       __int128 v539 = 0uLL;
                                                       __int128 v538 = 0uLL;
-                                                      id v332 = objc_claimAutoreleasedReturnValue( [(id) v480 accessoryKey]);
+                                                      id v332 = [v480 accessoryKey];
                                                       __int128 v539 = *(_OWORD *)[v332 bytes];
 
-                                                      id v333 = objc_claimAutoreleasedReturnValue( [(id) v480 accessoryHint]);
+                                                      id v333 = [v480 accessoryHint];
                                                       __int128 v538 = *(_OWORD *)[v333 bytes];
 
-                                                      v334 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 masterKey]);
+                                                      v334 = (void *)[v480 masterKey];
                                                       if ([v334 length] == (id)16)
                                                       {
-                                                        v335 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 masterHint]);
+                                                        v335 = [v480 masterHint];
                                                         BOOL v336 = [v335 length] == (id)16;
 
                                                         if (v336)
@@ -1679,7 +1679,7 @@ LABEL_479:
                                                           v337 = (os_log_s *)(id)qword_1008F7600;
                                                           if (os_log_type_enabled(v337, OS_LOG_TYPE_DEFAULT))
                                                           {
-                                                            v338 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 masterKey]);
+                                                            v338 = (void *)[v480 masterKey];
                                                             LODWORD(v544[0].__r_.__value_.__l.__data_) = v474;
                                                             *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words
                                                                                       + 4) = (std::string::size_type)v338;
@@ -1689,17 +1689,17 @@ LABEL_479:
                                                           v339 = (os_log_s *)(id)qword_1008F7600;
                                                           if (os_log_type_enabled(v339, OS_LOG_TYPE_DEFAULT))
                                                           {
-                                                            v340 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 masterHint]);
+                                                            v340 = [v480 masterHint];
                                                             LODWORD(v544[0].__r_.__value_.__l.__data_) = v474;
                                                             *(std::string::size_type *)((char *)v544[0].__r_.__value_.__r.__words
                                                                                       + 4) = (std::string::size_type)v340;
                                                             _os_log_impl( (void *)&_mh_execute_header,  v339,  OS_LOG_TYPE_DEFAULT,  "Cloud: Retrieved Master Hint: %@",  (uint8_t *)v544,  0xCu);
                                                           }
 
-                                                          id v341 = objc_claimAutoreleasedReturnValue( [(id) v480 masterKey]);
+                                                          id v341 = [v480 masterKey];
                                                           *(_OWORD *)&v550.__r_.__value_.__l.__data_ = *(_OWORD *)[v341 bytes];
 
-                                                          id v342 = objc_claimAutoreleasedReturnValue( [(id) v480 masterHint]);
+                                                          id v342 = [(id) v480 masterHint];
                                                           __n128 v537 = *(__n128 *)[v342 bytes];
 
                                                           __int128 v536 = 0uLL;
@@ -1749,13 +1749,13 @@ LABEL_479:
 
                                                       __n128 v537 = 0uLL;
                                                       __int128 v536 = 0uLL;
-                                                      id v347 = objc_claimAutoreleasedReturnValue( [(id) v480 ratchet]);
+                                                      id v347 = [v480 ratchet];
                                                       int v348 = atol((const char *)[v347 UTF8String]);
 
-                                                      id v349 = objc_claimAutoreleasedReturnValue([(id) v480 irk]);
+                                                      id v349 = [v480 irk];
                                                       __n128 v537 = *(__n128 *)[v349 bytes];
 
-                                                      id v350 = objc_claimAutoreleasedReturnValue( [(id) v480 encryptionKey]);
+                                                      id v350 = [v480 encryptionKey];
                                                       __int128 v536 = *(_OWORD *)[v350 bytes];
 
                                                       for (int k = 0; k != 31; ++k)
@@ -1857,7 +1857,7 @@ LABEL_479:
                                                         dispatch_once(&qword_1008D60C0, &stru_10089A498);
                                                       }
                                                       sub_1003F2724((uint64_t)off_1008D60B8, (uint64_t)v357);
-                                                      v362 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 settingsMask]);
+                                                      v362 = [v480 settingsMask];
                                                       unsigned int v363 = [v362 intValue];
 
                                                       v364 = (os_log_s *)(id)qword_1008F7600;
@@ -1868,7 +1868,7 @@ LABEL_479:
                                                         _os_log_impl( (void *)&_mh_execute_header,  v364,  OS_LOG_TYPE_DEFAULT,  "Cloud: Retrieved settings mask from cloud: %d",  (uint8_t *)v544,  8u);
                                                       }
 
-                                                      v365 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 color]);
+                                                      v365 = [v480 color];
                                                       LODWORD(v460) = [v365 intValue];
 
                                                       v366 = (os_log_s *)(id)qword_1008F7600;
@@ -1879,7 +1879,7 @@ LABEL_479:
                                                         _os_log_impl( (void *)&_mh_execute_header,  v366,  OS_LOG_TYPE_DEFAULT,  "Cloud: Retrieved color from cloud: %d",  (uint8_t *)v544,  8u);
                                                       }
 
-                                                      v367 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 listeningServices]);
+                                                      v367 = [v480 listeningServices];
                                                       id v466 = [v367 integerValue];
 
                                                       v368 = (os_log_s *)(id)qword_1008F7600;
@@ -1904,7 +1904,7 @@ LABEL_479:
                                                         _os_log_impl( (void *)&_mh_execute_header,  v369,  OS_LOG_TYPE_DEFAULT,  "Cloud: Retrieved listening services V1 from cloud: %d",  (uint8_t *)v544,  8u);
                                                       }
 
-                                                      v370 = (void *)objc_claimAutoreleasedReturnValue([(id)v480 listeningServicesV2]);
+                                                      v370 = (void *)[v480 listeningServicesV2];
                                                       id v464 = [v370 integerValue];
 
                                                       v371 = (os_log_s *)(id)qword_1008F7600;
@@ -2134,7 +2134,7 @@ LABEL_479:
 {
   if (_os_feature_enabled_impl("BluetoothFeatures", "CustomHRTFSupport") && (sub_100487F48() & 1) != 0)
   {
-    id v4 = (id)objc_claimAutoreleasedReturnValue(-[CloudPairing cloudClient](self, "cloudClient"));
+    id v4 = [self cloudClient];
     [v4 fetchSoundProfileRecordWithCompletion:&stru_10089A368];
   }
 
@@ -2150,11 +2150,11 @@ LABEL_479:
 
 - (void)resetServerConnection
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+  uint64_t v3 = (void *)[self serverConnection];
 
   if (v3)
   {
-    id v4 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    id v4 = [self serverConnection];
     xpc_connection_cancel(v4);
 
     -[CloudPairing setServerConnection:](self, "setServerConnection:", 0LL);
@@ -2165,7 +2165,7 @@ LABEL_479:
   xpc_connection_t mach_service = xpc_connection_create_mach_service("com.apple.BTServer.cloudpairing", v6, 0LL);
   -[CloudPairing setServerConnection:](self, "setServerConnection:", mach_service);
 
-  __int128 v8 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+  __int128 v8 = (void *)[self serverConnection];
   __int128 v9 = (os_log_s *)qword_1008F7588;
   BOOL v10 = os_log_type_enabled((os_log_t)qword_1008F7588, OS_LOG_TYPE_INFO);
   if (v8)
@@ -2179,7 +2179,7 @@ LABEL_479:
     __int128 v11 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
     xpc_connection_set_event_handler(v11, &stru_10089A3A8);
 
-    uint64_t v12 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    uint64_t v12 = [_CloudPairing serverConnection];
     xpc_connection_resume(v12);
 
     if (-[NSMutableDictionary count](self->_idsMultiUsersDictionary, "count"))
@@ -2246,12 +2246,12 @@ LABEL_479:
 
   else
   {
-    __int128 v9 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    __int128 v9 = (void *)[self serverConnection];
 
     if (!v9) {
       -[CloudPairing resetServerConnection](self, "resetServerConnection");
     }
-    BOOL v10 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    BOOL v10 = [self serverConnection];
 
     __int128 v11 = (os_log_s *)qword_1008F7588;
     if (v10)
@@ -2275,7 +2275,7 @@ LABEL_479:
         xpc_dictionary_set_value(v12, "kMsgArgs", v13);
       }
 
-      __int16 v14 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+      __int16 v14 = (_xpc_connection_s *)[self serverConnection];
       xpc_connection_send_message(v14, v12);
     }
 
@@ -2293,7 +2293,7 @@ LABEL_479:
   __int128 v8 = (os_log_s *)(id)qword_1008F7588;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
   {
-    id v9 = objc_claimAutoreleasedReturnValue(objc_msgSend(v7, "componentsJoinedByString:", @", "));
+    id v9 = [v7 componentsJoinedByString:@","];
     *(_DWORD *)buf = 136315138;
     *(void *)&uint8_t buf[4] = [v9 UTF8String];
     _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "Locally paired iCloud identifiers: [ %s ]",  buf,  0xCu);
@@ -2302,18 +2302,18 @@ LABEL_479:
   BOOL v10 = (os_log_s *)(id)qword_1008F7588;
   if (os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT))
   {
-    id v11 = objc_claimAutoreleasedReturnValue(objc_msgSend(v6, "componentsJoinedByString:", @", "));
+    id v11 = [v6 componentsJoinedByString:@","];
     id v12 = [v11 UTF8String];
     *(_DWORD *)buf = 136315138;
     *(void *)&uint8_t buf[4] = v12;
     _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_DEFAULT,  "Locally paired iCloud BTUUIDs: [ %s ]",  buf,  0xCu);
   }
 
-  BOOL v13 = (NSArray *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithArray:](&OBJC_CLASS___NSArray, "arrayWithArray:", v6));
+  BOOL v13 = [+[NSArray arrayWithArray:] v6];
   cloudLocalUUIDs = self->_cloudLocalUUIDs;
   self->_cloudLocalUUIDs = v13;
 
-  int v15 = (NSArray *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithArray:](&OBJC_CLASS___NSArray, "arrayWithArray:", v7));
+  int v15 = [NSArray arrayWithArray:v7];
   cloudidsIdentifiers = self->_cloudidsIdentifiers;
   self->_cloudidsIdentifiers = v15;
 
@@ -2360,7 +2360,7 @@ LABEL_479:
     __int128 v8 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentIDSUser](self, "currentIDSUser"));
     if (v8)
     {
-      id v2 = objc_claimAutoreleasedReturnValue(-[CloudPairing currentIDSUser](self, "currentIDSUser"));
+      id v2 = [self currentIDSUser];
       id v9 = (const char *)[v2 UTF8String];
     }
 
@@ -2382,7 +2382,7 @@ LABEL_479:
     id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
     if (v11)
     {
-      id v2 = objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+      id v2 = [self currentUserRandomAddress];
       id v12 = (const char *)[v2 UTF8String];
     }
 
@@ -2443,19 +2443,19 @@ LABEL_479:
 - (BOOL)handleXPCUnpairCommand:(id)a3
 {
   id v3 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:@"PublicAddress"]);
+  id v4 = [v3 objectForKeyedSubscript:@"PublicAddress"];
   uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"Public %@", v4));
   unint64_t v6 = sub_1005C02B0(v5);
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:@"RandomAddress"]);
-  __int128 v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"Random %@", v7));
+  id v7 = [v3 objectForKeyedSubscript:@"RandomAddress"];
+  __int128 v8 = [NSString stringWithFormat:@"Random %@" v7];
   unint64_t v9 = sub_1005C02B0(v8);
 
   BOOL v10 = (v6 | v9) != 0;
   if (v6 | v9)
   {
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:@"kCloudDeviceUniqueID"]);
-    uint64_t v12 = objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:@"kCloudPairingID"]);
+    id v11 = (void *)[v3 objectForKeyedSubscript:@"kCloudDeviceUniqueID"];
+    uint64_t v12 = [v3 objectForKeyedSubscript:@"kCloudPairingID"];
     BOOL v13 = (void *)v12;
     if (v11 && v12)
     {
@@ -2491,7 +2491,7 @@ LABEL_479:
       else {
         id v16 = (void **)__p[0];
       }
-      __int16 v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v16));
+      __int16 v17 = [NSString stringWithUTF8String:v16];
       unsigned __int8 v18 = [v11 isEqualToString:v17];
 
       if (v44 < 0)
@@ -2526,7 +2526,7 @@ LABEL_479:
     }
   }
 
-  unsigned __int8 v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  unsigned __int8 v18 = (void *)[+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary") autorelease];
   if ([v8 containsObject:@"EncryptionKeys"])
   {
     int __buf = 0;
@@ -2568,14 +2568,14 @@ LABEL_28:
       goto LABEL_28;
     }
 
-    id v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v31, 16LL));
+    id v19 = [NSData dataWithBytes:v31 length:16LL];
     [v18 setObject:v19 forKeyedSubscript:@"LTK"];
 
-    id v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", a4));
+    id v20 = [NSNumber numberWithUnsignedInteger:a4];
     [v18 setObject:v20 forKeyedSubscript:@"LTKLength"];
 
     [v18 setObject:&off_1008C2B88 forKeyedSubscript:@"LTKType"];
-    id v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", &__buf, 2LL));
+    id v21 = [NSData dataWithBytes:&__buf length:2LL];
     [v18 setObject:v21 forKeyedSubscript:@"EDIV"];
 
     uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", &v32, 8LL));
@@ -2584,7 +2584,7 @@ LABEL_28:
 
   if ([v8 containsObject:@"PublicKeys"])
   {
-    BOOL v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  self->_cloudPublicKey,  64LL));
+    BOOL v23 = [NSData dataWithBytes:self->_cloudPublicKey length:64LL];
     [v18 setObject:v23 forKeyedSubscript:@"CloudPublicKey"];
 
     uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  self->_cloudNonce,  16LL));
@@ -2673,10 +2673,10 @@ LABEL_29:
       _os_log_impl((void *)&_mh_execute_header, v11, OS_LOG_TYPE_DEFAULT, "Keys available or generated", buf, 2u);
     }
 
-    id v134 = (id)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"DeviceName"]);
-    v139 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"RequestedKeyType"]);
-    uint64_t v140 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"RequestedKeys"]);
-    v135 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"IDSLocalRandomAddress"]);
+    id v134 = [v10 objectForKeyedSubscript:@"DeviceName"];
+    v139 = [v10 objectForKeyedSubscript:@"RequestedKeyType"];
+    uint64_t v140 = (void *)[v10 objectForKeyedSubscript:@"RequestedKeys"];
+    v135 = (void *)[v10 objectForKeyedSubscript:@"IDSLocalRandomAddress"];
     id v12 = operator new(0x28uLL);
     v12[2] = 1;
     *(void *)id v12 = &off_10089A468;
@@ -2685,13 +2685,13 @@ LABEL_29:
     *((void *)v12 + 2) = v12 + 6;
     v160 = &off_10089A548;
     v161 = v12;
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"PublicAddress"]);
+    id v13 = [v10 objectForKeyedSubscript:@"PublicAddress"];
     uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"Public %@", v13));
     unint64_t v15 = sub_1005C02B0(v14);
 
     if ([v139 containsObject:@"EncryptionKeys"])
     {
-      id v16 = objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"LTK"]);
+      id v16 = [v140 objectForKeyedSubscript:@"LTK"];
       sub_10056AB04(buf, [v16 bytes], 0x10uLL);
       sub_10032B1F8((uint64_t)v161, 0, (uint64_t)buf);
       *(void *)buf = &off_10087FAA8;
@@ -2700,7 +2700,7 @@ LABEL_29:
       }
 
       LOBYTE(v169[0]) = 0;
-      id v17 = (void *)objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"LTKLength"]);
+      id v17 = [v140 objectForKeyedSubscript:@"LTKLength"];
       unsigned __int8 v18 = [v17 unsignedCharValue];
 
       LOBYTE(v169[0]) = v18;
@@ -2710,7 +2710,7 @@ LABEL_29:
       if (*(void *)&buf[8]) {
         sub_1002CD254(*(unsigned int **)&buf[8]);
       }
-      id v19 = (void *)objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"LTKType"]);
+      id v19 = [v140 objectForKeyedSubscript:@"LTKType"];
       unsigned __int8 v20 = [v19 unsignedCharValue];
 
       LOBYTE(v163) = v20;
@@ -2720,7 +2720,7 @@ LABEL_29:
       if (*(void *)&buf[8]) {
         sub_1002CD254(*(unsigned int **)&buf[8]);
       }
-      id v21 = objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"EDIV"]);
+      id v21 = [v140 objectForKeyedSubscript:@"EDIV"];
       sub_10056AB04(buf, [v21 bytes], 2uLL);
       sub_10032B1F8((uint64_t)v161, 3, (uint64_t)buf);
       *(void *)buf = &off_10087FAA8;
@@ -2728,7 +2728,7 @@ LABEL_29:
         sub_1002CD254(*(unsigned int **)&buf[8]);
       }
 
-      id v22 = objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"RAND"]);
+      id v22 = [v140 objectForKeyedSubscript:@"RAND"];
       sub_10056AB04(buf, [v22 bytes], 8uLL);
       sub_10032B1F8((uint64_t)v161, 4, (uint64_t)buf);
       *(void *)buf = &off_10087FAA8;
@@ -2738,7 +2738,7 @@ LABEL_29:
 
       if (v137)
       {
-        id v23 = (void *)objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"LTKLength"]);
+        id v23 = [v137 objectForKeyedSubscript:@"LTKLength"];
         LOBYTE(v169[0]) = [v23 unsignedCharValue];
 
         sub_10056AB04(buf, v169, 1uLL);
@@ -2747,7 +2747,7 @@ LABEL_29:
         if (*(void *)&buf[8]) {
           sub_1002CD254(*(unsigned int **)&buf[8]);
         }
-        id v24 = (void *)objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"LTKType"]);
+        id v24 = [v137 objectForKeyedSubscript:@"LTKType"];
         LOBYTE(v163) = [v24 unsignedCharValue];
 
         sub_10056AB04(buf, &v163, 1uLL);
@@ -2756,7 +2756,7 @@ LABEL_29:
         if (*(void *)&buf[8]) {
           sub_1002CD254(*(unsigned int **)&buf[8]);
         }
-        id v25 = objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"EDIV"]);
+        id v25 = [v137 objectForKeyedSubscript:@"EDIV"];
         sub_10056AB04(buf, [v25 bytes], 2uLL);
         sub_10032B1F8((uint64_t)v161, 8, (uint64_t)buf);
         *(void *)buf = &off_10087FAA8;
@@ -2764,7 +2764,7 @@ LABEL_29:
           sub_1002CD254(*(unsigned int **)&buf[8]);
         }
 
-        id v26 = objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"RAND"]);
+        id v26 = [v137 objectForKeyedSubscript:@"RAND"];
         sub_10056AB04(buf, [v26 bytes], 8uLL);
         sub_10032B1F8((uint64_t)v161, 9, (uint64_t)buf);
         *(void *)buf = &off_10087FAA8;
@@ -2799,9 +2799,9 @@ LABEL_29:
       goto LABEL_92;
     }
 
-    uint64_t v131 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"PublicAddress"]);
-    v130 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
-    __int16 v28 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+    uint64_t v131 = (void *)[v10 objectForKeyedSubscript:@"PublicAddress"];
+    v130 = [self publicAddress];
+    __int16 v28 = (void *)[self publicAddress];
     uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"Public %@", v28));
     unint64_t v30 = sub_1005C02B0(v29);
 
@@ -2811,7 +2811,7 @@ LABEL_29:
     {
       id v31 = v135;
 
-      id v32 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Random %@",  v31));
+      id v32 = [NSString stringWithFormat:@"Random %@" v31];
       unint64_t v33 = sub_1005C02B0(v32);
 
       uint64_t v34 = sub_1001BCDB0(v33);
@@ -2835,7 +2835,7 @@ LABEL_29:
       uint64_t v36 = (os_log_s *)(id)qword_1008F7588;
       if (os_log_type_enabled(v36, OS_LOG_TYPE_DEFAULT))
       {
-        v37 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing publicAddress](self, "publicAddress"));
+        v37 = [self publicAddress];
         *(_DWORD *)buf = 138412290;
         *(void *)&uint8_t buf[4] = v37;
         _os_log_impl( (void *)&_mh_execute_header,  v36,  OS_LOG_TYPE_DEFAULT,  "MUC: Use local host's public address: %@",  buf,  0xCu);
@@ -2855,9 +2855,9 @@ LABEL_29:
           v39,
           !v40))
     {
-      uint64_t v41 = objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"RandomAddress"]);
+      uint64_t v41 = [v10 objectForKeyedSubscript:@"RandomAddress"];
 
-      id v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Random %@",  v41));
+      id v42 = [NSString stringWithFormat:@"Random %@" v41];
       unint64_t v133 = sub_1005C02B0(v42);
 
       uint64_t v43 = sub_1001BCDB0(v133);
@@ -2882,8 +2882,8 @@ LABEL_29:
     memset(buf, 0, sizeof(buf));
     __int16 v157 = 0;
     uint64_t v165 = 0LL;
-    char v44 = (void *)objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"CloudPublicKey"]);
-    BOOL v45 = (void *)objc_claimAutoreleasedReturnValue([v140 objectForKeyedSubscript:@"CloudNonce"]);
+    char v44 = (void *)[v140 objectForKeyedSubscript:@"CloudPublicKey"];
+    BOOL v45 = (void *)[v140 objectForKeyedSubscript:@"CloudNonce"];
     uint64_t v46 = objc_opt_class(&OBJC_CLASS___NSData);
     if ((objc_opt_isKindOfClass(v44, v46) & 1) != 0
       && (uint64_t v47 = objc_opt_class(&OBJC_CLASS___NSData), (objc_opt_isKindOfClass(v45, v47) & 1) != 0)
@@ -2957,7 +2957,7 @@ LABEL_29:
       v61 = (os_log_s *)(id)qword_1008F7588;
       if (os_log_type_enabled(v61, OS_LOG_TYPE_DEFAULT))
       {
-        id v62 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v172,  16LL));
+        id v62 = [NSData dataWithBytes:&v172 length:16];
         LODWORD(v163) = 138412290;
         *(void *)((char *)&v163 + 4) = v62;
         _os_log_impl((void *)&_mh_execute_header, v61, OS_LOG_TYPE_DEFAULT, "na: [ %@ ]", (uint8_t *)&v163, 0xCu);
@@ -2966,7 +2966,7 @@ LABEL_29:
       v63 = (os_log_s *)(id)qword_1008F7588;
       if (os_log_type_enabled(v63, OS_LOG_TYPE_DEFAULT))
       {
-        id v64 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v171,  16LL));
+        id v64 = [NSData dataWithBytes:&v171 length:16];
         LODWORD(v163) = 138412290;
         *(void *)((char *)&v163 + 4) = v64;
         _os_log_impl((void *)&_mh_execute_header, v63, OS_LOG_TYPE_DEFAULT, "nb: [ %@ ]", (uint8_t *)&v163, 0xCu);
@@ -2989,7 +2989,7 @@ LABEL_29:
         os_log_type_t v68 = (os_log_s *)(id)qword_1008F7588;
         if (os_log_type_enabled(v68, OS_LOG_TYPE_DEFAULT))
         {
-          id v69 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v169,  32LL));
+          id v69 = [NSData dataWithBytes:v169 length:32LL];
           LODWORD(v163) = 138412290;
           *(void *)((char *)&v163 + 4) = v69;
           _os_log_impl((void *)&_mh_execute_header, v68, OS_LOG_TYPE_DEFAULT, "dhKey: [ %@ ]", (uint8_t *)&v163, 0xCu);
@@ -3020,7 +3020,7 @@ LABEL_29:
           v114 = (os_log_s *)(id)qword_1008F7588;
           if (os_log_type_enabled(v114, OS_LOG_TYPE_DEFAULT))
           {
-            id v115 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v170,  16LL));
+            id v115 = [NSData dataWithBytes:&v170 length:16];
             LODWORD(v162) = 138412290;
             *(void *)((char *)&v162 + 4) = v115;
             _os_log_impl( (void *)&_mh_execute_header,  v114,  OS_LOG_TYPE_DEFAULT,  "remoteLTK: [ %@ ]",  (uint8_t *)&v162,  0xCu);
@@ -3047,7 +3047,7 @@ LABEL_29:
           uint64_t v120 = (os_log_s *)(id)qword_1008F7588;
           if (os_log_type_enabled(v120, OS_LOG_TYPE_DEFAULT))
           {
-            id v121 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v157,  2LL));
+            id v121 = [NSData dataWithBytes:&v157 length:2];
             LODWORD(v162) = 138412290;
             *(void *)((char *)&v162 + 4) = v121;
             _os_log_impl( (void *)&_mh_execute_header,  v120,  OS_LOG_TYPE_DEFAULT,  "LE_KEY_LOCAL_EDIV: [ %@ ]",  (uint8_t *)&v162,  0xCu);
@@ -3056,7 +3056,7 @@ LABEL_29:
           uint64_t v122 = (os_log_s *)(id)qword_1008F7588;
           if (os_log_type_enabled(v122, OS_LOG_TYPE_DEFAULT))
           {
-            id v123 = (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v165,  8LL));
+            id v123 = [NSData dataWithBytes:v165 length:8];
             LODWORD(v162) = 138412290;
             *(void *)((char *)&v162 + 4) = v123;
             _os_log_impl( (void *)&_mh_execute_header,  v122,  OS_LOG_TYPE_DEFAULT,  "LE_KEY_LOCAL_RAND: [ %@ ]",  (uint8_t *)&v162,  0xCu);
@@ -3211,7 +3211,7 @@ LABEL_7:
   uint64_t v12 = __buf | 0xC0LL;
   LOBYTE(__buf) = __buf | 0xC0;
   id v13 = sub_1005BF848((v12 << 40) | ((unint64_t)BYTE1(__buf) << 32) | ((unint64_t)BYTE2(__buf) << 24) | ((unint64_t)HIBYTE(__buf) << 16) | ((unint64_t)v31 << 8) | HIBYTE(v31));
-  uint64_t v14 = objc_claimAutoreleasedReturnValue(v13);
+  uint64_t v14 = [v13 autorelease];
   unint64_t v15 = *(void **)(*(void *)&buf[8] + 40LL);
   *(void *)(*(void *)&buf[8] + 40LL) = v14;
 
@@ -3232,7 +3232,7 @@ LABEL_7:
   {
     if (!self->_idsMultiUsersDictionary)
     {
-      unsigned __int8 v18 = (NSMutableDictionary *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithCapacity:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithCapacity:",  1LL));
+      unsigned __int8 v18 = [NSMutableDictionary dictionaryWithCapacity:1];
       id v19 = self->_idsMultiUsersDictionary;
       self->_idsMultiUsersDictionary = v18;
     }
@@ -3249,12 +3249,12 @@ LABEL_7:
     v39[0] = @"IDSLocalID";
     v39[1] = @"IRK";
     v40[0] = v8;
-    id v22 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v41, 16LL));
+    id v22 = [NSData dataWithBytes:v41 length:16LL];
     v40[1] = v22;
-    id v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v40,  v39,  2LL));
+    id v23 = [NSDictionary dictionaryWithObjects:forKeys:count:v40, v39, 2LL];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_idsMultiUsersDictionary,  "setObject:forKeyedSubscript:",  v23,  *(void *)(*(void *)&buf[8] + 40LL));
 
-    id v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObject:forKey:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObject:forKey:",  self->_idsMultiUsersDictionary,  self->_publicAddress));
+    id v24 = [NSDictionary dictionaryWithObject:forKey:self->_idsMultiUsersDictionary,  self->_publicAddress];
     -[CloudPairing removeuserPreference:sync:](self, "removeuserPreference:sync:", @"IDSMultiUsers", 1LL);
     -[CloudPairing setuserPreference:value:sync:]( self,  "setuserPreference:value:sync:",  @"IDSMultiUsers",  v24,  1LL);
     id v25 = (os_log_s *)(id)qword_1008F7588;
@@ -3374,7 +3374,7 @@ LABEL_8:
   {
     if (-[CloudPairing multipleAdvInitialized](self, "multipleAdvInitialized"))
     {
-      uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing getIRKForRandomStaticAddress:](self, "getIRKForRandomStaticAddress:", v4));
+      uint64_t v5 = (void *)[self getIRKForRandomStaticAddress:v4];
       if (v5)
       {
         char v9 = 0;
@@ -3441,12 +3441,12 @@ LABEL_8:
     _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "MUC - update current -> new RSA (%@ - %@)",  buf,  0x16u);
   }
 
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+  uint64_t v7 = [self currentUserRandomAddress];
   BOOL v8 = (v4 | v7) == 0;
 
   if (!v8)
   {
-    char v9 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+    char v9 = (void *)[self currentUserRandomAddress];
     unsigned __int8 v10 = [v9 isEqualToString:v4];
 
     if ((v10 & 1) != 0)
@@ -3462,7 +3462,7 @@ LABEL_8:
     else
     {
       -[CloudPairing setCurrentUserRandomAddress:](self, "setCurrentUserRandomAddress:", v4);
-      uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+      uint64_t v12 = (void *)[CloudPairing currentUserRandomAddress];
       BOOL v13 = v12 == 0LL;
 
       if (v13)
@@ -3490,15 +3490,15 @@ LABEL_8:
 
       else
       {
-        uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Random %@",  v14));
+        uint64_t v14 = (void *)[self currentUserRandomAddress];
+        id v15 = [NSString stringWithFormat:@"Random %@" v14];
         unint64_t v16 = sub_1005C02B0(v15);
 
         if (qword_1008D5F20 != -1) {
           dispatch_once(&qword_1008D5F20, &stru_10089A478);
         }
         nullsub_63(qword_1008D5F18, v16);
-        id v17 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing currentUserRandomAddress](self, "currentUserRandomAddress"));
+        id v17 = [self currentUserRandomAddress];
         -[CloudPairing updateRandomAddressContinuityAdvInstance:]( self,  "updateRandomAddressContinuityAdvInstance:",  v17);
       }
     }
@@ -3514,7 +3514,7 @@ LABEL_8:
   id v15 = sub_1004838C8;
   unint64_t v16 = sub_1004838D8;
   id v17 = 0LL;
-  id v17 = (id)objc_claimAutoreleasedReturnValue(+[NSDictionary dictionary](&OBJC_CLASS___NSDictionary, "dictionary"));
+  id v17 = [NSDictionary dictionary];
   uint64_t v5 = sub_100404FE8();
   v9[0] = _NSConcreteStackBlock;
   v9[1] = 3221225472LL;
@@ -3534,7 +3534,7 @@ LABEL_8:
 - (id)_getPairedDeviceForIDSIdentifier:(id)a3
 {
   id v32 = a3;
-  id v33 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  id v33 = [NSMutableDictionary dictionary];
   if (qword_1008D5F20 != -1) {
     dispatch_once(&qword_1008D5F20, &stru_10089A478);
   }
@@ -3571,13 +3571,13 @@ LABEL_8:
     -[NSMutableDictionary enumerateKeysAndObjectsUsingBlock:]( idsMultiUsersDictionary,  "enumerateKeysAndObjectsUsingBlock:",  v42);
     if (*(void *)(*(void *)&buf[8] + 40LL))
     {
-      BOOL v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Random %@",  *(void *)(*(void *)&buf[8] + 40LL)));
+      BOOL v8 = [NSString stringWithFormat:@"Random %@"];
       char v9 = (const void *)sub_1005C02B0(v8);
 
       id v10 = sub_1002978A8(v9);
       int v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
-      uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v11 allKeys]);
-      BOOL v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v12));
+      uint64_t v12 = (void *)[v11 allKeys];
+      BOOL v13 = [NSSet setWithArray:v12];
       [v31 unionSet:v13];
 
       uint64_t v14 = (os_log_s *)qword_1008F7588;
@@ -3639,7 +3639,7 @@ LABEL_23:
             else {
               unsigned __int8 v20 = *(_BYTE **)buf;
             }
-            __int16 v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v20));
+            __int16 v21 = [NSString stringWithUTF8String:v20];
             if ((buf[23] & 0x80000000) != 0) {
               operator delete(*(void **)buf);
             }
@@ -3691,12 +3691,12 @@ LABEL_43:
 
   else
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    id v6 = -[CloudPairing serverConnection];
 
     if (!v6) {
       -[CloudPairing resetServerConnection](self, "resetServerConnection");
     }
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[CloudPairing serverConnection](self, "serverConnection"));
+    id v7 = [self serverConnection];
     if (v7)
     {
       id v8 = [v4 count];

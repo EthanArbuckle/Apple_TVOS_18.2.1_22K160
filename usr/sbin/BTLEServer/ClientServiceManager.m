@@ -37,7 +37,7 @@
   if (v6)
   {
     objc_storeStrong((id *)&v6->_peripheral, a3);
-    uint64_t v8 = objc_claimAutoreleasedReturnValue(+[NSMapTable strongToStrongObjectsMapTable](&OBJC_CLASS___NSMapTable, "strongToStrongObjectsMapTable"));
+    uint64_t v8 = [NSMapTable strongToStrongObjectsMapTable];
     clientServiceMap = v7->_clientServiceMap;
     v7->_clientServiceMap = (NSMapTable *)v8;
 
@@ -61,7 +61,7 @@
   v15 = sub_100020D2C;
   v16 = sub_100020D3C;
   id v17 = 0LL;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+  id v5 = -[ClientServiceManager clientServiceMap];
   v9[0] = _NSConcreteStackBlock;
   v9[1] = 3221225472LL;
   v9[2] = sub_100020D44;
@@ -80,7 +80,7 @@
 - (void)clientServiceDidStart:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager startingClientServices](self, "startingClientServices"));
+  id v5 = [self startingClientServices];
   [v5 removeObject:v4];
 
   -[ClientServiceManager startClientServices](self, "startClientServices");
@@ -91,8 +91,8 @@
   if (a4)
   {
     id v5 = a4;
-    id v7 = (id)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager peripheral](self, "peripheral"));
+    id v7 = [BTLEXpcServer instance];
+    id v6 = [self peripheral];
     [v7 sendSetConnectionParametersMsg:v5 forPeer:v6];
   }
 
@@ -106,7 +106,7 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+  v3 = -[ClientServiceManager clientServiceMap];
   [v3 enumerateKeysAndObjectsUsingBlock:&stru_10005D308];
 
   v4.receiver = self;
@@ -116,7 +116,7 @@
 
 - (void)startClientServices
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager startingClientServices](self, "startingClientServices"));
+  v3 = -[ClientServiceManager startingClientServices];
   id v4 = [v3 count];
 
   if (!v4)
@@ -127,7 +127,7 @@
       id v10 = &v9;
       uint64_t v11 = 0x2020000000LL;
       char v12 = 0;
-      id v5 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+      id v5 = -[ClientServiceManager clientServiceMap];
       v8[0] = _NSConcreteStackBlock;
       v8[1] = 3221225472LL;
       v8[2] = sub_10002108C;
@@ -155,13 +155,13 @@
 - (void)analyzeError:(id)a3
 {
   id v8 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v8 domain]);
+  id v4 = [v8 domain];
   unsigned int v5 = [v4 isEqualToString:CBATTErrorDomain];
 
   if (v5 && [v8 code] == (id)15)
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager peripheral](self, "peripheral"));
+    id v6 = [NSNotificationCenter defaultCenter];
+    id v7 = [self peripheral];
     [v6 postNotificationName:@"PeripheralPairingDidFailNotification" object:v7];
   }
 }
@@ -199,8 +199,8 @@
           if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
           {
             v15 = v14;
-            v16 = (void *)objc_claimAutoreleasedReturnValue([v27 name]);
-            id v17 = (void *)objc_claimAutoreleasedReturnValue([v11 UUID]);
+            v16 = [v27 name];
+            id v17 = [v11 UUID];
             *(_DWORD *)buf = v26;
             v34 = v16;
             __int16 v35 = 2112;
@@ -208,29 +208,29 @@
             _os_log_impl( (void *)&_mh_execute_header,  v15,  OS_LOG_TYPE_DEFAULT,  "Peripheral \"%@\" invalidated service \"%@\"",  buf,  0x16u);
           }
 
-          v18 = (void *)objc_claimAutoreleasedReturnValue([v11 UUID]);
-          v19 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"8341F2B4-C013-4F04-8197-C4CDB42E26DC"));
+          v18 = [v11 UUID];
+          v19 = [CBUUID UUIDWithString:@"8341F2B4-C013-4F04-8197-C4CDB42E26DC"];
           unsigned int v20 = [v18 isEqual:v19];
 
           if (v20)
           {
-            v21 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+            v21 = -[ClientServiceManager clientServiceMap];
             [v21 enumerateKeysAndObjectsUsingBlock:&stru_10005D328];
 
-            v22 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager startingClientServices](self, "startingClientServices"));
+            v22 = [self startingClientServices];
             [v22 removeAllObjects];
 
-            v23 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+            v23 = [self clientServiceMap];
             [v23 removeAllObjects];
           }
 
           else
           {
             [v13 stop];
-            v24 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager startingClientServices](self, "startingClientServices"));
+            v24 = [self startingClientServices];
             [v24 removeObject:v13];
 
-            v23 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+            v23 = [self clientServiceMap];
             [v23 removeObjectForKey:v11];
           }
         }
@@ -245,7 +245,7 @@
     while (v8);
   }
 
-  v25 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager peripheral](self, "peripheral"));
+  v25 = [self peripheral];
   [v25 discoverServices:0];
 }
 
@@ -257,8 +257,8 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     __int128 v7 = v6;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v43 name]);
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v43 services]);
+    id v8 = [v43 name];
+    uint64_t v9 = (void *)[v43 services];
     *(_DWORD *)buf = 138412546;
     *(void *)&uint8_t buf[4] = v8;
     *(_WORD *)&buf[12] = 2112;
@@ -280,7 +280,7 @@
   __int128 v52 = 0u;
   __int128 v49 = 0u;
   __int128 v50 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue([v43 services]);
+  id obj = [v43 services];
   id v40 = [obj countByEnumeratingWithState:&v49 objects:v58 count:16];
   if (!v40) {
     goto LABEL_32;
@@ -302,7 +302,7 @@
       uint64_t v41 = v11;
       objc_super v13 = *(void **)(*((void *)&v49 + 1) + 8 * v11);
       uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-      v15 = (void *)objc_claimAutoreleasedReturnValue([v14 objectForKey:v13]);
+      v15 = [v14 objectForKey:v13];
       BOOL v16 = v15 == 0LL;
 
       if (v16)
@@ -327,13 +327,13 @@
             Class v21 = NSClassFromString(*(NSString **)(*((void *)&v45 + 1) + 8LL * (void)i));
             if (v21)
             {
-              v22 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-              v23 = (void *)objc_claimAutoreleasedReturnValue(-[objc_class UUID](v21, "UUID"));
+              v22 = [v13 UUID];
+              v23 = [objc_class UUID];
               unsigned int v24 = [v22 isEqual:v23];
 
               if (v24)
               {
-                v25 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
+                v25 = [v13 UUID];
                 __int128 v26 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v42));
                 if ([v25 isEqual:v26])
                 {
@@ -353,8 +353,8 @@
                 if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
                 {
                   __int128 v30 = v29;
-                  __int128 v31 = (void *)objc_claimAutoreleasedReturnValue([v43 name]);
-                  __int128 v32 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
+                  __int128 v31 = (void *)[v43 name];
+                  __int128 v32 = (void *)[v13 UUID];
                   *(_DWORD *)buf = 138412546;
                   *(void *)&uint8_t buf[4] = v31;
                   *(_WORD *)&buf[12] = 2114;
@@ -362,7 +362,7 @@
                   _os_log_impl( (void *)&_mh_execute_header,  v30,  OS_LOG_TYPE_DEFAULT,  "Peripheral \"%@\" supports service \"%{public}@\"",  buf,  0x16u);
                 }
 
-                v33 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+                v33 = -[ClientServiceManager clientServiceMap];
                 [v33 setObject:v28 forKey:v13];
               }
             }
@@ -392,7 +392,7 @@ LABEL_32:
   *(void *)&buf[8] = buf;
   *(void *)&buf[16] = 0x2020000000LL;
   char v56 = 0;
-  v34 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
+  v34 = [ClientServiceManager clientServiceMap];
   v44[0] = _NSConcreteStackBlock;
   v44[1] = 3221225472LL;
   v44[2] = sub_100021B48;
@@ -411,7 +411,7 @@ LABEL_32:
     __int16 v35 = (os_log_s *)(id)qword_100070CC8;
     if (os_log_type_enabled(v35, OS_LOG_TYPE_DEFAULT))
     {
-      v36 = (void *)objc_claimAutoreleasedReturnValue([v43 name]);
+      v36 = [v43 name];
       *(_DWORD *)v53 = 138412290;
       v54 = v36;
       _os_log_impl( (void *)&_mh_execute_header,  v35,  OS_LOG_TYPE_DEFAULT,  "Didn't find any primary service on peripheral \"%@\"",  v53,  0xCu);
@@ -427,8 +427,8 @@ LABEL_38:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v9]);
+  uint64_t v11 = (void *)[self clientServiceMap];
+  uint64_t v12 = (void *)[v11 objectForKey:v9];
 
   if (v12)
   {
@@ -438,8 +438,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         uint64_t v14 = v13;
-        v15 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        BOOL v16 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        v15 = [v9 UUID];
+        BOOL v16 = [v8 name];
         int v17 = 138412802;
         id v18 = v15;
         __int16 v19 = 2112;
@@ -463,8 +463,8 @@ LABEL_38:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
+  uint64_t v11 = (void *)-[ClientServiceManager clientServiceMap];
+  uint64_t v12 = (void *)[v9 service];
   objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
 
   if (v13)
@@ -475,8 +475,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         v15 = v14;
-        BOOL v16 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        int v17 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        BOOL v16 = [v9 UUID];
+        int v17 = (void *)[v8 name];
         int v18 = 138412802;
         __int16 v19 = v16;
         __int16 v20 = 2112;
@@ -501,7 +501,7 @@ LABEL_38:
   id v9 = a4;
   id v10 = a5;
   uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
+  uint64_t v12 = (void *)[v9 service];
   objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
 
   if (v13)
@@ -512,8 +512,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         v15 = v14;
-        BOOL v16 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        int v17 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        BOOL v16 = [v9 UUID];
+        int v17 = [v8 name];
         int v18 = 138412802;
         __int16 v19 = v16;
         __int16 v20 = 2112;
@@ -538,7 +538,7 @@ LABEL_38:
   id v9 = a4;
   id v10 = a5;
   uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
+  uint64_t v12 = (void *)[v9 service];
   objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
 
   if (v13)
@@ -549,8 +549,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         v15 = v14;
-        BOOL v16 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        int v17 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        BOOL v16 = [v9 UUID];
+        int v17 = (void *)[v8 name];
         int v18 = 138412802;
         __int16 v19 = v16;
         __int16 v20 = 2112;
@@ -575,7 +575,7 @@ LABEL_38:
   id v9 = a4;
   id v10 = a5;
   uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
+  uint64_t v12 = (void *)[v9 service];
   objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
 
   if (v13)
@@ -586,8 +586,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         v15 = v14;
-        BOOL v16 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        int v17 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        BOOL v16 = [v9 UUID];
+        int v17 = (void *)[v8 name];
         int v18 = 138412802;
         __int16 v19 = v16;
         __int16 v20 = 2112;
@@ -611,10 +611,10 @@ LABEL_38:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientServiceManager clientServiceMap](self, "clientServiceMap"));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 characteristic]);
+  uint64_t v11 = (void *)[ClientServiceManager clientServiceMap];
+  uint64_t v12 = (void *)[v9 characteristic];
   objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v12 service]);
-  uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v13]);
+  uint64_t v14 = (void *)[v11 objectForKey:v13];
 
   if (v14)
   {
@@ -624,8 +624,8 @@ LABEL_38:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         BOOL v16 = v15;
-        int v17 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-        int v18 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+        int v17 = (void *)[v9 UUID];
+        int v18 = (void *)[v8 name];
         int v19 = 138412802;
         __int16 v20 = v17;
         __int16 v21 = 2112;

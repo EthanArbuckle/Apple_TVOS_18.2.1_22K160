@@ -33,10 +33,10 @@
     for (unint64_t i = 0LL; i < outCount; ++i)
     {
       Name = property_getName(v6[i]);
-      v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", Name));
+      v9 = [NSString stringWithUTF8String:Name];
       v10 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectionParameters valueForKey:](self, "valueForKey:", v9));
 
-      v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", Name));
+      v11 = [NSString stringWithUTF8String:Name];
       -[NSMutableDictionary setObject:forKey:](v3, "setObject:forKey:", v10, v11);
     }
   }

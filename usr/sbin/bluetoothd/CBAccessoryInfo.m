@@ -27,7 +27,7 @@
 - (id)description
 {
   uint64_t v3 = objc_opt_class(self);
-  uint64_t v4 = objc_claimAutoreleasedReturnValue(-[CBDevice identifier](self->_cbDevice, "identifier"));
+  uint64_t v4 = [self->_cbDevice identifier];
   v5 = (void *)v4;
   v6 = "yes";
   if (self->_powerSourceIDLeft) {
@@ -46,7 +46,7 @@
     v6 = "no";
   }
   uint64_t v9 = NSPrintF_safe("%@: ID %@, PowerSources Left %s, Right %s, Case %s", v3, v4, v7, v8, v6);
-  v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+  v10 = (void *)[v9 autorelease];
 
   return v10;
 }
@@ -115,7 +115,7 @@
 - (void)_powerSourceUpdateWithPartID:(const char *)a3
 {
   uint64_t v5 = self->_cbDevice;
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](v5, "identifier"));
+  uint64_t v6 = (void *)[v5 identifier];
   if (v6)
   {
     unsigned int v7 = -[CBDevice proximityPairingProductID](v5, "proximityPairingProductID");
@@ -201,35 +201,35 @@ LABEL_27:
           {
             v24 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
             objc_storeStrong(v23, v24);
-            v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v22));
+            v25 = [NSString stringWithUTF8String:v22];
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v25,  @"Accessory Category");
 
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v6,  @"Accessory Identifier");
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  &__kCFBooleanTrue,  @"Is Present");
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  &off_1008C26A8,  @"Max Capacity");
-            v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", a3));
+            v26 = [NSString stringWithUTF8String:a3];
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v26,  @"Part Identifier");
 
-            v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v12));
+            v27 = [NSNumber numberWithUnsignedInt:v12];
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v27,  @"Product ID");
 
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  @"Bluetooth LE",  @"Transport Type");
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  @"Accessory Source",  @"Type");
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  &off_1008C26C0,  @"Vendor ID");
-            v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  -[CBDevice vendorIDSource](v5, "vendorIDSource")));
+            v28 = [NSNumber numberWithUnsignedChar: -[CBDevice vendorIDSource](v5, "vendorIDSource")];
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v28,  @"Vendor ID Source");
 
-            v29 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice btAddressData](v5, "btAddressData"));
+            v29 = [v5 btAddressData];
             uint64_t v30 = CUPrintNSDataAddress(v29);
             v31 = (void *)objc_claimAutoreleasedReturnValue(v30);
             -[NSMutableDictionary setObject:forKeyedSubscript:]( v24,  "setObject:forKeyedSubscript:",  v31,  @"Group Identifier");
           }
 
           int v32 = strcmp(a3, "Case");
-          v33 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( v24,  "objectForKeyedSubscript:",  @"Name"));
+          v33 = [v24 objectForKeyedSubscript:@"Name"];
           if (v32)
           {
-            v34 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice name](self->_primaryCBDevice, "name"));
+            v34 = [self->_primaryCBDevice name];
             goto LABEL_82;
           }
 
@@ -243,24 +243,24 @@ LABEL_27:
                 switch((int)v40)
                 {
                   case 777:
-                    v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                    v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                     v43 = v42;
                     v44 = @"apple_wireless_mouse";
                     goto LABEL_80;
                   case 780:
-                    v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                    v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                     v43 = v42;
                     v44 = @"apple_mighty_mouse";
                     goto LABEL_80;
                   case 781:
 LABEL_74:
-                    v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                    v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                     v43 = v42;
                     v44 = @"apple_magic_mouse";
                     goto LABEL_80;
                   case 782:
 LABEL_65:
-                    v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                    v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                     v43 = v42;
                     v44 = @"apple_magic_trackpad";
                     goto LABEL_80;
@@ -273,26 +273,26 @@ LABEL_65:
               {
                 case 0x29A:
 LABEL_156:
-                  v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                  v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                   v43 = v42;
                   v44 = @"apple_magic_keyboard_touch";
                   break;
                 case 0x29C:
 LABEL_75:
-                  v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                  v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                   v43 = v42;
                   v44 = @"apple_magic_keyboard";
                   break;
                 case 0x29F:
 LABEL_73:
-                  v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                  v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                   v43 = v42;
                   v44 = @"apple_magic_keyboard_touch_keypad";
                   break;
                 default:
 LABEL_160:
                   v43 = (void *)objc_claimAutoreleasedReturnValue( +[CBProductInfo productInfoWithProductID:]( &OBJC_CLASS___CBProductInfo,  "productInfoWithProductID:",  v40));
-                  uint64_t v46 = objc_claimAutoreleasedReturnValue([v43 productName]);
+                  uint64_t v46 = [v43 productName];
                   goto LABEL_81;
               }
             }
@@ -321,7 +321,7 @@ LABEL_160:
               if ((_DWORD)v40 != 8220 && (_DWORD)v40 != 8216 && (_DWORD)v40 != 8213) {
                 goto LABEL_160;
               }
-              v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+              v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
               v43 = v42;
               v44 = @"apple_airpods_case";
             }
@@ -347,7 +347,7 @@ LABEL_160:
                   case 617:
                     goto LABEL_74;
                   case 620:
-                    v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSBundle bundleWithIdentifier:]( &OBJC_CLASS___NSBundle,  "bundleWithIdentifier:",  @"com.apple.CoreBluetooth"));
+                    v42 = [NSBundle bundleWithIdentifier:@"com.apple.CoreBluetooth"];
                     v43 = v42;
                     v44 = @"apple_magic_keyboard_keypad";
                     goto LABEL_80;

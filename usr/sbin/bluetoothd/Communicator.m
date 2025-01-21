@@ -76,35 +76,35 @@
     if (NSClassFromString(@"TUCallCenter"))
     {
       id v6 = *(id *)(sub_100405058() + 8);
-      uint64_t v7 = objc_claimAutoreleasedReturnValue(+[TUCallCenter callCenterWithQueue:](&OBJC_CLASS___TUCallCenter, "callCenterWithQueue:", v6));
+      uint64_t v7 = [TUCallCenter callCenterWithQueue:v6];
       tuCallCenter = v5->_tuCallCenter;
       v5->_tuCallCenter = (TUCallCenter *)v7;
 
-      v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v9 = [NSNotificationCenter defaultCenter];
       [v9 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterCallStatusChangedNotification object:0];
 
-      v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v10 = [NSNotificationCenter defaultCenter];
       [v10 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterVideoCallStatusChangedNotification object:0];
 
-      v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v11 = [NSNotificationCenter defaultCenter];
       [v11 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterCallInvitationSentNotification object:0];
 
-      v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v12 = [NSNotificationCenter defaultCenter];
       [v12 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterVideoCallInvitationSentNotification object:0];
 
-      v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v13 = [NSNotificationCenter defaultCenter];
       [v13 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterCallerIDChangedNotification object:0];
 
-      v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v14 = [NSNotificationCenter defaultCenter];
       [v14 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterCallConnectedNotification object:0];
 
-      v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v15 = [NSNotificationCenter defaultCenter];
       [v15 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterCallContinuityStateChangedNotification object:0];
 
-      v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v16 = [NSNotificationCenter defaultCenter];
       [v16 addObserver:v5 selector:"_handleTUCallCenterCallExpanseStatusChangedNotification:" name:TUCallMixesVoiceWithMediaChangedNotification object:0];
 
-      v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v17 = [NSNotificationCenter defaultCenter];
       [v17 addObserver:v5 selector:"_handleTUCallCenterCallStatusChangedNotification:" name:TUCallCenterIsScreeningChangedNotification object:0];
 
       -[Communicator _updateCalls](v5, "_updateCalls");
@@ -141,7 +141,7 @@
   if (-[Communicator ctServerConnection](self, "ctServerConnection")) {
     _CTServerConnectionUnregisterForAllNotifications(-[Communicator ctServerConnection](self, "ctServerConnection"));
   }
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v3 = [NSNotificationCenter defaultCenter];
   [v3 removeObserver:self];
 
   -[Communicator setDelegate:](self, "setDelegate:", 0LL);
@@ -161,7 +161,7 @@
 {
   id v3 = a3;
   v4 = objc_alloc(&OBJC_CLASS___NSUUID);
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v3 uniqueProxyIdentifier]);
+  v5 = [v3 uniqueProxyIdentifier];
   id v6 = -[NSUUID initWithUUIDString:](v4, "initWithUUIDString:", v5);
 
   return v6;
@@ -169,8 +169,8 @@
 
 - (id)_callForIdentifier:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue([a3 UUIDString]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  v4 = [a3 UUIDString];
+  v5 = [self tuCallCenter];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 callWithUniqueProxyIdentifier:v4]);
 
   return v6;
@@ -183,8 +183,8 @@
 
 - (void)_updateCalls
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  v29 = (void *)objc_claimAutoreleasedReturnValue([v3 currentAudioAndVideoCalls]);
+  id v3 = [self tuCallCenter];
+  v29 = (void *)[v3 currentAudioAndVideoCalls];
 
   v40 = 0LL;
   v41 = 0LL;
@@ -222,7 +222,7 @@ LABEL_5:
       memset(&v46, 0, sizeof(v46));
       *(_OWORD *)buf = 0u;
       memset(v45, 0, sizeof(v45));
-      v9 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _identifierForCall:](self, "_identifierForCall:", v8));
+      v9 = -[Communicator _identifierForCall:v8];
       sub_1003EC71C((uint64_t)buf, v9);
 
       id v10 = *(id *)buf;
@@ -283,16 +283,16 @@ LABEL_23:
           buf[13] = [v8 isConferenced];
           buf[14] = [v8 mixesVoiceWithMedia];
           buf[15] = [v8 isScreening];
-          v15 = (void *)objc_claimAutoreleasedReturnValue([v8 handle]);
+          v15 = [v8 handle];
           v16 = v15;
           if (v15)
           {
-            v17 = (void *)objc_claimAutoreleasedReturnValue([v15 value]);
+            v17 = (void *)[v15 value];
             unsigned __int8 v18 = -[Communicator _appearsToBeEmailAddress:](self, "_appearsToBeEmailAddress:", v17);
 
             if ((v18 & 1) == 0)
             {
-              id v19 = objc_claimAutoreleasedReturnValue([v16 value]);
+              id v19 = [v16 value];
               sub_10054A384(&__str, [v19 UTF8String]);
               sub_10054A44C((std::string *)((char *)v45 + 8), (uint64_t)&__str);
               sub_10054A428(&__str);
@@ -300,13 +300,13 @@ LABEL_23:
 
             if (v41 == v11 || !sub_10054A494((unsigned __int8 *)v11 + 24, (unsigned __int8 *)v45 + 8))
             {
-              id v20 = (void *)objc_claimAutoreleasedReturnValue([v8 displayName]);
+              id v20 = [v8 displayName];
               v21 = v20;
               if (v20)
               {
                 if ((unint64_t)[v20 length] >= 0x81)
                 {
-                  uint64_t v22 = objc_claimAutoreleasedReturnValue([v21 substringToIndex:128]);
+                  uint64_t v22 = [v21 substringToIndex:128];
 
                   v21 = (void *)v22;
                 }
@@ -358,8 +358,8 @@ LABEL_43:
 
 - (id)_myNumber
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _getSubscriptionContext](self, "_getSubscriptionContext"));
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([v2 phoneNumber]);
+  v2 = -[Communicator _getSubscriptionContext];
+  id v3 = [v2 phoneNumber];
 
   return v3;
 }
@@ -370,14 +370,14 @@ LABEL_43:
   else {
     id v10 = *(const void **)a5;
   }
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v10));
-  unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue([v9 providerWithIdentifier:v11]);
+  v11 = [NSString stringWithUTF8String:v10];
+  unsigned int v12 = (void *)[v9 providerWithIdentifier:v11];
   BOOL v13 = v12;
   if (v12) {
     id v14 = v12;
   }
   else {
-    id v14 = (id)objc_claimAutoreleasedReturnValue([v9 telephonyProvider]);
+    id v14 = [v9 telephonyProvider];
   }
   v15 = v14;
 
@@ -385,14 +385,14 @@ LABEL_43:
   else {
     v17 = *(const void **)a3;
   }
-  unsigned __int8 v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v17));
-  id v19 = (void *)objc_claimAutoreleasedReturnValue(+[TUHandle handleWithDestinationID:](&OBJC_CLASS___TUHandle, "handleWithDestinationID:", v18));
+  unsigned __int8 v18 = (void *)[NSString stringWithUTF8String:v17];
+  id v19 = [OBJC_CLASS___TUHandle handleWithDestinationID:v18];
   [v16 setHandle:v19];
 
   else {
     id v20 = *(const void **)a4;
   }
-  v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v20));
+  v21 = [NSString stringWithUTF8String:v20];
   [v16 setAudioSourceIdentifier:v21];
 
   uint64_t v22 = (os_log_s *)qword_1008F75E8;
@@ -408,7 +408,7 @@ LABEL_43:
     _os_log_impl( (void *)&_mh_execute_header,  v22,  OS_LOG_TYPE_INFO,  "Dialing '%s' with TU provider %@",  (uint8_t *)&v26,  0x16u);
   }
 
-  uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  uint64_t v24 = (void *)[self tuCallCenter];
   [v24 launchAppForDialRequest:v16 completion:0];
 
   return 0;
@@ -420,14 +420,14 @@ LABEL_43:
   else {
     id v10 = *(const void **)a5;
   }
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v10));
-  unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue([v9 providerWithIdentifier:v11]);
+  v11 = [NSString stringWithUTF8String:v10];
+  unsigned int v12 = (void *)[v9 providerWithIdentifier:v11];
   BOOL v13 = v12;
   if (v12) {
     id v14 = v12;
   }
   else {
-    id v14 = (id)objc_claimAutoreleasedReturnValue([v9 telephonyProvider]);
+    id v14 = [v9 telephonyProvider];
   }
   v15 = v14;
 
@@ -436,13 +436,13 @@ LABEL_43:
     v17 = *(const void **)a3;
   }
   unsigned __int8 v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v17));
-  id v19 = (void *)objc_claimAutoreleasedReturnValue(+[TUHandle handleWithDestinationID:](&OBJC_CLASS___TUHandle, "handleWithDestinationID:", v18));
+  id v19 = [TUHandle handleWithDestinationID:v18];
   [v16 setHandle:v19];
 
   else {
     id v20 = *(const void **)a4;
   }
-  v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v20));
+  v21 = [NSString stringWithUTF8String:v20];
   [v16 setAudioSourceIdentifier:v21];
 
   uint64_t v22 = (os_log_s *)qword_1008F75E8;
@@ -458,10 +458,10 @@ LABEL_43:
     _os_log_impl( (void *)&_mh_execute_header,  v22,  OS_LOG_TYPE_INFO,  "Calling handleRedialCommandWhileScreening '%s' with TU provider %@",  (uint8_t *)&v28,  0x16u);
   }
 
-  uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  uint64_t v24 = (void *)[self tuCallCenter];
   char v25 = objc_opt_respondsToSelector(v24, "handleRedialCommandWhileScreening:");
 
-  int v26 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  int v26 = (void *)[self tuCallCenter];
   if ((v25 & 1) != 0) {
     [v26 handleRedialCommandWhileScreening:v16];
   }
@@ -479,11 +479,11 @@ LABEL_43:
   else {
     id v10 = *(const void **)a4;
   }
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v10));
+  v11 = [NSString stringWithUTF8String:v10];
   [v9 setSourceIdentifier:v11];
 
   [v9 setBehavior:a5];
-  unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  unsigned int v12 = (void *)[self tuCallCenter];
   [v12 answerWithRequest:v9];
 
   return 0;
@@ -491,14 +491,14 @@ LABEL_43:
 
 - (id)_getSubscriptionContext
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([v2 getSubscriptionInfoWithError:0]);
+  v2 = -[Communicator ctClient];
+  id v3 = [v2 getSubscriptionInfoWithError:0];
 
   __int128 v14 = 0u;
   __int128 v15 = 0u;
   __int128 v12 = 0u;
   __int128 v13 = 0u;
-  v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "subscriptions", 0));
+  v4 = [v3 subscriptions];
   id v5 = [v4 countByEnumeratingWithState:&v12 objects:v16 count:16];
   if (v5)
   {
@@ -511,7 +511,7 @@ LABEL_43:
           objc_enumerationMutation(v4);
         }
         id v8 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)i);
-        id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 userDefaultVoice]);
+        id v9 = [v8 userDefaultVoice];
         unsigned __int8 v10 = [v9 BOOLValue];
 
         if ((v10 & 1) != 0)
@@ -540,12 +540,12 @@ LABEL_43:
       _os_log_impl( (void *)&_mh_execute_header,  v3,  OS_LOG_TYPE_INFO,  "Received 'active subscriptions did change' delegate",  v11,  2u);
     }
 
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _getSubscriptionContext](self, "_getSubscriptionContext"));
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 getSignalStrengthInfo:v4 error:0]);
+    v4 = -[Communicator _getSubscriptionContext];
+    id v5 = -[Communicator ctClient];
+    uint64_t v6 = (void *)[v5 getSignalStrengthInfo:v4 error:0];
 
     uint64_t v7 = -[Communicator delegate](self, "delegate");
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 bars]);
+    id v8 = [v6 bars];
     (*((void (**)(Delegate *, void))v7->var0 + 4))( v7,  [v8 unsignedIntValue]);
 
     id v9 = -[Communicator delegate](self, "delegate");
@@ -559,7 +559,7 @@ LABEL_43:
   id v5 = a3;
   if (-[Communicator delegate](self, "delegate"))
   {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 userDefaultVoice]);
+    uint64_t v6 = (void *)[v5 userDefaultVoice];
     unsigned int v7 = [v6 BOOLValue];
 
     if (v7)
@@ -583,7 +583,7 @@ LABEL_43:
   id v7 = a4;
   if (-[Communicator delegate](self, "delegate"))
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 userDefaultVoice]);
+    id v8 = [v6 userDefaultVoice];
     unsigned int v9 = [v8 BOOLValue];
 
     if (v9)
@@ -595,7 +595,7 @@ LABEL_43:
         _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_INFO,  "Received 'signal strength changed' delegate",  v14,  2u);
       }
 
-      v11 = (void *)objc_claimAutoreleasedReturnValue([v7 bars]);
+      v11 = (void *)[v7 bars];
       unsigned __int8 v12 = [v11 unsignedIntValue];
 
       __int128 v13 = -[Communicator delegate](self, "delegate");
@@ -609,7 +609,7 @@ LABEL_43:
   id v5 = a3;
   if (-[Communicator delegate](self, "delegate"))
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 userDefaultVoice]);
+    id v6 = [v5 userDefaultVoice];
     unsigned int v7 = [v6 BOOLValue];
 
     if (v7)
@@ -679,8 +679,8 @@ LABEL_43:
 - (void)_handleTUCallCenterCallStatusChangedNotification:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 object]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _identifierForCall:](self, "_identifierForCall:", v5));
+  id v5 = [v4 object];
+  id v6 = -[Communicator _identifierForCall:v5];
 
   unsigned int v7 = *(dispatch_queue_s **)(sub_100405058() + 8);
   v9[0] = _NSConcreteStackBlock;
@@ -699,7 +699,7 @@ LABEL_43:
   id v5 = (os_log_s *)(id)qword_1008F75E8;
   if (os_log_type_enabled(v5, OS_LOG_TYPE_DEFAULT))
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 object]);
+    id v6 = [v4 object];
     int v7 = 138412290;
     id v8 = v6;
     _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "Expanse status changed for call: %@",  (uint8_t *)&v7,  0xCu);
@@ -749,12 +749,12 @@ LABEL_43:
           objc_enumerationMutation(v4);
         }
         id v8 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)i);
-        unsigned int v9 = (void *)objc_claimAutoreleasedReturnValue([v8 userDefaultVoice]);
+        unsigned int v9 = (void *)[v8 userDefaultVoice];
         unsigned int v10 = [v9 BOOLValue];
 
         if (v10)
         {
-          id v5 = (id)objc_claimAutoreleasedReturnValue([v8 phoneNumber]);
+          id v5 = [v8 phoneNumber];
           goto LABEL_11;
         }
       }
@@ -790,7 +790,7 @@ LABEL_43:
 
 - (int)answerIncomingCall:()basic_string<char
 {
-  char v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  char v5 = (void *)[self tuCallCenter];
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 audioOrVideoCallWithStatus:4]);
 
   BOOL v7 = (os_log_s *)qword_1008F75E8;
@@ -819,8 +819,8 @@ LABEL_43:
 
 - (int)rejectIncomingCall
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 audioOrVideoCallWithStatus:4]);
+  id v3 = -[Communicator tuCallCenter];
+  id v4 = [v3 audioOrVideoCallWithStatus:4];
 
   char v5 = (os_log_s *)qword_1008F75E8;
   if (v4)
@@ -832,7 +832,7 @@ LABEL_43:
       _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_INFO,  "Found incoming TU call to reject: %@",  (uint8_t *)&v9,  0xCu);
     }
 
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    uint64_t v6 = (void *)[self tuCallCenter];
     [v6 disconnectCall:v4];
 
     int v7 = 0;
@@ -851,8 +851,8 @@ LABEL_43:
 
 - (int)hangupActiveCall
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 audioOrVideoCallWithStatus:3]);
+  id v3 = [self tuCallCenter];
+  id v4 = [v3 audioOrVideoCallWithStatus:3];
 
   if (v4)
   {
@@ -864,7 +864,7 @@ LABEL_43:
       _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_INFO,  "Found sending TU call to disconnect: %@",  (uint8_t *)&v13,  0xCu);
     }
 
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    uint64_t v6 = (void *)[self tuCallCenter];
     [v6 disconnectCall:v4];
 LABEL_9:
     int v11 = 0;
@@ -872,7 +872,7 @@ LABEL_9:
   }
 
   int v7 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v7 audioAndVideoCallsWithStatus:1]);
+  uint64_t v6 = (void *)[v7 audioAndVideoCallsWithStatus:1];
 
   id v8 = [v6 count];
   int v9 = (os_log_s *)qword_1008F75E8;
@@ -885,7 +885,7 @@ LABEL_9:
       _os_log_impl( (void *)&_mh_execute_header,  v9,  OS_LOG_TYPE_INFO,  "Found active TU calls to disconnect: %@",  (uint8_t *)&v13,  0xCu);
     }
 
-    int v10 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    int v10 = (void *)[self tuCallCenter];
     [v10 disconnectCurrentCallAndActivateHeld];
 
     goto LABEL_9;
@@ -902,8 +902,8 @@ LABEL_10:
 
 - (int)releaseHeldCalls
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 audioAndVideoCallsWithStatus:2]);
+  id v3 = [self tuCallCenter];
+  id v4 = [v3 audioAndVideoCallsWithStatus:2];
 
   __int128 v14 = v4;
   if ([v4 count])
@@ -959,7 +959,7 @@ LABEL_10:
 
 - (int)releaseActiveCalls:()basic_string<char
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  id v5 = -[Communicator tuCallCenter];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 audioOrVideoCallWithStatus:4]);
 
   if (v6)
@@ -977,7 +977,7 @@ LABEL_10:
 
   else
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    uint64_t v9 = (void *)[self tuCallCenter];
     int v10 = (void *)objc_claimAutoreleasedReturnValue([v9 audioAndVideoCallsWithStatus:1]);
 
     id v11 = [v10 count];
@@ -991,7 +991,7 @@ LABEL_10:
         _os_log_impl( (void *)&_mh_execute_header,  v12,  OS_LOG_TYPE_INFO,  "Found active TU calls to disconnect: %@",  (uint8_t *)&v15,  0xCu);
       }
 
-      int v13 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+      int v13 = (void *)[self tuCallCenter];
       [v13 disconnectCurrentCallAndActivateHeld];
 
       int v8 = 0;
@@ -1011,16 +1011,16 @@ LABEL_10:
 
 - (int)holdActiveCalls:()basic_string<char
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  id v5 = [self tuCallCenter];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 audioOrVideoCallWithStatus:4]);
 
   if (!v6)
   {
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    id v11 = [self tuCallCenter];
     int v12 = (void *)objc_claimAutoreleasedReturnValue([v11 audioOrVideoCallWithStatus:1]);
 
-    int v13 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-    __int128 v14 = (void *)objc_claimAutoreleasedReturnValue([v13 audioOrVideoCallWithStatus:2]);
+    int v13 = (void *)[self tuCallCenter];
+    __int128 v14 = (void *)[v13 audioOrVideoCallWithStatus:2];
 
     if (v12 && v14)
     {
@@ -1054,7 +1054,7 @@ LABEL_10:
         _os_log_impl( (void *)&_mh_execute_header,  v22,  OS_LOG_TYPE_INFO,  "Found held TU call to resume: %@",  (uint8_t *)&v24,  0xCu);
       }
 
-      id v23 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+      id v23 = [self tuCallCenter];
       [v23 unholdCall:v14];
     }
 
@@ -1068,7 +1068,7 @@ LABEL_10:
         _os_log_impl( (void *)&_mh_execute_header,  v18,  OS_LOG_TYPE_INFO,  "Found active TU call to hold: %@",  (uint8_t *)&v24,  0xCu);
       }
 
-      id v19 = (void *)objc_claimAutoreleasedReturnValue([v12 model]);
+      id v19 = [v12 model];
       unsigned int v20 = [v19 supportsHolding];
 
       if (!v20)
@@ -1080,7 +1080,7 @@ LABEL_10:
         goto LABEL_14;
       }
 
-      v21 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+      v21 = [self tuCallCenter];
       [v21 holdCall:v12];
     }
 
@@ -1090,7 +1090,7 @@ LABEL_14:
     goto LABEL_15;
   }
 
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+  uint64_t v7 = (void *)[self tuCallCenter];
   else {
     uint64_t v8 = 0LL;
   }
@@ -1113,11 +1113,11 @@ LABEL_15:
 
 - (int)addHeldCall
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 audioOrVideoCallWithStatus:2]);
+  id v3 = -[Communicator tuCallCenter];
+  id v4 = [v3 audioOrVideoCallWithStatus:2];
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 audioOrVideoCallWithStatus:1]);
+  id v5 = [self tuCallCenter];
+  id v6 = [v5 audioOrVideoCallWithStatus:1];
 
   uint64_t v7 = (os_log_s *)qword_1008F75E8;
   if (v4 && v6)
@@ -1137,12 +1137,12 @@ LABEL_15:
       _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_INFO,  "Found active TU call to create a conference: %@",  (uint8_t *)&v14,  0xCu);
     }
 
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    uint64_t v9 = (void *)[self tuCallCenter];
     unsigned int v10 = [v9 canGroupCall:v4 withCall:v6];
 
     if (v10)
     {
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+      id v11 = [self tuCallCenter];
       [v11 groupCall:v4 withOtherCall:v6];
 
       int v12 = 0;
@@ -1185,8 +1185,8 @@ LABEL_15:
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
     [v7 disconnectCall:v5];
 
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 audioOrVideoCallWithStatus:2]);
+    uint64_t v8 = (void *)[self tuCallCenter];
+    uint64_t v9 = (void *)[v8 audioOrVideoCallWithStatus:2];
 
     if (v9)
     {
@@ -1198,7 +1198,7 @@ LABEL_15:
         _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_INFO,  "Found held TU call to resume: %@",  (uint8_t *)&v14,  0xCu);
       }
 
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+      id v11 = [self tuCallCenter];
       [v11 unholdCall:v9];
     }
 
@@ -1246,12 +1246,12 @@ LABEL_11:
     goto LABEL_12;
   }
 
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v5 model]);
+  uint64_t v7 = (void *)[v5 model];
   unsigned int v8 = [v7 supportsUngrouping];
 
   if (v8)
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
+    uint64_t v9 = (void *)[self tuCallCenter];
     [v9 ungroupCall:v5];
 
     int v10 = 0;
@@ -1345,10 +1345,10 @@ LABEL_11:
 - (int)sendDTMFTone:(unsigned __int8)a3
 {
   uint64_t v3 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator tuCallCenter](self, "tuCallCenter"));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 audioOrVideoCallWithStatus:1]);
+  id v4 = [self tuCallCenter];
+  id v5 = [v4 audioOrVideoCallWithStatus:1];
 
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 model]);
+  uint64_t v6 = (void *)[v5 model];
   unsigned int v7 = [v6 supportsDTMF];
 
   if (v7)
@@ -1402,13 +1402,13 @@ LABEL_11:
     *(_DWORD *)&v12[16] = 7;
     *(_DWORD *)&v12[8] = 1;
     *(_WORD *)&v12[12] = 1;
-    id v6 = objc_claimAutoreleasedReturnValue(-[Communicator _myNumber](self, "_myNumber"));
+    id v6 = [self _myNumber];
     sub_10054A384(&__str, [v6 UTF8String]);
     sub_10054A44C((std::string *)&v12[24], (uint64_t)&__str);
     sub_10054A428(&__str);
 
     id v7 = sub_1002E95B8(@"MY_NUMBER", @"My Number");
-    id v8 = objc_claimAutoreleasedReturnValue(v7);
+    id v8 = [v7 autorelease];
     sub_10002418C(&__str, (char *)[v8 UTF8String]);
     std::string::operator=(&__p, &__str);
 
@@ -1625,8 +1625,8 @@ LABEL_11:
     }
 
     uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _getSubscriptionContext](self, "_getSubscriptionContext"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 getLocalizedOperatorName:v5 error:0]);
+    id v6 = [self ctClient];
+    id v7 = [v6 getLocalizedOperatorName:v5 error:0];
 
     if (v7)
     {
@@ -1660,8 +1660,8 @@ LABEL_11:
 {
   if (-[Communicator ctServerConnection](self, "ctServerConnection"))
   {
-    BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _getSubscriptionContext](self, "_getSubscriptionContext"));
-    uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
+    BOOL v3 = [self _getSubscriptionContext];
+    uint64_t v4 = (void *)[self ctClient];
     id v5 = [v4 copyRegistrationDisplayStatus:v3 error:0];
 
     id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 registrationDisplayStatus]);
@@ -1689,8 +1689,8 @@ LABEL_11:
   if (-[Communicator ctServerConnection](self, "ctServerConnection"))
   {
     id v7 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _getSubscriptionContext](self, "_getSubscriptionContext"));
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 getSignalStrengthInfo:v7 error:0]);
+    uint64_t v8 = (void *)[self ctClient];
+    uint64_t v9 = (void *)[v8 getSignalStrengthInfo:v7 error:0];
 
     if (a4)
     {
@@ -1701,13 +1701,13 @@ LABEL_10:
         return 0;
       }
 
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 bars]);
+      uint64_t v10 = (void *)[v9 bars];
       int v11 = 20 * [v10 intValue];
     }
 
     else
     {
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 bars]);
+      uint64_t v10 = (void *)[v9 bars];
       int v11 = [v10 intValue];
     }
 
@@ -1724,7 +1724,7 @@ LABEL_10:
 
 - (int)getSubscriberNumber:(void *)a3
 {
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator _myNumber](self, "_myNumber"));
+  uint64_t v4 = (void *)[self _myNumber];
   id v5 = v4;
   if (v4)
   {
@@ -1817,10 +1817,10 @@ LABEL_10:
     || (BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient")), v3, v3))
   {
     id v4 = objc_autoreleasePoolPush();
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-    int v6 = (void *)objc_claimAutoreleasedReturnValue([v5 getCurrentDataSubscriptionContextSync:0]);
+    id v5 = [self ctClient];
+    int v6 = (void *)[v5 getCurrentDataSubscriptionContextSync:0];
 
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
+    id v7 = [self ctClient];
     id v19 = 0LL;
     id v8 = [v7 copyLastKnownMobileCountryCode:v6 error:&v19];
     id v9 = v19;
@@ -1846,14 +1846,14 @@ LABEL_10:
 
 - (id)getCountryCodeIdentifer
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
+  BOOL v3 = [self ctClient];
 
   if (v3)
   {
-    id v4 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
-    id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 getCurrentDataSubscriptionContextSync:0]);
+    id v4 = [self ctClient];
+    id v5 = [v4 getCurrentDataSubscriptionContextSync:0];
 
-    int v6 = (void *)objc_claimAutoreleasedReturnValue(-[Communicator ctClient](self, "ctClient"));
+    int v6 = (void *)[self ctClient];
     id v17 = 0LL;
     id v7 = [v6 copyMobileCountryCode:v5 error:&v17];
     id v8 = v17;

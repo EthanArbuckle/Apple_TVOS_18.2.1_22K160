@@ -58,12 +58,12 @@
     objc_storeStrong((id *)&self->_activatedDiscovery, v5);
     -[CBDiscovery setDiscoveryFlags:](v5, "setDiscoveryFlags:", self->_discoveryFlags & 0xFFFFBFFFFFFFFFFFLL);
     -[CBDiscovery setDispatchQueue:](v5, "setDispatchQueue:", self->_dispatchQueue);
-    v6 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer xpcListenerEndpoint](self->_daemonServer, "xpcListenerEndpoint"));
+    v6 = -[CBDaemonServer xpcListenerEndpoint];
     if (v6)
     {
       -[CBDiscovery setTestListenerEndpoint:](v5, "setTestListenerEndpoint:", v6);
       v7 = objc_alloc_init(&OBJC_CLASS___CBDevice);
-      v8 = (void *)objc_claimAutoreleasedReturnValue(-[RPCompanionLinkDevice idsDeviceIdentifier](self->_remoteDevice, "idsDeviceIdentifier"));
+      v8 = -[RPCompanionLinkDevice idsDeviceIdentifier](self->_remoteDevice, "idsDeviceIdentifier");
       -[CBDevice setIdentifier:](v7, "setIdentifier:", v8);
 
       -[CBDiscovery setRemoteDevice:](v5, "setRemoteDevice:", v7);

@@ -40,7 +40,7 @@
 - (void)addPipe:(id)a3
 {
   id v4 = a3;
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id v6 = [self pipes];
   v5 = -[Pipe initWithDelegate:pipe:](objc_alloc(&OBJC_CLASS___Pipe), "initWithDelegate:pipe:", self, v4);
 
   [v6 addObject:v5];
@@ -53,7 +53,7 @@
   __int128 v15 = 0u;
   __int128 v16 = 0u;
   __int128 v17 = 0u;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes", 0LL));
+  v5 = -[Endpoint pipes];
   id v6 = [v5 countByEnumeratingWithState:&v14 objects:v18 count:16];
   if (v6)
   {
@@ -67,11 +67,11 @@
           objc_enumerationMutation(v5);
         }
         v10 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)i);
-        id v11 = (id)objc_claimAutoreleasedReturnValue([v10 pipe]);
+        id v11 = [v10 pipe];
 
         if (v11 == v4)
         {
-          v13 = (void *)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+          v13 = -[Endpoint pipes];
           [v13 removeObject:v10];
 
           goto LABEL_12;
@@ -95,7 +95,7 @@ LABEL_12:
 
 - (BOOL)isConnected
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  v2 = [self pipes];
   BOOL v3 = [v2 count] != 0;
 
   return v3;
@@ -123,10 +123,10 @@ LABEL_12:
           objc_enumerationMutation(v8);
         }
         uint64_t v13 = *(void *)(*((void *)&v17 + 1) + 8LL * (void)i);
-        __int128 v14 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v13]);
+        __int128 v14 = (void *)[v7 objectForKeyedSubscript:v13];
         if (v14)
         {
-          __int128 v15 = (NSString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"handle%@Command:message:",  v13));
+          __int128 v15 = [NSString stringWithFormat:@"handle%@Command:message:"];
           __int128 v16 = NSSelectorFromString(v15);
 
           objc_msgSend(self, v16, v6, v14);

@@ -22,53 +22,55 @@
 {
   id v4 = a3;
   v29.receiver = self;
-  v29.super_class = (Class)&OBJC_CLASS___BKHIDProximityEventProcessor;
-  v5 = -[BKHIDProximityEventProcessor init](&v29, "init");
+  v29.super_class = [BKHIDProximityEventProcessor class];
+  BKHIDProximityEventProcessor *v5 = [[BKHIDProximityEventProcessor alloc] init];
   v6 = v5;
   if (v5)
   {
     v5->_lock._os_unfair_lock_opaque = 0;
     v5->_lock_shouldSuppressTouchesWhileObjectWithinProximity = 1;
-    uint64_t v7 = objc_claimAutoreleasedReturnValue( +[BKSProximityDetectionMaskChangeEvent build:]( &OBJC_CLASS___BKSProximityDetectionMaskChangeEvent,  "build:",  &stru_1000B6388));
+    BKSProximityDetectionMaskChangeEvent *v7 = [BKSProximityDetectionMaskChangeEvent build:&stru_1000B6388];
     lock_lastEvent = v6->_lock_lastEvent;
     v6->_lock_lastEvent = (BKSProximityDetectionMaskChangeEvent *)v7;
 
-    v9 = objc_alloc(&OBJC_CLASS___BKHIDDomainServiceServer);
+    BKHIDDomainServiceServer *v9 = [[BKHIDDomainServiceServer alloc] init];
     uint64_t v10 = BKSProximitySensorBSServiceName;
     uint64_t v11 = BKLogUISensor();
-    v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-    v13 = -[BKHIDDomainServiceServer initWithDelegate:serverTarget:serverProtocol:clientProtocol:serviceName:queue:log:entitlement:]( v9,  "initWithDelegate:serverTarget:serverProtocol:clientProtocol:serviceName:queue:log:entitlement:",  v6,  v6,  &OBJC_PROTOCOL___BKSProximitySensorServer_IPC,  &OBJC_PROTOCOL___BKSProximitySensorClient_IPC,  v10,  &_dispatch_main_q,  v12,  BKProximityDetectionEntitlement);
+    v12 = [v11 autorelease];
+    BKProximitySensorServer *v13 = [[BKProximitySensorServer alloc] initWithDelegate:v9 serverTarget:v6 serverProtocol:[BKSProximitySensorServer_IPC class] clientProtocol:[BKSProximitySensorClient_IPC class] serviceName:v10 queue:_dispatch_main_q log:v12 entitlement:BKProximityDetectionEntitlement];
     server = v6->_server;
     v6->_server = v13;
 
-    objc_initWeak(&location, v6);
-    v15 = objc_alloc(&OBJC_CLASS___SLGNotificationActivatedLogger);
-    id v16 = objc_alloc(&OBJC_CLASS___SLGActivatableLogger);
-    v17 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+    [location release];
+location = v6;
+[location retain];
+    SLGNotificationActivatedLogger *v15 = [[SLGNotificationActivatedLogger alloc] init];
+    SLGActivatableLogger *v16 = [[SLGActivatableLogger alloc] init];
+    v17 = [SLGLog sharedInstance];
     id v18 = [v16 initWithLogger:v17];
-    v19 = -[SLGNotificationActivatedLogger initWithLogger:](v15, "initWithLogger:", v18);
+    SLGNotificationActivatedLogger *v19 = [[SLGNotificationActivatedLogger alloc] initWithLogger:v18];
     studyLog = v6->_studyLog;
     v6->_studyLog = v19;
 
-    -[SLGNotificationActivatedLogger addBeginNotification:endNotification:]( v6->_studyLog,  "addBeginNotification:endNotification:",  @"SBStudyLogBeginCameraButtonLogging",  @"SBStudyLogEndCameraButtonLogging");
+    [v6->_studyLog addBeginNotification:@"SBStudyLogBeginCameraButtonLogging" endNotification:@"SBStudyLogEndCameraButtonLogging"];
     v21 = v6->_studyLog;
     v26[0] = _NSConcreteStackBlock;
     v26[1] = 3221225472LL;
     v26[2] = sub_10002A558;
     v26[3] = &unk_1000B63B0;
-    objc_copyWeak(&v27, &location);
-    -[SLGNotificationActivatedLogger setActivationHandler:](v21, "setActivationHandler:", v26);
+    [v27 copy];
+    [v21 setActivationHandler:v26];
     v22 = v6->_studyLog;
     v24[0] = _NSConcreteStackBlock;
     v24[1] = 3221225472LL;
     v24[2] = sub_10002A600;
     v24[3] = &unk_1000B63B0;
-    objc_copyWeak(&v25, &location);
-    -[SLGNotificationActivatedLogger setDeactivationHandler:](v22, "setDeactivationHandler:", v24);
-    -[BKHIDDomainServiceServer activate](v6->_server, "activate");
-    objc_destroyWeak(&v25);
-    objc_destroyWeak(&v27);
-    objc_destroyWeak(&location);
+    [v25 copy];
+    [v22 setDeactivationHandler:v24];
+    [v6->_server activate];
+    [v25 release];
+    [v27 release];
+    [location release];
   }
 
   return v6;
@@ -77,8 +79,8 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKHIDProximityEventProcessor;
-  -[BKHIDProximityEventProcessor dealloc](&v3, "dealloc");
+  v3.super_class = [BKHIDProximityEventProcessor class];
+  [v3 dealloc];
 }
 
 - (BOOL)isObjectWithinProximity
@@ -116,7 +118,7 @@
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
   self->_lock_shouldSuppressTouchesWhileObjectWithinProximity = a3;
-  -[BKHIDProximityEventProcessor _locked_updateTouchSuppressionAssertion]( self,  "_locked_updateTouchSuppressionAssertion");
+  [self _locked_updateTouchSuppressionAssertion];
   os_unfair_lock_unlock(p_lock);
 }
 
@@ -126,11 +128,11 @@
   id v9 = a5;
   uint64_t v10 = *a3;
   uint64_t v11 = BKLogUISensor();
-  v12 = (os_log_s *)objc_claimAutoreleasedReturnValue(v11);
+  v12 = v11;
   if (os_log_type_enabled(v12, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t ConciseDescription = BKSHIDEventGetConciseDescription(*a3);
-    v14 = (void *)objc_claimAutoreleasedReturnValue(ConciseDescription);
+    v14 = [ConciseDescription description];
     *(_DWORD *)buf = 138543362;
     v52 = v14;
     _os_log_impl((void *)&_mh_execute_header, v12, OS_LOG_TYPE_DEFAULT, "-> %{public}@", buf, 0xCu);
@@ -138,8 +140,8 @@
 
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
-  objc_storeWeak((id *)&self->_lastProximitySender, v8);
-  objc_storeWeak((id *)&self->_lastProximityDispatcher, v9);
+  self->_lastProximitySender = v8;
+  self->_lastProximityDispatcher = v9;
   if (-[SLGNotificationActivatedLogger isEnabled](self->_studyLog, "isEnabled"))
   {
     BOOL v16 = IOHIDEventGetIntegerValue(v10, 917504LL) != 0;
@@ -151,7 +153,7 @@
       v48[2] = sub_10002A4B8;
       v48[3] = &unk_1000B63D0;
       BOOL v49 = v16;
-      -[SLGNotificationActivatedLogger logBlock:domain:]( studyLog,  "logBlock:domain:",  v48,  @"com.apple.backboard.hid.proximity");
+      [studyLog logBlock:v48 domain:@"com.apple.backboard.hid.proximity"];
       self->_studyLogProxState = v16;
     }
   }
@@ -166,7 +168,7 @@
   }
   uint64_t v20 = v19 & IntegerValue;
   kdebug_trace(730464696LL, v20, 0LL, 0LL, 0LL);
-  v43 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v43 = [NSMutableSet set];
   if (self->_modeDetectionMask != (_DWORD)v20)
   {
     v40 = v10;
@@ -174,14 +176,14 @@
     id v42 = v8;
     self->_modeDetectionMask = v20;
     if (self->_proximityDetectionActive) {
-      -[BKHIDProximityEventProcessor _locked_setObjectWithinProximity:notify:]( self,  "_locked_setObjectWithinProximity:notify:",  (v20 >> 6) & 1,  1LL);
+      [self _locked_setObjectWithinProximity:(v20 >> 6) & 1 notify:1];
     }
     __int128 v46 = 0u;
     __int128 v47 = 0u;
     __int128 v44 = 0u;
     __int128 v45 = 0u;
-    v21 = (void *)objc_claimAutoreleasedReturnValue(-[BSMutableIntegerMap allValues](self->_eventClients, "allValues"));
-    id v22 = [v21 countByEnumeratingWithState:&v44 objects:v50 count:16];
+    v21 = [self->_eventClients allValues];
+    id v22 = [v21 countByEnumeratingWithState:v44 objects:v50 count:16];
     if (v22)
     {
       id v23 = v22;
@@ -210,24 +212,24 @@
               v28 = 0LL;
             }
             id v29 = v28;
-            v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithObject:](&OBJC_CLASS___NSSet, "setWithObject:", v29));
+            v30 = [NSSet setWithObject:v29];
             if (v26) {
               uint64_t v31 = v26[2];
             }
             else {
               uint64_t v31 = 0LL;
             }
-            -[BKHIDProximityEventProcessor _locked_postEventWithDetectionMask:toDestinations:dispatcher:reason:]( self,  "_locked_postEventWithDetectionMask:toDestinations:dispatcher:reason:",  0LL,  v30,  v31,  @"client mask mismatch");
+            [self _locked_postEventWithDetectionMask:0LL toDestinations:v30 dispatcher:v31 reason:@"client mask mismatch"];
 
             [v43 addObject:v29];
-            -[BSMutableIntegerMap removeObjectForKey:]( self->_eventClients,  "removeObjectForKey:",  (int)[v29 pid]);
+            [self->_eventClients removeObjectForKey:(int)[v29 pid]];
           }
 
           id v25 = (char *)v25 + 1;
         }
 
         while (v23 != v25);
-        id v32 = [v21 countByEnumeratingWithState:&v44 objects:v50 count:16];
+        id v32 = [v21 countByEnumeratingWithState:v44 objects:v50 count:16];
         id v23 = v32;
       }
 
@@ -236,7 +238,7 @@
 
     if ((_DWORD)v20 && self->_proximityDetectionActive)
     {
-      -[BKHIDProximityEventProcessor _lock_postSyntheticEventWithDetectionMaskToClients:]( self,  "_lock_postSyntheticEventWithDetectionMaskToClients:",  v20);
+      [self _lock_postSyntheticEventWithDetectionMaskToClients:v20];
       id v9 = v41;
       id v8 = v42;
       p_lock = &self->_lock;
@@ -254,11 +256,11 @@
         if ((_DWORD)v20)
         {
           uint64_t v33 = BKLogUISensor();
-          v34 = (os_log_s *)objc_claimAutoreleasedReturnValue(v33);
+          v34 = v33;
           if (os_log_type_enabled(v34, OS_LOG_TYPE_INFO))
           {
             uint64_t v35 = BKSHIDEventGetConciseDescription(v40);
-            v36 = (void *)objc_claimAutoreleasedReturnValue(v35);
+            v36 = [v35 autorelease];
             *(_DWORD *)buf = 138543362;
             v52 = v36;
             _os_log_impl((void *)&_mh_execute_header, v34, OS_LOG_TYPE_INFO, "Ignoring %{public}@", buf, 0xCu);
@@ -268,23 +270,23 @@
 
       else
       {
-        -[BKHIDProximityEventProcessor _lock_postSyntheticEventWithDetectionMaskToClients:]( self,  "_lock_postSyntheticEventWithDetectionMaskToClients:",  1024LL);
+        [self _lock_postSyntheticEventWithDetectionMaskToClients:1024LL];
       }
     }
   }
 
   if (!self->_rawDetectionMask)
   {
-    v37 = (void *)objc_claimAutoreleasedReturnValue([v9 destinationsForEvent:v10 fromSender:v8]);
+    v37 = (void *)[v9 destinationsForEvent:v10 fromSender:v8];
     if ([v37 count])
     {
       id v38 = [v37 mutableCopy];
       [v38 minusSet:v43];
-      -[BKHIDProximityEventProcessor _locked_postEventWithDetectionMask:toDestinations:dispatcher:reason:]( self,  "_locked_postEventWithDetectionMask:toDestinations:dispatcher:reason:",  0LL,  v38,  v9,  @"HID zero mask");
+      [self _locked_postEventWithDetectionMask:0LL toDestinations:v38 dispatcher:v9 reason:@"HID zero mask"];
     }
   }
 
-  -[BKHIDProximityEventProcessor _locked_notifyIfNeededCurrentDetectionMaskChangeWithTimstamp:]( self,  "_locked_notifyIfNeededCurrentDetectionMaskChangeWithTimstamp:",  IOHIDEventGetTimeStamp(v10));
+  [self _locked_notifyIfNeededCurrentDetectionMaskChangeWithTimstamp:IOHIDEventGetTimeStamp(v10)];
   os_unfair_lock_unlock(p_lock);
 
   return 1LL;
@@ -301,11 +303,11 @@
   v9[4] = a3;
   unsigned int v10 = modeDetectionMask;
   int v11 = detectionMode;
-  uint64_t v7 = (BKSProximityDetectionMaskChangeEvent *)objc_claimAutoreleasedReturnValue( +[BKSProximityDetectionMaskChangeEvent build:]( &OBJC_CLASS___BKSProximityDetectionMaskChangeEvent,  "build:",  v9));
+  BKSProximityDetectionMaskChangeEvent *v7 = [BKSProximityDetectionMaskChangeEvent build:v9];
   lock_lastEvent = self->_lock_lastEvent;
   self->_lock_lastEvent = v7;
 
-  -[BKHIDProximityEventProcessor _lock_postDetectionMaskChangeToObservers]( self,  "_lock_postDetectionMaskChangeToObservers");
+  [_lock_postDetectionMaskChangeToObservers];
 }
 
 - (void)_lock_postDetectionMaskChangeToObservers
@@ -315,7 +317,7 @@
   __int128 v17 = 0u;
   __int128 v18 = 0u;
   objc_super v3 = self->_observingProximityConnections;
-  id v4 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v17,  v21,  16LL);
+  [v3 countByEnumeratingWithState:v17 objects:v21 count:16];
   if (v4)
   {
     id v5 = v4;
@@ -329,7 +331,7 @@
           objc_enumerationMutation(v3);
         }
         id v8 = *(void **)(*((void *)&v17 + 1) + 8LL * (void)v7);
-        uint64_t v9 = objc_claimAutoreleasedReturnValue( -[BKHIDDomainServiceServer userInfoForConnection:]( self->_server,  "userInfoForConnection:",  v8,  (void)v17));
+        uint64_t v9 = [self->_server userInfoForConnection:v8];
         unsigned int v10 = (void *)v9;
         if (v9) {
           int v11 = *(void **)(v9 + 8);
@@ -339,12 +341,12 @@
         }
         id v12 = v11;
         unsigned int v13 = [v12 detectionMask];
-        unsigned int v14 = -[BKSProximityDetectionMaskChangeEvent detectionMask]( self->_lock_lastEvent,  "detectionMask");
+        unsigned int v14 = [self->_lock_lastEvent detectionMask];
 
         if (v13 != v14)
         {
           sub_10002A454((uint64_t)v10, self->_lock_lastEvent);
-          v15 = (void *)objc_claimAutoreleasedReturnValue([v8 remoteTarget]);
+          v15 = [v8 remoteTarget];
           [v15 proximityDetectionMaskDidChange:self->_lock_lastEvent];
         }
 
@@ -352,7 +354,7 @@
       }
 
       while (v5 != v7);
-      id v16 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v17,  v21,  16LL);
+      [v3 countByEnumeratingWithState:v17 objects:v21 count:16];
       id v5 = v16;
     }
 
@@ -374,7 +376,7 @@
   id v11 = v9;
   id v12 = v10;
   id obj = v11;
-  id v13 = [v11 countByEnumeratingWithState:&v37 objects:v47 count:16];
+  id v13 = [v11 countByEnumeratingWithState:v37 objects:v47 count:16];
   if (v13)
   {
     id v14 = v13;
@@ -394,11 +396,11 @@
         uint64_t v20 = mach_absolute_time();
         ProximtyEvent = (const void *)IOHIDEventCreateProximtyEvent(0LL, v20, a3, 0LL);
         IOHIDEventSetIntegerValue(ProximtyEvent, 917504LL, v16);
-        id v22 = (void *)objc_claimAutoreleasedReturnValue([v17[322] baseAttributesFromProvider:v19]);
+        id v22 = [v17[322] baseAttributesFromProvider:v19];
         [v22 setProximityDetectionMode:v35->_detectionMode];
         uint64_t v23 = BKSHIDEventSetAttributes(ProximtyEvent, v22);
         uint64_t v24 = BKLogUISensor(v23);
-        id v25 = (os_log_s *)objc_claimAutoreleasedReturnValue(v24);
+        os_log_s *v25 = [v24 autorelease];
         if (os_log_type_enabled(v25, OS_LOG_TYPE_DEFAULT))
         {
           uint64_t ConciseDescription = BKSHIDEventGetConciseDescription(ProximtyEvent);
@@ -406,7 +408,7 @@
           uint64_t v28 = v15;
           id v29 = v17;
           v30 = v12;
-          uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue(ConciseDescription);
+          uint64_t v31 = (void *)ConciseDescription;
           *(_DWORD *)buf = 138543874;
           id v42 = v31;
           __int16 v43 = 2114;
@@ -429,7 +431,7 @@
       }
 
       while (v14 != v18);
-      id v14 = [obj countByEnumeratingWithState:&v37 objects:v47 count:16];
+      id v14 = [obj countByEnumeratingWithState:v37 objects:v47 count:16];
     }
 
     while (v14);
@@ -454,11 +456,11 @@
     }
     if (v8)
     {
-      id v9 = (void *)objc_claimAutoreleasedReturnValue( +[BKHIDEventProcessorRegistry sharedInstance]( &OBJC_CLASS___BKHIDEventProcessorRegistry,  "sharedInstance"));
-      id v11 = objc_msgSend( v9,  "eventProcessorOfClass:",  objc_opt_class(BKHIDDirectTouchEventProcessor, v10));
-      uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(v11);
+      BKHIDEventProcessorRegistry *v9 = [BKHIDEventProcessorRegistry sharedInstance];
+      BKHIDDirectTouchEventProcessor *v11 = [v9 eventProcessorOfClass:[BKHIDDirectTouchEventProcessor class]];
+      uint64_t v16 = [v11 autorelease];
 
-      uint64_t v12 = objc_claimAutoreleasedReturnValue([v16 cancelAndSuppressTouchesOnDisplay:0 reason:@"objectWithinProximity"]);
+      uint64_t v12 = [v16 cancelAndSuppressTouchesOnDisplay:0 reason:@"objectWithinProximity"];
       id v13 = *p_suppressTouchesAssertion;
       *p_suppressTouchesAssertion = (BSInvalidatable *)v12;
 
@@ -476,7 +478,7 @@
 
   if (!v7 && !objectWithinProximity)
   {
-    -[BSInvalidatable invalidate](v4, "invalidate");
+    [v4 invalidate];
     uint64_t v15 = *p_suppressTouchesAssertion;
     *p_suppressTouchesAssertion = 0LL;
   }
@@ -502,18 +504,18 @@
       }
     }
 
-    -[BKHIDProximityEventProcessor _locked_updateTouchSuppressionAssertion]( self,  "_locked_updateTouchSuppressionAssertion");
+    [self _locked_updateTouchSuppressionAssertion];
   }
 
 - (void)_lock_postSyntheticEventWithDetectionMaskToClients:(unsigned int)a3
 {
-  id WeakRetained = objc_loadWeakRetained((id *)&self->_lastProximitySender);
-  id v5 = objc_loadWeakRetained((id *)&self->_lastProximityDispatcher);
+  id WeakRetained = [self->_lastProximitySender retain];
+  id v5 = self->_lastProximityDispatcher;
   __int128 v38 = v5;
   if (!WeakRetained || (uint64_t v6 = v5) == 0LL)
   {
     uint64_t v7 = BKLogUISensor(v5);
-    BOOL v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+    BOOL v8 = [v7 autorelease];
     if (os_log_type_enabled(v8, OS_LOG_TYPE_ERROR))
     {
       *(_DWORD *)buf = 67109634;
@@ -537,8 +539,8 @@
   __int128 v42 = 0u;
   __int128 v43 = 0u;
   __int128 v44 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue([v6 destinationsForEvent:ProximtyEvent fromSender:WeakRetained]);
-  id v11 = [obj countByEnumeratingWithState:&v41 objects:v45 count:16];
+  id obj = [v6 destinationsForEvent:ProximtyEvent fromSender:WeakRetained];
+  id v11 = [obj countByEnumeratingWithState:v41 objects:v45 count:16];
   uint64_t v12 = v6;
   if (v11)
   {
@@ -552,21 +554,21 @@
           objc_enumerationMutation(obj);
         }
         uint64_t v16 = *(void **)(*((void *)&v41 + 1) + 8LL * (void)i);
-        uint64_t v17 = objc_claimAutoreleasedReturnValue( -[BSMutableIntegerMap objectForKey:]( self->_eventClients,  "objectForKey:",  (int)[v16 pid]));
+        uint64_t v17 = [self->_eventClients objectForKey:[v16 pid]];
         if (v17)
         {
           __int128 v18 = (BKGenericClientEventRecord *)v17;
-          uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", a3));
+          uint64_t v19 = (void *)[NSNumber numberWithUnsignedInt:a3];
           objc_setProperty_nonatomic_copy(v18, v20, v19, 8LL);
         }
 
         else
         {
-          v21 = (id)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  a3));
+          v21 = [NSNumber numberWithUnsignedInt:a3];
           id v22 = v12;
           uint64_t v23 = v16;
-          objc_opt_self(&OBJC_CLASS___BKGenericClientEventRecord);
-          __int128 v18 = objc_alloc_init(&OBJC_CLASS___BKGenericClientEventRecord);
+          BKGenericClientEventRecord *self;
+          BKGenericClientEventRecord *v18 = [[BKGenericClientEventRecord alloc] init];
           context = v18->_context;
           v18->_context = v21;
           id v25 = v21;
@@ -578,19 +580,19 @@
           destination = v18->_destination;
           v18->_destination = v23;
 
-          -[BSMutableIntegerMap setObject:forKey:]( self->_eventClients,  "setObject:forKey:",  v18,  (int)-[BKSHIDEventDeferringResolution pid](v23, "pid"));
+          [self->_eventClients setObject:v18 forKey:[BKSHIDEventDeferringResolution pid]:v23];
         }
 
         Copy = (const void *)IOHIDEventCreateCopy(0LL, cf);
-        v30 = (void *)objc_claimAutoreleasedReturnValue( +[BKSHIDEventProximityAttributes baseAttributesFromProvider:]( &OBJC_CLASS___BKSHIDEventProximityAttributes,  "baseAttributesFromProvider:",  v16));
+        BKSHIDEventProximityAttributes *v30 = [BKSHIDEventProximityAttributes baseAttributesFromProvider:v16];
         [v30 setProximityDetectionMode:self->_detectionMode];
         uint64_t v31 = BKSHIDEventSetAttributes(Copy, v30);
         uint64_t v32 = BKLogUISensor(v31);
-        id v33 = (os_log_s *)objc_claimAutoreleasedReturnValue(v32);
+        os_log_s *v33 = v32;
         if (os_log_type_enabled(v33, OS_LOG_TYPE_DEFAULT))
         {
           uint64_t ConciseDescription = BKSHIDEventGetConciseDescription(Copy);
-          uint64_t v35 = (void *)objc_claimAutoreleasedReturnValue(ConciseDescription);
+          uint64_t v35 = (void *)ConciseDescription;
           *(_DWORD *)buf = 138543618;
           *(void *)__int128 v47 = v35;
           *(_WORD *)&v47[8] = 2114;
@@ -615,16 +617,16 @@
 - (id)setObservesProximitySensorDetectionMaskChanges:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(+[BSServiceConnection currentContext](&OBJC_CLASS___BSServiceConnection, "currentContext"));
+  id v5 = [BSServiceConnection currentContext];
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
-  uint64_t v7 = (BKProximityServerClientRecord *)objc_claimAutoreleasedReturnValue( -[BKHIDDomainServiceServer userInfoForConnection:]( self->_server,  "userInfoForConnection:",  v5));
+  uint64_t v7 = [self->_server userInfoForConnection:v5];
   unsigned int v8 = [v4 BOOLValue];
 
   if (!v8)
   {
     sub_10002A454((uint64_t)v7, 0LL);
-    -[NSMutableSet removeObject:](self->_observingProximityConnections, "removeObject:", v5);
+    [self->_observingProximityConnections removeObject:v5];
     goto LABEL_7;
   }
 
@@ -637,7 +639,7 @@
 
   else
   {
-    id v11 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v11 = [[NSMutableSet alloc] init];
     observingProximityConnections = self->_observingProximityConnections;
     self->_observingProximityConnections = v11;
 
@@ -646,8 +648,8 @@
     }
   }
 
-  uint64_t v7 = objc_alloc_init(&OBJC_CLASS___BKProximityServerClientRecord);
-  -[BKHIDDomainServiceServer setUserInfo:forConnection:](self->_server, "setUserInfo:forConnection:", v7, v5);
+  BKProximityServerClientRecord *v7 = [[BKProximityServerClientRecord alloc] init];
+  [self->_server setUserInfo:v7 forConnection:v5];
 LABEL_4:
   if ((-[NSMutableSet containsObject:](self->_observingProximityConnections, "containsObject:", v5) & 1) != 0)
   {
@@ -656,7 +658,7 @@ LABEL_7:
     goto LABEL_8;
   }
 
-  -[NSMutableSet addObject:](self->_observingProximityConnections, "addObject:", v5);
+  [self->_observingProximityConnections addObject:v5];
   uint64_t v9 = self->_lock_lastEvent;
   sub_10002A454((uint64_t)v7, v9);
 LABEL_8:
@@ -670,7 +672,7 @@ LABEL_8:
   p_lock = &self->_lock;
   id v6 = a3;
   os_unfair_lock_lock(p_lock);
-  -[NSMutableSet removeObject:](self->_observingProximityConnections, "removeObject:", v6);
+  [self->_observingProximityConnections removeObject:v6];
 
   os_unfair_lock_unlock(p_lock);
 }

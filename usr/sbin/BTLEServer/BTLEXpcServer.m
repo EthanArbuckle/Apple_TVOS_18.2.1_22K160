@@ -30,7 +30,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
+  id v8 = [self serverConnection];
   [v8 sendMsg:v7 args:v6];
 }
 
@@ -40,13 +40,13 @@
   id v6 = a4;
   id v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
   v11[0] = @"kPeerIdentifier";
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 msgIdentifier]);
+  id v8 = [v6 msgIdentifier];
 
   v11[1] = @"kPeriod";
   v12[0] = v8;
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", v4));
+  v9 = [NSNumber numberWithUnsignedShort:v4];
   v12[1] = v9;
-  v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  2LL));
+  v10 = [NSDictionary dictionaryWithObjects:forKeys:count:v12, v11, 2LL];
   [v7 sendMsg:@"EnableBTSync" args:v10];
 }
 
@@ -54,42 +54,42 @@
 {
   id v6 = a4;
   id v7 = a3;
-  v18 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
+  v18 = -[BTLEXpcServer serverConnection];
   v21[0] = @"kPeerIdentifier";
-  v20 = (void *)objc_claimAutoreleasedReturnValue([v6 msgIdentifier]);
+  v20 = [v6 msgIdentifier];
 
   v22[0] = v20;
   v21[1] = @"kMinInterval";
   [v7 minInterval];
-  v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:"));
+  v19 = [NSNumber numberWithFloat:];
   v22[1] = v19;
   v21[2] = @"kPreferredInterval";
   [v7 preferredInterval];
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:"));
+  id v8 = [NSNumber numberWithFloat:];
   v22[2] = v8;
   v21[3] = @"kMaxInterval";
   [v7 maxInterval];
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:"));
+  v9 = [NSNumber numberWithFloat:];
   v22[3] = v9;
   v21[4] = @"kMinCELength";
-  v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", [v7 minCELength]));
+  v10 = [NSNumber numberWithInt:v7 minCELength];
   v22[4] = v10;
   v21[5] = @"kMaxCELength";
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", [v7 maxCELength]));
+  v11 = [NSNumber numberWithInt:[v7 maxCELength]];
   v22[5] = v11;
   v21[6] = @"kPreferredPeripheralLatency";
-  v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  [v7 preferredPeripheralLatency]));
+  v12 = [NSNumber numberWithInt:[v7 preferredPeripheralLatency]];
   v22[6] = v12;
   v21[7] = @"kMaxPeripheralLatency";
-  v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  [v7 maxPeripheralLatency]));
+  v13 = [NSNumber numberWithInt: [v7 maxPeripheralLatency]];
   v22[7] = v13;
   v21[8] = @"kMaxDeferment";
-  v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", [v7 maxDeferment]));
+  v14 = [NSNumber numberWithInt:[v7 maxDeferment]];
   v22[8] = v14;
   v21[9] = @"kTimeout";
   id v15 = [v7 timeout];
 
-  v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v15));
+  v16 = [NSNumber numberWithInt:v15];
   v22[9] = v16;
   v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  10LL));
   [v18 sendMsg:@"SetConnectionParameters" args:v17];
@@ -97,37 +97,37 @@
 
 - (void)sendDevMgmtPipeConnectedMsg:(id)a3
 {
-  uint64_t v4 = (__CFString *)objc_claimAutoreleasedReturnValue([a3 UUIDString]);
+  uint64_t v4 = (__CFString *)[a3 UUIDString];
   CFUUIDRef v5 = CFUUIDCreateFromString(kCFAllocatorDefault, v4);
 
   id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
   id v8 = @"kPeerIdentifier";
   CFTypeRef v9 = CFAutorelease(v5);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+  id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
   [v6 sendMsg:@"DevMgmtPipeConnected" args:v7];
 }
 
 - (void)sendDevMgmtPipeDisconnectedMsg:(id)a3
 {
-  uint64_t v4 = (__CFString *)objc_claimAutoreleasedReturnValue([a3 UUIDString]);
+  uint64_t v4 = (__CFString *)[a3 UUIDString];
   CFUUIDRef v5 = CFUUIDCreateFromString(kCFAllocatorDefault, v4);
 
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
+  id v6 = [self serverConnection];
   id v8 = @"kPeerIdentifier";
   CFTypeRef v9 = CFAutorelease(v5);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+  id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
   [v6 sendMsg:@"DevMgmtPipeDisconnected" args:v7];
 }
 
 - (void)sendANCSNotificationSourceRegisteredMsg:(id)a3
 {
-  uint64_t v4 = (__CFString *)objc_claimAutoreleasedReturnValue([a3 UUIDString]);
+  uint64_t v4 = (__CFString *)[a3 UUIDString];
   CFUUIDRef v5 = CFUUIDCreateFromString(kCFAllocatorDefault, v4);
 
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
+  id v6 = -[BTLEXpcServer serverConnection];
   id v8 = @"kPeerIdentifier";
   CFTypeRef v9 = CFAutorelease(v5);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+  id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
   [v6 sendMsg:@"ANCSNotificationSourceRegistered" args:v7];
 }
 
@@ -198,7 +198,7 @@
   if (v5 && xpc_get_type(v5) == (xpc_type_t)&_xpc_type_BOOL && xpc_BOOL_get_value(v6))
   {
     id v7 = -[BTLEXpcConnection initWithConnection:]( objc_alloc(&OBJC_CLASS___BTLEXpcConnection),  "initWithConnection:",  v4);
-    BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(-[BTLEXpcConnection bundleIdentifier](v7, "bundleIdentifier"));
+    BOOL v8 = [v7 bundleIdentifier];
     uint64_t v9 = (void *)qword_100070CC8;
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
@@ -230,7 +230,7 @@
 - (void)handleXpcDisconnection:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[BTLEXpcServer serverConnection](self, "serverConnection"));
+  id v5 = [self serverConnection];
 
   if (v5 == v4) {
     -[BTLEXpcServer setServerConnection:](self, "setServerConnection:", 0LL);

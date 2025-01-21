@@ -11,8 +11,8 @@
     CFRelease(event);
   }
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKHIDCollectedEvent;
-  -[BKHIDCollectedEvent dealloc](&v4, "dealloc");
+  v4.super_class = [BKHIDCollectedEvent class];
+  [v4 dealloc];
 }
 
 - (void).cxx_destruct

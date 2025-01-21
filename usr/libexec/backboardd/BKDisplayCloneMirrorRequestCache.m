@@ -10,7 +10,7 @@
   uint64_t v3 = *(void *)&a3;
   if (!self->_pidToDeathWatcher)
   {
-    v5 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v5 = [[NSMutableDictionary alloc] init];
     pidToDeathWatcher = self->_pidToDeathWatcher;
     self->_pidToDeathWatcher = v5;
   }
@@ -21,21 +21,21 @@
   v10[3] = &unk_1000B7CF0;
   v10[4] = self;
   int v11 = v3;
-  v7 = -[BSProcessDeathWatcher initWithPID:queue:deathHandler:]( objc_alloc(&OBJC_CLASS___BSProcessDeathWatcher),  "initWithPID:queue:deathHandler:",  v3,  &_dispatch_main_q,  v10);
+  BSProcessDeathWatcher *v7 = [[BSProcessDeathWatcher alloc] initWithPID:v3 queue:_dispatch_main_q deathHandler:v10];
   v8 = self->_pidToDeathWatcher;
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v3));
-  -[NSMutableDictionary setObject:forKey:](v8, "setObject:forKey:", v7, v9);
+  v9 = [NSNumber numberWithInt:v3];
+  [v8 setObject:v7 forKey:v9];
 }
 
 - (void)_lock_rebuildModeCache
 {
-  uint64_t v3 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+  NSMutableDictionary *v3 = [[NSMutableDictionary alloc] init];
   __int128 v18 = 0u;
   __int128 v19 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
   v4 = self->_modeRequestsInOrder;
-  id v5 = -[NSMutableOrderedSet countByEnumeratingWithState:objects:count:]( v4,  "countByEnumeratingWithState:objects:count:",  &v18,  v24,  16LL);
+  [v4 countByEnumeratingWithState:v18 objects:v24 count:16];
   if (v5)
   {
     id v6 = v5;
@@ -56,29 +56,29 @@
           v10 = 0LL;
         }
         id v11 = v10;
-        v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](v3, "objectForKey:", v11, (void)v18));
+        v12 = [v3 objectForKey:v11];
 
         if (!v12) {
-          -[NSMutableDictionary setObject:forKey:](v3, "setObject:forKey:", v9, v11);
+          [v3 setObject:v9 forKey:v11];
         }
 
         v8 = (char *)v8 + 1;
       }
 
       while (v6 != v8);
-      id v13 = -[NSMutableOrderedSet countByEnumeratingWithState:objects:count:]( v4,  "countByEnumeratingWithState:objects:count:",  &v18,  v24,  16LL);
+      [v4 countByEnumeratingWithState:v18 objects:v24 count:16];
       id v6 = v13;
     }
 
     while (v13);
   }
 
-  objc_storeStrong((id *)&self->_displayUUIDToModeRequest, v3);
+  self->_displayUUIDToModeRequest = v3;
   uint64_t v15 = BKLogDisplay(v14);
-  v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+  v16 = [os_log_s logWithName:v15];
   if (os_log_type_enabled(v16, OS_LOG_TYPE_DEFAULT))
   {
-    v17 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  v3));
+    v17 = [BSDescriptionStream descriptionForRootObject:v3];
     *(_DWORD *)buf = 138543362;
     v23 = v17;
     _os_log_impl( (void *)&_mh_execute_header,  v16,  OS_LOG_TYPE_DEFAULT,  "clone mirror cache is now %{public}@",  buf,  0xCu);

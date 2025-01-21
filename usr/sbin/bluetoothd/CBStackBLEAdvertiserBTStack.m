@@ -170,7 +170,7 @@ LABEL_21:
   if (dword_1008D61B0 <= 30 && (dword_1008D61B0 != -1 || _LogCategory_Initialize(&dword_1008D61B0, 30LL)))
   {
     uint64_t v3 = CUDescriptionWithLevel(self, 134217778LL);
-    id v4 = (void *)objc_claimAutoreleasedReturnValue(v3);
+    id v4 = v3;
     LogPrintF_safe(&dword_1008D61B0, "-[CBStackBLEAdvertiserBTStack invalidate]", 30LL, "Invalidate: %@", v4);
   }
 
@@ -269,13 +269,13 @@ LABEL_21:
 
   else
   {
-    id v40 = (id)objc_claimAutoreleasedReturnValue(-[NSArray objectAtIndexedSubscript:](v7, "objectAtIndexedSubscript:", v5));
+    id v40 = [v7 objectAtIndexedSubscript:v5];
     if ([v40 length] == (id)6)
     {
       v44 = 0LL;
       v45 = 0LL;
       id v9 = v40;
-      sub_10056AB04(&v44, [v9 bytes], (size_t)objc_msgSend(v9, "length"));
+      sub_10056AB04(&v44, [v9 bytes], (size_t)[v9 length]);
       uint64_t v10 = sub_10056AE48((uint64_t)&v44, 0LL);
       uint64_t v11 = sub_10056AE48((uint64_t)&v44, 1uLL);
       unsigned int v12 = sub_10056AE48((uint64_t)&v44, 2uLL);
@@ -312,7 +312,7 @@ LABEL_21:
           int v23 = (char)__p.__r_.__value_.__s.__size_;
           std::string::size_type v24 = __p.__r_.__value_.__r.__words[0];
           id v25 = sub_1005BFB9C(v15);
-          uint64_t v26 = objc_claimAutoreleasedReturnValue(v25);
+          uint64_t v26 = [v25 autorelease];
           v27 = (void *)v26;
           BOOL v28 = &__p;
           if (v23 < 0) {
@@ -328,8 +328,8 @@ LABEL_21:
         sub_100242CA4(&v43);
         sub_1001BDD20(1u);
         sub_100242CD0(&v43);
-        id v30 = (void *)objc_claimAutoreleasedReturnValue(-[NSArray objectAtIndexedSubscript:](v8, "objectAtIndexedSubscript:", v5));
-        uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue([v30 serviceData]);
+        id v30 = -[v8 objectAtIndexedSubscript:v5];
+        uint64_t v31 = (void *)[v30 serviceData];
         id v32 = [v31 length];
         BOOL v22 = (unint64_t)v32 < 0x1C;
         if ((unint64_t)v32 < 0x1C)
@@ -463,7 +463,7 @@ LABEL_18:
         id v20 = *(void **)(*((void *)&v41 + 1) + 8LL * (void)i);
         if ([v20 connectable])
         {
-          BOOL v21 = (void *)objc_claimAutoreleasedReturnValue([v20 serviceData]);
+          BOOL v21 = [v20 serviceData];
           v39 = 0LL;
           id v40 = 0LL;
           id v22 = v21;
@@ -655,7 +655,7 @@ LABEL_35:
       id v17 = *(void **)(*((void *)&v39 + 1) + 8LL * (void)i);
       if (([v17 connectable] & 1) == 0)
       {
-        uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v17 serviceData]);
+        uint64_t v18 = (void *)[v17 serviceData];
         uint64_t v37 = 0LL;
         uint64_t v38 = 0LL;
         id v19 = v18;

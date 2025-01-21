@@ -39,14 +39,14 @@
   v8.receiver = self;
   v8.super_class = (Class)&OBJC_CLASS___BatteryClientService;
   -[ClientService start](&v8, "start");
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDBatteryLevelCharacteristicString));
+  v3 = [CBUUID UUIDWithString:CBUUIDBatteryLevelCharacteristicString];
   v9[0] = v3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDBatteryPowerStateCharacteristicString));
+  v4 = [CBUUID UUIDWithString:CBUUIDBatteryPowerStateCharacteristicString];
   v9[1] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v9, 2LL));
+  v5 = [NSArray arrayWithObjects:v9, count:2];
 
   objc_super v6 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService service](self, "service"));
+  v7 = [self service];
   [v6 discoverCharacteristics:v5 forService:v7];
 }
 
@@ -70,7 +70,7 @@
   __int128 v30 = 0u;
   __int128 v27 = 0u;
   __int128 v28 = 0u;
-  v9 = (void *)objc_claimAutoreleasedReturnValue([a4 characteristics]);
+  v9 = [a4 characteristics];
   id v10 = [v9 countByEnumeratingWithState:&v27 objects:v31 count:16];
   if (!v10) {
     goto LABEL_20;
@@ -88,15 +88,15 @@
         objc_enumerationMutation(v9);
       }
       v14 = *(void **)(*((void *)&v27 + 1) + 8LL * (void)v13);
-      v15 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryLevelCharacteristic](self, "batteryLevelCharacteristic", v25));
+      v15 = -[BatteryClientService batteryLevelCharacteristic](self, "batteryLevelCharacteristic", v25);
       if (v15)
       {
       }
 
       else
       {
-        v16 = (void *)objc_claimAutoreleasedReturnValue([v14 UUID]);
-        v17 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v26));
+        v16 = [v14 UUID];
+        v17 = [CBUUID UUIDWithString:v26];
         unsigned int v18 = [v16 isEqual:v17];
 
         if (v18)
@@ -108,15 +108,15 @@ LABEL_15:
         }
       }
 
-      v19 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryPowerStateCharacteristic](self, "batteryPowerStateCharacteristic"));
+      v19 = -[BatteryClientService batteryPowerStateCharacteristic];
       if (v19)
       {
 
         goto LABEL_18;
       }
 
-      v20 = (void *)objc_claimAutoreleasedReturnValue([v14 UUID]);
-      v21 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v25));
+      v20 = [v14 UUID];
+      v21 = [CBUUID UUIDWithString:v25];
       unsigned int v22 = [v20 isEqual:v21];
 
       if (v22)
@@ -131,7 +131,7 @@ LABEL_15:
   if (!a5)
   {
     id v10 = v7;
-    id v8 = (id)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryLevelCharacteristic](self, "batteryLevelCharacteristic"));
+    id v8 = [self batteryLevelCharacteristic];
 
     if (v8 == v10)
     {
@@ -139,7 +139,7 @@ LABEL_15:
       goto LABEL_6;
     }
 
-    id v9 = (id)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryPowerStateCharacteristic](self, "batteryPowerStateCharacteristic"));
+    id v9 = [self batteryPowerStateCharacteristic];
 
     id v7 = v10;
     if (v9 == v10)
@@ -154,8 +154,8 @@ LABEL_6:
 - (void)extractBatteryLevel
 {
   objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryLevelCharacteristic](self, "batteryLevelCharacteristic"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 value]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[DataInputStream inputStreamWithData:](&OBJC_CLASS___DataInputStream, "inputStreamWithData:", v4));
+  v4 = [v3 value];
+  v5 = [DataInputStream inputStreamWithData:v4];
 
   unsigned __int8 v12 = 0;
   if ([v5 readUint8:&v12])
@@ -164,8 +164,8 @@ LABEL_6:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       id v7 = v6;
-      id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
+      id v8 = [self peripheral];
+      id v9 = [v8 name];
       *(_DWORD *)buf = 138412546;
       v14 = v9;
       __int16 v15 = 1024;
@@ -186,8 +186,8 @@ LABEL_6:
 - (void)extractBatteryPowerState
 {
   objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryPowerStateCharacteristic](self, "batteryPowerStateCharacteristic"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 value]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[DataInputStream inputStreamWithData:](&OBJC_CLASS___DataInputStream, "inputStreamWithData:", v4));
+  v4 = [v3 value];
+  v5 = [DataInputStream inputStreamWithData:v4];
 
   unsigned __int8 v13 = 0;
   if ([v5 readUint8:&v13])
@@ -196,9 +196,9 @@ LABEL_6:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       id v7 = v6;
-      id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
-      id v10 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService batteryPowerStateString:](self, "batteryPowerStateString:", v13));
+      id v8 = [self peripheral];
+      id v9 = [v8 name];
+      id v10 = [self batteryPowerStateString:v13];
       *(_DWORD *)buf = 138412546;
       __int16 v15 = v9;
       __int16 v16 = 2114;
@@ -219,7 +219,7 @@ LABEL_6:
 - (void)updatePowerSource:(id)a3
 {
   v4 = (void (**)(void))a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
+  v5 = [self powerSourceDetails];
 
   if (!v5)
   {
@@ -231,44 +231,44 @@ LABEL_6:
     v35[2] = @"Battery Power";
     v34[2] = @"Power Source State";
     v34[3] = @"Accessory Identifier";
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 identifier]);
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 UUIDString]);
+    id v7 = -[ClientService peripheral];
+    id v8 = [v7 identifier];
+    id v9 = [v8 UUIDString];
     v35[3] = v9;
     v35[4] = &off_10005FF40;
     v34[4] = @"Max Capacity";
     v34[5] = @"Low Warn Level";
     v35[5] = &off_10005FF58;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v35,  v34,  6LL));
+    id v10 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v35,  v34,  6LL);
     unsigned __int8 v11 = -[NSMutableDictionary initWithDictionary:](v6, "initWithDictionary:", v10);
     -[BatteryClientService setPowerSourceDetails:](self, "setPowerSourceDetails:", v11);
 
-    unsigned __int8 v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-    unsigned __int8 v13 = (void *)objc_claimAutoreleasedReturnValue([v12 name]);
+    unsigned __int8 v12 = (void *)[self peripheral];
+    unsigned __int8 v13 = (void *)[v12 name];
 
     if (v13)
     {
-      v14 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      __int16 v15 = (void *)objc_claimAutoreleasedReturnValue([v14 name]);
+      v14 = -[ClientService peripheral];
+      __int16 v15 = (void *)[v14 name];
       __int16 v16 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
       [v16 setObject:v15 forKeyedSubscript:@"Name"];
     }
 
-    v17 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
+    v17 = [self manager];
     unsigned int v18 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDDeviceInformationServiceString));
-    v19 = (void *)objc_claimAutoreleasedReturnValue([v17 clientServiceForUUID:v18]);
+    v19 = (void *)[v17 clientServiceForUUID:v18];
 
     if ([v19 hasIDs])
     {
-      v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( NSNumber,  "numberWithUnsignedChar:",  [v19 vendorIDSource]));
-      v21 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
+      v20 = [NSNumber numberWithUnsignedChar:v19.vendorIDSource];
+      v21 = -[BatteryClientService powerSourceDetails];
       [v21 setObject:v20 forKeyedSubscript:@"Vendor ID Source"];
 
-      unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( NSNumber,  "numberWithUnsignedShort:",  [v19 vendorID]));
-      v23 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
+      unsigned int v22 = [NSNumber numberWithUnsignedShort:v19.vendorID];
+      v23 = [self powerSourceDetails];
       [v23 setObject:v22 forKeyedSubscript:@"Vendor ID"];
 
-      v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( NSNumber,  "numberWithUnsignedShort:",  [v19 productID]));
+      v24 = [NSNumber numberWithUnsignedShort:v19.productID];
       uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
       [v25 setObject:v24 forKeyedSubscript:@"Product ID"];
 
@@ -283,8 +283,8 @@ LABEL_6:
   v4[2](v4);
   if (!-[BatteryClientService powerSourceID](self, "powerSourceID"))
   {
-    __int128 v27 = (void *)objc_claimAutoreleasedReturnValue(+[ConnectionManager instance](&OBJC_CLASS___ConnectionManager, "instance"));
-    __int128 v28 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    __int128 v27 = +[ConnectionManager instance];
+    __int128 v28 = (void *)[self peripheral];
     unsigned int v29 = [v27 isAlwaysConnecting:v28];
 
     if (v29) {
@@ -295,7 +295,7 @@ LABEL_6:
   if (-[BatteryClientService powerSourceID](self, "powerSourceID"))
   {
     __int128 v30 = -[BatteryClientService powerSourceID](self, "powerSourceID");
-    v31 = (void *)objc_claimAutoreleasedReturnValue(-[BatteryClientService powerSourceDetails](self, "powerSourceDetails"));
+    v31 = -[BatteryClientService powerSourceDetails];
     int v32 = IOPSSetPowerSourceDetails(v30, v31);
 
     if (v32)

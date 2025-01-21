@@ -165,10 +165,10 @@
   if (!v2) {
     goto LABEL_16;
   }
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  v3 = [NSMutableArray array];
   -[WiFiUserInteractionMonitor setClients:](v2, "setClients:", v3);
 
-  v4 = (WiFiUserInteractionMonitor *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor clients](v2, "clients"));
+  v4 = [WiFiUserInteractionMonitor clients];
   if (!v4) {
     goto LABEL_15;
   }
@@ -177,14 +177,14 @@
   dispatch_queue_t v7 = dispatch_queue_create("com.apple.wifid.WiFiUserInteractionMonitor", v6);
   -[WiFiUserInteractionMonitor setInternalQueue:](v2, "setInternalQueue:", v7);
 
-  v4 = (WiFiUserInteractionMonitor *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor internalQueue](v2, "internalQueue"));
+  v4 = [WiFiUserInteractionMonitor internalQueue];
   if (!v4) {
     goto LABEL_15;
   }
-  v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v8 = [NSMutableSet set];
   -[WiFiUserInteractionMonitor setMonitoredInterfaceNames:](v2, "setMonitoredInterfaceNames:", v8);
 
-  v4 = (WiFiUserInteractionMonitor *)objc_claimAutoreleasedReturnValue( -[WiFiUserInteractionMonitor monitoredInterfaceNames]( v2,  "monitoredInterfaceNames"));
+  v4 = [WiFiUserInteractionMonitor monitoredInterfaceNames];
   if (!v4) {
     goto LABEL_15;
   }
@@ -198,15 +198,15 @@
   {
     if (!notify_register_mach_port( kSymptomManagedEventWiFiAppAwareNotification,  &v2->_managedEventNotifyPort,  0,  &v2->_managedEventNotifyToken))
     {
-      v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor internalQueue](v2, "internalQueue"));
+      v9 = -[WiFiUserInteractionMonitor internalQueue];
       f = (void *)dispatch_mach_create_f("com.apple.wifid.WiFiUserInteractionMonitor", v9, v2, sub_10013FDEC);
       -[WiFiUserInteractionMonitor setManagedEventDispatchPort:](v2, "setManagedEventDispatchPort:", f);
 
-      v4 = (WiFiUserInteractionMonitor *)objc_claimAutoreleasedReturnValue( -[WiFiUserInteractionMonitor managedEventDispatchPort]( v2,  "managedEventDispatchPort"));
+      v4 = [WiFiUserInteractionMonitor managedEventDispatchPort];
       if (!v4) {
         goto LABEL_15;
       }
-      v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor managedEventDispatchPort](v2, "managedEventDispatchPort"));
+      v11 = -[WiFiUserInteractionMonitor managedEventDispatchPort];
       dispatch_mach_connect( v11,  -[WiFiUserInteractionMonitor managedEventNotifyPort](v2, "managedEventNotifyPort"),  0LL,  0LL);
 
       goto LABEL_9;
@@ -214,11 +214,11 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor managedEventDispatchPort](self, "managedEventDispatchPort"));
+  v3 = -[WiFiUserInteractionMonitor managedEventDispatchPort];
 
   if (v3)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor managedEventDispatchPort](self, "managedEventDispatchPort"));
+    v4 = -[WiFiUserInteractionMonitor managedEventDispatchPort];
     dispatch_mach_cancel();
   }
 
@@ -233,7 +233,7 @@
   __int128 v21 = 0u;
   __int128 v22 = 0u;
   dispatch_queue_attr_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v5 allObjects]);
+  v6 = (void *)[v5 allObjects];
 
   id v7 = [v6 countByEnumeratingWithState:&v21 objects:v25 count:16];
   if (v7)
@@ -249,12 +249,12 @@
           objc_enumerationMutation(v6);
         }
         uint64_t v11 = *(void *)(*((void *)&v21 + 1) + 8LL * (void)v10);
-        v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+        v12 = [self rtTrafficAgent];
 
         if (v12)
         {
-          v13 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
-          v14 = (void *)objc_claimAutoreleasedReturnValue([v13 registration]);
+          v13 = [self rtTrafficAgent];
+          v14 = [v13 registration];
           [v14 removeNetworkAgentFromInterfaceNamed:v11];
         }
 
@@ -268,16 +268,16 @@
     while (v8);
   }
 
-  v15 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
+  v15 = -[WiFiUserInteractionMonitor monitoredInterfaceNames];
   [v15 removeAllObjects];
 
-  v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v16 = [NSNotificationCenter defaultCenter];
   [v16 removeObserver:self];
 
-  v17 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor clients](self, "clients"));
+  v17 = -[WiFiUserInteractionMonitor clients];
   [v17 removeAllObjects];
 
-  v18 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  v18 = -[WiFiUserInteractionMonitor overrideNetworkState];
   [v18 removeAllObjects];
 
   ctServerConnectionRef = self->_ctServerConnectionRef;
@@ -299,19 +299,19 @@
   id v10 = a3;
   if (v10)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
+    v4 = -[WiFiUserInteractionMonitor monitoredInterfaceNames];
     unsigned __int8 v5 = [v4 containsObject:v10];
 
     if ((v5 & 1) == 0)
     {
-      v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
+      v6 = -[WiFiUserInteractionMonitor monitoredInterfaceNames];
       [v6 addObject:v10];
 
-      id v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+      id v7 = [self rtTrafficAgent];
       if (v7)
       {
-        id v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
-        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 registration]);
+        id v8 = [self rtTrafficAgent];
+        uint64_t v9 = (void *)[v8 registration];
         [v9 addNetworkAgentToInterfaceNamed:v10];
       }
     }
@@ -333,7 +333,7 @@
   uint64_t v9 = objc_alloc_init(&OBJC_CLASS___WiFiUserInteractionMonitorClient);
   -[WiFiUserInteractionMonitorClient setCallback:](v9, "setCallback:", v11);
   -[WiFiUserInteractionMonitorClient setContext:](v9, "setContext:", a4);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor clients](self, "clients"));
+  id v10 = -[WiFiUserInteractionMonitor clients];
   [v10 addObject:v9];
 }
 
@@ -377,7 +377,7 @@
 
   if (v8)
   {
-    v13 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor clients](self, "clients"));
+    v13 = -[WiFiUserInteractionMonitor clients];
     [v13 removeObject:v8];
 
 LABEL_13:
@@ -410,7 +410,7 @@ LABEL_13:
         [(id)qword_100219F60 WFLog:3, "%s: %@ entered background", "-[WiFiUserInteractionMonitor setApplicationRunningState:foregroundState:andNetworkingState:forBundleId:]", v10 message];
       }
       objc_autoreleasePoolPop(v11);
-      id v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
+      id v12 = -[WiFiUserInteractionMonitor runningForegroundApps];
       [v12 removeObject:v10];
     }
 
@@ -460,7 +460,7 @@ LABEL_16:
             objc_enumerationMutation(v16);
           }
           __int128 v21 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)i);
-          __int128 v22 = (void (**)(void, void, void))objc_claimAutoreleasedReturnValue([v21 callback]);
+          __int128 v22 = [v21 callback];
           ((void (**)(void, id, uint64_t))v22)[2](v22, [v21 context], 8);
         }
 
@@ -491,7 +491,7 @@ LABEL_16:
   {
     unsigned __int8 v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setting override state to %llu",  "-[WiFiUserInteractionMonitor setOverrideApplicationState:]",  a3);
+      [qword_100219F60 WFLog:@"-[WiFiUserInteractionMonitor setOverrideApplicationState:] setting override state to %llu" message:3];
     }
     objc_autoreleasePoolPop(v5);
     self->_overrideApplicationState = a3;
@@ -502,22 +502,22 @@ LABEL_16:
 {
   id v10 = a3;
   NSLog(@"updateOverrideNetworkState: ssid %@ state 0x%llx\n", v10, a4);
-  BOOL v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  BOOL v6 = [self overrideNetworkState];
   BOOL v7 = v6;
   if (a4)
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a4));
+    id v8 = [NSNumber numberWithUnsignedLongLong:a4];
     [v7 setObject:v8 forKey:v10];
 
 LABEL_5:
     goto LABEL_6;
   }
 
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:v10]);
+  uint64_t v9 = (void *)[v6 objectForKeyedSubscript:v10];
 
   if (v9)
   {
-    BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+    BOOL v7 = [self overrideNetworkState];
     [v7 removeObjectForKey:v10];
     goto LABEL_5;
   }
@@ -528,42 +528,42 @@ LABEL_5:
 
 - (void)resetOverrideNetworkStates
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  v3 = [self overrideNetworkState];
 
   if (v3)
   {
-    BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+    BOOL v4 = [self overrideNetworkState];
     [v4 removeAllObjects];
 
-    id v5 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    id v5 = [NSMutableDictionary dictionary];
     -[WiFiUserInteractionMonitor setOverrideNetworkState:](self, "setOverrideNetworkState:", v5);
   }
 
 - (void)dumpOverrideNetworkState
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  v3 = -[WiFiUserInteractionMonitor overrideNetworkState];
 
   if (v3)
   {
-    id v4 = (id)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+    id v4 = [self overrideNetworkState];
     NSLog(@"%s: overrideNetworkState %@\n", "-[WiFiUserInteractionMonitor dumpOverrideNetworkState]", v4);
   }
 
 - (void)resetBackgroundApps
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningNetworkingApps](self, "runningNetworkingApps"));
+  id v2 = -[WiFiUserInteractionMonitor runningNetworkingApps];
   [v2 removeAllObjects];
 }
 
 - (void)runPeriodicTasks
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor periodicTasksLastRanAt](self, "periodicTasksLastRanAt"));
+  v3 = [NSDate date];
+  id v4 = [self periodicTasksLastRanAt];
   [v3 timeIntervalSinceDate:v4];
   double v6 = v5;
 
-  BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor periodicTasksLastRanAt](self, "periodicTasksLastRanAt"));
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor periodicTasksLastRanAt](self, "periodicTasksLastRanAt"));
+  BOOL v7 = [self periodicTasksLastRanAt];
+  id v8 = [self periodicTasksLastRanAt];
 
   if (!v8 || v6 >= 5.0)
   {
@@ -585,13 +585,13 @@ LABEL_5:
             {
               if (ifa_addr->sa_family == 18)
               {
-                id v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
+                id v12 = -[WiFiUserInteractionMonitor monitoredInterfaceNames];
                 if ([v12 count])
                 {
                   ifa_name = v9->ifa_name;
-                  __int128 v14 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor monitoredInterfaceNames](self, "monitoredInterfaceNames"));
-                  __int128 v15 = (void *)objc_claimAutoreleasedReturnValue([v14 allObjects]);
-                  id v16 = objc_claimAutoreleasedReturnValue([v15 objectAtIndexedSubscript:0]);
+                  __int128 v14 = -[WiFiUserInteractionMonitor monitoredInterfaceNames];
+                  __int128 v15 = (void *)[v14 allObjects];
+                  id v16 = [v15 objectAtIndexedSubscript:0];
                   LODWORD(ifa_name) = strcmp(ifa_name, (const char *)[v16 UTF8String]);
 
                   if (!(_DWORD)ifa_name) {
@@ -657,7 +657,7 @@ LABEL_5:
       {
         __int128 v26 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to find if_data for WiFi interface.",  "-[WiFiUserInteractionMonitor runPeriodicTasks]",  v27,  v28,  v29,  v30,  v31,  v32,  v33);
+          [qword_100219F60 WFLog:@"%s: failed to find if_data for WiFi interface." message:3 v27 v28 v29 v30 v31 v32 v33];
         }
       }
 
@@ -672,7 +672,7 @@ LABEL_27:
 {
   double v5 = sub_100095BC8(a3);
   double v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  uint64_t v7 = [self overrideNetworkState];
   if (v7
     && (id v8 = (void *)v7,
         uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState")),
@@ -682,13 +682,13 @@ LABEL_27:
         v8,
         v10))
   {
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v6]);
+    id v11 = -[WiFiUserInteractionMonitor overrideNetworkState];
+    id v12 = [v11 objectForKey:v6];
     id v13 = [v12 unsignedLongLongValue];
 
     __int128 v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden isPriorityNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isPriorityNetwork:]",  v13);
+      [qword_100219F60 WFLog:@"%s: using overridden isPriorityNetwork state as 0x%llx" message:3, @"-[WiFiUserInteractionMonitor isPriorityNetwork:]", v13];
     }
     objc_autoreleasePoolPop(v14);
     BOOL v15 = v13 & 1;
@@ -707,7 +707,7 @@ LABEL_27:
   v3 = (CFDictionaryRef *)a3;
   double v5 = sub_100095BC8(a3);
   double v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  uint64_t v7 = [self overrideNetworkState];
   if (v7
     && (id v8 = (void *)v7,
         uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState")),
@@ -717,13 +717,13 @@ LABEL_27:
         v8,
         v10))
   {
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v6]);
+    id v11 = [self overrideNetworkState];
+    id v12 = [v11 objectForKey:v6];
     unint64_t v13 = (unint64_t)[v12 unsignedLongLongValue];
 
     __int128 v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden isPublicNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isPublicNetwork:]",  v13);
+      [qword_100219F60 WFLog:@"%s: using overridden isPublicNetwork state as 0x%llx" message:3,  @"-[WiFiUserInteractionMonitor isPublicNetwork:]",  v13];
     }
     objc_autoreleasePoolPop(v14);
     v3 = (CFDictionaryRef *)((v13 >> 1) & 1);
@@ -742,7 +742,7 @@ LABEL_27:
   uint64_t v3 = (uint64_t)a3;
   double v5 = sub_100095BC8(a3);
   double v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
+  uint64_t v7 = [self overrideNetworkState];
   if (v7
     && (id v8 = (void *)v7,
         uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState")),
@@ -752,8 +752,8 @@ LABEL_27:
         v8,
         v10))
   {
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v6]);
+    id v11 = -[WiFiUserInteractionMonitor overrideNetworkState];
+    id v12 = [v11 objectForKey:v6];
     unint64_t v13 = (unint64_t)[v12 unsignedLongLongValue];
 
     __int128 v14 = objc_autoreleasePoolPush();
@@ -852,7 +852,7 @@ LABEL_27:
 
 - (BOOL)isCellularDataUsable
 {
-  double v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor cellularDataStatusMap](self, "cellularDataStatusMap"));
+  double v3 = [self cellularDataStatusMap];
 
   if (v3)
   {
@@ -883,11 +883,11 @@ LABEL_27:
 
   else
   {
-    uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor cellularDataStatusMap](v2, "cellularDataStatusMap"));
+    uint64_t v4 = (void *)[v2 cellularDataStatusMap];
 
     if (v4)
     {
-      unsigned int v5 = (__CFString *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor cellularInterfaceName](v2, "cellularInterfaceName"));
+      unsigned int v5 = [v2 cellularInterfaceName];
       if (sub_10003B4E8(v5))
       {
         LOBYTE(v2) = 0;
@@ -951,7 +951,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setup not completed. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]",  v6,  v7);
+      [qword_100219F60 WFLog:@"%s: setup not completed. Not allowing recommendation." message:3, "%s: setup not completed. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]", v6, v7];
     }
     goto LABEL_8;
   }
@@ -1004,7 +1004,7 @@ LABEL_8:
 
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in an app and no cellular. Allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]");
+      [qword_100219F60 WFLog:@"%s: in an app and no cellular. Allowing recommendation." message:3];
     }
   }
 
@@ -1020,7 +1020,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setup not completed. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]",  v5,  v6);
+      [qword_100219F60 WFLog:@"%s: setup not completed. Not allowing recommendation." message:3, "%s: setup not completed. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]", v5, v6];
     }
     goto LABEL_8;
   }
@@ -1071,7 +1071,7 @@ LABEL_8:
   __int128 v12 = 0u;
   __int128 v13 = 0u;
   __int128 v14 = 0u;
-  id v4 = (id)objc_claimAutoreleasedReturnValue( +[WiFiUserInteractionMonitor getHomeBundleIds]( &OBJC_CLASS___WiFiUserInteractionMonitor,  "getHomeBundleIds"));
+  id v4 = [OBJC_CLASS___WiFiUserInteractionMonitor getHomeBundleIds];
   id v5 = [v4 countByEnumeratingWithState:&v11 objects:v15 count:16];
   if (v5)
   {
@@ -1114,7 +1114,7 @@ LABEL_8:
   __int128 v12 = 0u;
   __int128 v13 = 0u;
   __int128 v14 = 0u;
-  id v4 = (id)objc_claimAutoreleasedReturnValue( +[WiFiUserInteractionMonitor getKnownNonNetworkingBundleIds]( &OBJC_CLASS___WiFiUserInteractionMonitor,  "getKnownNonNetworkingBundleIds"));
+  id v4 = [OBJC_CLASS___WiFiUserInteractionMonitor getKnownNonNetworkingBundleIds];
   id v5 = [v4 countByEnumeratingWithState:&v11 objects:v15 count:16];
   if (v5)
   {
@@ -1175,7 +1175,7 @@ LABEL_9:
       __int128 v15 = 0u;
       __int128 v16 = 0u;
       uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
-      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v7 allObjects]);
+      uint64_t v8 = (void *)[v7 allObjects];
 
       id v9 = [v8 countByEnumeratingWithState:&v15 objects:v19 count:16];
       if (v9)
@@ -1212,7 +1212,7 @@ LABEL_16:
     {
       __int128 v13 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no runningForegroundApps",  "-[WiFiUserInteractionMonitor isInHomeScreen]");
+        [qword_100219F60 WFLog:@"%s: no runningForegroundApps" message:3];
       }
       objc_autoreleasePoolPop(v13);
       LOBYTE(v4) = 1;
@@ -1244,9 +1244,9 @@ LABEL_16:
   else
   {
     id v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithSet:](&OBJC_CLASS___NSMutableSet, "setWithSet:", v5));
+    id v6 = [NSMutableSet setWithSet:v5];
 
-    BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningNetworkingApps](self, "runningNetworkingApps"));
+    BOOL v4 = [self runningNetworkingApps];
     [v6 intersectSet:v4];
 
     LOBYTE(v4) = [v6 count] != 0;
@@ -1284,7 +1284,7 @@ LABEL_7:
   else
   {
     id v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor appAttributes](self, "appAttributes"));
-    uint64_t v7 = objc_claimAutoreleasedReturnValue([v6 objectForKey:v4]);
+    uint64_t v7 = [v6 objectForKey:v4];
     uint64_t v8 = (void *)v29[5];
     v29[5] = v7;
 
@@ -1299,7 +1299,7 @@ LABEL_7:
       if (objc_opt_class(&OBJC_CLASS___LSApplicationRecord))
       {
         dispatch_semaphore_t v12 = dispatch_semaphore_create(0LL);
-        __int128 v13 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor internalQueue](self, "internalQueue"));
+        __int128 v13 = (dispatch_queue_s *)[self internalQueue];
         block[0] = _NSConcreteStackBlock;
         block[1] = 3221225472LL;
         block[2] = sub_1001422C0;
@@ -1317,7 +1317,7 @@ LABEL_7:
         {
           __int128 v17 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: timed out waiting for LSApplicationRecord",  "-[WiFiUserInteractionMonitor hasRealTimeAppProperty:]");
+            [qword_100219F60 WFLog:@"%s: timed out waiting for LSApplicationRecord" message:3];
           }
           objc_autoreleasePoolPop(v17);
         }
@@ -1369,7 +1369,7 @@ LABEL_17:
     __int128 v14 = 0u;
     __int128 v15 = 0u;
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v7 allObjects]);
+    uint64_t v8 = (void *)[v7 allObjects];
 
     id v9 = [v8 countByEnumeratingWithState:&v14 objects:v18 count:16];
     if (v9)
@@ -1408,7 +1408,7 @@ LABEL_17:
 {
   if (!-[WiFiUserInteractionMonitor isInHomeScreen](self, "isInHomeScreen"))
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
+    uint64_t v3 = [self runningForegroundApps];
     if (v3)
     {
       BOOL v4 = (void *)v3;
@@ -1422,7 +1422,7 @@ LABEL_17:
         __int128 v16 = 0u;
         __int128 v17 = 0u;
         uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
-        uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v7 allObjects]);
+        uint64_t v8 = (void *)[v7 allObjects];
 
         id v9 = [v8 countByEnumeratingWithState:&v16 objects:v20 count:16];
         if (v9)
@@ -1455,7 +1455,7 @@ LABEL_17:
 
         __int128 v14 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: currently no networking app is in the foreground",  "-[WiFiUserInteractionMonitor isInNonNetworkingApp]");
+          [qword_100219F60 WFLog:@"%s: currently no networking app is in the foreground" message:3];
         }
         objc_autoreleasePoolPop(v14);
       }
@@ -1470,7 +1470,7 @@ LABEL_17:
   if (-[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress")) {
     return 1;
   }
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+  BOOL v4 = [self rtTrafficAgent];
   unsigned __int8 v5 = [v4 isActive];
 
   return v5;
@@ -1481,7 +1481,7 @@ LABEL_17:
   if (-[WiFiUserInteractionMonitor wifiCallInProgress](self, "wifiCallInProgress")) {
     return 1;
   }
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+  BOOL v4 = [self rtTrafficAgent];
   unsigned __int8 v5 = [v4 isActive];
 
   return v5;
@@ -1500,7 +1500,7 @@ LABEL_17:
   unsigned __int8 v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
   if ([v3 avcMinJB])
   {
-    BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+    BOOL v4 = [self rtTrafficAgent];
     BOOL v5 = (unint64_t)[v4 avcMinJB] < 0x15;
   }
 
@@ -1571,7 +1571,7 @@ LABEL_17:
 - (unint64_t)_applicationNotifyState
 {
   unsigned __int8 v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningNetworkingApps](self, "runningNetworkingApps"));
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithSet:](&OBJC_CLASS___NSMutableSet, "setWithSet:", v3));
+  BOOL v4 = [NSMutableSet setWithSet:v3];
 
   char v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
   [v4 minusSet:v5];
@@ -1618,7 +1618,7 @@ LABEL_17:
   {
     BOOL v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: notify token is null",  "-[WiFiUserInteractionMonitor _notifyCaptiveWithApplicationState:]");
+      [qword_100219F60 WFLog:@"notify token is null"];
     }
     objc_autoreleasePoolPop(v6);
   }
@@ -1678,8 +1678,8 @@ LABEL_17:
 - (id)_stateInfo
 {
   unsigned __int8 v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
-  BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%p@%@", self, v4));
+  id v4 = [NSDate date];
+  BOOL v5 = [NSString stringWithFormat:@"%p@%@", self, v4];
   BOOL v6 = (objc_class *)objc_opt_class(self);
   unint64_t v7 = NSStringFromClass(v6);
   uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
@@ -1688,7 +1688,7 @@ LABEL_17:
   CFTypeID v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor appAwareDetails](self, "appAwareDetails"));
   [v3 setObject:v9 forKeyedSubscript:@"AppAwareDetails"];
 
-  unsigned int v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"0x%llx",  -[WiFiUserInteractionMonitor symptomForegroundFlowProperties]( self,  "symptomForegroundFlowProperties")));
+  unsigned int v10 = [NSString stringWithFormat:@"0x%llx" [self symptomForegroundFlowProperties]];
   [v3 setObject:v10 forKeyedSubscript:@"ForegroundFlows"];
 
   unsigned int v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"0x%llx",  -[WiFiUserInteractionMonitor symptomBackgroundFlowProperties]( self,  "symptomBackgroundFlowProperties")));
@@ -1697,7 +1697,7 @@ LABEL_17:
   dispatch_semaphore_t v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"0x%x",  -[WiFiUserInteractionMonitor symptomForegroundFlowClassification]( self,  "symptomForegroundFlowClassification")));
   [v3 setObject:v12 forKeyedSubscript:@"ForegroundClassification"];
 
-  BOOL v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"0x%x",  -[WiFiUserInteractionMonitor symptomBackgroundFlowClassification]( self,  "symptomBackgroundFlowClassification")));
+  BOOL v13 = [NSString stringWithFormat:@"0x%x" [self symptomBackgroundFlowClassification]];
   [v3 setObject:v13 forKeyedSubscript:@"BackgroundClassification"];
 
   __int128 v14 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor runningForegroundApps](self, "runningForegroundApps"));
@@ -1778,7 +1778,7 @@ LABEL_17:
   }
   [v3 setObject:v27 forKeyedSubscript:@"IsAVConferenceActive"];
 
-  uint64_t v28 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor rtTrafficAgent](self, "rtTrafficAgent"));
+  uint64_t v28 = (void *)[self rtTrafficAgent];
   uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( NSString,  "stringWithFormat:",  @"%llums",  [v28 avcMinJB]));
   [v3 setObject:v29 forKeyedSubscript:@"AVCMinJitterBuffer"];
 
@@ -1811,7 +1811,7 @@ LABEL_17:
   }
   [v3 setObject:v33 forKeyedSubscript:@"IsCellularInexpensive5G"];
   uint64_t v34 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor overrideNetworkState](self, "overrideNetworkState"));
-  uint64_t v35 = (void *)objc_claimAutoreleasedReturnValue([v34 description]);
+  uint64_t v35 = (void *)[v34 description];
   [v3 setObject:v35 forKeyedSubscript:@"overrideNetworkState"];
 
   if (-[WiFiUserInteractionMonitor isAskToJoinAllowed](self, "isAskToJoinAllowed")) {
@@ -1842,7 +1842,7 @@ LABEL_17:
 - (id)description
 {
   id v2 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitor _stateInfo](self, "_stateInfo"));
-  unsigned __int8 v3 = (void *)objc_claimAutoreleasedReturnValue([v2 description]);
+  unsigned __int8 v3 = (void *)[v2 description];
 
   return v3;
 }

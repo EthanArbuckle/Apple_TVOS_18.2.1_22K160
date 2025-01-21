@@ -20,7 +20,7 @@
   v5 = -[UAPresenceManager init](&v15, "init");
   if (v5)
   {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v6 = [+[NSMutableDictionary dictionary] autorelease];
     authRecords = v5->_authRecords;
     v5->_authRecords = (NSMutableDictionary *)v6;
 
@@ -48,15 +48,15 @@
 - (void)addQhash:(unsigned int)a3 forInterface:(mDNSInterfaceID_dummystruct *)a4
 {
   unsigned int v4 = a4;
-  id v10 = (id)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", a3));
+  id v10 = [NSNumber numberWithUnsignedInteger:a3];
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v4));
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](self, "authRecords"));
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKey:v6]);
+  v7 = -[UAPresenceManager authRecords];
+  v8 = (void *)[v7 objectForKey:v6];
 
   if (!v8)
   {
-    v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
-    v9 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](self, "authRecords"));
+    v8 = [NSMutableArray array];
+    v9 = [self authRecords];
     [v9 setObject:v8 forKey:v6];
   }
 
@@ -70,17 +70,17 @@
 - (void)removeQhash:(unsigned int)a3 forInterface:(mDNSInterfaceID_dummystruct *)a4
 {
   unsigned int v4 = a4;
-  id v10 = (id)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", a3));
+  id v10 = [NSNumber numberWithUnsignedInteger:a3];
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v4));
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](self, "authRecords"));
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKey:v6]);
+  v7 = -[UAPresenceManager authRecords];
+  v8 = (void *)[v7 objectForKey:v6];
 
   if (v8 && [v8 containsObject:v10])
   {
     [v8 removeObject:v10];
     if (![v8 count])
     {
-      v9 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](self, "authRecords"));
+      v9 = -[UAPresenceManager authRecords];
       [v9 removeObjectForKey:v6];
     }
 
@@ -91,14 +91,14 @@
 - (void)assertPresence
 {
   context = objc_autoreleasePoolPush();
-  v52 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  v52 = [NSMutableArray array];
   __int128 v58 = 0u;
   __int128 v59 = 0u;
   __int128 v60 = 0u;
   __int128 v61 = 0u;
   v47 = self;
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](self, "authRecords"));
-  unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue([v3 allKeys]);
+  v3 = -[UAPresenceManager authRecords];
+  unsigned int v4 = (void *)[v3 allKeys];
 
   id obj = v4;
   id v5 = [v4 countByEnumeratingWithState:&v58 objects:v71 count:16];
@@ -116,13 +116,13 @@
           objc_enumerationMutation(obj);
         }
         v8 = *(void **)(*((void *)&v58 + 1) + 8LL * (void)v7);
-        v9 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager authRecords](v47, "authRecords"));
-        id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:v8]);
+        v9 = -[UAPresenceManager authRecords];
+        id v10 = [v9 objectForKey:v8];
 
         if ([v10 count])
         {
           id v11 = [v8 unsignedIntegerValue];
-          v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+          v12 = [NSMutableArray array];
           uint64_t v13 = *(void *)mDNSStorage[0];
           for (i = v7; v13; uint64_t v13 = *(void *)(v13 + 6384))
           {
@@ -157,7 +157,7 @@ LABEL_28:
                 uint64_t v16 = 4LL;
               }
 
-              v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v14, v16));
+              v17 = [NSData dataWithBytes:v14 length:v16];
               if (!v17
                 || _unicast_assist_hash_for_interface( *(void *)(v13 + 6256),  *(_DWORD *)(v13 + 6264),  &v62))
               {
@@ -165,11 +165,11 @@ LABEL_28:
               }
 
               v72[0] = @"ifhash";
-              v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v62));
+              v18 = [NSNumber numberWithUnsignedInt:v62];
               v72[1] = @"addr";
               *(void *)buf = v18;
               *(void *)&buf[8] = v17;
-              v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  buf,  v72,  2LL));
+              v19 = [NSDictionary dictionaryWithObjects:forKeys:count:buf, v72, 2];
               [v12 addObject:v19];
 
               if (!v11) {
@@ -199,7 +199,7 @@ LABEL_28:
               v57[2] = __35__UAPresenceManager_assertPresence__block_invoke;
               v57[3] = &__block_descriptor_40_e22_B16__0__NSDictionary_8l;
               v57[4] = v22;
-              v23 = (void *)objc_claimAutoreleasedReturnValue([v20 filterObjectsUsingBlock:v57]);
+              v23 = [v20 filterObjectsUsingBlock:v57];
               v24 = v23;
               if (v23)
               {
@@ -220,8 +220,8 @@ LABEL_28:
                         objc_enumerationMutation(v24);
                       }
                       v29 = *(void **)(*((void *)&v53 + 1) + 8LL * (void)j);
-                      v30 = (void *)objc_claimAutoreleasedReturnValue([v29 objectForKeyedSubscript:@"ifhash"]);
-                      v31 = (void *)objc_claimAutoreleasedReturnValue([v29 objectForKeyedSubscript:@"addr"]);
+                      v30 = [v29 objectForKeyedSubscript:@"ifhash"];
+                      v31 = [v29 objectForKeyedSubscript:@"addr"];
                       v68[0] = @"qhashes";
                       v68[1] = @"ifhash";
                       v69[0] = v10;
@@ -235,8 +235,8 @@ LABEL_28:
                       v34 = (os_log_s *)objc_claimAutoreleasedReturnValue(v33);
                       if (os_log_type_enabled(v34, OS_LOG_TYPE_DEBUG))
                       {
-                        v35 = (void *)objc_claimAutoreleasedReturnValue([v10 describeQHashes]);
-                        v36 = (void *)objc_claimAutoreleasedReturnValue([v31 describeAddr]);
+                        v35 = [v10 describeQHashes];
+                        v36 = [v31 describeAddr];
                         unsigned int v37 = [v30 unsignedIntValue];
                         *(_DWORD *)buf = 138412802;
                         *(void *)&uint8_t buf[4] = v35;
@@ -285,10 +285,10 @@ LABEL_28:
   v40 = (void *)objc_claimAutoreleasedReturnValue( -[__objc2_prot_list dictionaryWithObjects:forKeys:count:]( p_base_prots[181],  "dictionaryWithObjects:forKeys:count:",  &v64,  &v63,  1LL));
   id v41 = [v39 initWithDictionary:v40];
 
-  v42 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager presence](v47, "presence"));
+  v42 = [v47 presence];
   [v42 assertPresenceWithPresencePayload:v41 completion:&__block_literal_global_4429];
 
-  v43 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager presence](v47, "presence"));
+  v43 = [v47 presence];
   [v43 retainTransientSubscriptionAssertionWithCompletion:&__block_literal_global_35_4430];
 
   objc_autoreleasePoolPop(context);
@@ -296,9 +296,9 @@ LABEL_28:
 
 - (void)updatePresenseData
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[UAPresenceManager presence](self, "presence"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 presentDevices]);
-  unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue([v3 filterObjectsUsingBlock:&__block_literal_global_37_4387]);
+  v2 = [self presence];
+  v3 = [v2 presentDevices];
+  unsigned int v4 = (void *)[v3 filterObjectsUsingBlock:&__block_literal_global_37_4387];
 
   if ([v4 count])
   {
@@ -324,10 +324,10 @@ LABEL_28:
           }
           uint64_t v50 = v13;
           v14 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v65 + 1) + 8 * v13) presencePayload]);
-          int v15 = (void *)objc_claimAutoreleasedReturnValue([v14 payloadDictionary]);
+          int v15 = (void *)[v14 payloadDictionary];
 
           v49 = v15;
-          uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v15 objectForKey:@"auth_records"]);
+          uint64_t v16 = (void *)[v15 objectForKey:@"auth_records"];
           id v17 = _unicast_assist_cache_log();
           v18 = (os_log_s *)objc_claimAutoreleasedReturnValue(v17);
           if (os_log_type_enabled(v18, OS_LOG_TYPE_INFO))
@@ -357,17 +357,17 @@ LABEL_28:
                 }
                 uint64_t v54 = v20;
                 char v21 = *(void **)(*((void *)&v61 + 1) + 8 * v20);
-                uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:@"ifhash"]);
+                uint64_t v22 = (void *)[v21 objectForKey:@"ifhash"];
                 unsigned int v56 = [v22 unsignedIntValue];
 
-                v23 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:@"qhashes"]);
-                v24 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:@"addr"]);
+                v23 = [v21 objectForKey:@"qhashes"];
+                v24 = [v21 objectForKey:@"addr"];
                 id v25 = _unicast_assist_cache_log();
                 id v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
                 if (os_log_type_enabled(v26, OS_LOG_TYPE_INFO))
                 {
-                  uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue([v23 describeQHashes]);
-                  v28 = (void *)objc_claimAutoreleasedReturnValue([v24 describeAddr]);
+                  uint64_t v27 = (void *)[v23 describeQHashes];
+                  v28 = [v24 describeAddr];
                   *(_DWORD *)buf = 138412802;
                   *(void *)&uint8_t buf[4] = v27;
                   *(_WORD *)&buf[12] = 2112;
@@ -486,7 +486,7 @@ BOOL __39__UAPresenceManager_updatePresenseData__block_invoke(id a1, SKPresentDe
 
 BOOL __35__UAPresenceManager_assertPresence__block_invoke(uint64_t a1, void *a2)
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue([a2 objectForKeyedSubscript:@"addr"]);
+  v3 = [a2 objectForKeyedSubscript:@"addr"];
   BOOL v4 = [v3 length] == *(id *)(a1 + 32);
 
   return v4;
@@ -501,7 +501,7 @@ void __35__UAPresenceManager_assertPresence__block_invoke_34(id a1, NSError *a2)
     BOOL v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
     if (os_log_type_enabled(v4, OS_LOG_TYPE_ERROR))
     {
-      uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSError description](v2, "description"));
+      uint64_t v5 = (void *)[v2 description];
       int v6 = 138543362;
       uint64_t v7 = v5;
       _os_log_error_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_ERROR,  "unicast assist StatusKit retainTransientSubscriptionAssertionWithCompletion: %{public}@",  (uint8_t *)&v6,  0xCu);
@@ -518,7 +518,7 @@ void __35__UAPresenceManager_assertPresence__block_invoke_32(id a1, NSError *a2)
     BOOL v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
     if (os_log_type_enabled(v4, OS_LOG_TYPE_ERROR))
     {
-      uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSError description](v2, "description"));
+      uint64_t v5 = (void *)[v2 description];
       int v6 = 138543362;
       uint64_t v7 = v5;
       _os_log_error_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_ERROR,  "unicast assist StatusKit assertPresenceWithCompletion: %{public}@",  (uint8_t *)&v6,  0xCu);

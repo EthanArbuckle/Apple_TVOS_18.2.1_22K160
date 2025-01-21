@@ -35,7 +35,7 @@
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Failed in super-init",  "-[WiFiAccountStoreManager init]");
+      [qword_100219F60 WFLog:@"Failed in super-init"];
     }
     goto LABEL_12;
   }
@@ -47,7 +47,7 @@
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null dispatchQueue",  "-[WiFiAccountStoreManager init]");
+      [qword_100219F60 WFLog:@"%s: null dispatchQueue" message:3];
     }
     goto LABEL_12;
   }
@@ -58,7 +58,7 @@
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Null _accountStore",  "-[WiFiAccountStoreManager init]");
+      [qword_100219F60 WFLog:@"Null _accountStore" message:3];
     }
 LABEL_12:
     objc_autoreleasePoolPop(v7);
@@ -124,7 +124,7 @@ LABEL_12:
   v7[1] = v7;
   v7[2] = 0x2020000000LL;
   unsigned __int8 v8 = -86;
-  unsigned __int8 v8 = objc_msgSend( -[ACAccountStore aa_primaryAppleAccount]( -[WiFiAccountStoreManager accountStore](self, "accountStore"),  "aa_primaryAppleAccount"),  "aa_isManagedAppleID");
+  unsigned __int8 v8 = [ -[ACAccountStore aa_primaryAppleAccount]( -[WiFiAccountStoreManager accountStore](self, "accountStore"),  "aa_primaryAppleAccount") aa_isManagedAppleID];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_10005D604;

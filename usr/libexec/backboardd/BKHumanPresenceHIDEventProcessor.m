@@ -23,29 +23,29 @@
 - (BKHumanPresenceHIDEventProcessor)init
 {
   v13.receiver = self;
-  v13.super_class = (Class)&OBJC_CLASS___BKHumanPresenceHIDEventProcessor;
-  v2 = -[BKHumanPresenceHIDEventProcessor init](&v13, "init");
+  [v13 super_class] = [BKHumanPresenceHIDEventProcessor class];
+  BKHumanPresenceHIDEventProcessor *v2 = [[BKHumanPresenceHIDEventProcessor alloc] init];
   if (v2)
   {
     uint64_t Serial = BSDispatchQueueCreateSerial(@"com.apple.BKHumanPresenceHIDEventProcessor");
     queue = v2->_queue;
     v2->_queue = (OS_dispatch_queue *)Serial;
 
-    v5 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v5 = [[NSMutableDictionary alloc] init];
     queue_displayUUIDToSensorRecords = v2->_queue_displayUUIDToSensorRecords;
     v2->_queue_displayUUIDToSensorRecords = v5;
 
-    v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-    v8 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher),  "initWithUsagePage:usage:builtIn:dataProvider:",  32LL,  17LL,  0LL,  v7);
+    BKHIDSystemInterface *v7 = [[BKHIDSystemInterface sharedInstance] autorelease];
+    BKIOHIDServiceMatcher *v8 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:32 usage:17 builtIn:0 dataProvider:v7];
     presenceServiceMatcher = v2->_presenceServiceMatcher;
     v2->_presenceServiceMatcher = v8;
 
-    -[BKIOHIDServiceMatcher startObserving:queue:](v2->_presenceServiceMatcher, "startObserving:queue:", v2, v2->_queue);
-    v10 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher),  "initWithUsagePage:usage:builtIn:dataProvider:",  32LL,  18LL,  0LL,  v7);
+    [v2->_presenceServiceMatcher startObserving:v2 queue:v2->_queue];
+    BKIOHIDServiceMatcher *v10 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:32 usage:18 builtIn:0 dataProvider:v7];
     proximityServiceMatcher = v2->_proximityServiceMatcher;
     v2->_proximityServiceMatcher = v10;
 
-    -[BKIOHIDServiceMatcher startObserving:queue:]( v2->_proximityServiceMatcher,  "startObserving:queue:",  v2,  v2->_queue);
+    [v2->_proximityServiceMatcher startObserving:v2 queue:v2->_queue];
   }
 
   return v2;
@@ -54,15 +54,15 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKHumanPresenceHIDEventProcessor;
-  -[BKHumanPresenceHIDEventProcessor dealloc](&v3, "dealloc");
+  v3.super_class = [BKHumanPresenceHIDEventProcessor class];
+  [v3 dealloc];
 }
 
 - (NSString)description
 {
-  objc_super v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
   id v4 = [v3 appendObject:self->_queue_displayUUIDToSensorRecords withName:@"sensors"];
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  v5 = (void *)[v3 build];
 
   return (NSString *)v5;
 }
@@ -76,7 +76,7 @@
   __int128 v23 = 0u;
   __int128 v24 = 0u;
   id v6 = v5;
-  id v7 = [v6 countByEnumeratingWithState:&v23 objects:v31 count:16];
+  id v7 = [v6 countByEnumeratingWithState:v23 objects:v31 count:16];
   if (v7)
   {
     id v9 = v7;
@@ -93,10 +93,10 @@
         }
         v12 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)v11);
         uint64_t v13 = BKLogCommon(v7);
-        v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+        v14 = (os_log_s *)v13;
         if (os_log_type_enabled(v14, OS_LOG_TYPE_INFO))
         {
-          v16 = (void *)objc_opt_class(self, v15);
+          v16 = [self class];
           *(_DWORD *)buf = v22;
           v28 = v16;
           __int16 v29 = 2114;
@@ -105,24 +105,24 @@
           _os_log_impl((void *)&_mh_execute_header, v14, OS_LOG_TYPE_INFO, "%{public}@: found %{public}@", buf, 0x16u);
         }
 
-        v18 = (void *)objc_claimAutoreleasedReturnValue([v12 displayUUID]);
+        v18 = [v12 displayUUID];
         v19 = sub_10002E518(v18);
-        v20 = (void *)objc_claimAutoreleasedReturnValue(v19);
+        v20 = v19;
 
-        v21 = (_BKHIDHumanPresenceSensorRecord *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKey:]( self->_queue_displayUUIDToSensorRecords,  "objectForKey:",  v20));
+        v21 = [self->_queue_displayUUIDToSensorRecords objectForKey:v20];
         if (!v21)
         {
-          v21 = objc_alloc_init(&OBJC_CLASS____BKHIDHumanPresenceSensorRecord);
-          -[NSMutableDictionary setObject:forKey:]( self->_queue_displayUUIDToSensorRecords,  "setObject:forKey:",  v21,  v20);
+          BKHIDHumanPresenceSensorRecord *v21 = [[BKHIDHumanPresenceSensorRecord alloc] init];
+          [self->_queue_displayUUIDToSensorRecords setObject:v21 forKey:v20];
         }
 
-        -[_BKHIDHumanPresenceSensorRecord addService:](v21, "addService:", v12, v22, (void)v23);
+        [v21 addService:v12 serviceType:v22 serviceID:v23];
 
         v11 = (char *)v11 + 1;
       }
 
       while (v9 != v11);
-      id v7 = [v6 countByEnumeratingWithState:&v23 objects:v31 count:16];
+      id v7 = [v6 countByEnumeratingWithState:v23 objects:v31 count:16];
       id v9 = v7;
     }
 
@@ -135,28 +135,28 @@
   id v4 = a3;
   dispatch_assert_queue_V2((dispatch_queue_t)self->_queue);
   uint64_t v6 = BKLogCommon(v5);
-  id v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  os_log_s *v7 = [v6 autorelease];
   if (os_log_type_enabled(v7, OS_LOG_TYPE_INFO))
   {
     int v16 = 138543618;
-    id v17 = (id)objc_opt_class(self, v8);
+    id v17 = [self class];
     __int16 v18 = 2114;
     id v19 = v4;
     id v9 = v17;
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_INFO,  "%{public}@: removing %{public}@",  (uint8_t *)&v16,  0x16u);
   }
 
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v4 displayUUID]);
+  uint64_t v10 = (void *)[v4 displayUUID];
   v11 = sub_10002E518(v10);
-  v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
+  v12 = v11;
 
-  uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_queue_displayUUIDToSensorRecords, "objectForKey:", v12));
+  uint64_t v13 = [self->_queue_displayUUIDToSensorRecords objectForKey:v12];
   [v13 removeService:v4];
-  v14 = (void *)objc_claimAutoreleasedReturnValue([v13 services]);
+  v14 = [v13 services];
   id v15 = [v14 count];
 
   if (!v15) {
-    -[NSMutableDictionary removeObjectForKey:](self->_queue_displayUUIDToSensorRecords, "removeObjectForKey:", v12);
+    [self->_queue_displayUUIDToSensorRecords removeObjectForKey:v12];
   }
 }
 
@@ -216,22 +216,22 @@
   {
     double FloatValue = IOHIDEventGetFloatValue(v8, 1900545LL);
     uint64_t v21 = BKLogCommon(v20);
-    __int128 v22 = (os_log_s *)objc_claimAutoreleasedReturnValue(v21);
+    os_log_s *v22 = [v21 autorelease];
     if (os_log_type_enabled(v22, OS_LOG_TYPE_INFO))
     {
       *(_DWORD *)v28 = 138543618;
-      *(void *)&v28[4] = objc_opt_class(self, v23);
+      [self class]
       *(_WORD *)&v28[12] = 2048;
       *(double *)&v28[14] = FloatValue;
       id v24 = *(id *)&v28[4];
       _os_log_impl( (void *)&_mh_execute_header,  v22,  OS_LOG_TYPE_INFO,  "%{public}@: human proximity event %g",  v28,  0x16u);
     }
 
-    __int128 v25 = (void *)objc_claimAutoreleasedReturnValue([v7 displayUUID]);
+    __int128 v25 = (void *)[v7 displayUUID];
     __int128 v26 = sub_10002E518(v25);
-    __int16 v18 = (void *)objc_claimAutoreleasedReturnValue(v26);
+    __int16 v18 = [v26 autorelease];
 
-    -[BKHumanPresenceHIDEventProcessor _setProximityInCentimeters:forDisplayUUID:]( self,  "_setProximityInCentimeters:forDisplayUUID:",  v18,  FloatValue);
+    [self _setProximityInCentimeters:FloatValue forDisplayUUID:v18];
     goto LABEL_9;
   }
 
@@ -239,22 +239,22 @@
   {
     double v10 = IOHIDEventGetFloatValue(v8, 1900545LL);
     uint64_t v12 = BKLogCommon(v11);
-    uint64_t v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+    uint64_t v13 = [v12];
     if (os_log_type_enabled(v13, OS_LOG_TYPE_INFO))
     {
       *(_DWORD *)v28 = 138543618;
-      *(void *)&v28[4] = objc_opt_class(self, v14);
+      [self setEventProcessorOfClass:[v14 class]];
       *(_WORD *)&v28[12] = 2048;
       *(double *)&v28[14] = v10;
-      id v15 = *(id *)&v28[4];
+      id v15 = v28[4];
       _os_log_impl( (void *)&_mh_execute_header,  v13,  OS_LOG_TYPE_INFO,  "%{public}@: human presence event %g",  v28,  0x16u);
     }
 
-    int v16 = (void *)objc_claimAutoreleasedReturnValue([v7 displayUUID]);
+    int v16 = (void *)[v7 displayUUID];
     id v17 = sub_10002E518(v16);
-    __int16 v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
+    __int16 v18 = [v17 autorelease];
 
-    -[BKHumanPresenceHIDEventProcessor _setPresence:forDisplayUUID:]( self,  "_setPresence:forDisplayUUID:",  v10 > 0.0,  v18,  *(_OWORD *)v28,  *(void *)&v28[16]);
+    [self _setPresence:v10 > 0.0 forDisplayUUID:v18 anchorPoint:CGPointMake(*(_OWORD *)v28, *(void *)&v28[16])];
 LABEL_9:
   }
 

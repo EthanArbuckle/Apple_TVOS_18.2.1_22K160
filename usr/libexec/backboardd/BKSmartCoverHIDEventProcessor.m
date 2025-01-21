@@ -41,8 +41,8 @@
 - (BKSmartCoverHIDEventProcessor)initWithSupportedHES:(unint64_t)a3 disengagedHES:(unint64_t)a4 attached:(BOOL)a5 unknownState:(BOOL)a6
 {
   v35.receiver = self;
-  v35.super_class = (Class)&OBJC_CLASS___BKSmartCoverHIDEventProcessor;
-  v10 = -[BKSmartCoverHIDEventProcessor init](&v35, "init");
+  v35.super_class = [BKSmartCoverHIDEventProcessor class];
+  BKSmartCoverHIDEventProcessor *v10 = [[BKSmartCoverHIDEventProcessor alloc] init];
   v11 = v10;
   if (v10)
   {
@@ -70,7 +70,7 @@ LABEL_21:
 
 - (unint64_t)_currentMaskForUsage:(unsigned int)a3 HIDSystem:(id)a4 mask:(unint64_t *)a5 maskIfEngaged:(unint64_t *)a6
 {
-  uint64_t v8 = *(void *)&a3;
+  uint64_t v8 = (uint64_t)a3;
   id v9 = a4;
   uint64_t KeyboardEvent = IOHIDEventCreateKeyboardEvent(0LL, 0LL, 65289LL, v8, 0LL, 0LL);
   if (KeyboardEvent)
@@ -138,32 +138,32 @@ LABEL_19:
 - (BKSmartCoverHIDEventProcessor)initWithContext:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 systemInterface]);
+  v5 = [v4 systemInterface];
   if (+[BKSmartCoverHIDEventProcessor isSmartCoverSupported]( &OBJC_CLASS___BKSmartCoverHIDEventProcessor,  "isSmartCoverSupported"))
   {
     uint64_t v17 = 0LL;
     uint64_t v18 = 0LL;
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  1LL,  v5,  &v18,  &v17);
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  2LL,  v5,  &v18,  &v17);
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  3LL,  v5,  &v18,  &v17);
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  4LL,  v5,  &v18,  &v17);
+    [self _currentMaskForUsage:1LL HIDSystem:v5 mask:&v18 maskIfEngaged:&v17];
+    [self _currentMaskForUsage:2LL HIDSystem:v5 mask:&v18 maskIfEngaged:&v17];
+    [self _currentMaskForUsage:3 HIDSystem:v5 mask:&v18 maskIfEngaged:&v17];
+    [self _currentMaskForUsage:4 HIDSystem:v5 mask:&v18 maskIfEngaged:&v17];
     uint64_t v16 = 0LL;
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  16LL,  v5,  0LL,  &v16);
+    [self _currentMaskForUsage:16LL HIDSystem:v5 mask:&v16 maskIfEngaged:0LL];
     BOOL v6 = v16 != 0;
     uint64_t v15 = 0LL;
-    -[BKSmartCoverHIDEventProcessor _currentMaskForUsage:HIDSystem:mask:maskIfEngaged:]( self,  "_currentMaskForUsage:HIDSystem:mask:maskIfEngaged:",  32LL,  v5,  0LL,  &v15);
+    v15 = [self _currentMaskForUsage:32LL HIDSystem:v5 mask:0LL maskIfEngaged:&v15];
     BOOL v7 = v15 != 0;
     uint64_t v8 = (OS_dispatch_queue *)dispatch_queue_create("BKHIDEventSmartCoverMatcherQueue", 0LL);
     matcherQueue = self->_matcherQueue;
     self->_matcherQueue = v8;
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v4 serviceMatcherDataProvider]);
-    v11 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher),  "initWithUsagePage:usage:builtIn:dataProvider:",  65280LL,  11LL,  0LL,  v10);
+    v10 = [v4 serviceMatcherDataProvider];
+    BKIOHIDServiceMatcher *v11 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:65280LL usage:11LL builtIn:0LL dataProvider:v10];
     magicKeyboardExtendedMatcher = self->_magicKeyboardExtendedMatcher;
     self->_magicKeyboardExtendedMatcher = v11;
 
-    -[BKIOHIDServiceMatcher startObserving:queue:]( self->_magicKeyboardExtendedMatcher,  "startObserving:queue:",  self,  self->_matcherQueue);
-    self =  -[BKSmartCoverHIDEventProcessor initWithSupportedHES:disengagedHES:attached:unknownState:]( self,  "initWithSupportedHES:disengagedHES:attached:unknownState:",  v18,  v18 & ~v17,  v6,  v7);
+    [self->_magicKeyboardExtendedMatcher startObserving:self queue:self->_matcherQueue];
+    self =  [BKSmartCoverHIDEventProcessor initWithSupportedHES:v18 disengagedHES:v18 & ~v17 attached:v6 unknownState:v7];
 
     __int128 v13 = self;
   }
@@ -182,7 +182,7 @@ LABEL_19:
   id v6 = a4;
   if (!self->_magicKeyboardExtendedServices)
   {
-    BOOL v7 = objc_opt_new(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v7 = [[NSMutableSet alloc] init];
     magicKeyboardExtendedServices = self->_magicKeyboardExtendedServices;
     self->_magicKeyboardExtendedServices = v7;
   }
@@ -205,8 +205,8 @@ LABEL_19:
           objc_enumerationMutation(v9);
         }
         unint64_t v14 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)i);
-        uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([v14 propertyForKey:@"MKWakeAnimation"]);
-        uint64_t v17 = objc_opt_class(&OBJC_CLASS___NSString, v16);
+        uint64_t v15 = (void *)[v14 propertyForKey:@"MKWakeAnimation"];
+        NSString *v17 = [NSString class];
         id v18 = v15;
         v19 = v18;
         if (v17)
@@ -231,11 +231,11 @@ LABEL_19:
           && (-[NSMutableSet containsObject:]( self->_magicKeyboardExtendedServices,  "containsObject:",  v14) & 1) == 0)
         {
           [v14 addDisappearanceObserver:self queue:self->_matcherQueue];
-          -[NSMutableSet addObject:](self->_magicKeyboardExtendedServices, "addObject:", v14);
+          [self->_magicKeyboardExtendedServices addObject:v14];
         }
       }
 
-      id v11 = [v9 countByEnumeratingWithState:&v23 objects:v27 count:16];
+      id v11 = [v9 countByEnumeratingWithState:v23 objects:v27 count:16];
     }
 
     while (v11);
@@ -246,7 +246,7 @@ LABEL_19:
 {
   magicKeyboardExtendedServices = self->_magicKeyboardExtendedServices;
   if (magicKeyboardExtendedServices) {
-    -[NSMutableSet removeObject:](magicKeyboardExtendedServices, "removeObject:", a3);
+    [magicKeyboardExtendedServices removeObject:a3];
   }
 }
 
@@ -254,7 +254,7 @@ LABEL_19:
 {
   magicKeyboardExtendedServices = self->_magicKeyboardExtendedServices;
   if (magicKeyboardExtendedServices) {
-    LODWORD(magicKeyboardExtendedServices) = -[NSMutableSet count](magicKeyboardExtendedServices, "count") != 0LL;
+    LODWORD(magicKeyboardExtendedServices) = [magicKeyboardExtendedServices count] != 0LL;
   }
   return (int)magicKeyboardExtendedServices;
 }
@@ -279,7 +279,7 @@ LABEL_19:
       self->_unint64_t sensorsRequiredForOpenState = v5;
       self->_sensorsRequiredForAmbiguousState = v4;
       id v6 = sub_10003F124();
-      BOOL v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+      BOOL v7 = [v6 autorelease];
       if (os_log_type_enabled(v7, OS_LOG_TYPE_DEFAULT))
       {
         unint64_t sensorsRequiredForOpenState = self->_sensorsRequiredForOpenState;
@@ -387,15 +387,15 @@ LABEL_20:
         if ((-[BKSmartCoverHIDEventProcessor supportedSensors](self, "supportedSensors") & v14) != 0)
         {
           if (v12) {
-            uint64_t v32 = -[BKSmartCoverHIDEventProcessor _smartCoverSensorsDidEngage:]( self,  "_smartCoverSensorsDidEngage:",  v14);
+            [self _smartCoverSensorsDidEngage:v14];
           }
           else {
-            uint64_t v32 = -[BKSmartCoverHIDEventProcessor _smartCoverSensorsDidDisengage:]( self,  "_smartCoverSensorsDidDisengage:",  v14);
+            uint64_t v32 = [self _smartCoverSensorsDidDisengage:v14];
           }
           uint64_t v25 = v32;
           if ((_DWORD)v32)
           {
-            BKSHIDEventSetSmartCoverInfo( v10,  v32,  -[BKSmartCoverHIDEventProcessor _wakeAnimationStyle](self, "_wakeAnimationStyle"));
+            [v10 setSmartCoverInfo:v32 wakeAnimationStyle:[BKSmartCoverHIDEventProcessor _wakeAnimationStyle]];
             char v33 = 0;
             goto LABEL_37;
           }
@@ -409,18 +409,18 @@ LABEL_20:
         char v33 = 1;
 LABEL_37:
         id v34 = sub_10003F124();
-        objc_super v35 = (os_log_s *)objc_claimAutoreleasedReturnValue(v34);
+        os_log_s *v35 = v34;
         if (os_log_type_enabled(v35, OS_LOG_TYPE_DEFAULT))
         {
           BOOL v50 = v12 != 0;
           v36 = sub_100055DA0(self->_disengagedSensors);
-          v51 = (void *)objc_claimAutoreleasedReturnValue(v36);
+          v51 = v36;
           __int16 v37 = sub_100055DA0(self->_supportedSensors);
-          v53 = (void *)objc_claimAutoreleasedReturnValue(v37);
+          v53 = v37;
           v38 = sub_100055DA0(self->_sensorsRequiredForOpenState);
-          v52 = (void *)objc_claimAutoreleasedReturnValue(v38);
+          v52 = v38;
           __int16 v39 = sub_100055DA0(self->_sensorsRequiredForAmbiguousState);
-          id v40 = (id)objc_claimAutoreleasedReturnValue(v39);
+          id v40 = [v39 autorelease];
           if ((v33 & 1) != 0)
           {
             __int16 v41 = @"<none>";
@@ -429,7 +429,7 @@ LABEL_37:
           else
           {
             uint64_t v42 = NSStringFromBKSHIDEventSmartCoverState(v25);
-            __int16 v41 = (__CFString *)objc_claimAutoreleasedReturnValue(v42);
+            __int16 v41 = (__CFString *)[v42 autorelease];
           }
 
           *(_DWORD *)id buf = 67110658;
@@ -467,16 +467,16 @@ LABEL_45:
   observerAssertion = self->_observerAssertion;
   if (!observerAssertion)
   {
-    BOOL v7 = (BSCompoundAssertion *)objc_claimAutoreleasedReturnValue( +[BSCompoundAssertion assertionWithIdentifier:]( &OBJC_CLASS___BSCompoundAssertion,  "assertionWithIdentifier:",  @"backboardd.smart-cover-observer"));
+    BOOL v7 = [BSCompoundAssertion assertionWithIdentifier:@"backboardd.smart-cover-observer"];
     id v8 = self->_observerAssertion;
     self->_observerAssertion = v7;
 
     observerAssertion = self->_observerAssertion;
   }
 
-  id v9 = objc_msgSend((id)objc_opt_class(v5, v4), "description");
-  int v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
-  id v11 = (void *)objc_claimAutoreleasedReturnValue( -[BSCompoundAssertion acquireForReason:withContext:]( observerAssertion,  "acquireForReason:withContext:",  v10,  v5));
+  id v9 = [v5 description];
+  int v10 = [v9];
+  BSCompoundAssertion *v11 = [BSCompoundAssertion acquireForReason:v10 withContext:v5];
 
   return v11;
 }
@@ -512,7 +512,7 @@ LABEL_45:
   id v6 = [v4 appendBool:self->_unknownState withName:@"u"];
   unint64_t state = self->_state;
   if (state >= 4) {
-    id v8 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"<invalid:%d>",  self->_state));
+    id v8 = [NSString stringWithFormat:@"<invalid:%d>"];
   }
   else {
     id v8 = off_1000B76F8[state];

@@ -23,8 +23,8 @@
 - (BKAlternateSystemAppManager)init
 {
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS___BKAlternateSystemAppManager;
-  v2 = -[BKAlternateSystemAppManager init](&v6, "init");
+  v6.super_class = [BKAlternateSystemAppManager class];
+  BKAlternateSystemAppManager *v2 = [[BKAlternateSystemAppManager alloc] init];
   if (v2)
   {
     uint64_t Serial = BSDispatchQueueCreateSerial(@"com.apple.backboardd.altsysapp");
@@ -80,15 +80,15 @@
 {
   id v4 = a3;
   uint64_t v5 = BKLogAlternateSystemApp();
-  uint64_t v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  os_log_s *v6 = v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)uint64_t v8 = 0;
     _os_log_impl((void *)&_mh_execute_header, v6, OS_LOG_TYPE_DEFAULT, "[Manager] Blocking the system app", v8, 2u);
   }
 
-  -[BKAlternateSystemAppManager _setBlockingSystemApp:](self, "_setBlockingSystemApp:", 1LL);
-  v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
+  [self _setBlockingSystemApp:1LL];
+  BKSystemShellSentinel *v7 = [BKSystemShellSentinel sharedInstance];
   [v7 blockSystemApp];
 
   if (v4) {
@@ -134,8 +134,8 @@
     id v15 = self;
     id v16 = v10;
     dispatch_async(queue, block);
-    -[BKAlternateSystemAppManager setOpenBundleId:](self, "setOpenBundleId:", 0LL);
-    id v12 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
+    [self setOpenBundleId:0LL];
+    BKSystemShellSentinel *v12 = [BKSystemShellSentinel sharedInstance];
     [v12 setActiveAlternateSystemAppBundleIdentifier:0];
   }
 }
@@ -145,7 +145,7 @@
   if (self->_openBundleId)
   {
     uint64_t v3 = BKLogAlternateSystemApp();
-    id v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+    os_log_s *v4 = v3;
     if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
     {
       openBundleId = self->_openBundleId;
@@ -154,24 +154,24 @@
       _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "[Manager] Terminating alternate system app with bundleID: %{public}@",  (uint8_t *)&v6,  0xCu);
     }
 
-    -[BKAlternateSystemAppManager terminateAlternateSystemApp:forReason:andReport:withDescription:completion:]( self,  "terminateAlternateSystemApp:forReason:andReport:withDescription:completion:",  self->_openBundleId,  0LL,  0LL,  0LL,  0LL);
+    [self terminateAlternateSystemApp:self->_openBundleId forReason:0 andReport:0 withDescription:0 completion:0];
   }
 
 - (void)unblockSystemAppForAlternateSystemAppWithCompletion:(id)a3
 {
   id v4 = a3;
   uint64_t v5 = BKLogAlternateSystemApp();
-  int v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  int v6 = (os_log_s *)[v5 autorelease];
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)uint64_t v8 = 0;
     _os_log_impl((void *)&_mh_execute_header, v6, OS_LOG_TYPE_DEFAULT, "[Manager] Unblocking the system app", v8, 2u);
   }
 
-  v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
+  BKSystemShellSentinel *v7 = [[BKSystemShellSentinel sharedInstance] autorelease];
   [v7 unblockSystemApp];
 
-  -[BKAlternateSystemAppManager _setBlockingSystemApp:](self, "_setBlockingSystemApp:", 0LL);
+  [self _setBlockingSystemApp:0LL];
   if (v4) {
     dispatch_async((dispatch_queue_t)self->_queue, v4);
   }
@@ -180,10 +180,10 @@
 - (void)_queue_cleanUpAfterAlternativeSystemApp:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[BKAlternateSystemAppManager alternateSystemApp](self, "alternateSystemApp"));
+  id v5 = [self alternateSystemApp];
 
   uint64_t v6 = BKLogAlternateSystemApp();
-  v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  os_log_s *v7 = v6;
   BOOL v8 = os_log_type_enabled(v7, OS_LOG_TYPE_ERROR);
   if (v5 == v4)
   {
@@ -194,7 +194,7 @@
       _os_log_error_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_ERROR,  "[Manager] clean up: %{public}@",  (uint8_t *)&v10,  0xCu);
     }
 
-    -[BKAlternateSystemAppManager setAlternateSystemApp:](self, "setAlternateSystemApp:", 0LL);
+    [self setAlternateSystemApp:0LL];
   }
 
   else

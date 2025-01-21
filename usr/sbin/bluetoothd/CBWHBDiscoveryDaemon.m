@@ -246,8 +246,8 @@
 {
   id v4 = a3;
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 activatedDiscovery]);
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 discoveredDevices]);
+  id v5 = [v4 activatedDiscovery];
+  uint64_t v6 = (void *)[v5 discoveredDevices];
 
   __int128 v14 = 0u;
   __int128 v15 = 0u;
@@ -299,12 +299,12 @@
           objc_enumerationMutation(v3);
         }
         id v8 = *(void **)(*((void *)&v32 + 1) + 8LL * (void)i);
-        id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 serviceTypes]);
+        id v9 = [v8 serviceTypes];
         unsigned int v10 = [v9 containsObject:@"com.apple.bluetooth.remote"];
 
         if (v10)
         {
-          v11 = (void *)objc_claimAutoreleasedReturnValue([v8 idsDeviceIdentifier]);
+          v11 = [v8 idsDeviceIdentifier];
           if (v11)
           {
             if (!v4) {
@@ -325,7 +325,7 @@
   __int128 v31 = 0u;
   __int128 v29 = 0u;
   __int128 v28 = 0u;
-  __int128 v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](self->_remoteControllerMap, "allKeys"));
+  __int128 v12 = (void *)-[NSMutableDictionary allKeys](self->_remoteControllerMap, "allKeys");
   int v13 = 0;
   id v14 = [v12 countByEnumeratingWithState:&v28 objects:v36 count:16];
   if (v14)
@@ -339,11 +339,11 @@
           objc_enumerationMutation(v12);
         }
         uint64_t v17 = *(void *)(*((void *)&v28 + 1) + 8LL * (void)j);
-        v18 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](v4, "objectForKeyedSubscript:", v17));
+        v18 = [v4 objectForKeyedSubscript:v17];
 
         if (!v18)
         {
-          id v19 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_remoteControllerMap,  "objectForKeyedSubscript:",  v17));
+          id v19 = -[self->_remoteControllerMap objectForKeyedSubscript:v17];
           -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_remoteControllerMap,  "setObject:forKeyedSubscript:",  0LL,  v17);
           -[CBWHBRouter hostConnectionInterruptedOn:](self->_whbRouter, "hostConnectionInterruptedOn:", v17);
           -[CBWHBDiscoveryDaemon _reportLostDevicesForController:](self, "_reportLostDevicesForController:", v19);
@@ -389,7 +389,7 @@
 - (void)deviceFound:(id)a3 remoteController:(id)a4
 {
   id v20 = a3;
-  uint64_t v6 = objc_claimAutoreleasedReturnValue([a4 controllerID]);
+  uint64_t v6 = [a4 controllerID];
   id v7 = (void *)v6;
   id v8 = @"CBLocalHostID";
   if (v6) {
@@ -400,12 +400,12 @@
   if (dword_1008D63E0 <= 30 && (dword_1008D63E0 != -1 || _LogCategory_Initialize(&dword_1008D63E0, 30LL))) {
     LogPrintF_safe( &dword_1008D63E0,  "-[CBWHBDiscoveryDaemon deviceFound:remoteController:]",  30LL,  "Device found: %@, CtID %@",  v20,  v9);
   }
-  unsigned int v10 = (void *)objc_claimAutoreleasedReturnValue([v20 stableIdentifier]);
+  unsigned int v10 = [v20 stableIdentifier];
   if (v10)
   {
     [v20 setLastSeenTicks:mach_absolute_time()];
     [v20 setRemoteHostID:v9];
-    v11 = (CBWHBAggregateDevice *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_aggregateDeviceMap,  "objectForKeyedSubscript:",  v10));
+    v11 = -[self->_aggregateDeviceMap objectForKeyedSubscript:v10];
     if (!v11)
     {
       v11 = objc_alloc_init(&OBJC_CLASS___CBWHBAggregateDevice);
@@ -453,7 +453,7 @@
 {
   id v6 = a3;
   id v7 = a4;
-  uint64_t v8 = objc_claimAutoreleasedReturnValue([v7 controllerID]);
+  uint64_t v8 = [v7 controllerID];
   id v9 = (void *)v8;
   unsigned int v10 = @"CBLocalHostID";
   if (v8) {
@@ -464,15 +464,15 @@
   if (dword_1008D63E0 <= 30 && (dword_1008D63E0 != -1 || _LogCategory_Initialize(&dword_1008D63E0, 30LL))) {
     LogPrintF_safe( &dword_1008D63E0,  "-[CBWHBDiscoveryDaemon deviceLost:remoteController:]",  30LL,  "Device lost: %@, CtID %@",  v6,  v11);
   }
-  __int128 v12 = (void *)objc_claimAutoreleasedReturnValue([v6 stableIdentifier]);
+  __int128 v12 = (void *)[v6 stableIdentifier];
   if (v12)
   {
     int v13 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_aggregateDeviceMap,  "objectForKeyedSubscript:",  v12));
     id v14 = v13;
     if (v13)
     {
-      uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([v13 deviceControllerMap]);
-      v16 = (void *)objc_claimAutoreleasedReturnValue([v15 objectForKeyedSubscript:v11]);
+      uint64_t v15 = (void *)[v13 deviceControllerMap];
+      v16 = [v15 objectForKeyedSubscript:v11];
       [v15 setObject:0 forKeyedSubscript:v11];
       [v16 setRemoteHostID:v11];
       -[CBWHBRouter deviceLost:](self->_whbRouter, "deviceLost:", v16);
@@ -525,10 +525,10 @@
   dispatchQueue = (dispatch_queue_s *)self->_dispatchQueue;
   id v5 = a3;
   dispatch_assert_queue_V2(dispatchQueue);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_aggregateDeviceMap,  "objectForKeyedSubscript:",  v5));
+  id v6 = [self->_aggregateDeviceMap objectForKeyedSubscript:v5];
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 deviceControllerMap]);
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"CBLocalHostID"]);
+  id v7 = [v6 deviceControllerMap];
+  uint64_t v8 = (void *)[v7 objectForKeyedSubscript:@"CBLocalHostID"];
 
   return v8;
 }

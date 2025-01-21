@@ -38,7 +38,7 @@
         -[WiFiCWFInterface set_homeManager:]( v2,  "set_homeManager:",  +[CWFHomeManager cwfHomeManagerWithDelegate:](&OBJC_CLASS___CWFHomeManager, "cwfHomeManagerWithDelegate:", v2));
         v3 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:CWFHomeManager instance %p",  "-[WiFiCWFInterface init]",  -[WiFiCWFInterface _homeManager](v2, "_homeManager"));
+          [qword_100219F60 WFLog:@"%s:CWFHomeManager instance %p" message:3, "-[WiFiCWFInterface init]", -[WiFiCWFInterface _homeManager](v2, "_homeManager")];
         }
         goto LABEL_6;
       }
@@ -88,7 +88,7 @@ LABEL_6:
         {
           v11 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: event already exists in handler",  "-[WiFiCWFInterface startMonitoringSupportedEvents:]");
+            [qword_100219F60 WFLog:@"event already exists in handler" message:3];
           }
           objc_autoreleasePoolPop(v11);
           return (id)-3900LL;

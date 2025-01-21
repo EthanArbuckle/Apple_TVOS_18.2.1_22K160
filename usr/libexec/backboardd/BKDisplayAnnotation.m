@@ -38,14 +38,14 @@
 
 - (BKDisplayAnnotation)init
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"use one of the factory methods"));
+  v4 = [NSString stringWithFormat:@"use one of the factory methods"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     v5 = NSStringFromSelector(a2);
     v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    v8 = (objc_class *)objc_opt_class(self, v7);
+    v8 = [self class];
     v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = [v9 autorelease];
     int v12 = 138544642;
     v13 = v6;
     __int16 v14 = 2114;
@@ -69,19 +69,19 @@
 - (id)_init
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS___BKDisplayAnnotation;
-  v2 = -[BKDisplayAnnotation init](&v8, "init");
+  v8.super_class = [BKDisplayAnnotation class];
+  BKDisplayAnnotation *v2 = [[BKDisplayAnnotation alloc] init];
   if (v2)
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationLocation controlledBySupernode]( &OBJC_CLASS___BKDisplayAnnotationLocation,  "controlledBySupernode"));
+    uint64_t v3 = [BKDisplayAnnotationLocation controlledBySupernode];
     location = v2->_location;
     v2->_location = (BKDisplayAnnotationLocation *)v3;
 
-    v5 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationRenderer);
+    BKDisplayAnnotationRenderer *v5 = [[BKDisplayAnnotationRenderer alloc] init];
     renderer = v2->_renderer;
     v2->_renderer = v5;
 
-    -[BKDisplayAnnotationRenderer setAnnotation:](v2->_renderer, "setAnnotation:", v2);
+    [v2->_renderer setAnnotation:v2];
   }
 
   return v2;
@@ -89,28 +89,28 @@
 
 - (id)succinctDescription
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotation succinctDescriptionBuilder](self, "succinctDescriptionBuilder"));
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue([v2 build]);
+  v2 = [self succinctDescriptionBuilder];
+  uint64_t v3 = (void *)[v2 build];
 
   return v3;
 }
 
 - (id)succinctDescriptionBuilder
 {
-  return +[BSDescriptionBuilder builderWithObject:](&OBJC_CLASS___BSDescriptionBuilder, "builderWithObject:", self);
+  BSDescriptionBuilder *returnValue = [BSDescriptionBuilder builderWithObject:self];
 }
 
 - (id)descriptionWithMultilinePrefix:(id)a3
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotation descriptionBuilderWithMultilinePrefix:]( self,  "descriptionBuilderWithMultilinePrefix:",  a3));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  uint64_t v3 = [BKDisplayAnnotation descriptionBuilderWithMultilinePrefix:a3];
+  v4 = [v3 build];
 
   return v4;
 }
 
 - (id)descriptionBuilderWithMultilinePrefix:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotation succinctDescriptionBuilder](self, "succinctDescriptionBuilder", a3));
+  v4 = [self succinctDescriptionBuilder];
   id v5 = [v4 appendObject:self->_content withName:@"content"];
   id v6 = [v4 appendObject:self->_section withName:@"section" skipIfNil:1];
   return v4;
@@ -118,7 +118,7 @@
 
 - (id)description
 {
-  return -[BKDisplayAnnotation descriptionWithMultilinePrefix:](self, "descriptionWithMultilinePrefix:", 0LL);
+  return [self descriptionWithMultilinePrefix:0LL];
 }
 
 - (BOOL)isEqual:(id)a3
@@ -127,8 +127,8 @@
   if (v5 && (uint64_t v6 = objc_opt_class(self, v4), (objc_opt_isKindOfClass(v5, v6) & 1) != 0))
   {
     content = self->_content;
-    objc_super v8 = (void *)objc_claimAutoreleasedReturnValue([v5 content]);
-    unsigned __int8 v9 = -[BKDisplayAnnotationContent isEqual:](content, "isEqual:", v8);
+    objc_super v8 = [v5 content];
+    BOOL v9 = [content isEqual:v8];
   }
 
   else
@@ -145,8 +145,8 @@
   if (self->_renderer != v5)
   {
     uint64_t v6 = v5;
-    objc_storeStrong((id *)&self->_renderer, a3);
-    -[BKDisplayAnnotationRenderer setAnnotation:](self->_renderer, "setAnnotation:", self);
+    self->_renderer = a3;
+    [self->_renderer setAnnotation:self];
     id v5 = v6;
   }
 }
@@ -159,14 +159,14 @@
   {
     if (content)
     {
-      objc_super v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"_content == ((void *)0)"));
+      NSString *v8 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"_content == ((void *)0)"];
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         unsigned __int8 v9 = NSStringFromSelector(a2);
-        v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
-        int v12 = (objc_class *)objc_opt_class(self, v11);
+        v10 = [v9 autorelease];
+        int v12 = [self class];
         v13 = NSStringFromClass(v12);
-        __int16 v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
+        __int16 v14 = [v13 autorelease];
         *(_DWORD *)buf = 138544642;
         v17 = v10;
         __int16 v18 = 2114;
@@ -188,8 +188,8 @@
     }
 
     v15 = v6;
-    objc_storeStrong((id *)&self->_content, a3);
-    -[BKDisplayAnnotationRenderer styleSheetDidChange](self->_renderer, "styleSheetDidChange");
+    self->_content = a3;
+    [self->_renderer styleSheetDidChange];
     uint64_t v6 = v15;
   }
 }
@@ -201,15 +201,15 @@
   if (location != v4)
   {
     unsigned __int8 v9 = v4;
-    unsigned __int8 v6 = -[BKDisplayAnnotationLocation isEqual:](location, "isEqual:", v4);
+    BOOL v6 = [location isEqual:v4];
     uint64_t v4 = v9;
     if ((v6 & 1) == 0)
     {
-      uint64_t v7 = (BKDisplayAnnotationLocation *)-[BKDisplayAnnotationLocation copy](v9, "copy");
+      BKDisplayAnnotationLocation *v7 = [BKDisplayAnnotationLocation copy];
       objc_super v8 = self->_location;
       self->_location = v7;
 
-      -[BKDisplayAnnotationRenderer locationDidChange](self->_renderer, "locationDidChange");
+      [self->_renderer locationDidChange];
       uint64_t v4 = v9;
     }
   }
@@ -219,26 +219,26 @@
 {
   content = self->_content;
   id v9 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKDisplayAnnotationStringContent, v5);
+  BKDisplayAnnotationStringContent *v6 = [BKDisplayAnnotationStringContent class];
   if ((objc_opt_isKindOfClass(content, v6) & 1) != 0)
   {
-    -[BKDisplayAnnotationContent setString:](self->_content, "setString:", v9);
+    [self->_content setString:v9];
     uint64_t v7 = v9;
   }
 
   else
   {
-    uint64_t v8 = objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStringContent contentWithString:]( &OBJC_CLASS___BKDisplayAnnotationStringContent,  "contentWithString:",  v9));
+    uint64_t v8 = [BKDisplayAnnotationStringContent contentWithString:v9];
 
-    -[BKDisplayAnnotation setContent:](self, "setContent:", v8);
+    [self setContent:v8];
     uint64_t v7 = (void *)v8;
   }
 }
 
 - (void)setShapeSize:(CGSize)a3
 {
-  id v4 = (id)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationShapeContent contentWithSize:]( &OBJC_CLASS___BKDisplayAnnotationShapeContent,  "contentWithSize:",  a3.width,  a3.height));
-  -[BKDisplayAnnotation setContent:](self, "setContent:", v4);
+  BKDisplayAnnotationShapeContent *v4 = [BKDisplayAnnotationShapeContent contentWithSize:CGSizeMake(a3.width, a3.height)];
+  [self setContent:v4];
 }
 
 - (void)modifyStyleSheet:(id)a3
@@ -285,7 +285,7 @@
 
 - (BKDisplayAnnotationController)annotationController
 {
-  return (BKDisplayAnnotationController *)objc_loadWeakRetained((id *)&self->_annotationController);
+  return (BKDisplayAnnotationController *)self->_annotationController;
 }
 
 - (void)setAnnotationController:(id)a3
@@ -303,7 +303,7 @@
 
 - (BKNamespaceNode)namespaceNode
 {
-  return (BKNamespaceNode *)objc_loadWeakRetained((id *)&self->_namespaceNode);
+  return (BKNamespaceNode *)self->_namespaceNode;
 }
 
 - (void)setNamespaceNode:(id)a3
@@ -317,15 +317,15 @@
 + (BKDisplayAnnotation)annotationWithString:(id)a3
 {
   id v4 = a3;
-  id v5 = [objc_alloc((Class)a1) _init];
+  id v5 = [[a1 alloc] init];
   [v5 setString:v4];
 
-  uint64_t v6 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationStyleSheet);
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle textStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "textStyle"));
-  -[BKDisplayAnnotationStyleSheet setBaseStyle:](v6, "setBaseStyle:", v7);
+  BKDisplayAnnotationStyleSheet *v6 = [[BKDisplayAnnotationStyleSheet alloc] init];
+  uint64_t v7 = [BKDisplayAnnotationStyle textStyle];
+  [v6 setBaseStyle:v7];
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle minimalStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "minimalStyle"));
-  -[BKDisplayAnnotationStyleSheet setStyleModifier:](v6, "setStyleModifier:", v8);
+  uint64_t v8 = [BKDisplayAnnotationStyle minimalStyle];
+  [v6 setStyleModifier:v8];
 
   [v5 setStyleSheet:v6];
   return (BKDisplayAnnotation *)v5;
@@ -333,8 +333,8 @@
 
 + (id)subannotationWithString:(id)a3
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue([a1 annotationWithString:a3]);
-  id v4 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationNullRenderer);
+  uint64_t v3 = (void *)[a1 annotationWithString:a3];
+  BKDisplayAnnotationNullRenderer *v4 = [[BKDisplayAnnotationNullRenderer alloc] init];
   [v3 setRenderer:v4];
 
   return v3;
@@ -344,14 +344,14 @@
 {
   double height = a3.height;
   double width = a3.width;
-  id v5 = [objc_alloc((Class)a1) _init];
-  objc_msgSend(v5, "setShapeSize:", width, height);
-  uint64_t v6 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationStyleSheet);
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle ellipseStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "ellipseStyle"));
-  -[BKDisplayAnnotationStyleSheet setBaseStyle:](v6, "setBaseStyle:", v7);
+  id v5 = [[a1 alloc] init];
+  [v5 setShapeSize:CGSizeMake(width, height)];
+  BKDisplayAnnotationStyleSheet *v6 = [[BKDisplayAnnotationStyleSheet alloc] init];
+  uint64_t v7 = [BKDisplayAnnotationStyle ellipseStyle];
+  [v6 setBaseStyle:v7];
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle minimalStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "minimalStyle"));
-  -[BKDisplayAnnotationStyleSheet setStyleModifier:](v6, "setStyleModifier:", v8);
+  uint64_t v8 = [BKDisplayAnnotationStyle minimalStyle];
+  [v6 setStyleModifier:v8];
 
   [v5 setStyleSheet:v6];
   return (BKDisplayAnnotation *)v5;
@@ -361,14 +361,14 @@
 {
   double height = a3.height;
   double width = a3.width;
-  id v5 = [objc_alloc((Class)a1) _init];
-  objc_msgSend(v5, "setShapeSize:", width, height);
-  uint64_t v6 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationStyleSheet);
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle rectangleStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "rectangleStyle"));
-  -[BKDisplayAnnotationStyleSheet setBaseStyle:](v6, "setBaseStyle:", v7);
+  id v5 = [[a1 alloc] init];
+  [v5 setShapeSize:CGSizeMake(width, height)];
+  BKDisplayAnnotationStyleSheet *v6 = [[BKDisplayAnnotationStyleSheet alloc] init];
+  uint64_t v7 = [BKDisplayAnnotationStyle rectangleStyle];
+  [v6 setBaseStyle:v7];
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle minimalStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "minimalStyle"));
-  -[BKDisplayAnnotationStyleSheet setStyleModifier:](v6, "setStyleModifier:", v8);
+  uint64_t v8 = [BKDisplayAnnotationStyle minimalStyle];
+  [v6 setStyleModifier:v8];
 
   [v5 setStyleSheet:v6];
   return (BKDisplayAnnotation *)v5;
@@ -376,14 +376,14 @@
 
 + (BKDisplayAnnotation)new
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"use one of the factory methods"));
+  id v4 = [NSString stringWithFormat:@"use one of the factory methods"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     id v5 = NSStringFromSelector(a2);
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    uint64_t v8 = (objc_class *)objc_opt_class(a1, v7);
+    uint64_t v6 = [v5 autorelease];
+    uint64_t v8 = [a1 class];
     id v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = (void *)[v9 autorelease];
     int v12 = 138544642;
     v13 = v6;
     __int16 v14 = 2114;

@@ -130,7 +130,7 @@
 - (id)icloudAccountStateAsString:(int)a3
 {
   if (a3 >= 4) {
-    return (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  *(void *)&a3));
+    return [NSString stringWithFormat:@"(unknown: %i)"];
   }
   else {
     return *(&off_1000207B8 + a3);
@@ -224,7 +224,7 @@
 - (id)trustStateAsString:(int)a3
 {
   if (a3 >= 3) {
-    return (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  *(void *)&a3));
+    return [NSString stringWithFormat:@"(unknown: %i)"];
   }
   else {
     return *(&off_1000207D8 + a3);
@@ -314,7 +314,7 @@
 - (id)attemptedJoinAsString:(int)a3
 {
   if (a3 >= 3) {
-    return (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  *(void *)&a3));
+    return [NSString stringWithFormat:@"(unknown: %i)"];
   }
   else {
     return *(&off_1000207F0 + a3);
@@ -382,7 +382,7 @@
 - (id)cdpStateAsString:(int)a3
 {
   if (a3 >= 3) {
-    return (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  *(void *)&a3));
+    return [NSString stringWithFormat:@"(unknown: %i)"];
   }
   else {
     return *(&off_100020808 + a3);
@@ -568,7 +568,7 @@
 - (id)sendingMetricsPermittedAsString:(int)a3
 {
   if (a3 >= 3) {
-    return (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  *(void *)&a3));
+    return [NSString stringWithFormat:@"(unknown: %i)"];
   }
   else {
     return *(&off_100020820 + a3);
@@ -612,15 +612,15 @@
   v8.super_class = (Class)&OBJC_CLASS___OTAccountMetadataClassC;
   id v3 = -[OTAccountMetadataClassC description](&v8, "description");
   int v4 = (void *)objc_claimAutoreleasedReturnValue(v3);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTAccountMetadataClassC dictionaryRepresentation](self, "dictionaryRepresentation"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%@ %@", v4, v5));
+  v5 = [self dictionaryRepresentation];
+  v6 = [NSString stringWithFormat:@"%@ %@", v4, v5];
 
   return v6;
 }
 
 - (id)dictionaryRepresentation
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  id v3 = [NSMutableDictionary dictionary];
   int v4 = v3;
   peerID = self->_peerID;
   if (peerID) {
@@ -643,7 +643,7 @@
 
   if ((has & 1) != 0)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithLongLong:](&OBJC_CLASS___NSNumber, "numberWithLongLong:", self->_epoch));
+    v9 = [NSNumber numberWithLongLong:self->_epoch];
     [v4 setObject:v9 forKey:@"epoch"];
   }
 
@@ -656,7 +656,7 @@
   {
     uint64_t trustState = self->_trustState;
     if (trustState >= 3) {
-      v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  self->_trustState));
+      v13 = [NSString stringWithFormat:@"(unknown: %i)", self->_trustState];
     }
     else {
       v13 = *(&off_1000207D8 + trustState);
@@ -679,7 +679,7 @@ LABEL_14:
     goto LABEL_14;
   }
 
-  v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  self->_lastHealthCheckup));
+  v14 = [NSNumber numberWithUnsignedLongLong:self->_lastHealthCheckup];
   [v4 setObject:v14 forKey:@"lastHealthCheckup"];
 
   __int16 v11 = (__int16)self->_has;
@@ -740,7 +740,7 @@ LABEL_14:
       {
         case 1u:
           uint64_t String = PBReaderReadString(a3);
-          uint64_t v16 = objc_claimAutoreleasedReturnValue(String);
+          uint64_t v16 = [String autorelease];
           uint64_t v17 = *((int *)v5 + 628);
           goto LABEL_101;
         case 2u:
@@ -827,7 +827,7 @@ LABEL_109:
           goto LABEL_118;
         case 4u:
           uint64_t v28 = PBReaderReadString(a3);
-          uint64_t v16 = objc_claimAutoreleasedReturnValue(v28);
+          uint64_t v16 = [v28 autorelease];
           uint64_t v17 = 24LL;
           goto LABEL_101;
         case 5u:
@@ -998,7 +998,7 @@ LABEL_126:
           goto LABEL_144;
         case 0xBu:
           uint64_t Data = PBReaderReadData(a3);
-          uint64_t v16 = objc_claimAutoreleasedReturnValue(Data);
+          uint64_t v16 = [Data autorelease];
           uint64_t v17 = 80LL;
           goto LABEL_101;
         case 0xCu:
@@ -1275,7 +1275,7 @@ LABEL_12:
   id v13 = v4;
   if (self->_peerID)
   {
-    objc_msgSend(v4, "setPeerID:");
+    [v4 setPeerID:];
     id v4 = v13;
   }
 

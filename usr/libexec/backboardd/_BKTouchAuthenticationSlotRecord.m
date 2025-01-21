@@ -7,7 +7,7 @@
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  -[BKSTouchAuthenticationSpecification slotID](self->_authenticationSpecification, "slotID")));
+  v2 = [NSNumber numberWithUnsignedInt:[self->_authenticationSpecification slotID]];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -15,7 +15,7 @@
 
 - (BOOL)isEqual:(id)a3
 {
-  uint64_t v5 = objc_opt_class(&OBJC_CLASS____BKTouchAuthenticationSlotRecord, a2);
+  uint64_t v5 = [BKTouchAuthenticationSlotRecord class];
   if ((objc_opt_isKindOfClass(a3, v5) & 1) == 0) {
     return 0;
   }
@@ -27,7 +27,7 @@
   }
   id v7 = v6;
   unsigned int v8 = [v7 slotID];
-  BOOL v9 = v8 == -[BKSTouchAuthenticationSpecification slotID](self->_authenticationSpecification, "slotID");
+  BOOL v9 = v8 == [self->_authenticationSpecification slotID];
 
   return v9;
 }

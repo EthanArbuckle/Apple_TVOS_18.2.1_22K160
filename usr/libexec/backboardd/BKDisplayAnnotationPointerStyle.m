@@ -8,7 +8,7 @@
 {
   id v5 = a3;
   id v6 = a4;
-  uint64_t v8 = objc_opt_class(&OBJC_CLASS___CAShapeLayer, v7);
+  CAShapeLayer *v8 = [CAShapeLayer class];
   id v9 = v5;
   id v24 = v9;
   if (v8)
@@ -28,7 +28,7 @@
 
   id v11 = v10;
 
-  uint64_t v13 = objc_opt_class(&OBJC_CLASS___BKDisplayAnnotationShapeContent, v12);
+  uint64_t v13 = [BKDisplayAnnotationShapeContent class];
   id v14 = v6;
   v15 = v14;
   if (v13)
@@ -60,10 +60,10 @@
   CGPathAddLineToPoint(Mutable, 0LL, v21 + 0.0 - v22, v21 + 0.0 - v22);
   CGPathAddLineToPoint(Mutable, 0LL, 0.0, 0.0);
   CGPathCloseSubpath(Mutable);
-  objc_msgSend(v11, "setBounds:", 0.0, 0.0, v19, v21);
+  [v11 setBounds:CGRectMake(0.0, 0.0, v19, v21)];
   [v11 setPath:Mutable];
-  objc_msgSend(v24, "bk_setBackgroundColorRed:green:blue:alpha:", 1.0, 1.0, 1.0, 0.649999976);
-  objc_msgSend(v24, "bk_setForegroundColorRed:green:blue:alpha:", 0.0, 0.0, 0.0, 0.5);
+  [v24 bk_setBackgroundColorRed:1.0 green:1.0 blue:1.0 alpha:0.649999976];
+  [v24 bk_setForegroundColorRed:0.0 green:0.0 blue:0.0 alpha:0.5];
 
   CFRelease(Mutable);
 }

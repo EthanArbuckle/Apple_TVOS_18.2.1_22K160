@@ -11,17 +11,17 @@
   if (v7)
   {
     CGColorRef v9 = v7;
-    uint64_t v10 = objc_opt_class(&OBJC_CLASS___CATextLayer, v8);
+    CATextLayer *v10 = [CATextLayer class];
     if ((objc_opt_isKindOfClass(self, v10) & 1) != 0)
     {
-      -[CALayer setForegroundColor:](self, "setForegroundColor:", v9);
+      [self setForegroundColor:v9];
     }
 
     else
     {
-      uint64_t v12 = objc_opt_class(&OBJC_CLASS___CAShapeLayer, v11);
+      uint64_t v12 = [CAShapeLayer class];
       if ((objc_opt_isKindOfClass(self, v12) & 1) != 0) {
-        -[CALayer setStrokeColor:](self, "setStrokeColor:", v9);
+        [self setStrokeColor:v9];
       }
     }
 
@@ -34,12 +34,12 @@
   if (v7)
   {
     CGColorRef v9 = v7;
-    uint64_t v10 = objc_opt_class(&OBJC_CLASS___CAShapeLayer, v8);
+    uint64_t v10 = [CAShapeLayer class];
     if ((objc_opt_isKindOfClass(self, v10) & 1) != 0) {
-      -[CALayer setFillColor:](self, "setFillColor:", v9);
+      [self setFillColor:v9];
     }
     else {
-      -[CALayer setBackgroundColor:](self, "setBackgroundColor:", v9);
+      [self setBackgroundColor:v9];
     }
     CFRelease(v9);
   }

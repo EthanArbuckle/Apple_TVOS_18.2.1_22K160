@@ -15,20 +15,20 @@
 - (BKWatchdogService)init
 {
   v11.receiver = self;
-  v11.super_class = (Class)&OBJC_CLASS___BKWatchdogService;
-  v2 = -[BKWatchdogService init](&v11, "init");
+  v11.super_class = [BKWatchdogService class];
+  BKWatchdogService *v2 = [[BKWatchdogService alloc] init];
   if (v2)
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
+    uint64_t v3 = [BKSystemShellSentinel sharedInstance];
     systemAppSentinel = v2->_systemAppSentinel;
     v2->_systemAppSentinel = (BKSystemShellSentinel *)v3;
 
-    uint64_t v5 = objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
+    uint64_t v5 = [BKHIDSystemInterface sharedInstance];
     hidSystem = v2->_hidSystem;
     v2->_hidSystem = (BKHIDSystemInterface *)v5;
 
     id v7 = sub_100044434();
-    uint64_t v8 = objc_claimAutoreleasedReturnValue(v7);
+    uint64_t v8 = [v7 autorelease];
     tvOutController = v2->_tvOutController;
     v2->_tvOutController = (BKTVOutController *)v8;
   }
@@ -46,7 +46,7 @@
 
 - (BOOL)isAlive
 {
-  return -[BKSystemShellSentinel collectiveWatchdogPing](self->_systemAppSentinel, "collectiveWatchdogPing");
+  return [self->_systemAppSentinel collectiveWatchdogPing];
 }
 
 - (BKSystemShellSentinel)systemAppSentinel

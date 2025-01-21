@@ -9,8 +9,8 @@
 - (BKGSEventSystem)init
 {
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKGSEventSystem;
-  v2 = -[BKGSEventSystem init](&v4, "init");
+  v4.super_class = [BKGSEventSystem class];
+  BKGSEventSystem *v2 = [[BKGSEventSystem alloc] init];
   if (v2)
   {
     GSEventRegisterEventCallBack(sub_1000277C0);
@@ -25,7 +25,7 @@
   uint64_t Type = GSEventGetType(a3, a2);
   if ((_DWORD)Type == 50)
   {
-    id v10 = (id)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
+    id v10 = [BKHIDSystemInterface sharedInstance];
     [v10 injectGSEvent:a3];
   }
 
@@ -35,7 +35,7 @@
     if ((_DWORD)Type == 100)
     {
       id v6 = sub_10003F2F4();
-      v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+      os_log_s *v7 = v6;
       if (os_log_type_enabled(v7, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 67109120;
@@ -47,7 +47,7 @@
     else
     {
       uint64_t v8 = BKLogEventDelivery(Type);
-      v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+      v9 = [v8 autorelease];
       if (os_log_type_enabled(v9, OS_LOG_TYPE_ERROR))
       {
         *(_DWORD *)buf = 67109120;

@@ -22,7 +22,7 @@
   __int128 v13 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[CBPeripheral services](self, "services", 0LL));
+  v5 = -[CBPeripheral services];
   id v6 = [v5 countByEnumeratingWithState:&v12 objects:v16 count:16];
   if (v6)
   {
@@ -34,7 +34,7 @@
         if (*(void *)v13 != v7) {
           objc_enumerationMutation(v5);
         }
-        v9 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v12 + 1) + 8 * (void)i) UUID]);
+        v9 = (void *)[*(id *)(*((void *)&v12 + 1) + 8 * (void)i) UUID];
         unsigned __int8 v10 = [v4 isEqual:v9];
 
         if ((v10 & 1) != 0)

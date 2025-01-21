@@ -25,20 +25,20 @@
 - (BKAlternateSystemAppServer)init
 {
   v10.receiver = self;
-  v10.super_class = (Class)&OBJC_CLASS___BKAlternateSystemAppServer;
-  v2 = -[BKAlternateSystemAppServer init](&v10, "init");
+  v10.super_class = [BKAlternateSystemAppServer class];
+  v2 = [BKAlternateSystemAppServer init];
   if (v2)
   {
-    v3 = -[NSXPCListener initWithMachServiceName:]( objc_alloc(&OBJC_CLASS___NSXPCListener),  "initWithMachServiceName:",  @"com.apple.backboard.altsysapp");
+    NSXPCListener *v3 = [[NSXPCListener alloc] initWithMachServiceName:@"com.apple.backboard.altsysapp"];
     xpcListener = v2->_xpcListener;
     v2->_xpcListener = v3;
 
-    -[NSXPCListener setDelegate:](v2->_xpcListener, "setDelegate:", v2);
+    [v2->_xpcListener setDelegate:v2];
     clientConnection = v2->_clientConnection;
     v2->_clientConnection = 0LL;
 
-    v6 = (void *)objc_claimAutoreleasedReturnValue( +[BKAlternateSystemAppManager sharedInstance]( &OBJC_CLASS___BKAlternateSystemAppManager,  "sharedInstance"));
-    -[BKAlternateSystemAppServer setAlternateSystemAppManager:](v2, "setAlternateSystemAppManager:", v6);
+    BKAlternateSystemAppManager *v6 = [BKAlternateSystemAppManager sharedInstance];
+    [v2 setAlternateSystemAppManager:v6];
 
     uint64_t Serial = BSDispatchQueueCreateSerial(@"com.apple.backboard.altsysappserver");
     queue = v2->_queue;
@@ -51,8 +51,8 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKAlternateSystemAppServer;
-  -[BKAlternateSystemAppServer dealloc](&v3, "dealloc");
+  v3.super_class = [BKAlternateSystemAppServer class];
+  [v3 dealloc];
 }
 
 - (void)run
@@ -81,13 +81,13 @@
   else {
     memset(v26, 0, sizeof(v26));
   }
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[BSAuditToken tokenFromAuditToken:](&OBJC_CLASS___BSAuditToken, "tokenFromAuditToken:", v26));
+  v9 = [BSAuditToken tokenFromAuditToken:v26];
   uint64_t v10 = BKReplaceSystemAppEntitlement;
   id v11 = [v9 hasEntitlement:BKReplaceSystemAppEntitlement];
   if ((v11 & 1) == 0)
   {
     uint64_t v14 = ((uint64_t (*)(void))BKLogAlternateSystemApp)();
-    v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v14);
+    v13 = v14;
     if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 138543362;
@@ -101,7 +101,7 @@
   if (self->_clientConnection)
   {
     uint64_t v12 = BKLogAlternateSystemApp(v11);
-    v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+    os_log_s *v13 = v12;
     if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)buf = 0;
@@ -113,7 +113,7 @@
   id v6 = a3;
   id v7 = a4;
   uint64_t v8 = BKLogAlternateSystemApp(v7);
-  v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+  v9 = v8;
   if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543618;
@@ -148,7 +148,7 @@
 - (void)blockSystemAppForAlternateSystemApp
 {
   uint64_t v3 = BKLogAlternateSystemApp(self);
-  v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)buf = 0;
@@ -167,7 +167,7 @@
 - (void)unblockSystemAppForAlternateSystemApp
 {
   uint64_t v3 = BKLogAlternateSystemApp(self);
-  v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)buf = 0;
@@ -187,7 +187,7 @@
 {
   id v4 = a3;
   uint64_t v5 = BKLogAlternateSystemApp(v4);
-  id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  os_log_s *v6 = v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543362;
@@ -210,7 +210,7 @@
 {
   id v4 = a3;
   uint64_t v5 = BKLogAlternateSystemApp(v4);
-  id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  id v6 = v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543362;

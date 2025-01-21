@@ -66,12 +66,12 @@
     v14[1] = CBManagerNeedsRestrictedStateOperation;
     v15[0] = &__kCFBooleanTrue;
     v15[1] = &__kCFBooleanTrue;
-    v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v15,  v14,  2LL));
+    v4 = [NSDictionary dictionaryWithObjects:v15, v14, 2];
     v5 = -[CBPeripheralManager initWithDelegate:queue:options:]( v3,  "initWithDelegate:queue:options:",  v2,  &_dispatch_main_q,  v4);
     peripheralManager = v2->_peripheralManager;
     v2->_peripheralManager = v5;
 
-    uint64_t v7 = objc_claimAutoreleasedReturnValue(+[NSMapTable strongToStrongObjectsMapTable](&OBJC_CLASS___NSMapTable, "strongToStrongObjectsMapTable"));
+    uint64_t v7 = [NSMapTable strongToStrongObjectsMapTable];
     serverServiceMap = v2->_serverServiceMap;
     v2->_serverServiceMap = (NSMapTable *)v7;
 
@@ -111,8 +111,8 @@
         if (v8)
         {
           id v9 = objc_alloc_init(v8);
-          v10 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap", (void)v12));
-          v11 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
+          v10 = -[ServerServiceManager serverServiceMap](self, "serverServiceMap", (void)v12);
+          v11 = (void *)[v9 service];
           [v10 setObject:v9 forKey:v11];
 
           [v9 start];
@@ -131,19 +131,19 @@
 
 - (void)destroyServices
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
+  id v3 = -[ServerServiceManager serverServiceMap](self, "serverServiceMap");
   [v3 enumerateKeysAndObjectsUsingBlock:&stru_10005D498];
 
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
+  id v4 = [ServerServiceManager serverServiceMap];
   [v4 removeAllObjects];
 
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[ServerServiceManager pendingUpdates](self, "pendingUpdates"));
+  id v5 = [ServerServiceManager pendingUpdates];
   [v5 removeAllObjects];
 }
 
 - (void)refreshPersistanceAssertion
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+  id v3 = [self peripheralManager];
   if ([v3 state] == (id)4)
   {
 
@@ -157,7 +157,7 @@ LABEL_6:
   if (!v4) {
     goto LABEL_6;
   }
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager persistanceAssertion](self, "persistanceAssertion"));
+  id v5 = [self persistanceAssertion];
 
   if (!v5)
   {
@@ -170,14 +170,14 @@ LABEL_6:
 - (void)addService:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+  id v5 = [self peripheralManager];
   [v5 addService:v4];
 }
 
 - (void)removeService:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+  id v5 = [self peripheralManager];
   [v5 removeService:v4];
 }
 
@@ -188,7 +188,7 @@ LABEL_6:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003BE84(v7, v6, a4);
   }
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+  v8 = [self peripheralManager];
   [v8 respondToRequest:v6 withResult:a4];
 }
 
@@ -201,14 +201,14 @@ LABEL_6:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003C000(v11, v9, (uint64_t)v8);
   }
-  __int128 v12 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager pendingUpdates](self, "pendingUpdates"));
+  __int128 v12 = (void *)[self pendingUpdates];
   if ([v12 count])
   {
   }
 
   else
   {
-    __int128 v13 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+    __int128 v13 = (void *)[self peripheralManager];
     unsigned __int8 v14 = [v13 updateValue:v8 forCharacteristic:v9 onSubscribedCentrals:v10];
 
     if ((v14 & 1) != 0) {
@@ -217,7 +217,7 @@ LABEL_6:
   }
 
   __int128 v15 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager pendingUpdates](self, "pendingUpdates"));
-  v16 = (void *)objc_claimAutoreleasedReturnValue( +[ATTUpdate updateWithValue:characteristic:centrals:]( &OBJC_CLASS___ATTUpdate,  "updateWithValue:characteristic:centrals:",  v8,  v9,  v10));
+  v16 = [ATTUpdate updateWithValue:v8 characteristic:v9 centrals:v10];
   [v15 addObject:v16];
 
   v17 = (void *)qword_100070CC8;
@@ -241,7 +241,7 @@ LABEL_8:
   }
 
   -[ServerServiceManager refreshPersistanceAssertion](self, "refreshPersistanceAssertion");
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
+  id v8 = -[ServerServiceManager serverServiceMap];
   v10[0] = _NSConcreteStackBlock;
   v10[1] = 3221225472LL;
   v10[2] = sub_10002A9DC;
@@ -263,8 +263,8 @@ LABEL_8:
   id v12 = a3;
   id v8 = a4;
   id v9 = a5;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
-  id v11 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKey:v8]);
+  id v10 = -[ServerServiceManager serverServiceMap];
+  id v11 = [v10 objectForKey:v8];
 
   if (v11) {
     [v11 peripheralManager:v12 didAddService:v8 error:v9];
@@ -275,10 +275,10 @@ LABEL_8:
 {
   id v6 = a3;
   id v7 = a4;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 characteristic]);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 service]);
-  id v11 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKey:v10]);
+  id v8 = -[ServerServiceManager serverServiceMap];
+  id v9 = [v7 characteristic];
+  id v10 = [v9 service];
+  id v11 = [v8 objectForKey:v10];
 
   if (v11)
   {
@@ -291,7 +291,7 @@ LABEL_8:
 
   else
   {
-    __int128 v13 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+    __int128 v13 = (void *)[self peripheralManager];
     [v13 respondToRequest:v7 withResult:10];
   }
 }
@@ -300,11 +300,11 @@ LABEL_8:
 {
   id v6 = a3;
   id v7 = a4;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 firstObject]);
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v8 characteristic]);
-  id v11 = (void *)objc_claimAutoreleasedReturnValue([v10 service]);
-  id v12 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:v11]);
+  id v8 = [v7 firstObject];
+  id v9 = -[ServerServiceManager serverServiceMap];
+  id v10 = [v8 characteristic];
+  id v11 = [v10 service];
+  id v12 = [v9 objectForKey:v11];
 
   if (v12)
   {
@@ -335,11 +335,11 @@ LABEL_8:
           {
             v19 = *(void **)(*((void *)&v31 + 1) + 8LL * (void)v17);
             v20 = v18;
-            v30 = (void *)objc_claimAutoreleasedReturnValue([v19 central]);
-            v21 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager nameForCentral:](self, "nameForCentral:", v30));
-            v22 = (void *)objc_claimAutoreleasedReturnValue([v19 characteristic]);
-            v23 = (void *)objc_claimAutoreleasedReturnValue([v22 UUID]);
-            v24 = (void *)objc_claimAutoreleasedReturnValue([v19 value]);
+            v30 = (void *)[v19 central];
+            v21 = -[ServerServiceManager nameForCentral:v30];
+            v22 = [v19 characteristic];
+            v23 = [v22 UUID];
+            v24 = [v19 value];
             *(_DWORD *)buf = 138412802;
             v36 = v21;
             __int16 v37 = 2112;
@@ -369,7 +369,7 @@ LABEL_8:
 
   else
   {
-    v25 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+    v25 = [self peripheralManager];
     [v25 respondToRequest:v8 withResult:10];
   }
 }
@@ -379,9 +379,9 @@ LABEL_8:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
-  id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 service]);
-  id v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
+  id v11 = -[ServerServiceManager serverServiceMap];
+  id v12 = [v10 service];
+  id v13 = [v11 objectForKey:v12];
 
   if (v13)
   {
@@ -390,7 +390,7 @@ LABEL_8:
     {
       id v15 = v14;
       uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager nameForCentral:](self, "nameForCentral:", v9));
-      v17 = (void *)objc_claimAutoreleasedReturnValue([v10 UUID]);
+      v17 = [v10 UUID];
       int v18 = 138412546;
       v19 = v16;
       __int16 v20 = 2112;
@@ -407,9 +407,9 @@ LABEL_8:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
-  id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 service]);
-  id v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKey:v12]);
+  id v11 = -[ServerServiceManager serverServiceMap](self, "serverServiceMap");
+  id v12 = [v10 service];
+  id v13 = [v11 objectForKey:v12];
 
   if (v13)
   {
@@ -418,7 +418,7 @@ LABEL_8:
     {
       id v15 = v14;
       uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager nameForCentral:](self, "nameForCentral:", v9));
-      v17 = (void *)objc_claimAutoreleasedReturnValue([v10 UUID]);
+      v17 = [v10 UUID];
       int v18 = 138412546;
       v19 = v16;
       __int16 v20 = 2112;
@@ -439,18 +439,18 @@ LABEL_8:
   }
   while (1)
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager pendingUpdates](self, "pendingUpdates"));
+    id v6 = -[ServerServiceManager pendingUpdates];
     id v7 = [v6 count];
 
     if (!v7) {
       break;
     }
     id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager pendingUpdates](self, "pendingUpdates"));
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 firstObject]);
+    id v9 = [v8 firstObject];
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v9 value]);
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v9 characteristic]);
+    id v10 = -[ServerServiceManager peripheralManager];
+    id v11 = [v9 value];
+    id v12 = [v9 characteristic];
     id v13 = (void *)objc_claimAutoreleasedReturnValue([v9 centrals]);
     unsigned __int8 v14 = [v10 updateValue:v11 forCharacteristic:v12 onSubscribedCentrals:v13];
 
@@ -469,7 +469,7 @@ LABEL_8:
 {
   id v8 = a3;
   id v9 = a4;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager serverServiceMap](self, "serverServiceMap"));
+  id v10 = -[ServerServiceManager serverServiceMap];
   v13[0] = _NSConcreteStackBlock;
   v13[1] = 3221225472LL;
   v13[2] = sub_10002B334;
@@ -484,15 +484,15 @@ LABEL_8:
 
 - (id)nameForCentral:(id)a3
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([a3 identifier]);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(+[ConnectionManager instance](&OBJC_CLASS___ConnectionManager, "instance"));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 peripheralForIdentifier:v3]);
+  id v3 = [a3 identifier];
+  id v4 = [ConnectionManager instance];
+  id v5 = [v4 peripheralForIdentifier:v3];
 
   if (v5) {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue([v5 name]);
+    uint64_t v6 = [v5 name];
   }
   else {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue([v3 UUIDString]);
+    uint64_t v6 = [v3 UUIDString];
   }
   id v7 = (void *)v6;
 
@@ -501,7 +501,7 @@ LABEL_8:
 
 - (id)peripheralManagerStateString
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[ServerServiceManager peripheralManager](self, "peripheralManager"));
+  v2 = -[ServerServiceManager peripheralManager];
   id v3 = (char *)[v2 state];
 
   else {

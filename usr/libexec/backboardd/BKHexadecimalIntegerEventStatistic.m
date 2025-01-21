@@ -18,8 +18,8 @@
 + (id)statisticWithLabel:(id)a3 hexFormatModifier:(int64_t)a4
 {
   v8.receiver = a1;
-  v8.super_class = (Class)&OBJC_METACLASS___BKHexadecimalIntegerEventStatistic;
-  id v5 = objc_msgSendSuper2(&v8, "statisticWithLabel:", a3);
+  v8.super_class = (Class)[BKHexadecimalIntegerEventStatistic class];
+  id v5 = [super statisticWithLabel:a3];
   v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
   if (v6) {
     v6[5] = a4;
@@ -29,7 +29,7 @@
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  self->_value));
+  v2 = [NSNumber numberWithUnsignedLongLong:self->_value];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -38,7 +38,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKHexadecimalIntegerEventStatistic, v5);
+  BKHexadecimalIntegerEventStatistic *v6 = [BKHexadecimalIntegerEventStatistic class];
   id v7 = v4;
   objc_super v8 = v7;
   if (v6)
@@ -71,7 +71,7 @@
   if (value)
   {
     int64_t hexFormatModifier = self->_hexFormatModifier;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[BKEventStatistic label](self, "label"));
+    id v7 = [self label];
     if (hexFormatModifier)
     {
       v10[0] = _NSConcreteStackBlock;
@@ -88,8 +88,8 @@
     }
 
     v9.receiver = self;
-    v9.super_class = (Class)&OBJC_CLASS___BKHexadecimalIntegerEventStatistic;
-    -[BKEventStatistic appendDescriptionToFormatter:](&v9, "appendDescriptionToFormatter:", v4);
+    v9.super_class = [BKHexadecimalIntegerEventStatistic class];
+    [v9 appendDescriptionToFormatter:v4];
   }
 }
 
@@ -98,14 +98,14 @@
   if (self->_value != a3)
   {
     self->_unint64_t value = a3;
-    unsigned int v5 = !-[BKEventStatistic automaticResetDisabled](self, "automaticResetDisabled");
+    unsigned int v5 = ![self automaticResetDisabled];
     if (a3) {
       uint64_t v6 = 1LL;
     }
     else {
       uint64_t v6 = v5;
     }
-    -[BKEventStatistic setNeedsLogging:](self, "setNeedsLogging:", v6);
+    [self setNeedsLogging:v6];
   }
 
 - (void)includeBitNumber:(int64_t)a3
@@ -127,16 +127,16 @@
 - (void)reset
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKHexadecimalIntegerEventStatistic;
-  -[BKEventStatistic reset](&v3, "reset");
+  v3.super_class = [BKHexadecimalIntegerEventStatistic class];
+  [v3 reset];
   self->_unint64_t value = 0LL;
 }
 
 - (id)copyWithZone:(_NSZone *)a3
 {
   v5.receiver = self;
-  v5.super_class = (Class)&OBJC_CLASS___BKHexadecimalIntegerEventStatistic;
-  id result = -[BKEventStatistic copyWithZone:](&v5, "copyWithZone:", a3);
+  v5.super_class = [BKHexadecimalIntegerEventStatistic class];
+  id result = [v5 copyWithZone:a3];
   *((void *)result + 4) = self->_value;
   return result;
 }

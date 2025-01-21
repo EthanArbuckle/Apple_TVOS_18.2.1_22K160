@@ -17,14 +17,14 @@
 
 - (id)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
   uint64_t v4 = NSStringFromBKSHIDServicesHumanPresenceStatus(self->_status);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
+  v5 = [v4 autorelease];
   id v6 = [v3 appendObject:v5 withName:@"status"];
 
   id v7 = [v3 appendFloat:@"proximityInCentimeters" withName:self->_proximityInCentimeters];
   id v8 = [v3 appendBool:self->_humanIsPresent withName:@"humanIsPresent"];
-  v9 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  v9 = (void *)[v3 build];
 
   return v9;
 }
@@ -37,7 +37,7 @@
   __int128 v14 = 0u;
   __int128 v15 = 0u;
   v3 = self->_services;
-  id v4 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v12,  v16,  16LL);
+  [v3 countByEnumeratingWithState:v12 objects:v16 count:16];
   if (v4)
   {
     id v5 = v4;
@@ -49,7 +49,7 @@
         if (*(void *)v13 != v6) {
           objc_enumerationMutation(v3);
         }
-        unsigned int v8 = objc_msgSend(*(id *)(*((void *)&v12 + 1) + 8 * (void)i), "primaryUsage", (void)v12);
+        unsigned int v8 = [*(id *)(*((void *)&v12 + 1) + 8 * (void)i) primaryUsage:v12];
         if (v8 == 17)
         {
           uint64_t v9 = 1LL;
@@ -66,7 +66,7 @@
         self->_status |= v9;
       }
 
-      id v5 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v12,  v16,  16LL);
+      [v3 countByEnumeratingWithState:v12 objects:v16 count:16];
     }
 
     while (v5);
@@ -105,7 +105,7 @@
   id v8 = v4;
   if (!services)
   {
-    uint64_t v6 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v6 = [[NSMutableArray alloc] init];
     id v7 = self->_services;
     self->_services = v6;
 
@@ -113,8 +113,8 @@
     services = self->_services;
   }
 
-  -[NSMutableArray addObject:](services, "addObject:", v4);
-  -[_BKHIDHumanPresenceSensorRecord _resetServiceStatus](self, "_resetServiceStatus");
+  [services addObject:v4];
+  [_BKHIDHumanPresenceSensorRecord _resetServiceStatus];
 }
 
 - (void)removeService:(id)a3

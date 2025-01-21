@@ -9,14 +9,14 @@
 {
   if (self->_state)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"must invoke -invalidate"));
+    v4 = [NSString stringWithFormat:@"must invoke -invalidate"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v5 = NSStringFromSelector(a2);
-      id v6 = (id)objc_claimAutoreleasedReturnValue(v5);
-      v8 = (objc_class *)objc_opt_class(self, v7);
+      id v6 = v5;
+      v8 = [self class];
       v9 = NSStringFromClass(v8);
-      v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+      v10 = [v9 autorelease];
       *(_DWORD *)buf = 138544642;
       id v13 = v6;
       __int16 v14 = 2114;
@@ -38,8 +38,8 @@
   }
 
   v11.receiver = self;
-  v11.super_class = (Class)&OBJC_CLASS___BKDirectTouchStateHitTester;
-  -[BKDirectTouchStateHitTester dealloc](&v11, "dealloc");
+  v11.super_class = [BKDirectTouchStateHitTester class];
+  [v11 dealloc];
 }
 
 - (void)invalidate

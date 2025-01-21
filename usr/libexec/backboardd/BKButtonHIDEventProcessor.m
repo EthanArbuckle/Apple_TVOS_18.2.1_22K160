@@ -14,13 +14,13 @@
 {
   id v4 = a3;
   v17.receiver = self;
-  v17.super_class = (Class)&OBJC_CLASS___BKButtonHIDEventProcessor;
-  v5 = -[BKButtonHIDEventProcessor init](&v17, "init");
+  v17.super_class = [BKButtonHIDEventProcessor class];
+  BKButtonHIDEventProcessor *v5 = [[BKButtonHIDEventProcessor alloc] init];
   v6 = v5;
   if (v5)
   {
     v5->_eventRecordsLock._os_unfair_lock_opaque = 0;
-    v7 = (void *)objc_claimAutoreleasedReturnValue([v4 systemInterface]);
+    v7 = [v4 systemInterface];
     uint64_t KeyboardEvent = IOHIDEventCreateKeyboardEvent(0LL, 0LL, 11LL, 46LL, 0LL, 0LL);
     if (KeyboardEvent)
     {
@@ -31,7 +31,7 @@
         v11 = v10;
         v6->_ringerState = IOHIDEventGetIntegerValue(v10, 196610LL) != 0;
         id v12 = sub_10003F124();
-        v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+        v13 = v12;
         if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
         {
           v14 = sub_100015B70(v6->_ringerState);
@@ -58,9 +58,9 @@
   id v10 = a5;
   if (!self->_keyboardEventProcessor)
   {
-    v11 = (void *)objc_claimAutoreleasedReturnValue( +[BKHIDEventProcessorRegistry sharedInstance]( &OBJC_CLASS___BKHIDEventProcessorRegistry,  "sharedInstance"));
-    id v13 = objc_msgSend(v11, "eventProcessorOfClass:", objc_opt_class(BKKeyboardHIDEventProcessor, v12));
-    v14 = (BKKeyboardHIDEventProcessor *)objc_claimAutoreleasedReturnValue(v13);
+    BKHIDEventProcessorRegistry *v11 = [BKHIDEventProcessorRegistry sharedInstance];
+    BKKeyboardHIDEventProcessor *v13 = [v11 eventProcessorOfClass:[BKKeyboardHIDEventProcessor class]];
+    v14 = (BKKeyboardHIDEventProcessor *)[v13 autorelease];
     keyboardEventProcessor = self->_keyboardEventProcessor;
     self->_keyboardEventProcessor = v14;
   }
@@ -73,7 +73,7 @@
   int Phase = IOHIDEventGetPhase(v16);
   if ((unsigned __int16)IntegerValue == 11 && v19 == 46)
   {
-    -[BKButtonHIDEventProcessor _processRingerSwitchEvent:down:sender:dispatcher:]( self,  "_processRingerSwitchEvent:down:sender:dispatcher:",  v16,  v20 != 0,  v9,  v10);
+    [self _processRingerSwitchEvent:v16 down:v20 != 0 sender:v9 dispatcher:v10];
     goto LABEL_59;
   }
 
@@ -88,11 +88,11 @@
   if (eventRecords)
   {
     usagePairsPeruint64_t SenderID = eventRecords->_usagePairsPerSenderID;
-    v25 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  SenderID));
-    v26 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( usagePairsPerSenderID,  "objectForKeyedSubscript:",  v25));
+    v25 = [NSNumber numberWithUnsignedLongLong:SenderID];
+    v26 = [usagePairsPerSenderID objectForKeyedSubscript:v25];
 
-    v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v23));
-    uint64_t v28 = objc_claimAutoreleasedReturnValue([v26 objectForKeyedSubscript:v27]);
+    v27 = [NSNumber numberWithUnsignedInt:v23];
+    uint64_t v28 = [v26 objectForKeyedSubscript:v27];
   }
 
   else
@@ -152,18 +152,18 @@ LABEL_44:
         v52 = self->_eventRecords;
         if (v52)
         {
-          v53 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v70));
-          v54 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v69));
-          v55 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( v52->_usagePairsPerSenderID,  "objectForKeyedSubscript:",  v53));
+          v53 = [NSNumber numberWithUnsignedLongLong:v70];
+          v54 = [NSNumber numberWithUnsignedInt:v69];
+          v55 = [v52->_usagePairsPerSenderID objectForKeyedSubscript:v53];
           sub_1000092B8((uint64_t)v52, v55, v53, v54);
         }
 
         id v56 = sub_10003F124();
-        v57 = (os_log_s *)objc_claimAutoreleasedReturnValue(v56);
+        os_log_s *v57 = v56;
         if (os_log_type_enabled(v57, OS_LOG_TYPE_DEFAULT))
         {
           v58 = sub_10001B23C((id *)v28);
-          v59 = (void *)objc_claimAutoreleasedReturnValue(v58);
+          v59 = [v58 autorelease];
           *(_DWORD *)buf = 67109890;
           int v79 = v67;
           __int16 v80 = 1024;
@@ -180,17 +180,17 @@ LABEL_44:
     goto LABEL_49;
   }
 
-  v29 = (void *)objc_claimAutoreleasedReturnValue([v10 destinationsForEvent:v16 fromSender:v9]);
+  v29 = (void *)[v10 destinationsForEvent:v16 fromSender:v9];
   if (!v29) {
-    v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet set](&OBJC_CLASS___NSSet, "set"));
+    v29 = [NSSet set];
   }
-  v30 = objc_alloc_init(&OBJC_CLASS____BKButtonEventRecord);
+  BKButtonEventRecord *v30 = [[BKButtonEventRecord alloc] init];
   uint64_t v28 = (uint64_t)v30;
   if (v30)
   {
-    objc_storeStrong((id *)&v30->_eventDispatcher, obj);
+    v30->_eventDispatcher = obj;
     objc_storeStrong((id *)(v28 + 16), v68);
-    +[NSDate timeIntervalSinceReferenceDate](&OBJC_CLASS___NSDate, "timeIntervalSinceReferenceDate");
+    [NSDate timeIntervalSinceReferenceDate];
     *(void *)(v28 + 40) = v31;
     objc_storeStrong((id *)(v28 + 32), v29);
     int v32 = IOHIDEventGetPhase(v16);
@@ -207,17 +207,17 @@ LABEL_44:
 
   else
   {
-    +[NSDate timeIntervalSinceReferenceDate](&OBJC_CLASS___NSDate, "timeIntervalSinceReferenceDate");
+    [NSDate timeIntervalSinceReferenceDate];
     IOHIDEventGetPhase(v16);
   }
 
   id obja = v29;
   id v33 = sub_10003F124();
-  v34 = (os_log_s *)objc_claimAutoreleasedReturnValue(v33);
+  v34 = v33;
   if (os_log_type_enabled(v34, OS_LOG_TYPE_DEFAULT))
   {
     v35 = sub_10001B23C((id *)v28);
-    v36 = (void *)objc_claimAutoreleasedReturnValue(v35);
+    v36 = [v35 autorelease];
     *(_DWORD *)buf = 67109890;
     int v79 = v67;
     __int16 v80 = 1024;
@@ -235,31 +235,31 @@ LABEL_44:
     id v38 = (id)v28;
     uint64_t v39 = v70;
 LABEL_30:
-    v44 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v39,  v67));
-    v45 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v69));
+    v44 = [NSNumber numberWithUnsignedLongLong:v39 v67];
+    v45 = [NSNumber numberWithUnsignedInt:v69];
     v46 = v37->_usagePairsPerSenderID;
     if (!v46)
     {
-      v47 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+      NSMutableDictionary *v47 = [[NSMutableDictionary alloc] init];
       v48 = v37->_usagePairsPerSenderID;
       v37->_usagePairsPeruint64_t SenderID = v47;
 
       v46 = v37->_usagePairsPerSenderID;
     }
 
-    v49 = (NSMutableDictionary *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](v46, "objectForKeyedSubscript:", v44));
+    v49 = [v46 objectForKeyedSubscript:v44];
     if (!v49)
     {
-      v49 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
-      -[NSMutableDictionary setObject:forKeyedSubscript:]( v37->_usagePairsPerSenderID,  "setObject:forKeyedSubscript:",  v49,  v44);
+      NSMutableDictionary *v49 = [[NSMutableDictionary alloc] init];
+      [v37->_usagePairsPerSenderID setObject:v49 forKey:v44];
     }
 
-    -[NSMutableDictionary setObject:forKeyedSubscript:](v49, "setObject:forKeyedSubscript:", v28, v45);
+    [v49 setObject:v28 forKey:v45];
 
     goto LABEL_35;
   }
 
-  v41 = objc_alloc_init(&OBJC_CLASS___BKEventSenderUsagePairDictionary);
+  BKEventSenderUsagePairDictionary *v41 = [[BKEventSenderUsagePairDictionary alloc] init];
   v42 = self->_eventRecords;
   self->_eventRecords = v41;
 
@@ -284,7 +284,7 @@ LABEL_49:
     v60 = 0LL;
   }
   id v61 = v60;
-  id v62 = [v61 countByEnumeratingWithState:&v73 objects:v77 count:16];
+  id v62 = [v61 countByEnumeratingWithState:v73 objects:v77 count:16];
   if (v62)
   {
     id v63 = v62;
@@ -296,10 +296,10 @@ LABEL_49:
         if (*(void *)v74 != v64) {
           objc_enumerationMutation(v61);
         }
-        -[BKButtonHIDEventProcessor _postEvent:sender:dispatcher:destination:cancelled:]( self,  "_postEvent:sender:dispatcher:destination:cancelled:",  v16,  v9,  v10,  *(void *)(*((void *)&v73 + 1) + 8LL * (void)i),  Phase == 8);
+        [self _postEvent:v16 sender:v9 dispatcher:v10 destination:v73 cancelled:Phase == 8];
       }
 
-      id v63 = [v61 countByEnumeratingWithState:&v73 objects:v77 count:16];
+      id v63 = [v61 countByEnumeratingWithState:v73 objects:v77 count:16];
     }
 
     while (v63);
@@ -318,10 +318,10 @@ LABEL_59:
   eventRecords = self->_eventRecords;
   if (eventRecords)
   {
-    v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a3));
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  v5 | ((_DWORD)v6 << 16)));
-    id v13 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( eventRecords->_usagePairsPerSenderID,  "objectForKeyedSubscript:",  v11));
-    v14 = (id *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:v12]);
+    v11 = [NSNumber numberWithUnsignedLongLong:a3];
+    uint64_t v12 = [NSNumber numberWithUnsignedInt:v5 | ((_DWORD)v6 << 16)];
+    id v13 = [eventRecords->_usagePairsPerSenderID objectForKeyedSubscript:v11];
+    v14 = [v13 objectForKeyedSubscript:v12];
     sub_1000092B8((uint64_t)eventRecords, v13, v11, v12);
   }
 
@@ -332,14 +332,14 @@ LABEL_59:
 
   os_unfair_lock_unlock(p_eventRecordsLock);
   id v15 = sub_10003F124();
-  v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+  os_log_s *v16 = v15;
   objc_super v17 = v16;
   if (v14)
   {
     if (os_log_type_enabled(v16, OS_LOG_TYPE_DEFAULT))
     {
       v18 = sub_10001B23C(v14);
-      unsigned __int16 v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
+      unsigned __int16 v19 = [v18];
       *(_DWORD *)buf = 67109890;
       int v33 = v6;
       __int16 v34 = 1024;
@@ -360,7 +360,7 @@ LABEL_59:
     __int128 v27 = 0u;
     __int128 v28 = 0u;
     id v22 = v14[4];
-    id v23 = [v22 countByEnumeratingWithState:&v27 objects:v31 count:16];
+    id v23 = [v22 countByEnumeratingWithState:v27 objects:v31 count:16];
     if (v23)
     {
       id v24 = v23;
@@ -373,12 +373,12 @@ LABEL_59:
           if (*(void *)v28 != v25) {
             objc_enumerationMutation(v22);
           }
-          -[BKButtonHIDEventProcessor _postEvent:sender:dispatcher:destination:cancelled:]( self,  "_postEvent:sender:dispatcher:destination:cancelled:",  KeyboardEvent,  v17,  v21,  *(void *)(*((void *)&v27 + 1) + 8LL * (void)v26),  1LL,  (void)v27);
+          [self _postEvent:KeyboardEvent sender:v17 dispatcher:v21 destination:v27 cancelled:1LL];
           v26 = (char *)v26 + 1;
         }
 
         while (v24 != v26);
-        id v24 = [v22 countByEnumeratingWithState:&v27 objects:v31 count:16];
+        id v24 = [v22 countByEnumeratingWithState:v27 objects:v31 count:16];
       }
 
       while (v24);
@@ -408,7 +408,7 @@ LABEL_59:
   Copy = (const void *)IOHIDEventCreateCopy(0LL, a3);
   keyboardEventProcessor = self->_keyboardEventProcessor;
   if (keyboardEventProcessor) {
-    id v16 = (id)-[BKKeyboardHIDEventProcessor eventSourceForSender:](keyboardEventProcessor, "eventSourceForSender:", v13);
+    id v16 = [keyboardEventProcessor eventSourceForSender:v13];
   }
   else {
     id v16 = [v13 eventSource];
@@ -445,7 +445,7 @@ LABEL_59:
   id v11 = a6;
   self->_ringerState = v7;
   id v12 = sub_10003F124();
-  id v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+  id v13 = [os_log_s class];
   if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
   {
     v14 = sub_100015B70(self->_ringerState);
@@ -455,12 +455,12 @@ LABEL_59:
     _os_log_impl((void *)&_mh_execute_header, v13, OS_LOG_TYPE_DEFAULT, "ringer state changed to:%{public}@", buf, 0xCu);
   }
 
-  id v16 = (void *)objc_claimAutoreleasedReturnValue([v11 destinationsForEvent:a3 fromSender:v10]);
+  id v16 = [v11 destinationsForEvent:a3 fromSender:v10];
   __int128 v21 = 0u;
   __int128 v22 = 0u;
   __int128 v23 = 0u;
   __int128 v24 = 0u;
-  id v17 = [v16 countByEnumeratingWithState:&v21 objects:v25 count:16];
+  id v17 = [v16 countByEnumeratingWithState:v21 objects:v25 count:16];
   if (v17)
   {
     id v18 = v17;
@@ -473,12 +473,12 @@ LABEL_59:
         if (*(void *)v22 != v19) {
           objc_enumerationMutation(v16);
         }
-        -[BKButtonHIDEventProcessor _postEvent:sender:dispatcher:destination:cancelled:]( self,  "_postEvent:sender:dispatcher:destination:cancelled:",  a3,  v10,  v11,  *(void *)(*((void *)&v21 + 1) + 8LL * (void)v20),  0LL);
+        [self _postEvent:a3 sender:v10 dispatcher:v11 destination:v20 cancelled:0LL];
         uint64_t v20 = (char *)v20 + 1;
       }
 
       while (v18 != v20);
-      id v18 = [v16 countByEnumeratingWithState:&v21 objects:v25 count:16];
+      id v18 = [v16 countByEnumeratingWithState:v21 objects:v25 count:16];
     }
 
     while (v18);

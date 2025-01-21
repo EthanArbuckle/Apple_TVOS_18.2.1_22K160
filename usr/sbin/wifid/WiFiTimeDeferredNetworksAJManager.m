@@ -38,7 +38,7 @@
   {
     v9 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: delegate",  "-[WiFiTimeDeferredNetworksAJManager initWithArgs:]");
+      [qword_100219F60 WFLog:@"%s: delegate" message:4 "-[WiFiTimeDeferredNetworksAJManager initWithArgs:]"];
     }
 LABEL_11:
     objc_autoreleasePoolPop(v9);
@@ -52,7 +52,7 @@ LABEL_11:
   v6->_deviceManager = a3;
   v7 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: initialized WiFiTimeDeferredNetworksAJManager",  "-[WiFiTimeDeferredNetworksAJManager initWithArgs:]");
+    [qword_100219F60 WFLog:@"%s: initialized WiFiTimeDeferredNetworksAJManager" message:4];
   }
   objc_autoreleasePoolPop(v7);
 LABEL_6:
@@ -90,7 +90,7 @@ LABEL_6:
   {
     v26 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: manager object is NULL",  "-[WiFiTimeDeferredNetworksAJManager canDeferNetwork:withUsageRank:andMotionState:]");
+      [qword_100219F60 WFLog:@"%s: manager object is NULL" message:3];
     }
     goto LABEL_53;
   }
@@ -99,7 +99,7 @@ LABEL_6:
   {
     v26 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: network object is NULL",  "-[WiFiTimeDeferredNetworksAJManager canDeferNetwork:withUsageRank:andMotionState:]");
+      [qword_100219F60 WFLog:@"%s: network object is NULL" message:3];
     }
     goto LABEL_53;
   }
@@ -108,7 +108,7 @@ LABEL_6:
   {
     v26 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: usageRankForDeferral is not correctly initialized",  "-[WiFiTimeDeferredNetworksAJManager canDeferNetwork:withUsageRank:andMotionState:]");
+      [qword_100219F60 WFLog:@"%s: usageRankForDeferral is not correctly initialized" message:3];
     }
     goto LABEL_53;
   }
@@ -118,7 +118,7 @@ LABEL_6:
   {
     v26 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: deferIntervalSecs is not correctly initialized",  "-[WiFiTimeDeferredNetworksAJManager canDeferNetwork:withUsageRank:andMotionState:]");
+      [qword_100219F60 WFLog:@"%s: deferIntervalSecs is not correctly initialized" message:3];
     }
     goto LABEL_53;
   }
@@ -127,7 +127,7 @@ LABEL_6:
   {
     v26 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: numDaysSinceAssocOverrideDeferral is not correctly initialized",  "-[WiFiTimeDeferredNetworksAJManager canDeferNetwork:withUsageRank:andMotionState:]");
+      [qword_100219F60 WFLog:@"%s: numDaysSinceAssocOverrideDeferral is not correctly initialized" message:3];
     }
 LABEL_53:
     objc_autoreleasePoolPop(v26);
@@ -138,10 +138,10 @@ LABEL_53:
   if (v11)
   {
     else {
-      unsigned int v12 = objc_msgSend( +[WiFiAnalyticsManager sharedWiFiAnalyticsManager]( WiFiAnalyticsManager,  "sharedWiFiAnalyticsManager"),  "isMovingNetwork:",  a3);
+      unsigned int v12 = [WiFiAnalyticsManager sharedWiFiAnalyticsManager] isMovingNetwork:a3];
     }
     else {
-      unsigned int v13 = objc_msgSend( +[WiFiAnalyticsManager sharedWiFiAnalyticsManager]( WiFiAnalyticsManager,  "sharedWiFiAnalyticsManager"),  "isOmnipresentNetwork:",  a3);
+      unsigned int v13 = [+[WiFiAnalyticsManager sharedWiFiAnalyticsManager]( WiFiAnalyticsManager,  "sharedWiFiAnalyticsManager") isOmnipresentNetwork:a3];
     }
     uint64_t v14 = sub_1000DA400((uint64_t)self->_deviceManager, a3);
     if (!(_DWORD)v14) {
@@ -313,7 +313,7 @@ LABEL_12:
   {
     unsigned int v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: no scan results",  "-[WiFiTimeDeferredNetworksAJManager setScanResultsWithAutoJoinSessionCompletion:complete:]");
+      [qword_100219F60 WFLog:@"%s: no scan results" message:4];
     }
 LABEL_15:
     objc_autoreleasePoolPop(v12);
@@ -472,7 +472,7 @@ LABEL_15:
     {
       objc_super v5 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: logString alloc failed",  "-[WiFiTimeDeferredNetworksAJManager printDeferredNetworks]");
+        [qword_100219F60 WFLog:@"%s: logString alloc failed" message:4];
       }
     }
 

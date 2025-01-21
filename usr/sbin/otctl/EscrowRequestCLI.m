@@ -26,14 +26,14 @@
 
 - (int)trigger
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[EscrowRequestCLI escrowRequest](self, "escrowRequest"));
+  v2 = [self escrowRequest];
   id v7 = 0LL;
   [v2 triggerEscrowUpdate:@"cli" error:&v7];
   id v3 = v7;
 
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("Errored: %s", (const char *)[v4 UTF8String]);
 
     int v5 = 1;
@@ -50,14 +50,14 @@
 
 - (int)status
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[EscrowRequestCLI escrowRequest](self, "escrowRequest"));
+  v2 = [self escrowRequest];
   id v21 = 0LL;
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([v2 fetchStatuses:&v21]);
+  id v3 = [v2 fetchStatuses:&v21];
   id v4 = v21;
 
   if (v4)
   {
-    id v5 = objc_claimAutoreleasedReturnValue([v4 description]);
+    id v5 = [v4 description];
     printf("Errored: %s\n", (const char *)[v5 UTF8String]);
 
     int v6 = 1;
@@ -71,7 +71,7 @@
       __int128 v20 = 0u;
       __int128 v17 = 0u;
       __int128 v18 = 0u;
-      id v7 = (void *)objc_claimAutoreleasedReturnValue([v3 allKeys]);
+      id v7 = [v3 allKeys];
       id v8 = [v7 countByEnumeratingWithState:&v17 objects:v22 count:16];
       if (v8)
       {
@@ -86,8 +86,8 @@
             }
             id v12 = *(id *)(*((void *)&v17 + 1) + 8LL * (void)i);
             v13 = (const char *)[v12 UTF8String];
-            v14 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:v12]);
-            id v15 = objc_claimAutoreleasedReturnValue([v14 description]);
+            v14 = [v3 objectForKeyedSubscript:v12];
+            id v15 = [v14 description];
             printf("Request %s: %s\n", v13, (const char *)[v15 UTF8String]);
           }
 
@@ -111,14 +111,14 @@
 
 - (int)reset
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[EscrowRequestCLI escrowRequest](self, "escrowRequest"));
+  v2 = [self escrowRequest];
   id v7 = 0LL;
   [v2 resetAllRequests:&v7];
   id v3 = v7;
 
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("Errored: %s\n", (const char *)[v4 UTF8String]);
 
     int v5 = 1;
@@ -135,14 +135,14 @@
 
 - (int)storePrerecordsInEscrow
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[EscrowRequestCLI escrowRequest](self, "escrowRequest"));
+  v2 = [self escrowRequest];
   id v8 = 0LL;
   unsigned int v3 = [v2 storePrerecordsInEscrow:&v8];
   id v4 = v8;
 
   if (v4)
   {
-    id v5 = objc_claimAutoreleasedReturnValue([v4 description]);
+    id v5 = [v4 description];
     printf("Errored: %s\n", (const char *)[v5 UTF8String]);
 
     int v6 = 1;

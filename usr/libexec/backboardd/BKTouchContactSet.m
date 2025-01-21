@@ -11,11 +11,11 @@
 - (BKTouchContactSet)init
 {
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS___BKTouchContactSet;
-  v2 = -[BKTouchContactSet init](&v6, "init");
+  v6.super_class = [BKTouchContactSet class];
+  BKTouchContactSet *v2 = [[BKTouchContactSet alloc] init];
   if (v2)
   {
-    v3 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v3 = [[NSMutableArray alloc] init];
     contacts = v2->_contacts;
     v2->_contacts = v3;
   }
@@ -25,18 +25,18 @@
 
 - (id)description
 {
-  return +[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self->_contacts);
+  return [BSDescriptionStream descriptionForRootObject:self->_contacts];
 }
 
 - (int64_t)count
 {
-  return (int64_t)-[NSMutableArray count](self->_contacts, "count");
+  return [self->_contacts count];
 }
 
 - (id)copy
 {
-  v3 = objc_alloc_init(&OBJC_CLASS___BKTouchContactSet);
-  v4 = (NSMutableArray *)-[NSMutableArray mutableCopy](self->_contacts, "mutableCopy");
+  BKTouchContactSet *v3 = [[BKTouchContactSet alloc] init];
+  v4 = [self->_contacts mutableCopy];
   contacts = v3->_contacts;
   v3->_contacts = v4;
 
@@ -47,7 +47,7 @@
 
 - (unint64_t)countByEnumeratingWithState:(id *)a3 objects:(id *)a4 count:(unint64_t)a5
 {
-  return (unint64_t)-[NSMutableArray countByEnumeratingWithState:objects:count:]( self->_contacts,  "countByEnumeratingWithState:objects:count:",  a3,  a4,  a5);
+  return [self->_contacts countByEnumeratingWithState:a3 objects:a4 count:a5];
 }
 
 - (void).cxx_destruct

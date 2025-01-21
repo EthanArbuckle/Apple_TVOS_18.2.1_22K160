@@ -12,12 +12,12 @@
 - (BKSecureDrawingMonitor)init
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS___BKSecureDrawingMonitor;
-  v2 = -[BKSecureDrawingMonitor init](&v8, "init");
+  v8.super_class = [BKSecureDrawingMonitor class];
+  BKSecureDrawingMonitor *v2 = [[BKSecureDrawingMonitor alloc] init];
   if (v2)
   {
-    v3 = (void *)objc_claimAutoreleasedReturnValue(+[BSDispatchQueueAttributes serial](&OBJC_CLASS___BSDispatchQueueAttributes, "serial"));
-    v4 = (void *)objc_claimAutoreleasedReturnValue([v3 serviceClass:9]);
+    v3 = [BSDispatchQueueAttributes serial];
+    v4 = [v3 serviceClass:9];
     uint64_t v5 = BSDispatchQueueCreate(@"com.apple.backboardd.secure-drawing-monitor", v4);
     reportingQueue = v2->_reportingQueue;
     v2->_reportingQueue = (OS_dispatch_queue *)v5;
@@ -41,8 +41,8 @@
 {
   if (-[BKSecureDrawingMonitor isSecureModeEnabled](self, "isSecureModeEnabled"))
   {
-    v2 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
-    v3 = (void *)objc_claimAutoreleasedReturnValue([v2 secureModeViolations]);
+    v2 = [CAWindowServer serverIfRunning];
+    v3 = (void *)[v2 secureModeViolations];
 
     uint64_t v30 = 0LL;
     v31 = &v30;
@@ -71,7 +71,7 @@
     id v26 = 0LL;
     if (v31[5])
     {
-      v4 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+      NSMutableArray *v4 = [[NSMutableArray alloc] init];
       uint64_t v5 = (void *)v22[5];
       v22[5] = (uint64_t)v4;
 
@@ -103,8 +103,8 @@
 
         objc_super v8 = v7;
         _Block_object_dispose(&v41, 8);
-        id v9 = objc_alloc_init(v8);
-        v10 = (void *)objc_claimAutoreleasedReturnValue([v9 systemApplicationBundleIdentifier]);
+        v9 = [v8 init];
+        v10 = [v9 systemApplicationBundleIdentifier];
         v36 = 0LL;
         uint64_t v37 = (uint64_t)&v36;
         uint64_t v38 = 0x2020000000LL;
@@ -121,9 +121,9 @@
         _Block_object_dispose(&v36, 8);
         if (!v11)
         {
-          v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
-          v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "NSString *getFBSOpenApplicationOptionKeyActions(void)"));
-          objc_msgSend( v18,  "handleFailureInFunction:file:lineNumber:description:",  v19,  @"BKSecureDrawingMonitor.m",  27,  @"%s",  dlerror());
+          v18 = [NSAssertionHandler currentHandler];
+          v19 = [NSString stringWithUTF8String:getFBSOpenApplicationOptionKeyActions()];
+          [v18 handleFailureInFunction:@"BKSecureDrawingMonitor.m" lineNumber:27 description:@"%s" dlerror()];
 
           __break(1u);
           return;
@@ -135,9 +135,9 @@
         {
           if (v13)
           {
-            id v15 = objc_alloc(&OBJC_CLASS___BKSInsecureDrawingAction);
+            BKSInsecureDrawingAction *v15 = [[BKSInsecureDrawingAction alloc] init];
             id v16 = [v15 initWithSecureModeViolations:v22[5]];
-            v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithObject:](&OBJC_CLASS___NSSet, "setWithObject:", v16));
+            v17 = [NSSet setWithObject:v16];
             [v9 sendActions:v17 withResult:0];
           }
         }

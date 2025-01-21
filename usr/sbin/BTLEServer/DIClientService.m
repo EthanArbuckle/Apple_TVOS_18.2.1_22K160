@@ -65,33 +65,33 @@
   v14.receiver = self;
   v14.super_class = (Class)&OBJC_CLASS___DIClientService;
   -[ClientService start](&v14, "start");
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", CBUUIDPnPIDCharacteristicString));
+  v3 = [CBUUID UUIDWithString:CBUUIDPnPIDCharacteristicString];
   v15[0] = v3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSoftwareRevisionStringCharacteristicString));
+  v4 = [CBUUID UUIDWithString:CBUUIDSoftwareRevisionStringCharacteristicString];
   v15[1] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDFirmwareRevisionStringCharacteristicString));
+  v5 = [CBUUID UUIDWithString:CBUUIDFirmwareRevisionStringCharacteristicString];
   v15[2] = v5;
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDHardwareRevisionStringCharacteristicString));
+  v6 = [CBUUID UUIDWithString:CBUUIDHardwareRevisionStringCharacteristicString];
   v15[3] = v6;
-  v7 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSerialNumberStringCharacteristicString));
+  v7 = [CBUUID UUIDWithString:CBUUIDSerialNumberStringCharacteristicString];
   v15[4] = v7;
   objc_super v8 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDModelNumberStringCharacteristicString));
   v15[5] = v8;
-  v9 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDManufacturerNameStringCharacteristicString));
+  v9 = [CBUUID UUIDWithString:CBUUIDManufacturerNameStringCharacteristicString];
   v15[6] = v9;
-  v10 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDUDIForMedicalDevicesCharacteristicString));
+  v10 = [CBUUID UUIDWithString:CBUUIDUDIForMedicalDevicesCharacteristicString];
   v15[7] = v10;
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v15, 8LL));
+  v11 = [NSArray arrayWithObjects:count:v15, 8LL];
 
-  v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v13 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService service](self, "service"));
+  v12 = [self peripheral];
+  v13 = [self service];
   [v12 discoverCharacteristics:v11 forService:v13];
 }
 
 - (BOOL)hasIDs
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService pnpIDCharacteristic](self, "pnpIDCharacteristic"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 value]);
+  v2 = -[DIClientService pnpIDCharacteristic];
+  v3 = [v2 value];
   BOOL v4 = v3 != 0LL;
 
   return v4;
@@ -99,9 +99,9 @@
 
 - (void)extractIDs
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService pnpIDCharacteristic](self, "pnpIDCharacteristic"));
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue([v3 value]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[DataInputStream inputStreamWithData:byteOrder:]( &OBJC_CLASS___DataInputStream,  "inputStreamWithData:byteOrder:",  v4,  1LL));
+  v3 = [self pnpIDCharacteristic];
+  BOOL v4 = [v3 value];
+  v5 = [DataInputStream inputStreamWithData:v4 byteOrder:1LL];
 
   if ([v5 readUint8:&self->_vendorIDSource])
   {
@@ -116,8 +116,8 @@
           {
             v7 = v6;
             objc_super v8 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-            v9 = (void *)objc_claimAutoreleasedReturnValue([v8 name]);
-            v10 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService vendorIDSourceString](self, "vendorIDSourceString"));
+            v9 = [v8 name];
+            v10 = -[DIClientService vendorIDSourceString];
             int v11 = 138413314;
             v12 = v9;
             __int16 v13 = 2112;
@@ -145,7 +145,7 @@
     __int128 v58 = 0u;
     __int128 v55 = 0u;
     __int128 v56 = 0u;
-    id obj = (id)objc_claimAutoreleasedReturnValue([a4 characteristics]);
+    id obj = [a4 characteristics];
     id v9 = [obj countByEnumeratingWithState:&v55 objects:v59 count:16];
     if (!v9) {
       goto LABEL_42;
@@ -176,7 +176,7 @@
 
         else
         {
-          __int16 v15 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
+          __int16 v15 = [v13 UUID];
           unsigned int v16 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v53));
           unsigned int v17 = [v15 isEqual:v16];
 
@@ -196,8 +196,8 @@ LABEL_39:
 
         else
         {
-          __int16 v19 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v52));
+          __int16 v19 = (void *)[v13 UUID];
+          unsigned int v20 = [CBUUID UUIDWithString:v52];
           unsigned int v21 = [v19 isEqual:v20];
 
           if (v21)
@@ -207,15 +207,15 @@ LABEL_39:
           }
         }
 
-        v22 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService fwRevisionCharacteristic](self, "fwRevisionCharacteristic"));
+        v22 = [self fwRevisionCharacteristic];
         if (v22)
         {
         }
 
         else
         {
-          v23 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          v24 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v51));
+          v23 = [v13 UUID];
+          v24 = [CBUUID UUIDWithString:v51];
           unsigned int v25 = [v23 isEqual:v24];
 
           if (v25)
@@ -225,15 +225,15 @@ LABEL_39:
           }
         }
 
-        v26 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService hwRevisionCharacteristic](self, "hwRevisionCharacteristic"));
+        v26 = [self hwRevisionCharacteristic];
         if (v26)
         {
         }
 
         else
         {
-          v27 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          v28 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v50));
+          v27 = [v13 UUID];
+          v28 = [CBUUID UUIDWithString:v50];
           unsigned int v29 = [v27 isEqual:v28];
 
           if (v29)
@@ -243,15 +243,15 @@ LABEL_39:
           }
         }
 
-        v30 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService serialNumberCharacteristic](self, "serialNumberCharacteristic"));
+        v30 = -[DIClientService serialNumberCharacteristic];
         if (v30)
         {
         }
 
         else
         {
-          v31 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          v32 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v49));
+          v31 = [v13 UUID];
+          v32 = [CBUUID UUIDWithString:v49];
           unsigned int v33 = [v31 isEqual:v32];
 
           if (v33)
@@ -261,15 +261,15 @@ LABEL_39:
           }
         }
 
-        v34 = (void *)objc_claimAutoreleasedReturnValue(-[DIClientService modelNumberCharacteristic](self, "modelNumberCharacteristic"));
+        v34 = [self modelNumberCharacteristic];
         if (v34)
         {
         }
 
         else
         {
-          v35 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          v36 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v48));
+          v35 = [v13 UUID];
+          v36 = [CBUUID UUIDWithString:v48];
           unsigned int v37 = [v35 isEqual:v36];
 
           if (v37)
@@ -286,8 +286,8 @@ LABEL_39:
 
         else
         {
-          v39 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          v40 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v47));
+          v39 = [v13 UUID];
+          v40 = [CBUUID UUIDWithString:v47];
           unsigned int v41 = [v39 isEqual:v40];
 
           if (v41)
@@ -297,15 +297,15 @@ LABEL_39:
           }
         }
 
-        v42 = (void *)objc_claimAutoreleasedReturnValue( -[DIClientService udiForMedicalDevicesCharacteristic]( self,  "udiForMedicalDevicesCharacteristic"));
+        v42 = -[DIClientService udiForMedicalDevicesCharacteristic];
         if (v42)
         {
 
           goto LABEL_40;
         }
 
-        v43 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-        v44 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v46));
+        v43 = [v13 UUID];
+        v44 = [CBUUID UUIDWithString:v46];
         unsigned int v45 = [v43 isEqual:v44];
 
         if (v45)
@@ -318,12 +318,12 @@ LABEL_39:
 - (void)peripheral:(id)a3 didUpdateValueForCharacteristic:(id)a4 error:(id)a5
 {
   id v45 = a4;
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+  v6 = [v45 value];
   id v7 = [v6 length];
 
   if (v7)
   {
-    id v8 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService pnpIDCharacteristic](self, "pnpIDCharacteristic"));
+    id v8 = [self pnpIDCharacteristic];
 
     if (v8 == v45)
     {
@@ -332,12 +332,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v9 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService swRevisionCharacteristic](self, "swRevisionCharacteristic"));
+    id v9 = [self swRevisionCharacteristic];
 
     if (v9 == v45)
     {
       unsigned int v21 = objc_alloc(&OBJC_CLASS___NSString);
-      v22 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v22 = [v45 value];
       v23 = -[NSString initWithData:encoding:](v21, "initWithData:encoding:", v22, 4LL);
       softwareRevision = self->_softwareRevision;
       self->_softwareRevision = v23;
@@ -346,12 +346,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v10 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService fwRevisionCharacteristic](self, "fwRevisionCharacteristic"));
+    id v10 = [self fwRevisionCharacteristic];
 
     if (v10 == v45)
     {
       unsigned int v25 = objc_alloc(&OBJC_CLASS___NSString);
-      v26 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v26 = [v45 value];
       v27 = -[NSString initWithData:encoding:](v25, "initWithData:encoding:", v26, 4LL);
       firmwareRevision = self->_firmwareRevision;
       self->_firmwareRevision = v27;
@@ -360,12 +360,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v11 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService hwRevisionCharacteristic](self, "hwRevisionCharacteristic"));
+    id v11 = [self hwRevisionCharacteristic];
 
     if (v11 == v45)
     {
       unsigned int v29 = objc_alloc(&OBJC_CLASS___NSString);
-      v30 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v30 = [v45 value];
       v31 = -[NSString initWithData:encoding:](v29, "initWithData:encoding:", v30, 4LL);
       hardwareRevision = self->_hardwareRevision;
       self->_hardwareRevision = v31;
@@ -374,12 +374,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v12 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService serialNumberCharacteristic](self, "serialNumberCharacteristic"));
+    id v12 = [self serialNumberCharacteristic];
 
     if (v12 == v45)
     {
       unsigned int v33 = objc_alloc(&OBJC_CLASS___NSString);
-      v34 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v34 = [v45 value];
       uint64_t v20 = 4LL;
       v35 = -[NSString initWithData:encoding:](v33, "initWithData:encoding:", v34, 4LL);
       serialNumber = self->_serialNumber;
@@ -388,12 +388,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v13 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService modelNumberCharacteristic](self, "modelNumberCharacteristic"));
+    id v13 = [self modelNumberCharacteristic];
 
     if (v13 == v45)
     {
       unsigned int v37 = objc_alloc(&OBJC_CLASS___NSString);
-      v38 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v38 = [v45 value];
       v39 = -[NSString initWithData:encoding:](v37, "initWithData:encoding:", v38, 4LL);
       modelNumber = self->_modelNumber;
       self->_modelNumber = v39;
@@ -402,12 +402,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v14 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService manufacturerNameCharacteristic](self, "manufacturerNameCharacteristic"));
+    id v14 = [self manufacturerNameCharacteristic];
 
     if (v14 == v45)
     {
       unsigned int v41 = objc_alloc(&OBJC_CLASS___NSString);
-      v42 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      v42 = [v45 value];
       v43 = -[NSString initWithData:encoding:](v41, "initWithData:encoding:", v42, 4LL);
       manufacturerName = self->_manufacturerName;
       self->_manufacturerName = v43;
@@ -416,12 +416,12 @@ LABEL_39:
       goto LABEL_18;
     }
 
-    id v15 = (id)objc_claimAutoreleasedReturnValue(-[DIClientService udiForMedicalDevicesCharacteristic](self, "udiForMedicalDevicesCharacteristic"));
+    id v15 = [self udiForMedicalDevicesCharacteristic];
 
     if (v15 == v45)
     {
       unsigned int v16 = objc_alloc(&OBJC_CLASS___NSString);
-      unsigned int v17 = (void *)objc_claimAutoreleasedReturnValue([v45 value]);
+      unsigned int v17 = (void *)[v45 value];
       unsigned int v18 = -[NSString initWithData:encoding:](v16, "initWithData:encoding:", v17, 4LL);
       udiForMedicalDevices = self->_udiForMedicalDevices;
       self->_udiForMedicalDevices = v18;
@@ -438,63 +438,63 @@ LABEL_18:
   switch(a3)
   {
     case 0:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"PID:0x%04X VID:0x%04X",  self->_productID,  self->_vendorID));
+      BOOL v4 = [NSString stringWithFormat:@"PID:0x%04X VID:0x%04X" , self->_productID , self->_vendorID];
       v5 = @"PnP";
       if (v4) {
         goto LABEL_16;
       }
       goto LABEL_18;
     case 1:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService softwareRevision](self, "softwareRevision"));
+      BOOL v4 = [self softwareRevision];
       v5 = @"SoftwareRevision";
       if (!v4) {
         goto LABEL_18;
       }
       goto LABEL_16;
     case 2:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService firmwareRevision](self, "firmwareRevision"));
+      BOOL v4 = [self firmwareRevision];
       v5 = @"FirmwareRevision";
       if (!v4) {
         goto LABEL_18;
       }
       goto LABEL_16;
     case 3:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService hardwareRevision](self, "hardwareRevision"));
+      BOOL v4 = [self hardwareRevision];
       v5 = @"HardwareRevision";
       if (!v4) {
         goto LABEL_18;
       }
       goto LABEL_16;
     case 4:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService serialNumber](self, "serialNumber"));
+      BOOL v4 = [self serialNumber];
       v5 = @"SerialNumber";
       if (!v4) {
         goto LABEL_18;
       }
       goto LABEL_16;
     case 5:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService modelNumber](self, "modelNumber"));
+      BOOL v4 = [self modelNumber];
       v5 = @"ModelNumber";
       if (!v4) {
         goto LABEL_18;
       }
       goto LABEL_16;
     case 6:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService manufacturerName](self, "manufacturerName"));
+      BOOL v4 = [self manufacturerName];
       v5 = @"ManufacturerName";
       if (v4) {
         goto LABEL_16;
       }
       goto LABEL_18;
     case 7:
-      BOOL v4 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DIClientService udiForMedicalDevices](self, "udiForMedicalDevices"));
+      BOOL v4 = [self udiForMedicalDevices];
       v5 = @"UDIForMedicalDevices";
       if (v4) {
         goto LABEL_16;
       }
 LABEL_18:
-      id v14 = (id)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      id v13 = (void *)objc_claimAutoreleasedReturnValue([v14 name]);
+      id v14 = [self peripheral];
+      id v13 = [v14 name];
       NSLog(@"Error updating DeviceInformation for %@‘s %@ - %@", v13, v5, 0LL);
 
       break;
@@ -502,19 +502,19 @@ LABEL_18:
       v5 = @"Unknown";
       BOOL v4 = &stru_10005DB20;
 LABEL_16:
-      v6 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 name]);
+      v6 = [self peripheral];
+      id v7 = [v6 name];
       NSLog(@"Updated DeviceInformation for %@‘s %@ - %@", v7, v5, v4);
 
-      id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      id v8 = [NSNotificationCenter defaultCenter];
       v15[0] = @"UUID";
-      id v9 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-      id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 identifier]);
-      id v11 = (void *)objc_claimAutoreleasedReturnValue([v10 UUIDString]);
+      id v9 = -[ClientService peripheral];
+      id v10 = [v9 identifier];
+      id v11 = [v10 UUIDString];
       v15[1] = v5;
       v16[0] = v11;
       v16[1] = v4;
-      id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v16,  v15,  2LL));
+      id v12 = [NSDictionary dictionaryWithObjects:v16 forKeys:v15 count:2];
       [v8 postNotificationName:@"DeviceInformationUpdate" object:self userInfo:v12];
 
       break;
@@ -532,7 +532,7 @@ LABEL_16:
     id v7 = v10;
     if ((v8 & 0x10) != 0)
     {
-      id v9 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+      id v9 = -[ClientService peripheral];
       [v9 setNotifyValue:v4 forCharacteristic:v10];
 
       id v7 = v10;

@@ -60,7 +60,7 @@
 {
   uint64_t v6 = *(void *)&a6;
   uint64_t v7 = a5;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytesNoCopy:length:freeWhenDone:]( &OBJC_CLASS___NSData,  "dataWithBytesNoCopy:length:freeWhenDone:",  a3,  a4,  0LL));
+  id v9 = [NSData dataWithBytesNoCopy:a3 length:a4 freeWhenDone:0LL];
   LODWORD(v6) = -[HIDBluetoothDevice setReportData:reportID:reportType:error:]( self,  "setReportData:reportID:reportType:error:",  v9,  v7,  v6,  0LL);
 
   return v6;

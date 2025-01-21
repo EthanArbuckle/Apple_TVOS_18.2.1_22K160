@@ -102,15 +102,15 @@
     v7->_browserToAdvUuidToSFendpoints = v16;
 
     v7->_browserState = 0;
-    uint64_t v18 = objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+    uint64_t v18 = [NSMutableSet set];
     resultChanges = v7->_resultChanges;
     v7->_resultChanges = (NSMutableSet *)v18;
 
-    uint64_t v20 = objc_claimAutoreleasedReturnValue(-[BTVCBonjourService randomUUID](v7, "randomUUID"));
+    uint64_t v20 = [v7 randomUUID];
     localAdvertiserUUIDString = v7->_localAdvertiserUUIDString;
     v7->_localAdvertiserUUIDString = (NSString *)v20;
 
-    uint64_t v22 = objc_claimAutoreleasedReturnValue(-[BTVCBonjourService randomUUID](v7, "randomUUID"));
+    uint64_t v22 = [v7 randomUUID];
     localBrowserUUIDString = v7->_localBrowserUUIDString;
     v7->_localBrowserUUIDString = (NSString *)v22;
 
@@ -132,16 +132,16 @@
 
 - (id)randomUUID
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 UUIDString]);
+  v2 = [NSUUID UUID];
+  v3 = [v2 UUIDString];
 
   return v3;
 }
 
 - (id)getUniqueServiceNameForAdvertiser
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[NSString lowercaseString](self->_localAdvertiserUUIDString, "lowercaseString"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v2, "substringWithRange:", 12, 12));
+  v2 = [self->_localAdvertiserUUIDString lowercaseString];
+  v3 = [v2 substringWithRange:NSMakeRange(12, 12)];
 
   return v3;
 }
@@ -169,14 +169,14 @@
       _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "[BTVCBonjourService] Starting BTVCBonjourServiceAdvertiser listener/advertiser",  buf,  2u);
     }
 
-    v6 = (nw_parameters *)objc_claimAutoreleasedReturnValue( +[BTVCBonjourEndpoint createConnectionParameters]( &OBJC_CLASS___BTVCBonjourEndpoint,  "createConnectionParameters"));
+    v6 = [BTVCBonjourEndpoint createConnectionParameters];
     v7 = nw_listener_create(v6);
     listener = self->_listener;
     self->_listener = v7;
 
     if (self->_listener)
     {
-      id v9 = objc_claimAutoreleasedReturnValue( -[BTVCBonjourService getUniqueServiceNameForAdvertiser]( self, "getUniqueServiceNameForAdvertiser"));
+      id v9 = [self getUniqueServiceNameForAdvertiser];
       bonjour_service = nw_advertise_descriptor_create_bonjour_service( (const char *)[v9 UTF8String],  "_btvc._tcp",  0);
       if (bonjour_service)
       {
@@ -323,7 +323,7 @@
       _os_log_impl( (void *)&_mh_execute_header,  v3,  OS_LOG_TYPE_DEFAULT,  "[BTVCBonjourService] Cleaning up the advertiser",  v5,  2u);
     }
 
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService advToBrowserNwToSFendpoints](self, "advToBrowserNwToSFendpoints"));
+    v4 = -[BTVCBonjourService advToBrowserNwToSFendpoints];
     [v4 enumerateKeysAndObjectsUsingBlock:&stru_100886FB8];
 
     -[BTVCBonjourService _updateAdvertiserState](self, "_updateAdvertiserState");
@@ -332,7 +332,7 @@
 - (void)_updateAdvertiserState
 {
   unsigned int v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService advToBrowserNwToSFendpoints](self, "advToBrowserNwToSFendpoints"));
-  id v4 = (id)objc_claimAutoreleasedReturnValue([v3 keysOfEntriesPassingTest:&stru_100886FF8]);
+  id v4 = [v3 keysOfEntriesPassingTest:&stru_100886FF8];
 
   if (![v4 count] && !self->_listener)
   {
@@ -481,19 +481,19 @@
     [v4 enumerateKeysAndObjectsUsingBlock:&stru_1008870B8];
 
     -[BTVCBonjourService _updateBrowserState](self, "_updateBrowserState");
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService deviceDidStopScanning](self, "deviceDidStopScanning"));
+    id v5 = [self deviceDidStopScanning];
 
     if (v5)
     {
-      id v6 = (void (**)(void, void))objc_claimAutoreleasedReturnValue( -[BTVCBonjourService deviceDidStopScanning]( self,  "deviceDidStopScanning"));
+      id v6 = [self deviceDidStopScanning];
       v6[2](v6, 0LL);
     }
   }
 
 - (void)_updateBrowserState
 {
-  unsigned int v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService browserToAdvNwToSFendpoints](self, "browserToAdvNwToSFendpoints"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 keysOfEntriesPassingTest:&stru_1008870D8]);
+  unsigned int v3 = (void *)[self browserToAdvNwToSFendpoints];
+  id v4 = [v3 keysOfEntriesPassingTest:&stru_1008870D8];
 
   if (![v4 count] && !self->_browser)
   {
@@ -536,13 +536,13 @@
         id v9 = *(void **)(*((void *)&v26 + 1) + 8LL * (void)i);
         if ((objc_msgSend(v9, "change", v25) & 2) != 0)
         {
-          v15 = (nw_browse_result *)objc_claimAutoreleasedReturnValue([v9 freshResult]);
+          v15 = [v9 freshResult];
           id v11 = nw_browse_result_copy_endpoint(v15);
 
           if (!-[BTVCBonjourService isLocalEndpoint:](self, "isLocalEndpoint:", v11))
           {
             id v16 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService browserToAdvNwToSFendpoints](self, "browserToAdvNwToSFendpoints"));
-            uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKey:v11]);
+            uint64_t v17 = (void *)[v16 objectForKey:v11];
             BOOL v18 = v17 == 0LL;
 
             v19 = (os_log_s *)qword_1008F7710;
@@ -558,7 +558,7 @@
                 _os_log_impl( (void *)&_mh_execute_header,  v19,  OS_LOG_TYPE_DEFAULT,  "[BTVCBonjourService] Found endpoint %@, (%p)",  buf,  0x16u);
               }
 
-              v21 = (nw_parameters *)objc_claimAutoreleasedReturnValue( +[BTVCBonjourEndpoint createConnectionParameters]( &OBJC_CLASS___BTVCBonjourEndpoint,  "createConnectionParameters"));
+              v21 = [BTVCBonjourEndpoint createConnectionParameters];
               nw_connection_t v22 = nw_connection_create(v11, v21);
 
               v23 = (nw_endpoint *)objc_claimAutoreleasedReturnValue( -[BTVCBonjourService _handleConnection:isAdvToBrowserConnection:]( self,  "_handleConnection:isAdvToBrowserConnection:",  v22,  0LL));
@@ -584,13 +584,13 @@
 
         else
         {
-          id v10 = (nw_browse_result *)objc_claimAutoreleasedReturnValue([v9 oldResult]);
+          id v10 = [v9 oldResult];
           id v11 = nw_browse_result_copy_endpoint(v10);
 
           if (!-[BTVCBonjourService isLocalEndpoint:](self, "isLocalEndpoint:", v11))
           {
-            v12 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService browserToAdvNwToSFendpoints](self, "browserToAdvNwToSFendpoints"));
-            uint64_t v13 = (nw_endpoint *)objc_claimAutoreleasedReturnValue([v12 objectForKey:v11]);
+            v12 = -[BTVCBonjourService browserToAdvNwToSFendpoints];
+            uint64_t v13 = (nw_endpoint *)[v12 objectForKey:v11];
 
             id v14 = (os_log_s *)qword_1008F7710;
             if (os_log_type_enabled((os_log_t)qword_1008F7710, OS_LOG_TYPE_DEFAULT))
@@ -631,10 +631,10 @@
     {
       nw_endpoint_t v10 = nw_connection_copy_endpoint(v6);
       if (v4) {
-        id v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService advToBrowserNwToSFendpoints](self, "advToBrowserNwToSFendpoints"));
+        id v11 = -[BTVCBonjourService advToBrowserNwToSFendpoints];
       }
       else {
-        id v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService browserToAdvNwToSFendpoints](self, "browserToAdvNwToSFendpoints"));
+        id v11 = [self browserToAdvNwToSFendpoints];
       }
       [v11 setObject:v9 forKey:v10];
 
@@ -704,8 +704,8 @@
   v27[1] = @"BTVCBonjourServiceMessageValue";
   v28[0] = v11;
   v28[1] = v10;
-  id v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v28,  v27,  2LL));
-  v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSPropertyListSerialization dataWithPropertyList:format:options:error:]( &OBJC_CLASS___NSPropertyListSerialization,  "dataWithPropertyList:format:options:error:",  v14,  200LL,  0LL,  0LL));
+  id v14 = [NSDictionary dictionaryWithObjects:forKeys:count:v28, v27, 2LL];
+  v15 = [NSPropertyListSerialization dataWithPropertyList:v14 format:200 options:0 error:0];
   id v16 = (os_log_s *)qword_1008F7710;
   if (v15)
   {
@@ -735,8 +735,8 @@
   {
     NSErrorUserInfoKey v25 = NSLocalizedDescriptionKey;
     __int128 v26 = @"Unable to send message, failed to serialize payload";
-    BOOL v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v26,  &v25,  1LL));
-    id v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSOSStatusErrorDomain,  -6700LL,  v18));
+    BOOL v18 = [NSDictionary dictionaryWithObjects:forKeys:count:&v26, &v25, 1LL];
+    id v17 = [NSError errorWithDomain:NSOSStatusErrorDomain code:-6700LL userInfo:v18];
 
     (*((void (**)(id, void *))v13 + 2))(v13, v17);
 LABEL_9:
@@ -781,7 +781,7 @@ LABEL_9:
     id v10 = @"BTVCBonjourServiceMessageTypeStartAdvertiseData";
   }
   id v11 = v10;
-  id v12 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService advToBrowserUuidToSFendpoints](self, "advToBrowserUuidToSFendpoints"));
+  id v12 = [self advToBrowserUuidToSFendpoints];
   v16[0] = _NSConcreteStackBlock;
   v16[1] = 3221225472LL;
   v16[2] = sub_10020545C;
@@ -803,7 +803,7 @@ LABEL_9:
 - (void)connectToDevice:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 UUIDString]);
+  id v5 = [v4 UUIDString];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_1002056C0;
@@ -817,7 +817,7 @@ LABEL_9:
 - (void)disconnectFromDevice:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 UUIDString]);
+  id v5 = [v4 UUIDString];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10020587C;
@@ -833,7 +833,7 @@ LABEL_9:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue([v9 UUIDString]);
+  id v11 = [v9 UUIDString];
   v16[0] = _NSConcreteStackBlock;
   v16[1] = 3221225472LL;
   v16[2] = sub_100205AD8;
@@ -854,7 +854,7 @@ LABEL_9:
   id v4 = (nw_endpoint *)a3;
   id v5 = +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  nw_endpoint_get_bonjour_service_name(v4));
   id v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService getUniqueServiceNameForAdvertiser](self, "getUniqueServiceNameForAdvertiser"));
+  uint64_t v7 = (void *)[self getUniqueServiceNameForAdvertiser];
   unsigned __int8 v8 = [v6 isEqualToString:v7];
 
   return v8;
@@ -871,13 +871,13 @@ LABEL_9:
     goto LABEL_8;
   }
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService advToBrowserUuidToSFendpoints](self, "advToBrowserUuidToSFendpoints"));
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:v4]);
+  id v5 = -[BTVCBonjourService advToBrowserUuidToSFendpoints];
+  id v6 = [v5 objectForKeyedSubscript:v4];
 
   if (!v6)
   {
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTVCBonjourService browserToAdvUuidToSFendpoints](self, "browserToAdvUuidToSFendpoints"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v4]);
+    id v6 = [v7 objectForKeyedSubscript:v4];
 
     if (!v6)
     {

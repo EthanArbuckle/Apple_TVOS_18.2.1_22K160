@@ -8,7 +8,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3
@@ -25,7 +25,7 @@
 
 - (unint64_t)countByEnumeratingWithState:(id *)a3 objects:(id *)a4 count:(unint64_t)a5
 {
-  return (unint64_t)-[NSMutableArray countByEnumeratingWithState:objects:count:]( self->_clients,  "countByEnumeratingWithState:objects:count:",  a3,  a4,  a5);
+  return [(NSMutableArray *)self->_clients countByEnumeratingWithState:a3 objects:a4 count:a5];
 }
 
 - (void).cxx_destruct

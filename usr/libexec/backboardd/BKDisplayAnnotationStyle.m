@@ -15,52 +15,52 @@
 
 + (id)minimalStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationMinimalStyle);
+  BKDisplayAnnotationMinimalStyle *return = [[BKDisplayAnnotationMinimalStyle alloc] init];
 }
 
 + (id)ellipseStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationEllipseStyle);
+  BKDisplayAnnotationEllipseStyle *return = [[BKDisplayAnnotationEllipseStyle alloc] init];
 }
 
 + (id)rectangleStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationRectangleStyle);
+  BKDisplayAnnotationRectangleStyle *return = [[BKDisplayAnnotationRectangleStyle alloc] init];
 }
 
 + (id)pointerStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationPointerStyle);
+  BKDisplayAnnotationPointerStyle *return = [[BKDisplayAnnotationPointerStyle alloc] init];
 }
 
 + (id)textStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationTextStyle);
+  BKDisplayAnnotationTextStyle *return = [[BKDisplayAnnotationTextStyle alloc] init];
 }
 
 + (id)textBackgroundStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationTextBackgroundStyle);
+  BKDisplayAnnotationTextBackgroundStyle *return = [[BKDisplayAnnotationTextBackgroundStyle alloc] init];
 }
 
 + (id)emphasizedStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationEmphasizedStyle);
+  BKDisplayAnnotationEmphasizedStyle *return = [[BKDisplayAnnotationEmphasizedStyle alloc] init];
 }
 
 + (id)crosshatchedBackgroundStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationCrosshatchedBackgroundStyle);
+  BKDisplayAnnotationCrosshatchedBackgroundStyle *return = [[BKDisplayAnnotationCrosshatchedBackgroundStyle alloc] init];
 }
 
 + (id)canceledStyle
 {
-  return objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationCanceledStyle);
+  BKDisplayAnnotationCanceledStyle *return = [[BKDisplayAnnotationCanceledStyle alloc] init];
 }
 
 + (id)colorVariationStyleWithIndex:(int64_t)a3
 {
-  return +[BKDisplayAnnotationColorVariationStyle colorVariationWithIndex:]( &OBJC_CLASS___BKDisplayAnnotationColorVariationStyle,  "colorVariationWithIndex:",  a3);
+  return [BKDisplayAnnotationColorVariationStyle colorVariationWithIndex:a3];
 }
 
 @end

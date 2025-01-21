@@ -10,13 +10,13 @@
 {
   id v4 = a3;
   v10.receiver = self;
-  v10.super_class = (Class)&OBJC_CLASS___BKHIDTouchSensitiveButtonEventProcessor;
-  v5 = -[BKHIDTouchSensitiveButtonEventProcessor init](&v10, "init");
+  v10.super_class = [BKHIDTouchSensitiveButtonEventProcessor class];
+  BKHIDTouchSensitiveButtonEventProcessor *v5 = [[BKHIDTouchSensitiveButtonEventProcessor alloc] init];
   v6 = v5;
   if (v5)
   {
     v5->_lock._os_unfair_lock_opaque = 0;
-    v7 = -[BKHIDTouchSensitiveButtonScanningController initWithContext:]( objc_alloc(&OBJC_CLASS___BKHIDTouchSensitiveButtonScanningController),  "initWithContext:",  v4);
+    BKHIDTouchSensitiveButtonScanningController *v7 = [[BKHIDTouchSensitiveButtonScanningController alloc] initWithContext:v4];
     buttonScanningController = v6->_buttonScanningController;
     v6->_buttonScanningController = v7;
   }
@@ -58,13 +58,13 @@ LABEL_42:
     if (!v15)
     {
       id v40 = sub_10003F124();
-      v23 = (os_log_s *)objc_claimAutoreleasedReturnValue(v40);
+      v23 = [v40 autorelease];
       if (os_log_type_enabled(v23, OS_LOG_TYPE_ERROR))
       {
         v42 = sub_1000186BC((uint64_t)v10, v41);
-        v43 = (void *)objc_claimAutoreleasedReturnValue(v42);
+        v43 = v42;
         LODWORD(v69.receiver) = 138543362;
-        *(id *)((char *)&v69.receiver + 4) = v43;
+        v69.receiver = v43;
         _os_log_error_impl( (void *)&_mh_execute_header,  v23,  OS_LOG_TYPE_ERROR,  "missing force stage event -- dropping event: %{public}@",  (uint8_t *)&v69,  0xCu);
       }
 
@@ -74,12 +74,12 @@ LABEL_42:
     uint64_t v16 = v15;
     unsigned int v17 = IOHIDEventGetIntegerValue(v15, 2686976LL);
     int v18 = IOHIDEventGetIntegerValue(v16, 2686977LL);
-    v19 = objc_alloc(&OBJC_CLASS____BKTouchSensitiveButtonKey);
+    BKTouchSensitiveButtonKey *v19 = [[BKTouchSensitiveButtonKey alloc] init];
     if (v19)
     {
       v69.id receiver = v19;
-      v69.Class super_class = (Class)&OBJC_CLASS____BKTouchSensitiveButtonKey;
-      v20 = -[BKHIDTouchSensitiveButtonEventProcessor init](&v69, "init");
+      v69.super_class = [BKTouchSensitiveButtonKey class];
+      BKHIDTouchSensitiveButtonEventProcessor *v20 = [[BKHIDTouchSensitiveButtonEventProcessor alloc] init];
       v21 = v20;
       if (v20)
       {
@@ -94,7 +94,7 @@ LABEL_42:
       v21 = 0LL;
     }
 
-    v22 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_lock_eventRecords, "objectForKey:", v21));
+    v22 = [self->_lock_eventRecords objectForKey:v21];
     v23 = v21;
     v69.id receiver = v23;
     v64 = v22;
@@ -107,12 +107,12 @@ LABEL_42:
     id v75 = v66;
     os_log_type_t v24 = 2 * (v18 == 0);
     id v25 = sub_10003F124();
-    v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+    v26 = v25;
     if (os_log_type_enabled(v26, v24))
     {
       uint64_t TimeStamp = IOHIDEventGetTimeStamp(v10);
       v29 = sub_1000186BC((uint64_t)v10, v28);
-      v30 = (void *)objc_claimAutoreleasedReturnValue(v29);
+      v30 = (void *)[v29 autorelease];
       *(_DWORD *)buf = 134218242;
       uint64_t v77 = TimeStamp;
       __int16 v78 = 2114;
@@ -123,7 +123,7 @@ LABEL_42:
     if (!v70)
     {
       id v44 = sub_10003F124();
-      p_isa = (id *)objc_claimAutoreleasedReturnValue(v44);
+      p_isa = (id *)v44;
       if (os_log_type_enabled((os_log_t)p_isa, OS_LOG_TYPE_ERROR))
       {
         *(_WORD *)buf = 0;
@@ -138,12 +138,12 @@ LABEL_42:
       if (!v69.super_class)
       {
         id v53 = sub_10003F124();
-        p_isa = (id *)objc_claimAutoreleasedReturnValue(v53);
+        p_isa = [v53 retain];
         if (os_log_type_enabled((os_log_t)p_isa, OS_LOG_TYPE_ERROR))
         {
           id receiver = v69.receiver;
           v55 = sub_100017EB4(v70);
-          v56 = (void *)objc_claimAutoreleasedReturnValue(v55);
+          v56 = v55;
           *(_DWORD *)buf = 138543618;
           uint64_t v77 = (uint64_t)receiver;
           __int16 v78 = 2114;
@@ -179,19 +179,19 @@ LABEL_41:
       v32 = v69.super_class;
       if (!v32)
       {
-        v32 = objc_alloc_init(&OBJC_CLASS____BKTouchSensitiveButtonEventRecord);
-        objc_storeStrong((id *)&v69.super_class, v32);
+        BKTouchSensitiveButtonEventRecord *v32 = [[BKTouchSensitiveButtonEventRecord alloc] init];
+        [v69 super_class] = v32;
         lock_eventRecords = self->_lock_eventRecords;
         if (!lock_eventRecords)
         {
-          v34 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+          NSMutableDictionary *v34 = [[NSMutableDictionary alloc] init];
           v35 = self->_lock_eventRecords;
           self->_lock_eventRecords = v34;
 
           lock_eventRecords = self->_lock_eventRecords;
         }
 
-        -[NSMutableDictionary setObject:forKey:](lock_eventRecords, "setObject:forKey:", v32, v31);
+        [lock_eventRecords setObject:v32 forKey:v31];
       }
 
       sub_100026DC0(self, (uint64_t)v10, (uint64_t)&v69);
@@ -215,7 +215,7 @@ LABEL_39:
     {
       uint64_t v46 = v70;
       v47 = v45[2].isa;
-      unsigned __int8 v48 = -[objc_class containsIndex:](v47, "containsIndex:", v46);
+      BOOL v48 = [v47 containsIndex:v46];
 
       if ((v48 & 1) != 0)
       {
@@ -228,13 +228,13 @@ LABEL_39:
         BOOL v52 = [v51 count] == 0;
 
         if (v52) {
-          -[NSMutableDictionary removeObjectForKey:](self->_lock_eventRecords, "removeObjectForKey:", v69.receiver);
+          [self->_lock_eventRecords removeObjectForKey:v69.receiver];
         }
         goto LABEL_39;
       }
 
       id v62 = sub_10003F124();
-      v58 = (os_log_s *)objc_claimAutoreleasedReturnValue(v62);
+      os_log_s *v58 = [os_log_s class];
       if (!os_log_type_enabled(v58, OS_LOG_TYPE_ERROR)) {
         goto LABEL_38;
       }
@@ -250,7 +250,7 @@ LABEL_39:
     else
     {
       id v57 = sub_10003F124();
-      v58 = (os_log_s *)objc_claimAutoreleasedReturnValue(v57);
+      v58 = [os_log logWithCategory:v57];
       if (!os_log_type_enabled(v58, OS_LOG_TYPE_ERROR))
       {
 LABEL_38:

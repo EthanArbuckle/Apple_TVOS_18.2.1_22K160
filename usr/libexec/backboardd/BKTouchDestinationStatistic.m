@@ -15,7 +15,7 @@
   v22 = v6;
   if (!statsPerDestination)
   {
-    v8 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v8 = [[NSMutableDictionary alloc] init];
     v9 = self->_statsPerDestination;
     self->_statsPerDestination = v8;
 
@@ -23,11 +23,11 @@
     statsPerDestination = self->_statsPerDestination;
   }
 
-  v10 = (BKTouchDestinationStats *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](statsPerDestination, "objectForKey:", v6));
+  v10 = [statsPerDestination objectForKey:v6];
   if (!v10)
   {
-    v10 = objc_alloc_init(&OBJC_CLASS___BKTouchDestinationStats);
-    -[NSMutableDictionary setObject:forKey:](self->_statsPerDestination, "setObject:forKey:", v10, v22);
+    BKTouchDestinationStats *v10 = [[BKTouchDestinationStats alloc] init];
+    [self->_statsPerDestination setObject:v10 forKey:v22];
     if (v22) {
       uint64_t v12 = v22[3];
     }
@@ -35,8 +35,8 @@
       uint64_t v12 = 0LL;
     }
     uint64_t ClientConnectionManager = BKHIDEventRoutingGetClientConnectionManager(v22, v11);
-    v14 = (void *)objc_claimAutoreleasedReturnValue(ClientConnectionManager);
-    v15 = (void *)objc_claimAutoreleasedReturnValue([v14 clientForTaskPort:v12]);
+    v14 = [ClientConnectionManager autorelease];
+    v15 = [v14 clientForTaskPort:v12];
     v16 = v15;
     if (v15)
     {
@@ -55,20 +55,20 @@
     }
 
     uint64_t v19 = BSProcessDescriptionForPID(v18);
-    v20 = (void *)objc_claimAutoreleasedReturnValue(v19);
-    -[BKTouchDestinationStats setProcessDescription:](v10, "setProcessDescription:", v20);
+    v20 = [v19 autorelease];
+    [v10 setProcessDescription:v20];
   }
 
-  v21 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchDestinationStats touchIdentifiers](v10, "touchIdentifiers"));
+  v21 = [v10 touchIdentifiers];
   [v21 addIndex:a4];
 
-  -[BKEventStatistic setNeedsLogging:](self, "setNeedsLogging:", 1LL);
+  [self setNeedsLogging:YES];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BSDescriptionStream, v5);
+  uint64_t v6 = [BSDescriptionStream class];
   id v7 = v4;
   id v11 = v7;
   if (v6)
@@ -101,8 +101,8 @@
 - (void)reset
 {
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKTouchDestinationStatistic;
-  -[BKEventStatistic reset](&v4, "reset");
+  v4.super_class = [BKTouchDestinationStatistic class];
+  [v4 reset];
   statsPerDestination = self->_statsPerDestination;
   self->_statsPerDestination = 0LL;
 }

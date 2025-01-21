@@ -13,15 +13,15 @@
 - (BKTouchDestinationStats)init
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS___BKTouchDestinationStats;
-  v2 = -[BKTouchDestinationStats init](&v8, "init");
+  v8.super_class = [BKTouchDestinationStats class];
+  BKTouchDestinationStats *v2 = [[BKTouchDestinationStats alloc] init];
   if (v2)
   {
-    v3 = objc_alloc_init(&OBJC_CLASS___NSMutableIndexSet);
+    NSMutableIndexSet *v3 = [[NSMutableIndexSet alloc] init];
     pathIndexes = v2->_pathIndexes;
     v2->_pathIndexes = v3;
 
-    v5 = objc_alloc_init(&OBJC_CLASS___NSMutableIndexSet);
+    NSMutableIndexSet *v5 = [[NSMutableIndexSet alloc] init];
     touchIdentifiers = v2->_touchIdentifiers;
     v2->_touchIdentifiers = v5;
   }

@@ -49,7 +49,7 @@
 - (BOOL)isHubConnected
 {
   v2 = self;
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay hub](self, "hub"));
+  v3 = -[DoAPAudioRelay hub];
   LOBYTE(v2) = [v3 isXpcConnectedForDeviceType:v2->_deviceType];
 
   return (char)v2;
@@ -64,7 +64,7 @@
   }
   id v14 = @"kMsgArgData";
   id v15 = v4;
-  id v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v15,  &v14,  1LL));
+  id v13 = [NSDictionary dictionaryWithObjects:forKeys:count:v15, v14, 1LL];
   -[DoAPAudioRelay sendMsg:args:](self, "sendMsg:args:", "AudioFrame", v13);
 }
 
@@ -94,23 +94,23 @@
 
 - (void)publish
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInteger:]( &OBJC_CLASS___NSNumber,  "numberWithInteger:",  -[DoAPAudioRelay deviceType](self, "deviceType")));
+  v3 = [NSMutableDictionary dictionary];
+  id v4 = [NSNumber numberWithInteger: +[DoAPAudioRelay deviceType](self, "deviceType")];
   [v3 setValue:v4 forKey:@"kMsgDeviceType"];
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay hidProperties](self, "hidProperties"));
+  v5 = [self hidProperties];
   if (v5)
   {
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay hidProperties](self, "hidProperties"));
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"ProductID"]);
+    uint64_t v7 = (void *)[v6 objectForKeyedSubscript:@"ProductID"];
     [v3 setValue:v7 forKey:@"kMsgPidNum"];
   }
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay identifier](self, "identifier"));
+  uint64_t v8 = (void *)[self identifier];
 
   if (v8)
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay identifier](self, "identifier"));
+    uint64_t v9 = (void *)[self identifier];
     [v3 setValue:v9 forKey:@"kMsgArgIdentifier"];
   }
 
@@ -124,7 +124,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t v12 = v11;
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v3 description]);
+    id v13 = [v3 description];
     int v14 = 138412290;
     id v15 = v13;
     _os_log_impl( (void *)&_mh_execute_header,  v12,  OS_LOG_TYPE_DEFAULT,  "DoAPAudioRelay - Send publish to AVVC %@",  (uint8_t *)&v14,  0xCu);
@@ -173,7 +173,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003A5FC(v5, v6, v7, v8, v9, v10, v11, v12);
   }
-  id v13 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay delegate](self, "delegate"));
+  id v13 = [self delegate];
   [v13 doapAudioWillStart:v4];
 }
 
@@ -185,22 +185,22 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003A62C(v5, v6, v7, v8, v9, v10, v11, v12);
   }
-  id v13 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay delegate](self, "delegate"));
+  id v13 = -[DoAPAudioRelay delegate];
   [v13 doapAudioDidStop:v4];
 }
 
 - (void)sendMsg:(const char *)a3 args:(id)a4
 {
   id v10 = a4;
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay identifier](self, "identifier"));
+  uint64_t v6 = (void *)[self identifier];
   uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithObject:forKey:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithObject:forKey:",  v6,  @"kMsgArgIdentifier"));
 
   if (v10) {
     [v7 addEntriesFromDictionary:v10];
   }
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay hub](self, "hub"));
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", a3));
-  objc_msgSend(v8, "sendMsgIfCheckedIn:args:forClient:", v9, v7, -[DoAPAudioRelay deviceType](self, "deviceType"));
+  uint64_t v8 = (void *)[self hub];
+  uint64_t v9 = (void *)[NSString stringWithUTF8String:a3];
+  [v8 sendMsgIfCheckedIn:v9 args:v7 forClient:[self deviceType]];
 }
 
 - (DoAPAudioRelaySource)delegate

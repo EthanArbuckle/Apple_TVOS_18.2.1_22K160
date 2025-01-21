@@ -28,7 +28,7 @@
   {
     v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without networkRecord",  "-[WiFiNWReliabilityMonitorSession initWithNetworkRecord:withMetrics:withMaxSamples:withMinSampleThresh:]");
+      [qword_100219F60 WFLog:@"%s without networkRecord" message:3 "%s without networkRecord" "-[WiFiNWReliabilityMonitorSession initWithNetworkRecord:withMetrics:withMaxSamples:withMinSampleThresh:]"];
     }
     objc_autoreleasePoolPop(v21);
     goto LABEL_14;
@@ -83,7 +83,7 @@ LABEL_14:
   id v12 = v4;
   if (v4)
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"RSSI"]);
+    v5 = [v4 objectForKeyedSubscript:@"RSSI"];
     id v6 = [v5 intValue];
 
     id v7 = -[WiFiNWReliabilitDataStoreSampleType init:withTimestamp:]( [WiFiNWReliabilitDataStoreSampleType alloc],  "init:withTimestamp:",  v6,  [v12 objectForKey:@"LQMTIMESTAMP"]);
@@ -92,7 +92,7 @@ LABEL_14:
     v9 = (void *)qword_100219F60;
     if (qword_100219F60)
     {
-      v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiNWReliabilityMonitorSession description](self, "description"));
+      v10 = -[WiFiNWReliabilityMonitorSession description];
       [v9 WFLog:3, "%s: Session:%@ received LQM update, RSSI:%d", "-[WiFiNWReliabilityMonitorSession ingestLQMUpdate:]", v10, v6 message];
     }
 
@@ -103,7 +103,7 @@ LABEL_14:
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without argument!",  "-[WiFiNWReliabilityMonitorSession ingestLQMUpdate:]");
+      [qword_100219F60 WFLog:@"%s without argument!" message:@"-[WiFiNWReliabilityMonitorSession ingestLQMUpdate:]"];
     }
     objc_autoreleasePoolPop(v11);
   }
@@ -146,7 +146,7 @@ LABEL_14:
   }
   id v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Unsupported metric: %lu",  "-[WiFiNWReliabilityMonitorSession getSampleCount:]",  a3);
+    [qword_100219F60 WFLog:@"%s Unsupported metric: %lu" message:3 "%s Unsupported metric: %lu" a3];
   }
   objc_autoreleasePoolPop(v4);
   return 0LL;
@@ -154,8 +154,8 @@ LABEL_14:
 
 - (id)description
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiNWReliabilityMonitorSession connectedBSSID](self, "connectedBSSID"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiNWReliabilityMonitorSession connectedSSID](self, "connectedSSID"));
+  BOOL v3 = [self connectedBSSID];
+  id v4 = -[WiFiNWReliabilityMonitorSession connectedSSID];
   v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"[BSSID:%@ SSID:%@]",  v3,  v4));
 
   return v5;

@@ -31,41 +31,43 @@
   id v10 = a4;
   id v11 = a5;
   v26.receiver = self;
-  v26.super_class = (Class)&OBJC_CLASS___BKDisplayBrightnessController;
-  v12 = -[BKDisplayBrightnessController init](&v26, "init");
+  v26.super_class = [BKDisplayBrightnessController class];
+  BKDisplayBrightnessController *v12 = [[BKDisplayBrightnessController alloc] init];
   uint64_t v13 = (uint64_t)v12;
   if (v12)
   {
     v12->_lock._os_unfair_lock_opaque = 0;
     v12->_notificationToken = -1;
-    objc_storeStrong((id *)&v12->_brightnessSystem, a3);
-    uint64_t v14 = objc_claimAutoreleasedReturnValue( +[BSCompoundAssertion assertionWithIdentifier:]( &OBJC_CLASS___BSCompoundAssertion,  "assertionWithIdentifier:",  @"BKDisplayBrightnessController suppress-darwin-notifications"));
+    v12->_brightnessSystem = a3;
+    uint64_t v14 = [BSCompoundAssertion assertionWithIdentifier:@"BKDisplayBrightnessController suppress-darwin-notifications"];
     v15 = *(void **)(v13 + 104);
     *(void *)(v13 + 104) = v14;
 
     *(_DWORD *)(v13 + 16) = 1;
-    v16 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+    BKSDefaults *v16 = [BKSDefaults localDefaults];
     id v17 = [v16 brightnessCurve];
 
     os_unfair_lock_lock((os_unfair_lock_t)(v13 + 8));
     sub_100064AD4(v13, (uint64_t)v17, 0);
     os_unfair_lock_unlock((os_unfair_lock_t)(v13 + 8));
-    objc_initWeak(&location, (id)v13);
+    [location release];
+location = v13;
+[location retain];
     v18 = *(void **)(v13 + 96);
     v23[0] = _NSConcreteStackBlock;
     v23[1] = 3221225472LL;
     v23[2] = sub_100064B94;
     v23[3] = &unk_1000B7C80;
-    objc_copyWeak(&v24, &location);
+    [location copy];
     [v18 registerNotificationBlock:v23];
     objc_storeWeak((id *)(v13 + 64), v11);
     v19 = sub_100067104((id *)v11, (void *)v13);
-    uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+    uint64_t v20 = [v19 claimAutoreleasedReturnValue];
     v21 = *(void **)(v13 + 72);
     *(void *)(v13 + 72) = v20;
 
-    objc_destroyWeak(&v24);
-    objc_destroyWeak(&location);
+    [v24 release];
+    [location release];
   }
 
   return (id)v13;
@@ -78,8 +80,8 @@
     notify_cancel(notificationToken);
   }
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKDisplayBrightnessController;
-  -[BKDisplayBrightnessController dealloc](&v4, "dealloc");
+  v4.super_class = [BKDisplayBrightnessController class];
+  [v4 dealloc];
 }
 
 - (id)suppressBrightnessNotificationsForReason:(id)a3
@@ -88,7 +90,7 @@
   id v5 = a3;
   os_unfair_lock_assert_not_owner(p_lock);
   os_unfair_lock_lock(p_lock);
-  v6 = (void *)objc_claimAutoreleasedReturnValue( -[BSCompoundAssertion acquireForReason:]( self->_suppressClientNotificationsAssertion,  "acquireForReason:",  v5));
+  v6 = [self->_suppressClientNotificationsAssertion acquireForReason:v5];
 
   os_unfair_lock_unlock(p_lock);
   return v6;
@@ -96,8 +98,8 @@
 
 - (unsigned)backlightArchitectureVersion
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayBrightnessController propertyForKey:]( self,  "propertyForKey:",  @"DisplayBackLightArchitecture"));
-  uint64_t v4 = objc_opt_class(&OBJC_CLASS___NSNumber, v3);
+  v2 = [self propertyForKey:@"DisplayBackLightArchitecture"];
+  NSNumber *v4 = [NSNumber numberWithBool:v3];
   id v5 = v2;
   v6 = v5;
   if (v4)
@@ -130,7 +132,7 @@
     float v6 = 0.0;
   }
   uint64_t v7 = BKLogBacklight(self, a2);
-  id v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+  os_log_s *v8 = v7;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
   {
     int v14 = 134218240;
@@ -144,19 +146,19 @@
   os_unfair_lock_lock(&self->_lock);
   if (a4 <= 0.0)
   {
-    *(float *)&double v9 = v6;
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:", v9));
+    float v9 = v6;
+    v12 = [NSNumber numberWithFloat:v9];
     uint64_t v13 = @"BrightnessMinPhysical";
   }
 
   else
   {
-    *(float *)&double v9 = a4;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:", v9));
+    float v9 = a4;
+    id v10 = [NSNumber numberWithFloat:v9];
     sub_1000649CC((uint64_t)self, v10, @"DisplayBrightnessFadePeriod");
 
-    *(float *)&double v11 = v6;
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:", v11));
+    float v11 = v6;
+    v12 = [NSNumber numberWithFloat:v11];
     uint64_t v13 = @"BrightnessMinPhysicalWithFade";
   }
 
@@ -198,7 +200,7 @@
   if (self && (self->_brightnessLevel != a3 || self->_previousBrightnessLevelOptions != a5))
   {
     uint64_t v13 = BKLogBacklight(v10, v11);
-    int v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+    os_log_s *v14 = [v13 autorelease];
     if (!os_log_type_enabled(v14, OS_LOG_TYPE_DEFAULT)) {
       goto LABEL_14;
     }
@@ -208,11 +210,11 @@
       goto LABEL_13;
     }
 
-    double v15 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v15 = [[NSMutableArray alloc] init];
     __int16 v16 = v15;
     if ((a5 & 1) != 0)
     {
-      -[NSMutableArray addObject:](v15, "addObject:", @"commit");
+      [v15 addObject:@"commit"];
       if ((a5 & 4) == 0)
       {
 LABEL_8:
@@ -228,14 +230,14 @@ LABEL_8:
       goto LABEL_8;
     }
 
-    -[NSMutableArray addObject:](v16, "addObject:", @"notifyClients");
+    [v16 addObject:@"notifyClients"];
     if ((a5 & 2) == 0)
     {
 LABEL_9:
       if ((a5 & 8) == 0)
       {
 LABEL_11:
-        double v17 = (__CFString *)objc_claimAutoreleasedReturnValue(-[NSMutableArray componentsJoinedByString:](v16, "componentsJoinedByString:", @", "));
+        double v17 = [v16 componentsJoinedByString:@","];
 
 LABEL_13:
         *(_DWORD *)buf = 134218498;
@@ -250,12 +252,12 @@ LABEL_14:
         if ((a5 & 2) != 0)
         {
           *(float *)&double v18 = a3;
-          v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithFloat:]( &OBJC_CLASS___NSNumber,  "numberWithFloat:",  v18,  @"Brightness"));
+          v19 = [NSNumber numberWithFloat:v18];
           v30[1] = @"Commit";
           *(void *)buf = v19;
-          uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a5 & 1));
+          uint64_t v20 = [NSNumber numberWithBool:a5 & 1];
           *(void *)&buf[8] = v20;
-          v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  buf,  v30,  2LL));
+          v21 = [NSDictionary dictionaryWithObjects:forKeys:count:buf, v30, 2LL];
 
           if ((a5 & 8) != 0) {
             v22 = @"DisplayInitialBrightness";
@@ -269,7 +271,7 @@ LABEL_14:
             previousBrightnessLevelKey = self->_previousBrightnessLevelKey;
             self->_previousBrightnessLevelKey = &v22->isa;
 
-            objc_storeStrong((id *)&self->_previousBrightnessLevelValue, v21);
+            self->_previousBrightnessLevelValue = v21;
             sub_1000649CC((uint64_t)self, v21, v22);
           }
         }
@@ -314,7 +316,7 @@ LABEL_30:
 {
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
-  id v4 = -[BrightnessSystem copyPropertyForKey:]( self->_brightnessSystem,  "copyPropertyForKey:",  @"CBAutoBrightnessAvailable");
+  id v4 = [self->_brightnessSystem copyPropertyForKey:@"CBAutoBrightnessAvailable"];
   unsigned __int8 v5 = [v4 BOOLValue];
 
   os_unfair_lock_unlock(p_lock);
@@ -325,7 +327,7 @@ LABEL_30:
 {
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
-  id v4 = -[BrightnessSystem copyPropertyForKey:]( self->_brightnessSystem,  "copyPropertyForKey:",  @"CBBrightnessControlAvailable");
+  id v4 = [self->_brightnessSystem copyPropertyForKey:@"CBBrightnessControlAvailable"];
   unsigned __int8 v5 = [v4 BOOLValue];
 
   os_unfair_lock_unlock(p_lock);
@@ -338,7 +340,7 @@ LABEL_30:
   p_lock = &self->_lock;
   os_unfair_lock_assert_not_owner(&self->_lock);
   os_unfair_lock_lock(p_lock);
-  LOBYTE(v2) = -[BrightnessSystem isAlsSupported](v2->_brightnessSystem, "isAlsSupported");
+  LOBYTE(v2) = [BrightnessSystem isAlsSupported];
   os_unfair_lock_unlock(p_lock);
   return (char)v2;
 }
@@ -346,7 +348,7 @@ LABEL_30:
 - (void)setAutoBrightnessEnabled:(BOOL)a3
 {
   BOOL v3 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  BKSDefaults *v4 = [BKSDefaults localDefaults];
   [v4 setALSEnabled:v3];
 
   sub_10005367C(BKDefaultKeyALSEnabled);
@@ -379,7 +381,7 @@ LABEL_30:
   id v5 = a3;
   os_unfair_lock_assert_not_owner(p_lock);
   os_unfair_lock_lock(p_lock);
-  id v6 = -[BrightnessSystem copyPropertyForKey:](self->_brightnessSystem, "copyPropertyForKey:", v5);
+  id v6 = [self->_brightnessSystem copyPropertyForKey:v5];
 
   os_unfair_lock_unlock(p_lock);
   return v6;
@@ -402,18 +404,18 @@ LABEL_30:
   BOOL v4 = a3;
   id v6 = a4;
   v20[0] = @"FreezeBrightnessEnable";
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v4));
+  id v7 = [NSNumber numberWithBool:v4];
   v21[0] = v7;
   v20[1] = @"FreezeBrightnessRequestors";
   id v19 = v6;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v19, 1LL));
+  id v8 = [NSArray arrayWithObjects:&v19, 1LL];
   v20[2] = @"FreezeBrightnessPeriod";
   v21[1] = v8;
   v21[2] = &off_1000C0510;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v21,  v20,  3LL));
+  id v9 = [NSDictionary dictionaryWithObjects:v21 forKeys:v20 count:3];
 
   uint64_t v12 = BKLogBacklight(v10, v11);
-  uint64_t v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+  uint64_t v13 = v12;
   if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
   {
     int v14 = @"NO";
@@ -427,7 +429,7 @@ LABEL_30:
     _os_log_impl( (void *)&_mh_execute_header,  v13,  OS_LOG_TYPE_DEFAULT,  "Locking backlight to current value: %@ for reason: %{public}@",  (uint8_t *)&v15,  0x16u);
   }
 
-  -[BKDisplayBrightnessController setProperty:forKey:](self, "setProperty:forKey:", v9, @"FreezeBrightness");
+  [self setProperty:v9 forKey:@"FreezeBrightness"];
 }
 
 - (void)setBacklightFeatures:(id)a3 forPID:(int)a4
@@ -439,18 +441,18 @@ LABEL_30:
   backlightClientPerPID = self->_backlightClientPerPID;
   if (!backlightClientPerPID)
   {
-    id v8 = objc_opt_new(&OBJC_CLASS___BSMutableIntegerMap);
+    BSMutableIntegerMap *v8 = [[BSMutableIntegerMap alloc] init];
     id v9 = self->_backlightClientPerPID;
     self->_backlightClientPerPID = v8;
 
     backlightClientPerPID = self->_backlightClientPerPID;
   }
 
-  uint64_t v10 = (BKBacklightClient *)objc_claimAutoreleasedReturnValue(-[BSMutableIntegerMap objectForKey:](backlightClientPerPID, "objectForKey:", (int)v4));
+  uint64_t v10 = (BKBacklightClient *)[backlightClientPerPID objectForKey:(int)v4];
   if (v10
     || (uint64_t v10 = -[BKHIDEventClient initWithPid:sendRight:queue:]( objc_alloc(&OBJC_CLASS___BKBacklightClient),  "initWithPid:sendRight:queue:",  v4,  0LL,  &_dispatch_main_q),  -[BKHIDEventClient setDelegate:](v10, "setDelegate:", self),  -[BSMutableIntegerMap setObject:forKey:](self->_backlightClientPerPID, "setObject:forKey:", v10, (int)v4),  v10))
   {
-    objc_storeStrong((id *)(&v10->super._terminating + 1), a3);
+    [v10 super] = a3;
   }
 
   sub_100064604((uint64_t)self);
@@ -463,7 +465,7 @@ LABEL_30:
   signed int v5 = [v4 pid];
   os_unfair_lock_assert_not_owner(&self->_lock);
   os_unfair_lock_lock(&self->_lock);
-  -[BSMutableIntegerMap removeObjectForKey:](self->_backlightClientPerPID, "removeObjectForKey:", v5);
+  [self->_backlightClientPerPID removeObjectForKey:v5];
   [v4 invalidate];
 
   sub_100064604((uint64_t)self);
@@ -476,9 +478,9 @@ LABEL_30:
 
 - (void)orientationManager:(id)a3 userInterfaceOrientationMayHaveChanged:(int64_t)a4 isDeviceOrientationLocked:(BOOL)a5
 {
-  id v6 = +[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", sub_10006641C((uint64_t)a3));
-  id v7 = (id)objc_claimAutoreleasedReturnValue(v6);
-  -[BKDisplayBrightnessController setProperty:forKey:](self, "setProperty:forKey:", v7, @"CBUIOrientation");
+  NSNumber *v6 = [NSNumber numberWithInteger:sub_10006641C((uint64_t)a3)];
+  id v7 = [v6 autorelease];
+  [self setProperty:v7 forKey:@"CBUIOrientation"];
 }
 
 - (void).cxx_destruct

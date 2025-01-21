@@ -67,7 +67,7 @@
 
 - (BOOL)readUint8:(char *)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  v4 = [self stream];
   id v5 = [v4 read:a3 maxLength:1];
 
   return v5 == (id)1;
@@ -75,7 +75,7 @@
 
 - (BOOL)readUint16:(unsigned __int16 *)a3
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = -[DataInputStream stream];
   id v6 = [v5 read:a3 maxLength:2];
 
   int64_t v7 = -[DataInputStream byteOrder](self, "byteOrder");
@@ -90,7 +90,7 @@
 
 - (BOOL)readUint32:(unsigned int *)a3
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = [self stream];
   id v6 = [v5 read:a3 maxLength:4];
 
   int64_t v7 = -[DataInputStream byteOrder](self, "byteOrder");
@@ -106,7 +106,7 @@
 - (BOOL)readIEEEFloat:(float *)a3
 {
   int v19 = 0;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = [self stream];
   id v6 = [v5 read:&v19 maxLength:4];
 
   if (v6 != (id)4) {
@@ -169,7 +169,7 @@ LABEL_11:
 {
   id v4 = a3;
   char v11 = 0;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = -[DataInputStream stream](self, "stream");
   id v6 = [v5 read:&v11 maxLength:1];
 
   if (v6)
@@ -180,8 +180,8 @@ LABEL_11:
       if (!v11) {
         break;
       }
-      objc_msgSend(v4, "appendFormat:", @"%c", v11);
-      int v8 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+      [v4 appendFormat:@"%c" v11];
+      int v8 = (void *)[self stream];
       id v9 = [v8 read:&v11 maxLength:1];
     }
 
@@ -200,7 +200,7 @@ LABEL_11:
 {
   unsigned __int8 v10 = 0;
   __int16 v9 = 0;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = -[DataInputStream stream];
   id v6 = [v5 read:&v9 maxLength:3];
 
   if (v6 == (id)3)
@@ -221,7 +221,7 @@ LABEL_11:
 {
   unsigned __int8 v10 = 0;
   unsigned int v9 = 0;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = -[DataInputStream stream];
   id v6 = [v5 read:&v9 maxLength:5];
 
   if (v6 == (id)5)
@@ -242,7 +242,7 @@ LABEL_11:
 {
   __int16 v10 = 0;
   unsigned int v9 = 0;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  id v5 = [self stream];
   id v6 = [v5 read:&v9 maxLength:6];
 
   if (v6 == (id)6)
@@ -263,7 +263,7 @@ LABEL_11:
 {
   id v6 = a4;
   bzero((char *)&v10 - ((a3 + 15LL) & 0x1FFFFFFF0LL), a3);
-  unint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
+  unint64_t v7 = (void *)[self stream];
   id v8 = [v7 read:(char *)&v10 - ((a3 + 15) & 0x1FFFFFFF0) maxLength:a3];
 
   if (v8 == (id)a3) {

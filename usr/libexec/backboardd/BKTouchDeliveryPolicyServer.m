@@ -17,11 +17,11 @@
 - (BKTouchDeliveryPolicyServer)init
 {
   v13.receiver = self;
-  v13.super_class = (Class)&OBJC_CLASS___BKTouchDeliveryPolicyServer;
-  v2 = -[BKTouchDeliveryPolicyServer init](&v13, "init");
+  [v13 setSuperclass:[BKTouchDeliveryPolicyServer class]];
+  BKTouchDeliveryPolicyServer *v2 = [[BKTouchDeliveryPolicyServer alloc] init];
   if (v2)
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue( +[BKSTouchDeliveryPolicy policyByCombiningPolicies:]( &OBJC_CLASS___BKSTouchDeliveryPolicy,  "policyByCombiningPolicies:",  &__NSArray0__struct));
+    uint64_t v3 = [BKSTouchDeliveryPolicy policyByCombiningPolicies:__NSArray0__struct];
     policy = v2->_policy;
     v2->_policy = (BKSTouchDeliveryPolicy *)v3;
 
@@ -29,17 +29,17 @@
     queue = v2->_queue;
     v2->_queue = (OS_dispatch_queue *)Serial;
 
-    v7 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v7 = [[NSMutableSet alloc] init];
     assertionConnections = v2->_assertionConnections;
     v2->_assertionConnections = v7;
 
-    v9 = objc_alloc(&OBJC_CLASS___NSXPCListener);
-    v10 = -[NSXPCListener initWithMachServiceName:]( v9,  "initWithMachServiceName:",  BKSTouchDeliveryPolicyServerMachServiceName);
+    NSXPCListener *v9 = [[NSXPCListener alloc] init];
+    v10 = [NSXPCListener initWithMachServiceName:BKSTouchDeliveryPolicyServerMachServiceName];
     listener = v2->_listener;
     v2->_listener = v10;
 
-    -[NSXPCListener _setQueue:](v2->_listener, "_setQueue:", v2->_queue);
-    -[NSXPCListener setDelegate:](v2->_listener, "setDelegate:", v2);
+    [v2->_listener _setQueue:v2->_queue];
+    [v2->_listener setDelegate:v2];
   }
 
   return v2;
@@ -48,8 +48,8 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKTouchDeliveryPolicyServer;
-  -[BKTouchDeliveryPolicyServer dealloc](&v3, "dealloc");
+  v3.super_class = [BKTouchDeliveryPolicyServer class];
+  [v3 dealloc];
 }
 
 - (void)run
@@ -60,17 +60,17 @@
 {
   id v5 = a4;
   uint64_t v6 = BKLogTouchDeliveryPolicy();
-  v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  os_log_s *v7 = [v6 autorelease];
   if (os_log_type_enabled(v7, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t v8 = BSProcessDescriptionForPID([v5 processIdentifier]);
-    v9 = (void *)objc_claimAutoreleasedReturnValue(v8);
+    v9 = [v8 autorelease];
     int v12 = 138543362;
     objc_super v13 = v9;
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "TDPS server connection from %{public}@",  (uint8_t *)&v12,  0xCu);
   }
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSXPCInterface interfaceWithProtocol:]( &OBJC_CLASS___NSXPCInterface,  "interfaceWithProtocol:",  &OBJC_PROTOCOL___BKSTouchDeliveryPolicyServerInterface));
+  v10 = [NSXPCInterface interfaceWithProtocol:[BKSTouchDeliveryPolicyServerInterface class]];
   [v5 setExportedInterface:v10];
 
   [v5 setExportedObject:self];
@@ -96,7 +96,7 @@
     v18 = &unk_1000B83D8;
     id v9 = v6;
     id v19 = v9;
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v8 reducePolicyToObjectWithBlock:&v15]);
+    v10 = (void *)[v8 reducePolicyToObjectWithBlock:&v15];
     if (objc_msgSend(v10, "BOOLValue", v15, v16, v17, v18))
     {
       [v7 invoke];
@@ -105,11 +105,11 @@
     else
     {
       uint64_t v11 = BKLogTouchDeliveryPolicy();
-      int v12 = (os_log_s *)objc_claimAutoreleasedReturnValue(v11);
+      int v12 = [v11 autorelease];
       if (os_log_type_enabled(v12, OS_LOG_TYPE_ERROR))
       {
         uint64_t v13 = BSProcessDescriptionForPID([v9 processIdentifier]);
-        v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
+        v14 = v13;
         *(_DWORD *)buf = 138543362;
         v22 = v14;
         _os_log_error_impl( (void *)&_mh_execute_header,  v12,  OS_LOG_TYPE_ERROR,  "not allowing %{public}@ to include policies because it does not have appropriate permissions",  buf,  0xCu);
@@ -132,15 +132,15 @@
   v11[3] = &unk_1000B83D8;
   v11[4] = self;
   id v5 = [v4 reducePolicyToObjectWithBlock:v11];
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchDeliveryPolicyServer _policy](self, "_policy"));
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 policyIncludingPolicy:v4]);
-  -[BKTouchDeliveryPolicyServer _queue_setPolicy:](self, "_queue_setPolicy:", v7);
+  BKTouchDeliveryPolicyServer *v6 = [[BKTouchDeliveryPolicyServer _policy];
+  id v7 = (void *)[v6 policyIncludingPolicy:v4];
+  [self _queue_setPolicy:v7];
 
   uint64_t v8 = BKLogTouchDeliveryPolicy();
-  id v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+  id v9 = v8;
   if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
   {
-    v10 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchDeliveryPolicyServer _policy](self, "_policy"));
+    v10 = [self _policy];
     *(_DWORD *)buf = 138543618;
     id v13 = v4;
     __int16 v14 = 2114;
@@ -152,14 +152,14 @@
 - (id)filterDestinations:(id)a3
 {
   id v4 = a3;
-  v26 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchDeliveryPolicyServer _policy](self, "_policy"));
-  id v5 = -[NSMutableArray initWithCapacity:](objc_alloc(&OBJC_CLASS___NSMutableArray), "initWithCapacity:", 8LL);
+  v26 = [self _policy];
+  NSMutableArray *v5 = [[NSMutableArray alloc] initWithCapacity:8];
   __int128 v30 = 0u;
   __int128 v31 = 0u;
   __int128 v32 = 0u;
   __int128 v33 = 0u;
   id obj = v4;
-  id v6 = [obj countByEnumeratingWithState:&v30 objects:v40 count:16];
+  id v6 = [obj countByEnumeratingWithState:v30 objects:v40 count:16];
   if (v6)
   {
     id v7 = v6;
@@ -176,7 +176,7 @@
         }
         int v12 = *(_DWORD **)(*((void *)&v30 + 1) + 8LL * (void)v10);
         uint64_t v13 = BKLogTouchDeliveryPolicy();
-        __int16 v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+        os_log_s *v14 = [v13 autorelease];
         if (os_log_type_enabled(v14, OS_LOG_TYPE_DEBUG))
         {
           if (v12)
@@ -215,10 +215,10 @@ LABEL_16:
           uint64_t v8 = v11;
           id v28 = v8;
           v29 = v12;
-          v15 = (void *)objc_claimAutoreleasedReturnValue([v26 reducePolicyToObjectWithBlock:v27]);
+          v15 = (void *)[v26 reducePolicyToObjectWithBlock:v27];
           unsigned int v16 = [v15 BOOLValue];
           uint64_t v17 = BKLogTouchDeliveryPolicy();
-          v18 = (os_log_s *)objc_claimAutoreleasedReturnValue(v17);
+          os_log_s *v18 = v17;
           if (os_log_type_enabled(v18, OS_LOG_TYPE_DEBUG))
           {
             if (v12) {
@@ -243,12 +243,12 @@ LABEL_16:
             goto LABEL_27;
           }
 
-          -[NSMutableArray addObject:](v5, "addObject:", v12);
+          [v5 addObject:v12];
         }
 
         else
         {
-          -[NSMutableArray addObject:](v5, "addObject:", v12);
+          [v5 addObject:v12];
         }
 
         uint64_t v8 = v12;
@@ -274,14 +274,14 @@ LABEL_27:
 
 - (BOOL)shouldCancelTouchesDeliveredToContextId:(unsigned int)a3 withInitialTouchTimestamp:(double)a4
 {
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchDeliveryPolicyServer _policy](self, "_policy"));
+  BKTouchDeliveryPolicyServer *v6 = [[BKTouchDeliveryPolicyServer _policy];
   v10[0] = _NSConcreteStackBlock;
   v10[1] = 3221225472LL;
   v10[2] = sub_100072D10;
   v10[3] = &unk_1000B8550;
   unsigned int v11 = a3;
   *(double *)&v10[4] = a4;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 reducePolicyToObjectWithBlock:v10]);
+  id v7 = [v6 reducePolicyToObjectWithBlock:v10];
   unsigned __int8 v8 = [v7 BOOLValue];
 
   return v8;

@@ -210,7 +210,7 @@
             if (*(void *)v38 != v12) {
               objc_enumerationMutation(obj);
             }
-            [v36 appendFormat:@" {%@, %@, %@, %@} ", objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"BSSID"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"RSSI"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"CHANNEL"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"CHANNEL_FLAGS")];
+            [v36 appendFormat:@" {%@, %@, %@, %@} ", [v37 objectForKey:@"BSSID"], [v37 objectForKey:@"RSSI"], [v37 objectForKey:@"CHANNEL"], [v37 objectForKey:@"CHANNEL_FLAGS"]];
           }
 
           id v11 = [obj countByEnumeratingWithState:&v37 objects:v41 count:16];
@@ -233,7 +233,7 @@
     if (qword_100219F60)
     {
       v14 = v34;
-      [(id)qword_100219F60 WFLog:3, "%s: Rssi: %d Count: %d Age: %d LastStatus: %d Reason: %d Flags:%lX RoamCache: %lu - %@", "-[WiFiRoamManager setRoamEndState:forInterface:]", objc_msgSend(-[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"RSSI"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_COUNT"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_AGE"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_LAST_STATUS"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_REASON"), "unsignedIntValue"), objc_msgSend(v16, "unsignedIntegerValue"), v31, v36 message];
+      [qword_100219F60 WFLog:3, "%s: Rssi: %d Count: %d Age: %d LastStatus: %d Reason: %d Flags:%lX RoamCache: %lu - %@", "-[WiFiRoamManager setRoamEndState:forInterface:]", [v34->_roamState objectForKey:@"RSSI"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_COUNT"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_AGE"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_LAST_STATUS"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_REASON"] unsignedIntValue], [v16 unsignedIntegerValue], v31, v36 message];
     }
 
     objc_autoreleasePoolPop(v20);
@@ -306,7 +306,7 @@
     +[NSDate timeIntervalSinceReferenceDate](&OBJC_CLASS___NSDate, "timeIntervalSinceReferenceDate");
     self->_roamScanEndTimestamp = v11;
     id v12 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_TIME_STARTED");
-    v13 = objc_msgSend( -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_TIME_ENDED"),  "unsignedLongValue");
+    v13 = [self->_roamStatus objectForKey:@"ROAMEDEVENT_TIME_ENDED"] unsignedLongValue];
     v14 = [v12 unsignedLongValue];
     id v15 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_STATUS");
     id v32 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_REASON");
@@ -616,7 +616,7 @@ LABEL_9:
   {
     double v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Invalid band preference: %d. Exiting",  "-[WiFiRoamManager roamWithReason:bandPreference:]",  0);
+      [qword_100219F60 WFLog:@"Invalid band preference: %d. Exiting" message:0];
     }
     objc_autoreleasePoolPop(v13);
     goto LABEL_10;
@@ -691,13 +691,13 @@ LABEL_6:
     goto LABEL_44;
   }
 
-  unsigned int v29 = objc_msgSend( -[NSDictionary objectForKey:](self->_roamState, "objectForKey:", @"RSSI"),  "unsignedIntValue");
+  unsigned int v29 = [self->_roamState objectForKey:@"RSSI"] unsignedIntValue];
   id v7 = -[NSDictionary objectForKey:](self->_roamState, "objectForKey:", @"ROAM_CACHE");
   if (!v7)
   {
     double v25 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "%s: no roam cache", "-[WiFiRoamManager detectLateRoam]");
+      [qword_100219F60 WFLog:@"%s: no roam cache" message:4];
     }
     objc_autoreleasePoolPop(v25);
     goto LABEL_42;

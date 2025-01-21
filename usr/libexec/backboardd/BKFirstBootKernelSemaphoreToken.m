@@ -12,8 +12,8 @@
 - (BKFirstBootKernelSemaphoreToken)init
 {
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS___BKFirstBootKernelSemaphoreToken;
-  v2 = -[BKFirstBootKernelSemaphoreToken init](&v6, "init");
+  v6.super_class = [BKFirstBootKernelSemaphoreToken class];
+  BKFirstBootKernelSemaphoreToken *v2 = [[BKFirstBootKernelSemaphoreToken alloc] init];
   if (v2)
   {
     v3 = sem_open("backboardd.firstboot_check", 0);
@@ -36,9 +36,9 @@
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
-  id v4 =  objc_msgSend( v3,  "appendBool:withName:",  -[BKFirstBootKernelSemaphoreToken isTokenSet](self, "isTokenSet"),  @"isTokenSet");
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
+  [v3 appendBool:[BKFirstBootKernelSemaphoreToken isTokenSet] withName:@"isTokenSet"];
+  v5 = (void *)[v3 build];
 
   return (NSString *)v5;
 }
@@ -56,7 +56,7 @@
     if (v3 == (sem_t *)-1LL)
     {
       id v4 = sub_10003F0B0();
-      v5 = (os_log_s *)objc_claimAutoreleasedReturnValue(v4);
+      v5 = v4;
       if (os_log_type_enabled(v5, OS_LOG_TYPE_ERROR))
       {
         int v6 = *__error();
@@ -82,7 +82,7 @@
     if (sem_unlink("backboardd.firstboot_check"))
     {
       id v3 = sub_10003F0B0();
-      id v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+      id v4 = v3;
       if (os_log_type_enabled(v4, OS_LOG_TYPE_ERROR))
       {
         int v5 = *__error();
@@ -102,7 +102,7 @@
 
 + (id)token
 {
-  return objc_alloc_init(&OBJC_CLASS___BKFirstBootKernelSemaphoreToken);
+  BKFirstBootKernelSemaphoreToken *return = [[BKFirstBootKernelSemaphoreToken alloc] init];
 }
 
 @end

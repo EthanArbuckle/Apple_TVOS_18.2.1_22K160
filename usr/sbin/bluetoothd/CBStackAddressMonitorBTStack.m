@@ -161,7 +161,7 @@ LABEL_12:
     if (qword_1008D5F10 != -1) {
       dispatch_once(&qword_1008D5F10, &stru_100881780);
     }
-    id v14 = (void *)objc_claimAutoreleasedReturnValue( -[CBStackAddressMonitorBTStack _dataWithBTAddress:]( self,  "_dataWithBTAddress:",  *((void *)off_1008D5F08 + 37)));
+    id v14 = [self _dataWithBTAddress:*((void *)off_1008D5F08 + 37)];
     nonConnectableAddressData = self->_nonConnectableAddressData;
     v16 = v14;
     v17 = nonConnectableAddressData;
@@ -184,7 +184,7 @@ LABEL_22:
           if (qword_1008D5F10 != -1) {
             dispatch_once(&qword_1008D5F10, &stru_100881780);
           }
-          v22 = (void *)objc_claimAutoreleasedReturnValue( -[CBStackAddressMonitorBTStack _dataWithBTAddress:]( self,  "_dataWithBTAddress:",  *((void *)off_1008D5F08 + 39)));
+          v22 = [self _dataWithBTAddress:*((void *)off_1008D5F08 + 39)];
           nonConnectableSecondaryAddressData = self->_nonConnectableSecondaryAddressData;
           v24 = v22;
           v25 = nonConnectableSecondaryAddressData;

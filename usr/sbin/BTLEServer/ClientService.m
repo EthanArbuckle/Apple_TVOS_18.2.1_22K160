@@ -32,13 +32,13 @@
   if (v3 != 0.0)
   {
     -[ClientService startTimeout](self, "startTimeout");
-    id v4 = (id)objc_claimAutoreleasedReturnValue( +[NSTimer scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:]( &OBJC_CLASS___NSTimer,  "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:",  self,  "startDidTimeout",  0LL,  0LL));
+    id v4 = [NSTimer scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:self:startDidTimeout:0LL:0LL];
     -[ClientService setStartTimer:](self, "setStartTimer:", v4);
   }
 
 - (void)stop
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue(-[ClientService startTimer](self, "startTimer"));
+  id v2 = [self startTimer];
   [v2 invalidate];
 }
 
@@ -75,8 +75,8 @@
     {
       service = self->_service;
       v5 = v3;
-      v6 = (void *)objc_claimAutoreleasedReturnValue(-[CBService UUID](service, "UUID"));
-      v7 = (void *)objc_claimAutoreleasedReturnValue(-[CBPeripheral name](self->_peripheral, "name"));
+      v6 = [service UUID];
+      v7 = [self->_peripheral name];
       int v10 = 138412546;
       v11 = v6;
       __int16 v12 = 2112;
@@ -85,10 +85,10 @@
     }
 
     -[ClientService setIsStarted:](self, "setIsStarted:", 1LL);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService startTimer](self, "startTimer"));
+    id v8 = [self startTimer];
     [v8 invalidate];
 
-    id v9 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
+    id v9 = [ClientService manager];
     [v9 clientServiceDidStart:self];
   }
 
@@ -98,7 +98,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
     sub_10003AEE8((uint64_t)self, v3);
   }
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
+  id v4 = [ClientService manager];
   [v4 clientServiceDidStart:self];
 }
 

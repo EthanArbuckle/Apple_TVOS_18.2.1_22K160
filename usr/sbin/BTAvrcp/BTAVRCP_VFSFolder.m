@@ -42,18 +42,18 @@
 
 - (MPMediaQuery)query
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder builtQuery](self, "builtQuery"));
+  v3 = -[BTAVRCP_VFSFolder builtQuery];
 
   if (!v3)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder baseQuery](self, "baseQuery"));
+    v4 = -[BTAVRCP_VFSFolder baseQuery];
     -[BTAVRCP_VFSFolder setBuiltQuery:](self, "setBuiltQuery:", v4);
 
     __int128 v16 = 0u;
     __int128 v17 = 0u;
     __int128 v14 = 0u;
     __int128 v15 = 0u;
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder storedPredicates](self, "storedPredicates", 0LL));
+    v5 = -[BTAVRCP_VFSFolder storedPredicates];
     id v6 = [v5 countByEnumeratingWithState:&v14 objects:v18 count:16];
     if (v6)
     {
@@ -68,7 +68,7 @@
             objc_enumerationMutation(v5);
           }
           uint64_t v10 = *(void *)(*((void *)&v14 + 1) + 8LL * (void)v9);
-          v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder builtQuery](self, "builtQuery"));
+          v11 = -[BTAVRCP_VFSFolder builtQuery];
           [v11 addFilterPredicate:v10];
 
           v9 = (char *)v9 + 1;
@@ -87,21 +87,21 @@
     }
   }
 
-  return (MPMediaQuery *)(id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder builtQuery](self, "builtQuery"));
+  return [BTAVRCP_VFSFolder builtQuery];
 }
 
 - (void)storePredicates:(id)a3
 {
   id v5 = a3;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder builtQuery](self, "builtQuery"));
+  id v6 = -[BTAVRCP_VFSFolder builtQuery];
 
   if (v6)
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    id v7 = [NSAssertionHandler currentHandler];
     [v7 handleFailureInMethod:a2 object:self file:@"BTAVRCP_VFSFolder.m" lineNumber:57 description:@"Trying to store a predicate after the query is already built"];
   }
 
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder storedPredicates](self, "storedPredicates"));
+  id v8 = -[BTAVRCP_VFSFolder storedPredicates];
   [v8 unionSet:v5];
 }
 
@@ -137,7 +137,7 @@
 
 - (void)storePredicate:(id)a3
 {
-  id v4 = (id)objc_claimAutoreleasedReturnValue(+[NSSet setWithObject:](&OBJC_CLASS___NSSet, "setWithObject:", a3));
+  id v4 = [NSSet setWithObject:a3];
   -[BTAVRCP_VFSFolder storePredicates:](self, "storePredicates:", v4);
 }
 
@@ -149,7 +149,7 @@
   v13[1] = @"kFolderType";
   id v7 = (__CFString *)a5;
   id v8 = a4;
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v6));
+  v9 = [NSNumber numberWithUnsignedChar:v6];
   v14[1] = v9;
   v14[2] = v8;
   v13[2] = @"kUid";
@@ -161,7 +161,7 @@
     uint64_t v10 = &stru_1000195C0;
   }
   v14[3] = v10;
-  v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  4LL));
+  v11 = [NSDictionary dictionaryWithObjects:v14 forKeys:v13 count:4];
 
   return v11;
 }
@@ -196,8 +196,8 @@
 
 - (id)recentlyAddedFolderName
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSBundle mobileBluetoothBundle](&OBJC_CLASS___NSBundle, "mobileBluetoothBundle"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue( [v2 localizedStringForKey:@"RECENTLY_ADDED" value:@"Recently Added" table:0]);
+  v2 = [NSBundle mobileBluetoothBundle];
+  v3 = [v2 localizedStringForKey:@"RECENTLY_ADDED" value:@"Recently Added" table:0];
 
   return v3;
 }

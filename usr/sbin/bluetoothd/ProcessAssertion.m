@@ -8,7 +8,7 @@
 
 - (id)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[ProcessAssertion name](self, "name"));
+  v3 = -[ProcessAssertion name];
   v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@ - %lus",  v3,  -[ProcessAssertion secondsLeft](self, "secondsLeft")));
 
   return v4;

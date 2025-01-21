@@ -116,7 +116,7 @@
 {
   v3[0] = xmmword_100048101;
   *(_OWORD *)((char *)v3 + 15) = *(__int128 *)((char *)&xmmword_100048101 + 15);
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v3,  31LL));
+  return [NSData dataWithBytes:v3 length:31];
 }
 
 + (id)getButtonsHIDReportDescriptor:(unsigned __int16)a3
@@ -140,7 +140,7 @@
     uint64_t v3 = 55LL;
   }
 
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v5,  v3,  v5,  v6,  *(_OWORD *)v7,  *(_OWORD *)&v7[16],  *(void *)&v7[32]));
+  return [NSData dataWithBytes:v5 length:v3 v5 v6 *(_OWORD *)v7 *(_OWORD *)&v7[16] *(void *)&v7[32]];
 }
 
 + (id)getInertialHIDReportDescriptor
@@ -148,28 +148,28 @@
   __int128 v3 = xmmword_10004819E;
   v4[0] = unk_1000481AE;
   *(_OWORD *)((char *)v4 + 15) = unk_1000481BD;
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v3,  47LL));
+  return [NSData dataWithBytes:v3 length:47];
 }
 
 + (id)getInfraredHIDReportDescriptor
 {
   v3[0] = xmmword_1000481CD;
   *(_OWORD *)((char *)v3 + 15) = *(__int128 *)((char *)&xmmword_1000481CD + 15);
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v3,  31LL));
+  return [NSData dataWithBytes:v3 length:31];
 }
 
 + (id)getAudioHIDReportDescriptor
 {
   v3[0] = xmmword_1000481EC;
   *(_OWORD *)((char *)v3 + 15) = *(__int128 *)((char *)&xmmword_1000481EC + 15);
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v3,  31LL));
+  return [NSData dataWithBytes:v3 length:31];
 }
 
 + (id)getRadioHIDReportDescriptor
 {
   v3[0] = xmmword_10004820B;
   *(_OWORD *)((char *)v3 + 15) = *(__int128 *)((char *)&xmmword_10004820B + 15);
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v3,  31LL));
+  return [NSData dataWithBytes:v3 length:31];
 }
 
 + (id)getDeviceManagementHIDReportDescriptor
@@ -177,7 +177,7 @@
   __int128 v3 = xmmword_10004822A;
   *(_OWORD *)v4 = unk_10004823A;
   *(_DWORD *)&v4[15] = -1073675598;
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v3,  35LL));
+  return [NSData dataWithBytes:v3 length:35];
 }
 
 + (id)getProximityHIDReportDescriptor
@@ -185,7 +185,7 @@
   v3[0] = xmmword_10004824D;
   v3[1] = unk_10004825D;
   char v4 = -64;
-  return (id)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  v3,  33LL));
+  return [NSData dataWithBytes:v3 length:33];
 }
 
 + (id)properties:(id)a3 locationIdOffset:(unsigned int)a4 hidDescriptor:(id)a5 extendedData:(id)a6
@@ -201,8 +201,8 @@
   if (v11) {
     [v13 setObject:v11 forKeyedSubscript:@"ExtendedData"];
   }
-  v14 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:@"LocationID"]);
-  v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( NSNumber,  "numberWithUnsignedInt:",  [v14 unsignedLongValue] + a4));
+  v14 = [v9 objectForKeyedSubscript:@"LocationID"];
+  v15 = [NSNumber numberWithUnsignedInt:([v14 unsignedLongValue] + a4)];
   [v13 setObject:v15 forKeyedSubscript:@"LocationID"];
 
   return v13;
@@ -229,14 +229,14 @@
     v16->_instanceID = v18;
     v16->_firstButton = 1;
     v19 = -[NSMutableDictionary initWithDictionary:]( objc_alloc(&OBJC_CLASS___NSMutableDictionary),  "initWithDictionary:",  v6);
-    v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  v17->_instanceID));
+    v20 = [NSNumber numberWithUnsignedInt:v17->_instanceID];
     -[NSMutableDictionary setObject:forKeyedSubscript:](v19, "setObject:forKeyedSubscript:", v20, @"InstanceID");
 
     objc_storeStrong((id *)&v17->_properties, v19);
-    v21 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"ProductID"]);
+    v21 = [v6 objectForKeyedSubscript:@"ProductID"];
     v17->_productID = (unsigned __int16)[v21 unsignedIntValue];
 
-    uint64_t v22 = objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"SerialNumber"]);
+    uint64_t v22 = [v6 objectForKeyedSubscript:@"SerialNumber"];
     serialNumber = v17->_serialNumber;
     v17->_serialNumber = (NSString *)v22;
 
@@ -378,7 +378,7 @@
 
   if (v13)
   {
-    uint64_t v14 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioStop](v12, "doapAudioStop"));
+    uint64_t v14 = (dispatch_semaphore_s *)[v12 doapAudioStop];
     dispatch_semaphore_signal(v14);
   }
 
@@ -392,7 +392,7 @@
     -[HIDAppleSiriRemoteDevice handleProximityData](v12, "handleProximityData");
   }
 
-  uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioRelay](v12, "doapAudioRelay"));
+  uint64_t v15 = (void *)[v12 doapAudioRelay];
   [v15 invalidate];
 
   -[HIDAppleSiriRemoteDevice setDoapAudioRelay:](v12, "setDoapAudioRelay:", 0LL);
@@ -401,7 +401,7 @@
   -[HIDBluetoothDevice stop](&v20, "stop");
   id location = 0LL;
   objc_initWeak(&location, v12);
-  v16 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](v12, "queue"));
+  v16 = [v12 queue];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_100004C34;
@@ -426,18 +426,18 @@
   objc_super v11 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupDeviceManagement](self, "groupDeviceManagement"));
   dispatch_group_enter(v11);
 
-  uint64_t v12 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupTouch](self, "groupTouch"));
+  uint64_t v12 = [self groupTouch];
   dispatch_group_enter(v12);
 
-  uint64_t v13 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInertial](self, "groupInertial"));
+  uint64_t v13 = (dispatch_group_s *)[self groupInertial];
   dispatch_group_enter(v13);
 
-  uint64_t v14 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupProximity](self, "groupProximity"));
+  uint64_t v14 = (dispatch_group_s *)[self groupProximity];
   dispatch_group_enter(v14);
 
-  uint64_t v15 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+  uint64_t v15 = (dispatch_group_s *)[self groupInit];
   dispatch_queue_global_t global_queue = dispatch_get_global_queue(21LL, 0LL);
-  v17 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(global_queue);
+  v17 = (dispatch_queue_s *)[global_queue autorelease];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_1000053F8;
@@ -445,7 +445,7 @@
   block[4] = self;
   dispatch_group_async(v15, v17, block);
 
-  id v18 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+  id v18 = [self groupInit];
   v35[0] = _NSConcreteStackBlock;
   v35[1] = 3221225472LL;
   v35[2] = sub_100005730;
@@ -453,7 +453,7 @@
   v35[4] = self;
   dispatch_group_async(v18, v17, v35);
 
-  v19 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+  v19 = [self groupInit];
   v34[0] = _NSConcreteStackBlock;
   v34[1] = 3221225472LL;
   v34[2] = sub_1000059D0;
@@ -477,7 +477,7 @@
 
   else
   {
-    v21 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+    v21 = [self groupInit];
     v33[0] = _NSConcreteStackBlock;
     v33[1] = 3221225472LL;
     v33[2] = sub_100005C74;
@@ -486,7 +486,7 @@
     dispatch_group_async(v21, v17, v33);
   }
 
-  uint64_t v22 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+  uint64_t v22 = (dispatch_group_s *)[self groupInit];
   v32[0] = _NSConcreteStackBlock;
   v32[1] = 3221225472LL;
   v32[2] = sub_100005E70;
@@ -494,7 +494,7 @@
   v32[4] = self;
   dispatch_group_async(v22, v17, v32);
 
-  v23 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInit](self, "groupInit"));
+  v23 = [self groupInit];
   v31[0] = _NSConcreteStackBlock;
   v31[1] = 3221225472LL;
   v31[2] = sub_10000606C;
@@ -507,8 +507,8 @@
   {
     id location = 0LL;
     objc_initWeak(&location, self);
-    v24 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupStart](self, "groupStart"));
-    v25 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+    v24 = [self groupStart];
+    v25 = [self queue];
     v28[0] = _NSConcreteStackBlock;
     v28[1] = 3221225472LL;
     v28[2] = sub_1000067B4;
@@ -520,7 +520,7 @@
     objc_destroyWeak(&location);
   }
 
-  v26 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupStart](self, "groupStart"));
+  v26 = [self groupStart];
   v27[0] = _NSConcreteStackBlock;
   v27[1] = 3221225472LL;
   v27[2] = sub_1000068CC;
@@ -654,8 +654,8 @@
             objc_enumerationMutation(v7);
           }
           objc_super v11 = *(void **)(*((void *)&v17 + 1) + 8LL * (void)i);
-          uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectAtIndexedSubscript:0]);
-          uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v11 objectAtIndexedSubscript:1]);
+          uint64_t v12 = (void *)[v11 objectAtIndexedSubscript:0];
+          uint64_t v13 = (void *)[v11 objectAtIndexedSubscript:1];
           uint64_t v14 = (os_log_s *)(id)qword_100070CC8;
           if (os_log_type_enabled(v14, OS_LOG_TYPE_DEFAULT))
           {
@@ -695,8 +695,8 @@
         if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
           sub_100038EB0(v12, v7, self, &v13);
         }
-        id v8 = (void *)objc_claimAutoreleasedReturnValue(-[HIDBluetoothDevice peripheral](self, "peripheral"));
-        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", @"181E"));
+        id v8 = [self peripheral];
+        uint64_t v9 = (void *)[CBUUID UUIDWithString:@"181E"];
         unsigned int v10 = [v8 isSupportingService:v9];
 
         if (v10) {
@@ -755,7 +755,7 @@
           v15[3] = &unk_10005CBA8;
           objc_copyWeak(&v16, &location);
           uint64_t v12 = objc_retainBlock(v15);
-          unsigned int v13 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+          unsigned int v13 = [self queue];
           uint32_t v14 = notify_register_dispatch( "com.apple.PineBoard.RemoteConnectedStandbyAvailabilityDidChange",  &self->_connectedStandbyToken,  v13,  v12);
 
           if (!v14) {
@@ -787,8 +787,8 @@
     v24.super_class = (Class)&OBJC_CLASS___HIDAppleSiriRemoteDevice;
     id v11 = -[HIDBluetoothDevice desiredConnectionParameters](&v24, "desiredConnectionParameters");
     uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-    objc_msgSend(v12, "setPreferredPeripheralLatency:", -[HIDAppleSiriRemoteDevice latency](self, "latency"));
-    objc_msgSend(v12, "setMaxPeripheralLatency:", -[HIDAppleSiriRemoteDevice latency](self, "latency"));
+    [v12 setPreferredPeripheralLatency:[self latency]];
+    [v12 setMaxPeripheralLatency:[self latency]];
     [v12 setMinCELength:6];
     [v12 setMaxDeferment:1];
     LODWORD(v13) = 15.0;
@@ -820,11 +820,11 @@
     }
 
     [v12 setTimeout:v19];
-    v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults"));
-    unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:@"ConnectionTimeout"]);
+    v21 = [+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults") autorelease];
+    unsigned int v22 = (void *)[v21 objectForKey:@"ConnectionTimeout"];
 
     if (v22) {
-      objc_msgSend(v12, "setTimeout:", objc_msgSend(v21, "integerForKey:", @"ConnectionTimeout"));
+      [v12 setTimeout:[v21 integerForKey:@"ConnectionTimeout"]];
     }
   }
 
@@ -842,7 +842,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_100038FD0(v3, v4, v5, v6, v7, v8, v9, v10);
   }
-  id v11 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+  id v11 = [self queue];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_1000074F0;
@@ -857,7 +857,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_100039040(v3, v4, v5, v6, v7, v8, v9, v10);
   }
-  id v11 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+  id v11 = [self queue];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_100007620;
@@ -872,7 +872,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_1000390B0(v3, v4, v5, v6, v7, v8, v9, v10);
   }
-  id v11 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+  id v11 = [self queue];
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
   block[2] = sub_1000077BC;
@@ -890,8 +890,8 @@
   if (-[HIDBluetoothDevice state](self, "state") < 3
     || (unsigned int v7 = -[HIDBluetoothDevice state](self, "state"), !(_DWORD)v5) && v7 == 3)
   {
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", v5));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+    uint64_t v8 = (void *)[NSNumber numberWithUnsignedShort:v5];
+    uint64_t v9 = (void *)[SLGLog sharedInstance];
     v17[0] = _NSConcreteStackBlock;
     v17[1] = 3221225472LL;
     v17[2] = sub_1000079E4;
@@ -905,7 +905,7 @@
     {
       uint8_t report = -5;
       *(_WORD *)report_1 = v5;
-      id v11 = (__IOHIDUserDevice *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice buttons](self, "buttons"));
+      id v11 = -[HIDAppleSiriRemoteDevice buttons];
       uint64_t v12 = v11;
       uint64_t v13 = a4;
       CFIndex v14 = 3LL;
@@ -915,7 +915,7 @@
     {
       uint8_t report = -6;
       report_1[0] = v5;
-      id v11 = (__IOHIDUserDevice *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice buttons](self, "buttons"));
+      id v11 = -[HIDAppleSiriRemoteDevice buttons];
       uint64_t v12 = v11;
       uint64_t v13 = a4;
       CFIndex v14 = 2LL;
@@ -956,11 +956,11 @@
         _os_log_impl((void *)&_mh_execute_header, v7, OS_LOG_TYPE_DEFAULT, "Cache button 0x%04X", buf, 8u);
       }
 
-      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice cachedButtonsAndTimestamps](v5, "cachedButtonsAndTimestamps"));
+      uint64_t v8 = (void *)[v5 cachedButtonsAndTimestamps];
       uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  -[HIDAppleSiriRemoteDevice buttonData](v5, "buttonData")));
-      id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[HIDAppleSiriRemoteDevice inputReportTimestamp](v5, "inputReportTimestamp", v9)));
+      id v10 = [NSNumber numberWithUnsignedLongLong: -[HIDAppleSiriRemoteDevice inputReportTimestamp](v5, "inputReportTimestamp", v9)];
       v12[1] = v10;
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v12, 2LL));
+      id v11 = [NSArray arrayWithObjects:v12, nil count:2];
       [v8 addObject:v11];
     }
 
@@ -981,7 +981,7 @@
 {
   if (-[HIDBluetoothDevice state](self, "state") <= 2)
   {
-    __int128 v3 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupProximity](self, "groupProximity"));
+    __int128 v3 = -[HIDAppleSiriRemoteDevice groupProximity];
     dispatch_group_wait(v3, 0xFFFFFFFFFFFFFFFFLL);
 
     uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  -[HIDAppleSiriRemoteDevice proximityData](self, "proximityData")));
@@ -996,7 +996,7 @@
 
     report[0] = 1;
     report[1] = -[HIDAppleSiriRemoteDevice proximityData](self, "proximityData");
-    unsigned int v7 = (__IOHIDUserDevice *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice proximity](self, "proximity"));
+    unsigned int v7 = [HIDAppleSiriRemoteDevice proximity];
     IOHIDUserDeviceHandleReportWithTimeStamp( v7,  -[HIDAppleSiriRemoteDevice inputReportTimestamp](self, "inputReportTimestamp"),  report,  2LL);
   }
 
@@ -1011,12 +1011,12 @@
     if (v5 == 96 && byte_100070CC0 != 0) {
       kdebug_trace(730595436LL, -[HIDAppleSiriRemoteDevice instanceID](self, "instanceID"), 0LL, 0LL, 0LL);
     }
-    unsigned int v7 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupTouch](self, "groupTouch"));
+    unsigned int v7 = [self groupTouch];
     dispatch_group_wait(v7, 0xFFFFFFFFFFFFFFFFLL);
 
-    uint64_t v8 = (__IOHIDUserDevice *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touch](self, "touch"));
+    uint64_t v8 = [self touch];
     uint64_t v9 = -[HIDAppleSiriRemoteDevice inputReportTimestamp](self, "inputReportTimestamp");
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+    id v10 = [self touchData];
     IOHIDUserDeviceHandleReportWithTimeStamp(v8, v9, v4, (CFIndex)[v10 length]);
 
     if (v5 == 96)
@@ -1041,14 +1041,14 @@
     goto LABEL_4;
   }
 
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+  id v6 = -[HIDAppleSiriRemoteDevice touchData];
   id v7 = [v6 length];
 
   if (v7 == (id)19)
   {
 LABEL_4:
     unsigned __int8 v8 = v4[11];
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+    uint64_t v9 = (void *)[self touchData];
     if ([v9 length] == (id)19) {
       int v70 = v4[18] & 7;
     }
@@ -1062,7 +1062,7 @@ LABEL_4:
     else {
       unsigned __int8 v10 = 2;
     }
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+    id v11 = [self touchData];
     if ([v11 length] == (id)19)
     {
       if ((v4[18] & 8) != 0) {
@@ -1083,7 +1083,7 @@ LABEL_4:
     int v14 = v4[3];
     unint64_t v15 = -[HIDAppleSiriRemoteDevice inputReportTimestamp](self, "inputReportTimestamp");
     uint64_t v16 = qword_100070BE8;
-    float v17 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
+    float v17 = [self pathIDs];
     int v18 = v8 & 7;
     uint64_t v19 = (v13 >> 1) | (v14 << 7);
     if ([v17 count])
@@ -1121,7 +1121,7 @@ LABEL_22:
     if (v18 == 3)
     {
       unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
-      v23 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v10));
+      v23 = [NSNumber numberWithUnsignedChar:v10];
       unsigned int v24 = [v22 containsObject:v23];
 
       if (v24)
@@ -1133,14 +1133,14 @@ LABEL_22:
       }
 
       dispatch_group_t v34 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
-      v35 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v10));
+      v35 = [NSNumber numberWithUnsignedChar:v10];
       [v34 addObject:v35];
     }
 
     else
     {
-      dispatch_group_t v34 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
-      v35 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v10));
+      dispatch_group_t v34 = [self pathIDs];
+      v35 = [NSNumber numberWithUnsignedChar:v10];
       [v34 removeObject:v35];
     }
 
@@ -1152,8 +1152,8 @@ LABEL_36:
     {
       if (v70 == 3)
       {
-        dispatch_group_t v38 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
-        v39 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v67));
+        dispatch_group_t v38 = [self pathIDs];
+        v39 = [NSNumber numberWithUnsignedChar:v67];
         unsigned int v40 = [v38 containsObject:v39];
 
         if (v40)
@@ -1165,7 +1165,7 @@ LABEL_36:
 
         else
         {
-          v43 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
+          v43 = -[HIDAppleSiriRemoteDevice pathIDs];
           dispatch_group_t v44 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v67));
           [v43 addObject:v44];
         }
@@ -1173,7 +1173,7 @@ LABEL_36:
 
       else
       {
-        v41 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
+        v41 = -[HIDAppleSiriRemoteDevice pathIDs];
         dispatch_group_t v42 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v67));
         [v41 removeObject:v42];
       }
@@ -1186,26 +1186,26 @@ LABEL_36:
     v79 = sub_100008860;
     id v80 = 0LL;
     v83[0] = @"touch";
-    v45 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
-    BOOL v46 = (void *)objc_claimAutoreleasedReturnValue([v45 description]);
+    v45 = -[HIDAppleSiriRemoteDevice touchData];
+    BOOL v46 = [v45 description];
     v84[0] = v46;
     v83[1] = @"fwTimestampMs";
-    dispatch_semaphore_t v47 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v19));
+    dispatch_semaphore_t v47 = [NSNumber numberWithUnsignedInt:v19];
     v84[1] = v47;
     v83[2] = @"fwTimestampDeltaMs";
-    v48 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v72));
+    v48 = [NSNumber numberWithUnsignedInt:v72];
     unint64_t v49 = v69 * v68 / v21;
     v84[2] = v48;
     v83[3] = @"inputReportDeltaMs";
-    v50 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v49 / 0xF4240));
+    v50 = [NSNumber numberWithUnsignedLongLong:v49 / 0xF4240];
     v84[3] = v50;
     v83[4] = @"numTouches";
-    dispatch_semaphore_t v51 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
-    v52 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v51 count]));
+    dispatch_semaphore_t v51 = -[HIDAppleSiriRemoteDevice pathIDs];
+    v52 = [NSNumber numberWithUnsignedInteger:[v51 count]];
     v84[4] = v52;
-    id v80 = (id)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v84,  v83,  5LL));
+    id v80 = [NSDictionary dictionaryWithObjects:v84 forKeys:v83 count:5];
 
-    v53 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+    v53 = [SLGLog sharedInstance];
     v73[0] = _NSConcreteStackBlock;
     v73[1] = 3221225472LL;
     v73[2] = sub_100008878;
@@ -1213,7 +1213,7 @@ LABEL_36:
     v73[4] = &v75;
     [v53 logBlock:v73];
 
-    v54 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
+    v54 = -[HIDAppleSiriRemoteDevice pathIDs];
     BOOL v55 = [v54 count] == 0;
 
     if (!v55)
@@ -1249,10 +1249,10 @@ LABEL_36:
   }
 
   v25 = objc_alloc(&OBJC_CLASS___NSMutableString);
-  v26 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+  v26 = [self touchData];
   v27 = -[NSMutableString initWithFormat:]( v25,  "initWithFormat:",  @"{length = %lu, bytes = 0x",  [v26 length]);
 
-  v28 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+  v28 = [self touchData];
   id v29 = [v28 length];
 
   if (v29)
@@ -1261,7 +1261,7 @@ LABEL_36:
     do
     {
       -[NSMutableString appendFormat:](v27, "appendFormat:", @"%02x", v4[v30]);
-      v31 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+      v31 = [self touchData];
       ++v30;
       id v32 = [v31 length];
     }
@@ -1278,8 +1278,8 @@ LABEL_36:
   id v80 = 0LL;
   v85 = @"touch";
   v86 = v27;
-  id v80 = (id)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v86,  &v85,  1LL));
-  v33 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+  id v80 = [NSDictionary dictionaryWithObjects:forKeys:count:v86, v85, 1LL];
+  v33 = [SLGLog sharedInstance];
   v74[0] = _NSConcreteStackBlock;
   v74[1] = 3221225472LL;
   v74[2] = sub_100008868;
@@ -1294,16 +1294,16 @@ LABEL_36:
 {
   if (-[HIDBluetoothDevice state](self, "state") <= 2)
   {
-    id v3 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupInertial](self, "groupInertial"));
+    id v3 = [self groupInertial];
     dispatch_group_wait(v3, 0xFFFFFFFFFFFFFFFFLL);
 
     uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice inertial](self, "inertial"));
     if (v4)
     {
       int v5 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice inertialData](self, "inertialData"));
-      id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 description]);
+      id v6 = (void *)[v5 description];
 
-      id v7 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+      id v7 = [SLGLog sharedInstance];
       v14[0] = _NSConcreteStackBlock;
       v14[1] = 3221225472LL;
       v14[2] = sub_100008A08;
@@ -1316,14 +1316,14 @@ LABEL_36:
       uint64_t v9 = -[HIDAppleSiriRemoteDevice inputReportTimestamp](self, "inputReportTimestamp");
       id v10 = objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice inertialData](self, "inertialData"));
       id v11 = (const uint8_t *)[v10 bytes];
-      char v12 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice inertialData](self, "inertialData"));
+      char v12 = (void *)-[HIDAppleSiriRemoteDevice inertialData];
       IOHIDUserDeviceHandleReportWithTimeStamp(v8, v9, v11, (CFIndex)[v12 length]);
     }
   }
 
 - (void)handleAudioData:(char *)a3 dataLength:(int64_t)a4
 {
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+  id v7 = -[HIDAppleSiriRemoteDevice doapAudioRelay];
 
   if (!v7) {
     return;
@@ -1344,11 +1344,11 @@ LABEL_14:
 
     char v12 = self;
     objc_sync_enter(v12);
-    float v17 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioStop](v12, "doapAudioStop"));
+    float v17 = [v12 doapAudioStop];
 
     if (v17)
     {
-      int v18 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioStop](v12, "doapAudioStop"));
+      int v18 = (dispatch_semaphore_s *)[v12 doapAudioStop];
       dispatch_semaphore_signal(v18);
     }
 
@@ -1361,11 +1361,11 @@ LABEL_14:
 
   if (a3 && a4 >= 1)
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    uint64_t v9 = (void *)[NSDate date];
     -[HIDAppleSiriRemoteDevice setLastAudioDate:](self, "setLastAudioDate:", v9);
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, a4));
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+    id v10 = [NSData dataWithBytes:a3 length:a4];
+    id v11 = [+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance") autorelease];
     v22[0] = _NSConcreteStackBlock;
     v22[1] = 3221225472LL;
     v22[2] = sub_100008D10;
@@ -1380,13 +1380,13 @@ LABEL_14:
 
     if (v14)
     {
-      id v15 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice audioBuffer](v13, "audioBuffer"));
+      id v15 = -[HIDAppleSiriRemoteDevice audioBuffer];
       [v15 addObject:v12];
     }
 
     else
     {
-      id v15 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioRelay](v13, "doapAudioRelay"));
+      id v15 = [v13 doapAudioRelay];
       [v15 sendAudioFrame:v12];
     }
 
@@ -1397,7 +1397,7 @@ LABEL_19:
   unsigned int v20 = -[HIDAppleSiriRemoteDevice productID](self, "productID");
   if (v20 == 621 || v20 == 614)
   {
-    id v21 = (id)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice pathIDs](self, "pathIDs"));
+    id v21 = -[HIDAppleSiriRemoteDevice pathIDs];
     [v21 removeAllObjects];
   }
 
@@ -1405,10 +1405,10 @@ LABEL_19:
 {
   if (-[HIDBluetoothDevice state](self, "state") <= 2)
   {
-    id v7 = (dispatch_group_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice groupDeviceManagement](self, "groupDeviceManagement"));
+    id v7 = [self groupDeviceManagement];
     dispatch_group_wait(v7, 0xFFFFFFFFFFFFFFFFLL);
 
-    device = (__IOHIDUserDevice *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice deviceManagement](self, "deviceManagement"));
+    device = [HIDAppleSiriRemoteDevice deviceManagement];
     uint64_t v8 = mach_absolute_time();
     IOHIDUserDeviceHandleReportWithTimeStamp(device, v8, (const uint8_t *)a3, a4);
   }
@@ -1447,15 +1447,15 @@ LABEL_19:
   unsigned int v9 = (char *)&v12 - ((unint64_t)(v7 + 16) & 0xFFFFFFFFFFFFFFF0LL);
   bzero(v9, (size_t)(v7 + 1));
   *unsigned int v9 = v4;
-  objc_msgSend(v6, "getBytes:length:", v9 + 1, objc_msgSend(v6, "length"));
+  [v6 getBytes:v9 + 1 length:[v6 length]];
 
   switch(v4)
   {
     case 96:
-      id v10 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+      id v10 = [self touchData];
       [v10 setLength:0];
 
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+      id v11 = -[HIDAppleSiriRemoteDevice touchData];
       [v11 appendBytes:v9 length:v8];
 
       -[HIDAppleSiriRemoteDevice handleTouchData](self, "handleTouchData");
@@ -1495,11 +1495,11 @@ LABEL_19:
       -[HIDAppleSiriRemoteDevice handleButtonData](self, "handleButtonData");
       break;
     case 252:
-      uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+      uint64_t v16 = (void *)[self touchData];
       [v16 setLength:0];
 
       char v23 = -5;
-      float v17 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+      float v17 = [self touchData];
       [v17 appendBytes:&v23 length:1];
 
       int v18 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
@@ -1532,11 +1532,11 @@ LABEL_19:
         id v13 = &v22[-v12];
         bzero(&v22[-v12], (size_t)v11);
         _BYTE *v13 = 96;
-        objc_msgSend(v7, "getBytes:length:", v13 + 1, objc_msgSend(v7, "length"));
+        [v7 getBytes:v13 + 1 length:[v7 length]];
         int v14 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
         [v14 setLength:0];
 
-        id v15 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
+        id v15 = [self touchData];
         [v15 appendBytes:v13 length:v11];
 
         -[HIDAppleSiriRemoteDevice handleTouchData](self, "handleTouchData");
@@ -1590,7 +1590,7 @@ LABEL_19:
 
       else
       {
-        int v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytesNoCopy:length:freeWhenDone:]( &OBJC_CLASS___NSData,  "dataWithBytesNoCopy:length:freeWhenDone:",  a3,  a4,  0LL));
+        int v18 = (void *)[NSData dataWithBytesNoCopy:a3 length:a4 freeWhenDone:0LL];
         if (byte_100070CC0) {
           kdebug_trace( 730595452LL,  -[HIDAppleSiriRemoteDevice instanceID](self, "instanceID"),  v11,  v9,  0LL);
         }
@@ -1657,8 +1657,8 @@ LABEL_19:
     uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"keyholeID 0x%02x reportID 0x%02x reportType %d reportLength %ld",  v9,  v11,  v10,  a4));
     NSErrorUserInfoKey v24 = NSLocalizedDescriptionKey;
     v25 = v20;
-    id v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v25,  &v24,  1LL));
-    *a8 = (id)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  v16,  v21));
+    id v21 = [NSDictionary dictionaryWithObjects:forKeys:count:v25, v24, 1LL];
+    *a8 = [NSError errorWithDomain:NSMachErrorDomain code:v16 userInfo:v21];
   }
 
   return v16;
@@ -1856,7 +1856,7 @@ LABEL_19:
 
   if ((_DWORD)v9 == 219 && (_DWORD)v7 == 241)
   {
-    v41 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue( -[HIDAppleSiriRemoteDevice gotDeviceExtendedInfoReport]( self,  "gotDeviceExtendedInfoReport"));
+    v41 = [self gotDeviceExtendedInfoReport];
     dispatch_semaphore_signal(v41);
 
     if (byte_100070CC0) {
@@ -1876,7 +1876,7 @@ LABEL_19:
   uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
   [v8 setLength:0];
 
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice inertialData](self, "inertialData"));
+  uint64_t v9 = (void *)-[HIDAppleSiriRemoteDevice inertialData];
   [v9 setLength:0];
 
   if (a3)
@@ -1903,7 +1903,7 @@ LABEL_4:
         if (a4 < 3) {
           return;
         }
-        id v12 = (id)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3 + 2, a4 - 2));
+        id v12 = [NSData dataWithBytes:a3 + 2 length:a4 - 2];
         -[HIDAppleSiriRemoteDevice handleInputReportDataV1:reportID:]( self,  "handleInputReportDataV1:reportID:",  v12,  224LL,  v12);
         goto LABEL_18;
       case 7u:
@@ -1925,7 +1925,7 @@ LABEL_4:
           uint64_t v11 = a3 + 3;
         }
 
-        id v14 = (id)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v11, 1LL));
+        id v14 = [NSData dataWithBytes:v11 length:1LL];
         -[HIDAppleSiriRemoteDevice handleInputReportDataV1:reportID:]( self,  "handleInputReportDataV1:reportID:",  v14,  96LL,  v14);
 LABEL_18:
 
@@ -1942,7 +1942,7 @@ LABEL_18:
     id location = 0LL;
     objc_initWeak(&location, self);
     dispatch_time_t v3 = dispatch_time(0LL, 5000000000LL);
-    int v4 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+    int v4 = [self queue];
     block[0] = _NSConcreteStackBlock;
     block[1] = 3221225472LL;
     block[2] = sub_10000A1FC;
@@ -1962,7 +1962,7 @@ LABEL_18:
   {
     id location = 0LL;
     objc_initWeak(&location, self);
-    uint64_t v8 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+    uint64_t v8 = [self queue];
     v9[0] = _NSConcreteStackBlock;
     v9[1] = 3221225472LL;
     v9[2] = sub_10000A550;
@@ -1980,7 +1980,7 @@ LABEL_18:
     int v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Apple Siri Remote stopped (disconnected)"));
     NSErrorUserInfoKey v13 = NSLocalizedDescriptionKey;
     id v14 = v5;
-    id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v14,  &v13,  1LL));
+    id v6 = [NSDictionary dictionaryWithObjects:forKeys:count:v14, v13, 1LL];
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
 
     (*((void (**)(id, void *))v4 + 2))(v4, v7);
@@ -1995,7 +1995,7 @@ LABEL_18:
     int v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Apple Siri Remote stopped (disconnected)"));
     NSErrorUserInfoKey v44 = NSLocalizedDescriptionKey;
     int64_t v45 = v5;
-    id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v45,  &v44,  1LL));
+    id v6 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v45,  &v44,  1LL);
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
 
     v4[2](v4, v7);
@@ -2005,7 +2005,7 @@ LABEL_18:
     goto LABEL_18;
   }
 
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice lastAudioDate](self, "lastAudioDate"));
+  uint64_t v9 = (void *)[self lastAudioDate];
   [v9 timeIntervalSinceNow];
   double v11 = fabs(v10);
 
@@ -2015,7 +2015,7 @@ LABEL_18:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       uint64_t v26 = v25;
-      v27 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice lastAudioDate](self, "lastAudioDate"));
+      v27 = [self lastAudioDate];
       [v27 timeIntervalSinceNow];
       *(_DWORD *)uint8_t buf = 134217984;
       *(double *)&uint8_t buf[4] = fabs(v28) * 1000.0;
@@ -2025,15 +2025,15 @@ LABEL_18:
     goto LABEL_17;
   }
 
-  id v12 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioStop](self, "doapAudioStop"));
+  id v12 = [self doapAudioStop];
 
   if (v12)
   {
-    NSErrorUserInfoKey v13 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice lastAudioDate](self, "lastAudioDate"));
+    NSErrorUserInfoKey v13 = [self lastAudioDate];
     [v13 timeIntervalSinceNow];
     double v15 = v14;
 
-    int v16 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice doapAudioStop](self, "doapAudioStop"));
+    int v16 = (dispatch_semaphore_s *)[self doapAudioStop];
     dispatch_time_t v17 = dispatch_time(0LL, 1000000 * vcvtpd_s64_f64((v15 + 0.105) * 1000.0));
     uint64_t v18 = dispatch_semaphore_wait(v16, v17);
 
@@ -2044,7 +2044,7 @@ LABEL_18:
       if (v20)
       {
         uint64_t v21 = v19;
-        uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice lastAudioDate](self, "lastAudioDate"));
+        uint64_t v22 = (void *)[self lastAudioDate];
         [v22 timeIntervalSinceNow];
         *(_DWORD *)uint8_t buf = 134217984;
         *(double *)&uint8_t buf[4] = fabs(v23) * 1000.0;
@@ -2053,7 +2053,7 @@ LABEL_18:
 
       *(void *)uint8_t buf = 0LL;
       objc_initWeak((id *)buf, self);
-      uint64_t v24 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+      uint64_t v24 = [self queue];
       v38[0] = _NSConcreteStackBlock;
       v38[1] = 3221225472LL;
       v38[2] = sub_10000AFE8;
@@ -2080,7 +2080,7 @@ LABEL_18:
   {
     id location = 0LL;
     objc_initWeak(&location, self);
-    uint64_t v9 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice queue](self, "queue"));
+    uint64_t v9 = [self queue];
     v10[0] = _NSConcreteStackBlock;
     v10[1] = 3221225472LL;
     v10[2] = sub_10000B208;
@@ -2098,7 +2098,7 @@ LABEL_18:
     int v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Apple Siri Remote stopped (disconnected)"));
     NSErrorUserInfoKey v14 = NSLocalizedDescriptionKey;
     double v15 = v5;
-    id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v15,  &v14,  1LL));
+    id v6 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v15,  &v14,  1LL);
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
 
     (*((void (**)(id, void *))v4 + 2))(v4, v7);

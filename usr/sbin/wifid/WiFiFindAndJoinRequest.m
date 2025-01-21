@@ -66,37 +66,37 @@
   -[WiFiFindAndJoinRequest setTotalJoinTime:](v4, "setTotalJoinTime:", 0.0);
   -[WiFiFindAndJoinRequest setTimeout:](v4, "setTimeout:", 60.0);
   -[WiFiFindAndJoinRequest setChipResetWaiter:](v4, "setChipResetWaiter:", 0LL);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  v5 = [NSMutableArray array];
   -[WiFiFindAndJoinRequest setScanFailureList:](v4, "setScanFailureList:", v5);
 
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  v6 = [NSMutableArray array];
   -[WiFiFindAndJoinRequest setJoinFailureList:](v4, "setJoinFailureList:", v6);
 
-  v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v7 = [NSMutableSet set];
   -[WiFiFindAndJoinRequest setSupported2GHzChannels:](v4, "setSupported2GHzChannels:", v7);
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v8 = [NSMutableSet set];
   -[WiFiFindAndJoinRequest setSupported5GHzChannels:](v4, "setSupported5GHzChannels:", v8);
 
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v9 = [NSMutableSet set];
   -[WiFiFindAndJoinRequest setSupported6GHzChannels:](v4, "setSupported6GHzChannels:", v9);
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v10 = [NSMutableSet set];
   -[WiFiFindAndJoinRequest setScannedChannels:](v4, "setScannedChannels:", v10);
 
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  v11 = [NSMutableSet set];
   -[WiFiFindAndJoinRequest setJoinCandidates:](v4, "setJoinCandidates:", v11);
 
-  v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v12 = [NSNotificationCenter defaultCenter];
   [v12 addObserver:v4 selector:"_chipResetDidComplete:" name:@"WiFiChipResetCompleted" object:0];
 
   v13 = -[CWFInterface initWithServiceType:](objc_alloc(&OBJC_CLASS___CWFInterface), "initWithServiceType:", 1LL);
   -[WiFiFindAndJoinRequest setInterface:](v4, "setInterface:", v13);
 
-  v14 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest interface](v4, "interface"));
+  v14 = -[WiFiFindAndJoinRequest interface];
   if (v14)
   {
-    v15 = (WiFiFindAndJoinRequest *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest interface](v4, "interface"));
+    v15 = [WiFiFindAndJoinRequest interface];
     -[WiFiFindAndJoinRequest activate](v15, "activate");
   }
 
@@ -118,12 +118,12 @@
   id v3 = (objc_class *)objc_opt_class(self);
   v4 = NSStringFromClass(v3);
   v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableString stringWithFormat:]( &OBJC_CLASS___NSMutableString,  "stringWithFormat:",  @"< %@:%p ",  v5,  self));
+  v6 = [NSMutableString stringWithFormat:@"< %@:%p ", v5, self];
 
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest networkName](self, "networkName"));
+  v7 = -[WiFiFindAndJoinRequest networkName];
   [v6 appendFormat:@"SSID='%@' ", v7];
 
-  objc_msgSend( v6,  "appendFormat:",  @"Channel=%d ",  -[WiFiFindAndJoinRequest channelNumber](self, "channelNumber"));
+  [v6 appendFormat:@"Channel=%d ",-[self channelNumber]];
   objc_msgSend(v6, "appendFormat:", @"Band=%d ", -[WiFiFindAndJoinRequest channelBand](self, "channelBand"));
   -[WiFiFindAndJoinRequest timeout](self, "timeout");
   objc_msgSend(v6, "appendFormat:", @"Timeout=%d ", (int)v8);
@@ -149,11 +149,11 @@
 
   else
   {
-    v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest startedAt](self, "startedAt"));
+    v7 = -[WiFiFindAndJoinRequest startedAt];
     if (v7)
     {
-      double v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
-      v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest startedAt](self, "startedAt"));
+      double v8 = [NSDate date];
+      v9 = [self startedAt];
       [v8 timeIntervalSinceDate:v9];
       double v11 = v10;
       -[WiFiFindAndJoinRequest timeout](self, "timeout");
@@ -165,7 +165,7 @@
       char v13 = 0;
     }
 
-    v14 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scanFailureList](self, "scanFailureList"));
+    v14 = -[WiFiFindAndJoinRequest scanFailureList];
     v15 = (char *)[v14 count];
     v16 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinFailureList](self, "joinFailureList"));
     BOOL v17 = &v15[(void)[v16 count]];
@@ -182,8 +182,8 @@
 - (BOOL)_checkAndRequestChipResetIfNeeded
 {
   double v4 = v3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
-  BOOL v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest startedAt](self, "startedAt"));
+  v5 = [NSDate date];
+  BOOL v6 = -[WiFiFindAndJoinRequest startedAt](self, "startedAt");
   [v5 timeIntervalSinceDate:v6];
   double v8 = v7;
 
@@ -209,13 +209,13 @@ LABEL_10:
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR)) {
     sub_100153E98(self, v10);
   }
-  v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v15 = [NSNotificationCenter defaultCenter];
   [v15 postNotificationName:@"WiFiChipResetRequested" object:0 userInfo:0];
 
   dispatch_semaphore_t v16 = dispatch_semaphore_create(0LL);
   -[WiFiFindAndJoinRequest setChipResetWaiter:](self, "setChipResetWaiter:", v16);
 
-  BOOL v17 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest chipResetWaiter](self, "chipResetWaiter"));
+  BOOL v17 = [self chipResetWaiter];
   dispatch_time_t v18 = dispatch_time(0LL, (uint64_t)(v10 * 1000000000.0));
   uint64_t v19 = dispatch_semaphore_wait(v17, v18);
 
@@ -243,7 +243,7 @@ LABEL_10:
 
   if (v4)
   {
-    v5 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest chipResetWaiter](self, "chipResetWaiter"));
+    v5 = (dispatch_semaphore_s *)[self chipResetWaiter];
     dispatch_semaphore_signal(v5);
   }
 
@@ -277,7 +277,7 @@ LABEL_10:
         {
           if ([v11 band] == 1)
           {
-            double v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported2GHzChannels](self, "supported2GHzChannels"));
+            double v12 = [self supported2GHzChannels];
 LABEL_13:
             char v13 = v12;
             [v12 addObject:v11];
@@ -287,13 +287,13 @@ LABEL_13:
 
           if ([v11 band] == 2)
           {
-            double v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported5GHzChannels](self, "supported5GHzChannels"));
+            double v12 = [self supported5GHzChannels];
             goto LABEL_13;
           }
 
           if ([v11 band] == 3)
           {
-            double v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported6GHzChannels](self, "supported6GHzChannels"));
+            double v12 = -[WiFiFindAndJoinRequest supported6GHzChannels](self, "supported6GHzChannels");
             goto LABEL_13;
           }
 
@@ -313,28 +313,28 @@ LABEL_13:
 
 - (id)_printSupportedChannels
 {
-  double v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableString string](&OBJC_CLASS___NSMutableString, "string"));
+  double v3 = +[NSMutableString string];
   objc_msgSend(v3, "appendFormat:", @"6GHz:(");
   double v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported6GHzChannels](self, "supported6GHzChannels"));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 allObjects]);
+  id v5 = [v4 allObjects];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 valueForKey:@"description"]);
-  __int128 v7 = (void *)objc_claimAutoreleasedReturnValue([v6 componentsJoinedByString:@","]);
+  __int128 v7 = (void *)[v6 componentsJoinedByString:@","];
   [v3 appendFormat:@"%@, ", v7];
 
   [v3 appendFormat:@","]);
   objc_msgSend(v3, "appendFormat:", @"5GHz:(");
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported5GHzChannels](self, "supported5GHzChannels"));
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 allObjects]);
-  double v10 = (void *)objc_claimAutoreleasedReturnValue([v9 valueForKey:@"description"]);
-  double v11 = (void *)objc_claimAutoreleasedReturnValue([v10 componentsJoinedByString:@","]);
+  id v8 = -[WiFiFindAndJoinRequest supported5GHzChannels];
+  uint64_t v9 = (void *)[v8 allObjects];
+  double v10 = (void *)[v9 valueForKey:@"description"];
+  double v11 = [v10 componentsJoinedByString:@","];
   [v3 appendFormat:@"%@, ", v11];
 
   [v3 appendFormat:@","]);
   objc_msgSend(v3, "appendFormat:", @"2.4GHz:(");
-  double v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported2GHzChannels](self, "supported2GHzChannels"));
-  char v13 = (void *)objc_claimAutoreleasedReturnValue([v12 allObjects]);
-  unsigned int v14 = (void *)objc_claimAutoreleasedReturnValue([v13 valueForKey:@"description"]);
-  unsigned int v15 = (void *)objc_claimAutoreleasedReturnValue([v14 componentsJoinedByString:@","]);
+  double v12 = -[WiFiFindAndJoinRequest supported2GHzChannels](self, "supported2GHzChannels");
+  char v13 = (void *)[v12 allObjects];
+  unsigned int v14 = (void *)[v13 valueForKey:@"description"];
+  unsigned int v15 = (void *)[v14 componentsJoinedByString:@","];
   [v3 appendFormat:@"%@, ", v15];
 
   [v3 appendFormat:@""]);
@@ -345,8 +345,8 @@ LABEL_13:
 {
   id v6 = a3;
   __int128 v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest networkName](self, "networkName"));
+  id v8 = [NSMutableSet set];
+  uint64_t v9 = (void *)[self networkName];
 
   v142 = v6;
   if (!v9)
@@ -367,7 +367,7 @@ LABEL_13:
   -[WiFiFindAndJoinRequest _populateSupportedChannels](self, "_populateSupportedChannels");
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_DEFAULT))
   {
-    double v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest _printSupportedChannels](self, "_printSupportedChannels"));
+    double v10 = -[WiFiFindAndJoinRequest _printSupportedChannels];
     *(_DWORD *)buf = 136315650;
     v175 = "-[WiFiFindAndJoinRequest _runFindAndJoinOnInterface:outError:]";
     __int16 v176 = 2112;
@@ -453,7 +453,7 @@ LABEL_17:
                   objc_enumerationMutation(v21);
                 }
                 uint64_t v26 = *(void *)(*((void *)&v166 + 1) + 8LL * (void)j);
-                unsigned int v27 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scannedChannels](self, "scannedChannels"));
+                unsigned int v27 = [self scannedChannels];
                 unsigned __int8 v28 = [v27 containsObject:v26];
 
                 if ((v28 & 1) == 0) {
@@ -498,7 +498,7 @@ LABEL_17:
                   objc_enumerationMutation(v31);
                 }
                 uint64_t v36 = *(void *)(*((void *)&v162 + 1) + 8LL * (void)k);
-                v37 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scannedChannels](self, "scannedChannels"));
+                v37 = -[WiFiFindAndJoinRequest scannedChannels];
                 unsigned __int8 v38 = [v37 containsObject:v36];
 
                 if ((v38 & 1) == 0) {
@@ -564,7 +564,7 @@ LABEL_17:
 
       id v49 = objc_alloc_init(&OBJC_CLASS___CWFScanParameters);
 
-      v50 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest networkName](self, "networkName"));
+      v50 = [self networkName];
       [v49 setSSID:v50];
 
       [v49 setBSSType:3];
@@ -587,17 +587,17 @@ LABEL_17:
       [v49 setDwellTime:v52];
       [v49 setScanFlags:2592];
       [v49 setScanType:1];
-      uint64_t v53 = objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+      uint64_t v53 = [NSDate date];
 
       v54 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest interface](self, "interface"));
       id v157 = 0LL;
       v149 = v49;
-      v55 = (void *)objc_claimAutoreleasedReturnValue([v54 performScanWithParameters:v49 error:&v157]);
+      v55 = (void *)[v54 performScanWithParameters:v49 error:&v157];
       v56 = (WiFiFindAndJoinRequest *)v157;
 
       if (v56)
       {
-        v57 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scanFailureList](self, "scanFailureList"));
+        v57 = -[WiFiFindAndJoinRequest scanFailureList];
         [v57 addObject:v56];
 LABEL_66:
 
@@ -617,8 +617,8 @@ LABEL_66:
 {
   if (&_AnalyticsSendEventLazy)
   {
-    double v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-    double v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinedNetwork](self, "joinedNetwork"));
+    double v3 = [NSMutableDictionary dictionary];
+    double v4 = [self joinedNetwork];
     if (v4) {
       id v5 = @"Success";
     }
@@ -636,7 +636,7 @@ LABEL_66:
     }
     [v3 setObject:v7 forKeyedSubscript:@"DidPerformChipReset"];
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    id v8 = [NSDate date];
     uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest startedAt](self, "startedAt"));
     [v8 timeIntervalSinceDate:v9];
     __int128 v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLong:",  (unint64_t)(v10 * 1000.0)));
@@ -654,16 +654,16 @@ LABEL_66:
     __int128 v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v16 count]));
     [v3 setObject:v17 forKeyedSubscript:@"Supported2GHzChannelCount"];
 
-    __int128 v18 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported5GHzChannels](self, "supported5GHzChannels"));
+    __int128 v18 = -[WiFiFindAndJoinRequest supported5GHzChannels];
     __int128 v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v18 count]));
     [v3 setObject:v19 forKeyedSubscript:@"Supported5GHzChannelCount"];
 
-    id v20 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported6GHzChannels](self, "supported6GHzChannels"));
+    id v20 = -[WiFiFindAndJoinRequest supported6GHzChannels];
     __int128 v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v20 count]));
     [v3 setObject:v21 forKeyedSubscript:@"Supported6GHzChannelCount"];
 
-    id v22 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scannedChannels](self, "scannedChannels"));
-    id v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v22 count]));
+    id v22 = -[WiFiFindAndJoinRequest scannedChannels];
+    id v23 = [NSNumber numberWithUnsignedInteger:[v22 count]];
     [v3 setObject:v23 forKeyedSubscript:@"ScannedChannelCount"];
 
     uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scanFailureList](self, "scanFailureList"));
@@ -677,15 +677,15 @@ LABEL_66:
     unsigned __int8 v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInteger:",  -[WiFiFindAndJoinRequest channelNumber](self, "channelNumber")));
     [v3 setObject:v28 forKeyedSubscript:@"RequestedChannel"];
 
-    v29 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInteger:",  -[WiFiFindAndJoinRequest channelBand](self, "channelBand")));
+    v29 = [NSNumber numberWithUnsignedInteger:[self channelBand]];
     [v3 setObject:v29 forKeyedSubscript:@"RequestedBand"];
 
     id v30 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinedNetwork](self, "joinedNetwork"));
     if (v30)
     {
-      v31 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinedNetwork](self, "joinedNetwork"));
-      id v32 = (void *)objc_claimAutoreleasedReturnValue([v31 channel]);
-      id v33 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v32 channel]));
+      v31 = [self joinedNetwork];
+      id v32 = [v31 channel];
+      id v33 = [NSNumber numberWithUnsignedInteger:v32.channel];
       [v3 setObject:v33 forKeyedSubscript:@"JoinedChannel"];
     }
 
@@ -698,8 +698,8 @@ LABEL_66:
     if (v34)
     {
       v35 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinedNetwork](self, "joinedNetwork"));
-      uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue([v35 channel]);
-      v37 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v36 band]));
+      uint64_t v36 = (void *)[v35 channel];
+      v37 = [NSNumber numberWithUnsignedInteger:([v36 band])];
       [v3 setObject:v37 forKeyedSubscript:@"JoinedBand"];
     }
 
@@ -711,9 +711,9 @@ LABEL_66:
     unsigned __int8 v38 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scanFailureList](self, "scanFailureList"));
     if ([v38 count])
     {
-      v39 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest scanFailureList](self, "scanFailureList"));
-      id v40 = (void *)objc_claimAutoreleasedReturnValue([v39 valueForKey:@"description"]);
-      v41 = (void *)objc_claimAutoreleasedReturnValue([v40 componentsJoinedByString:@","]);
+      v39 = -[WiFiFindAndJoinRequest scanFailureList];
+      id v40 = [v39 valueForKey:@"description"];
+      v41 = [v40 componentsJoinedByString:@","];
       [v3 setObject:v41 forKeyedSubscript:@"ScanFailures"];
     }
 
@@ -722,12 +722,12 @@ LABEL_66:
       [v3 setObject:0 forKeyedSubscript:@"ScanFailures"];
     }
 
-    id v42 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinFailureList](self, "joinFailureList"));
+    id v42 = [self joinFailureList];
     if ([v42 count])
     {
-      id v43 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest joinFailureList](self, "joinFailureList"));
-      uint64_t v44 = (void *)objc_claimAutoreleasedReturnValue([v43 valueForKey:@"description"]);
-      v45 = (void *)objc_claimAutoreleasedReturnValue([v44 componentsJoinedByString:@","]);
+      id v43 = [self joinFailureList];
+      uint64_t v44 = (void *)[v43 valueForKey:@"description"];
+      v45 = [v44 componentsJoinedByString:@","];
       [v3 setObject:v45 forKeyedSubscript:@"JoinFailures"];
     }
 
@@ -768,7 +768,7 @@ LABEL_66:
   v18[3] = sub_1000602EC;
   v18[4] = sub_1000602FC;
   id v19 = 0LL;
-  double v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+  double v10 = [NSDate date];
   -[WiFiFindAndJoinRequest setStartedAt:](self, "setStartedAt:", v10);
 
   block[0] = _NSConcreteStackBlock;
@@ -795,7 +795,7 @@ LABEL_66:
   id v8 = a3;
   id v9 = a4;
   id v10 = a5;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+  id v11 = [NSDate date];
   -[WiFiFindAndJoinRequest setStartedAt:](self, "setStartedAt:", v11);
 
   dispatch_queue_global_t global_queue = dispatch_get_global_queue(0LL, 0LL);

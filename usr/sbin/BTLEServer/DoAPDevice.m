@@ -79,7 +79,7 @@
 
 - (DoAPDevice)init
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "-[DoAPDevice init]"));
+  v3 = [NSString stringWithUTF8String:];
   +[NSException raise:format:]( &OBJC_CLASS___NSException,  "raise:format:",  NSInvalidArgumentException,  @"Calling %@ is not allowed",  v3);
 
   return 0LL;
@@ -142,7 +142,7 @@
   objc_super v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytesNoCopy:length:freeWhenDone:]( &OBJC_CLASS___NSData,  "dataWithBytesNoCopy:length:freeWhenDone:",  v10,  4LL,  0LL));
   if (-[DoAPDevice state](self, "state"))
   {
-    v7 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice service](self, "service"));
+    v7 = [self service];
     [v7 selectCodec:v6];
 
     int v8 = 0;
@@ -170,7 +170,7 @@
   int v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytesNoCopy:length:freeWhenDone:]( &OBJC_CLASS___NSData,  "dataWithBytesNoCopy:length:freeWhenDone:",  v9,  2LL,  0LL));
   if (-[DoAPDevice state](self, "state") == 2 || -[DoAPDevice state](self, "state") == 3)
   {
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice service](self, "service"));
+    uint64_t v5 = (void *)[self service];
     [v5 startStreaming:v4];
 
     objc_super v6 = self;
@@ -212,7 +212,7 @@
 
   else
   {
-    int v7 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice service](self, "service"));
+    int v7 = (void *)[self service];
     [v7 stopStreaming:v6];
 
     int v8 = self;
@@ -264,8 +264,8 @@
   {
     if (-[DoAPDevice state](self, "state") >= 2 && -[DoAPDevice state](self, "state") <= 6)
     {
-      int v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytesNoCopy:length:freeWhenDone:]( &OBJC_CLASS___NSData,  "dataWithBytesNoCopy:length:freeWhenDone:",  &v15,  5LL,  0LL));
-      v10 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice service](self, "service"));
+      int v9 = (void *)[NSData dataWithBytesNoCopy:v15 length:5 freeWhenDone:0];
+      v10 = -[DoAPDevice service];
       [v10 eventIndicator:v9];
 
       return 0;
@@ -287,7 +287,7 @@
 {
   BOOL v4 = a3;
   id v6 = a4;
-  id v7 = (id)objc_claimAutoreleasedReturnValue(-[DoAPDevice service](self, "service"));
+  id v7 = [self service];
   [v7 setHighPriorityLink:v4 burstTime:v6];
 }
 
@@ -324,12 +324,12 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     id v7 = v6;
-    dispatch_queue_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice peripheral](self, "peripheral"));
-    int v9 = (void *)objc_claimAutoreleasedReturnValue([v8 identifier]);
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v9 UUIDString]);
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice doapStateNameFor:](self, "doapStateNameFor:", -[DoAPDevice state](self, "state")));
+    dispatch_queue_t v8 = [self peripheral];
+    int v9 = (void *)[v8 identifier];
+    v10 = [v9 UUIDString];
+    uint64_t v11 = (void *)[self doapStateNameFor:[self state]];
     unsigned int v12 = -[DoAPDevice state](self, "state");
-    v13 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice doapStateNameFor:](self, "doapStateNameFor:", v3));
+    v13 = -[DoAPDevice doapStateNameFor:v3];
     int v14 = 138478851;
     uint64_t v15 = v10;
     __int16 v16 = 2114;

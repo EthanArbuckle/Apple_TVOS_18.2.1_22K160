@@ -9,7 +9,7 @@
   if (a4 - 1 > 0xFFFFFFFD)
   {
     uint64_t v5 = BKLogMousePointer(self, a2, a3);
-    v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    v6 = os_log_s;
     if (os_log_type_enabled(v6, OS_LOG_TYPE_ERROR))
     {
       v7[0] = 67109120;
@@ -20,7 +20,7 @@
 
   else
   {
-    BKSendHIDEventToClientWithTaskPort(a3, *(void *)&a4);
+    BKSendHIDEventToClientWithTaskPort(a3, a4);
   }
 
 @end

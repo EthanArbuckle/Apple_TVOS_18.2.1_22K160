@@ -142,7 +142,7 @@
   {
     id obj = 0LL;
     uint64_t v5 = CUPrintPID(self->_pid);
-    id v6 = (id)objc_claimAutoreleasedReturnValue(v5);
+    id v6 = [v5 autorelease];
     NSAppendPrintF_safe(&obj, "%@", v6);
     objc_storeStrong(&v107, obj);
     goto LABEL_8;
@@ -171,7 +171,7 @@ LABEL_5:
   }
 
   id v99 = 0LL;
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](remoteDevice, "identifier"));
+  id v6 = [remoteDevice identifier];
   NSAppendPrintF_safe(&v99, "Remote %@", v6);
   objc_storeStrong(&v107, v99);
 LABEL_8:
@@ -347,9 +347,9 @@ LABEL_42:
             v52 = *(void **)(*((void *)&v81 + 1) + 8LL * (void)i);
             v53 = (id *)(v103 + 5);
             id v80 = (id)v103[5];
-            v54 = (void *)objc_claimAutoreleasedReturnValue([v52 tokenData]);
-            v55 = (void *)objc_claimAutoreleasedReturnValue([v52 identifierData]);
-            v56 = (void *)objc_claimAutoreleasedReturnValue([v52 irkData]);
+            v54 = [v52 tokenData];
+            v55 = [v52 identifierData];
+            v56 = [v52 irkData];
             NSAppendPrintF_safe( &v80,  "        PeerToken <%@>, IDD <%@>, IRK <%@>, PeerID 0x%X\n",  v54,  v55,  v56,  [v52 peerID]);
             objc_storeStrong(v53, v80);
           }
@@ -388,7 +388,7 @@ LABEL_57:
   if (dword_1008D6630 <= 20 && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 20LL)))
   {
     uint64_t v3 = CUPrintPID(self->_pid);
-    id v4 = (id)objc_claimAutoreleasedReturnValue(v3);
+    id v4 = v3;
     LogPrintF_safe(&dword_1008D6630, "-[CBDaemonXPCConnection activate]", 20LL, "XPC connection start: %@", v4);
   }
 
@@ -430,7 +430,7 @@ LABEL_57:
     -[CBConnection invalidate](v8, "invalidate");
     if (self->_connectionAddedPairingClient)
     {
-      v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+      v11 = -[CBDaemonServer stackController](self->_daemon, "stackController");
       [v11 removePairingClient:v8];
 
       self->_connectionAddedPairingClient = 0;
@@ -453,7 +453,7 @@ LABEL_57:
 
     if (self->_addedDiscoverableController)
     {
-      v16 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+      v16 = -[CBDaemonServer stackController](self->_daemon, "stackController");
       [v16 removeDiscoverableController:v13];
 
       self->_addedDiscoverableController = 0;
@@ -477,7 +477,7 @@ LABEL_57:
       LogPrintF_safe(&dword_1008D6630, "-[CBDaemonXPCConnection invalidate]", 30LL, "Invalidate: %@, from %@", v18, v20);
     }
 
-    v21 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+    v21 = [CBMetricsDaemon sharedCBMetricsDaemon];
     [v21 reportCBDiscovery:v18 daemonCnx:self action:@"stop"];
 
     -[CBDiscovery invalidate](v18, "invalidate");
@@ -498,7 +498,7 @@ LABEL_57:
       LogPrintF_safe(&dword_1008D6630, "-[CBDaemonXPCConnection invalidate]", 30LL, "Invalidate: %@, from %@", v23, v25);
     }
 
-    v26 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+    v26 = [CBMetricsDaemon sharedCBMetricsDaemon];
     [v26 reportCBDiscovery:v23 daemonCnx:self action:@"stop"];
 
     -[CBDiscovery invalidate](v23, "invalidate");
@@ -605,7 +605,7 @@ LABEL_57:
     uint64_t v9 = objc_retainBlock(v29);
     if (string || (string = xpc_dictionary_get_string(v7, "application-identifier")) != 0LL)
     {
-      v10 = (NSString *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", string));
+      v10 = [NSString stringWithUTF8String:string];
       appID = self->_appID;
       self->_appID = v10;
 
@@ -630,7 +630,7 @@ LABEL_15:
           uint64_t v19 = CUPrintPID(self->_pid);
           v20 = (void *)objc_claimAutoreleasedReturnValue(v19);
           uint64_t v21 = CUPrintNSError(v18);
-          v22 = (void *)objc_claimAutoreleasedReturnValue(v21);
+          v22 = (void *)[v21 autorelease];
           LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _entitledAndReturnError:]",  90LL,  "### CoreBluetooth denied: %@, %@",  v20,  v22);
         }
 
@@ -727,13 +727,13 @@ LABEL_36:
   if (dword_1008D6630 <= 30 && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL))) {
     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _remoteInvalidate]",  30LL,  "Remote invalidate send: CID 0x%X",  v6);
   }
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(-[CBDevice identifier](self->_remoteDevice, "identifier"));
+  uint64_t v7 = [self->_remoteDevice identifier];
   if (v7)
   {
     v8 = (void *)v7;
     uint64_t v16 = RPOptionTimeoutSeconds;
     uint64_t v17 = &off_1008C28A0;
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v17,  &v16,  1LL));
+    uint64_t v9 = (void *)[NSDictionary dictionaryWithObjects:forKeys:count:&v17, &v16, 1LL];
     v13[0] = _NSConcreteStackBlock;
     v13[1] = 3221225472LL;
     v13[2] = sub_100053440;
@@ -779,7 +779,7 @@ LABEL_9:
   if (v5)
   {
 LABEL_4:
-    unsigned int v6 = (void *)objc_claimAutoreleasedReturnValue([v20 identifier]);
+    unsigned int v6 = (void *)[v20 identifier];
     if (!v6)
     {
 LABEL_59:
@@ -787,7 +787,7 @@ LABEL_59:
       goto LABEL_60;
     }
 
-    id v7 = (id)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceMap, "objectForKeyedSubscript:", v6));
+    id v7 = [self->_deviceMap objectForKeyedSubscript:v6];
     if ([v20 discoveryTypesContainCBDiscovery:v5])
     {
       if (v7)
@@ -886,7 +886,7 @@ LABEL_63:
                   LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection reportDeviceFound:]",  20LL,  "Ignoring WHB device found: %@ - no RSSI level change",  v20);
                 }
 
-                v18 = (void *)objc_claimAutoreleasedReturnValue( +[CBMetricsDaemon sharedCBMetricsDaemon]( &OBJC_CLASS___CBMetricsDaemon,  "sharedCBMetricsDaemon"));
+                v18 = [CBMetricsDaemon sharedCBMetricsDaemon];
                 [v18 reportRSSIMetric:@"RSSILevelNoChange"];
 LABEL_57:
 
@@ -921,7 +921,7 @@ LABEL_57:
         -[NSMutableDictionary setObject:forKeyedSubscript:](deviceMap, "setObject:forKeyedSubscript:", v20, v6);
       }
 
-      uint64_t v9 = objc_claimAutoreleasedReturnValue(-[CBDiscovery deviceFoundHandler](v5, "deviceFoundHandler"));
+      uint64_t v9 = [v5 deviceFoundHandler];
     }
 
     else
@@ -947,7 +947,7 @@ LABEL_58:
 - (void)reportDeviceLost:(id)a3
 {
   id v13 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v13 identifier]);
+  id v4 = [v13 identifier];
   if (v4)
   {
     uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceMap, "objectForKeyedSubscript:", v4));
@@ -987,7 +987,7 @@ LABEL_58:
       else
       {
         -[NSMutableDictionary setObject:forKeyedSubscript:](self->_deviceMap, "setObject:forKeyedSubscript:", 0LL, v4);
-        uint64_t v9 = objc_claimAutoreleasedReturnValue(-[CBDiscovery deviceLostHandler](v7, "deviceLostHandler"));
+        uint64_t v9 = [v7 deviceLostHandler];
         v10 = (void *)v9;
         if (v9) {
           (*(void (**)(uint64_t, id))(v9 + 16))(v9, v13);
@@ -1051,7 +1051,7 @@ LABEL_58:
   if (xpc_get_type(xdict) == (xpc_type_t)&_xpc_type_dictionary)
   {
     xpc_object_t dictionary = xpc_dictionary_get_dictionary(xdict, "rmtD");
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(dictionary);
+    id v8 = (void *)dictionary;
     if (v8) {
       -[CBDaemonXPCConnection _xpcReceivedMessage:remoteDevice:](self, "_xpcReceivedMessage:remoteDevice:", xdict, v8);
     }
@@ -1156,7 +1156,7 @@ LABEL_17:
         goto LABEL_39;
       }
 
-      __int128 v16 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](v15, "identifier"));
+      __int128 v16 = (void *)[v15 identifier];
       if (!v16)
       {
         uint64_t v28 = CBErrorF(4294960584LL, "Remote device without ID");
@@ -1193,7 +1193,7 @@ LABEL_17:
     if ((objc_opt_isKindOfClass(v14, v19) & 1) == 0)
     {
       uint64_t v25 = CBErrorF(4294960540LL, "Remote message non-dict");
-      BOOL v15 = (CBDevice *)objc_claimAutoreleasedReturnValue(v25);
+      BOOL v15 = [v25 autorelease];
       -[CBDaemonXPCConnection _xpcSendReplyError:request:](self, "_xpcSendReplyError:request:", v15, v6);
       goto LABEL_38;
     }
@@ -1224,7 +1224,7 @@ LABEL_17:
 
     else
     {
-      v22 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](self->_remoteDevice, "identifier"));
+      v22 = [self->_remoteDevice identifier];
       if (v22)
       {
         if (dword_1008D6630 <= 20
@@ -1299,7 +1299,7 @@ LABEL_5:
   {
     uint64_t v10 = CUPrintPID(self->_pid);
     int v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](self->_remoteDevice, "identifier"));
+    uint64_t v12 = (void *)[self->_remoteDevice identifier];
     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection xpcReceivedEvent:]",  20LL,  "XPC connection ended: %@, remote %@",  v11,  v12);
   }
 
@@ -1589,13 +1589,13 @@ LABEL_50:
             && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 20LL)))
           {
             uint64_t v12 = CUPrintNSObjectOneLine(v10);
-            id v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
+            id v13 = v12;
             LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcSendEvent:]",  20LL,  "Remote event send: %@",  v13);
           }
 
           uint64_t v17 = RPOptionTimeoutSeconds;
           uint64_t v18 = &off_1008C28A0;
-          uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v18,  &v17,  1LL));
+          uint64_t v14 = (void *)[NSDictionary dictionaryWithObjects:forKeys:count:&v18, &v17, 1LL];
           v15[0] = _NSConcreteStackBlock;
           v15[1] = 3221225472LL;
           v15[2] = sub_1000552D8;
@@ -1663,12 +1663,12 @@ LABEL_50:
       else
       {
         uint64_t v12 = CBErrorF(4294960579LL, "Convert XPC to CF failed");
-        id v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
+        id v13 = v12;
         if (dword_1008D6630 <= 90
           && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 90LL)))
         {
           uint64_t v14 = CUPrintNSError(v13);
-          BOOL v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
+          BOOL v15 = [v14 autorelease];
           LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcSendReply:]",  90LL,  "### Send reply failed: %@",  v15);
         }
 
@@ -1737,14 +1737,14 @@ LABEL_50:
 - (BOOL)_entitledCBAdvertiserAndReturnError:(id)a3 error:(id *)a4
 {
   id v6 = a3;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 safetyAlertsSignature]);
+  id v7 = [v6 safetyAlertsSignature];
   if (v7)
   {
   }
 
   else
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 safetyAlertsAlertData]);
+    id v8 = [v6 safetyAlertsAlertData];
 
     if (!v8)
     {
@@ -1831,13 +1831,13 @@ LABEL_15:
         v43[5] = self;
         -[CBAdvertiser setAdvertisingAddressChangedHandler:](v7, "setAdvertisingAddressChangedHandler:", v43);
         uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-        BOOL v15 = (void *)objc_claimAutoreleasedReturnValue(Reply);
+        BOOL v15 = [Reply autorelease];
         if (v15)
         {
           id v41 = v6;
           id v42 = v4;
           uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-          uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v16 connectableAddressData]);
+          uint64_t v17 = (void *)[v16 connectableAddressData];
 
           -[CBAdvertiser setAdvertisingAddressDataConnectable:](v7, "setAdvertisingAddressDataConnectable:", v17);
           if (v17)
@@ -1858,7 +1858,7 @@ LABEL_15:
           }
 
           uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-          uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue([v24 nonConnectableAddressData]);
+          uint64_t v25 = (void *)[v24 nonConnectableAddressData];
 
           -[CBAdvertiser setAdvertisingAddressDataNonConnectable:](v7, "setAdvertisingAddressDataNonConnectable:", v25);
           if (v25)
@@ -1879,7 +1879,7 @@ LABEL_15:
           }
 
           uint64_t v32 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-          id v33 = (void *)objc_claimAutoreleasedReturnValue([v32 nonConnectableSecondaryAddressData]);
+          id v33 = [v32 nonConnectableSecondaryAddressData];
 
           -[CBAdvertiser setAdvertisingAddressDataNonConnectableSecondary:]( v7,  "setAdvertisingAddressDataNonConnectableSecondary:",  v33);
           if (v33)
@@ -2002,14 +2002,14 @@ LABEL_13:
           goto LABEL_12;
         }
         -[CBDaemonServer scheduleAdvertiserUpdateImmediate:](self->_daemon, "scheduleAdvertiserUpdateImmediate:", 0LL);
-        id v18 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+        id v18 = [CBMetricsDaemon sharedCBMetricsDaemon];
         [v18 reportxpcCBAdvertiserUpdate:v10];
       }
 
       else
       {
         uint64_t v21 = CBErrorF(4294960551LL, "No advertiser");
-        uint64_t v22 = objc_claimAutoreleasedReturnValue(v21);
+        uint64_t v22 = [v21 autorelease];
         id v18 = (void *)v30[5];
         v30[5] = v22;
       }
@@ -2018,7 +2018,7 @@ LABEL_13:
     else
     {
       uint64_t v19 = CBErrorF(4294960591LL, "Decode failed");
-      uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+      uint64_t v20 = [v19 autorelease];
       uint64_t v14 = (CBAdvertiser *)v30[5];
       v30[5] = v20;
     }
@@ -2068,11 +2068,11 @@ LABEL_25:
     }
 
     -[CBConnection setDispatchQueue:](v10, "setDispatchQueue:", self->_dispatchQueue);
-    BOOL v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBConnection peerDevice](v10, "peerDevice"));
+    BOOL v11 = [v10 peerDevice];
     if (!v11)
     {
       uint64_t v32 = CBErrorF(4294960591LL, "No device");
-      uint64_t v33 = objc_claimAutoreleasedReturnValue(v32);
+      uint64_t v33 = [v32 autorelease];
       id v34 = v50[5];
       v50[5] = (id)v33;
 
@@ -2095,7 +2095,7 @@ LABEL_25:
       v42[4] = v10;
       v42[5] = self;
       -[CBConnection setPairingPromptHandler:](v10, "setPairingPromptHandler:", v42);
-      unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+      unsigned int v12 = (void *)[self->_daemon stackController];
       id v13 = v50;
       id obj = v50[5];
       unsigned __int8 v14 = [v12 addPairingClient:v10 error:&obj];
@@ -2128,7 +2128,7 @@ LABEL_24:
       LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcCBConnectionActivate:]",  30LL,  "Activate: %@, from %@ (%@)",  v10,  v17,  v15);
     }
 
-    id v18 = (void *)objc_claimAutoreleasedReturnValue(-[CBConnection clientBundleID](v10, "clientBundleID"));
+    id v18 = -[CBConnection clientBundleID](v10, "clientBundleID");
     id v19 = [v18 length];
 
     if (!v19) {
@@ -2141,7 +2141,7 @@ LABEL_24:
       daemon = self->_daemon;
       if ((v21 & 2) == 0)
       {
-        id v23 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](daemon, "stackController"));
+        id v23 = [daemon stackController];
         id v24 = v50;
         id v37 = v50[5];
         unsigned __int8 v25 = [v23 connectDevice:v11 connectionFlags:v21 serviceFlags:v20 error:&v37];
@@ -2157,7 +2157,7 @@ LABEL_24:
         goto LABEL_23;
       }
 
-      uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](daemon, "stackController"));
+      uint64_t v29 = (void *)[daemon stackController];
       v38[0] = _NSConcreteStackBlock;
       v38[1] = 3221225472LL;
       v38[2] = sub_100056A14;
@@ -2225,7 +2225,7 @@ LABEL_14:
       goto LABEL_15;
     }
 
-    BOOL v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBConnection peerDevice](v10, "peerDevice"));
+    BOOL v11 = [v10 peerDevice];
     if (v11)
     {
       id v12 = -[CBConnection serviceFlags](v10, "serviceFlags");
@@ -2249,7 +2249,7 @@ LABEL_14:
           goto LABEL_13;
         }
         uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-        id v19 = (void *)objc_claimAutoreleasedReturnValue(Reply);
+        id v19 = (void *)Reply;
         if (v19)
         {
           -[CBDaemonXPCConnection _xpcSendReply:](self, "_xpcSendReply:", v19);
@@ -2322,7 +2322,7 @@ LABEL_14:
       {
         if (v25)
         {
-          BOOL v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+          BOOL v11 = [self->_daemon stackController];
           id v12 = (id *)(v31 + 5);
           id v23 = (id)v31[5];
           [v11 pairingContinueWithPairingInfo:v25 error:&v23];
@@ -2355,7 +2355,7 @@ LABEL_14:
         else
         {
           uint64_t v21 = CBErrorF(4294960591LL, "No pairingInfo");
-          uint64_t v22 = objc_claimAutoreleasedReturnValue(v21);
+          uint64_t v22 = [v21 autorelease];
           unsigned __int8 v17 = (void *)v31[5];
           v31[5] = v22;
         }
@@ -2454,7 +2454,7 @@ LABEL_14:
           xpc_dictionary_set_int64(v14, "dsSt", v16);
         }
 
-        unsigned __int8 v17 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+        unsigned __int8 v17 = (void *)[self->_daemon stackController];
         signed int v18 = [v17 inquiryState];
         if (v18) {
           xpc_dictionary_set_int64(v14, "inqS", v18);
@@ -2489,7 +2489,7 @@ LABEL_14:
         && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 90LL)))
       {
         uint64_t v11 = CUPrintNSError(v8);
-        id v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
+        id v12 = v11;
         LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcCBControllerActivate:]",  90LL,  "### CBController activate decode failed: %@",  v12);
       }
 
@@ -2513,12 +2513,12 @@ LABEL_14:
   if ((v5 & 1) != 0)
   {
     uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(Reply);
+    id v8 = (void *)Reply;
 
     if (v8)
     {
       uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 controllerInfo]);
+      uint64_t v10 = (void *)[v9 controllerInfo];
 
       if (dword_1008D6630 <= 30
         && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL)))
@@ -2564,8 +2564,8 @@ LABEL_14:
     {
       id v31 = v6;
       id v9 = objc_alloc_init(&OBJC_CLASS___CBControllerSettings);
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-      objc_msgSend(v9, "setDiscoverableState:", objc_msgSend(v10, "discoverableState"));
+      uint64_t v10 = (void *)[self->_daemon stackController];
+      [v9 setDiscoverableState:[v10 discoverableState]];
 
       uint64_t v11 = (void *)CFPreferencesCopyValue( @"move3PPLEMSToLegacyMode",  @"com.apple.bluetooth",  kCFPreferencesAnyUser,  kCFPreferencesCurrentHost);
       uint64_t v12 = objc_opt_class(&OBJC_CLASS___NSNumber);
@@ -2724,7 +2724,7 @@ LABEL_77:
           objc_storeStrong((id *)&self->_activatedController, v14);
         }
 
-        uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+        uint64_t v15 = (void *)[self->_daemon stackController];
         signed __int8 v16 = (id *)(v47 + 5);
         id v39 = (id)v47[5];
         unsigned __int8 v17 = [v15 addDiscoverableController:v14 error:&v39];
@@ -2862,7 +2862,7 @@ LABEL_16:
     }
 
     uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-    id v14 = (CBController *)objc_claimAutoreleasedReturnValue(Reply);
+    id v14 = [Reply autorelease];
     if (v14)
     {
       -[CBDaemonXPCConnection _xpcSendReply:](self, "_xpcSendReply:", v14);
@@ -2910,10 +2910,10 @@ LABEL_16:
     objc_storeStrong(v8, v19);
     if (!v25[5])
     {
-      id v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+      id v10 = [self->_daemon stackController];
       int v11 = (id *)(v25 + 5);
       id v18 = (id)v25[5];
-      unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue([v10 getDevicesWithFlags:v9 error:&v18]);
+      unsigned int v12 = (void *)[v10 getDevicesWithFlags:v9 error:&v18];
       objc_storeStrong(v11, v18);
 
       if (v12)
@@ -2927,7 +2927,7 @@ LABEL_16:
         }
 
         uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-        uint64_t v16 = objc_claimAutoreleasedReturnValue(Reply);
+        uint64_t v16 = [Reply autorelease];
         unsigned __int8 v17 = (void *)v16;
         if (v16)
         {
@@ -2979,7 +2979,7 @@ LABEL_16:
   if ((v7 & 1) != 0)
   {
     xpc_object_t dictionary = xpc_dictionary_get_dictionary(v4, "devi");
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(dictionary);
+    uint64_t v9 = (void *)dictionary;
     if (v9)
     {
       id v10 = objc_alloc(&OBJC_CLASS___CBDevice);
@@ -3023,7 +3023,7 @@ LABEL_16:
     else
     {
       uint64_t v18 = CBErrorF(4294960591LL, "No device");
-      uint64_t v19 = objc_claimAutoreleasedReturnValue(v18);
+      uint64_t v19 = [v18 autorelease];
       unsigned int v12 = (CBDevice *)v27[5];
       void v27[5] = v19;
     }
@@ -3058,11 +3058,11 @@ LABEL_16:
   if ((v7 & 1) != 0)
   {
     xpc_object_t dictionary = xpc_dictionary_get_dictionary(v4, "devi");
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(dictionary);
+    uint64_t v9 = (void *)dictionary;
     if (!v9)
     {
       uint64_t v50 = CBErrorF(4294960591LL, "No device");
-      uint64_t v51 = objc_claimAutoreleasedReturnValue(v50);
+      uint64_t v51 = [v50 autorelease];
       unsigned int v12 = (CBDevice *)v74[5];
       void v74[5] = (id)v51;
       goto LABEL_51;
@@ -3202,7 +3202,7 @@ LABEL_48:
           LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcPerformDeviceRequest:]",  30LL,  "PerformDeviceRequest start: %@, %@",  v24,  v22);
         }
 
-        char v14 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+        char v14 = (void *)[self->_daemon stackController];
         id v15 = v22;
         v16[0] = _NSConcreteStackBlock;
         v16[1] = 3221225472LL;
@@ -3250,7 +3250,7 @@ LABEL_48:
   }
 
   xpc_object_t value = xpc_dictionary_get_value(v4, "parm");
-  xpc_object_t xdict = (xpc_object_t)objc_claimAutoreleasedReturnValue(value);
+  xpc_object_t xdict = [value autorelease];
   if (xdict)
   {
     if (xpc_get_type(v4) == (xpc_type_t)&_xpc_type_dictionary)
@@ -3282,7 +3282,7 @@ LABEL_48:
               }
 
               uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-              uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue([v29 diagnosticControl:xdict]);
+              uint64_t v30 = (void *)[v29 diagnosticControl:xdict];
 
               id v165 = 0LL;
               NSAppendPrintF_safe(&v165, "%@", v30);
@@ -3321,8 +3321,8 @@ LABEL_48:
                     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcDiagnosticControl:]",  30LL,  "Diags: %s",  v9);
                   }
 
-                  v57 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-                  id v58 = (void *)objc_claimAutoreleasedReturnValue([v57 diagnosticControl:xdict]);
+                  v57 = [self->_daemon stackController];
+                  id v58 = [v57 diagnosticControl:xdict];
 
                   id v157 = 0LL;
                   NSAppendPrintF_safe(&v157, "%@", v58);
@@ -3339,8 +3339,8 @@ LABEL_48:
                     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcDiagnosticControl:]",  30LL,  "Diags: %s",  v9);
                   }
 
-                  id v59 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-                  double v60 = (void *)objc_claimAutoreleasedReturnValue([v59 diagnosticControl:xdict]);
+                  id v59 = -[CBDaemonServer stackController](self->_daemon, "stackController");
+                  double v60 = [v59 diagnosticControl:xdict];
 
                   id v156 = 0LL;
                   NSAppendPrintF_safe(&v156, "%@", v60);
@@ -3394,12 +3394,12 @@ LABEL_48:
                   id v39 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
                   CFTypeID v40 = CFStringGetTypeID();
                   uint64_t v41 = CFDictionaryGetTypedValue(v33, @"serviceUUIDs", v40, 0LL);
-                  id v42 = (void *)objc_claimAutoreleasedReturnValue(v41);
+                  id v42 = v41;
                   __int128 v154 = 0u;
                   __int128 v155 = 0u;
                   __int128 v152 = 0u;
                   __int128 v153 = 0u;
-                  id v43 = (void *)objc_claimAutoreleasedReturnValue([v42 componentsSeparatedByString:@","]);
+                  id v43 = [v42 componentsSeparatedByString:@","];
                   id v44 = [v43 countByEnumeratingWithState:&v152 objects:v180 count:16];
                   v114 = v42;
                   if (v44)
@@ -3429,7 +3429,7 @@ LABEL_48:
                   if (dword_1008D6630 <= 30
                     && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL)))
                   {
-                    uint64_t v50 = (void *)objc_claimAutoreleasedReturnValue(-[NSUUID UUIDString](v117, "UUIDString"));
+                    uint64_t v50 = (void *)[v117 UUIDString];
                     uint64_t v51 = CUPrintNSObjectOneLine(v39);
                     id v52 = (void *)objc_claimAutoreleasedReturnValue(v51);
                     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcDiagnosticControl:]",  30LL,  "Diags: %s: device %@, serviceUUIDs %@",  v9,  v50,  v52,  v113);
@@ -3472,7 +3472,7 @@ LABEL_48:
                     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcDiagnosticControl:]",  30LL,  "Diags: %s",  v9);
                   }
 
-                  id v71 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+                  id v71 = -[CBDaemonServer stackController](self->_daemon, "stackController");
                   v72 = (void *)objc_claimAutoreleasedReturnValue([v71 diagnosticControl:xdict]);
 
                   id v149 = 0LL;
@@ -3615,8 +3615,8 @@ LABEL_131:
                         id v145 = 0LL;
                         NSAppendPrintF_safe(&v145, "");
                         id v101 = v145;
-                        uint64_t v102 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-                        v103 = (void *)objc_claimAutoreleasedReturnValue([v102 diagnosticControl:xdict]);
+                        uint64_t v102 = (void *)[self->_daemon stackController];
+                        v103 = [v102 diagnosticControl:xdict];
 
                         id v144 = v101;
                         NSAppendPrintF_safe(&v144, "%@", v103);
@@ -3648,7 +3648,7 @@ LABEL_131:
 
 - (void)_xpcDiagnosticAdvertiser
 {
-  uint64_t v3 = objc_claimAutoreleasedReturnValue(-[CBDaemonServer testAdvertiser](self->_daemon, "testAdvertiser"));
+  uint64_t v3 = [self->_daemon testAdvertiser];
   if (v3)
   {
     id v4 = (void *)v3;
@@ -3662,7 +3662,7 @@ LABEL_131:
       }
     }
 
-    objc_msgSend(v4, "invalidate", v14);
+    [v4 invalidate];
     -[CBDaemonServer setTestAdvertiser:](self->_daemon, "setTestAdvertiser:", 0LL);
   }
 
@@ -3710,7 +3710,7 @@ LABEL_131:
 
 - (void)_xpcDiagnosticAssertion
 {
-  uint64_t v3 = objc_claimAutoreleasedReturnValue(-[CBDaemonServer testAssertion](self->_daemon, "testAssertion"));
+  uint64_t v3 = [self->_daemon testAssertion];
   if (v3)
   {
     id v4 = (void *)v3;
@@ -3751,7 +3751,7 @@ LABEL_131:
 
 - (void)_xpcDiagnosticDiscovery
 {
-  uint64_t v3 = objc_claimAutoreleasedReturnValue(-[CBDaemonServer testDiscovery](self->_daemon, "testDiscovery"));
+  uint64_t v3 = [self->_daemon testDiscovery];
   if (v3)
   {
     id v4 = (void *)v3;
@@ -3765,7 +3765,7 @@ LABEL_131:
       }
     }
 
-    objc_msgSend(v4, "invalidate", v7);
+    [v4 invalidate];
     -[CBDaemonServer setTestDiscovery:](self->_daemon, "setTestDiscovery:", 0LL);
   }
 
@@ -3882,7 +3882,7 @@ LABEL_6:
     }
 
     uint64_t v20 = CBErrorF(v11, "LogControl failed");
-    uint64_t v19 = objc_claimAutoreleasedReturnValue(v20);
+    uint64_t v19 = [v20 autorelease];
   }
 
   else
@@ -3914,7 +3914,7 @@ LABEL_11:
   }
 
   xpc_object_t value = xpc_dictionary_get_value(v4, "parm");
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(value);
+  id v8 = value;
   if (!v8)
   {
     uint64_t v15 = 20LL;
@@ -3930,7 +3930,7 @@ LABEL_11:
       if (stricmp_prefix(string, "ident"))
       {
         uint64_t v11 = CBErrorF(4294960591LL, "Unknown show type: '%s'", string);
-        uint64_t v12 = objc_claimAutoreleasedReturnValue(v11);
+        uint64_t v12 = [v11 autorelease];
 
         if (dword_1008D6630 <= 90
           && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 90LL)))
@@ -3945,7 +3945,7 @@ LABEL_11:
         goto LABEL_32;
       }
 
-      id v23 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer identityArray](self->_daemon, "identityArray"));
+      id v23 = [self->_daemon identityArray];
       id v37 = 0LL;
       NSAppendPrintF_safe(&v37, "-- Identities: %d total --\n", [v23 count]);
       uint64_t v18 = (__CFString *)v37;
@@ -4018,14 +4018,14 @@ LABEL_14:
 LABEL_13:
     id v38 = 0LL;
     uint64_t v16 = CUDescriptionWithLevel(self->_daemon, v15);
-    id v17 = (id)objc_claimAutoreleasedReturnValue(v16);
+    id v17 = v16;
     NSAppendPrintF_safe(&v38, "%@", v17);
     uint64_t v18 = (__CFString *)v38;
     goto LABEL_14;
   }
 
   uint64_t v30 = CBErrorF(4294960591LL, "Non-dict input params");
-  uint64_t v31 = objc_claimAutoreleasedReturnValue(v30);
+  uint64_t v31 = [v30 autorelease];
 
   id v6 = (id)v31;
 LABEL_32:
@@ -4075,7 +4075,7 @@ LABEL_33:
   if (dword_1008D6630 < 31 && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL))) {
     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcDiagnosticTipiChanged]",  30LL,  "Diags: Tipi changed: %@",  v13);
   }
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  uint64_t v12 = (void *)[NSNotificationCenter defaultCenter];
   [v12 postNotificationName:@"com.apple.bluetooth.TipiChanged" object:v13 userInfo:0];
 }
 
@@ -4097,7 +4097,7 @@ LABEL_33:
       LogPrintF_safe(&dword_1008D6630, "-[CBDaemonXPCConnection _xpcSetLowPowerMode:]", 30LL, "SetLowPowerMode: %s", v8);
     }
 
-    unsigned int v9 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+    unsigned int v9 = (void *)[self->_daemon stackController];
     v10[0] = _NSConcreteStackBlock;
     v10[1] = 3221225472LL;
     v10[2] = sub_10005CBA0;
@@ -4192,7 +4192,7 @@ LABEL_33:
       LogPrintF_safe(&dword_1008D6630, "-[CBDaemonXPCConnection _xpcSetPowerState:]", 30LL, "SetPowerState: %s", v9);
     }
 
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+    uint64_t v10 = (void *)[self->_daemon stackController];
     id v11 = (id *)(v20 + 5);
     id v14 = (id)v20[5];
     [v10 setPowerState:int64 error:&v14];
@@ -4326,7 +4326,7 @@ LABEL_39:
               LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcWritePref:]",  30LL,  "WritePref: '%@' = '%@'",  v28,  v12);
             }
 
-            id v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSNull null](&OBJC_CLASS___NSNull, "null"));
+            id v13 = [NSNull null];
             unsigned int v14 = [v12 isEqual:v13];
 
             if (v14)
@@ -4355,7 +4355,7 @@ LABEL_39:
             }
 
             uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-            id v20 = (id)objc_claimAutoreleasedReturnValue(Reply);
+            id v20 = [Reply autorelease];
             if (v20)
             {
               -[CBDaemonXPCConnection _xpcSendReply:](self, "_xpcSendReply:", v20);
@@ -4390,7 +4390,7 @@ LABEL_39:
       else
       {
         uint64_t v21 = CBErrorF(4294960591LL, "No pref key");
-        uint64_t v22 = objc_claimAutoreleasedReturnValue(v21);
+        uint64_t v22 = [v21 autorelease];
         id v11 = v34[5];
         v34[5] = (id)v22;
       }
@@ -4485,7 +4485,7 @@ LABEL_11:
             id v17 = v43;
             id v18 = v41;
             uint64_t v19 = CUPrintNSDataHex(v16, 300LL, 0LL);
-            uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+            uint64_t v20 = [v19 autorelease];
             uint64_t v21 = (void *)v20;
             uint64_t v22 = "?";
             if (v14 == 1) {
@@ -4538,7 +4538,7 @@ LABEL_11:
     if (!v29)
     {
       uint64_t v20 = NSErrorNestedF(CBErrorDomain, 4294960591LL, v35[5], "bad destination device");
-      uint64_t v21 = objc_claimAutoreleasedReturnValue(v20);
+      uint64_t v21 = [v20 autorelease];
       id v22 = v35[5];
       v35[5] = (id)v21;
 
@@ -4639,7 +4639,7 @@ LABEL_11:
             LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcSendAudioAccessoryEventMessage:]",  30LL,  "SendAudioAccessoryEventMessage: type: %s, destination %@, data <%@>",  v14,  v15,  v17);
           }
 
-          id v18 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+          id v18 = [self->_daemon stackController];
           id v19 = (id *)(v39 + 5);
           id v29 = (id)v39[5];
           unsigned __int8 v20 = [v18 sendAudioAccessoryEventMessage:v44 eventType:v12 device:v33 error:&v29];
@@ -4649,7 +4649,7 @@ LABEL_11:
             goto LABEL_20;
           }
           uint64_t Reply = CUXPCDictionaryCreateReply(v4);
-          id v22 = (void *)objc_claimAutoreleasedReturnValue(Reply);
+          id v22 = (void *)Reply;
           if (v22)
           {
             -[CBDaemonXPCConnection _xpcSendReply:](self, "_xpcSendReply:", v22);
@@ -4725,7 +4725,7 @@ LABEL_21:
     if (!v23)
     {
       uint64_t v17 = NSErrorNestedF(CBErrorDomain, 4294960591LL, v29[5], "bad destination device");
-      uint64_t v18 = objc_claimAutoreleasedReturnValue(v17);
+      uint64_t v18 = [v17 autorelease];
       int v11 = (void *)v29[5];
       void v29[5] = v18;
       goto LABEL_8;
@@ -4735,7 +4735,7 @@ LABEL_21:
     int v11 = (void *)objc_claimAutoreleasedReturnValue(value);
     if (xpc_get_type(v11) == (xpc_type_t)&_xpc_type_dictionary)
     {
-      unsigned __int8 v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
+      unsigned __int8 v12 = (void *)[self->_daemon stackController];
       uint64_t v13 = (id *)(v29 + 5);
       id v21 = (id)v29[5];
       unsigned __int8 v14 = [v12 sendAudioAccessoryConfig:v11 device:v23 error:&v21];
@@ -4806,7 +4806,7 @@ LABEL_8:
     if (!v29)
     {
       uint64_t v20 = NSErrorNestedF(CBErrorDomain, 4294960591LL, v35[5], "bad destination device");
-      uint64_t v21 = objc_claimAutoreleasedReturnValue(v20);
+      uint64_t v21 = [v20 autorelease];
       id v22 = v35[5];
       void v35[5] = (id)v21;
 
@@ -4856,7 +4856,7 @@ LABEL_8:
   if ((v5 & 1) != 0)
   {
     xpc_object_t array = xpc_dictionary_get_array(v4, "idtA");
-    unsigned __int8 v7 = (void *)objc_claimAutoreleasedReturnValue(array);
+    unsigned __int8 v7 = (void *)array;
     if (v7)
     {
       uint64_t v8 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
@@ -4892,7 +4892,7 @@ LABEL_8:
     else
     {
       uint64_t v9 = CBErrorF(4294960591LL, "No identities");
-      uint64_t v10 = objc_claimAutoreleasedReturnValue(v9);
+      uint64_t v10 = [v9 autorelease];
       id v11 = (void *)v19[5];
       v19[5] = v10;
 
@@ -5089,7 +5089,7 @@ LABEL_8:
     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcCBDiscoveryActivateWHB:discovery:]",  30LL,  "Activate: %@, from %@",  v9,  v11);
   }
 
-  id v12 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+  id v12 = [CBMetricsDaemon sharedCBMetricsDaemon];
   [v12 reportCBDiscovery:v9 daemonCnx:self action:@"strt"];
 
   -[CBDaemonServer scheduleDiscoveryUpdateImmediate:](self->_daemon, "scheduleDiscoveryUpdateImmediate:", 0LL);
@@ -5104,7 +5104,7 @@ LABEL_8:
     uint64_t v24 = sub_1000526D0;
     id v25 = sub_1000526E0;
     id v26 = 0LL;
-    id v15 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer whbDeviceMap](self->_daemon, "whbDeviceMap"));
+    id v15 = -[CBDaemonServer whbDeviceMap];
     v17[0] = _NSConcreteStackBlock;
     v17[1] = 3221225472LL;
     v17[2] = sub_100060440;
@@ -5184,7 +5184,7 @@ LABEL_19:
       LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcCBDiscoveryFinish:]",  30LL,  "Discovery Finish start: CID 0x%X, from %@",  v10,  v12);
     }
 
-    id v13 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackBLEScanner](self->_daemon, "stackBLEScanner"));
+    id v13 = -[CBDaemonServer stackBLEScanner];
     if (v13)
     {
       v19[0] = _NSConcreteStackBlock;
@@ -5277,7 +5277,7 @@ LABEL_6:
 
         if (v13)
         {
-          id v16 = (void *)objc_claimAutoreleasedReturnValue( +[CBMetricsDaemon sharedCBMetricsDaemon]( &OBJC_CLASS___CBMetricsDaemon,  "sharedCBMetricsDaemon"));
+          id v16 = [CBMetricsDaemon sharedCBMetricsDaemon];
           [v16 reportCBDiscovery:v12 daemonCnx:self action:@"updt"];
 
           -[CBDaemonServer scheduleDiscoveryUpdateImmediate:](self->_daemon, "scheduleDiscoveryUpdateImmediate:", 0LL);
@@ -5337,7 +5337,7 @@ LABEL_6:
       if (!v9)
       {
         uint64_t v10 = CBErrorF(4294960551LL, "No discovery");
-        uint64_t v11 = objc_claimAutoreleasedReturnValue(v10);
+        uint64_t v11 = [v10 autorelease];
         id v12 = (void *)v18[5];
         v18[5] = v11;
 
@@ -5385,7 +5385,7 @@ LABEL_6:
       uint64_t v9 = CBDiscoveryFlagsToString(uint64);
       uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
       uint64_t v11 = CUPrintPID(self->_pid);
-      id v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
+      id v12 = v11;
       LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _xpcCBDiscoveryGetDevices:]",  30LL,  "CBDiscoveryGetDevices: %@, from %@",  v10,  v12);
     }
 
@@ -5394,7 +5394,7 @@ LABEL_6:
     if (v14)
     {
       xpc_object_t v15 = xpc_array_create(0LL, 0LL);
-      id v16 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer deviceMap](self->_daemon, "deviceMap"));
+      id v16 = [self->_daemon deviceMap];
       v17[0] = _NSConcreteStackBlock;
       v17[1] = 3221225472LL;
       v17[2] = sub_100061458;
@@ -5496,12 +5496,12 @@ LABEL_48:
     v65[5] = self;
     -[CBSpatialInteractionSession setDeviceLostHandler:](v12, "setDeviceLostHandler:", v65);
     uint64_t v59 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
-    unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession clientIrkData](v12, "clientIrkData"));
+    unsigned int v13 = (void *)[v12 clientIrkData];
     if (v13
       && (uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession clientIrkData](v12, "clientIrkData")),
           [v3 length] == (id)16))
     {
-      id v58 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession clientIrkData](v12, "clientIrkData"));
+      id v58 = [v12 clientIrkData];
     }
 
     else
@@ -5519,7 +5519,7 @@ LABEL_8:
           && (id v4 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession clientIdentifierData](v12, "clientIdentifierData")),
               [v4 length] == (id)3))
         {
-          id v57 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession clientIdentifierData](v12, "clientIdentifierData"));
+          id v57 = [v12 clientIdentifierData];
         }
 
         else
@@ -5535,7 +5535,7 @@ LABEL_13:
             id v17 = -[CBSpatialInteractionSession uwbTokenFlags](v12, "uwbTokenFlags");
             if ((_DWORD)v17)
             {
-              uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v17));
+              uint64_t v18 = (void *)[NSNumber numberWithUnsignedInt:v17];
               -[NSMutableDictionary setObject:forKeyedSubscript:]( v59,  "setObject:forKeyedSubscript:",  v18,  &off_1008C28E8);
             }
 
@@ -5560,7 +5560,7 @@ LABEL_13:
               -[CBDiscovery setBleRSSIThresholdHint:]( v22,  "setBleRSSIThresholdHint:",  -[CBSpatialInteractionSession bleRSSIThresholdHint](v12, "bleRSSIThresholdHint"));
               -[CBDiscovery setBleRSSIThresholdOrder:]( v22,  "setBleRSSIThresholdOrder:",  -[CBSpatialInteractionSession bleRSSIThresholdOrder](v12, "bleRSSIThresholdOrder"));
               -[CBDiscovery setDiscoveryFlags:](v22, "setDiscoveryFlags:", 0x40000LL);
-              uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession filter](v12, "filter"));
+              uint64_t v23 = (void *)[v12 filter];
               -[CBDiscovery setSpatialInteractionfilter:](v22, "setSpatialInteractionfilter:", v23);
 
               else {
@@ -5606,7 +5606,7 @@ LABEL_13:
               v61[4] = v28;
               v61[5] = self;
               -[CBDiscovery setSystemOverrideHandler:](v28, "setSystemOverrideHandler:", v61);
-              id v31 = (void *)objc_claimAutoreleasedReturnValue( +[CBMetricsDaemon sharedCBMetricsDaemon]( &OBJC_CLASS___CBMetricsDaemon,  "sharedCBMetricsDaemon"));
+              id v31 = [OBJC_CLASS___CBMetricsDaemon sharedCBMetricsDaemon];
               [v31 reportCBDiscovery:v28 daemonCnx:self action:@"strt"];
 
               -[CBDaemonServer scheduleSpatialUpdateImmediate:](self->_daemon, "scheduleSpatialUpdateImmediate:", 1LL);
@@ -5621,14 +5621,14 @@ LABEL_13:
                 daemon = self->_daemon;
                 if (v34)
                 {
-                  uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](daemon, "addressMonitor"));
-                  uint64_t v37 = objc_claimAutoreleasedReturnValue([v36 nonConnectableSecondaryAddressData]);
+                  uint64_t v36 = (void *)[daemon addressMonitor];
+                  uint64_t v37 = [v36 nonConnectableSecondaryAddressData];
                 }
 
                 else
                 {
                   uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](daemon, "addressMonitor"));
-                  uint64_t v37 = objc_claimAutoreleasedReturnValue([v36 nonConnectableAddressData]);
+                  uint64_t v37 = [v36 nonConnectableAddressData];
                 }
 
                 uint64_t v38 = (void *)v37;
@@ -5692,7 +5692,7 @@ LABEL_13:
             else
             {
               uint64_t v52 = CBErrorF(v64, "Encode token failed");
-              uint64_t v53 = objc_claimAutoreleasedReturnValue(v52);
+              uint64_t v53 = [v52 autorelease];
               uint64_t v28 = (CBDiscovery *)v76[5];
               void v76[5] = (id)v53;
             }
@@ -5767,7 +5767,7 @@ LABEL_13:
         -[CBDiscovery setInternalFlags:](v16, "setInternalFlags:", v18);
         if (v13)
         {
-          uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue( +[CBMetricsDaemon sharedCBMetricsDaemon]( &OBJC_CLASS___CBMetricsDaemon,  "sharedCBMetricsDaemon"));
+          uint64_t v19 = (void *)[CBMetricsDaemon sharedCBMetricsDaemon];
           [v19 reportCBDiscovery:v16 daemonCnx:self action:@"updt"];
 
           -[CBDaemonServer scheduleSpatialUpdateImmediate:](self->_daemon, "scheduleSpatialUpdateImmediate:", 0LL);
@@ -5777,7 +5777,7 @@ LABEL_13:
       else
       {
         uint64_t v22 = CBErrorF(4294960551LL, "No session");
-        uint64_t v23 = objc_claimAutoreleasedReturnValue(v22);
+        uint64_t v23 = [v22 autorelease];
         uint64_t v16 = (CBDiscovery *)v30[5];
         void v30[5] = v23;
       }
@@ -5786,7 +5786,7 @@ LABEL_13:
     else
     {
       uint64_t v20 = CBErrorF(4294960591LL, "Decode failed");
-      uint64_t v21 = objc_claimAutoreleasedReturnValue(v20);
+      uint64_t v21 = [v20 autorelease];
       id v12 = (CBSpatialInteractionSession *)v30[5];
       void v30[5] = v21;
     }
@@ -5833,7 +5833,7 @@ LABEL_36:
       goto LABEL_37;
     }
 
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 irkData]);
+    uint64_t v10 = (void *)[v9 irkData];
     uint64_t v11 = v60 + 5;
     id v53 = v60[5];
     uint64_t v65 = 0LL;
@@ -5855,7 +5855,7 @@ LABEL_35:
     if (!(_DWORD)v13)
     {
       uint64_t v40 = CBErrorF(4294960591LL, "No peer ID");
-      uint64_t v41 = objc_claimAutoreleasedReturnValue(v40);
+      uint64_t v41 = [v40 autorelease];
       id v47 = v60[5];
       void v60[5] = (id)v41;
 
@@ -5878,7 +5878,7 @@ LABEL_35:
         {
           unint64_t v18 = objc_autoreleasePoolPush();
           uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableArray objectAtIndexedSubscript:]( self->_spatialPeers,  "objectAtIndexedSubscript:",  v15));
-          uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v19 irkData]);
+          uint64_t v20 = (void *)[v19 irkData];
           unsigned __int8 v21 = [v20 isEqual:v10];
 
           if ((v21 & 1) != 0)
@@ -5913,11 +5913,11 @@ LABEL_35:
           -[NSMutableDictionary enumerateKeysAndObjectsUsingBlock:]( spatialDeviceMapMatched,  "enumerateKeysAndObjectsUsingBlock:",  v50);
           id v27 = "replaced";
 LABEL_23:
-          id v32 = (void *)objc_claimAutoreleasedReturnValue([v9 identifierData]);
+          id v32 = [v9 identifierData];
           if (dword_1008D6630 <= 30
             && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL)))
           {
-            id v33 = (void *)objc_claimAutoreleasedReturnValue([v9 irkData]);
+            id v33 = [v9 irkData];
             uint64_t v34 = CUPrintNSObjectMasked(v33);
             id v35 = (void *)objc_claimAutoreleasedReturnValue(v34);
             uint64_t v36 = CUPrintPID(self->_pid);
@@ -6007,7 +6007,7 @@ LABEL_34:
   {
     unsigned __int8 v7 = v47 + 5;
     id v41 = v47[5];
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( -[CBDaemonXPCConnection _spatialInteractionDecodePeerTokenRequest:error:]( self,  "_spatialInteractionDecodePeerTokenRequest:error:",  v4,  &v41));
+    id v8 = -[CBDaemonXPCConnection _spatialInteractionDecodePeerTokenRequest:error:](self, "_spatialInteractionDecodePeerTokenRequest:error:", v4, &v41);
     objc_storeStrong(v7, v41);
     if (!v8)
     {
@@ -6016,7 +6016,7 @@ LABEL_32:
       goto LABEL_33;
     }
 
-    unsigned __int8 v9 = (void *)objc_claimAutoreleasedReturnValue([v8 irkData]);
+    unsigned __int8 v9 = (void *)[v8 irkData];
     id v35 = self->_activatedSpatialInteractionSession;
     if (v35)
     {
@@ -6027,7 +6027,7 @@ LABEL_32:
         while (1)
         {
           int v12 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableArray objectAtIndexedSubscript:]( self->_spatialPeers,  "objectAtIndexedSubscript:",  v11));
-          uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v12 irkData]);
+          uint64_t v13 = (void *)[v12 irkData];
           unsigned __int8 v14 = [v13 isEqual:v9];
 
           if ((v14 & 1) != 0) {
@@ -6048,8 +6048,8 @@ LABEL_32:
           if (dword_1008D6630 <= 30
             && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 30LL)))
           {
-            id v33 = (void *)objc_claimAutoreleasedReturnValue([v17 identifierData]);
-            uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue([v17 irkData]);
+            id v33 = [v17 identifierData];
+            uint64_t v19 = (void *)[v17 irkData];
             uint64_t v20 = CUPrintNSObjectMasked(v19);
             unsigned __int8 v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
             uint64_t v22 = CUPrintPID(self->_pid);
@@ -6111,29 +6111,29 @@ LABEL_32:
 - (void)_spatialInteractionDeviceFound:(id)a3 checkOnly:(BOOL)a4
 {
   id v154 = a3;
-  id v134 = (void *)objc_claimAutoreleasedReturnValue([v154 identifier]);
+  id v134 = [v154 identifier];
   if (!v134) {
     goto LABEL_150;
   }
-  id v140 = (id)objc_claimAutoreleasedReturnValue([v154 btAddressData]);
+  id v140 = [v154 btAddressData];
   if ([v140 length] != (id)6) {
     goto LABEL_149;
   }
-  unsigned __int8 v6 = (void *)objc_claimAutoreleasedReturnValue([v154 spatialInteractionIdentifiers]);
+  unsigned __int8 v6 = (void *)[v154 spatialInteractionIdentifiers];
   id v135 = self->_activatedSpatialInteractionSession;
   id v145 = self;
   id v139 = v6;
   BOOL v133 = a4;
   if ((-[CBSpatialInteractionSession controlFlags](v135, "controlFlags") & 0x3E0) != 0)
   {
-    unsigned __int8 v7 = (void *)objc_claimAutoreleasedReturnValue([v6 firstObject]);
+    unsigned __int8 v7 = (void *)[v6 firstObject];
     if ([v7 length] == (id)3)
     {
       __int128 v172 = 0u;
       __int128 v173 = 0u;
       __int128 v170 = 0u;
       __int128 v171 = 0u;
-      id obj = (id)objc_claimAutoreleasedReturnValue(-[CBDaemonServer identityArray](self->_daemon, "identityArray"));
+      id obj = [self->_daemon identityArray];
       id v8 = [obj countByEnumeratingWithState:&v170 objects:v190 count:16];
       if (v8)
       {
@@ -6154,7 +6154,7 @@ LABEL_32:
             unsigned __int8 v14 = objc_autoreleasePoolPush();
             if ([v13 verifyAuthTag:v7 data:v140 type:2 error:0])
             {
-              objc_msgSend(v154, "setInternalFlags:", objc_msgSend(v154, "internalFlags") | 8);
+              [v154 setInternalFlags:[v154 internalFlags] | 8];
               [v154 updateWithRPIdentity:v13];
               unsigned int v15 = -[CBSpatialInteractionSession matchesWithDevice:](v135, "matchesWithDevice:", v154);
               if (self->_isHomePod)
@@ -6207,11 +6207,11 @@ LABEL_32:
               if (os_log_type_enabled(v19, OS_LOG_TYPE_DEBUG))
               {
                 id v29 = v140;
-                uint64_t v30 = CUPrintHex([v29 bytes], objc_msgSend(v29, "length"), 32, 0);
+                uint64_t v30 = CUPrintHex([v29 bytes], [v29 length], 32, 0);
                 uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue(v30);
-                id v32 = (void *)objc_claimAutoreleasedReturnValue([v13 deviceIRKData]);
+                id v32 = [v13 deviceIRKData];
                 uint64_t v33 = CUPrintNSObjectMasked(v32);
-                id v34 = (void *)objc_claimAutoreleasedReturnValue(v33);
+                id v34 = v33;
                 *(_DWORD *)buf = 138413058;
                 uint64_t v176 = (uint64_t)v31;
                 __int16 v177 = 2112;
@@ -6232,9 +6232,9 @@ LABEL_32:
             }
             {
               id v21 = v140;
-              uint64_t v22 = CUPrintHex([v21 bytes], objc_msgSend(v21, "length"), 32, 0);
+              uint64_t v22 = CUPrintHex([v21 bytes], [v21 length], 32, 0);
               uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(v22);
-              char v24 = (void *)objc_claimAutoreleasedReturnValue([v13 deviceIRKData]);
+              char v24 = (void *)[v13 deviceIRKData];
               uint64_t v25 = CUPrintNSObjectMasked(v24);
               unint64_t v26 = (void *)objc_claimAutoreleasedReturnValue(v25);
               LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _spatialInteractionDeviceFound:checkOnly:]",  5LL,  "Spatial found check sys: SRC <%@>, IRK %@, match no, %@, %@",  v23,  v26,  v154,  v13);
@@ -6281,7 +6281,7 @@ LABEL_32:
     int v132 = 0;
   }
 
-  __int128 v37 = (void *)objc_claimAutoreleasedReturnValue(-[CBSpatialInteractionSession identifierData](v135, "identifierData"));
+  __int128 v37 = (void *)[v135 identifierData];
   __int128 v166 = 0u;
   __int128 v167 = 0u;
   __int128 v168 = 0u;
@@ -6314,7 +6314,7 @@ LABEL_32:
       uint64_t v143 = v40;
       uint64_t v42 = *(void **)(*((void *)&v166 + 1) + 8 * v40);
       context = objc_autoreleasePoolPush();
-      uint64_t v43 = objc_claimAutoreleasedReturnValue([v42 identifierData]);
+      uint64_t v43 = [v42 identifierData];
       id v44 = (void *)v43;
       if (v43) {
         uint64_t v45 = (void *)v43;
@@ -6328,7 +6328,7 @@ LABEL_32:
       if ([v46 length] != (id)3) {
         goto LABEL_88;
       }
-      id v47 = (void *)objc_claimAutoreleasedReturnValue([v42 irkData]);
+      id v47 = [v42 irkData];
       if ([v47 length] != (id)16) {
         goto LABEL_87;
       }
@@ -6415,7 +6415,7 @@ LABEL_32:
               && (dword_1008D6630 != -1 || _LogCategory_Initialize(&dword_1008D6630, 10LL)))
             {
               uint64_t v65 = CUPrintHex(&v187, 9LL, 32LL, 0LL);
-              id v64 = (os_log_s *)objc_claimAutoreleasedReturnValue(v65);
+              id v64 = [v65 autorelease];
               uint64_t v66 = CUPrintNSObjectMasked(v146);
               int v148 = v55;
               uint64_t v67 = (void *)objc_claimAutoreleasedReturnValue(v66);
@@ -6435,7 +6435,7 @@ LABEL_69:
 
             if (!v62)
             {
-              objc_msgSend(v154, "setSpatialInteractionPeerID:", objc_msgSend(v151, "peerID"));
+              [v154 setSpatialInteractionPeerID:[v151 peerID]];
               int v55 = 1;
               char obja = 1;
             }
@@ -6529,7 +6529,7 @@ LABEL_92:
   __int128 v159 = 0u;
   __int128 v160 = 0u;
   __int128 v161 = 0u;
-  id v84 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allValues](self->_spatialDeviceMapMatched, "allValues"));
+  id v84 = -[NSMutableDictionary allValues](self->_spatialDeviceMapMatched, "allValues");
   id v85 = [v84 countByEnumeratingWithState:&v158 objects:v174 count:16];
   if (!v85)
   {
@@ -6555,8 +6555,8 @@ LABEL_92:
       unsigned int v91 = [v89 spatialInteractionPeerID];
       if (v91 == [v83 spatialInteractionPeerID])
       {
-        id v92 = (void *)objc_claimAutoreleasedReturnValue([v89 idsDeviceID]);
-        id v93 = (void *)objc_claimAutoreleasedReturnValue([v83 idsDeviceID]);
+        id v92 = [v89 idsDeviceID];
+        id v93 = [v83 idsDeviceID];
         id v94 = v92;
         id v95 = v93;
         if (v94 != v95)
@@ -6584,7 +6584,7 @@ LABEL_105:
               goto LABEL_111;
             }
 
-            id v100 = (void *)objc_claimAutoreleasedReturnValue([v89 identifier]);
+            id v100 = [v89 identifier];
             unsigned __int8 v101 = [v100 isEqual:v134];
 
             if ((v101 & 1) == 0)
@@ -6606,7 +6606,7 @@ LABEL_105:
 - (void)_spatialInteractionDeviceLost:(id)a3 removeUnmatched:(BOOL)a4 reason:(const char *)a5
 {
   id v8 = a3;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 identifier]);
+  id v9 = [v8 identifier];
   if (v9)
   {
     char v10 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_spatialDeviceMapMatched,  "objectForKeyedSubscript:",  v9));
@@ -6679,7 +6679,7 @@ LABEL_22:
     LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _spatialInteractionReevaluateDevices]",  30LL,  "Spatial re-evaluate devices: %d matched, %d unmatched",  -[NSMutableDictionary count](self->_spatialDeviceMapMatched, "count"),  -[NSMutableDictionary count](self->_spatialDeviceMapUnmatched, "count"));
   }
   uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allValues](self->_spatialDeviceMapMatched, "allValues"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allValues](self->_spatialDeviceMapUnmatched, "allValues"));
+  id v4 = -[NSMutableDictionary allValues](self->_spatialDeviceMapUnmatched, "allValues");
   __int128 v45 = 0u;
   __int128 v46 = 0u;
   __int128 v47 = 0u;
@@ -6806,7 +6806,7 @@ LABEL_22:
     {
       uint64_t v13 = CBErrorF(312900LL, "No token data");
       id v11 = 0LL;
-      *a4 = (id)objc_claimAutoreleasedReturnValue(v13);
+      *a4 = v13;
       goto LABEL_9;
     }
 
@@ -6817,9 +6817,9 @@ LABEL_22:
   unsigned int v7 = -[CBSpatialInteractionSession clientID](self->_activatedSpatialInteractionSession, "clientID");
   if (v4 && v6 && v7)
   {
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer deviceMap](self->_daemon, "deviceMap"));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v6 identifier]);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:v9]);
+    uint64_t v8 = (void *)[self->_daemon deviceMap];
+    uint64_t v9 = (void *)[v6 identifier];
+    uint64_t v10 = (void *)[v8 objectForKeyedSubscript:v9];
 
     if (v10)
     {
@@ -6841,7 +6841,7 @@ LABEL_22:
   id xdict = xpc_dictionary_create(0LL, 0LL, 0LL);
   xpc_dictionary_set_string(xdict, "mTyp", "AdAC");
   uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-  int v4 = (void *)objc_claimAutoreleasedReturnValue([v3 connectableAddressData]);
+  int v4 = (void *)[v3 connectableAddressData];
   id v5 = v4;
   if (v4)
   {
@@ -6857,8 +6857,8 @@ LABEL_22:
     xpc_dictionary_set_data(v7, "aaCN", v9, (size_t)[v6 length]);
   }
 
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-  id v11 = (void *)objc_claimAutoreleasedReturnValue([v10 nonConnectableAddressData]);
+  uint64_t v10 = (void *)[self->_daemon addressMonitor];
+  id v11 = (void *)[v10 nonConnectableAddressData];
   id v12 = v11;
   if (v11)
   {
@@ -6875,7 +6875,7 @@ LABEL_22:
   }
 
   uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer addressMonitor](self->_daemon, "addressMonitor"));
-  uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v17 nonConnectableSecondaryAddressData]);
+  uint64_t v18 = (void *)[v17 nonConnectableSecondaryAddressData];
   unsigned int v19 = v18;
   if (v18)
   {
@@ -7126,7 +7126,7 @@ LABEL_22:
 
   uint64_t v4 = mach_absolute_time();
   uint64_t v5 = UpTicksToSeconds(v4);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](self->_whbLostDevicesMap, "allKeys"));
+  id v6 = [self->_whbLostDevicesMap allKeys];
   __int128 v19 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
@@ -7148,7 +7148,7 @@ LABEL_22:
         id v13 = v12;
         if (v12 && (unint64_t)(v5 - (void)[v12 unsignedLongLongValue]) >= 0x2D)
         {
-          id v14 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_deviceMap,  "objectForKeyedSubscript:",  v11));
+          id v14 = -[self->_deviceMap objectForKeyedSubscript:v11];
           if (v14)
           {
             if (dword_1008D6630 <= 30
@@ -7157,7 +7157,7 @@ LABEL_22:
               LogPrintF_safe( &dword_1008D6630,  "-[CBDaemonXPCConnection _whbTimerFired]",  30LL,  "WHB lost timer expired for device: %@. Marked as lost",  v14);
             }
 
-            uint64_t v15 = objc_claimAutoreleasedReturnValue(-[CBDiscovery deviceLostHandler](v18, "deviceLostHandler"));
+            uint64_t v15 = -[CBDiscovery deviceLostHandler];
             id v16 = (void *)v15;
             if (v15) {
               (*(void (**)(uint64_t, void *))(v15 + 16))(v15, v14);

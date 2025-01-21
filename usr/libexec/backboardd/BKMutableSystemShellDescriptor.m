@@ -14,27 +14,27 @@
   id v24 = a3;
   if (v24)
   {
-    uint64_t v6 = objc_opt_class(&OBJC_CLASS___NSString, v5);
+    uint64_t v6 = [NSString class];
     if ((objc_opt_isKindOfClass(v24, v6) & 1) == 0)
     {
       v9 = (objc_class *)[v24 classForCoder];
       if (!v9) {
-        v9 = (objc_class *)objc_opt_class(v24, v10);
+        v9 = [v24 class];
       }
       v11 = NSStringFromClass(v9);
-      v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-      v14 = (objc_class *)objc_opt_class(&OBJC_CLASS___NSString, v13);
+      v12 = v11;
+      NSString *v14 = [NSString class];
       v15 = NSStringFromClass(v14);
-      v16 = (void *)objc_claimAutoreleasedReturnValue(v15);
-      v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Value for '%@' was of unexpected class %@. Expected %@.",  @"bundleIdentifier",  v12,  v16));
+      v16 = v15;
+      v17 = [NSString stringWithFormat:@"Value for '%@' was of unexpected class %@. Expected %@." bundleIdentifier:v12 expectedClass:v16];
 
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         v18 = NSStringFromSelector(a2);
-        v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
-        v21 = (objc_class *)objc_opt_class(self, v20);
+        v19 = [v18 autorelease];
+        v21 = [self class];
         v22 = NSStringFromClass(v21);
-        v23 = (void *)objc_claimAutoreleasedReturnValue(v22);
+        v23 = [v22 autorelease];
         *(_DWORD *)buf = 138544642;
         v26 = v19;
         __int16 v27 = 2114;
@@ -66,27 +66,27 @@
   id v24 = a3;
   if (v24)
   {
-    uint64_t v6 = objc_opt_class(&OBJC_CLASS___NSString, v5);
+    NSString *v6 = [NSString class];
     if ((objc_opt_isKindOfClass(v24, v6) & 1) == 0)
     {
       v9 = (objc_class *)[v24 classForCoder];
       if (!v9) {
-        v9 = (objc_class *)objc_opt_class(v24, v10);
+        v9 = [v24 class];
       }
       v11 = NSStringFromClass(v9);
-      v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-      v14 = (objc_class *)objc_opt_class(&OBJC_CLASS___NSString, v13);
+      v12 = v11;
+      v14 = [NSString class];
       v15 = NSStringFromClass(v14);
-      v16 = (void *)objc_claimAutoreleasedReturnValue(v15);
-      v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Value for '%@' was of unexpected class %@. Expected %@.",  @"bundlePath",  v12,  v16));
+      v16 = [v15 autorelease];
+      v17 = [NSString stringWithFormat:@"Value for '%@' was of unexpected class %@. Expected %@." bundlePath:v12 expectedClass:v16];
 
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         v18 = NSStringFromSelector(a2);
-        v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
-        v21 = (objc_class *)objc_opt_class(self, v20);
+        v19 = [v18 autorelease];
+        v21 = [self class];
         v22 = NSStringFromClass(v21);
-        v23 = (void *)objc_claimAutoreleasedReturnValue(v22);
+        v23 = v22;
         *(_DWORD *)buf = 138544642;
         v26 = v19;
         __int16 v27 = 2114;
@@ -118,27 +118,27 @@
   id v24 = a3;
   if (v24)
   {
-    uint64_t v6 = objc_opt_class(&OBJC_CLASS___NSString, v5);
+    NSString *v6 = [NSString class];
     if ((objc_opt_isKindOfClass(v24, v6) & 1) == 0)
     {
       v9 = (objc_class *)[v24 classForCoder];
       if (!v9) {
-        v9 = (objc_class *)objc_opt_class(v24, v10);
+        v9 = [v24 class];
       }
       v11 = NSStringFromClass(v9);
-      v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-      v14 = (objc_class *)objc_opt_class(&OBJC_CLASS___NSString, v13);
+      v12 = [v11 autorelease];
+      NSString *v14 = [NSString class];
       v15 = NSStringFromClass(v14);
-      v16 = (void *)objc_claimAutoreleasedReturnValue(v15);
-      v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Value for '%@' was of unexpected class %@. Expected %@.",  @"jobLabel",  v12,  v16));
+      v16 = [v15 autorelease];
+      NSString *v17 = [NSString stringWithFormat:@"Value for '%@' was of unexpected class %@. Expected %@.", @"jobLabel", v12, v16];
 
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         v18 = NSStringFromSelector(a2);
-        v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
-        v21 = (objc_class *)objc_opt_class(self, v20);
+        v19 = [v18 autorelease];
+        v21 = [self class];
         v22 = NSStringFromClass(v21);
-        v23 = (void *)objc_claimAutoreleasedReturnValue(v22);
+        v23 = v22;
         *(_DWORD *)buf = 138544642;
         v26 = v19;
         __int16 v27 = 2114;

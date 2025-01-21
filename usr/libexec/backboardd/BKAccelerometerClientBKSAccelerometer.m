@@ -20,15 +20,15 @@
 - (void)_queue_invalidate
 {
   v2.receiver = self;
-  v2.super_class = (Class)&OBJC_CLASS___BKAccelerometerClientBKSAccelerometer;
-  -[BKAccelerometerClient _queue_invalidate](&v2, "_queue_invalidate");
+  v2.super_class = [BKAccelerometerClientBKSAccelerometer class];
+  [v2 _queue_invalidate];
 }
 
 - (void)handleAccelerometerEventWithTimestamp:(double)a3 x:(float)a4 y:(float)a5 z:(float)a6 samplingInterval:(double)a7
 {
   if (-[BKAccelerometerClient wantsAccelerometerEvents](self, "wantsAccelerometerEvents"))
   {
-    v13 = (void *)objc_claimAutoreleasedReturnValue(-[BKHIDEventClient sendRight](self, "sendRight"));
+    v13 = [self sendRight];
     v14[0] = _NSConcreteStackBlock;
     v14[1] = 3221225472LL;
     v14[2] = sub_10002DB38;

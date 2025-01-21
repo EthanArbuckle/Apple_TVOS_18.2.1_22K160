@@ -60,7 +60,7 @@ LABEL_5:
   v4 = v3;
   -[SFRemoteHotspotSession setDelegate:](v3, "setDelegate:", v2);
   objc_storeStrong((id *)&v2->_hotspotSession, v4);
-  uint64_t v5 = objc_claimAutoreleasedReturnValue(+[NSSet set](&OBJC_CLASS___NSSet, "set"));
+  uint64_t v5 = [NSSet set];
   networks = v2->_networks;
   v2->_networks = (NSSet *)v5;
 
@@ -97,7 +97,7 @@ LABEL_6:
           objc_enumerationMutation(v6);
         }
         objc_super v11 = *(void **)(*((void *)&v21 + 1) + 8LL * (void)i);
-        v12 = (void *)objc_claimAutoreleasedReturnValue([v11 signalStrength]);
+        v12 = [v11 signalStrength];
         id v13 = [v12 integerValue];
 
         if (v13) {
@@ -129,7 +129,7 @@ LABEL_6:
     v17 = (void *)qword_100219F60;
     if (qword_100219F60)
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiHotspotInterface networks](self, "networks"));
+      v18 = -[WiFiHotspotInterface networks];
       [v17 WFLog:3, "networks found %@\n", v18 message];
     }
   }
@@ -147,7 +147,7 @@ LABEL_6:
 - (id)copySortedHotspotDevicesByAutoPreferences
 {
   v3 = -[NSSortDescriptor initWithKey:ascending:comparator:]( objc_alloc(&OBJC_CLASS___NSSortDescriptor),  "initWithKey:ascending:comparator:",  @"self",  0LL,  &stru_1001E6620);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiHotspotInterface networks](self, "networks"));
+  id v4 = -[WiFiHotspotInterface networks];
   uint64_t v9 = v3;
   uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v9, 1LL));
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 sortedArrayUsingDescriptors:v5]);
@@ -191,13 +191,13 @@ LABEL_6:
     {
       v12 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Enable Remote Hotspot Timeout",  "-[WiFiHotspotInterface newHotspot:error:]");
+        [qword_100219F60 WFLog:@"%s: Enable Remote Hotspot Timeout" message:3];
       }
       objc_autoreleasePoolPop(v12);
       id v13 = objc_alloc(&OBJC_CLASS___NSError);
       NSErrorUserInfoKey v42 = NSLocalizedDescriptionKey;
       v43 = @"Enable Remote Hotspot Timeout";
-      v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v43,  &v42,  1LL));
+      v14 = [NSDictionary dictionaryWithObjects:forKeys:count:&v43, &v42, 1LL];
       unsigned __int8 v15 = -[NSError initWithDomain:code:userInfo:]( v13,  "initWithDomain:code:userInfo:",  NSPOSIXErrorDomain,  -6722LL,  v14);
       v16 = (void *)v31[5];
       v31[5] = (uint64_t)v15;
@@ -213,13 +213,13 @@ LABEL_6:
       v20 = (void *)v37[5];
       if (v20)
       {
-        __int128 v21 = (void *)objc_claimAutoreleasedReturnValue([v20 name]);
+        __int128 v21 = (void *)[v20 name];
         -[NSMutableDictionary setObject:forKeyedSubscript:](v7, "setObject:forKeyedSubscript:", v21, @"ssid");
 
-        __int128 v22 = (void *)objc_claimAutoreleasedReturnValue([(id)v37[5] password]);
+        __int128 v22 = (void *)[v37[5] password];
         -[NSMutableDictionary setObject:forKeyedSubscript:](v7, "setObject:forKeyedSubscript:", v22, @"password");
 
-        __int128 v23 = (void *)objc_claimAutoreleasedReturnValue([(id)v37[5] channel]);
+        __int128 v23 = (void *)[v37[5] channel];
         -[NSMutableDictionary setObject:forKeyedSubscript:](v7, "setObject:forKeyedSubscript:", v23, @"channel");
       }
 
@@ -240,7 +240,7 @@ LABEL_6:
   {
     v18 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "Cannot enable hotspot, missing SFRemoteHotspotDevice");
+      [qword_100219F60 WFLog:@"Cannot enable hotspot, missing SFRemoteHotspotDevice"];
     }
     objc_autoreleasePoolPop(v18);
     id v19 = 0LL;
@@ -309,13 +309,13 @@ LABEL_6:
 - (id)getHotspotDeviceName:(id)a3
 {
   id v3 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 deviceName]);
+  id v4 = [v3 deviceName];
   id v5 = [v4 length];
 
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v3 deviceName]);
+  uint64_t v6 = (void *)[v3 deviceName];
   if ((unint64_t)v5 >= 0x21)
   {
-    uint64_t v7 = objc_claimAutoreleasedReturnValue([v6 substringToIndex:30]);
+    uint64_t v7 = [v6 substringToIndex:30];
 
     uint64_t v6 = (void *)v7;
   }
@@ -332,12 +332,12 @@ LABEL_6:
 {
   id v5 = a3;
   id v6 = a4;
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v5 deviceName]);
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v6 deviceName]);
+  uint64_t v7 = (void *)[v5 deviceName];
+  uint64_t v8 = (void *)[v6 deviceName];
   if ([v7 isEqualToString:v8])
   {
-    char v9 = (void *)objc_claimAutoreleasedReturnValue([v5 deviceIdentifier]);
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v6 deviceIdentifier]);
+    char v9 = [v5 deviceIdentifier];
+    v10 = [v6 deviceIdentifier];
     unsigned __int8 v11 = [v9 isEqualToString:v10];
   }
 
@@ -353,7 +353,7 @@ LABEL_6:
 - (unsigned)isEqualHotspotDevicesName:(id)a3 compareTo:(id)a4
 {
   id v5 = a4;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([a3 deviceName]);
+  id v6 = [a3 deviceName];
   unsigned __int8 v7 = [v6 isEqualToString:v5];
 
   return v7;
@@ -381,7 +381,7 @@ LABEL_6:
                    @"iPhone9,3",
                    @"iPhone9,4",
                    0LL));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 model]);
+  id v5 = [v3 model];
   if ([v4 containsObject:v5])
   {
 
@@ -426,7 +426,7 @@ LABEL_6:
     [(id)qword_100219F60 WFLog:3, "Found hotspots %@", v6, v9 message];
   }
   objc_autoreleasePoolPop(v7);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  id v8 = [NSMutableSet set];
   [v8 addObjectsFromArray:v6];
   -[WiFiHotspotInterface updateNetworksWithHotspots:](self, "updateNetworksWithHotspots:", v8);
 }

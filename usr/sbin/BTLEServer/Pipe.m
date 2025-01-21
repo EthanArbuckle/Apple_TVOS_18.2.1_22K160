@@ -39,21 +39,21 @@
     v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](v9->_pipe, "input"));
     [v12 setDelegate:v9];
 
-    v13 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](v9->_pipe, "output"));
+    v13 = -[CBScalablePipe output](v9->_pipe, "output");
     [v13 setDelegate:v9];
 
-    v14 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](v9->_pipe, "input"));
-    v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSRunLoop currentRunLoop](&OBJC_CLASS___NSRunLoop, "currentRunLoop"));
+    v14 = -[CBScalablePipe input];
+    v15 = [NSRunLoop currentRunLoop];
     [v14 scheduleInRunLoop:v15 forMode:NSDefaultRunLoopMode];
 
-    v16 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](v9->_pipe, "output"));
-    v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSRunLoop currentRunLoop](&OBJC_CLASS___NSRunLoop, "currentRunLoop"));
+    v16 = -[CBScalablePipe output];
+    v17 = [NSRunLoop currentRunLoop];
     [v16 scheduleInRunLoop:v17 forMode:NSDefaultRunLoopMode];
 
-    v18 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](v9->_pipe, "input"));
+    v18 = -[CBScalablePipe input];
     [v18 open];
 
-    v19 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](v9->_pipe, "output"));
+    v19 = [v9->_pipe output];
     [v19 open];
   }
 
@@ -62,21 +62,21 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](self->_pipe, "input"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSRunLoop currentRunLoop](&OBJC_CLASS___NSRunLoop, "currentRunLoop"));
+  v3 = -[CBScalablePipe input](self->_pipe, "input");
+  v4 = [+[NSRunLoop currentRunLoop](&OBJC_CLASS___NSRunLoop, "currentRunLoop") autorelease];
   [v3 removeFromRunLoop:v4 forMode:NSDefaultRunLoopMode];
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](self->_pipe, "output"));
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSRunLoop currentRunLoop](&OBJC_CLASS___NSRunLoop, "currentRunLoop"));
+  v5 = [self->_pipe output];
+  id v6 = [NSRunLoop currentRunLoop];
   [v5 removeFromRunLoop:v6 forMode:NSDefaultRunLoopMode];
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](self->_pipe, "input"));
+  id v7 = -[CBScalablePipe input](self->_pipe, "input");
   [v7 setDelegate:0];
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](self->_pipe, "output"));
+  v8 = [self->_pipe output];
   [v8 setDelegate:0];
 
-  v9 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe input](self->_pipe, "input"));
+  v9 = [self->_pipe input];
   [v9 close];
 
   v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBScalablePipe output](self->_pipe, "output"));
@@ -89,15 +89,15 @@
 
 - (void)sendMessage:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization dataWithJSONObject:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "dataWithJSONObject:options:error:",  a3,  0LL,  0LL));
+  v4 = [NSJSONSerialization dataWithJSONObject:a3 options:0 error:0];
   char v10 = 0;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableData dataWithData:](&OBJC_CLASS___NSMutableData, "dataWithData:", v4));
+  v5 = [NSMutableData dataWithData:v4];
   [v5 appendBytes:&v10 length:1];
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe txMessageQueue](self, "txMessageQueue"));
+  id v6 = -[Pipe txMessageQueue];
   id v7 = -[OutboundMessage initWithData:](objc_alloc(&OBJC_CLASS___OutboundMessage), "initWithData:", v5);
   [v6 addObject:v7];
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe txMessageQueue](self, "txMessageQueue"));
+  v8 = [self txMessageQueue];
   id v9 = [v8 count];
 
   if (v9 == (id)1) {
@@ -107,21 +107,21 @@
 
 - (void)sendNextQueuedMessage
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe txMessageQueue](self, "txMessageQueue"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 firstObject]);
+  v3 = -[Pipe txMessageQueue];
+  v4 = [v3 firstObject];
 
   if (v4)
   {
-    id v5 = objc_claimAutoreleasedReturnValue([v4 data]);
+    id v5 = [v4 data];
     id v6 = [v5 bytes];
     id v7 = (char *)[v4 offset] + (void)v6;
 
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v4 data]);
+    v8 = [v4 data];
     id v9 = [v8 length];
     int64_t v10 = v9 - (_BYTE *)[v4 offset];
 
     objc_super v11 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe pipe](self, "pipe"));
-    v12 = (void *)objc_claimAutoreleasedReturnValue([v11 output]);
+    v12 = (void *)[v11 output];
     uint64_t v13 = (uint64_t)[v12 write:v7 maxLength:v10];
 
     if (v13 < 1)
@@ -137,14 +137,14 @@
 
     else
     {
-      objc_msgSend(v4, "setOffset:", (char *)objc_msgSend(v4, "offset") + v13);
+      [v4 setOffset:((char *)[v4 offset]) + v13];
       id v14 = [v4 offset];
-      v15 = (void *)objc_claimAutoreleasedReturnValue([v4 data]);
+      v15 = [v4 data];
       id v16 = [v15 length];
 
       if (v14 >= v16)
       {
-        v17 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe txMessageQueue](self, "txMessageQueue"));
+        v17 = [self txMessageQueue];
         [v17 removeObject:v4];
       }
     }
@@ -153,13 +153,13 @@
 
 - (void)receiveMessage:(char *)a3 length:(int64_t)a4
 {
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[Pipe receivedMessage](self, "receivedMessage"));
+  id v7 = [self receivedMessage];
   v8 = v7;
   if (v7) {
     id v9 = v7;
   }
   else {
-    id v9 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableData data](&OBJC_CLASS___NSMutableData, "data"));
+    id v9 = [NSMutableData data];
   }
   int64_t v10 = v9;
 

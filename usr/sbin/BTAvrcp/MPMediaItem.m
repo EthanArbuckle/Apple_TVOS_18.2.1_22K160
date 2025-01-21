@@ -13,7 +13,7 @@
   v3[0] = MPMediaItemPropertyPersistentID;
   v3[1] = MPMediaItemPropertyStoreID;
   v3[2] = MPMediaItemPropertySubscriptionStoreItemID;
-  return (id)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:count:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:count:",  v3,  3LL));
+  return [NSArray arrayWithObjects:v3 count:3];
 }
 
 - (id)uid
@@ -22,7 +22,7 @@
   __int128 v12 = 0u;
   __int128 v13 = 0u;
   __int128 v14 = 0u;
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaItem propertiesForUid](&OBJC_CLASS___MPMediaItem, "propertiesForUid", 0LL));
+  v3 = [+[MPMediaItem propertiesForUid] autorelease];
   id v4 = [v3 countByEnumeratingWithState:&v11 objects:v15 count:16];
   if (v4)
   {
@@ -35,7 +35,7 @@ LABEL_3:
       if (*(void *)v12 != v6) {
         objc_enumerationMutation(v3);
       }
-      uint64_t v8 = objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", *(void *)(*((void *)&v11 + 1) + 8 * v7)));
+      uint64_t v8 = [self valueForProperty:v11];
       if (v8) {
         break;
       }
@@ -54,8 +54,8 @@ LABEL_3:
   {
 LABEL_9:
 
-    v3 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyStoreRadioStationID));
-    uint64_t v8 = objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  [v3 hash]));
+    v3 = -[self valueForProperty:MPMediaItemPropertyStoreRadioStationID];
+    uint64_t v8 = [NSNumber numberWithUnsignedInteger:v3 hash];
   }
 
   v9 = (void *)v8;
@@ -69,10 +69,10 @@ LABEL_9:
   v14[0] = &__kCFBooleanFalse;
   v13[0] = @"kIsFolder";
   v13[1] = @"kUid";
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem uid](self, "uid"));
+  id v5 = [self uid];
   v14[1] = v5;
   v13[2] = @"kName";
-  uint64_t v6 = objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyTitle));
+  uint64_t v6 = [self valueForProperty:MPMediaItemPropertyTitle];
   uint64_t v7 = (void *)v6;
   uint64_t v8 = &stru_1000195C0;
   if (v6) {
@@ -101,7 +101,7 @@ LABEL_9:
   v9[2] = sub_10000D1CC;
   v9[3] = &unk_100018A78;
   v9[4] = self;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  id v5 = [NSMutableDictionary dictionary];
   id v10 = v5;
   [v4 enumerateAttributeIDs:v9];
 
@@ -117,14 +117,14 @@ LABEL_9:
   switch(a3)
   {
     case 1uLL:
-      uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyTitle));
+      uint64_t v6 = (void *)[self valueForProperty:MPMediaItemPropertyTitle];
       if (!v6) {
         goto LABEL_23;
       }
       id v7 = @"kTitle";
       goto LABEL_16;
     case 2uLL:
-      uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyArtist));
+      uint64_t v6 = (void *)[self valueForProperty:MPMediaItemPropertyArtist];
       if (!v6) {
         goto LABEL_23;
       }
@@ -138,21 +138,21 @@ LABEL_9:
       id v7 = @"kAlbum";
       goto LABEL_16;
     case 4uLL:
-      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyAlbumTrackNumber));
+      uint64_t v8 = (void *)[self valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
       uint64_t v6 = v8;
       if (!v8 || ![v8 unsignedIntegerValue]) {
         goto LABEL_23;
       }
-      v9 = (void *)objc_claimAutoreleasedReturnValue([v6 stringValue]);
+      v9 = [v6 stringValue];
       id v10 = @"kTrackNumber";
       goto LABEL_19;
     case 5uLL:
-      __int128 v11 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem valueForProperty:](self, "valueForProperty:", MPMediaItemPropertyAlbumTrackCount));
+      __int128 v11 = (void *)[self valueForProperty:MPMediaItemPropertyAlbumTrackCount];
       uint64_t v6 = v11;
       if (!v11 || ![v11 unsignedIntegerValue]) {
         goto LABEL_23;
       }
-      v9 = (void *)objc_claimAutoreleasedReturnValue([v6 stringValue]);
+      v9 = [v6 stringValue];
       id v10 = @"kTrackCount";
       goto LABEL_19;
     case 6uLL:
@@ -171,17 +171,17 @@ LABEL_16:
         goto LABEL_23;
       }
       [v12 doubleValue];
-      v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%lu",  (unint64_t)(v13 * 1000.0)));
+      v9 = [NSString stringWithFormat:@"%lu" v13 * 1000.0];
       id v10 = @"kPlayingTime";
 LABEL_19:
       [v15 setValue:v9 forKey:v10];
       goto LABEL_22;
     case 8uLL:
-      uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[MPMediaItem uid](self, "uid"));
+      uint64_t v6 = (void *)[self uid];
       if (![v6 unsignedIntegerValue]) {
         goto LABEL_23;
       }
-      v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  (unint64_t)[v6 unsignedIntegerValue] % 0x989680));
+      v9 = [NSNumber numberWithUnsignedInteger:((unint64_t)[v6 unsignedIntegerValue] % 0x989680)];
       __int128 v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( NSString,  "stringWithFormat:",  @"%tu",  [v9 unsignedIntegerValue]));
       [v15 setValue:v14 forKey:@"kImageHandle"];
 

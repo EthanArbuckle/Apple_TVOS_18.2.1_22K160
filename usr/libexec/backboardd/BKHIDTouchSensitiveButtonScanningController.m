@@ -14,8 +14,8 @@
 {
   id v4 = a3;
   v15.receiver = self;
-  v15.super_class = (Class)&OBJC_CLASS___BKHIDTouchSensitiveButtonScanningController;
-  v5 = -[BKHIDTouchSensitiveButtonScanningController init](&v15, "init");
+  v15.super_class = [BKHIDTouchSensitiveButtonScanningController class];
+  BKHIDTouchSensitiveButtonScanningController *v5 = [[BKHIDTouchSensitiveButtonScanningController alloc] init];
   v6 = v5;
   if (v5)
   {
@@ -24,14 +24,14 @@
     queue = v6->_queue;
     v6->_queue = (OS_dispatch_queue *)v7;
 
-    v9 = objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher);
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v4 serviceMatcherDataProvider]);
-    v11 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( v9,  "initWithUsagePage:usage:builtIn:dataProvider:",  65280LL,  102LL,  1LL,  v10);
+    BKIOHIDServiceMatcher *v9 = [[BKIOHIDServiceMatcher alloc] init];
+    v10 = [v4 serviceMatcherDataProvider];
+    BKIOHIDServiceMatcher *v11 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:65280LL usage:102LL builtIn:1LL dataProvider:v10];
     serviceMatcher = v6->_serviceMatcher;
     v6->_serviceMatcher = v11;
 
-    -[BKIOHIDServiceMatcher startObserving:queue:](v6->_serviceMatcher, "startObserving:queue:", v6, v6->_queue);
-    v13 = (void *)objc_claimAutoreleasedReturnValue( +[BKIOHIDServicePersistentPropertyController touchSensitiveButtonServicePersistentPropertyController]( &OBJC_CLASS___BKIOHIDServicePersistentPropertyController,  "touchSensitiveButtonServicePersistentPropertyController"));
+    [v6->_serviceMatcher startObserving:v6 queue:v6->_queue];
+    BKIOHIDServicePersistentPropertyController *v13 = [BKIOHIDServicePersistentPropertyController touchSensitiveButtonServicePersistentPropertyController];
     [v13 registerHandler:v6];
   }
 
@@ -44,14 +44,14 @@
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
   id v10 = sub_10003F124();
-  v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v10);
+  v11 = [os_log_s class];
   v12 = v11;
   if (a4 == 1)
   {
     if (os_log_type_enabled(v11, OS_LOG_TYPE_DEFAULT))
     {
       uint64_t v13 = NSStringFromBKSHIDTouchSensitiveButtonIdentifier(1LL);
-      v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
+      v14 = v13;
       *(_DWORD *)buf = 67109634;
       int v23 = v7;
       __int16 v24 = 2114;
@@ -63,11 +63,11 @@
 
     if (v7 && !self->_lock_activeCameraButtonScanningPIDs)
     {
-      objc_super v15 = objc_alloc_init(&OBJC_CLASS___NSMutableIndexSet);
+      NSMutableIndexSet *v15 = [[NSMutableIndexSet alloc] init];
       lock_activeCameraButtonScanningPIDs = self->_lock_activeCameraButtonScanningPIDs;
       self->_lock_activeCameraButtonScanningPIDs = v15;
 
-      v17 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+      NSMutableDictionary *v17 = [[NSMutableDictionary alloc] init];
       lock_pidToProcessDeathWatcher = self->_lock_pidToProcessDeathWatcher;
       self->_lock_pidToProcessDeathWatcher = v17;
     }
@@ -102,17 +102,17 @@
   lock_services = self->_lock_services;
   if (!lock_services)
   {
-    BOOL v7 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v7 = [[NSMutableSet alloc] init];
     v8 = self->_lock_services;
     self->_lock_services = v7;
 
     lock_services = self->_lock_services;
   }
 
-  -[NSMutableSet addObjectsFromArray:](lock_services, "addObjectsFromArray:", v5);
-  v9 = (void *)objc_claimAutoreleasedReturnValue( +[BKSHIDEventSenderDescriptor build:]( &OBJC_CLASS___BKSHIDEventSenderDescriptor,  "build:",  &stru_1000B5B40));
-  id v10 = (void *)objc_claimAutoreleasedReturnValue( +[BKIOHIDServicePersistentPropertyController touchSensitiveButtonServicePersistentPropertyController]( &OBJC_CLASS___BKIOHIDServicePersistentPropertyController,  "touchSensitiveButtonServicePersistentPropertyController"));
-  v11 = (void *)objc_claimAutoreleasedReturnValue([v10 allPersistentPropertiesForServicesMatchingDescriptor:v9]);
+  [lock_services addObjectsFromArray:v5];
+  BKSHIDEventSenderDescriptor *v9 = [BKSHIDEventSenderDescriptor build];
+  id v10 = [BKIOHIDServicePersistentPropertyController touchSensitiveButtonServicePersistentPropertyController];
+  v11 = (void *)[v10 allPersistentPropertiesForServicesMatchingDescriptor:v9];
 
   if (![v11 count])
   {
@@ -125,7 +125,7 @@
   __int128 v18 = 0u;
   __int128 v19 = 0u;
   id v12 = v5;
-  id v13 = [v12 countByEnumeratingWithState:&v18 objects:v22 count:16];
+  id v13 = [v12 countByEnumeratingWithState:v18 objects:v22 count:16];
   if (v13)
   {
     id v14 = v13;
@@ -138,14 +138,14 @@
           objc_enumerationMutation(v12);
         }
         v17 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-        objc_msgSend(v17, "addDisappearanceObserver:queue:", self, self->_queue, (void)v18);
+        [v17 addDisappearanceObserver:self queue:self->_queue];
         if (v11) {
           [v17 setProperties:v11];
         }
-        sub_10000F1E4( (uint64_t)self,  -[NSMutableIndexSet count](self->_lock_activeCameraButtonScanningPIDs, "count") != 0LL,  v17);
+        [self->_lock_activeCameraButtonScanningPIDs count] != 0LL
       }
 
-      id v14 = [v12 countByEnumeratingWithState:&v18 objects:v22 count:16];
+      id v14 = [v12 countByEnumeratingWithState:v18 objects:v22 count:16];
     }
 
     while (v14);
@@ -159,7 +159,7 @@
   p_lock = &self->_lock;
   id v5 = a3;
   os_unfair_lock_lock(p_lock);
-  -[NSMutableSet removeObject:](self->_lock_services, "removeObject:", v5);
+  [self->_lock_services removeObject:v5];
 
   os_unfair_lock_unlock(p_lock);
 }
@@ -167,7 +167,7 @@
 - (BOOL)handlesPersistentPropertiesForSenderDescriptor:(id)a3
 {
   id v3 = a3;
-  BOOL v4 = [v3 primaryPage] == 65280 && objc_msgSend(v3, "primaryUsage") == 102;
+  BOOL v4 = [v3 primaryPage] == 65280 && [v3 primaryUsage] == 102;
 
   return v4;
 }
@@ -184,14 +184,14 @@
   uint64_t v14 = 3221225472LL;
   uint64_t v15 = sub_10000F32C;
   v16 = &unk_1000B6BB0;
-  id v8 = (id)objc_claimAutoreleasedReturnValue( +[NSSet setWithObject:]( &OBJC_CLASS___NSSet,  "setWithObject:",  @"HalfPressThresholdModifier"));
+  id v8 = [NSSet setWithObject:@"HalfPressThresholdModifier"];
   id v17 = v8;
   __int128 v18 = &v19;
   [v6 enumerateKeysAndObjectsUsingBlock:&v13];
   if (*((_BYTE *)v20 + 24))
   {
     id v9 = sub_10003F280();
-    id v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+    os_log_s *v10 = v9;
     if (os_log_type_enabled(v10, OS_LOG_TYPE_ERROR))
     {
       *(_DWORD *)buf = 138543362;
@@ -205,7 +205,7 @@
   else
   {
     os_unfair_lock_lock(&self->_lock);
-    -[NSMutableSet makeObjectsPerformSelector:withObject:]( self->_lock_services,  "makeObjectsPerformSelector:withObject:",  "asyncSetProperties:",  v6,  v13,  v14,  v15,  v16);
+    [self->_lock_services makeObjectsPerformSelector:@selector(asyncSetProperties:) withObject:v6 withObject:v13 withObject:v14 withObject:v15 withObject:v16];
     os_unfair_lock_unlock(&self->_lock);
     int64_t v11 = 2LL;
   }
@@ -216,12 +216,12 @@
 
 - (void)processDidTerminate:(int)a3
 {
-  uint64_t v3 = *(void *)&a3;
+  uint64_t v3 = a3;
   p_lock = &self->_lock;
   os_unfair_lock_lock(&self->_lock);
   lock_pidToProcessDeathWatcher = self->_lock_pidToProcessDeathWatcher;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v3));
-  -[NSMutableDictionary removeObjectForKey:](lock_pidToProcessDeathWatcher, "removeObjectForKey:", v7);
+  id v7 = [NSNumber numberWithInt:v3];
+  [lock_pidToProcessDeathWatcher removeObjectForKey:v7];
 
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;

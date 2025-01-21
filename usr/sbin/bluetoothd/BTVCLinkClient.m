@@ -135,7 +135,7 @@
   __int128 v19 = 0u;
   __int128 v16 = 0u;
   __int128 v17 = 0u;
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v7->_btvcBonjourLinkDelegates, "allObjects"));
+  v8 = -[v7->_btvcBonjourLinkDelegates allObjects];
   id v9 = [v8 countByEnumeratingWithState:&v16 objects:v20 count:16];
   if (v9)
   {
@@ -150,7 +150,7 @@
         v12 = *(void **)(*((void *)&v16 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v12, a2) & 1) != 0)
         {
-          v13 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v12 dispatchQueue]);
+          v13 = [v12 dispatchQueue];
           if (v13 == (dispatch_queue_s *)v7->_dispatchQueue)
           {
             [v12 btvcBonjourLinkDidUpdateState:v5];
@@ -200,7 +200,7 @@
   __int128 v22 = 0u;
   __int128 v19 = 0u;
   __int128 v20 = 0u;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v8->_btvcBonjourLinkDelegates, "allObjects"));
+  id v9 = -[NSMutableSet allObjects](v8->_btvcBonjourLinkDelegates, "allObjects");
   id v10 = [v9 countByEnumeratingWithState:&v19 objects:v23 count:16];
   if (v10)
   {
@@ -215,7 +215,7 @@
         v13 = *(void **)(*((void *)&v19 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v13, a2) & 1) != 0)
         {
-          int v14 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v13 dispatchQueue]);
+          int v14 = (dispatch_queue_s *)[v13 dispatchQueue];
           if (v14 == (dispatch_queue_s *)v8->_dispatchQueue)
           {
             [v13 btvcBonjourLink:v15 didStartAdvertisingType:a4];
@@ -259,7 +259,7 @@
   __int128 v25 = 0u;
   __int128 v22 = 0u;
   __int128 v23 = 0u;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v9->_btvcBonjourLinkDelegates, "allObjects"));
+  id v10 = -[v9->_btvcBonjourLinkDelegates allObjects];
   id v11 = [v10 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v11)
   {
@@ -274,7 +274,7 @@
         int v14 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didStopAdvertisingType:a4 withError:v17];
@@ -318,7 +318,7 @@
   __int128 v21 = 0u;
   __int128 v18 = 0u;
   __int128 v19 = 0u;
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v7->_btvcBonjourLinkDelegates, "allObjects"));
+  v8 = -[v7->_btvcBonjourLinkDelegates allObjects];
   id v9 = [v8 countByEnumeratingWithState:&v18 objects:v22 count:16];
   if (v9)
   {
@@ -333,7 +333,7 @@
         uint64_t v12 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v12, a2) & 1) != 0)
         {
-          v13 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v12 dispatchQueue]);
+          v13 = [v12 dispatchQueue];
           if (v13 == (dispatch_queue_s *)v7->_dispatchQueue)
           {
             [v12 btvcBonjourLink:v14 didDeferAdvertisingType:a4];
@@ -377,7 +377,7 @@
   __int128 v25 = 0u;
   __int128 v22 = 0u;
   __int128 v23 = 0u;
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v9->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v10 = (void *)[v9->_btvcBonjourLinkDelegates allObjects];
   id v11 = [v10 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v11)
   {
@@ -392,7 +392,7 @@
         id v14 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didFailToStartAdvertisingOfType:a4 withError:v17];
@@ -436,7 +436,7 @@
   __int128 v21 = 0u;
   __int128 v18 = 0u;
   __int128 v19 = 0u;
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v7->_btvcBonjourLinkDelegates, "allObjects"));
+  v8 = [v7->_btvcBonjourLinkDelegates allObjects];
   id v9 = [v8 countByEnumeratingWithState:&v18 objects:v22 count:16];
   if (v9)
   {
@@ -451,7 +451,7 @@
         uint64_t v12 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v12, a2) & 1) != 0)
         {
-          v13 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v12 dispatchQueue]);
+          v13 = [v12 dispatchQueue];
           if (v13 == (dispatch_queue_s *)v7->_dispatchQueue)
           {
             [v12 btvcBonjourLink:v14 didStartScanningForType:a4];
@@ -495,7 +495,7 @@
   __int128 v25 = 0u;
   __int128 v22 = 0u;
   __int128 v23 = 0u;
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v9->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v10 = (void *)[v9->_btvcBonjourLinkDelegates allObjects];
   id v11 = [v10 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v11)
   {
@@ -510,7 +510,7 @@
         id v14 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didFailToStartScanningForType:a4 WithError:v17];
@@ -558,7 +558,7 @@
   __int128 v31 = 0u;
   __int128 v32 = 0u;
   obj = v13;
-  id v14 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v13->_btvcBonjourLinkDelegates, "allObjects"));
+  id v14 = [v13->_btvcBonjourLinkDelegates allObjects];
   id v15 = [v14 countByEnumeratingWithState:&v31 objects:v35 count:16];
   if (v15)
   {
@@ -573,7 +573,7 @@
         __int128 v18 = *(void **)(*((void *)&v31 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v18, a2) & 1) != 0)
         {
-          id v19 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v18 dispatchQueue]);
+          id v19 = [v18 dispatchQueue];
           if (v19 == (dispatch_queue_s *)obj->_dispatchQueue)
           {
             [v18 btvcBonjourLink:v20 didDiscoverType:a4 withData:v21 fromPeer:v22 peerInfo:v23];
@@ -620,7 +620,7 @@
   __int128 v25 = 0u;
   __int128 v22 = 0u;
   __int128 v23 = 0u;
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v9->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v10 = (void *)[v9->_btvcBonjourLinkDelegates allObjects];
   id v11 = [v10 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v11)
   {
@@ -635,7 +635,7 @@
         id v14 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didLosePeer:v17 type:a5];
@@ -681,7 +681,7 @@
   __int128 v29 = 0u;
   __int128 v26 = 0u;
   __int128 v27 = 0u;
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v11->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v12 = (void *)[v11->_btvcBonjourLinkDelegates allObjects];
   id v13 = [v12 countByEnumeratingWithState:&v26 objects:v30 count:16];
   if (v13)
   {
@@ -696,7 +696,7 @@
         id v16 = *(void **)(*((void *)&v26 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v16, a2) & 1) != 0)
         {
-          id v17 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v16 dispatchQueue]);
+          id v17 = [v16 dispatchQueue];
           if (v17 == (dispatch_queue_s *)v11->_dispatchQueue)
           {
             [v16 btvcBonjourLink:v18 didConnectToPeer:v19 transport:a5 error:v20];
@@ -743,7 +743,7 @@
   __int128 v26 = 0u;
   __int128 v23 = 0u;
   __int128 v24 = 0u;
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v9->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v10 = (void *)[v9->_btvcBonjourLinkDelegates allObjects];
   id v11 = [v10 countByEnumeratingWithState:&v23 objects:v27 count:16];
   if (v11)
   {
@@ -758,7 +758,7 @@
         uint64_t v14 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didDisconnectFromPeer:v17 error:v18];
@@ -805,7 +805,7 @@
   __int128 v30 = 0u;
   __int128 v27 = 0u;
   __int128 v28 = 0u;
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v11->_btvcBonjourLinkDelegates, "allObjects"));
+  uint64_t v12 = (void *)[v11->_btvcBonjourLinkDelegates allObjects];
   id v13 = [v12 countByEnumeratingWithState:&v27 objects:v31 count:16];
   if (v13)
   {
@@ -820,7 +820,7 @@
         id v16 = *(void **)(*((void *)&v27 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v16, a2) & 1) != 0)
         {
-          id v17 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v16 dispatchQueue]);
+          id v17 = [v16 dispatchQueue];
           if (v17 == (dispatch_queue_s *)v11->_dispatchQueue)
           {
             [v16 btvcBonjourLink:v18 didSendData:v19 toPeer:v20 error:v21];
@@ -882,7 +882,7 @@
         uint64_t v14 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)i);
         if ((objc_opt_respondsToSelector(v14, a2) & 1) != 0)
         {
-          id v15 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([v14 dispatchQueue]);
+          id v15 = [v14 dispatchQueue];
           if (v15 == (dispatch_queue_s *)v9->_dispatchQueue)
           {
             [v14 btvcBonjourLink:v16 didReceiveData:v17 fromPeer:v18];

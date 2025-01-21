@@ -7,7 +7,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3

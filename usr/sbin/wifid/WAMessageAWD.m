@@ -27,7 +27,7 @@
   __int128 v23 = 0u;
   __int128 v24 = 0u;
   __int128 v25 = 0u;
-  id v4 = objc_msgSend(-[WAMessageAWD mutableFields](self, "mutableFields"), "allValues");
+  id v4 = [self mutableFields].allValues;
   id v5 = [v4 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v5)
   {
@@ -91,7 +91,7 @@ LABEL_22:
                 id v16 = objc_msgSend(objc_msgSend(v10, "repeatableValues"), "objectAtIndex:", v15);
                 uint64_t v17 = objc_opt_class(&OBJC_CLASS___WAMessageAWD);
                 if ((objc_opt_isKindOfClass(v16, v17) & 1) != 0) {
-                  objc_msgSend(v14, "addObject:", objc_msgSend(v16, "dictionaryRepresentation"));
+                  [v14 addObject:[v16 dictionaryRepresentation]];
                 }
                 ++v15;
               }

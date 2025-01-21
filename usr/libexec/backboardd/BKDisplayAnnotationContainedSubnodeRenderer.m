@@ -22,12 +22,12 @@
 - (void)styleSheetDidChange
 {
   v20.receiver = self;
-  v20.super_class = (Class)&OBJC_CLASS___BKDisplayAnnotationContainedSubnodeRenderer;
-  -[BKDisplayAnnotationRenderer styleSheetDidChange](&v20, "styleSheetDidChange");
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 styleSheet]);
+  v20.super_class = [BKDisplayAnnotationContainedSubnodeRenderer class];
+  [v20 styleSheetDidChange];
+  BKDisplayAnnotationRenderer *v3 = [v3 annotation];
+  v4 = [v3 styleSheet];
   backgroundLayer = self->_backgroundLayer;
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStringContent contentWithString:]( &OBJC_CLASS___BKDisplayAnnotationStringContent,  "contentWithString:",  &stru_1000BB628));
+  v6 = [BKDisplayAnnotationStringContent contentWithString:stru_1000BB628];
   [v4 applyToLayer:backgroundLayer forContent:v6];
 
   __int128 v18 = 0u;
@@ -35,7 +35,7 @@
   __int128 v16 = 0u;
   __int128 v17 = 0u;
   v7 = self->_subannotations;
-  id v8 = -[NSArray countByEnumeratingWithState:objects:count:]( v7,  "countByEnumeratingWithState:objects:count:",  &v16,  v21,  16LL);
+  [v7 countByEnumeratingWithState:v16 objects:v21 count:16];
   if (v8)
   {
     id v9 = v8;
@@ -48,15 +48,15 @@
           objc_enumerationMutation(v7);
         }
         v12 = *(void **)(*((void *)&v16 + 1) + 8LL * (void)i);
-        v13 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v12, "styleSheet", (void)v16));
-        v14 = (void *)objc_claimAutoreleasedReturnValue([v4 subnodeStyleModifier]);
+        v13 = [v12 styleSheet];
+        v14 = [v4 subnodeStyleModifier];
         [v13 setStyleModifier:v14];
 
-        v15 = (void *)objc_claimAutoreleasedReturnValue([v12 renderer]);
+        v15 = [v12 renderer];
         [v15 styleSheetDidChange];
       }
 
-      id v9 = -[NSArray countByEnumeratingWithState:objects:count:]( v7,  "countByEnumeratingWithState:objects:count:",  &v16,  v21,  16LL);
+      [v7 countByEnumeratingWithState:v16 objects:v21 count:16];
     }
 
     while (v9);
@@ -66,19 +66,19 @@
 - (void)regenerateLayerTree
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS___BKDisplayAnnotationContainedSubnodeRenderer;
-  -[BKDisplayAnnotationRenderer regenerateLayerTree](&v8, "regenerateLayerTree");
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 namespaceNode]);
+  v8.super_class = [BKDisplayAnnotationContainedSubnodeRenderer class];
+  [v8 regenerateLayerTree];
+  v3 = [self annotation];
+  v4 = [v3 namespaceNode];
   v6[0] = _NSConcreteStackBlock;
   v6[1] = 3221225472LL;
   v6[2] = sub_10004BFA0;
   v6[3] = &unk_1000B7208;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v5 = [NSMutableArray array];
   id v7 = v5;
   [v4 enumerateNodesWithOptions:1 usingBlock:v6];
   if ([v5 count]) {
-    -[BKDisplayAnnotationContainedSubnodeRenderer layoutAnnotationStack:](self, "layoutAnnotationStack:", v5);
+    [self layoutAnnotationStack:v5];
   }
 }
 
@@ -92,7 +92,7 @@
   __int128 v32 = 0u;
   __int128 v33 = 0u;
   __int128 v34 = 0u;
-  id v13 = [v9 countByEnumeratingWithState:&v31 objects:v35 count:16];
+  id v13 = [v9 countByEnumeratingWithState:v31 objects:v35 count:16];
   if (v13)
   {
     id v14 = v13;
@@ -109,17 +109,17 @@
           objc_enumerationMutation(v9);
         }
         __int128 v19 = *(void **)(*((void *)&v31 + 1) + 8LL * (void)v17);
-        objc_super v20 = (void *)objc_claimAutoreleasedReturnValue([v19 renderer]);
-        v21 = (void *)objc_claimAutoreleasedReturnValue([v20 layer]);
+        objc_super v20 = [v19 renderer];
+        v21 = [v20 layer];
 
-        id v22 = (id)objc_claimAutoreleasedReturnValue([v21 superlayer]);
+        id v22 = [v21 superlayer];
         if (v22 != v10)
         {
           [v21 removeFromSuperlayer];
           [v10 addSublayer:v21];
         }
 
-        v23 = (void *)objc_claimAutoreleasedReturnValue([v19 renderer]);
+        v23 = [v19 renderer];
         [v23 sizeLayerToFitAtScale:a6];
 
         [v21 frame];
@@ -138,7 +138,7 @@
 
       while (v14 != v17);
       v15 += (uint64_t)v17;
-      id v14 = [v9 countByEnumeratingWithState:&v31 objects:v35 count:16];
+      id v14 = [v9 countByEnumeratingWithState:v31 objects:v35 count:16];
     }
 
     while (v14);
@@ -154,11 +154,11 @@
 - (void)layoutAnnotationStack:(id)a3
 {
   id v4 = a3;
-  id v104 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v104 annotationController]);
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v5 rootLayer]);
+  id v104 = [self annotation];
+  id v5 = [v104 annotationController];
+  v6 = (void *)[v5 rootLayer];
   id v108 = v5;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 transformLayer]);
+  id v7 = [v5 transformLayer];
   id v103 = v6;
   [v6 rasterizationScale];
   id v9 = v8;
@@ -169,20 +169,20 @@
   v100 = v13;
   CGFloat v15 = v14;
   v109 = self;
-  id v105 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer layer](self, "layer"));
+  id v105 = [self layer];
   [v105 frame];
   CGFloat v17 = v16;
   CGFloat v19 = v18;
   double v21 = v20;
   CGFloat v23 = v22;
-  double v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableOrderedSet orderedSetWithCapacity:]( NSMutableOrderedSet,  "orderedSetWithCapacity:",  [v4 count]));
-  id v111 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  NSMutableOrderedSet *v24 = [NSMutableOrderedSet orderedSetWithCapacity:[v4 count]];
+  id v111 = [NSMutableDictionary dictionary];
   __int128 v120 = 0u;
   __int128 v121 = 0u;
   __int128 v122 = 0u;
   __int128 v123 = 0u;
   id v25 = v4;
-  id v26 = [v25 countByEnumeratingWithState:&v120 objects:v126 count:16];
+  id v26 = [v25 countByEnumeratingWithState:v120 objects:v126 count:16];
   if (v26)
   {
     id v27 = v26;
@@ -195,7 +195,7 @@
           objc_enumerationMutation(v25);
         }
         v30 = *(void **)(*((void *)&v120 + 1) + 8LL * (void)i);
-        uint64_t v31 = objc_claimAutoreleasedReturnValue([v30 section]);
+        uint64_t v31 = [v30 section];
         if (v31) {
           __int128 v32 = (__CFString *)v31;
         }
@@ -203,29 +203,29 @@
           __int128 v32 = &stru_1000BB628;
         }
         [v24 addObject:v32];
-        __int128 v33 = (void *)objc_claimAutoreleasedReturnValue([v111 objectForKey:v32]);
+        __int128 v33 = (void *)[v111 objectForKey:v32];
         if (!v33)
         {
-          __int128 v33 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+          NSMutableArray *v33 = [NSMutableArray array];
           [v111 setObject:v33 forKey:v32];
         }
 
         [v33 addObject:v30];
       }
 
-      id v27 = [v25 countByEnumeratingWithState:&v120 objects:v126 count:16];
+      id v27 = [v25 countByEnumeratingWithState:v120 objects:v126 count:16];
     }
 
     while (v27);
   }
 
-  __int128 v34 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  NSMutableArray *v34 = [NSMutableArray array];
   __int128 v116 = 0u;
   __int128 v117 = 0u;
   __int128 v118 = 0u;
   __int128 v119 = 0u;
   id v35 = v24;
-  id v36 = [v35 countByEnumeratingWithState:&v116 objects:v125 count:16];
+  id v36 = [v35 countByEnumeratingWithState:v116 objects:v125 count:16];
   p_isa = (id *)&v109->super.super.isa;
   id v107 = v35;
   if (v36)
@@ -242,24 +242,24 @@
         v40 = *(void **)(*((void *)&v116 + 1) + 8LL * (void)j);
         if ([v40 length])
         {
-          v41 = (void *)objc_claimAutoreleasedReturnValue([p_isa[5] objectForKey:v40]);
+          v41 = [p_isa[5] objectForKey:v40];
           if (!v41)
           {
             id v42 = v25;
             v43 = v109;
             if (!v109->_sectionTitleAnnotations)
             {
-              uint64_t v44 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+              uint64_t v44 = [NSMutableDictionary dictionary];
               sectionTitleAnnotations = v109->_sectionTitleAnnotations;
               v109->_sectionTitleAnnotations = (NSMutableDictionary *)v44;
             }
 
-            v41 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotation annotationWithString:]( &OBJC_CLASS___BKDisplayAnnotation,  "annotationWithString:",  v40));
+            BKDisplayAnnotation *v41 = [BKDisplayAnnotation annotationWithString:v40];
             [v41 setAnnotationController:v108];
-            v46 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStyle emphasizedStyle]( &OBJC_CLASS___BKDisplayAnnotationStyle,  "emphasizedStyle"));
+            BKDisplayAnnotationStyle *v46 = [BKDisplayAnnotationStyle emphasizedStyle];
             [v41 setStyleModifier:v46];
 
-            -[NSMutableDictionary setObject:forKey:](v43->_sectionTitleAnnotations, "setObject:forKey:", v41, v40);
+            [v43->_sectionTitleAnnotations setObject:v41 forKey:v40];
             id v25 = v42;
             id v35 = v107;
           }
@@ -269,11 +269,11 @@
           p_isa = (id *)&v109->super.super.isa;
         }
 
-        v47 = (void *)objc_claimAutoreleasedReturnValue([v111 objectForKey:v40]);
+        v47 = [v111 objectForKey:v40];
         [v34 addObjectsFromArray:v47];
       }
 
-      id v38 = [v35 countByEnumeratingWithState:&v116 objects:v125 count:16];
+      id v38 = [v35 countByEnumeratingWithState:v116 objects:v125 count:16];
     }
 
     while (v38);
@@ -283,7 +283,7 @@
   v101 = &v96;
   v48 = &v96 - 4 * __chkstk_darwin();
   id v99 = v9;
-  [p_isa _getFrames:v48 ofAnnotations:v34 fixSuperlayer:v105 scale:*(double *)&v9];
+  [p_isa _getFrames:v48 ofAnnotations:v34 fixSuperlayer:v105 scale:v9];
   double v110 = v49;
   double v51 = v50;
   id v52 = v104;
@@ -294,8 +294,8 @@
     CGFloat v98 = v11;
     CGFloat v54 = v106;
     v127.origin.double y = v106;
-    CGFloat v55 = *(double *)&v100;
-    *(void *)&v127.size.double width = v100;
+    CGFloat v55 = v100;
+    v127.size.double width = v100;
     v127.size.double height = v15;
     CGFloat MaxX = CGRectGetMaxX(v127);
     CGFloat v97 = v15;
@@ -344,7 +344,7 @@
     double v70 = v110 + v66;
     v132.origin.x = v11;
     v132.origin.double y = v106;
-    *(void *)&v132.size.double width = v100;
+    v132.size.double width = v100;
     CGFloat v71 = CGRectGetMaxX(v132);
     CGFloat v72 = v17;
     double v73 = v71;
@@ -370,28 +370,28 @@
     else {
       double v60 = v21;
     }
-    objc_msgSend(v52, "setSubnodeScreenEdgeTreatment:");
+    [v52 setSubnodeScreenEdgeTreatment:];
   }
 
   v77 = p_isa + 4;
   id v78 = p_isa[4];
-  v79 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationStyleSheet);
-  v80 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle rectangleStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "rectangleStyle"));
-  -[BKDisplayAnnotationStyleSheet setBaseStyle:](v79, "setBaseStyle:", v80);
+  BKDisplayAnnotationStyleSheet *v79 = [[BKDisplayAnnotationStyleSheet alloc] init];
+  v80 = [BKDisplayAnnotationStyle rectangleStyle];
+  [v79 setBaseStyle:v80];
 
-  v81 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStyle textBackgroundStyle]( &OBJC_CLASS___BKDisplayAnnotationStyle,  "textBackgroundStyle"));
-  -[BKDisplayAnnotationStyleSheet setStyleModifier:](v79, "setStyleModifier:", v81);
+  BKDisplayAnnotationStyle *v81 = [BKDisplayAnnotationStyle textBackgroundStyle];
+  [v79 setStyleModifier:v81];
 
-  v82 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationShapeContent contentWithSize:]( &OBJC_CLASS___BKDisplayAnnotationShapeContent,  "contentWithSize:",  v110,  v51));
+  BKDisplayAnnotationShapeContent *v82 = [BKDisplayAnnotationShapeContent contentWithSize:v110];
   if (!v78) {
-    id v78 = -[BKDisplayAnnotationStyleSheet newLayerForContent:scale:]( v79,  "newLayerForContent:scale:",  v82,  *(double *)&v99);
+    BKDisplayAnnotationStyleSheet *v78 = [[BKDisplayAnnotationStyleSheet alloc] newLayerForContent:v82 scale:v99];
   }
   id v99 = v82;
   v100 = v79;
-  -[BKDisplayAnnotationStyleSheet applyToLayer:forContent:](v79, "applyToLayer:forContent:", v78, v82);
+  [v79 applyToLayer:v78 forContent:v82];
   double v83 = 0.0;
-  objc_msgSend(v78, "setAnchorPoint:", v63, 0.0);
-  objc_msgSend(v78, "setPosition:", v60, v64);
+  [v78 setAnchorPoint:CGPointMake(v63, 0.0)];
+  [v78 setPosition:CGPointMake(v60, v64)];
   [v105 insertSublayer:v78 atIndex:0];
   objc_storeStrong(v77, v78);
   __int128 v114 = 0u;
@@ -399,30 +399,30 @@
   __int128 v112 = 0u;
   __int128 v113 = 0u;
   v84 = v34;
-  id v85 = -[NSArray countByEnumeratingWithState:objects:count:]( v84,  "countByEnumeratingWithState:objects:count:",  &v112,  v124,  16LL);
+  [v84 countByEnumeratingWithState:v112 objects:v124 count:16];
   if (v85)
   {
     id v86 = v85;
     double v87 = 0.0;
     uint64_t v88 = *(void *)v113;
     double y = CGPointZero.y;
-    *(void *)&CGFloat v106 = v48 + 2;
+    CGFloat v106 = v48 + 2;
     do
     {
       v90 = 0LL;
       double v110 = v87;
-      uint64_t v91 = *(void *)&v106 + 32LL * *(void *)&v87;
+      uint64_t v91 = v106 + 32LL * v87;
       do
       {
         if (*(void *)v113 != v88) {
           objc_enumerationMutation(v84);
         }
-        v92 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v112 + 1) + 8 * (void)v90) renderer]);
-        v93 = (void *)objc_claimAutoreleasedReturnValue([v92 layer]);
+        v92 = (void *)[*(id *)(*((void *)&v112 + 1) + 8 * (void)v90) renderer];
+        v93 = (void *)[v92 layer];
 
         [v78 addSublayer:v93];
-        objc_msgSend(v93, "setAnchorPoint:", CGPointZero.x, y);
-        objc_msgSend(v93, "setPosition:", 0.0, v83);
+        [v93 setAnchorPoint:CGPointMake(CGPointZero.x, y)];
+        [v93 setPosition:CGPointMake(0.0, v83)];
         CGRect v134 = *(CGRect *)(v91 - 16);
         v91 += 32LL;
         double v83 = v83 + CGRectGetMaxY(v134);
@@ -432,7 +432,7 @@
 
       while (v86 != v90);
       *(void *)&double v87 = (char *)v90 + *(void *)&v110;
-      id v86 = -[NSArray countByEnumeratingWithState:objects:count:]( v84,  "countByEnumeratingWithState:objects:count:",  &v112,  v124,  16LL);
+      [v84 countByEnumeratingWithState:v112 objects:v124 count:16];
     }
 
     while (v86);

@@ -41,11 +41,11 @@
   if (-[BTAVRCP_PlaylistsFolder isRecentlyAdded](self, "isRecentlyAdded")) {
     return 0;
   }
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_PlaylistsFolder parentPlaylistID](self, "parentPlaylistID"));
+  v4 = -[BTAVRCP_PlaylistsFolder parentPlaylistID];
   if ([v4 isEqualToNumber:&off_100019B08])
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-    v6 = (void *)objc_claimAutoreleasedReturnValue([v5 collections]);
+    v5 = -[BTAVRCP_VFSFolder query];
+    v6 = [v5 collections];
     BOOL v3 = (unint64_t)[v6 count] > 1;
   }
 
@@ -59,7 +59,7 @@
 
 - (BOOL)playlistIsFolder:(id)a3
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([a3 valueForProperty:MPMediaPlaylistPropertyIsFolder]);
+  BOOL v3 = [a3 valueForProperty:MPMediaPlaylistPropertyIsFolder];
   unsigned __int8 v4 = [v3 BOOLValue];
 
   return v4;
@@ -69,14 +69,14 @@
 {
   if (-[BTAVRCP_PlaylistsFolder isRecentlyAdded](self, "isRecentlyAdded"))
   {
-    BOOL v3 = (void *)objc_claimAutoreleasedReturnValue( +[MPMediaQuery playlistsRecentlyAddedQuery]( &OBJC_CLASS___MPMediaQuery,  "playlistsRecentlyAddedQuery"));
+    BOOL v3 = +[MPMediaQuery playlistsRecentlyAddedQuery];
   }
 
   else
   {
-    BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaQuery playlistsQuery](&OBJC_CLASS___MPMediaQuery, "playlistsQuery"));
+    BOOL v3 = [+[MPMediaQuery playlistsQuery] autorelease];
     unsigned __int8 v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_PlaylistsFolder parentPlaylistID](self, "parentPlaylistID"));
-    v5 = (void *)objc_claimAutoreleasedReturnValue( +[MPMediaPropertyPredicate predicateWithValue:forProperty:]( &OBJC_CLASS___MPMediaPropertyPredicate,  "predicateWithValue:forProperty:",  v4,  MPMediaPlaylistPropertyParentPersistentID));
+    v5 = [MPMediaPropertyPredicate predicateWithValue:v4 forProperty:MPMediaPlaylistPropertyParentPersistentID];
     [v3 addFilterPredicate:v5];
   }
 
@@ -85,8 +85,8 @@
 
 - (unint64_t)childrenCount
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-  unsigned __int8 v4 = (void *)objc_claimAutoreleasedReturnValue([v3 collections]);
+  BOOL v3 = [self query];
+  unsigned __int8 v4 = (void *)[v3 collections];
   id v5 = [v4 count];
 
   return (unint64_t)v5 + -[BTAVRCP_PlaylistsFolder showRecentlyAddedFolder](self, "showRecentlyAddedFolder");
@@ -98,8 +98,8 @@
     && -[BTAVRCP_PlaylistsFolder showRecentlyAddedFolder](self, "showRecentlyAddedFolder"))
   {
     v7 = objc_alloc(&OBJC_CLASS___BTAVRCP_PlaylistsFolder);
-    v8 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder recentlyAddedFolderName](self, "recentlyAddedFolderName"));
-    v9 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_PlaylistsFolder parentPlaylistID](self, "parentPlaylistID"));
+    v8 = -[BTAVRCP_VFSFolder recentlyAddedFolderName];
+    v9 = [self parentPlaylistID];
     *a4 =  -[BTAVRCP_PlaylistsFolder initWithName:uid:parentPlaylistID:isRecentlyAdded:]( v7,  "initWithName:uid:parentPlaylistID:isRecentlyAdded:",  v8,  a3,  v9,  1LL);
 LABEL_10:
 
@@ -107,13 +107,13 @@ LABEL_10:
     goto LABEL_11;
   }
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v10 collectionWithUid:a3 property:MPMediaPlaylistPropertyPersistentID]);
+  v10 = -[BTAVRCP_VFSFolder query];
+  v8 = (void *)[v10 collectionWithUid:a3 property:MPMediaPlaylistPropertyPersistentID];
 
   if (v8)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v8 valueForProperty:MPMediaPlaylistPropertyPersistentID]);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v8 valueForProperty:MPMediaPlaylistPropertyName]);
+    v9 = [v8 valueForProperty:MPMediaPlaylistPropertyPersistentID];
+    id v11 = [v8 valueForProperty:MPMediaPlaylistPropertyName];
     if (-[BTAVRCP_PlaylistsFolder playlistIsFolder:](self, "playlistIsFolder:", v8))
     {
       *a4 =  -[BTAVRCP_PlaylistsFolder initWithName:uid:parentPlaylistID:isRecentlyAdded:]( [BTAVRCP_PlaylistsFolder alloc],  "initWithName:uid:parentPlaylistID:isRecentlyAdded:",  v11,  [v9 unsignedLongLongValue],  v9,  0);
@@ -123,7 +123,7 @@ LABEL_10:
     {
       v13 =  -[BTAVRCP_VFSFolder initWithName:uid:]( [BTAVRCP_PlaylistItemsFolder alloc],  "initWithName:uid:",  v11,  [v9 unsignedLongLongValue]);
       *a4 = v13;
-      v14 = (void *)objc_claimAutoreleasedReturnValue( +[MPMediaPropertyPredicate predicateWithValue:forProperty:]( &OBJC_CLASS___MPMediaPropertyPredicate,  "predicateWithValue:forProperty:",  v9,  MPMediaPlaylistPropertyPersistentID));
+      v14 = [MPMediaPropertyPredicate predicateWithValue:v9 forProperty:MPMediaPlaylistPropertyPersistentID];
       -[BTAVRCP_VFSFolder storePredicate:](v13, "storePredicate:", v14);
     }
 
@@ -143,8 +143,8 @@ LABEL_11:
   {
     if (!v4)
     {
-      v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[BTAVRCP_VFSFolder uid](self, "uid")));
-      v9 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder recentlyAddedFolderName](self, "recentlyAddedFolderName"));
+      v7 = [NSNumber numberWithUnsignedLongLong:[self uid]];
+      v9 = [self recentlyAddedFolderName];
       unsigned __int8 v12 = (void *)objc_claimAutoreleasedReturnValue( -[BTAVRCP_VFSFolder replyFolderWithType:uid:name:]( self,  "replyFolderWithType:uid:name:",  5LL,  v7,  v9));
 LABEL_11:
 
@@ -154,14 +154,14 @@ LABEL_11:
     --v4;
   }
 
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v6 collectionAtIndex:v4]);
+  v6 = -[BTAVRCP_VFSFolder query];
+  v7 = [v6 collectionAtIndex:v4];
 
   if (v7)
   {
     unsigned int v8 = -[BTAVRCP_PlaylistsFolder playlistIsFolder:](self, "playlistIsFolder:", v7);
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v7 valueForProperty:MPMediaPlaylistPropertyPersistentID]);
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v7 valueForProperty:MPMediaPlaylistPropertyName]);
+    v9 = [v7 valueForProperty:MPMediaPlaylistPropertyPersistentID];
+    v10 = [v7 valueForProperty:MPMediaPlaylistPropertyName];
     if (v8) {
       uint64_t v11 = 5LL;
     }
@@ -181,7 +181,7 @@ LABEL_12:
 
 - (id)replyAttributesForUid:(unint64_t)a3 attributeIDs:(id)a4
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query", a3, a4));
+  id v5 = [self query:a3, a4];
   v6 = (void *)objc_claimAutoreleasedReturnValue([v5 collectionWithUid:a3 property:MPMediaPlaylistPropertyPersistentID]);
 
   if (v6) {

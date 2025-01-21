@@ -15,7 +15,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS____BKTouchSensitiveButtonKey, v5);
+  [BKTouchSensitiveButtonKey class]
   id v7 = v4;
   v8 = v7;
   if (v6)
@@ -43,7 +43,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  NSString *returnValue = [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToStream:(id)a3

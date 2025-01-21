@@ -15,10 +15,10 @@
   id v5 = a3;
   v9.receiver = self;
   v9.super_class = (Class)&OBJC_CLASS____BKDisplayBlankingContext;
-  v6 = -[_BKDisplayBlankingContext init](&v9, "init");
+  _BKDisplayBlankingContext *v6 = [[_BKDisplayBlankingContext alloc] init];
   v7 = v6;
   if (v6) {
-    objc_storeStrong((id *)&v6->_display, a3);
+    v6->_display = a3;
   }
 
   return v7;
@@ -27,22 +27,22 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS____BKDisplayBlankingContext;
-  -[_BKDisplayBlankingContext dealloc](&v3, "dealloc");
+  v3.super_class = [_BKDisplayBlankingContext class];
+  [_BKDisplayBlankingContext dealloc];
 }
 
 - (void)blank
 {
   if (self->_blankingContext)
   {
-    v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Already have a context"));
+    v7 = [NSString stringWithFormat:@"Already have a context"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v8 = NSStringFromSelector(a2);
-      objc_super v9 = (_BKDisplayBlankingContext *)objc_claimAutoreleasedReturnValue(v8);
-      v11 = (objc_class *)objc_opt_class(self, v10);
+      _BKDisplayBlankingContext *v9 = [v8 autorelease];
+      v11 = [self class];
       v12 = NSStringFromClass(v11);
-      v13 = (CAWindowServerDisplay *)objc_claimAutoreleasedReturnValue(v12);
+      v13 = [v12 autorelease];
       *(_DWORD *)buf = 138544642;
       v16 = v9;
       __int16 v17 = 2114;
@@ -64,7 +64,7 @@
   }
 
   uint64_t v3 = BKLogCommon(self);
-  v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     display = self->_display;
@@ -80,7 +80,7 @@
   v14[2] = sub_100016250;
   v14[3] = &unk_1000B8058;
   v14[4] = self;
-  -[_BKDisplayBlankingContext _wrapInCATransaction:](self, "_wrapInCATransaction:", v14);
+  [self _wrapInCATransaction:v14];
 }
 
 - (void)clear
@@ -88,7 +88,7 @@
   if (self->_blankingContext)
   {
     uint64_t v3 = BKLogCommon(self);
-    v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+    v4 = (os_log_s *)v3;
     if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
     {
       display = self->_display;
@@ -104,14 +104,14 @@
     v6[2] = sub_1000161F8;
     v6[3] = &unk_1000B8058;
     v6[4] = self;
-    -[_BKDisplayBlankingContext _wrapInCATransaction:](self, "_wrapInCATransaction:", v6);
+    [self _wrapInCATransaction:v6];
   }
 
 - (void)_updateBounds
 {
-  id v3 = (id)objc_claimAutoreleasedReturnValue(-[CAContext layer](self->_blankingContext, "layer"));
-  -[CAWindowServerDisplay bounds](self->_display, "bounds");
-  objc_msgSend(v3, "setBounds:");
+  id v3 = [self->_blankingContext layer];
+  CGRect v1 = [self->_display bounds];
+  [v3 setBounds:];
 }
 
 - (void)observeValueForKeyPath:(id)a3 ofObject:(id)a4 change:(id)a5 context:(void *)a6
@@ -123,10 +123,10 @@
   if (a3)
   {
     id v3 = (void (**)(void))a3;
-    +[CATransaction begin](&OBJC_CLASS___CATransaction, "begin");
+    [CATransaction begin];
     v3[2](v3);
 
-    +[CATransaction commit](&OBJC_CLASS___CATransaction, "commit");
+    [CATransaction commit];
   }
 
 - (void).cxx_destruct

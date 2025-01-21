@@ -24,12 +24,12 @@
 - (BKUserEventTimer)init
 {
   v21.receiver = self;
-  v21.super_class = (Class)&OBJC_CLASS___BKUserEventTimer;
-  v2 = -[BKUserEventTimer init](&v21, "init");
+  v21.super_class = [BKUserEventTimer class];
+  BKUserEventTimer *v2 = [[BKUserEventTimer alloc] init];
   v3 = v2;
   if (v2)
   {
-    *(void *)&v2->_currentTimeout = BKSHIDServicesUserEventTimerIntervalForever;
+    v2->_currentTimeout = BKSHIDServicesUserEventTimerIntervalForever;
     v2->_currentMode = 0;
     v2->_lastUserEvent = CACurrentMediaTime();
     v3->_lastResetTimerRequest = CACurrentMediaTime();
@@ -38,8 +38,8 @@
     queue = v3->_queue;
     v3->_queue = (OS_dispatch_queue *)Serial;
 
-    v6 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
-    v7 = (id *)objc_claimAutoreleasedReturnValue([v6 systemShellState]);
+    v6 = [BKSystemShellSentinel sharedInstance];
+    v7 = [v6 systemShellState];
 
     if (v7)
     {
@@ -56,25 +56,27 @@
       id v8 = 0LL;
     }
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue(+[BKSystemShellSentinel sharedInstance](&OBJC_CLASS___BKSystemShellSentinel, "sharedInstance"));
-    uint64_t v11 = objc_claimAutoreleasedReturnValue([v10 addSystemShellObserver:v3 reason:@"BKUserEventTimer"]);
+    v10 = [BKSystemShellSentinel sharedInstance];
+    uint64_t v11 = [v10 addSystemShellObserver:v3 reason:@"BKUserEventTimer"];
     systemShellObserving = v3->_systemShellObserving;
     v3->_systemShellObserving = (BSInvalidatable *)v11;
 
-    objc_initWeak(&location, v3);
+    [location release];
+location = v3;
+[location retain];
     v13 = &_dispatch_main_q;
     v18[0] = _NSConcreteStackBlock;
     v18[1] = 3221225472LL;
     v18[2] = sub_10002F524;
     v18[3] = &unk_1000B76D8;
-    objc_copyWeak(&v19, &location);
+    [location copy];
     uint64_t v14 = BSLogAddStateCaptureBlockWithTitle(&_dispatch_main_q, @"BKUserEventTimer", v18);
-    uint64_t v15 = objc_claimAutoreleasedReturnValue(v14);
+    uint64_t v15 = [v14 autorelease];
     stateCaptureAssertion = v3->_stateCaptureAssertion;
     v3->_stateCaptureAssertion = (BSInvalidatable *)v15;
 
-    objc_destroyWeak(&v19);
-    objc_destroyWeak(&location);
+    [v19 release];
+    [location release];
   }
 
   return v3;
@@ -82,40 +84,40 @@
 
 - (void)dealloc
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+  v4 = [NSAssertionHandler currentHandler];
   [v4 handleFailureInMethod:a2 object:self file:@"BKUserEventTimer.m" lineNumber:88 description:@"this object should never deallocate"];
 
   v5.receiver = self;
-  v5.super_class = (Class)&OBJC_CLASS___BKUserEventTimer;
-  -[BKUserEventTimer dealloc](&v5, "dealloc");
+  v5.super_class = [BKUserEventTimer class];
+  [v5 dealloc];
 }
 
 - (id)succinctDescription
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BKUserEventTimer succinctDescriptionBuilder](self, "succinctDescriptionBuilder"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 build]);
+  v2 = [BKUserEventTimer succinctDescriptionBuilder];
+  v3 = [v2 build];
 
   return v3;
 }
 
 - (id)succinctDescriptionBuilder
 {
-  return +[BSDescriptionBuilder builderWithObject:](&OBJC_CLASS___BSDescriptionBuilder, "builderWithObject:", self);
+  BSDescriptionBuilder *returnValue = [BSDescriptionBuilder builderWithObject:self];
 }
 
 - (id)descriptionWithMultilinePrefix:(id)a3
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( -[BKUserEventTimer descriptionBuilderWithMultilinePrefix:]( self,  "descriptionBuilderWithMultilinePrefix:",  a3));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  NSString *v3 = [self descriptionBuilderWithMultilinePrefix:a3];
+  v4 = [v3 build];
 
   return v4;
 }
 
 - (id)descriptionBuilderWithMultilinePrefix:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKUserEventTimer succinctDescriptionBuilder](self, "succinctDescriptionBuilder", a3));
+  v4 = [self succinctDescriptionBuilder];
   uint64_t v5 = NSStringFromBKSHIDServicesUserEventTimerMode(self->_currentMode);
-  v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
+  v6 = (void *)v5;
   id v7 = [v4 appendObject:v6 withName:@"currentMode"];
 
   id v8 =  [v4 appendTimeInterval:@"currentTimeout" withName:0 decomposeUnits:self->_currentTimeout];
@@ -213,7 +215,7 @@
 - (void)_queue_postNotification:(__CFString *)a3
 {
   id v4 = sub_10003F2F4();
-  uint64_t v5 = (os_log_s *)objc_claimAutoreleasedReturnValue(v4);
+  uint64_t v5 = [v4 autorelease];
   if (os_log_type_enabled(v5, OS_LOG_TYPE_DEFAULT))
   {
     int v7 = 138543362;
@@ -230,7 +232,7 @@
   if (self->_isIdle)
   {
     self->_isIdle = 0;
-    -[BKUserEventTimer _queue_postNotification:](self, "_queue_postNotification:", kBKSHIDServicesUserEventUnIdled);
+    [self _queue_postNotification:kBKSHIDServicesUserEventUnIdled];
   }
 
 - (void)_queue_userEventOccurredInPresenceMode
@@ -240,7 +242,7 @@
     if (self->_isIdle)
     {
       self->_isIdle = 0;
-      -[BKUserEventTimer _queue_postNotification:](self, "_queue_postNotification:", kBKSHIDServicesUserEventPresent);
+      [self _queue_postNotification:kBKSHIDServicesUserEventPresent];
     }
   }
 
@@ -249,7 +251,7 @@
   if (BKSHIDServicesUserEventTimerIntervalForever == a3)
   {
     id v5 = sub_10003F2F4();
-    CFTimeInterval v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    CFTimeInterval v6 = [v5 autorelease];
     if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)buf = 0;
@@ -259,7 +261,7 @@
 
   else
   {
-    int v7 = objc_alloc(&OBJC_CLASS___BSTimer);
+    BSTimer *v7 = [[BSTimer alloc] init];
     queue = self->_queue;
     v11[0] = _NSConcreteStackBlock;
     v11[1] = 3221225472LL;
@@ -267,11 +269,11 @@
     v11[3] = &unk_1000B7ED8;
     *(double *)&v11[5] = a3;
     v11[4] = self;
-    CFTimeInterval v9 = -[BSTimer initWithFireInterval:queue:handler:](v7, "initWithFireInterval:queue:handler:", queue, v11, a3);
+    CFTimeInterval v9 = [BSTimer initWithFireInterval:queue:handler:queue v11 a3];
     timer = self->_timer;
     self->_timer = v9;
 
-    -[BSTimer schedule](self->_timer, "schedule");
+    [self->_timer schedule];
   }
 
 - (void)_queue_clearTimer

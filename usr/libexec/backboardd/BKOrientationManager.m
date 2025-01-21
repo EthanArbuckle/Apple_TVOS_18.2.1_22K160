@@ -10,8 +10,8 @@
 
 - (BKOrientationManager)init
 {
-  v3 = objc_alloc_init(&OBJC_CLASS___CMDeviceOrientationManager);
-  v4 = -[BKOrientationManager _initWithDeviceOrientationManager:](self, "_initWithDeviceOrientationManager:", v3);
+  CMDeviceOrientationManager *v3 = [[CMDeviceOrientationManager alloc] init];
+  v4 = [BKOrientationManager _initWithDeviceOrientationManager:v3];
 
   return v4;
 }
@@ -20,15 +20,15 @@
 {
   id v5 = a3;
   v25.receiver = self;
-  v25.super_class = (Class)&OBJC_CLASS___BKOrientationManager;
-  v6 = -[BKOrientationManager init](&v25, "init");
+  v25.super_class = [BKOrientationManager class];
+  BKOrientationManager *v6 = [[BKOrientationManager alloc] init];
   if (v6)
   {
     uint64_t v7 = BSDispatchQueueCreateWithFixedPriority("com.apple.backboardd.orientationManager", 0LL, 53LL);
     v8 = (void *)*((void *)v6 + 1);
     *((void *)v6 + 1) = v7;
 
-    v9 = objc_alloc_init(&OBJC_CLASS___NSOperationQueue);
+    NSOperationQueue *v9 = [[NSOperationQueue alloc] init];
     v10 = (void *)*((void *)v6 + 14);
     *((void *)v6 + 14) = v9;
 
@@ -37,7 +37,7 @@
     v12 = (void *)*((void *)v6 + 2);
     *((void *)v6 + 2) = Serial;
 
-    uint64_t v13 = objc_claimAutoreleasedReturnValue( +[BSCompoundAssertion assertionWithIdentifier:]( &OBJC_CLASS___BSCompoundAssertion,  "assertionWithIdentifier:",  @"BKOrientationManagerObservers"));
+    uint64_t v13 = [BSCompoundAssertion assertionWithIdentifier:@"BKOrientationManagerObservers"];
     v14 = (void *)*((void *)v6 + 3);
     *((void *)v6 + 3) = v13;
 
@@ -48,7 +48,7 @@
     *(_OWORD *)(v6 + 56) = xmmword_10008C420;
     *((void *)v6 + 5) = 0xBFF0000000000000LL;
     *((_DWORD *)v6 + 12) = -1082130432;
-    v15 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v15 = [[NSMutableDictionary alloc] init];
     v16 = (void *)*((void *)v6 + 4);
     *((void *)v6 + 4) = v15;
 
@@ -60,12 +60,12 @@
     sub_100065454((uint64_t)v6, 0.0);
     objc_storeStrong((id *)v6 + 15, a3);
     sub_100065610(v6);
-    v19 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+    BKSDefaults *v19 = [BKSDefaults localDefaults];
     v6[104] = [v19 ignoreAccelerometerAndOrientationEvents];
 
-    v20 = objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher);
-    v21 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-    v22 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( v20,  "initWithUsagePage:usage:builtIn:dataProvider:",  65280LL,  3LL,  1LL,  v21);
+    BKIOHIDServiceMatcher *v20 = [[BKIOHIDServiceMatcher alloc] init];
+    BKHIDSystemInterface *v21 = [[BKHIDSystemInterface sharedInstance] autorelease];
+    BKIOHIDServiceMatcher *v22 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:65280LL usage:3LL builtIn:1LL dataProvider:v21];
     v23 = (void *)*((void *)v6 + 17);
     *((void *)v6 + 17) = v22;
 
@@ -77,14 +77,14 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v3 = [NSNotificationCenter defaultCenter];
   [v3 removeObserver:self];
 
-  -[BKIOHIDServiceMatcher invalidate](self->_queue_HIDServiceMatcher, "invalidate");
-  -[BSCompoundAssertion invalidate](self->_observers, "invalidate");
+  [self->_queue_HIDServiceMatcher invalidate];
+  [self->_observers invalidate];
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKOrientationManager;
-  -[BKOrientationManager dealloc](&v4, "dealloc");
+  v4.super_class = [BKOrientationManager class];
+  [v4 dealloc];
 }
 
 - (void)matcher:(id)a3 servicesDidMatch:(id)a4
@@ -97,8 +97,8 @@
 
   if (queue_HIDServiceMatcher == v7)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v10 firstObject]);
-    objc_storeStrong((id *)&self->_queue_HIDService, v9);
+    v9 = (void *)[v10 firstObject];
+    self->_queue_HIDService = v9;
   }
 }
 

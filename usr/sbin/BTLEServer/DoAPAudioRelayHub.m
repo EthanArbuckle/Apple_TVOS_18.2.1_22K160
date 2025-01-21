@@ -40,7 +40,7 @@
     soundSensorXpcConnection = v2->_soundSensorXpcConnection;
     v2->_soundSensorXpcConnection = 0LL;
 
-    uint64_t v5 = objc_claimAutoreleasedReturnValue(+[NSHashTable weakObjectsHashTable](&OBJC_CLASS___NSHashTable, "weakObjectsHashTable"));
+    uint64_t v5 = [OBJC_CLASS___NSHashTable weakObjectsHashTable];
     doapAudioRelays = v2->_doapAudioRelays;
     v2->_doapAudioRelays = (NSHashTable *)v5;
 
@@ -48,7 +48,7 @@
     xpcServer = v2->_xpcServer;
     v2->_xpcServer = mach_service;
 
-    v9 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub xpcServer](v2, "xpcServer"));
+    v9 = [DoAPAudioRelayHub xpcServer];
     handler[0] = _NSConcreteStackBlock;
     handler[1] = 3221225472LL;
     handler[2] = sub_100017310;
@@ -57,7 +57,7 @@
     v14 = v10;
     xpc_connection_set_event_handler(v9, handler);
 
-    v11 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub xpcServer](v10, "xpcServer"));
+    v11 = [v10 xpcServer];
     xpc_connection_resume(v11);
 
     os_unfair_lock_unlock((os_unfair_lock_t)&unk_100070C38);
@@ -79,7 +79,7 @@
   uint64_t v6 = a6;
   id v10 = a3;
   id v11 = a5;
-  uint64_t v12 = objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub relayForIdentifier:](self, "relayForIdentifier:", v10));
+  uint64_t v12 = [self relayForIdentifier:v10];
   if (v12)
   {
     v13 = (DoAPAudioRelay *)v12;
@@ -116,7 +116,7 @@
 {
   if ((unint64_t)(a3 - 1) <= 2)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
+    v4 = -[DoAPAudioRelayHub siriXpcConnection];
 LABEL_6:
     BOOL v7 = v4 != 0LL;
 
@@ -127,7 +127,7 @@ LABEL_6:
   BOOL v7 = 0;
   if (a3 == 4 && v6)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+    v4 = -[DoAPAudioRelayHub soundSensorXpcConnection];
     goto LABEL_6;
   }
 
@@ -188,8 +188,8 @@ LABEL_6:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     int v6 = v5;
-    BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
-    v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+    BOOL v7 = -[DoAPAudioRelayHub siriXpcConnection];
+    v8 = [self soundSensorXpcConnection];
     *(_DWORD *)buf = 134218240;
     v34 = v7;
     __int16 v35 = 2048;
@@ -286,7 +286,7 @@ LABEL_6:
 {
   id v4 = a3;
   xpc_connection_t remote_connection = xpc_dictionary_get_remote_connection(v4);
-  BOOL v6 = (char *)objc_claimAutoreleasedReturnValue(remote_connection);
+  BOOL v6 = [remote_connection autorelease];
   string = xpc_dictionary_get_string(v4, "kMsgId");
   xpc_object_t value = xpc_dictionary_get_value(v4, "kMsgArgs");
   uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(value);
@@ -313,7 +313,7 @@ LABEL_6:
         goto LABEL_13;
       }
       v17 = v16;
-      id v18 = (char *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
+      id v18 = -[DoAPAudioRelayHub siriXpcConnection];
       *(_DWORD *)buf = 134218242;
       __int128 v27 = v18;
       __int16 v28 = 2080;
@@ -352,7 +352,7 @@ LABEL_13:
       }
 
       v17 = v23;
-      id v18 = (char *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+      id v18 = [self soundSensorXpcConnection];
       *(_DWORD *)buf = 134218242;
       __int128 v27 = v18;
       __int16 v28 = 2080;
@@ -394,7 +394,7 @@ LABEL_12:
     {
       if (v19)
       {
-        uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+        uint64_t v20 = (void *)[self soundSensorXpcConnection];
 
         if (v20)
         {
@@ -402,7 +402,7 @@ LABEL_12:
           if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
           {
             v22 = v21;
-            __int128 v23 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+            __int128 v23 = -[DoAPAudioRelayHub soundSensorXpcConnection];
             *(_DWORD *)buf = 134218242;
             __int128 v27 = v23;
             __int16 v28 = 2112;
@@ -418,7 +418,7 @@ LABEL_12:
             xpc_dictionary_set_value(v16, "kMsgArgs", v24);
           }
 
-          id v18 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](self, "soundSensorXpcConnection"));
+          id v18 = -[DoAPAudioRelayHub soundSensorXpcConnection];
           goto LABEL_16;
         }
       }
@@ -427,7 +427,7 @@ LABEL_12:
 
   else
   {
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
+    uint64_t v11 = (void *)[self siriXpcConnection];
 
     if (v11)
     {
@@ -435,7 +435,7 @@ LABEL_12:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
       {
         uint64_t v14 = v13;
-        uint64_t v15 = (__CFString *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
+        uint64_t v15 = (__CFString *)[self siriXpcConnection];
         *(_DWORD *)buf = 134218242;
         __int128 v27 = v15;
         __int16 v28 = 2112;
@@ -451,7 +451,7 @@ LABEL_12:
         xpc_dictionary_set_value(v16, "kMsgArgs", v17);
       }
 
-      id v18 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](self, "siriXpcConnection"));
+      id v18 = [self siriXpcConnection];
 LABEL_16:
       __int128 v25 = (__CFString *)v18;
       xpc_connection_send_message(v18, v16);
@@ -485,7 +485,7 @@ LABEL_23:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     id v9 = v7;
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub doapAudioRelays](self, "doapAudioRelays"));
+    uint64_t v10 = (void *)[self doapAudioRelays];
     *(_DWORD *)buf = 136315394;
     v59 = a4;
     __int16 v60 = 1024;
@@ -498,13 +498,13 @@ LABEL_23:
     goto LABEL_55;
   }
   xpc_object_t original = v6;
-  v53 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  v53 = [NSMutableArray array];
   __int128 v54 = 0u;
   __int128 v55 = 0u;
   __int128 v56 = 0u;
   __int128 v57 = 0u;
   v50 = self;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub doapAudioRelays](self, "doapAudioRelays"));
+  id obj = [self doapAudioRelays];
   id v12 = [obj countByEnumeratingWithState:&v54 objects:v62 count:16];
   uint64_t v14 = &selRef_waitUntilDate_;
   if (!v12) {
@@ -547,32 +547,32 @@ LABEL_23:
         }
       }
 
-      uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-      v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInteger:]( NSNumber,  "numberWithInteger:",  [v18 deviceType]));
+      uint64_t v20 = (void *)[NSMutableDictionary dictionary];
+      v21 = [NSNumber numberWithInteger:[v18 deviceType]];
       [v20 setValue:v21 forKey:@"kMsgDeviceType"];
 
-      v22 = (void *)objc_claimAutoreleasedReturnValue([v18 hidProperties]);
+      v22 = [v18 hidProperties];
       if (v22)
       {
-        __int128 v23 = (void *)objc_claimAutoreleasedReturnValue([v18 hidProperties]);
+        __int128 v23 = (void *)[v18 hidProperties];
         __int128 v24 = v14;
-        __int128 v25 = (void *)objc_claimAutoreleasedReturnValue([v23 objectForKeyedSubscript:@"ProductID"]);
+        __int128 v25 = (void *)[v23 objectForKeyedSubscript:@"ProductID"];
         [v20 setValue:v25 forKey:@"kMsgPidNum"];
 
         uint64_t v14 = v24;
       }
 
-      __int128 v26 = (void *)objc_claimAutoreleasedReturnValue([v18 identifier]);
+      __int128 v26 = (void *)[v18 identifier];
 
       if (v26)
       {
-        __int128 v27 = (void *)objc_claimAutoreleasedReturnValue([v18 identifier]);
+        __int128 v27 = (void *)[v18 identifier];
         [v20 setValue:v27 forKey:@"kMsgArgIdentifier"];
       }
 
       if ([v18 codec])
       {
-        __int16 v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( NSNumber,  "numberWithUnsignedChar:",  [v18 codec]));
+        __int16 v28 = [NSNumber numberWithUnsignedChar:[v18 codec]];
         [v20 setValue:v28 forKey:@"kMsgCodecType"];
       }
 
@@ -597,7 +597,7 @@ LABEL_31:
   os_unfair_lock_lock((os_unfair_lock_t)&unk_100070C38);
   if (!_os_feature_enabled_impl("BluetoothFeatures", "MultiClientDoAP", v34))
   {
-    v40 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](v50, "siriXpcConnection"));
+    v40 = -[DoAPAudioRelayHub siriXpcConnection];
 
     v41 = (void *)qword_100070CC8;
     if (!v40)
@@ -611,7 +611,7 @@ LABEL_31:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       v42 = v41;
-      v43 = (char *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](v50, "siriXpcConnection"));
+      v43 = (char *)-[DoAPAudioRelayHub siriXpcConnection];
       *(_DWORD *)buf = 134218242;
       v59 = v43;
       __int16 v60 = 2112;
@@ -621,7 +621,7 @@ LABEL_31:
 
     v39 = v50;
 LABEL_41:
-    v44 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](v39, "siriXpcConnection"));
+    v44 = [v39 siriXpcConnection];
 LABEL_42:
     v45 = v44;
     xpc_connection_send_message(v44, reply);
@@ -631,7 +631,7 @@ LABEL_42:
 
   if (![v14 + 422 applicationIDIsSiri:a4])
   {
-    v46 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](v50, "soundSensorXpcConnection"));
+    v46 = -[DoAPAudioRelayHub soundSensorXpcConnection];
 
     v47 = (void *)qword_100070CC8;
     if (!v46)
@@ -645,7 +645,7 @@ LABEL_42:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       v48 = v47;
-      v49 = (char *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](v50, "soundSensorXpcConnection"));
+      v49 = [v50 soundSensorXpcConnection];
       *(_DWORD *)buf = 134218242;
       v59 = v49;
       __int16 v60 = 2112;
@@ -653,7 +653,7 @@ LABEL_42:
       _os_log_impl( (void *)&_mh_execute_header,  v48,  OS_LOG_TYPE_DEFAULT,  "Sending Sound Sensor CheckIn reply to %p: %@",  buf,  0x16u);
     }
 
-    v44 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub soundSensorXpcConnection](v50, "soundSensorXpcConnection"));
+    v44 = [v50 soundSensorXpcConnection];
     goto LABEL_42;
   }
 
@@ -665,7 +665,7 @@ LABEL_42:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       v37 = v36;
-      v38 = (char *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub siriXpcConnection](v50, "siriXpcConnection"));
+      v38 = [v50 siriXpcConnection];
       *(_DWORD *)buf = 134218242;
       v59 = v38;
       __int16 v60 = 2112;
@@ -688,8 +688,8 @@ LABEL_55:
 
 - (void)handleStartStreamMsg:(id)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a3 objectForKeyedSubscript:@"kMsgArgIdentifier"]);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub relayForIdentifier:](self, "relayForIdentifier:", v4));
+  id v4 = [a3 objectForKeyedSubscript:@"kMsgArgIdentifier"];
+  uint64_t v5 = (void *)[self relayForIdentifier:v4];
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003A508();
   }
@@ -698,8 +698,8 @@ LABEL_55:
 
 - (void)handleStopStreamMsg:(id)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a3 objectForKeyedSubscript:@"kMsgArgIdentifier"]);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelayHub relayForIdentifier:](self, "relayForIdentifier:", v4));
+  id v4 = [a3 objectForKeyedSubscript:@"kMsgArgIdentifier"];
+  uint64_t v5 = (void *)[self relayForIdentifier:v4];
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003A534();
   }
@@ -726,7 +726,7 @@ LABEL_55:
           objc_enumerationMutation(v5);
         }
         id v9 = *(void **)(*((void *)&v13 + 1) + 8LL * (void)i);
-        uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 identifier]);
+        uint64_t v10 = (void *)[v9 identifier];
         unsigned __int8 v11 = [v10 isEqual:v4];
 
         if ((v11 & 1) != 0)

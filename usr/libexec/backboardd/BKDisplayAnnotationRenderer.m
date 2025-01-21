@@ -20,24 +20,24 @@
 
 - (void)locationDidChange
 {
-  id v34 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer layer](self, "layer"));
-  +[CATransaction begin](&OBJC_CLASS___CATransaction, "begin");
-  +[CATransaction setDisableActions:](&OBJC_CLASS___CATransaction, "setDisableActions:", 1LL);
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 location]);
+  id v34 = [self layer];
+  [CATransaction begin];
+  [CATransaction setDisableActions:YES];
+  v3 = [BKDisplayAnnotationRenderer annotation];
+  v4 = [v3 location];
   if ([v4 definedInReferenceSpace])
   {
     [v4 superBias];
-    objc_msgSend(v34, "setAnchorPoint:");
+    [v34 setAnchorPoint:CGPointMake(v15, v17)];
     [v4 point];
-    objc_msgSend(v34, "setPosition:");
+    [v34 setPosition:];
   }
 
   else
   {
     if ([v4 shouldAutoposition])
     {
-      v5 = (void *)objc_claimAutoreleasedReturnValue([v34 superlayer]);
+      v5 = [v34 superlayer];
       [v5 bounds];
       CGFloat v7 = v6;
       CGFloat v9 = v8;
@@ -56,35 +56,35 @@
       v36.size.width = v11;
       v36.size.height = v13;
       double v19 = v17 * CGRectGetMaxY(v36);
-      objc_msgSend(v34, "setAnchorPoint:", v15, v17);
-      objc_msgSend(v34, "setPosition:", v18, v19);
+      [v34 setAnchorPoint:CGPointMake(v15, v17)];
+      [v34 setPosition:CGPointMake(v18, v19)];
     }
 
     else
     {
       [v4 point];
-      v5 = (void *)objc_claimAutoreleasedReturnValue([v3 annotationController]);
-      v20 = (void *)objc_claimAutoreleasedReturnValue([v5 display]);
-      v21 = (void *)objc_claimAutoreleasedReturnValue([v20 uniqueId]);
+      v5 = [v3 annotationController];
+      v20 = [v5 display];
+      v21 = [v20 uniqueId];
 
-      v22 = (void *)objc_claimAutoreleasedReturnValue([v5 context]);
+      v22 = [v5 context];
       id v23 = [v22 contextId];
 
       sub_10001A6E4(v21);
       double v26 = sub_10001A824((uint64_t)v23, v21, v24, v25);
       double v28 = v27;
-      v29 = (void *)objc_claimAutoreleasedReturnValue([v34 superlayer]);
-      objc_msgSend(v29, "convertPoint:fromLayer:", 0, v26, v28);
+      v29 = [v34 superlayer];
+      [v29 convertPoint:CGPointMake(0, v26) fromLayer:v28];
       double v31 = v30;
       double v33 = v32;
 
       [v4 superBias];
-      objc_msgSend(v34, "setAnchorPoint:");
-      objc_msgSend(v34, "setPosition:", v31, v33);
+      [v34 setAnchorPoint:];
+      [v34 setPosition:CGPointMake(v31, v33)];
     }
   }
 
-  +[CATransaction commit](&OBJC_CLASS___CATransaction, "commit");
+  [CATransaction commit];
 }
 
 - (void)didRemoveAnnotation
@@ -97,16 +97,16 @@
 
 - (void)styleSheetDidChange
 {
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v6 styleSheet]);
+  id v6 = [self annotation];
+  v3 = [v6 styleSheet];
   self->_shouldReapplyStyles = 1;
   if (self->_layer)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer layer](self, "layer"));
-    v5 = (void *)objc_claimAutoreleasedReturnValue([v6 content]);
+    v4 = [BKDisplayAnnotationRenderer layer];
+    v5 = [v6 content];
     [v3 applyToLayer:v4 forContent:v5];
 
-    -[CALayer setNeedsDisplay](self->_layer, "setNeedsDisplay");
+    [self->_layer setNeedsDisplay];
   }
 }
 
@@ -115,7 +115,7 @@
   p_layer = &self->_layer;
   v4 = self->_layer;
   id WeakRetained = objc_loadWeakRetained((id *)p_layer - 1);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained annotationController]);
+  id v6 = [annotationController autorelease];
   CGFloat v7 = v6;
   if (v4) {
     BOOL v8 = 1;
@@ -125,11 +125,11 @@
   }
   if (!v8)
   {
-    CGFloat v9 = (void *)objc_claimAutoreleasedReturnValue([v6 rootLayer]);
+    CGFloat v9 = [v6 rootLayer];
     [v9 rasterizationScale];
     double v11 = v10;
-    double v12 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained styleSheet]);
-    CGFloat v13 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained content]);
+    double v12 = (void *)[WeakRetained styleSheet];
+    CGFloat v13 = [WeakRetained content];
     v4 = (CALayer *)[v12 newLayerForContent:v13 scale:v11];
 
     objc_storeStrong((id *)p_layer, v4);
@@ -138,8 +138,8 @@
 
   if (v4 && self->_shouldReapplyStyles)
   {
-    double v14 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained styleSheet]);
-    double v15 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained content]);
+    double v14 = (void *)[WeakRetained styleSheet];
+    double v15 = [WeakRetained content];
     [v14 applyToLayer:v4 forContent:v15];
 
     self->_shouldReapplyStyles = 0;
@@ -152,23 +152,23 @@
 
 - (void)sizeLayerToFitAtScale:(double)a3
 {
-  id v7 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer layer](self, "layer"));
-  id WeakRetained = objc_loadWeakRetained((id *)&self->_annotation);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained styleSheet]);
+  id v7 = [self layer];
+  id WeakRetained = self->_annotation;
+  id v6 = [WeakRetained styleSheet];
   [v6 sizeLayer:v7 toFitAtScale:a3];
 }
 
 - (void)regenerateLayerTree
 {
-  id v17 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer annotation](self, "annotation"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v17 location]);
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v17 annotationController]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 rootLayer]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 transformLayer]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 referenceSpaceLayer]);
+  id v17 = [self annotation];
+  v3 = [v17 location];
+  v4 = [v17 annotationController];
+  v5 = [v4 rootLayer];
+  id v6 = [v4 transformLayer];
+  id v7 = [v4 referenceSpaceLayer];
   [v5 rasterizationScale];
   double v9 = v8;
-  double v10 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationRenderer layer](self, "layer"));
+  double v10 = [self layer];
   id v11 = v6;
   unsigned __int8 v12 = [v3 definedInReferenceSpace];
   CGFloat v13 = v7;
@@ -177,7 +177,7 @@
     id v15 = v13;
   }
 
-  id v16 = (id)objc_claimAutoreleasedReturnValue([v10 superlayer]);
+  id v16 = [v10 superlayer];
 
   if (v16 != v15)
   {
@@ -185,13 +185,13 @@
     [v15 addSublayer:v10];
   }
 
-  -[BKDisplayAnnotationRenderer sizeLayerToFitAtScale:](self, "sizeLayerToFitAtScale:", v9);
-  -[BKDisplayAnnotationRenderer locationDidChange](self, "locationDidChange");
+  [self sizeLayerToFitAtScale:v9];
+  [self locationDidChange];
 }
 
 - (BKDisplayAnnotation)annotation
 {
-  return (BKDisplayAnnotation *)objc_loadWeakRetained((id *)&self->_annotation);
+  return (BKDisplayAnnotation *)self->_annotation;
 }
 
 - (void)setAnnotation:(id)a3

@@ -73,7 +73,7 @@
   {
     -[ClientService setIsPrimary:](v5, "setIsPrimary:", 1LL);
     -[ClientService setPriority:](v6, "setPriority:", 2LL);
-    uint64_t v7 = objc_claimAutoreleasedReturnValue(+[NSMapTable strongToStrongObjectsMapTable](&OBJC_CLASS___NSMapTable, "strongToStrongObjectsMapTable"));
+    uint64_t v7 = [NSMapTable strongToStrongObjectsMapTable];
     reportInfoMap = v6->_reportInfoMap;
     v6->_reportInfoMap = (NSMapTable *)v7;
 
@@ -89,24 +89,24 @@
   v13.receiver = self;
   v13.super_class = (Class)&OBJC_CLASS___HIDService;
   -[ClientService start](&v13, "start");
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", CBUUIDReportMapCharacteristicString));
+  v3 = [CBUUID UUIDWithString:CBUUIDReportMapCharacteristicString];
   v14[0] = v3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", CBUUIDReportCharacteristicString));
+  v4 = [CBUUID UUIDWithString:CBUUIDReportCharacteristicString];
   v14[1] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDHIDControlPointCharacteristicString));
+  v5 = [CBUUID UUIDWithString:CBUUIDHIDControlPointCharacteristicString];
   v14[2] = v5;
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDHIDInformationCharacteristicString));
+  v6 = [CBUUID UUIDWithString:CBUUIDHIDInformationCharacteristicString];
   v14[3] = v6;
   uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"D31D8DEA-47DB-4796-A6B9-E38909CB34FF"));
   v14[4] = v7;
-  v8 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDBootKeyboardInputReportCharacteristicString));
+  v8 = [CBUUID UUIDWithString:CBUUIDBootKeyboardInputReportCharacteristicString];
   v14[5] = v8;
-  v9 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDBootMouseInputReportCharacteristicString));
+  v9 = [CBUUID UUIDWithString:CBUUIDBootMouseInputReportCharacteristicString];
   v14[6] = v9;
   objc_super v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v14, 7LL));
 
-  v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService service](self, "service"));
+  v11 = -[ClientService peripheral];
+  v12 = [self service];
   [v11 discoverCharacteristics:v10 forService:v12];
 }
 
@@ -130,8 +130,8 @@
 - (void)createReportInfo:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 value]);
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[DataInputStream inputStreamWithData:](&OBJC_CLASS___DataInputStream, "inputStreamWithData:", v5));
+  v5 = [v4 value];
+  v6 = [DataInputStream inputStreamWithData:v5];
 
   __int16 v17 = 0;
   if ([v6 readUint8:(char *)&v17 + 1]
@@ -154,12 +154,12 @@
     v8 = objc_alloc(&OBJC_CLASS___HIDReportInfo);
     v9 = -[HIDReportInfo initWithID:type:](v8, "initWithID:type:", HIBYTE(v17), v17);
     reportInfoMap = self->_reportInfoMap;
-    v11 = (void *)objc_claimAutoreleasedReturnValue([v4 characteristic]);
+    v11 = [v4 characteristic];
     -[NSMapTable setObject:forKey:](reportInfoMap, "setObject:forKey:", v9, v11);
 
     if (!(_BYTE)v17)
     {
-      v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+      v12 = [self peripheral];
       objc_super v13 = (void *)objc_claimAutoreleasedReturnValue([v4 characteristic]);
       [v12 setNotifyValue:1 forCharacteristic:v13];
     }
@@ -171,9 +171,9 @@
 - (id)hidDeviceProperties
 {
   objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDDeviceInformationServiceString));
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v4 clientServiceForUUID:v5]);
+  id v4 = [ClientService manager];
+  v5 = [CBUUID UUIDWithString:CBUUIDDeviceInformationServiceString];
+  v6 = [v4 clientServiceForUUID:v5];
 
   if (v6)
   {
@@ -182,121 +182,121 @@
       uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( NSNumber,  "numberWithUnsignedChar:",  [v6 vendorIDSource]));
       [v3 setObject:v7 forKeyedSubscript:@"VendorIDSource"];
 
-      v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( NSNumber,  "numberWithUnsignedShort:",  [v6 vendorID]));
+      v8 = [NSNumber numberWithUnsignedShort:v6.vendorID];
       [v3 setObject:v8 forKeyedSubscript:@"VendorID"];
 
-      v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( NSNumber,  "numberWithUnsignedShort:",  [v6 productID]));
+      v9 = [NSNumber numberWithUnsignedShort:v6 productID];
       [v3 setObject:v9 forKeyedSubscript:@"ProductID"];
 
       objc_super v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( NSNumber,  "numberWithUnsignedShort:",  [v6 productVersion]));
       [v3 setObject:v10 forKeyedSubscript:@"VersionNumber"];
     }
 
-    v11 = (void *)objc_claimAutoreleasedReturnValue([v6 firmwareRevision]);
+    v11 = [v6 firmwareRevision];
 
     if (v11)
     {
-      v12 = (void *)objc_claimAutoreleasedReturnValue([v6 firmwareRevision]);
+      v12 = [v6 firmwareRevision];
       objc_super v13 = (void *)objc_claimAutoreleasedReturnValue( [v12 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20]);
       [v3 setObject:v13 forKeyedSubscript:@"kBTFirmwareRevisionKey"];
     }
 
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v6 hardwareRevision]);
+    uint64_t v14 = (void *)[v6 hardwareRevision];
 
     if (v14)
     {
-      v15 = (void *)objc_claimAutoreleasedReturnValue([v6 hardwareRevision]);
+      v15 = [v6 hardwareRevision];
       v16 = (void *)objc_claimAutoreleasedReturnValue( [v15 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20]);
       [v3 setObject:v16 forKeyedSubscript:@"kBTHardwareRevisionKey"];
     }
 
-    __int16 v17 = (void *)objc_claimAutoreleasedReturnValue([v6 serialNumber]);
+    __int16 v17 = (void *)[v6 serialNumber];
 
     if (v17)
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue([v6 serialNumber]);
-      v19 = (void *)objc_claimAutoreleasedReturnValue( [v18 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20]);
+      v18 = [v6 serialNumber];
+      v19 = [v18 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20];
       [v3 setObject:v19 forKeyedSubscript:@"SerialNumber"];
     }
 
-    __int16 v20 = (void *)objc_claimAutoreleasedReturnValue([v6 modelNumber]);
+    __int16 v20 = [v6 modelNumber];
 
     if (v20)
     {
-      int v21 = (void *)objc_claimAutoreleasedReturnValue([v6 modelNumber]);
-      v22 = (void *)objc_claimAutoreleasedReturnValue( [v21 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20]);
+      int v21 = (void *)[v6 modelNumber];
+      v22 = [v21 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20];
       [v3 setObject:v22 forKeyedSubscript:@"ModelNumber"];
     }
 
-    v23 = (void *)objc_claimAutoreleasedReturnValue([v6 manufacturerName]);
+    v23 = [v6 manufacturerName];
 
     if (v23)
     {
-      v24 = (void *)objc_claimAutoreleasedReturnValue([v6 manufacturerName]);
-      v25 = (void *)objc_claimAutoreleasedReturnValue( [v24 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20]);
+      v24 = [v6 manufacturerName];
+      v25 = [v24 stringByReplacingOccurrencesOfString:&stru_10005EB60 withString:&stru_10005DB20];
       [v3 setObject:v25 forKeyedSubscript:@"Manufacturer"];
     }
   }
 
-  v26 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidInformationCharacteristic](self, "hidInformationCharacteristic"));
-  v27 = (void *)objc_claimAutoreleasedReturnValue([v26 value]);
-  v28 = (void *)objc_claimAutoreleasedReturnValue( +[DataInputStream inputStreamWithData:byteOrder:]( &OBJC_CLASS___DataInputStream,  "inputStreamWithData:byteOrder:",  v27,  1LL));
+  v26 = -[HIDService hidInformationCharacteristic];
+  v27 = [v26 value];
+  v28 = [DataInputStream inputStreamWithData:v27 byteOrder:1];
 
   LOWORD(v56[0]) = 0;
   unsigned __int8 v55 = 0;
   [v28 readUint16:v56];
   if ([v28 readUint8:&v55])
   {
-    v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v55));
+    v29 = [NSNumber numberWithUnsignedChar:v55];
     [v3 setObject:v29 forKeyedSubscript:@"CountryCode"];
   }
 
   v56[0] = 0LL;
   v56[1] = 0LL;
-  v30 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v31 = (void *)objc_claimAutoreleasedReturnValue([v30 identifier]);
+  v30 = [self peripheral];
+  v31 = [v30 identifier];
   [v31 getUUIDBytes:v56];
 
-  v32 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", LODWORD(v56[0])));
+  v32 = [NSNumber numberWithUnsignedInt:LODWORD(v56[0])];
   [v3 setObject:v32 forKeyedSubscript:@"LocationID"];
 
-  v33 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v34 = (void *)objc_claimAutoreleasedReturnValue([v33 identifier]);
-  v35 = (void *)objc_claimAutoreleasedReturnValue([v34 UUIDString]);
+  v33 = [self peripheral];
+  v34 = [v33 identifier];
+  v35 = [v34 UUIDString];
   [v3 setObject:v35 forKeyedSubscript:@"PhysicalDeviceUniqueID"];
 
-  v36 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v37 = (void *)objc_claimAutoreleasedReturnValue([v36 name]);
+  v36 = -[ClientService peripheral];
+  v37 = [v36 name];
 
   if (v37)
   {
-    v38 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-    v39 = (void *)objc_claimAutoreleasedReturnValue([v38 name]);
+    v38 = -[ClientService peripheral];
+    v39 = [v38 name];
     [v3 setObject:v39 forKeyedSubscript:@"Product"];
   }
 
-  v40 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportMapCharacteristic](self, "reportMapCharacteristic"));
-  v41 = (void *)objc_claimAutoreleasedReturnValue([v40 value]);
+  v40 = -[HIDService reportMapCharacteristic];
+  v41 = [v40 value];
   [v3 setObject:v41 forKeyedSubscript:@"ReportDescriptor"];
 
   [v3 setObject:@"BluetoothLowEnergy" forKeyedSubscript:@"Transport"];
   [v3 setObject:&off_100060198 forKeyedSubscript:@"RequestTimeout"];
   [v3 setObject:&__kCFBooleanFalse forKeyedSubscript:@"HIDVirtualDevice"];
-  v42 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
-  v43 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"8341F2B4-C013-4F04-8197-C4CDB42E26DC"));
-  v44 = (void *)objc_claimAutoreleasedReturnValue([v42 clientServiceForUUID:v43]);
+  v42 = [self manager];
+  v43 = [CBUUID UUIDWithString:@"8341F2B4-C013-4F04-8197-C4CDB42E26DC"];
+  v44 = (void *)[v42 clientServiceForUUID:v43];
 
   if (v44)
   {
     [v3 setObject:&__kCFBooleanTrue forKeyedSubscript:@"Authenticated"];
-    v45 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-    v46 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    v45 = [NSNotificationCenter defaultCenter];
+    v46 = -[ClientService peripheral];
     [v45 addObserver:self selector:"authDidSucceedNotification:" name:@"AuthenticationServiceAuthDidSucceedNotification" object:v46];
   }
 
   else
   {
-    v47 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    v47 = [self peripheral];
     unsigned int v48 = [v47 hasTag:@"needsMFiAuthentication4.0"];
 
     if (v48) {
@@ -304,18 +304,18 @@
     }
   }
 
-  v49 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService accessoryCategoryCharacteristic](self, "accessoryCategoryCharacteristic"));
+  v49 = -[HIDService accessoryCategoryCharacteristic];
 
   if (v49)
   {
     v50 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService accessoryCategoryCharacteristic](self, "accessoryCategoryCharacteristic"));
-    v51 = (void *)objc_claimAutoreleasedReturnValue([v50 value]);
-    v52 = (void *)objc_claimAutoreleasedReturnValue(+[DataInputStream inputStreamWithData:](&OBJC_CLASS___DataInputStream, "inputStreamWithData:", v51));
+    v51 = [v50 value];
+    v52 = [DataInputStream inputStreamWithData:v51];
 
     LOBYTE(v56[0]) = 0;
     if ([v52 readUint8:v56])
     {
-      v53 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  LOBYTE(v56[0])));
+      v53 = [NSNumber numberWithUnsignedChar:LOBYTE(v56[0])];
       [v3 setObject:v53 forKeyedSubscript:@"IAPHIDAccessoryCategory"];
     }
   }
@@ -325,14 +325,14 @@
 
 - (void)createHIDDeviceIfEverythingReady
 {
-  id v39 = (id)objc_claimAutoreleasedReturnValue(-[HIDService reportMapCharacteristic](self, "reportMapCharacteristic"));
-  uint64_t v3 = objc_claimAutoreleasedReturnValue([v39 value]);
+  id v39 = [self reportMapCharacteristic];
+  uint64_t v3 = [v39 value];
   if (!v3) {
     goto LABEL_8;
   }
   id v4 = (void *)v3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidInformationCharacteristic](self, "hidInformationCharacteristic"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v5 value]);
+  v5 = -[HIDService hidInformationCharacteristic];
+  v6 = [v5 value];
   if (!v6 || -[NSMapTable count](self->_reportInfoMap, "count") != self->_numReports)
   {
 
@@ -345,8 +345,8 @@ LABEL_8:
   {
 
 LABEL_10:
-    v11 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDeviceProperties](self, "hidDeviceProperties"));
-    v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    v11 = -[HIDService hidDeviceProperties];
+    v12 = -[ClientService peripheral];
     if ([v12 isLinkEncrypted])
     {
       objc_super v13 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
@@ -357,32 +357,32 @@ LABEL_10:
         if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
           sub_10003B048((uint64_t)v11, v14, v15, v16, v17, v18, v19, v20);
         }
-        int v21 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectEnumerator](self->_reportInfoMap, "objectEnumerator"));
-        v22 = (void *)objc_claimAutoreleasedReturnValue([v21 allObjects]);
-        v23 = (void *)objc_claimAutoreleasedReturnValue( +[HIDBluetoothDevice hidDeviceWithProperties:reports:]( &OBJC_CLASS___HIDBluetoothDevice,  "hidDeviceWithProperties:reports:",  v11,  v22));
+        int v21 = -[NSMapTable objectEnumerator](self->_reportInfoMap, "objectEnumerator");
+        v22 = [v21 allObjects];
+        v23 = [OBJC_CLASS___HIDBluetoothDevice hidDeviceWithProperties:v11 reports:v22];
         -[HIDService setHidDevice:](self, "setHidDevice:", v23);
 
-        v24 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+        v24 = [self hidDevice];
         if (v24)
         {
-          v25 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+          v25 = [self hidDevice];
           [v25 setService:self];
 
-          v26 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-          v27 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+          v26 = -[ClientService peripheral];
+          v27 = [self hidDevice];
           [v27 setPeripheral:v26];
 
-          v28 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
-          v29 = (void *)objc_claimAutoreleasedReturnValue([v28 desiredConnectionParameters]);
+          v28 = [self hidDevice];
+          v29 = [v28 desiredConnectionParameters];
 
           v30 = (os_log_s *)qword_100070CC8;
           if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
             sub_10003AFE4((uint64_t)v29, v30, v31, v32, v33, v34, v35, v36);
           }
-          v37 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
+          v37 = [self manager];
           [v37 clientService:self desiresConnectionParameters:v29];
 
-          v38 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+          v38 = [self hidDevice];
           [v38 start];
         }
 
@@ -393,7 +393,7 @@ LABEL_10:
 
 - (void)destroyHIDDevice
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+  uint64_t v3 = (void *)[self hidDevice];
 
   if (v3)
   {
@@ -404,7 +404,7 @@ LABEL_10:
     v6[3] = &unk_10005D3A8;
     v6[4] = self;
     -[NSMapTable enumerateKeysAndObjectsUsingBlock:](reportInfoMap, "enumerateKeysAndObjectsUsingBlock:", v6);
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+    v5 = [self hidDevice];
     [v5 stop];
   }
 
@@ -412,22 +412,22 @@ LABEL_10:
 {
   id v5 = a4;
   id v6 = a3;
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 commandCondition]);
+  uint64_t v7 = (void *)[v6 commandCondition];
   [v7 lock];
 
   [v6 setCommandPending:0];
   [v6 setCommandError:v5];
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v6 commandCondition]);
+  v8 = [v6 commandCondition];
   [v8 signal];
 
-  id v9 = (id)objc_claimAutoreleasedReturnValue([v6 commandCondition]);
+  id v9 = [v6 commandCondition];
   [v9 unlock];
 }
 
 - (BOOL)isPowerManagementBasedOnDisplayState
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+  v2 = -[ClientService peripheral];
   unsigned __int8 v3 = [v2 hasTag:@"A2538"];
 
   return v3;
@@ -448,15 +448,15 @@ LABEL_10:
 
 - (void)notifyDidStartIfEverythingReady
 {
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+  id v6 = [self hidDevice];
   if ([v6 state] == 2)
   {
     unsigned int v3 = -[HIDService allInputReportsReady](self, "allInputReportsReady");
 
     if (v3)
     {
-      id v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-      id v5 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+      id v4 = [NSNotificationCenter defaultCenter];
+      id v5 = [self peripheral];
       [v4 postNotificationName:@"PeerIsUsingBuiltinServiceNotification" object:v5];
 
       -[ClientService notifyDidStart](self, "notifyDidStart");
@@ -476,7 +476,7 @@ LABEL_10:
     __int128 v58 = 0u;
     __int128 v55 = 0u;
     __int128 v56 = 0u;
-    id obj = (id)objc_claimAutoreleasedReturnValue([a4 characteristics]);
+    id obj = [a4 characteristics];
     id v8 = [obj countByEnumeratingWithState:&v55 objects:v59 count:16];
     if (v8)
     {
@@ -504,7 +504,7 @@ LABEL_10:
 
           else
           {
-            uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
+            uint64_t v15 = (void *)[v13 UUID];
             uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v51));
             unsigned int v17 = [v15 isEqual:v16];
 
@@ -513,10 +513,10 @@ LABEL_10:
               -[HIDService setReportMapCharacteristic:](self, "setReportMapCharacteristic:", v13);
               [v53 discoverDescriptorsForCharacteristic:v13];
 LABEL_25:
-              uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+              uint64_t v33 = (void *)[self peripheral];
               if ([v33 isLinkEncrypted])
               {
-                uint64_t v34 = (void *)objc_claimAutoreleasedReturnValue([v13 value]);
+                uint64_t v34 = (void *)[v13 value];
 
                 if (v34) {
                   goto LABEL_39;
@@ -532,8 +532,8 @@ LABEL_25:
             }
           }
 
-          uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v11));
+          uint64_t v18 = (void *)[v13 UUID];
+          uint64_t v19 = (void *)[CBUUID UUIDWithString:v11];
           unsigned int v20 = [v18 isEqual:v19];
 
           if (v20)
@@ -550,8 +550,8 @@ LABEL_25:
 
           else
           {
-            v22 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-            v23 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v49));
+            v22 = [v13 UUID];
+            v23 = [CBUUID UUIDWithString:v49];
             unsigned int v24 = [v22 isEqual:v23];
 
             if (v24)
@@ -562,15 +562,15 @@ LABEL_25:
             }
           }
 
-          v25 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidInformationCharacteristic](self, "hidInformationCharacteristic"));
+          v25 = -[HIDService hidInformationCharacteristic];
           if (v25)
           {
           }
 
           else
           {
-            v26 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-            v27 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v48));
+            v26 = [v13 UUID];
+            v27 = [CBUUID UUIDWithString:v48];
             unsigned int v28 = [v26 isEqual:v27];
 
             if (v28)
@@ -587,7 +587,7 @@ LABEL_25:
 
           else
           {
-            v30 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
+            v30 = [v13 UUID];
             uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"D31D8DEA-47DB-4796-A6B9-E38909CB34FF"));
             unsigned int v32 = [v30 isEqual:v31];
 
@@ -598,8 +598,8 @@ LABEL_25:
             }
           }
 
-          uint64_t v35 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-          uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v50));
+          uint64_t v35 = (void *)[v13 UUID];
+          uint64_t v36 = (void *)[CBUUID UUIDWithString:v50];
           unsigned int v37 = [v35 isEqual:v36];
 
           if (v37)
@@ -617,8 +617,8 @@ LABEL_25:
 
           else
           {
-            v41 = (void *)objc_claimAutoreleasedReturnValue([v13 UUID]);
-            v42 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v47));
+            v41 = [v13 UUID];
+            v42 = [CBUUID UUIDWithString:v47];
             unsigned int v43 = [v41 isEqual:v42];
 
             if (!v43) {
@@ -647,14 +647,14 @@ LABEL_39:
       while (v9);
     }
 
-    v45 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportMapCharacteristic](self, "reportMapCharacteristic"));
+    v45 = [self reportMapCharacteristic];
     if (!v45 && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003B130();
     }
     if (!self->_numReports && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003B104();
     }
-    v46 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidInformationCharacteristic](self, "hidInformationCharacteristic"));
+    v46 = -[HIDService hidInformationCharacteristic];
 
     if (!v46 && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003B0D8();
@@ -666,7 +666,7 @@ LABEL_39:
 {
   id v7 = a4;
   id v8 = a5;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectForKey:](self->_reportInfoMap, "objectForKey:", v7));
+  id v9 = [self->_reportInfoMap objectForKey:v7];
   uint64_t v10 = v9;
   if (v9)
   {
@@ -698,9 +698,9 @@ LABEL_17:
         if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
         {
           v25 = v11;
-          v26 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", [v10 type]));
+          v26 = [self reportTypeToString:[v10 type]];
           unsigned int v27 = [v10 ID];
-          unsigned int v28 = (void *)objc_claimAutoreleasedReturnValue([v7 value]);
+          unsigned int v28 = (void *)[v7 value];
           int v33 = 138412802;
           uint64_t v34 = v26;
           __int16 v35 = 1024;
@@ -710,7 +710,7 @@ LABEL_17:
           _os_log_debug_impl( (void *)&_mh_execute_header,  v25,  OS_LOG_TYPE_DEBUG,  "Did get %@ report for ID #%u: %@",  (uint8_t *)&v33,  0x1Cu);
         }
 
-        v12 = (os_log_s *)objc_claimAutoreleasedReturnValue([v7 value]);
+        v12 = [v7 value];
         [v10 setCommandValue:v12];
       }
 
@@ -723,7 +723,7 @@ LABEL_17:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         uint64_t v19 = v18;
-        unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", [v10 type]));
+        unsigned int v20 = (void *)[self reportTypeToString:[v10 type]];
         int v33 = 138412802;
         uint64_t v34 = v20;
         __int16 v35 = 1024;
@@ -744,9 +744,9 @@ LABEL_17:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
       {
         v29 = v22;
-        v30 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", [v10 type]));
+        v30 = [self reportTypeToString:[v10 type]];
         unsigned int v31 = [v10 ID];
-        unsigned int v32 = (void *)objc_claimAutoreleasedReturnValue([v7 value]);
+        unsigned int v32 = (void *)[v7 value];
         int v33 = 138412802;
         uint64_t v34 = v30;
         __int16 v35 = 1024;
@@ -759,15 +759,15 @@ LABEL_17:
       if (byte_100070CC0) {
         kdebug_trace(730005908LL, v21, 0LL, 0LL, 0LL);
       }
-      v23 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
-      unsigned int v24 = (void *)objc_claimAutoreleasedReturnValue([v7 value]);
+      v23 = [self hidDevice];
+      unsigned int v24 = (void *)[v7 value];
       objc_msgSend(v23, "handleInputReportData:reportID:timestamp:", v24, objc_msgSend(v10, "ID"), v21);
     }
   }
 
   else
   {
-    id v14 = (id)objc_claimAutoreleasedReturnValue(-[HIDService reportMapCharacteristic](self, "reportMapCharacteristic"));
+    id v14 = [self reportMapCharacteristic];
     if (v14 == v7)
     {
       BOOL v17 = 0;
@@ -775,7 +775,7 @@ LABEL_17:
 
     else
     {
-      id v15 = (id)objc_claimAutoreleasedReturnValue(-[HIDService hidInformationCharacteristic](self, "hidInformationCharacteristic"));
+      id v15 = [self hidInformationCharacteristic];
       if (v15 == v7)
       {
         BOOL v17 = 0;
@@ -783,7 +783,7 @@ LABEL_17:
 
       else
       {
-        id v16 = (id)objc_claimAutoreleasedReturnValue(-[HIDService accessoryCategoryCharacteristic](self, "accessoryCategoryCharacteristic"));
+        id v16 = [self accessoryCategoryCharacteristic];
         BOOL v17 = v16 != v7;
       }
     }
@@ -796,7 +796,7 @@ LABEL_17:
 - (void)peripheral:(id)a3 didWriteValueForCharacteristic:(id)a4 error:(id)a5
 {
   id v7 = a5;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectForKey:](self->_reportInfoMap, "objectForKey:", a4));
+  id v8 = -[self->_reportInfoMap objectForKey:a4];
   id v9 = v8;
   if (v8 && [v8 commandPending] == (id)2)
   {
@@ -806,7 +806,7 @@ LABEL_17:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         uint64_t v11 = v10;
-        v12 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", [v9 type]));
+        v12 = [self reportTypeToString:[v9 type]];
         int v13 = 138412802;
         id v14 = v12;
         __int16 v15 = 1024;
@@ -829,7 +829,7 @@ LABEL_17:
 - (void)peripheral:(id)a3 didUpdateNotificationStateForCharacteristic:(id)a4 error:(id)a5
 {
   id v7 = a5;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectForKey:](self->_reportInfoMap, "objectForKey:", a4));
+  id v8 = [self->_reportInfoMap objectForKey:a4];
   if (v8)
   {
     id v9 = (void *)qword_100070CC8;
@@ -838,7 +838,7 @@ LABEL_17:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
       {
         uint64_t v10 = v9;
-        uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", [v8 type]));
+        uint64_t v11 = (void *)[self reportTypeToString:[v8 type]];
         int v13 = 138412802;
         id v14 = v11;
         __int16 v15 = 1024;
@@ -854,7 +854,7 @@ LABEL_17:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
         sub_10003B1F0(v9, (uint64_t)v8, self);
       }
-      v12 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
+      v12 = [self hidDevice];
 
       if (!v12) {
         -[HIDService createHIDDeviceIfEverythingReady](self, "createHIDDeviceIfEverythingReady");
@@ -872,7 +872,7 @@ LABEL_17:
   if (a5) {
     goto LABEL_22;
   }
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 UUID]);
+  id v9 = [v7 UUID];
   uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", CBUUIDReportCharacteristicString));
   unsigned int v11 = [v9 isEqual:v10];
 
@@ -883,7 +883,7 @@ LABEL_17:
   __int128 v31 = 0u;
   __int128 v28 = 0u;
   __int128 v29 = 0u;
-  v12 = (void *)objc_claimAutoreleasedReturnValue([v8 descriptors]);
+  v12 = [v8 descriptors];
   id v13 = [v12 countByEnumeratingWithState:&v28 objects:v32 count:16];
   if (!v13)
   {
@@ -904,16 +904,16 @@ LABEL_17:
         objc_enumerationMutation(v12);
       }
       uint64_t v19 = *(void **)(*((void *)&v28 + 1) + 8LL * (void)i);
-      unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue([v19 UUID]);
-      id v21 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v17));
+      unsigned int v20 = (void *)[v19 UUID];
+      id v21 = [CBUUID UUIDWithString:v17];
       unsigned int v22 = [v20 isEqual:v21];
 
       if (v22)
       {
-        v23 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+        v23 = [self peripheral];
         if ([v23 isLinkEncrypted])
         {
-          unsigned int v24 = (void *)objc_claimAutoreleasedReturnValue([v19 value]);
+          unsigned int v24 = (void *)[v19 value];
 
           if (v24)
           {
@@ -955,8 +955,8 @@ LABEL_22:
   if (!a5)
   {
     id v11 = v7;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 UUID]);
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDReportReferenceDescriptorString));
+    id v8 = [v7 UUID];
+    id v9 = [CBUUID UUIDWithString:CBUUIDReportReferenceDescriptorString];
     unsigned int v10 = [v8 isEqual:v9];
 
     id v7 = v11;
@@ -974,14 +974,14 @@ LABEL_22:
 
 - (void)hidDeviceDesiredConnectionParametersDidChange
 {
-  unsigned int v3 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 desiredConnectionParameters]);
+  unsigned int v3 = (void *)[self hidDevice];
+  id v4 = [v3 desiredConnectionParameters];
 
   id v5 = (os_log_s *)qword_100070CC8;
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003B2B0((uint64_t)v4, v5, v6, v7, v8, v9, v10, v11);
   }
-  v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService manager](self, "manager"));
+  v12 = [self manager];
   [v12 clientService:self desiresConnectionParameters:v4];
 }
 
@@ -993,11 +993,11 @@ LABEL_22:
   v12 = (void *)objc_claimAutoreleasedReturnValue( -[HIDService characteristicForReportID:reportType:]( self,  "characteristicForReportID:reportType:",  a4,  *(void *)&a5));
   if (v12)
   {
-    id v13 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectForKey:](self->_reportInfoMap, "objectForKey:", v12));
+    id v13 = [self->_reportInfoMap objectForKey:v12];
     id v14 = v13;
     if (v13)
     {
-      char v15 = (void *)objc_claimAutoreleasedReturnValue([v13 commandCondition]);
+      char v15 = (void *)[v13 commandCondition];
       [v15 lock];
 
       if ([v14 isValid])
@@ -1006,7 +1006,7 @@ LABEL_22:
         if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
         {
           unsigned int v24 = v16;
-          v25 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", v7));
+          v25 = [self reportTypeToString:v7];
           int v26 = 138412546;
           unsigned int v27 = v25;
           __int16 v28 = 1024;
@@ -1015,28 +1015,28 @@ LABEL_22:
         }
 
         [v14 setCommandPending:1];
-        uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+        uint64_t v17 = (void *)[self peripheral];
         [v17 readValueForCharacteristic:v12];
 
-        id v18 = (void *)objc_claimAutoreleasedReturnValue([v14 commandCondition]);
+        id v18 = [v14 commandCondition];
         uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSDate dateWithTimeIntervalSinceNow:]( &OBJC_CLASS___NSDate,  "dateWithTimeIntervalSinceNow:",  30.0));
         unsigned int v20 = [v18 waitUntilDate:v19];
 
         if (v20)
         {
-          id v21 = (void *)objc_claimAutoreleasedReturnValue([v14 commandError]);
+          id v21 = [v14 commandError];
 
           if (v21)
           {
             if (a6) {
-              *a6 = (id)objc_claimAutoreleasedReturnValue([v14 commandError]);
+              *a6 = [v14 commandError];
             }
           }
 
           else
           {
             int v11 = 0;
-            *a3 = (id)objc_claimAutoreleasedReturnValue([v14 commandValue]);
+            *a3 = [v14 commandValue];
           }
         }
 
@@ -1047,7 +1047,7 @@ LABEL_22:
         }
       }
 
-      unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue([v14 commandCondition]);
+      unsigned int v22 = (void *)[v14 commandCondition];
       [v22 unlock];
     }
 
@@ -1072,7 +1072,7 @@ LABEL_22:
   uint64_t v10 = a4;
   int v12 = -536870212;
   id v13 = a3;
-  id v14 = (void *)objc_claimAutoreleasedReturnValue( -[HIDService characteristicForReportID:reportType:]( self,  "characteristicForReportID:reportType:",  v10,  v9));
+  id v14 = [self characteristicForReportID:v10 reportType:v9];
   if (v14)
   {
     char v15 = (void *)objc_claimAutoreleasedReturnValue(-[NSMapTable objectForKey:](self->_reportInfoMap, "objectForKey:", v14));
@@ -1085,14 +1085,14 @@ LABEL_17:
       goto LABEL_18;
     }
 
-    uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v15 commandCondition]);
+    uint64_t v17 = (void *)[v15 commandCondition];
     [v17 lock];
 
     id v18 = (void *)qword_100070CC8;
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
     {
       unsigned int v24 = v18;
-      v25 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", v9));
+      v25 = [self reportTypeToString:v9];
       int v29 = 138412802;
       __int128 v30 = v25;
       __int16 v31 = 1024;
@@ -1113,18 +1113,18 @@ LABEL_6:
       uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
       [v19 writeValue:v13 forCharacteristic:v14 type:0];
 
-      unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue([v16 commandCondition]);
-      id v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSDate dateWithTimeIntervalSinceNow:]( &OBJC_CLASS___NSDate,  "dateWithTimeIntervalSinceNow:",  30.0));
+      unsigned int v20 = (void *)[v16 commandCondition];
+      id v21 = [NSDate dateWithTimeIntervalSinceNow:30.0];
       unsigned int v22 = [v20 waitUntilDate:v21];
 
       if (v22)
       {
-        v23 = (void *)objc_claimAutoreleasedReturnValue([v16 commandError]);
+        v23 = [v16 commandError];
 
         if (v23)
         {
           if (a7) {
-            *a7 = (id)objc_claimAutoreleasedReturnValue([v16 commandError]);
+            *a7 = [v16 commandError];
           }
           goto LABEL_16;
         }
@@ -1135,7 +1135,7 @@ LABEL_6:
       [v16 setCommandPending:0];
       int v12 = -536870186;
 LABEL_16:
-      unsigned int v27 = (void *)objc_claimAutoreleasedReturnValue([v16 commandCondition]);
+      unsigned int v27 = [v16 commandCondition];
       [v27 unlock];
 
       goto LABEL_17;
@@ -1212,7 +1212,7 @@ LABEL_18:
 {
   unsigned __int8 v7 = a3;
   unint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", &v7, 1LL));
-  dispatch_time_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+  dispatch_time_t v5 = -[ClientService peripheral];
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidControlPointCharacteristic](self, "hidControlPointCharacteristic"));
   [v5 writeValue:v4 forCharacteristic:v6 type:1];
 }
@@ -1238,16 +1238,16 @@ LABEL_18:
 - (void)authDidSucceedNotification:(id)a3
 {
   id v4 = a3;
-  dispatch_time_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 userInfo]);
-  id v10 = (id)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"AuthenticationServiceCertClassUserInfoKey"]);
+  dispatch_time_t v5 = (void *)[v4 userInfo];
+  id v10 = [v5 objectForKeyedSubscript:@"AuthenticationServiceCertClassUserInfoKey"];
 
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v4 userInfo]);
-  int v7 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"AuthenticationServiceAuthVersionKey"]);
+  uint64_t v6 = (void *)[v4 userInfo];
+  int v7 = (void *)[v6 objectForKeyedSubscript:@"AuthenticationServiceAuthVersionKey"];
 
   if ((int)[v7 intValue] <= 2 && (!v10 || objc_msgSend(v10, "unsignedIntValue")))
   {
-    BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    BOOL v8 = [NSNotificationCenter defaultCenter];
+    uint64_t v9 = (void *)[self peripheral];
     [v8 postNotificationName:@"AuthenticationServiceAuthDidFailNotification" object:v9];
   }
 }
@@ -1294,7 +1294,7 @@ LABEL_18:
     char v9 = (os_log_s *)(id)qword_100070CC8;
     if (os_log_type_enabled(v9, OS_LOG_TYPE_ERROR))
     {
-      id v10 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService reportTypeToString:](self, "reportTypeToString:", v4));
+      id v10 = [self reportTypeToString:v4];
       sub_10003B36C(v10, buf, a3, v9);
     }
 

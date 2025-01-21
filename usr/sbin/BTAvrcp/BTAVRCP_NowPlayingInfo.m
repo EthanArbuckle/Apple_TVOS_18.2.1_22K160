@@ -79,7 +79,7 @@
     v15[0] = off_10001F048;
     v15[1] = off_10001F050;
     v15[2] = off_10001F058;
-    v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v15, 3LL));
+    v4 = [+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v15, 3LL)];
     v5 = -[NSSet initWithArray:](v3, "initWithArray:", v4);
     v6 = (void *)*((void *)v2 + 3);
     *((void *)v2 + 3) = v5;
@@ -88,22 +88,22 @@
     v2[8] = 0;
     *(_OWORD *)(v2 + 56) = xmmword_1000141F0;
     *((void *)v2 + 9) = 0x100000001LL;
-    v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v7 = [NSNotificationCenter defaultCenter];
     [v7 addObserver:v2 selector:"_infoDidChangeNotification" name:kMRMediaRemoteNowPlayingInfoDidChangeNotification object:0];
 
-    v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v8 = [NSNotificationCenter defaultCenter];
     [v8 addObserver:v2 selector:"_appDidChangeNotification:" name:kMRMediaRemoteNowPlayingApplicationDidChangeNotification object:0];
 
-    v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v9 = [NSNotificationCenter defaultCenter];
     [v9 addObserver:v2 selector:"_appIsPlayingDidChangeNotification:" name:kMRMediaRemoteNowPlayingApplicationIsPlayingDidChangeNotification object:0];
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v10 = [NSNotificationCenter defaultCenter];
     [v10 addObserver:v2 selector:"_playbackQueueDidChangeNotification" name:MPMusicPlayerControllerQueueDidChangeNotification object:0];
 
-    v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v11 = [NSNotificationCenter defaultCenter];
     [v11 addObserver:v2 selector:"_activeOriginDidChangeNotification" name:kMRMediaRemoteActiveOriginDidChangeNotification object:0];
 
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v12 = [NSNotificationCenter defaultCenter];
     [v12 addObserver:v2 selector:"_supportedCommandsDidChangeNotification" name:kMRMediaRemoteSupportedCommandsDidChangeNotification object:0];
 
     MRMediaRemoteRegisterForNowPlayingNotifications(&_dispatch_main_q);
@@ -118,13 +118,13 @@
 - (void)_initializeState
 {
   dispatch_queue_global_t global_queue = dispatch_get_global_queue(2LL, 0LL);
-  v4 = (void *)objc_claimAutoreleasedReturnValue(global_queue);
+  v4 = global_queue;
   v5 = objc_alloc_init(&OBJC_CLASS___BTAVRCP_Syncifier);
   v24[0] = _NSConcreteStackBlock;
   v24[1] = 3221225472LL;
   v24[2] = sub_10000D950;
   v24[3] = &unk_100018BA8;
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier createSwitcher](v5, "createSwitcher"));
+  id v6 = [BTAVRCP_Syncifier createSwitcher];
   v24[4] = self;
   id v25 = v6;
   MRMediaRemoteGetNowPlayingInfoWithOptionalArtwork(0LL, 0LL, v4, v24);
@@ -132,7 +132,7 @@
   v22[1] = 3221225472LL;
   v22[2] = sub_10000D9E4;
   v22[3] = &unk_100018BD0;
-  id v7 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier createSwitcher](v5, "createSwitcher"));
+  id v7 = [BTAVRCP_Syncifier createSwitcher];
   v22[4] = self;
   id v23 = v7;
   MRMediaRemoteGetNowPlayingApplicationDisplayID(v4, v22);
@@ -140,7 +140,7 @@
   v20[1] = 3221225472LL;
   v20[2] = sub_10000DA78;
   v20[3] = &unk_100018C20;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier createSwitcher](v5, "createSwitcher"));
+  id v8 = [BTAVRCP_Syncifier createSwitcher];
   v20[4] = self;
   id v21 = v8;
   MRMediaRemoteGetNowPlayingApplicationIsPlaying(v4, v20);
@@ -148,7 +148,7 @@
   v18[1] = 3221225472LL;
   v18[2] = sub_10000DB1C;
   v18[3] = &unk_100018C70;
-  id v9 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier createSwitcher](v5, "createSwitcher"));
+  id v9 = [BTAVRCP_Syncifier createSwitcher];
   v18[4] = self;
   id v19 = v9;
   MRMediaRemoteGetActiveOrigin(v4, v18);
@@ -156,7 +156,7 @@
   uint64_t v13 = 3221225472LL;
   objc_super v14 = sub_10000DBC0;
   v15 = &unk_100018C98;
-  id v10 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier createSwitcher](v5, "createSwitcher"));
+  id v10 = [BTAVRCP_Syncifier createSwitcher];
   v16 = self;
   id v17 = v10;
   MRMediaRemoteCopySupportedCommands(v4, &v12);
@@ -267,8 +267,8 @@
 
 - (void)_appIsPlayingDidChangeNotification:(id)a3
 {
-  unint64_t v4 = (void *)objc_claimAutoreleasedReturnValue([a3 userInfo]);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:kMRMediaRemoteNowPlayingApplicationIsPlayingUserInfoKey]);
+  unint64_t v4 = (void *)[a3 userInfo];
+  uint64_t v5 = (void *)[v4 objectForKeyedSubscript:kMRMediaRemoteNowPlayingApplicationIsPlayingUserInfoKey];
   id v6 = [v5 BOOLValue];
 
   -[BTAVRCP_NowPlayingInfo _appIsPlayingDidChange:](self, "_appIsPlayingDidChange:", v6);
@@ -315,8 +315,8 @@
   if ((v9 & 1) == 0)
   {
     -[BTAVRCP_NowPlayingInfo setMrAppIdentifier:](self, "setMrAppIdentifier:", v7);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    objc_msgSend(v10, "playerDidChange:", -[BTAVRCP_NowPlayingInfo playerId](self, "playerId"));
+    uint64_t v10 = (void *)[self delegate];
+    [v10 playerDidChange:[self playerId]];
   }
 }
 
@@ -338,7 +338,7 @@
   if (os_log_type_enabled((os_log_t)qword_10001F1C0, OS_LOG_TYPE_DEBUG)) {
     sub_1000102F4(v3, v4, v5, v6, v7, v8, v9, v10);
   }
-  uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
+  uint64_t v11 = (void *)[self delegate];
   [v11 playbackQueueDidChange];
 }
 
@@ -403,21 +403,21 @@
 
 - (id)trackTitle
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTitle]);
+  v2 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  BOOL v3 = [v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTitle];
 
   return v3;
 }
 
 - (id)trackAlbum
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoAlbum]);
+  BOOL v3 = [self mrInfo];
+  id v4 = [v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoAlbum];
 
   if (!v4)
   {
     unint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    id v4 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoRadioStationName]);
+    id v4 = [v5 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoRadioStationName];
   }
 
   return v4;
@@ -425,24 +425,24 @@
 
 - (id)trackArtist
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoArtist]);
+  v2 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  BOOL v3 = (void *)[v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoArtist];
 
   return v3;
 }
 
 - (id)trackGenre
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoGenre]);
+  v2 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  BOOL v3 = [v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoGenre];
 
   return v3;
 }
 
 - (id)trackQueueIndex
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex]);
+  BOOL v3 = [self mrInfo];
+  id v4 = [v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex];
 
   if (v4)
   {
@@ -452,7 +452,7 @@
   else
   {
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    unint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTrackNumber]);
+    unint64_t v5 = (void *)[v6 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTrackNumber];
   }
 
   return v5;
@@ -460,8 +460,8 @@
 
 - (id)trackQueueCount
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex]);
+  BOOL v3 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  id v4 = [v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex];
 
   unint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
   uint64_t v6 = v5;
@@ -469,15 +469,15 @@
   if (v4) {
     uint64_t v7 = &kMRMediaRemoteNowPlayingInfoTotalQueueCount;
   }
-  unsigned int v8 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:*v7]);
+  unsigned int v8 = (void *)[v5 objectForKeyedSubscript:*v7];
 
   return v8;
 }
 
 - (id)trackDuration
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDuration]);
+  v2 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  BOOL v3 = [v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDuration];
 
   if (v3)
   {
@@ -495,13 +495,13 @@
 
 - (id)trackPosition
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  double v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTimestamp]);
+  BOOL v3 = [self mrInfo];
+  double v4 = (void *)[v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTimestamp];
 
   if (v4)
   {
     unint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoElapsedTime]);
+    uint64_t v6 = (void *)[v5 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoElapsedTime];
 
     if (v6)
     {
@@ -518,14 +518,14 @@
     if (v10 != 0.0)
     {
       float v11 = v10;
-      v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+      v12 = [NSDate date];
       [v12 timeIntervalSinceDate:v4];
       double v14 = v13;
 
       double v8 = v8 + v14 * v11 * 1000.0;
     }
 
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v8));
+    uint64_t v9 = (void *)[NSNumber numberWithDouble:v8];
   }
 
   else
@@ -551,7 +551,7 @@
       objc_storeStrong((id *)p_currentArtworkIdentifier, v4);
     }
 
-    double v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%tu",  qword_10001F180));
+    double v7 = [NSString stringWithFormat:@"%tu" qword_10001F180];
   }
 
   else
@@ -568,8 +568,8 @@
 
 - (BOOL)isBrowsablePlayer
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo browsablePlayers](self, "browsablePlayers"));
-  double v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrAppIdentifier](self, "mrAppIdentifier"));
+  BOOL v3 = [self browsablePlayers];
+  double v4 = [self mrAppIdentifier];
   unsigned __int8 v5 = [v3 containsObject:v4];
 
   return v5;
@@ -587,13 +587,13 @@
 
 - (id)playerName
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrAppIdentifier](self, "mrAppIdentifier"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue( +[LSApplicationProxy applicationProxyForIdentifier:]( &OBJC_CLASS___LSApplicationProxy,  "applicationProxyForIdentifier:",  v2));
+  v2 = [self mrAppIdentifier];
+  BOOL v3 = [OBJC_CLASS___LSApplicationProxy applicationProxyForIdentifier:v2];
 
-  double v4 = (void *)objc_claimAutoreleasedReturnValue([v3 localizedName]);
+  double v4 = [v3 localizedName];
   if (v4)
   {
-    unsigned __int8 v5 = (void *)objc_claimAutoreleasedReturnValue([v3 localizedName]);
+    unsigned __int8 v5 = (void *)[v3 localizedName];
   }
 
   else
@@ -607,8 +607,8 @@
 
 - (float)_playbackRate
 {
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  double v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoPlaybackRate]);
+  BOOL v3 = [self mrInfo];
+  double v4 = [v3 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoPlaybackRate];
 
   if (v4)
   {
@@ -631,8 +631,8 @@
 
 - (float)_defaultPlaybackRate
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDefaultPlaybackRate]);
+  v2 = -[BTAVRCP_NowPlayingInfo mrInfo];
+  BOOL v3 = [v2 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDefaultPlaybackRate];
 
   if (v3)
   {
@@ -676,42 +676,42 @@
   if (v3 != (void *)-[BTAVRCP_NowPlayingInfo currentPlaybackState](self, "currentPlaybackState"))
   {
     -[BTAVRCP_NowPlayingInfo setCurrentPlaybackState:](self, "setCurrentPlaybackState:", v3);
-    id v4 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
+    id v4 = [self delegate];
     [v4 playbackStateDidChange:v3];
   }
 
 - (unint64_t)_trackHash
 {
-  float v3 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
+  float v3 = [self mrInfo];
 
   if (v3)
   {
-    v31 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v30 = (void *)objc_claimAutoreleasedReturnValue([v31 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoAlbum]);
+    v31 = -[BTAVRCP_NowPlayingInfo mrInfo];
+    v30 = [v31 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoAlbum];
     unint64_t v4 = (unint64_t)[v30 hash];
-    v29 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v28 = (void *)objc_claimAutoreleasedReturnValue([v29 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoArtist]);
+    v29 = -[BTAVRCP_NowPlayingInfo mrInfo];
+    v28 = [v29 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoArtist];
     unint64_t v5 = (unint64_t)[v28 hash] ^ v4;
-    v27 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v26 = (void *)objc_claimAutoreleasedReturnValue([v27 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTitle]);
+    v27 = -[BTAVRCP_NowPlayingInfo mrInfo];
+    v26 = [v27 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTitle];
     unint64_t v6 = (unint64_t)[v26 hash];
-    id v25 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v24 = (void *)objc_claimAutoreleasedReturnValue([v25 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoGenre]);
+    id v25 = -[BTAVRCP_NowPlayingInfo mrInfo];
+    v24 = [v25 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoGenre];
     unint64_t v7 = v5 ^ v6 ^ (unint64_t)[v24 hash];
-    id v23 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v22 = (void *)objc_claimAutoreleasedReturnValue([v23 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex]);
+    id v23 = [BTAVRCP_NowPlayingInfo mrInfo];
+    v22 = [v23 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoQueueIndex];
     unint64_t v8 = (unint64_t)[v22 hash];
-    id v21 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTotalQueueCount]);
+    id v21 = -[BTAVRCP_NowPlayingInfo mrInfo];
+    uint64_t v9 = (void *)[v21 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTotalQueueCount];
     unint64_t v10 = v8 ^ (unint64_t)[v9 hash];
-    float v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTrackNumber]);
+    float v11 = -[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo");
+    v12 = [v11 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTrackNumber];
     unint64_t v13 = v7 ^ v10 ^ (unint64_t)[v12 hash];
-    double v14 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v15 = (void *)objc_claimAutoreleasedReturnValue([v14 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTotalTrackCount]);
+    double v14 = -[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo");
+    v15 = (void *)[v14 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoTotalTrackCount];
     unint64_t v16 = (unint64_t)[v15 hash];
-    id v17 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    v18 = (void *)objc_claimAutoreleasedReturnValue([v17 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDuration]);
+    id v17 = [self mrInfo];
+    v18 = [v17 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoDuration];
     unint64_t v19 = v13 ^ v16 ^ (unint64_t)[v18 hash];
   }
 
@@ -735,19 +735,19 @@
   unint64_t v5 = v4;
   if (v3)
   {
-    unint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoUniqueIdentifier]);
+    unint64_t v6 = (void *)[v4 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoUniqueIdentifier];
 
     if (v6) {
       goto LABEL_7;
     }
     unint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    unint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoiTunesStoreIdentifier]);
+    unint64_t v6 = (void *)[v7 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoiTunesStoreIdentifier];
 
     if (v6) {
       goto LABEL_7;
     }
     unint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo"));
-    unint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoExternalContentIdentifier]);
+    unint64_t v6 = (void *)[v8 objectForKeyedSubscript:kMRMediaRemoteNowPlayingInfoExternalContentIdentifier];
 
     if (v6
       || (uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrInfo](self, "mrInfo")),
@@ -792,8 +792,8 @@ LABEL_7:
   if (v3 != (void *)-[BTAVRCP_NowPlayingInfo currentTrackHash](self, "currentTrackHash"))
   {
     -[BTAVRCP_NowPlayingInfo setCurrentTrackHash:](self, "setCurrentTrackHash:", v3);
-    id v4 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    objc_msgSend(v4, "trackDidChange:", -[BTAVRCP_NowPlayingInfo trackId](self, "trackId"));
+    id v4 = [self delegate];
+    [v4 trackDidChange:[self trackId]];
   }
 
 - (void)_settingsDidChange:(id)a3
@@ -802,8 +802,8 @@ LABEL_7:
     || a3.var1 != (unint64_t)-[BTAVRCP_NowPlayingInfo currentSettings](self, "currentSettings") >> 32)
   {
     -[BTAVRCP_NowPlayingInfo setCurrentSettings:](self, "setCurrentSettings:", a3);
-    id v5 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    objc_msgSend(v5, "settingsDidChange:", -[BTAVRCP_NowPlayingInfo currentSettings](self, "currentSettings"));
+    id v5 = [self delegate];
+    [v5 settingsDidChange:[self currentSettings]];
   }
 
 - (BOOL)isLocalOrigin
@@ -813,7 +813,7 @@ LABEL_7:
 
 - (BOOL)isMusicApp
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo mrAppIdentifier](self, "mrAppIdentifier"));
+  v2 = -[BTAVRCP_NowPlayingInfo mrAppIdentifier];
   unsigned __int8 v3 = [v2 isEqualToString:off_10001F048];
 
   return v3;

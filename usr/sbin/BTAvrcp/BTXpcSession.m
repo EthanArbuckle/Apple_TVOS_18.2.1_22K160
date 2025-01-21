@@ -19,7 +19,7 @@
 
 - (BTXpcSession)init
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "-[BTXpcSession init]"));
+  v3 = [NSString stringWithUTF8String:@"stringWithUTF8String:"];
   +[NSException raise:format:]( &OBJC_CLASS___NSException,  "raise:format:",  NSInvalidArgumentException,  @"Calling %@ is not allowed",  v3);
 
   return 0LL;
@@ -49,7 +49,7 @@
     if (os_log_type_enabled((os_log_t)qword_10001F1C0, OS_LOG_TYPE_DEFAULT))
     {
       v15 = v14;
-      v16 = (void *)objc_claimAutoreleasedReturnValue(-[BTXpcSession connection](v7, "connection"));
+      v16 = [v7 connection];
       *(_DWORD *)buf = 138412290;
       v23 = v16;
       _os_log_impl((void *)&_mh_execute_header, v15, OS_LOG_TYPE_DEFAULT, "Started XPC session: %@", buf, 0xCu);
@@ -127,7 +127,7 @@
   if (os_log_type_enabled((os_log_t)qword_10001F1C0, OS_LOG_TYPE_DEBUG)) {
     sub_10000FD68(a4, v7);
   }
-  uint64_t v8 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[BTXpcSession connection](self, "connection"));
+  uint64_t v8 = [_BTXpcSession connection];
   xpc_connection_send_message(v8, v6);
 }
 
@@ -140,11 +140,11 @@
     if (os_log_type_enabled((os_log_t)qword_10001F1C0, OS_LOG_TYPE_DEBUG)) {
       sub_10000FE34(v6);
     }
-    v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTXpcSession watchdog](self, "watchdog"));
+    v7 = -[BTXpcSession watchdog];
     [v7 beginTransaction];
 
     -[BTXpcSession handleMsg:](self, "handleMsg:", v4);
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[BTXpcSession watchdog](self, "watchdog"));
+    uint64_t v8 = (void *)[self watchdog];
     [v8 endTransaction];
   }
 
@@ -156,7 +156,7 @@
       if (os_log_type_enabled((os_log_t)qword_10001F1C0, OS_LOG_TYPE_DEFAULT))
       {
         uint64_t v10 = v9;
-        v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTXpcSession connection](self, "connection"));
+        v11 = -[BTXpcSession connection];
         int v12 = 138412290;
         v13 = v11;
         _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_DEFAULT,  "Ended XPC session: %@",  (uint8_t *)&v12,  0xCu);
@@ -182,13 +182,13 @@
 {
   id v11 = a6;
   xpc_object_t value = xpc_dictionary_get_value(a4, a3);
-  v13 = (void *)objc_claimAutoreleasedReturnValue(value);
+  v13 = (void *)value;
   v14 = v13;
   if (v13)
   {
     v15 = +[NSValue valueWithPointer:](&OBJC_CLASS___NSValue, "valueWithPointer:", xpc_get_type(v13));
     v16 = (void *)objc_claimAutoreleasedReturnValue(v15);
-    v17 = (uint64_t (**)(void, void))objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:v16]);
+    v17 = (uint64_t (**)(void, void))[v11 objectForKeyedSubscript:v16];
     if (!v17)
     {
       objc_super v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
@@ -196,7 +196,7 @@
     }
 
     uint64_t v18 = ((uint64_t (**)(void, void *))v17)[2](v17, v14);
-    v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
+    v19 = (void *)[v18 autorelease];
   }
 
   else
@@ -207,7 +207,7 @@
       goto LABEL_8;
     }
 
-    v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    v16 = [NSAssertionHandler currentHandler];
     objc_msgSend( v16,  "handleFailureInMethod:object:file:lineNumber:description:",  a2,  self,  @"BTXpcSession.m",  154,  @"Missing XPC value for key \"%s\"",  a3);
     v19 = 0LL;
   }

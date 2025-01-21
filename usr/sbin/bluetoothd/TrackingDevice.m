@@ -50,8 +50,8 @@
   if (v26)
   {
     objc_storeStrong((id *)&v26->_deviceUUID, a3);
-    v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v22));
-    uint64_t v29 = objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithObject:](&OBJC_CLASS___NSMutableSet, "setWithObject:", v28));
+    v28 = [NSNumber numberWithUnsignedChar:v22];
+    uint64_t v29 = [+[NSMutableSet setWithObject:](&OBJC_CLASS___NSMutableSet, "setWithObject:", v28)];
     appleTypes = v27->_appleTypes;
     v27->_appleTypes = (NSMutableSet *)v29;
 

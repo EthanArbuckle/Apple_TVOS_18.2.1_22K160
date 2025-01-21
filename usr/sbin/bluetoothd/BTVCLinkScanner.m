@@ -339,15 +339,15 @@ LABEL_11:
   if (v5)
   {
     id v17 = +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  DebugGetErrorString(v15, 0LL, 0LL),  NSLocalizedDescriptionKey);
-    v18 = (BTVCLinkScanner *)objc_claimAutoreleasedReturnValue(v17);
+    v18 = [v17 autorelease];
     self = v18;
     v19 = @"?";
     if (v18) {
       v19 = (const __CFString *)v18;
     }
     v21 = v19;
-    id v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v21,  &v20,  1LL));
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSOSStatusErrorDomain,  (int)v15,  v3));
+    id v3 = [NSDictionary dictionaryWithObjects:forKeys:count:&v21, &v20, 1LL];
+    id v10 = [NSError errorWithDomain:NSOSStatusErrorDomain code:(int)v15 userInfo:v3];
     char v11 = 0;
 LABEL_22:
     v5[2](v5, v10);
@@ -483,7 +483,7 @@ LABEL_7:
       btvcBonjourLink = self->_btvcBonjourLink;
       if (btvcBonjourLink)
       {
-        id v9 = (void *)objc_claimAutoreleasedReturnValue(+[BTVCLinkClient btvcLinkClient](&OBJC_CLASS___BTVCLinkClient, "btvcLinkClient"));
+        id v9 = [BTVCLinkClient btvcLinkClient];
         [v9 removeBTVCBonjourLinkDelegate:self];
 
         btvcBonjourLink = self->_btvcBonjourLink;
@@ -905,7 +905,7 @@ LABEL_29:
 
     if (!v19)
     {
-      uint64_t v20 = objc_claimAutoreleasedReturnValue(-[BTVCLinkScanner advReportReceiveHandler](self, "advReportReceiveHandler"));
+      uint64_t v20 = [self advReportReceiveHandler];
       uint64_t v21 = (void *)v20;
       if (a4 == 1) {
         uint64_t v22 = 2LL;

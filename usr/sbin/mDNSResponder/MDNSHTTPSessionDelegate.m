@@ -8,13 +8,13 @@
 {
   id v13 = a5;
   v7 = (void (**)(id, uint64_t, void))a6;
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v13 protectionSpace]);
-  v9 = (void *)objc_claimAutoreleasedReturnValue([v8 authenticationMethod]);
+  v8 = [v13 protectionSpace];
+  v9 = [v8 authenticationMethod];
   unsigned int v10 = [v9 isEqualToString:NSURLAuthenticationMethodServerTrust];
 
   if (v10)
   {
-    v11 = (void *)objc_claimAutoreleasedReturnValue([v13 protectionSpace]);
+    v11 = (void *)[v13 protectionSpace];
     v12 = (__SecTrust *)[v11 serverTrust];
 
     if (v12) {

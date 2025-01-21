@@ -16,7 +16,7 @@
 
 + (id)copyNetworkSettings:(id)a3
 {
-  return (id)objc_claimAutoreleasedReturnValue([a3 DNSHeuristicsFailureStateInfo]);
+  return [a3 DNSHeuristicsFailureStateInfo];
 }
 
 + (BOOL)setNetworkSettings:(id)a3 value:(id)a4
@@ -56,7 +56,7 @@
 
 + (unint64_t)currentTimeMs
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+  v2 = [NSDate date];
   [v2 timeIntervalSince1970];
   unint64_t v4 = (unint64_t)(v3 * 1000.0);
 
@@ -66,15 +66,15 @@
 + (id)copyEmptyHeuristicState
 {
   v7[0] = @"LastFailureTimestamp";
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", 0LL));
+  v2 = [NSNumber numberWithUnsignedInteger:0LL];
   v8[0] = v2;
   v7[1] = @"LongCount";
-  double v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", 0LL));
+  double v3 = [NSNumber numberWithUnsignedInteger:0LL];
   v8[1] = v3;
   v7[2] = @"BurstCount";
   unint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", 10LL));
   v8[2] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v8,  v7,  3LL));
+  v5 = [NSDictionary dictionaryWithObjects:forKeys:count:v8, v7, 3];
 
   return v5;
 }
@@ -85,7 +85,7 @@
   BOOL v5 = a3;
   v6 = (void *)objc_opt_new(&OBJC_CLASS___CWFInterface, a2);
   [v6 activate];
-  uint64_t v53 = objc_claimAutoreleasedReturnValue([v6 currentKnownNetworkProfile]);
+  uint64_t v53 = [v6 currentKnownNetworkProfile];
   id v7 = +[DNSHeuristics copyNetworkSettings:](&OBJC_CLASS___DNSHeuristics, "copyNetworkSettings:", v53);
   if (v7) {
     v8 = v7;
@@ -93,7 +93,7 @@
   else {
     v8 = &__NSDictionary0__struct;
   }
-  v9 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKey:@"LastFailureTimestamp"]);
+  v9 = [v8 objectForKey:@"LastFailureTimestamp"];
 
   if (!v9)
   {
@@ -103,13 +103,13 @@
   }
 
   unint64_t v11 = +[DNSHeuristics currentTimeMs](&OBJC_CLASS___DNSHeuristics, "currentTimeMs");
-  v12 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:@"LastFailureTimestamp"]);
+  v12 = [v8 objectForKeyedSubscript:@"LastFailureTimestamp"];
   id v13 = [v12 unsignedIntegerValue];
 
-  v14 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:@"LongCount"]);
+  v14 = (void *)[v8 objectForKeyedSubscript:@"LongCount"];
   v15 = (char *)[v14 unsignedIntegerValue];
 
-  v16 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:@"BurstCount"]);
+  v16 = [v8 objectForKeyedSubscript:@"BurstCount"];
   id v17 = [v16 unsignedIntegerValue];
 
   v18 = (void *)v53;
@@ -216,20 +216,20 @@
       }
 
       v54[0] = @"LastFailureTimestamp";
-      uint64_t v48 = objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v11));
+      uint64_t v48 = [+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v11)];
       v55[0] = v48;
       v54[1] = @"LongCount";
-      v49 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v29));
+      v49 = [NSNumber numberWithUnsignedInteger:v29];
       v55[1] = v49;
       v54[2] = @"BurstCount";
-      v50 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", v33));
+      v50 = [NSNumber numberWithUnsignedInteger:v33];
       v55[2] = v50;
-      v21 = (os_log_s *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v55,  v54,  3LL));
+      v21 = [NSDictionary dictionaryWithObjects:forKeys:count:v55, v54, 3];
 
       v18 = (void *)v53;
       LODWORD(v48) = +[DNSHeuristics setNetworkSettings:value:]( &OBJC_CLASS___DNSHeuristics,  "setNetworkSettings:value:",  v53,  v21);
       unsigned int v28 = v48 & +[DNSHeuristics setNetworkAsFiltered:filtered:]( &OBJC_CLASS___DNSHeuristics,  "setNetworkAsFiltered:filtered:",  v53,  v36);
-      v51 = (void *)objc_claimAutoreleasedReturnValue( +[NSSet setWithObjects:]( &OBJC_CLASS___NSSet,  "setWithObjects:",  &off_1001407E8,  &off_100140800,  0LL));
+      v51 = [NSSet setWithObjects:@"setWithObjects:",  &off_1001407E8,  &off_100140800,  0LL]);
       [v6 updateKnownNetworkProfile:v53 properties:v51 error:0];
     }
 
@@ -287,7 +287,7 @@ LABEL_39:
     unsigned int v46 = +[DNSHeuristics setNetworkSettings:value:](&OBJC_CLASS___DNSHeuristics, "setNetworkSettings:value:", v53, v45);
 
     unsigned int v28 = v46 & +[DNSHeuristics setNetworkAsFiltered:filtered:]( &OBJC_CLASS___DNSHeuristics,  "setNetworkAsFiltered:filtered:",  v53,  0LL);
-    v21 = (os_log_s *)objc_claimAutoreleasedReturnValue( +[NSSet setWithObjects:]( &OBJC_CLASS___NSSet,  "setWithObjects:",  &off_1001407E8,  &off_100140800,  0LL));
+    v21 = [NSSet setWithObjects:@"setWithObjects:",  &off_1001407E8,  &off_100140800,  0LL];
     [v6 updateKnownNetworkProfile:v53 properties:v21 error:0];
 LABEL_47:
 

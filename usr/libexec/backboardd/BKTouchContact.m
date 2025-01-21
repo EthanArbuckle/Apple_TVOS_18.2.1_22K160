@@ -11,11 +11,11 @@
 - (BKTouchContact)init
 {
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS___BKTouchContact;
-  v2 = -[BKTouchContact init](&v6, "init");
+  v6.super_class = [BKTouchContact class];
+  BKTouchContact *v2 = [[BKTouchContact alloc] init];
   if (v2)
   {
-    v3 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v3 = [[NSMutableSet alloc] init];
     destinations = v2->_destinations;
     v2->_destinations = v3;
   }
@@ -25,7 +25,7 @@
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", self->_pathIndex));
+  v2 = [NSNumber numberWithInteger:self->_pathIndex];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -33,7 +33,7 @@
 
 - (BOOL)isEqual:(id)a3
 {
-  uint64_t v5 = objc_opt_class(&OBJC_CLASS___BKTouchContact, a2);
+  uint64_t v5 = [BKTouchContact class];
   id v6 = a3;
   v7 = v6;
   if (v5)
@@ -65,7 +65,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3
@@ -77,7 +77,7 @@
     v8 = @"<unknown>";
   }
   else {
-    v8 = *(&off_1000B7C40 + presence);
+    v8 = [off_1000B7C40[presence] retain];
   }
   [a3 appendString:v8 withName:0];
   v9 = @"startAvoiding";
@@ -113,7 +113,7 @@ LABEL_10:
       if ((_DWORD)userIdentifier) {
         id v15 = [a3 appendUInt64:userIdentifier withName:@"userIdentifier" format:1];
       }
-      uint64_t v16 = objc_opt_class(&OBJC_CLASS___BSDescriptionStream, v13);
+      uint64_t v16 = [BSDescriptionStream class];
       id v17 = a3;
       v18 = v17;
       if (v16)

@@ -41,7 +41,7 @@
 {
   if (-[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationHistory notifications](self, "notifications", a3, *(void *)&a4),  "objectForKey:",  a3))
   {
-    v8 = (NSMutableDictionary *)objc_msgSend( -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationHistory notifications](self, "notifications"),  "objectForKey:",  a3),  "mutableCopy");
+    v8 = [ -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationHistory notifications](self, "notifications"),  "objectForKey:",  a3) mutableCopy];
   }
 
   else
@@ -71,7 +71,7 @@
   {
     v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil ssid",  "-[WiFiUserNotificationHistory handleNotificationResponseForSSID:type:response:]");
+      [qword_100219F60 WFLog:@"%s: nil ssid" message:4 "-[WiFiUserNotificationHistory handleNotificationResponseForSSID:type:response:]"];
     }
     v13 = v12;
     goto LABEL_11;
@@ -93,7 +93,7 @@ LABEL_11:
   }
 
   id v9 = [v8 mutableCopy];
-  objc_msgSend( v9,  "setObject:forKey:",  +[NSNumber numberWithUnsignedInt:](NSNumber, "numberWithUnsignedInt:", v5),  @"response");
+  [v9 setObject:[NSNumber numberWithUnsignedInt:v5] forKey:@"response"];
   id v10 = [v9 objectForKey:@"attempt"];
   if (v10) {
     v11 = +[NSNumber numberWithInteger:]( NSNumber,  "numberWithInteger:",  (char *)[v10 integerValue] + 1);
@@ -126,7 +126,7 @@ LABEL_11:
   {
     id v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil ssid",  "-[WiFiUserNotificationHistory canPresentRecommendationForSSID:currentLocation:]",  v22);
+      [qword_100219F60 WFLog:@"%s: nil ssid" message:4 v22];
     }
     goto LABEL_26;
   }
@@ -134,7 +134,7 @@ LABEL_11:
   unsigned int v7 = -[NSString isEqualToString:]( -[WiFiUserNotificationHistory lastRecommendedSSID](self, "lastRecommendedSSID"),  "isEqualToString:",  a3);
   id v8 = -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationHistory notifications](self, "notifications"),  "objectForKey:",  -[WiFiUserNotificationHistory lastRecommendedSSID](self, "lastRecommendedSSID"));
   if ([v8 objectForKey:@"response"]) {
-    BOOL v9 = objc_msgSend(objc_msgSend(v8, "objectForKey:", @"response"), "integerValue") == (id)5;
+    BOOL v9 = [[v8 objectForKey:@"response"] integerValue] == 5;
   }
   else {
     BOOL v9 = 0;
@@ -171,7 +171,7 @@ LABEL_11:
 
       v20 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no current location available",  "-[WiFiUserNotificationHistory canPresentRecommendationForSSID:currentLocation:]");
+        [qword_100219F60 WFLog:@"%s: no current location available" message:3];
       }
     }
 
@@ -179,7 +179,7 @@ LABEL_11:
     {
       v20 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no location available from last recommendation",  "-[WiFiUserNotificationHistory canPresentRecommendationForSSID:currentLocation:]");
+        [qword_100219F60 WFLog:@"%s: no location available from last recommendation" message:3];
       }
     }
 
@@ -189,7 +189,7 @@ LABEL_34:
     {
       id v10 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: supressing notification, has been less than a day since last notification and we have no location",  "-[WiFiUserNotificationHistory canPresentRecommendationForSSID:currentLocation:]");
+        [qword_100219F60 WFLog:@"%s: supressing notification, has been less than a day since last notification and we have no location" message:3];
       }
       int v16 = 4;
       goto LABEL_27;

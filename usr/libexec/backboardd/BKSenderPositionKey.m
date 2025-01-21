@@ -14,7 +14,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKSenderPositionKey, v5);
+  uint64_t v6 = [BKSenderPositionKey class];
   id v7 = v4;
   v8 = v7;
   if (v6)

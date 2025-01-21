@@ -245,7 +245,7 @@ LABEL_31:
   uint64_t v24 = (__int16)self->_has;
   if ((v24 & 0x80) != 0)
   {
-    uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", self->_isInheritedAccount));
+    uint64_t v25 = (void *)[NSNumber numberWithBool:self->_isInheritedAccount];
     [v4 setObject:v25 forKey:@"isInheritedAccount"];
 
     uint64_t v24 = (__int16)self->_has;
@@ -256,7 +256,7 @@ LABEL_42:
         goto LABEL_43;
       }
 LABEL_47:
-      v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", self->_warnedTooManyPeers));
+      v27 = [NSNumber numberWithBool:self->_warnedTooManyPeers];
       [v4 setObject:v27 forKey:@"warnedTooManyPeers"];
 
       if ((*(_WORD *)&self->_has & 0x20) == 0) {
@@ -281,7 +281,7 @@ LABEL_48:
     goto LABEL_42;
   }
 
-  v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", self->_warmedEscrowCache));
+  v26 = [NSNumber numberWithBool:self->_warmedEscrowCache];
   [v4 setObject:v26 forKey:@"warmedEscrowCache"];
 
   uint64_t v24 = (__int16)self->_has;
@@ -1675,7 +1675,7 @@ LABEL_60:
 
       v51 = objc_autoreleasePoolPush();
       id v131 = 0LL;
-      uint64_t v52 = objc_claimAutoreleasedReturnValue(+[OTControl controlObject:error:](&OBJC_CLASS___OTControl, "controlObject:error:", 1LL, &v131));
+      uint64_t v52 = [OBJC_CLASS___OTControl controlObject:&v131];
       id v53 = v131;
       if (v53 || !v52)
       {
@@ -1684,7 +1684,7 @@ LABEL_60:
       }
 
       if (v158) {
-        v54 = (char **)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v158,  4LL));
+        v54 = [NSString stringWithCString:v158 encoding:4];
       }
       else {
         v54 = (char **)OTDefaultContext;
@@ -1692,7 +1692,7 @@ LABEL_60:
       v129 = v54;
       if (v146)
       {
-        v127 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v146,  4LL));
+        v127 = [NSString stringWithCString:v146 encoding:4];
       }
 
       else
@@ -1702,62 +1702,62 @@ LABEL_60:
       }
 
       if (v147) {
-        v125 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v147,  4LL));
+        v125 = [NSString stringWithCString:v147 encoding:4];
       }
       else {
         v125 = 0LL;
       }
       if (v143) {
-        uint64_t v110 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v143,  4LL));
+        uint64_t v110 = [NSString stringWithCString:v143 encoding:4LL];
       }
       else {
         uint64_t v110 = 0LL;
       }
       if (v144) {
-        uint64_t v121 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v144,  4LL));
+        uint64_t v121 = [NSString stringWithCString:v144 encoding:4LL];
       }
       else {
         uint64_t v121 = 0LL;
       }
       if (v156) {
-        v112 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v156,  4LL));
+        v112 = [NSString stringWithCString:v156 encoding:4LL];
       }
       else {
         v112 = @"NO";
       }
       if (v142) {
-        v119 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v142,  4LL));
+        v119 = (void *)[NSString stringWithCString:v142 encoding:4LL];
       }
       else {
         v119 = 0LL;
       }
       if (v141) {
-        v118 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v141,  4LL));
+        v118 = [NSString stringWithCString:v141 encoding:4];
       }
       else {
         v118 = 0LL;
       }
       if (v140) {
-        uint64_t v111 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v140,  4LL));
+        uint64_t v111 = [NSString stringWithCString:v140 encoding:4LL];
       }
       else {
         uint64_t v111 = 0LL;
       }
       if (v139) {
-        v117 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v139,  4LL));
+        v117 = [NSString stringWithCString:v139 encoding:4];
       }
       else {
         v117 = 0LL;
       }
       if (v138) {
-        v116 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v138,  4LL));
+        v116 = [NSString stringWithCString:v138 encoding:4LL];
       }
       else {
         v116 = 0LL;
       }
       if (v137)
       {
-        v56 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v137,  4LL));
+        v56 = (void *)[OBJC_CLASS___NSString stringWithCString:v137 encoding:4LL];
         double v57 = (double)(uint64_t)[v56 integerValue];
       }
 
@@ -1767,26 +1767,26 @@ LABEL_60:
       }
 
       if (v135) {
-        uint64_t v58 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v135,  4LL));
+        uint64_t v58 = [NSString stringWithCString:v135 encoding:4LL];
       }
       else {
         uint64_t v58 = 0LL;
       }
       if (v134) {
-        uint64_t v59 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v134,  4LL));
+        uint64_t v59 = [NSString stringWithCString:v134 encoding:4LL];
       }
       else {
         uint64_t v59 = 0LL;
       }
       if (v154) {
-        v115 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v154,  4LL));
+        v115 = [NSString stringWithCString:v154 encoding:4LL];
       }
       else {
         v115 = @"NO";
       }
       context = v51;
       if (v153) {
-        v60 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v153,  4LL));
+        v60 = [NSString stringWithCString:v153 encoding:4LL];
       }
       else {
         v60 = @"NO";
@@ -1803,17 +1803,17 @@ LABEL_60:
       v122 = (void *)v52;
       v123 = -[OTControlCLI initWithOTControl:](objc_alloc(&OBJC_CLASS___OTControlCLI), "initWithOTControl:", v52);
       id v62 = objc_alloc(&OBJC_CLASS___OTControlArguments);
-      v63 = (void *)objc_claimAutoreleasedReturnValue(+[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
-      v64 = (void *)objc_claimAutoreleasedReturnValue([v63 UUIDString]);
-      v65 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"otctl-flowID-%@",  v64));
-      v66 = (void *)objc_claimAutoreleasedReturnValue(+[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
-      v67 = (void *)objc_claimAutoreleasedReturnValue([v66 UUIDString]);
-      v68 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"otctl-deviceSessionID-%@",  v67));
+      v63 = [NSUUID UUID];
+      v64 = [v63 UUIDString];
+      v65 = [NSString stringWithFormat:@"otctl-flowID-%@" v64];
+      v66 = [NSUUID UUID];
+      v67 = [v66 UUIDString];
+      v68 = [NSString stringWithFormat:@"otctl-deviceSessionID-%@", v67];
       id v69 = [v62 initWithContainerName:v127 contextID:v129 altDSID:v125 flowID:v65 deviceSessionID:v68];
 
       v70 = objc_alloc(&OBJC_CLASS___EscrowRequestCLI);
       id v130 = 0LL;
-      v71 = (void *)objc_claimAutoreleasedReturnValue(+[SecEscrowRequest request:](&OBJC_CLASS___SecEscrowRequest, "request:", &v130));
+      v71 = [SecEscrowRequest request:v130];
       id v72 = v130;
       v73 = -[EscrowRequestCLI initWithEscrowRequest:](v70, "initWithEscrowRequest:", v71);
 
@@ -1901,7 +1901,7 @@ LABEL_133:
       if (HIDWORD(v182))
       {
         if (v157) {
-          uint64_t v85 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v157,  4LL));
+          uint64_t v85 = [NSString stringWithCString:v157 encoding:4LL];
         }
         else {
           uint64_t v85 = 0LL;
@@ -1909,7 +1909,7 @@ LABEL_133:
         v108 = (void *)v85;
         if (v159)
         {
-          uint64_t v86 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v159,  4LL));
+          uint64_t v86 = [NSString stringWithCString:v159 encoding:4LL];
           v87 = (void *)v86;
           if (v85 && v86)
           {
@@ -2003,8 +2003,8 @@ LABEL_176:
       {
         if (v152)
         {
-          v91 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v152,  4LL));
-          id v92 = objc_claimAutoreleasedReturnValue([v91 description]);
+          v91 = [NSString stringWithCString:v152 encoding:4LL];
+          id v92 = [v91 description];
           printf("machineID: %s\n", (const char *)[v92 UTF8String]);
         }
 
@@ -2023,14 +2023,14 @@ LABEL_176:
       if ((_DWORD)v177)
       {
         if (v155) {
-          v93 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v155,  4LL));
+          v93 = [NSString stringWithCString:v155 encoding:4LL];
         }
         else {
           v93 = 0LL;
         }
         if (v157)
         {
-          uint64_t v95 = objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v157,  4LL));
+          uint64_t v95 = [NSString stringWithCString:v157 encoding:4LL];
           v96 = (void *)v95;
           if (v93 && v95 && v121)
           {
@@ -2061,7 +2061,7 @@ LABEL_206:
       {
         if (v157)
         {
-          v94 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v157,  4LL));
+          v94 = [NSString stringWithCString:v157 encoding:4LL];
           if (v94 && v121)
           {
             uint64_t v37 = -[OTControlCLI performSilentEscrowRecovery:appleID:secret:]( v123,  "performSilentEscrowRecovery:appleID:secret:",  v69,  v121,  v94);
@@ -2118,7 +2118,7 @@ LABEL_205:
         if (!v145) {
           v145 = "1";
         }
-        v98 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:"));
+        v98 = [NSString stringWithUTF8String:];
         v77 = v123;
         uint64_t v37 = -[OTControlCLI tapToRadar:description:radar:]( v123,  "tapToRadar:description:radar:",  @"action",  @"description",  v98);
 
@@ -2812,7 +2812,7 @@ void sub_10000D74C(uint64_t a1, void *a2, void *a3)
     exit(1);
   }
 
-  uint64_t v6 = objc_claimAutoreleasedReturnValue([v9 objectForKeyedSubscript:AKAuthenticationPasswordKey]);
+  uint64_t v6 = [v9 objectForKeyedSubscript:AKAuthenticationPasswordKey];
   uint64_t v7 = *(void *)(*(void *)(a1 + 40) + 8LL);
   id v8 = *(void **)(v7 + 40);
   *(void *)(v7 + 40) = v6;
@@ -2829,7 +2829,7 @@ void sub_10000D7D4(uint64_t a1, void *a2)
     if (*(_BYTE *)(a1 + 40))
     {
       id v9 = @"error";
-      id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 description]);
+      id v5 = [v3 description];
       id v10 = v5;
       uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1LL));
       sub_10000D8EC(v6);
@@ -2838,7 +2838,7 @@ void sub_10000D7D4(uint64_t a1, void *a2)
     else
     {
       uint64_t v7 = __stderrp;
-      id v8 = objc_claimAutoreleasedReturnValue([v3 description]);
+      id v8 = [v3 description];
       fprintf(v7, "Error rerolling: %s\n", (const char *)[v8 UTF8String]);
     }
   }
@@ -2855,7 +2855,7 @@ void sub_10000D8EC(void *a1)
   id v1 = sub_10000D9B4(a1);
   unint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(v1);
   id v6 = 0LL;
-  id v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization dataWithJSONObject:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "dataWithJSONObject:options:error:",  v2,  3LL,  &v6));
+  id v3 = [NSJSONSerialization dataWithJSONObject:v2 options:3 error:&v6];
   id v4 = v6;
 
   if (v3)
@@ -2866,7 +2866,7 @@ void sub_10000D8EC(void *a1)
 
   else
   {
-    id v5 = (NSString *)objc_claimAutoreleasedReturnValue([v4 localizedDescription]);
+    id v5 = [v4 localizedDescription];
     NSLog(@"error during JSONification: %@", v5);
   }
 }
@@ -2894,7 +2894,7 @@ id sub_10000D9B4(void *a1)
             objc_enumerationMutation(v2);
           }
           uint64_t v7 = *(void *)(*((void *)&v12 + 1) + 8LL * (void)i);
-          id v8 = (void *)objc_claimAutoreleasedReturnValue([v1 objectForKeyedSubscript:v7]);
+          id v8 = [v1 objectForKeyedSubscript:v7];
           id v9 = sub_10000DAF8(v8);
           id v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
           [v1 setObject:v10 forKeyedSubscript:v7];
@@ -2937,9 +2937,9 @@ id sub_10000DAF8(void *a1)
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v39,  v38,  2LL));
     id v8 = [v7 mutableCopy];
 
-    id v9 = (NSISO8601DateFormatter *)objc_claimAutoreleasedReturnValue([v4 userInfo]);
+    id v9 = [v4 userInfo];
     uint64_t v10 = sub_10000D9B4(v9);
-    id v11 = (id)objc_claimAutoreleasedReturnValue(v10);
+    id v11 = [v10 autorelease];
     [v8 setObject:v11 forKeyedSubscript:@"userInfo"];
 LABEL_4:
 
@@ -2956,7 +2956,7 @@ LABEL_4:
   uint64_t v17 = objc_opt_class(&OBJC_CLASS___NSData, v14);
   if ((objc_opt_isKindOfClass(v2, v17) & 1) != 0)
   {
-    id v15 = (id)objc_claimAutoreleasedReturnValue([v2 base64EncodedStringWithOptions:0]);
+    id v15 = [v2 base64EncodedStringWithOptions:0];
     goto LABEL_9;
   }
 
@@ -2964,7 +2964,7 @@ LABEL_4:
   if ((objc_opt_isKindOfClass(v2, v19) & 1) != 0)
   {
     uint64_t v21 = sub_10000D9B4(v2);
-    id v15 = (id)objc_claimAutoreleasedReturnValue(v21);
+    id v15 = v21;
     goto LABEL_9;
   }
 
@@ -2976,18 +2976,18 @@ LABEL_4:
     {
       id v11 = v2;
       id v9 = objc_alloc_init(&OBJC_CLASS___NSISO8601DateFormatter);
-      id v8 = (id)objc_claimAutoreleasedReturnValue(-[NSISO8601DateFormatter stringFromDate:](v9, "stringFromDate:", v11));
+      id v8 = [v9 stringFromDate:v11];
       goto LABEL_4;
     }
 
-    id v15 = (id)objc_claimAutoreleasedReturnValue([v2 description]);
+    id v15 = [v2 description];
 LABEL_9:
     id v8 = v15;
     goto LABEL_10;
   }
 
   id v24 = v2;
-  id v8 = (id)objc_claimAutoreleasedReturnValue( +[NSMutableArray arrayWithCapacity:]( NSMutableArray,  "arrayWithCapacity:",  [v24 count]));
+  id v8 = [NSMutableArray arrayWithCapacity:[v24 count]];
   __int128 v33 = 0u;
   __int128 v34 = 0u;
   __int128 v35 = 0u;
@@ -3007,7 +3007,7 @@ LABEL_9:
         }
         uint64_t v30 = sub_10000DAF8(*(void *)(*((void *)&v33 + 1) + 8LL * (void)i));
         __int128 v31 = (void *)objc_claimAutoreleasedReturnValue(v30);
-        objc_msgSend(v8, "addObject:", v31, (void)v33);
+        [v8 addObject:v31];
       }
 
       id v27 = [v25 countByEnumeratingWithState:&v33 objects:v37 count:16];
@@ -3027,7 +3027,7 @@ void sub_10000DE3C(uint64_t a1, void *a2, void *a3)
   uint64_t v7 = v6;
   if (!v6)
   {
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v5 dictionaryRepresentation]);
+    uint64_t v10 = (void *)[v5 dictionaryRepresentation];
     id v8 = v10;
     if (*(_BYTE *)(a1 + 32))
     {
@@ -3037,7 +3037,7 @@ LABEL_9:
       goto LABEL_10;
     }
 
-    id v9 = objc_claimAutoreleasedReturnValue([v10 description]);
+    id v9 = [v10 description];
     puts((const char *)[v9 UTF8String]);
 LABEL_8:
 
@@ -3047,15 +3047,15 @@ LABEL_8:
   if (*(_BYTE *)(a1 + 32))
   {
     uint64_t v13 = @"error";
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 description]);
+    id v8 = [v6 description];
     uint64_t v14 = v8;
-    id v9 = (id)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v14,  &v13,  1LL));
+    id v9 = [NSDictionary dictionaryWithObjects:forKeys:count:v14, v13, 1LL];
     sub_10000D8EC(v9);
     goto LABEL_8;
   }
 
   id v11 = __stderrp;
-  id v12 = objc_claimAutoreleasedReturnValue([v6 description]);
+  id v12 = [v6 description];
   fprintf(v11, "Failed to fetch account metadata: %s\n", (const char *)[v12 UTF8String]);
 
 LABEL_10:
@@ -3070,16 +3070,16 @@ void sub_10000DF8C(uint64_t a1, void *a2)
     if (*(_BYTE *)(a1 + 40))
     {
       id v9 = @"error";
-      id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 description]);
+      id v5 = [v3 description];
       uint64_t v10 = v5;
-      id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1LL));
+      id v6 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1LL);
       sub_10000D8EC(v6);
     }
 
     else
     {
       uint64_t v7 = __stderrp;
-      id v8 = objc_claimAutoreleasedReturnValue([v3 description]);
+      id v8 = [v3 description];
       fprintf(v7, "Failed to set machineID override: %s\n", (const char *)[v8 UTF8String]);
     }
   }
@@ -3101,16 +3101,16 @@ void sub_10000E0A4(uint64_t a1, void *a2, void *a3)
     if (*(_BYTE *)(a1 + 40))
     {
       uint64_t v23 = @"error";
-      id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 description]);
+      id v8 = [v6 description];
       id v24 = v8;
-      id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
+      id v9 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL);
       sub_10000D8EC(v9);
     }
 
     else
     {
       id v15 = __stderrp;
-      id v16 = objc_claimAutoreleasedReturnValue([v6 description]);
+      id v16 = [v6 description];
       fprintf(v15, "Failed to fetch account settings: %s\n", (const char *)[v16 UTF8String]);
     }
   }
@@ -3120,8 +3120,8 @@ void sub_10000E0A4(uint64_t a1, void *a2, void *a3)
     if (*(_BYTE *)(a1 + 40))
     {
       v21[0] = @"walrus";
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v5 walrus]);
-      id v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( NSNumber,  "numberWithBool:",  [v10 enabled]));
+      uint64_t v10 = (void *)[v5 walrus];
+      id v11 = [NSNumber numberWithBool:[v10 enabled]];
       v21[1] = @"webAccess";
       v22[0] = v11;
       id v12 = (void *)objc_claimAutoreleasedReturnValue([v5 webAccess]);
@@ -3135,13 +3135,13 @@ void sub_10000E0A4(uint64_t a1, void *a2, void *a3)
     else
     {
       puts("successfully fetched account settings!");
-      uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v5 walrus]);
+      uint64_t v17 = (void *)[v5 walrus];
       else {
         uint64_t v18 = @"NO";
       }
       printf("walrus enabled? %s\n", (const char *)-[__CFString UTF8String](v18, "UTF8String"));
 
-      uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue([v5 webAccess]);
+      uint64_t v19 = (void *)[v5 webAccess];
       else {
         uint64_t v20 = @"NO";
       }
@@ -3159,7 +3159,7 @@ void sub_10000E310(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "disabling walrus failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3185,7 +3185,7 @@ void sub_10000E3DC(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "enabling walrus failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3211,7 +3211,7 @@ void sub_10000E4A8(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "enabling web access failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3237,7 +3237,7 @@ void sub_10000E574(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "disabling webAccess failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3264,7 +3264,7 @@ void sub_10000E640(uint64_t a1, void *a2, void *a3)
   if (v5)
   {
     double v7 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v8 = [v5 description];
     fprintf( v7,  "createInheritanceKeyWithClaimTokenAndWrappingKey failed: %s\n",  (const char *)[v8 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3279,7 +3279,7 @@ void sub_10000E640(uint64_t a1, void *a2, void *a3)
   else
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v13 dictionary]);
+    id v11 = [v13 dictionary];
     id v12 = v11;
     if (*(_BYTE *)(a1 + 56)) {
       sub_10000D8EC(v11);
@@ -3293,7 +3293,7 @@ void sub_10000E640(uint64_t a1, void *a2, void *a3)
 void sub_10000E74C(const char *a1, void *a2)
 {
   id v3 = a2;
-  id v4 = objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:@"uuid"]);
+  id v4 = [v3 objectForKeyedSubscript:@"uuid"];
   printf("%s %s\n", a1, (const char *)[v4 UTF8String]);
 
   __int128 v16 = 0u;
@@ -3318,7 +3318,7 @@ void sub_10000E74C(const char *a1, void *a2)
         {
           id v11 = v10;
           id v12 = (const char *)[v11 UTF8String];
-          id v13 = objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:v11]);
+          id v13 = [v5 objectForKeyedSubscript:v11];
           printf("\t%s: %s\n", v12, (const char *)[v13 UTF8String]);
         }
       }
@@ -3338,7 +3338,7 @@ void sub_10000E8DC(uint64_t a1, void *a2, void *a3)
   if (v5)
   {
     id v7 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v8 = [v5 description];
     fprintf(v7, "recreateInheritanceKey failed: %s\n", (const char *)[v8 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3353,7 +3353,7 @@ void sub_10000E8DC(uint64_t a1, void *a2, void *a3)
   else
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v13 dictionary]);
+    id v11 = [v13 dictionary];
     id v12 = v11;
     if (*(_BYTE *)(a1 + 56)) {
       sub_10000D8EC(v11);
@@ -3386,7 +3386,7 @@ void sub_10000E9E8(uint64_t a1, int a2, void *a3)
   }
 
   id v6 = __stderrp;
-  id v7 = objc_claimAutoreleasedReturnValue([v5 description]);
+  id v7 = [v5 description];
   fprintf(v6, "checking inheritance key failed: %s\n", (const char *)[v7 UTF8String]);
 
   [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3413,7 +3413,7 @@ void sub_10000EAEC(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "remove inheritance key failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3439,7 +3439,7 @@ void sub_10000EBB8(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "preflight joinWithInheritanceKey failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3465,7 +3465,7 @@ void sub_10000EC84(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "joinWithInheritanceKey failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3490,7 +3490,7 @@ void sub_10000ED50(uint64_t a1, void *a2)
   id v7 = v3;
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("storeInheritanceKey failed: %s\n", (const char *)[v4 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3516,7 +3516,7 @@ void sub_10000EE04(uint64_t a1, void *a2, void *a3)
   double v6 = v5;
   if (v5)
   {
-    id v7 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v7 = [v5 description];
     printf("generateInheritanceKey failed: %s\n", (const char *)[v7 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3531,7 +3531,7 @@ void sub_10000EE04(uint64_t a1, void *a2, void *a3)
   else
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
-    unsigned int v10 = (void *)objc_claimAutoreleasedReturnValue([v12 dictionary]);
+    unsigned int v10 = (void *)[v12 dictionary];
     double v11 = v10;
     if (*(_BYTE *)(a1 + 56)) {
       sub_10000D8EC(v10);
@@ -3550,7 +3550,7 @@ void sub_10000EF00(uint64_t a1, void *a2, void *a3)
   if (v5)
   {
     id v7 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v8 = [v5 description];
     fprintf(v7, "createInheritanceKey failed: %s\n", (const char *)[v8 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3565,7 +3565,7 @@ void sub_10000EF00(uint64_t a1, void *a2, void *a3)
   else
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
-    double v11 = (void *)objc_claimAutoreleasedReturnValue([v13 dictionary]);
+    double v11 = [v13 dictionary];
     id v12 = v11;
     if (*(_BYTE *)(a1 + 56)) {
       sub_10000D8EC(v11);
@@ -3581,7 +3581,7 @@ void sub_10000F00C(uint64_t a1, int a2, void *a3)
   if (a3)
   {
     id v3 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([a3 description]);
+    id v8 = [a3 description];
     fprintf(v3, "preflight join with recovery key failed: %s\n", (const char *)[v8 UTF8String]);
   }
 
@@ -3604,7 +3604,7 @@ void sub_10000F0C8(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "joining with recovery key failed: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3619,7 +3619,7 @@ void sub_10000F164(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "set recovery key failed: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3634,7 +3634,7 @@ void sub_10000F200(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "remove recovery key failed: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3666,7 +3666,7 @@ void sub_10000F28C(uint64_t a1, int a2, void *a3)
   }
 
   double v6 = __stderrp;
-  id v7 = objc_claimAutoreleasedReturnValue([v5 description]);
+  id v7 = [v5 description];
   fprintf(v6, "checking custodian recovery key failed: %s\n", (const char *)[v7 UTF8String]);
 
   [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3693,7 +3693,7 @@ void sub_10000F390(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "remove custodian recovery key failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3719,7 +3719,7 @@ void sub_10000F45C(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "preflightJoinWithCustodianRecoveryKey failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3745,7 +3745,7 @@ void sub_10000F528(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "joinWithCustodianRecoveryKey failed: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3772,7 +3772,7 @@ void sub_10000F5F4(uint64_t a1, void *a2, void *a3)
   if (v5)
   {
     double v7 = __stderrp;
-    id v8 = objc_claimAutoreleasedReturnValue([v5 description]);
+    id v8 = [v5 description];
     fprintf(v7, "createCustodianRecoveryKey failed: %s\n", (const char *)[v8 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -3787,7 +3787,7 @@ void sub_10000F5F4(uint64_t a1, void *a2, void *a3)
   else
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
-    double v11 = (void *)objc_claimAutoreleasedReturnValue([v13 dictionary]);
+    double v11 = [v13 dictionary];
     id v12 = v11;
     if (*(_BYTE *)(a1 + 56)) {
       sub_10000D8EC(v11);
@@ -3803,7 +3803,7 @@ uint64_t sub_10000F700(uint64_t a1, void *a2)
   if (a2)
   {
     id v3 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v3, "Error resetting account cdp content: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3821,7 +3821,7 @@ void sub_10000F78C(uint64_t a1, int a2, void *a3)
   if (a3)
   {
     id v3 = __stderrp;
-    id v6 = objc_claimAutoreleasedReturnValue([a3 description]);
+    id v6 = [a3 description];
     fprintf(v3, "Error setting user controllable views: %s\n", (const char *)[v6 UTF8String]);
   }
 
@@ -3842,7 +3842,7 @@ void sub_10000F83C(uint64_t a1, int a2, void *a3)
   if (a3)
   {
     id v3 = __stderrp;
-    id v6 = objc_claimAutoreleasedReturnValue([a3 description]);
+    id v6 = [a3 description];
     fprintf(v3, "Error setting user controllable views: %s\n", (const char *)[v6 UTF8String]);
   }
 
@@ -3863,7 +3863,7 @@ void sub_10000F8EC(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error trigger TTR: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3878,7 +3878,7 @@ void sub_10000F978(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error refetching CKKS policy: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -3897,16 +3897,16 @@ void sub_10000FA04(uint64_t a1, void *a2)
     if (*(_BYTE *)(a1 + 40))
     {
       double v9 = @"error";
-      id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 description]);
+      id v5 = [v3 description];
       double v10 = v5;
-      id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1LL));
+      id v6 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1LL);
       sub_10000D8EC(v6);
     }
 
     else
     {
       double v7 = __stderrp;
-      id v8 = objc_claimAutoreleasedReturnValue([v3 description]);
+      id v8 = [v3 description];
       fprintf(v7, "Error simulating push: %s\n", (const char *)[v8 UTF8String]);
     }
   }
@@ -3933,16 +3933,16 @@ void sub_10000FB30(uint64_t a1, void *a2, void *a3)
     if (*(_BYTE *)(a1 + 40))
     {
       __int128 v15 = @"error";
-      id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 description]);
+      id v8 = [v6 description];
       __int128 v16 = v8;
-      double v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v16,  &v15,  1LL));
+      double v9 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v16,  &v15,  1LL);
       sub_10000D8EC(v9);
     }
 
     else
     {
       id v12 = __stderrp;
-      id v13 = objc_claimAutoreleasedReturnValue([v6 description]);
+      id v13 = [v6 description];
       fprintf(v12, "Error checking health: %s\n", (const char *)[v13 UTF8String]);
     }
   }
@@ -3951,7 +3951,7 @@ void sub_10000FB30(uint64_t a1, void *a2, void *a3)
   {
     if (v5)
     {
-      double v10 = (void *)objc_claimAutoreleasedReturnValue([v5 dictionaryRepresentation]);
+      double v10 = [v5 dictionaryRepresentation];
       double v11 = v10;
       if (*(_BYTE *)(a1 + 40))
       {
@@ -3961,7 +3961,7 @@ void sub_10000FB30(uint64_t a1, void *a2, void *a3)
       else
       {
         puts("Checking Octagon Health completed.");
-        id v14 = objc_claimAutoreleasedReturnValue([v11 description]);
+        id v14 = [v11 description];
         puts((const char *)[v14 UTF8String]);
       }
     }
@@ -4034,13 +4034,13 @@ uint64_t sub_10000FEB0(uint64_t a1, void *a2)
   {
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 1;
     id v3 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v3, "Error recovering: %s\n", (const char *)[v4 UTF8String]);
   }
 
   else
   {
-    id v5 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) description]);
+    id v5 = [*(id *)(a1 + 32) description];
     printf("Succeeded recovering bottled peer %s\n", (const char *)[v5 UTF8String]);
 
     *(_DWORD *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL) = 0;
@@ -4059,16 +4059,16 @@ void sub_10000FF6C(uint64_t a1, void *a2, void *a3)
     if (!*(_BYTE *)(a1 + 48))
     {
       BOOL v12 = __stderrp;
-      id v13 = objc_claimAutoreleasedReturnValue([v8 description]);
+      id v13 = [v8 description];
       fprintf(v12, "Error fetching status: %s\n", (const char *)[v13 UTF8String]);
 
       goto LABEL_59;
     }
 
     uint64_t v84 = @"error";
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v8 description]);
+    uint64_t v10 = (void *)[v8 description];
     uint64_t v85 = v10;
-    double v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v85,  &v84,  1LL));
+    double v11 = [NSDictionary dictionaryWithObjects:forKeys:count:&v85, &v84, 1LL];
     sub_10000D8EC(v11);
 
     goto LABEL_7;
@@ -4079,32 +4079,32 @@ void sub_10000FF6C(uint64_t a1, void *a2, void *a3)
     *(_DWORD *)(*(void *)(*(void *)(a1 + 40) + 8LL) + 24LL) = 0;
     if (*(_BYTE *)(a1 + 48))
     {
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(+[OTControlCLI annotateStatus:](&OBJC_CLASS___OTControlCLI, "annotateStatus:", v7));
+      uint64_t v10 = (void *)[OBJC_CLASS___OTControlCLI annotateStatus:v7];
       sub_10000D8EC(v10);
 LABEL_7:
 
       goto LABEL_59;
     }
 
-    id v14 = objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"containerName"]);
+    id v14 = [v7 objectForKeyedSubscript:@"containerName"];
     id v15 = (const char *)[v14 UTF8String];
-    id v16 = objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"contextID"]);
+    id v16 = [v7 objectForKeyedSubscript:@"contextID"];
     printf("Status for %s,%s:\n", v15, (const char *)[v16 UTF8String]);
 
-    id v17 = objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"activeAccount"]);
+    id v17 = [v7 objectForKeyedSubscript:@"activeAccount"];
     printf("Active account: %s\n", (const char *)[v17 UTF8String]);
 
     putchar(10);
-    id v18 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"state"]);
-    id v19 = objc_claimAutoreleasedReturnValue([v18 description]);
+    id v18 = [v7 objectForKeyedSubscript:@"state"];
+    id v19 = [v18 description];
     printf("State: %s\n", (const char *)[v19 UTF8String]);
 
-    uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"stateFlags"]);
+    uint64_t v20 = (void *)[v7 objectForKeyedSubscript:@"stateFlags"];
     id v21 = [v20 count];
     if (v21)
     {
-      id v3 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"stateFlags"]);
-      id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+      id v3 = (void *)[v7 objectForKeyedSubscript:@"stateFlags"];
+      id v4 = [v3 description];
       int v22 = (const char *)[v4 UTF8String];
     }
 
@@ -4113,11 +4113,11 @@ LABEL_7:
       int v22 = "none";
     }
 
-    id v23 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"statePendingFlags"]);
+    id v23 = [v7 objectForKeyedSubscript:@"statePendingFlags"];
     if ([v23 count])
     {
-      __int16 v24 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"statePendingFlags"]);
-      id v25 = objc_claimAutoreleasedReturnValue([v24 description]);
+      __int16 v24 = (void *)[v7 objectForKeyedSubscript:@"statePendingFlags"];
+      id v25 = [v24 description];
       printf("Flags: %s; Flags Pending: %s\n\n", v22, (const char *)[v25 UTF8String]);
     }
 
@@ -4132,15 +4132,15 @@ LABEL_7:
     {
     }
 
-    id v26 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"contextDump"]);
-    id v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-    uint64_t v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+    id v26 = [v7 objectForKeyedSubscript:@"contextDump"];
+    id v27 = [NSMutableDictionary dictionary];
+    uint64_t v28 = (void *)[NSMutableArray array];
     __int128 v78 = 0u;
     __int128 v79 = 0u;
     __int128 v80 = 0u;
     __int128 v81 = 0u;
     v73 = v26;
-    __int128 v29 = (void *)objc_claimAutoreleasedReturnValue([v26 objectForKeyedSubscript:@"peers"]);
+    __int128 v29 = (void *)[v26 objectForKeyedSubscript:@"peers"];
     id v30 = [v29 countByEnumeratingWithState:&v78 objects:v83 count:16];
     if (v30)
     {
@@ -4175,7 +4175,7 @@ LABEL_7:
     __int128 v75 = 0u;
     __int128 v76 = 0u;
     __int128 v77 = 0u;
-    uint64_t v37 = (void *)objc_claimAutoreleasedReturnValue([v73 objectForKeyedSubscript:@"custodian_recovery_keys"]);
+    uint64_t v37 = (void *)[v73 objectForKeyedSubscript:@"custodian_recovery_keys"];
     id v38 = [v37 countByEnumeratingWithState:&v74 objects:v82 count:16];
     if (v38)
     {
@@ -4189,7 +4189,7 @@ LABEL_7:
             objc_enumerationMutation(v37);
           }
           uint64_t v42 = *(void **)(*((void *)&v74 + 1) + 8LL * (void)j);
-          __int128 v43 = (void *)objc_claimAutoreleasedReturnValue([v42 objectForKeyedSubscript:@"peerID"]);
+          __int128 v43 = (void *)[v42 objectForKeyedSubscript:@"peerID"];
           if (v43) {
             [v36 setObject:v42 forKeyedSubscript:v43];
           }
@@ -4201,17 +4201,17 @@ LABEL_7:
       while (v39);
     }
 
-    __int128 v44 = (void *)objc_claimAutoreleasedReturnValue([v73 objectForKeyedSubscript:@"self"]);
-    v45 = (void *)objc_claimAutoreleasedReturnValue([v44 objectForKeyedSubscript:@"peerID"]);
-    v46 = (void *)objc_claimAutoreleasedReturnValue([v44 objectForKeyedSubscript:@"stableInfo"]);
-    v47 = (void *)objc_claimAutoreleasedReturnValue([v44 objectForKeyedSubscript:@"dynamicInfo"]);
+    __int128 v44 = (void *)[v73 objectForKeyedSubscript:@"self"];
+    v45 = [v44 objectForKeyedSubscript:@"peerID"];
+    v46 = [v44 objectForKeyedSubscript:@"stableInfo"];
+    v47 = (void *)[v44 objectForKeyedSubscript:@"dynamicInfo"];
     if (v45)
     {
       id v48 = [v28 mutableCopy];
       [*(id *)(v70 + 32) printPeer:v44 prefix:@"    Self: "];
       putchar(10);
       [v27 setObject:v44 forKeyedSubscript:v45];
-      __int128 v49 = (void *)objc_claimAutoreleasedReturnValue([v47 objectForKeyedSubscript:@"included"]);
+      __int128 v49 = (void *)[v47 objectForKeyedSubscript:@"included"];
       puts("Trusted peers (by me):");
       id v69 = v48;
       if (v49 && [v49 count])
@@ -4228,7 +4228,7 @@ LABEL_7:
       v68 = v49;
       putchar(10);
       v66 = v47;
-      __int128 v50 = (void *)objc_claimAutoreleasedReturnValue([v47 objectForKeyedSubscript:@"excluded"]);
+      __int128 v50 = (void *)[v47 objectForKeyedSubscript:@"excluded"];
       puts("Excluded peers (by me):");
       id v7 = v72;
       if (v50 && [v50 count])
@@ -4255,28 +4255,28 @@ LABEL_7:
       }
       uint64_t v52 = v68;
       putchar(10);
-      uint64_t v53 = objc_claimAutoreleasedReturnValue([v46 objectForKeyedSubscript:@"recovery_encryption_public_key"]);
+      uint64_t v53 = [v46 objectForKeyedSubscript:@"recovery_encryption_public_key"];
       v54 = v46;
       if (v53)
       {
         v55 = (void *)v53;
-        v56 = (void *)objc_claimAutoreleasedReturnValue([v54 objectForKeyedSubscript:@"recovery_signing_public_key"]);
+        v56 = (void *)[v54 objectForKeyedSubscript:@"recovery_signing_public_key"];
 
         if (v56)
         {
           puts("Recovery Key:");
           double v57 = objc_alloc(&OBJC_CLASS___NSData);
-          uint64_t v58 = (void *)objc_claimAutoreleasedReturnValue([v54 objectForKeyedSubscript:@"recovery_signing_public_key"]);
+          uint64_t v58 = (void *)[v54 objectForKeyedSubscript:@"recovery_signing_public_key"];
           v71 = -[NSData initWithData:](v57, "initWithData:", v58);
 
           id v7 = v72;
           uint64_t v59 = objc_alloc(&OBJC_CLASS___NSData);
-          v60 = (void *)objc_claimAutoreleasedReturnValue([v54 objectForKeyedSubscript:@"recovery_encryption_public_key"]);
+          v60 = (void *)[v54 objectForKeyedSubscript:@"recovery_encryption_public_key"];
           v61 = -[NSData initWithData:](v59, "initWithData:", v60);
 
-          id v62 = (void *)objc_claimAutoreleasedReturnValue(-[NSData base64EncodedStringWithOptions:](v71, "base64EncodedStringWithOptions:", 0LL));
+          id v62 = [v71 base64EncodedStringWithOptions:0LL];
           v63 = v61;
-          id v64 = objc_claimAutoreleasedReturnValue( -[NSData base64EncodedStringWithOptions:]( v61, "base64EncodedStringWithOptions:", 0LL));
+          id v64 = [v61 base64EncodedStringWithOptions:0LL];
           printf("    Encryption public key: %s\n", (const char *)[v64 UTF8String]);
           id v65 = v62;
           printf("    Signing public key: %s\n", (const char *)[v65 UTF8String]);
@@ -4333,7 +4333,7 @@ void sub_1000108A8(uint64_t a1, void *a2)
   if (v3)
   {
     id v4 = __stderrp;
-    id v5 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v5 = [v3 description];
     fprintf(v4, "Error resetting: %s\n", (const char *)[v5 UTF8String]);
 
     [*(id *)(a1 + 32) timeIntervalSinceNow];
@@ -4357,7 +4357,7 @@ void sub_100010974(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error departing clique: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -4372,7 +4372,7 @@ void sub_100010A00(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error signing out: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -4387,7 +4387,7 @@ void sub_100010A8C(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error signing in: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -4402,7 +4402,7 @@ void sub_100010B18(uint64_t a1, void *a2)
   if (a2)
   {
     id v2 = __stderrp;
-    id v4 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v4 = [a2 description];
     fprintf(v2, "Error starting state machine: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -4535,8 +4535,8 @@ void sub_100011798(uint64_t a1)
 
 void sub_1000117A0(uint64_t a1, uint64_t a2, void *a3)
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a3 userInfo]);
-  id obj = (id)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"CKRetryAfter"]);
+  id v4 = [a3 userInfo];
+  id obj = [v4 objectForKeyedSubscript:@"CKRetryAfter"];
 
   id v5 = obj;
   if (obj)
@@ -4567,7 +4567,7 @@ LABEL_6:
 LABEL_22:
   attemptedJoin = self->_attemptedJoin;
   if (attemptedJoin >= 3) {
-    id v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  self->_attemptedJoin));
+    id v16 = [NSString stringWithFormat:@"(unknown: %i)", self->_attemptedJoin];
   }
   else {
     id v16 = *(&off_1000207F0 + attemptedJoin);
@@ -4579,7 +4579,7 @@ LABEL_22:
 LABEL_26:
     cdpState = self->_cdpState;
     if (cdpState >= 3) {
-      id v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(unknown: %i)",  self->_cdpState));
+      id v18 = [NSString stringWithFormat:@"(unknown: %i)", self->_cdpState];
     }
     else {
       id v18 = *(&off_100020808 + cdpState);
@@ -4717,13 +4717,13 @@ LABEL_13:
 
 LABEL_14:
   if (self->_syncingPolicy) {
-    objc_msgSend(v13, "setSyncingPolicy:");
+    [v13 setSyncingPolicy:];
   }
   if (self->_voucher) {
-    objc_msgSend(v13, "setVoucher:");
+    [v13 setVoucher:];
   }
   if (self->_voucherSignature) {
-    objc_msgSend(v13, "setVoucherSignature:");
+    [v13 setVoucherSignature:];
   }
   if (-[OTAccountMetadataClassC tlkSharesForVouchedIdentitysCount](self, "tlkSharesForVouchedIdentitysCount"))
   {
@@ -4741,7 +4741,7 @@ LABEL_14:
   }
 
   if (self->_secureElementIdentity) {
-    objc_msgSend(v13, "setSecureElementIdentity:");
+    [v13 setSecureElementIdentity:];
   }
   double v11 = (__int16)self->_has;
   BOOL v12 = v13;
@@ -4912,7 +4912,7 @@ LABEL_30:
 LABEL_31:
   if (self->_oldPeerID)
   {
-    objc_msgSend(v13, "setOldPeerID:");
+    [v13 setOldPeerID:];
     BOOL v12 = v13;
   }
 }
@@ -4969,57 +4969,57 @@ LABEL_12:
 
 id objc_msgSend_createInheritanceKeyWithClaimTokenAndWrappingKey_uuidString_claimToken_wrappingKey_json_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "createInheritanceKeyWithClaimTokenAndWrappingKey:uuidString:claimToken:wrappingKey:json:timeout:");
+  return [a1 createInheritanceKeyWithClaimTokenAndWrappingKey:uuidString:claimToken:wrappingKey:json:timeout:];
 }
 
 id objc_msgSend_joinWithCustodianRecoveryKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "joinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
+  return [a1 joinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
 }
 
 id objc_msgSend_joinWithInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "joinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
+  return [a1 joinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
 }
 
 id objc_msgSend_performEscrowRecovery_recordID_appleID_secret_overrideForAccountScript_overrideEscrowCache_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "performEscrowRecovery:recordID:appleID:secret:overrideForAccountScript:overrideEscrowCache:");
+  return [a1 performEscrowRecovery:recordID:appleID:secret:overrideForAccountScript:overrideEscrowCache:];
 }
 
 id objc_msgSend_preflightJoinWithCustodianRecoveryKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "preflightJoinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
+  return [a1 preflightJoinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
 }
 
 id objc_msgSend_preflightJoinWithInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "preflightJoinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
+  return [a1 preflightJoinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
 }
 
 id objc_msgSend_recreateInheritanceKeyWithArguments_uuidString_wrappingKey_wrappedKey_claimToken_json_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "recreateInheritanceKeyWithArguments:uuidString:wrappingKey:wrappedKey:claimToken:json:timeout:");
+  return [a1 recreateInheritanceKeyWithArguments:uuidString:wrappingKey:wrappedKey:claimToken:json:timeout:];
 }
 
 id objc_msgSend_resetAccountCDPContents_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_reply_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "resetAccountCDPContents:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:reply:");
+  return [a1 resetAccountCDPContents:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:reply:];
 }
 
 id objc_msgSend_resetAccountCDPContentsWithArguments_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "resetAccountCDPContentsWithArguments:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:");
+  return [a1 resetAccountCDPContentsWithArguments:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:];
 }
 
 id objc_msgSend_resetAndEstablish_resetReason_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_accountSettings_isGuitarfish_reply_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "resetAndEstablish:resetReason:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:accountSettings:isGuitarfish:reply:");
+  return [a1 resetAndEstablish:resetReason:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:accountSettings:isGuitarfish:reply:];
 }
 
 id objc_msgSend_resetOctagon_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_isGuitarfish_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "resetOctagon:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:isGuitarfish:timeout:");
+  return [a1 resetOctagon:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:isGuitarfish:timeout:];
 }
 
 id objc_msgSend_resetProtectedData_appleID_dsid_idmsTargetContext_idmsCuttlefishPassword_isGuitarfish_notifyIdMS_( void *a1, const char *a2, ...)
@@ -5029,12 +5029,12 @@ id objc_msgSend_resetProtectedData_appleID_dsid_idmsTargetContext_idmsCuttlefish
 
 id objc_msgSend_resetProtectedData_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_error_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:");
+  return [a1 resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:];
 }
 
 id objc_msgSend_storeInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "storeInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
+  return [a1 storeInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
 }
 
 id objc_msgSend_webAccess(void *a1, const char *a2, ...)

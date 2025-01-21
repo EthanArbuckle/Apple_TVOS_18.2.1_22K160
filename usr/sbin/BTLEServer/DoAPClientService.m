@@ -88,22 +88,22 @@
   v12.receiver = self;
   v12.super_class = (Class)&OBJC_CLASS___DoAPClientService;
   -[ClientService start](&v12, "start");
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSupportedCodecsCharacteristicString));
+  v3 = [CBUUID UUIDWithString:CBUUIDSupportedCodecsCharacteristicString];
   v13[0] = v3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSelectedCodecCharacteristicString));
+  v4 = [CBUUID UUIDWithString:CBUUIDSelectedCodecCharacteristicString];
   v13[1] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStartStreamingCharacteristicString));
+  v5 = [CBUUID UUIDWithString:CBUUIDStartStreamingCharacteristicString];
   v13[2] = v5;
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStopStreamingCharacteristicString));
+  v6 = [CBUUID UUIDWithString:CBUUIDStopStreamingCharacteristicString];
   v13[3] = v6;
-  v7 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", CBUUIDSendDataCharacteristicString));
+  v7 = [CBUUID UUIDWithString:CBUUIDSendDataCharacteristicString];
   v13[4] = v7;
-  v8 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDEventIndicatorCharacteristicString));
+  v8 = [CBUUID UUIDWithString:CBUUIDEventIndicatorCharacteristicString];
   v13[5] = v8;
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v13, 6LL));
+  v9 = [NSArray arrayWithObjects:count:v13, 6LL];
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v11 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService service](self, "service"));
+  v10 = [self peripheral];
+  v11 = -[ClientService service];
   [v10 discoverCharacteristics:v9 forService:v11];
 }
 
@@ -409,7 +409,7 @@ LABEL_39:
       *(_OWORD *)buf = v15;
       int v18 = v16;
       -[DoAPCodec addCodec:](v13, "addCodec:", buf);
-      uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService codecList](self, "codecList"));
+      uint64_t v14 = (void *)[self codecList];
       [v14 addObject:v13];
 
       int v9 = v12 + v11;
@@ -438,13 +438,13 @@ LABEL_39:
   if ((v4 & 1) != 0)
   {
     uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService SupportedCodecsCharacteristic](self, "SupportedCodecsCharacteristic"));
-    unsigned int v6 = (void *)objc_claimAutoreleasedReturnValue([v5 value]);
+    unsigned int v6 = (void *)[v5 value];
     id v7 = [v6 length];
 
     if ((unint64_t)v7 >= 7)
     {
       int v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService SupportedCodecsCharacteristic](self, "SupportedCodecsCharacteristic"));
-      id v9 = objc_claimAutoreleasedReturnValue([v8 value]);
+      id v9 = [v8 value];
       unsigned int v10 = (unsigned __int8 *)[v9 bytes];
 
       unsigned int v13 = *v10;
@@ -489,13 +489,13 @@ LABEL_39:
         if ((_DWORD)v18)
         {
           -[DoAPClientService parseTLVCodecList:dataLength:streamID:]( self,  "parseTLVCodecList:dataLength:streamID:",  v11,  v18,  v16);
-          v20 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService codecList](self, "codecList"));
+          v20 = -[DoAPClientService codecList];
           uint64_t v21 = (void *)objc_claimAutoreleasedReturnValue( +[DoAPDevice doapDeviceWithCodecs:streamID:]( &OBJC_CLASS___DoAPDevice,  "doapDeviceWithCodecs:streamID:",  v20,  v16));
 
           if (v21)
           {
             [v21 setService:self];
-            v22 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+            v22 = [self peripheral];
             [v21 setPeripheral:v22];
 
             uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices"));
@@ -513,7 +513,7 @@ LABEL_39:
           }
 
           int v11 = (unsigned __int16 *)((char *)v11 + v18);
-          v26 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService codecList](self, "codecList"));
+          v26 = -[DoAPClientService codecList];
           [v26 removeAllObjects];
         }
 
@@ -541,7 +541,7 @@ LABEL_39:
   __int128 v8 = 0u;
   __int128 v9 = 0u;
   __int128 v10 = 0u;
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices", 0LL));
+  v2 = -[DoAPClientService doapDevices];
   id v3 = [v2 countByEnumeratingWithState:&v7 objects:v11 count:16];
   if (v3)
   {
@@ -573,7 +573,7 @@ LABEL_39:
   __int128 v11 = 0u;
   __int128 v12 = 0u;
   __int128 v13 = 0u;
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices"));
+  id v3 = -[DoAPClientService doapDevices];
   id v4 = [v3 countByEnumeratingWithState:&v10 objects:v14 count:16];
   if (v4)
   {
@@ -618,7 +618,7 @@ LABEL_39:
 - (void)setNotificationEnabled:(id)a3
 {
   id v12 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStartStreamingCharacteristicString));
+  id v4 = [CBUUID UUIDWithString:CBUUIDStartStreamingCharacteristicString];
   unsigned int v5 = [v12 isEqual:v4];
 
   if (v5)
@@ -671,7 +671,7 @@ LABEL_39:
   __int128 v58 = 0u;
   __int128 v55 = 0u;
   __int128 v56 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue([a4 characteristics]);
+  id obj = [a4 characteristics];
   id v10 = [obj countByEnumeratingWithState:&v55 objects:v59 count:16];
   if (v10)
   {
@@ -700,14 +700,14 @@ LABEL_39:
 
         else
         {
-          v17 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
-          uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v53));
+          v17 = [v15 UUID];
+          uint64_t v18 = (void *)[CBUUID UUIDWithString:v53];
           unsigned int v19 = [v17 isEqual:v18];
 
           if (v19)
           {
             -[DoAPClientService setSupportedCodecsCharacteristic:](self, "setSupportedCodecsCharacteristic:", v15);
-            v20 = (void *)objc_claimAutoreleasedReturnValue([v15 value]);
+            v20 = [v15 value];
 
             if (!v20) {
               [v51 readValueForCharacteristic:v15];
@@ -716,15 +716,15 @@ LABEL_39:
           }
         }
 
-        uint64_t v21 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService SelectedCodecCharacteristic](self, "SelectedCodecCharacteristic"));
+        uint64_t v21 = (void *)[self SelectedCodecCharacteristic];
         if (v21)
         {
         }
 
         else
         {
-          v22 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
-          uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v52));
+          v22 = [v15 UUID];
+          uint64_t v23 = (void *)[CBUUID UUIDWithString:v52];
           unsigned int v24 = [v22 isEqual:v23];
 
           if (v24)
@@ -734,15 +734,15 @@ LABEL_39:
           }
         }
 
-        uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService StartStreamingCharacteristic](self, "StartStreamingCharacteristic"));
+        uint64_t v25 = (void *)[self StartStreamingCharacteristic];
         if (v25)
         {
         }
 
         else
         {
-          v26 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
-          uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v50));
+          v26 = [v15 UUID];
+          uint64_t v27 = (void *)[CBUUID UUIDWithString:v50];
           unsigned int v28 = [v26 isEqual:v27];
 
           if (v28)
@@ -762,7 +762,7 @@ LABEL_39:
 
         else
         {
-          v30 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
+          v30 = (void *)[v15 UUID];
           int v31 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v49));
           unsigned int v32 = [v30 isEqual:v31];
 
@@ -783,8 +783,8 @@ LABEL_39:
 
         else
         {
-          v34 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
-          uint64_t v35 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v48));
+          v34 = [v15 UUID];
+          uint64_t v35 = (void *)[CBUUID UUIDWithString:v48];
           unsigned int v36 = [v34 isEqual:v35];
 
           if (v36)
@@ -797,14 +797,14 @@ LABEL_39:
           }
         }
 
-        v37 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService EventIndicatorCharacteristic](self, "EventIndicatorCharacteristic"));
+        v37 = -[DoAPClientService EventIndicatorCharacteristic];
         if (v37)
         {
         }
 
         else
         {
-          v38 = (void *)objc_claimAutoreleasedReturnValue([v15 UUID]);
+          v38 = [v15 UUID];
           unsigned int v39 = (void *)objc_claimAutoreleasedReturnValue(+[CBUUID UUIDWithString:](&OBJC_CLASS___CBUUID, "UUIDWithString:", v47));
           unsigned int v40 = [v38 isEqual:v39];
 
@@ -827,27 +827,27 @@ LABEL_22:
   if (!a5)
   {
     int v9 = _os_feature_enabled_impl("BluetoothFeatures", "MultiClientDoAP", v7);
-    id v10 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService SupportedCodecsCharacteristic](self, "SupportedCodecsCharacteristic"));
+    id v10 = -[DoAPClientService SupportedCodecsCharacteristic];
 
     if (v9)
     {
       if (v10 != v8)
       {
-        uint64_t v11 = objc_claimAutoreleasedReturnValue(-[DoAPClientService StartStreamingCharacteristic](self, "StartStreamingCharacteristic"));
+        uint64_t v11 = [self StartStreamingCharacteristic];
         char v12 = v8;
         if ((id)v11 != v8)
         {
           uint64_t v13 = (void *)v11;
-          uint64_t v14 = objc_claimAutoreleasedReturnValue(-[DoAPClientService StopStreamingCharacteristic](self, "StopStreamingCharacteristic"));
+          uint64_t v14 = [self StopStreamingCharacteristic];
           int v15 = v8;
           if ((id)v14 != v8)
           {
             uint64_t v16 = (void *)v14;
-            uint64_t v17 = objc_claimAutoreleasedReturnValue(-[DoAPClientService SendDataCharacteristic](self, "SendDataCharacteristic"));
+            uint64_t v17 = [self SendDataCharacteristic];
             if ((id)v17 != v8)
             {
               uint64_t v18 = (void *)v17;
-              id v19 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService EventIndicatorCharacteristic](self, "EventIndicatorCharacteristic"));
+              id v19 = [self EventIndicatorCharacteristic];
 
               if (v19 != v8) {
                 goto LABEL_2;
@@ -862,8 +862,8 @@ LABEL_22:
         }
 
 LABEL_20:
-        uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue([v8 value]);
-        v30 = (void *)objc_claimAutoreleasedReturnValue( +[DataInputStream inputStreamWithData:byteOrder:]( &OBJC_CLASS___DataInputStream,  "inputStreamWithData:byteOrder:",  v29,  1LL));
+        uint64_t v29 = (void *)[v8 value];
+        v30 = [DataInputStream inputStreamWithData:v29 byteOrder:1];
 
         unsigned __int16 v66 = 0;
         __int128 v56 = v30;
@@ -872,7 +872,7 @@ LABEL_20:
         __int128 v63 = 0u;
         __int128 v64 = 0u;
         __int128 v65 = 0u;
-        id obj = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices"));
+        id obj = [self doapDevices];
         id v31 = [obj countByEnumeratingWithState:&v62 objects:v68 count:16];
         if (!v31) {
           goto LABEL_37;
@@ -889,16 +889,16 @@ LABEL_20:
             uint64_t v35 = *(void **)(*((void *)&v62 + 1) + 8LL * (void)i);
             unsigned int v36 = [v35 streamID];
             int v37 = v66;
-            id v38 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService StopStreamingCharacteristic](self, "StopStreamingCharacteristic"));
+            id v38 = [self StopStreamingCharacteristic];
 
             if (v38 != v8)
             {
-              id v39 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService SendDataCharacteristic](self, "SendDataCharacteristic"));
+              id v39 = [self SendDataCharacteristic];
 
               if (v39 != v8)
               {
                 unsigned int v40 = self;
-                id v41 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService EventIndicatorCharacteristic](self, "EventIndicatorCharacteristic"));
+                id v41 = [self EventIndicatorCharacteristic];
 
                 if (v41 == v8
                   && (v42 = (void *)objc_claimAutoreleasedReturnValue([v8 value]),
@@ -906,7 +906,7 @@ LABEL_20:
                       v42,
                       (unint64_t)v43 >= 3))
                 {
-                  id v44 = objc_claimAutoreleasedReturnValue([v8 value]);
+                  id v44 = [v8 value];
                   v45 = (unsigned __int8 *)[v44 bytes];
 
                   int v46 = v45[2];
@@ -948,8 +948,8 @@ LABEL_37:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR))
     {
       char v12 = v11;
-      uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
-      uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService uuidToString:](self, "uuidToString:", v13));
+      uint64_t v13 = (void *)[v9 UUID];
+      uint64_t v14 = (void *)[self uuidToString:v13];
       int v16 = 138412546;
       uint64_t v17 = v14;
       __int16 v18 = 2112;
@@ -963,7 +963,7 @@ LABEL_37:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
       sub_10003BA20(v11, v9);
     }
-    int v15 = (void *)objc_claimAutoreleasedReturnValue([v9 UUID]);
+    int v15 = (void *)[v9 UUID];
     -[DoAPClientService setNotificationEnabled:](self, "setNotificationEnabled:", v15);
 
     -[DoAPClientService createDoAPDevice](self, "createDoAPDevice");
@@ -977,21 +977,21 @@ LABEL_37:
   if (a5) {
     goto LABEL_2;
   }
-  uint64_t v10 = objc_claimAutoreleasedReturnValue(-[DoAPClientService StartStreamingCharacteristic](self, "StartStreamingCharacteristic"));
+  uint64_t v10 = [self StartStreamingCharacteristic];
   uint64_t v11 = v9;
   if ((id)v10 != v9)
   {
     char v12 = (void *)v10;
-    uint64_t v13 = objc_claimAutoreleasedReturnValue(-[DoAPClientService StopStreamingCharacteristic](self, "StopStreamingCharacteristic"));
+    uint64_t v13 = [self StopStreamingCharacteristic];
     uint64_t v14 = v9;
     if ((id)v13 != v9)
     {
       int v15 = (void *)v13;
-      uint64_t v16 = objc_claimAutoreleasedReturnValue(-[DoAPClientService SendDataCharacteristic](self, "SendDataCharacteristic"));
+      uint64_t v16 = [self SendDataCharacteristic];
       if ((id)v16 != v9)
       {
         uint64_t v17 = (void *)v16;
-        id v18 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService EventIndicatorCharacteristic](self, "EventIndicatorCharacteristic"));
+        id v18 = [self EventIndicatorCharacteristic];
 
         if (v18 != v9) {
           goto LABEL_2;
@@ -1034,35 +1034,35 @@ LABEL_11:
           if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
             sub_10003BB70(v28, v9);
           }
-          uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue([v37 StartStreamingCharacteristic]);
+          uint64_t v29 = (void *)[v37 StartStreamingCharacteristic];
 
           if (v29)
           {
-            v30 = (void *)objc_claimAutoreleasedReturnValue([v37 StartStreamingCharacteristic]);
+            v30 = [v37 StartStreamingCharacteristic];
             [v8 setNotifyValue:1 forCharacteristic:v30];
           }
 
-          id v31 = (void *)objc_claimAutoreleasedReturnValue([v37 StopStreamingCharacteristic]);
+          id v31 = [v37 StopStreamingCharacteristic];
 
           if (v31)
           {
-            id v32 = (void *)objc_claimAutoreleasedReturnValue([v37 StopStreamingCharacteristic]);
+            id v32 = [v37 StopStreamingCharacteristic];
             [v8 setNotifyValue:1 forCharacteristic:v32];
           }
 
-          uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue([v37 SendDataCharacteristic]);
+          uint64_t v33 = (void *)[v37 SendDataCharacteristic];
 
           if (v33)
           {
-            v34 = (void *)objc_claimAutoreleasedReturnValue([v37 SendDataCharacteristic]);
+            v34 = [v37 SendDataCharacteristic];
             [v8 setNotifyValue:1 forCharacteristic:v34];
           }
 
-          uint64_t v35 = (void *)objc_claimAutoreleasedReturnValue([v37 EventIndicatorCharacteristic]);
+          uint64_t v35 = (void *)[v37 EventIndicatorCharacteristic];
 
           if (v35)
           {
-            unsigned int v36 = (void *)objc_claimAutoreleasedReturnValue([v37 EventIndicatorCharacteristic]);
+            unsigned int v36 = (void *)[v37 EventIndicatorCharacteristic];
             [v8 setNotifyValue:1 forCharacteristic:v36];
           }
 
@@ -1098,7 +1098,7 @@ LABEL_2:
   __int128 v14 = 0u;
   __int128 v11 = 0u;
   __int128 v12 = 0u;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices", 0LL));
+  id v4 = [self doapDevices];
   id v5 = [v4 countByEnumeratingWithState:&v11 objects:v16 count:16];
   if (v5)
   {
@@ -1133,10 +1133,10 @@ LABEL_11:
       _os_log_impl((void *)&_mh_execute_header, v9, OS_LOG_TYPE_DEFAULT, "Remove all DoAP devices", buf, 2u);
     }
 
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService codecList](self, "codecList"));
+    uint64_t v10 = (void *)[self codecList];
     [v10 removeAllObjects];
 
-    id v4 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPClientService doapDevices](self, "doapDevices"));
+    id v4 = -[DoAPClientService doapDevices];
     [v4 removeAllObjects];
   }
 }
@@ -1144,28 +1144,28 @@ LABEL_11:
 - (void)selectCodec:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService SelectedCodecCharacteristic](self, "SelectedCodecCharacteristic"));
+  id v5 = [self SelectedCodecCharacteristic];
   -[DoAPClientService writeData:forCharacteristic:withResponse:]( self,  "writeData:forCharacteristic:withResponse:",  v4,  v5,  0LL);
 }
 
 - (void)startStreaming:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService StartStreamingCharacteristic](self, "StartStreamingCharacteristic"));
+  id v5 = [self StartStreamingCharacteristic];
   -[DoAPClientService writeData:forCharacteristic:withResponse:]( self,  "writeData:forCharacteristic:withResponse:",  v4,  v5,  0LL);
 }
 
 - (void)stopStreaming:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService StopStreamingCharacteristic](self, "StopStreamingCharacteristic"));
+  id v5 = [self StopStreamingCharacteristic];
   -[DoAPClientService writeData:forCharacteristic:withResponse:]( self,  "writeData:forCharacteristic:withResponse:",  v4,  v5,  0LL);
 }
 
 - (void)eventIndicator:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DoAPClientService EventIndicatorCharacteristic](self, "EventIndicatorCharacteristic"));
+  id v5 = [self EventIndicatorCharacteristic];
   -[DoAPClientService writeData:forCharacteristic:withResponse:]( self,  "writeData:forCharacteristic:withResponse:",  v4,  v5,  0LL);
 }
 
@@ -1185,7 +1185,7 @@ LABEL_11:
   if (!a5)
   {
 LABEL_3:
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    uint64_t v10 = (void *)[self peripheral];
     [v10 writeValue:v8 forCharacteristic:v9 type:1];
   }
 
@@ -1201,7 +1201,7 @@ LABEL_3:
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "DoAPService setHighPriorityLink %d",  (uint8_t *)v9,  8u);
   }
 
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+  id v8 = [self peripheral];
   [v8 setHighPriorityStream:v4 duration:v6];
 }
 
@@ -1209,13 +1209,13 @@ LABEL_3:
 {
   id v5 = a3;
   id v6 = a4;
-  id v7 = objc_claimAutoreleasedReturnValue([v5 value]);
+  id v7 = [v5 value];
   id v8 = (unsigned __int8 *)[v7 bytes];
 
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v5 value]);
+  id v9 = [v5 value];
   unsigned int v10 = [v9 length];
 
-  __int128 v11 = (void *)objc_claimAutoreleasedReturnValue([v5 UUID]);
+  __int128 v11 = (void *)[v5 UUID];
   __int128 v12 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStartStreamingCharacteristicString));
   unsigned int v13 = [v11 isEqual:v12];
 
@@ -1226,7 +1226,7 @@ LABEL_3:
 
   else
   {
-    __int128 v14 = (void *)objc_claimAutoreleasedReturnValue([v5 UUID]);
+    __int128 v14 = (void *)[v5 UUID];
     int v15 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStopStreamingCharacteristicString));
     unsigned int v16 = [v14 isEqual:v15];
 
@@ -1247,8 +1247,8 @@ LABEL_3:
 
     else
     {
-      uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v5 UUID]);
-      id v18 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSendDataCharacteristicString));
+      uint64_t v17 = (void *)[v5 UUID];
+      id v18 = [CBUUID UUIDWithString:CBUUIDSendDataCharacteristicString];
       unsigned int v19 = [v17 isEqual:v18];
 
       if (v19)
@@ -1280,8 +1280,8 @@ LABEL_3:
 
       else
       {
-        id v20 = (void *)objc_claimAutoreleasedReturnValue([v5 UUID]);
-        id v21 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDEventIndicatorCharacteristicString));
+        id v20 = [v5 UUID];
+        id v21 = [CBUUID UUIDWithString:CBUUIDEventIndicatorCharacteristicString];
         unsigned int v22 = [v20 isEqual:v21];
 
         if (v22)
@@ -1317,7 +1317,7 @@ LABEL_3:
 - (id)uuidToString:(id)a3
 {
   id v3 = a3;
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSupportedCodecsCharacteristicString));
+  BOOL v4 = [CBUUID UUIDWithString:CBUUIDSupportedCodecsCharacteristicString];
   unsigned __int8 v5 = [v3 isEqual:v4];
 
   if ((v5 & 1) != 0)
@@ -1327,7 +1327,7 @@ LABEL_3:
 
   else
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDSelectedCodecCharacteristicString));
+    id v7 = [CBUUID UUIDWithString:CBUUIDSelectedCodecCharacteristicString];
     unsigned __int8 v8 = [v3 isEqual:v7];
 
     if ((v8 & 1) != 0)
@@ -1337,7 +1337,7 @@ LABEL_3:
 
     else
     {
-      id v9 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDStartStreamingCharacteristicString));
+      id v9 = [CBUUID UUIDWithString:CBUUIDStartStreamingCharacteristicString];
       unsigned __int8 v10 = [v3 isEqual:v9];
 
       if ((v10 & 1) != 0)

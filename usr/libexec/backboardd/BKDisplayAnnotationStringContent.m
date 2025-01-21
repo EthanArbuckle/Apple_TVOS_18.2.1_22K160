@@ -11,7 +11,7 @@
 + (id)contentWithString:(id)a3
 {
   id v4 = a3;
-  id v5 = objc_alloc_init((Class)a1);
+  v5 = [[a1 alloc] init];
   [v5 setString:v4];
 
   return v5;
@@ -19,9 +19,9 @@
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
   id v4 = [v3 appendObject:self->_string withName:@"string"];
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  id v5 = [v3 build];
 
   return (NSString *)v5;
 }
@@ -32,8 +32,8 @@
   if (v5 && (uint64_t v6 = objc_opt_class(self, v4), (objc_opt_isKindOfClass(v5, v6) & 1) != 0))
   {
     string = self->_string;
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v5 string]);
-    unsigned __int8 v9 = -[NSString isEqual:](string, "isEqual:", v8);
+    v8 = [v5 string];
+    BOOL v9 = [string isEqual:v8];
   }
 
   else

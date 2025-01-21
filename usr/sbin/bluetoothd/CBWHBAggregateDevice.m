@@ -22,7 +22,7 @@
   __int128 v23 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](v3, "allKeys"));
+  v8 = -[NSMutableDictionary allKeys];
   id v9 = [v8 countByEnumeratingWithState:&v20 objects:v25 count:16];
   if (v9)
   {

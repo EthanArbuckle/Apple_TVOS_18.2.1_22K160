@@ -13,11 +13,11 @@
 {
   id v5 = a3;
   v9.receiver = self;
-  v9.super_class = (Class)&OBJC_CLASS___BKHIDHapticFeedbackController;
-  v6 = -[BKHIDHapticFeedbackController init](&v9, "init");
+  v9.super_class = [BKHIDHapticFeedbackController class];
+  BKHIDHapticFeedbackController *v6 = [[BKHIDHapticFeedbackController alloc] init];
   v7 = v6;
   if (v6) {
-    objc_storeStrong((id *)&v6->_HIDHapticFeedbackInterface, a3);
+    [v6 setHIDHapticFeedbackInterface:a3];
   }
 
   return v7;
@@ -28,7 +28,7 @@
   id v5 = a3;
   if (-[BKHIDHapticFeedbackController _validateHapticFeedbackRequest:forAuditToken:]( self,  "_validateHapticFeedbackRequest:forAuditToken:"))
   {
-    -[BKHIDHapticFeedbackInterface playHapticFeedbackRequest:]( self->_HIDHapticFeedbackInterface,  "playHapticFeedbackRequest:",  v5);
+    [self->_HIDHapticFeedbackInterface playHapticFeedbackRequest:v5];
   }
 }
 
@@ -36,9 +36,9 @@
 {
   id v6 = a3;
   uint64_t v7 = BSPIDForAuditToken(a4);
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v6 powerSourceID]);
+  v8 = [v6 powerSourceID];
   id v9 = [v6 deviceType];
-  unsigned __int8 v10 = +[BKSecurityManager hasEntitlement:forAuditToken:]( &OBJC_CLASS___BKSecurityManager,  "hasEntitlement:forAuditToken:",  BKRequestHapticFeedbackEntitlement,  a4);
+  BOOL v10 = [BKSecurityManager hasEntitlement:BKRequestHapticFeedbackEntitlement forAuditToken:a4];
   if (!v8)
   {
     if (v9)
@@ -56,7 +56,7 @@
     }
 
     id v15 = sub_10003F3DC();
-    v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+    v13 = [os_log logWithName:v15];
     if (os_log_type_enabled(v13, OS_LOG_TYPE_ERROR))
     {
       int v17 = 138543618;
@@ -69,18 +69,18 @@
 
 - (BOOL)_validatePencilHapticFeedbackRequest:(id)a3 forPID:(int)a4
 {
-  uint64_t v4 = *(void *)&a4;
+  uint64_t v4 = a4;
   genericGestureFocusObserver = self->_genericGestureFocusObserver;
   if (!genericGestureFocusObserver)
   {
-    uint64_t v7 = (BKTouchDeliveryGenericGestureFocusObserver *)objc_claimAutoreleasedReturnValue( +[BKTouchDeliveryGenericGestureFocusObserver sharedInstance]( &OBJC_CLASS___BKTouchDeliveryGenericGestureFocusObserver,  "sharedInstance",  a3));
+    uint64_t v7 = [BKTouchDeliveryGenericGestureFocusObserver sharedInstance];
     v8 = self->_genericGestureFocusObserver;
     self->_genericGestureFocusObserver = v7;
 
     genericGestureFocusObserver = self->_genericGestureFocusObserver;
   }
 
-  return -[BKTouchDeliveryGenericGestureFocusObserver destinationPIDMatchesHapticFeedbackRequestPID:]( genericGestureFocusObserver,  "destinationPIDMatchesHapticFeedbackRequestPID:",  v4);
+  return [genericGestureFocusObserver destinationPIDMatchesHapticFeedbackRequestPID:v4];
 }
 
 - (BOOL)_validateTrackpadHapticFeedbackRequest:(id)a3 forPID:(int)a4

@@ -22,13 +22,13 @@
 - (BKDisplayController)init
 {
   v7.receiver = self;
-  v7.super_class = (Class)&OBJC_CLASS___BKDisplayController;
-  v2 = -[BKDisplayController init](&v7, "init");
+  v7.super_class = [BKDisplayController class];
+  BKDisplayController *v2 = [[BKDisplayController alloc] init];
   v3 = v2;
   if (v2)
   {
     v2->_lock._os_unfair_lock_opaque = 0;
-    v4 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v4 = [[NSMutableDictionary alloc] init];
     lock_sceneHostSettingsByContextID = v3->_lock_sceneHostSettingsByContextID;
     v3->_lock_sceneHostSettingsByContextID = v4;
   }
@@ -51,16 +51,16 @@
   observerAssertion = self->_observerAssertion;
   if (!observerAssertion)
   {
-    objc_super v7 = (BSCompoundAssertion *)objc_claimAutoreleasedReturnValue( +[BSCompoundAssertion assertionWithIdentifier:]( &OBJC_CLASS___BSCompoundAssertion,  "assertionWithIdentifier:",  @"backboardd.display-blanking"));
+    BSCompoundAssertion *v7 = [BSCompoundAssertion assertionWithIdentifier:@"backboardd.display-blanking"];
     v8 = self->_observerAssertion;
     self->_observerAssertion = v7;
 
     observerAssertion = self->_observerAssertion;
   }
 
-  id v9 = objc_msgSend((id)objc_opt_class(v5, v4), "description");
-  v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
-  v11 = (void *)objc_claimAutoreleasedReturnValue( -[BSCompoundAssertion acquireForReason:withContext:]( observerAssertion,  "acquireForReason:withContext:",  v10,  v5));
+  id v9 = [v5 description];
+  v10 = v9;
+  BSCompoundAssertion *v11 = [BSCompoundAssertion acquireForReason:v10 withContext:v5];
 
   return v11;
 }
@@ -74,7 +74,7 @@
   *(_OWORD *)&a7->var3 = 0u;
   *(_OWORD *)&a7->var5.m11 = 0u;
   *(_OWORD *)&a7->var5.m13 = 0u;
-  *(_OWORD *)&a7->var5.m21 = 0u;
+  a7->var5.m21 = 0u;
   *(_OWORD *)&a7->var5.m23 = 0u;
   *(_OWORD *)&a7->var5.m31 = 0u;
   *(_OWORD *)&a7->var5.m33 = 0u;
@@ -85,7 +85,7 @@
   *(_OWORD *)&a7->var6.m21 = 0u;
   *(_OWORD *)&a7->var6.m23 = 0u;
   *(_OWORD *)&a7->var6.m31 = 0u;
-  *(_OWORD *)&a7->var6.m33 = 0u;
+  a7->var6.m33 = 0u;
   *(_OWORD *)&a7->var6.m41 = 0u;
   *(_OWORD *)&a7->var6.m43 = 0u;
   *(_OWORD *)&a7->var7 = 0u;
@@ -96,43 +96,43 @@
   id v15 = v13;
   if (self)
   {
-    v16 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
+    v16 = [CAWindowServer serverIfRunning];
     v17 = v16;
     if (v15)
     {
-      v18 = (BKDisplayController *)objc_claimAutoreleasedReturnValue([v16 displayWithUniqueId:v15]);
+      v18 = [v16 displayWithUniqueId:v15];
     }
 
     else
     {
       id v19 = sub_1000195F8();
-      v18 = (BKDisplayController *)objc_claimAutoreleasedReturnValue(v19);
+      v18 = [v19 autorelease];
     }
 
     self = v18;
   }
 
-  v20 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayController hitTestAtPosition:options:](self, "hitTestAtPosition:options:", v14, x, y));
+  v20 = [self hitTestAtPosition:CGPointMake(x, y) options:v14];
   if (!v20) {
     goto LABEL_71;
   }
-  v21 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestContextId]);
+  v21 = (void *)[v20 objectForKeyedSubscript:kCAWindowServerHitTestContextId];
   a7->var0 = [v21 unsignedIntValue];
 
-  v22 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestSlotId]);
+  v22 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestSlotId];
   a7->var1 = [v22 unsignedIntValue];
 
   a7->var2 = sub_10001A890(a7->var0);
   if (a6)
   {
     id v102 = 0LL;
-    v23 = (void *)objc_claimAutoreleasedReturnValue( +[BKSWindowServerHitTestSecurityAnalysis securityAnalysisFromCAHitTestDictionary:errorString:]( &OBJC_CLASS___BKSWindowServerHitTestSecurityAnalysis,  "securityAnalysisFromCAHitTestDictionary:errorString:",  v20,  &v102));
+    BKSWindowServerHitTestSecurityAnalysis *v23 = [BKSWindowServerHitTestSecurityAnalysis securityAnalysisFromCAHitTestDictionary:v20 errorString:&v102];
     id v24 = v102;
     *a6 = v23;
     if (v24)
     {
       uint64_t v25 = BKLogTouchEvents();
-      v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+      v26 = [v25 autorelease];
       if (os_log_type_enabled(v26, OS_LOG_TYPE_ERROR))
       {
         *(_DWORD *)buf = 138543362;
@@ -144,8 +144,8 @@
 
   if (a7->var1)
   {
-    v27 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestDetectedOcclusion]);
-    uint64_t v29 = objc_opt_class(&OBJC_CLASS___NSNumber, v28);
+    v27 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestDetectedOcclusion];
+    NSNumber *v29 = [NSNumber class];
     id v30 = v27;
     v31 = v30;
     if (v29)
@@ -168,8 +168,8 @@
     unsigned __int8 v34 = [v33 BOOLValue];
     a7->var7 = v34;
     a7->var3 = 0LL;
-    v35 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeOpacity]);
-    uint64_t v37 = objc_opt_class(&OBJC_CLASS___NSNumber, v36);
+    v35 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeOpacity];
+    NSNumber *v37 = v36;
     id v38 = v35;
     v39 = v38;
     if (v37)
@@ -197,8 +197,8 @@
     }
 
     v101 = v41;
-    v43 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeLayerTransform]);
-    uint64_t v45 = objc_opt_class(&OBJC_CLASS___NSValue, v44);
+    v43 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeLayerTransform];
+    NSValue *v45 = [NSValue class];
     id v46 = v43;
     v47 = v46;
     if (v45)
@@ -228,17 +228,17 @@
       *(_OWORD *)&a7->var5.m41 = v109;
       *(_OWORD *)&a7->var5.m43 = v51;
       __int128 v52 = v104;
-      *(_OWORD *)&a7->var5.m11 = *(_OWORD *)buf;
-      *(_OWORD *)&a7->var5.m13 = v52;
+      a7->var5.m11 = *(_OWORD *)buf;
+      a7->var5.m13 = v52;
       __int128 v53 = v106;
-      *(_OWORD *)&a7->var5.m21 = v105;
-      *(_OWORD *)&a7->var5.m23 = v53;
+      a7->var5.m21 = v105;
+      a7->var5.m23 = v53;
       a7->var3 |= 0x10uLL;
     }
 
     v100 = v49;
-    v54 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeContentsTransform]);
-    uint64_t v56 = objc_opt_class(&OBJC_CLASS___NSValue, v55);
+    v54 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestCumulativeContentsTransform];
+    NSValue *v56 = [NSValue class];
     id v57 = v54;
     v58 = v57;
     if (v56)
@@ -262,22 +262,22 @@
     {
       [v60 CATransform3DValue];
       __int128 v61 = v108;
-      *(_OWORD *)&a7->var6.m31 = v107;
+      a7->var6.m31 = v107;
       *(_OWORD *)&a7->var6.m33 = v61;
       __int128 v62 = v110;
       *(_OWORD *)&a7->var6.m41 = v109;
       *(_OWORD *)&a7->var6.m43 = v62;
       __int128 v63 = v104;
-      *(_OWORD *)&a7->var6.m11 = *(_OWORD *)buf;
+      a7->var6.m11 = *(_OWORD *)buf;
       *(_OWORD *)&a7->var6.m13 = v63;
       __int128 v64 = v106;
-      *(_OWORD *)&a7->var6.m21 = v105;
+      a7->var6.m21 = v105;
       *(_OWORD *)&a7->var6.m23 = v64;
       a7->var3 |= 0x20uLL;
     }
 
-    v65 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v20, "objectForKeyedSubscript:", @"hitTestInsecureFiltered", v60));
-    uint64_t v67 = objc_opt_class(&OBJC_CLASS___NSNumber, v66);
+    v65 = [v20 objectForKeyedSubscript:@"hitTestInsecureFiltered"];
+    uint64_t v67 = [NSNumber class];
     id v68 = v65;
     v69 = v68;
     if (v67)
@@ -303,8 +303,8 @@
       a7->var3 |= 4uLL;
     }
 
-    v72 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:kCAWindowServerHitTestLayerBackgroundAverage]);
-    uint64_t v74 = objc_opt_class(&OBJC_CLASS___NSNumber, v73);
+    v72 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestLayerBackgroundAverage];
+    NSNumber *v74 = [NSNumber class];
     id v75 = v72;
     v76 = v75;
     if (v74)
@@ -324,8 +324,8 @@
 
     id v78 = v77;
 
-    v79 = (void *)objc_claimAutoreleasedReturnValue( [v20 objectForKeyedSubscript:kCAWindowServerHitTestLayerBackgroundStandardDeviation]);
-    uint64_t v81 = objc_opt_class(&OBJC_CLASS___NSNumber, v80);
+    v79 = [v20 objectForKeyedSubscript:kCAWindowServerHitTestLayerBackgroundStandardDeviation];
+    NSNumber *v81 = [NSNumber class];
     id v82 = v79;
     v83 = v82;
     v84 = self;
@@ -346,8 +346,8 @@
 
     id v86 = v85;
 
-    v87 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:@"hitTestBackgroundAverageContrastThreshold"]);
-    uint64_t v89 = objc_opt_class(&OBJC_CLASS___NSNumber, v88);
+    v87 = [v20 objectForKeyedSubscript:@"hitTestBackgroundAverageContrastThreshold"];
+    NSNumber *v89 = v88;
     id v90 = v87;
     v91 = v90;
     if (v89)
@@ -424,7 +424,7 @@ LABEL_71:
 - (unsigned)hostContextIDForEmbeddedContextID:(unsigned int)a3 displayUUID:(id)a4
 {
   uint64_t v4 = *(void *)&a3;
-  double v5 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning", *(void *)&a3, a4));
+  double v5 = [CAWindowServer serverIfRunning:a3, a4];
   LODWORD(v4) = [v5 contextIdHostingContextId:v4];
 
   return v4;
@@ -432,9 +432,9 @@ LABEL_71:
 
 - (int64_t)hitTestCategoryForContextID:(unsigned int)a3
 {
-  uint64_t v3 = *(void *)&a3;
+  uint64_t v3 = a3;
   id v4 = sub_10002D41C();
-  double v5 = (os_unfair_lock_s *)objc_claimAutoreleasedReturnValue(v4);
+  double v5 = [v4 doubleValue];
   double v6 = v5;
   if (v5)
   {
@@ -442,8 +442,8 @@ LABEL_71:
     objc_super v7 = *(void **)&v6[6]._os_unfair_lock_opaque;
     if (v7)
     {
-      v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v3));
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKey:v8]);
+      v8 = [NSNumber numberWithUnsignedInt:v3];
+      id v9 = [v7 objectForKey:v8];
       id v10 = [v9 integerValue];
     }
 
@@ -465,7 +465,7 @@ LABEL_71:
 
 - (unsigned)taskPortForContextID:(unsigned int)a3 displayUUID:(id)a4
 {
-  return sub_10001A890(*(uint64_t *)&a3);
+  return [a3];
 }
 
 - (void)setSceneHostSettings:(id)a3
@@ -473,7 +473,7 @@ LABEL_71:
   id v4 = a3;
   os_unfair_lock_lock(&self->_lock);
   uint64_t v5 = BKLogTouchEvents();
-  double v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  double v6 = (os_log_s *)v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEBUG))
   {
     int v9 = 138543362;
@@ -493,7 +493,7 @@ LABEL_71:
   uint64_t v4 = *(void *)&a4;
   id v6 = a3;
   uint64_t v7 = BKLogTouchEvents();
-  v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+  os_log_s *v8 = v7;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEBUG))
   {
     v10[0] = 67109378;
@@ -503,9 +503,9 @@ LABEL_71:
     _os_log_debug_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEBUG,  "setSceneHostSettingsForContextID:%X %{public}@",  (uint8_t *)v10,  0x12u);
   }
 
-  int v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v4));
+  int v9 = [NSNumber numberWithUnsignedInt:v4];
   os_unfair_lock_lock(&self->_lock);
-  -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_lock_sceneHostSettingsByContextID,  "setObject:forKeyedSubscript:",  v6,  v9);
+  [self->_lock_sceneHostSettingsByContextID setObject:v6 forKeyedSubscript:v9];
   os_unfair_lock_unlock(&self->_lock);
 }
 
@@ -513,7 +513,7 @@ LABEL_71:
 {
   uint64_t v3 = *(void *)&a3;
   uint64_t v5 = BKLogTouchEvents(self, a2);
-  id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  os_log_s *v6 = v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEBUG))
   {
     v8[0] = 67109120;
@@ -521,9 +521,9 @@ LABEL_71:
     _os_log_debug_impl( (void *)&_mh_execute_header,  v6,  OS_LOG_TYPE_DEBUG,  "removeSceneHostSettingsForContextID:%X",  (uint8_t *)v8,  8u);
   }
 
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v3));
+  uint64_t v7 = (void *)[NSNumber numberWithUnsignedInt:v3];
   os_unfair_lock_lock(&self->_lock);
-  -[NSMutableDictionary removeObjectForKey:](self->_lock_sceneHostSettingsByContextID, "removeObjectForKey:", v7);
+  [self->_lock_sceneHostSettingsByContextID removeObjectForKey:v7];
   os_unfair_lock_unlock(&self->_lock);
 }
 
@@ -537,8 +537,8 @@ LABEL_71:
   __int128 v20 = 0u;
   __int128 v21 = 0u;
   id v19 = v4;
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 reverseObjectEnumerator]);
-  id v6 = [v5 countByEnumeratingWithState:&v20 objects:v24 count:16];
+  uint64_t v5 = (void *)[v4 reverseObjectEnumerator];
+  id v6 = [v5 countByEnumeratingWithState:v20 objects:v24 count:16];
   if (v6)
   {
     id v7 = v6;
@@ -560,8 +560,8 @@ LABEL_71:
         else {
           uint64_t v13 = 0LL;
         }
-        id v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v13, lock));
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( lock_sceneHostSettingsByContextID,  "objectForKeyedSubscript:",  v14));
+        id v14 = [NSNumber numberWithUnsignedInt:v13];
+        id v15 = [NSMutableDictionary objectForKeyedSubscript:v14];
 
         if (v15)
         {
@@ -578,7 +578,7 @@ LABEL_71:
       }
 
       while (v7 != v10);
-      id v17 = [v5 countByEnumeratingWithState:&v20 objects:v24 count:16];
+      id v17 = [v5 countByEnumeratingWithState:v20 objects:v24 count:16];
       id v7 = v17;
     }
 
@@ -621,15 +621,15 @@ LABEL_71:
   double d = CGAffineTransformIdentity.d;
   tdouble x = CGAffineTransformIdentity.tx;
   tdouble y = CGAffineTransformIdentity.ty;
-  id v14 = (void *)objc_claimAutoreleasedReturnValue([a4 uniqueId]);
-  -[BKDisplayController geometryForDisplayUUID:](self, "geometryForDisplayUUID:", v14);
+  id v14 = [a4 uniqueId];
+  [self geometryForDisplayUUID:v14];
 
   float64x2_t v16 = v31;
   uint64_t v23 = v32;
   if (v33 == 3)
   {
     float64x2_t v20 = v31;
-    CGAffineTransformMakeRotation(&t2, 1.57079633);
+    CGAffineTransformMakeRotation(1.57079633);
     t1.double a = CGAffineTransformIdentity.a;
     t1.double b = b;
     t1.double c = c;
@@ -645,14 +645,14 @@ LABEL_71:
       goto LABEL_6;
     }
     float64x2_t v20 = v31;
-    CGAffineTransformMakeRotation(&v29, -1.57079633);
+    CGAffineTransformMakeRotation(-1.57079633);
     t1.double a = CGAffineTransformIdentity.a;
     t1.double b = b;
     t1.double c = c;
     t1.double d = d;
     t1.tdouble x = tx;
     t1.tdouble y = ty;
-    p_CGAffineTransform t2 = &v29;
+    CGAffineTransform t2 = v29;
   }
 
   CGPoint result = ($0604B0E56C0812A82398F92EB32460F7 *)CGAffineTransformConcat(&v30, &t1, p_t2);
@@ -669,7 +669,7 @@ LABEL_6:
   {
     case 4LL:
       float64x2_t v22 = (float64x2_t)v18;
-      CGAffineTransformMakeRotation(&v24, -1.57079633);
+      CGAffineTransformMakeRotation(-1.57079633);
       t1.double a = a;
       t1.double b = b;
       t1.double c = c;
@@ -678,7 +678,7 @@ LABEL_6:
       t1.tdouble y = ty;
       id v19 = &v24;
 LABEL_12:
-      CGPoint result = ($0604B0E56C0812A82398F92EB32460F7 *)CGAffineTransformConcat(&v30, &t1, v19);
+      CGPoint result = CGPointApplyAffineTransform(v30, t1);
       double a = v30.a;
       double b = v30.b;
       double c = v30.c;
@@ -687,7 +687,7 @@ LABEL_12:
       goto LABEL_13;
     case 3LL:
       float64x2_t v22 = (float64x2_t)v18;
-      CGAffineTransformMakeRotation(&v25, 1.57079633);
+      CGAffineTransformMakeRotation(1.57079633);
       t1.double a = a;
       t1.double b = b;
       t1.double c = c;
@@ -698,7 +698,7 @@ LABEL_12:
       goto LABEL_12;
     case 2LL:
       float64x2_t v21 = v16;
-      CGAffineTransformMakeRotation(&v26, -3.14159265);
+      CGAffineTransformMakeRotation(v26, -3.14159265);
       t1.double a = a;
       t1.double b = b;
       t1.double c = c;

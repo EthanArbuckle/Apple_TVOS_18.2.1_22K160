@@ -54,21 +54,21 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 connectDevice:v7 quickDisconnectEnabled:v6];
 }
 
 - (void)disconnectDevice:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v5 = [self deviceManagementEndpoint];
   [v5 disconnectDevice:v4];
 }
 
 - (void)unexpectedDisconnection:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v5 = [self deviceManagementEndpoint];
   [v5 unexpectedDisconnection:v4];
 }
 
@@ -76,7 +76,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 requestVersionInfo:v7 cloudAccount:v6];
 }
 
@@ -85,14 +85,14 @@
   id v8 = a5;
   id v9 = a4;
   id v10 = a3;
-  id v11 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v11 = [self deviceManagementEndpoint];
   [v11 respondVersionInfo:v10 cloudAccount:v9 easyPairingStatus:v8];
 }
 
 - (void)requestPairStateForDevice:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v5 = [self deviceManagementEndpoint];
   [v5 requestPairStateForDevice:v4];
 }
 
@@ -100,7 +100,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 respondToPairState:v7 device:v6];
 }
 
@@ -109,7 +109,7 @@
   id v8 = a5;
   id v9 = a4;
   id v10 = a3;
-  id v11 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v11 = [self deviceManagementEndpoint];
   [v11 requestStoreLinkKey:v10 name:v9 device:v8];
 }
 
@@ -120,7 +120,7 @@
   id v14 = a5;
   id v15 = a4;
   id v16 = a3;
-  id v17 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v17 = [self deviceManagementEndpoint];
   [v17 requestStoreLinkKeyExtended:v16 name:v15 device:v14 deviceServiceMask:v13 classOfDevice:v12];
 }
 
@@ -128,7 +128,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 respondToStoreLinkKey:v7 device:v6];
 }
 
@@ -140,7 +140,7 @@
   id v17 = a5;
   id v18 = a4;
   id v19 = a3;
-  id v20 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v20 = [self deviceManagementEndpoint];
   [v20 storeDeviceSettings:v19 inEarEnable:v18 doubleTapMode:v17 deviceSettings:v16 deviceName:v15 device:v14];
 }
 
@@ -148,7 +148,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 notifyPrimaryBudSide:v7 device:v6];
 }
 
@@ -157,7 +157,7 @@
   id v8 = a5;
   id v9 = a4;
   id v10 = a3;
-  id v11 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v11 = [self deviceManagementEndpoint];
   [v11 requestLeaEasyPair:v10 deviceIdentifier:v9 deviceTags:v8];
 }
 
@@ -165,7 +165,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 respondToLeaEasyPair:v7 device:v6];
 }
 
@@ -177,7 +177,7 @@
   id v17 = a5;
   id v18 = a4;
   id v19 = a3;
-  id v20 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v20 = [self deviceManagementEndpoint];
   [v20 requestLeaStoreBondingInfo:v19 rand:v18 ltk:v17 irk:v16 name:v15 device:v14];
 }
 
@@ -185,7 +185,7 @@
 {
   id v6 = a4;
   id v7 = a3;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+  id v8 = [self deviceManagementEndpoint];
   [v8 respondToLeaStoreBondingInfo:v7 device:v6];
 }
 
@@ -206,7 +206,7 @@
 
 - (void)refreshPersistanceAssertion
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager pipeManager](self, "pipeManager"));
+  v3 = [self pipeManager];
   if ([v3 state] == (id)4)
   {
 
@@ -220,7 +220,7 @@ LABEL_6:
   if (!v4) {
     goto LABEL_6;
   }
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager persistanceAssertion](self, "persistanceAssertion"));
+  id v5 = [self persistanceAssertion];
 
   if (!v5)
   {
@@ -237,14 +237,14 @@ LABEL_6:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t v6 = v5;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager scalablePipeManagerStateString](self, "scalablePipeManagerStateString"));
+    id v7 = -[EndpointManager scalablePipeManagerStateString](self, "scalablePipeManagerStateString");
     int v17 = 138412290;
     id v18 = v7;
     _os_log_impl( (void *)&_mh_execute_header,  v6,  OS_LOG_TYPE_DEFAULT,  "ScalablePipeManager state is now %@",  (uint8_t *)&v17,  0xCu);
   }
 
   -[EndpointManager refreshPersistanceAssertion](self, "refreshPersistanceAssertion");
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager pipeManager](self, "pipeManager"));
+  id v8 = [self pipeManager];
   id v9 = [v8 state];
 
   if (v9 == (id)5)
@@ -252,19 +252,19 @@ LABEL_6:
     id v10 = objc_alloc_init(&OBJC_CLASS___DeviceManagementEndpoint);
     -[EndpointManager setDeviceManagementEndpoint:](self, "setDeviceManagementEndpoint:", v10);
 
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager pipeManager](self, "pipeManager"));
+    id v11 = -[EndpointManager pipeManager](self, "pipeManager");
     id v12 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v12 identifier]);
-    id v14 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+    id v13 = [v12 identifier];
+    id v14 = -[EndpointManager deviceManagementEndpoint];
     id v15 = [v14 type];
-    id v16 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+    id v16 = -[EndpointManager deviceManagementEndpoint];
     objc_msgSend(v11, "registerEndpoint:type:priority:", v13, v15, objc_msgSend(v16, "priority"));
   }
 
   else
   {
     -[EndpointManager setDeviceManagementEndpoint:](self, "setDeviceManagementEndpoint:", 0LL);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager pipeManager](self, "pipeManager"));
+    id v11 = -[EndpointManager pipeManager](self, "pipeManager");
     [v11 unregisterAllEndpoints];
   }
 }
@@ -344,12 +344,12 @@ LABEL_6:
 {
   id v4 = a3;
   id v5 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 identifier]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 name]);
+  id v6 = [v5 identifier];
+  id v7 = [v4 name];
 
   LODWORD(v4) = [v6 isEqualToString:v7];
   if ((_DWORD)v4) {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
+    id v8 = [self deviceManagementEndpoint];
   }
   else {
     id v8 = 0LL;
@@ -359,7 +359,7 @@ LABEL_6:
 
 - (id)scalablePipeManagerStateString
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager pipeManager](self, "pipeManager"));
+  v2 = [self pipeManager];
   v3 = (char *)[v2 state];
 
   else {

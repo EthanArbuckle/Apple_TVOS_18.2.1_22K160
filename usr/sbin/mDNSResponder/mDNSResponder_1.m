@@ -7840,19 +7840,19 @@ LABEL_17:
     goto LABEL_10;
   }
 LABEL_5:
-  __int16 v10 = (void *)objc_claimAutoreleasedReturnValue([v8 domain]);
+  __int16 v10 = (void *)[v8 domain];
   else {
     BOOL v11 = 0;
   }
 
-  int v14 = (void *)objc_claimAutoreleasedReturnValue([v8 domain]);
+  int v14 = (void *)[v8 domain];
   else {
     BOOL v15 = 0;
   }
 
   if (!v11)
   {
-    id v16 = (id)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) URL]);
+    id v16 = [*(id *)(a1 + 32) URL];
     id v17 = getHeuristicsQueue();
     CFIndex v18 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(v17);
     block[0] = _NSConcreteStackBlock;
@@ -7903,16 +7903,16 @@ void ___http_task_create_data_task_block_invoke(void *a1)
     if (_http_task_create_shared_session_s_once != -1) {
       dispatch_once(&_http_task_create_shared_session_s_once, &__block_literal_global_126);
     }
-    id v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLSessionConfiguration ephemeralSessionConfiguration]( &OBJC_CLASS___NSURLSessionConfiguration,  "ephemeralSessionConfiguration"));
+    id v3 = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     [v3 setHTTPCookieStorage:0];
     [v3 setURLCache:0];
     [v3 setURLCredentialStorage:0];
-    id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSSet setWithObjects:]( &OBJC_CLASS___NSSet,  "setWithObjects:",  @"User-Agent",  @"Accept-Language",  0LL));
-    objc_msgSend(v3, "set_suppressedAutoAddedHTTPHeaders:", v4);
+    id v4 = [NSSet setWithObjects:@"User-Agent", @"Accept-Language", nil];
+    [v3 set_suppressedAutoAddedHTTPHeaders:v4];
 
-    objc_msgSend(v3, "set_allowsTLSSessionTickets:", 1);
-    objc_msgSend(v3, "set_allowsTCPFastOpen:", 1);
-    objc_msgSend(v3, "set_disableAPWakeOnIdleConnections:", 1);
+    [v3 set_allowsTLSSessionTickets:1];
+    [v3 set_allowsTCPFastOpen:1];
+    [v3 set_disableAPWakeOnIdleConnections:1];
     id v5 = objc_alloc_init(&OBJC_CLASS___NSOperationQueue);
     if (_mdns_resolver_queue_s_once != -1) {
       dispatch_once(&_mdns_resolver_queue_s_once, &__block_literal_global_138);
@@ -7920,14 +7920,14 @@ void ___http_task_create_data_task_block_invoke(void *a1)
     id v6 = (id)_mdns_resolver_queue_s_queue;
     -[NSOperationQueue setUnderlyingQueue:](v5, "setUnderlyingQueue:", v6);
 
-    uint64_t v7 = objc_claimAutoreleasedReturnValue( +[NSURLSession sessionWithConfiguration:delegate:delegateQueue:]( &OBJC_CLASS___NSURLSession,  "sessionWithConfiguration:delegate:delegateQueue:",  v3,  _http_task_create_shared_session_delegate,  v5));
+    uint64_t v7 = [NSURLSession sessionWithConfiguration:v3 delegate:_http_task_create_shared_session_delegate delegateQueue:v5];
     uint64_t v8 = (void *)g_shared_session;
     g_shared_session = v7;
 
     CFDataRef v2 = (void *)g_shared_session;
   }
 
-  uint64_t v9 = objc_claimAutoreleasedReturnValue([v2 dataTaskWithRequest:a1[4] completionHandler:a1[5]]);
+  uint64_t v9 = [v2 dataTaskWithRequest:a1[4] completionHandler:a1[5]];
   uint64_t v10 = *(void *)(a1[6] + 8LL);
   BOOL v11 = *(void **)(v10 + 40);
   *(void *)(v10 + 40) = v9;
@@ -7986,7 +7986,7 @@ void *http_task_create_pvd_query(void *a1, uint64_t a2, uint64_t a3, void *a4)
   if (v17 && v25[5])
   {
     CFIndex v18 = (void *)nw_activity_create(33LL, 3LL);
-    objc_msgSend(v17, "set_nw_activity:", v18);
+    [v17 set_nw_activity:v18];
   }
 
   _Block_object_dispose(&v24, 8);
@@ -8019,13 +8019,13 @@ void __http_task_create_pvd_query_block_invoke_2(void *a1)
   uint64_t v2 = a1[4];
   if (v2)
   {
-    id v13 = (id)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization JSONObjectWithData:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "JSONObjectWithData:options:error:",  v2,  0LL,  0LL));
+    id v13 = [NSJSONSerialization JSONObjectWithData:v2 options:0 error:0];
     uint64_t v3 = objc_opt_class(&OBJC_CLASS___NSDictionary);
     if ((objc_opt_isKindOfClass(v13, v3) & 1) != 0)
     {
       id v4 = (void *)_CFXPCCreateXPCObjectFromCFObject(v13);
-      id v5 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"expires"]);
-      __int128 v6 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"seconds-remaining"]);
+      id v5 = [v13 objectForKeyedSubscript:@"expires"];
+      __int128 v6 = (void *)[v13 objectForKeyedSubscript:@"seconds-remaining"];
       if (v4)
       {
         uint64_t v7 = objc_opt_class(&OBJC_CLASS___NSString);
@@ -8042,12 +8042,12 @@ void __http_task_create_pvd_query_block_invoke_2(void *a1)
           uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSTimeZone timeZoneForSecondsFromGMT:]( &OBJC_CLASS___NSTimeZone,  "timeZoneForSecondsFromGMT:",  0LL));
           -[NSDateFormatter setTimeZone:](v8, "setTimeZone:", v9);
 
-          uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSLocale localeWithLocaleIdentifier:]( &OBJC_CLASS___NSLocale,  "localeWithLocaleIdentifier:",  @"en_US_POSIX"));
+          uint64_t v10 = (void *)[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
           -[NSDateFormatter setLocale:](v8, "setLocale:", v10);
 
           -[NSDateFormatter setDateFormat:](v8, "setDateFormat:", @"yyyy-MM-dd'T'HH:mm:ss'Z'");
           -[NSDateFormatter setFormatterBehavior:](v8, "setFormatterBehavior:", 0LL);
-          BOOL v11 = (void *)objc_claimAutoreleasedReturnValue(-[NSDateFormatter dateFromString:](v8, "dateFromString:", v5));
+          BOOL v11 = [v8 dateFromString:v5];
           [v11 timeIntervalSinceNow];
           xpc_dictionary_set_uint64(v4, "seconds-remaining", (unint64_t)v12);
         }
@@ -36704,7 +36704,7 @@ void __mdns_dns_service_manager_apply_pending_updates_block_invoke(uint64_t a1)
           uint64_t v12 = -[NSUUID initWithUUIDBytes:]( objc_alloc(&OBJC_CLASS___NSUUID),  "initWithUUIDBytes:",  &ne_privacy_proxy_netagent_id);
           uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue( +[NEPolicyResult removeNetworkAgentUUID:]( &OBJC_CLASS___NEPolicyResult,  "removeNetworkAgentUUID:",  v12));
           id v14 = objc_alloc(&OBJC_CLASS___NEPolicy);
-          uint64_t v15 = (void **)objc_claimAutoreleasedReturnValue(+[NEPolicyCondition allInterfaces](&OBJC_CLASS___NEPolicyCondition, "allInterfaces"));
+          uint64_t v15 = (void **)[+[NEPolicyCondition allInterfaces](&OBJC_CLASS___NEPolicyCondition, "allInterfaces") autorelease];
           unsigned int v33 = v15;
           uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue( +[NEPolicyCondition flowRemoteAddressEmpty]( &OBJC_CLASS___NEPolicyCondition,  "flowRemoteAddressEmpty"));
           uint64_t v34 = (uint64_t)v16;
@@ -46728,7 +46728,7 @@ void _mdns_ne_dns_proxy_state_watch_check_for_collective_state_change()
         if (*(void *)v14 != v5) {
           objc_enumerationMutation(v1);
         }
-        unsigned int v7 = objc_msgSend( *(id *)(*((void *)&v13 + 1) + 8 * (void)i),  "unsignedIntValue",  (void)v13);
+        unsigned int v7 = [*(id *)(*((void *)&v13 + 1) + 8 * (void)i) unsignedIntValue:v13];
         if (v7)
         {
           if (v7 == 2)
@@ -46969,7 +46969,7 @@ void ___mdns_ne_dns_proxy_state_watch_init_block_invoke(id a1)
   id v2 = (void *)g_watcher;
   g_watcher = (uint64_t)v1;
 
-  int v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  int v3 = [NSNotificationCenter defaultCenter];
   [v3 addObserver:g_watcher selector:"configurationChanged:" name:NEDNSProxyConfigurationDidChangeNotification object:0];
 
   _mdns_ne_dns_proxy_state_watch_load_managers();
@@ -70134,7 +70134,7 @@ uint64_t _unicast_assist_data_to_addr(void *a1, int *a2)
     int v4 = 4;
 LABEL_5:
     id v5 = v3;
-    memcpy(a2 + 1, [v5 bytes], (size_t)objc_msgSend(v5, "length"));
+    memcpy(a2 + 1, [v5 bytes], (size_t)[v5 length]);
     uint64_t v6 = 0LL;
     *a2 = v4;
     goto LABEL_9;

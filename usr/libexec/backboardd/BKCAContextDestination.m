@@ -15,14 +15,14 @@
 {
   if (!a3)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  *(void *)&a4,  @"contextID != 0"));
+    v9 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@ contextID != 0"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v10 = NSStringFromSelector(a2);
-      v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
-      v13 = (objc_class *)objc_opt_class(self, v12);
+      v11 = [v10 autorelease];
+      v13 = [self class];
       v14 = NSStringFromClass(v13);
-      v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
+      v15 = v14;
       *(_DWORD *)buf = 138544642;
       v25 = v11;
       __int16 v26 = 2114;
@@ -45,14 +45,14 @@
 
   if (a4 + 1 <= 1)
   {
-    v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"(((clientPort) != 0) && ((clientPort) != ((mach_port_name_t) ~0)))"));
+    v16 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"(((clientPort) != 0) && ((clientPort) != ((mach_port_name_t) ~0)))"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v17 = NSStringFromSelector(a2);
-      v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
-      v20 = (objc_class *)objc_opt_class(self, v19);
+      v18 = [v17 autorelease];
+      v20 = [self class];
       v21 = NSStringFromClass(v20);
-      v22 = (void *)objc_claimAutoreleasedReturnValue(v21);
+      v22 = (void *)[v21 autorelease];
       *(_DWORD *)buf = 138544642;
       v25 = v18;
       __int16 v26 = 2114;
@@ -74,8 +74,8 @@
   }
 
   v23.receiver = self;
-  v23.super_class = (Class)&OBJC_CLASS___BKCAContextDestination;
-  result = -[BKCAContextDestination init](&v23, "init");
+  v23.super_class = [BKCAContextDestination class];
+  result = [BKCAContextDestination init];
   if (result)
   {
     result->_contextID = a3;
@@ -87,7 +87,7 @@
 
 - (id)copyWithZone:(_NSZone *)a3
 {
-  id v4 = objc_alloc_init((Class)objc_opt_class(self, a2));
+  BKHIDEventClient *v4 = [[BKHIDEventClient alloc] init];
   *((_DWORD *)v4 + 2) = self->_contextID;
   *((_DWORD *)v4 + 3) = self->_clientPort;
   objc_storeStrong((id *)v4 + 2, self->_inheritedSceneHostSettings);
@@ -96,7 +96,7 @@
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", self->_contextID));
+  v2 = [NSNumber numberWithUnsignedInt:self->_contextID];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -105,7 +105,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKCAContextDestination, v5);
+  uint64_t v6 = [BKCAContextDestination class];
   id v7 = v4;
   v8 = v7;
   if (v6)
@@ -131,14 +131,14 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (id)succinctDescription
 {
-  id v3 = objc_alloc_init(&OBJC_CLASS___BSDescriptionStream);
-  -[BKCAContextDestination appendSuccinctDescriptionToFormatter:](self, "appendSuccinctDescriptionToFormatter:", v3);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 description]);
+  BSDescriptionStream *v3 = [[BSDescriptionStream alloc] init];
+  [self appendSuccinctDescriptionToFormatter:v3];
+  id v4 = [v3 description];
 
   return v4;
 }

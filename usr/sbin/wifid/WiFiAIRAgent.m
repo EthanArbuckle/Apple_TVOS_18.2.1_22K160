@@ -42,7 +42,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without managerQueue",  "-[WiFiAIRAgent setWiFiManagerQueue:]",  0);
+      [qword_100219F60 WFLog:@"%s without managerQueue" message:3 "%s without managerQueue" "-[WiFiAIRAgent setWiFiManagerQueue:]" 0];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -80,14 +80,14 @@
   self->_isEvalInProgress = 1;
   v11 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: AIR agent received a request",  "-[WiFiAIRAgent waitForConfirmationWithTimeout:withBssEnvironment:withMgrCallback:]");
+    [qword_100219F60 WFLog:@"AIR agent received a request"];
   }
   objc_autoreleasePoolPop(v11);
   if (!self->_sharedMgrQueue)
   {
     v18 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: managerQueue is not SET",  "-[WiFiAIRAgent waitForConfirmationWithTimeout:withBssEnvironment:withMgrCallback:]");
+      [qword_100219F60 WFLog:@"%s: managerQueue is not SET" message:3];
     }
     objc_autoreleasePoolPop(v18);
     goto LABEL_11;
@@ -97,7 +97,7 @@
   {
     v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: not a multi-AP environment",  "-[WiFiAIRAgent waitForConfirmationWithTimeout:withBssEnvironment:withMgrCallback:]");
+      [qword_100219F60 WFLog:@"%s: not a multi-AP environment" message:3];
     }
     objc_autoreleasePoolPop(v21);
     v19 = self;
@@ -105,14 +105,14 @@
     goto LABEL_18;
   }
 
-  v12 = (void *)objc_claimAutoreleasedReturnValue( +[WiFiUserInteractionMonitor sharedInstance]( &OBJC_CLASS___WiFiUserInteractionMonitor,  "sharedInstance"));
+  v12 = [WiFiUserInteractionMonitor sharedInstance];
   unsigned __int8 v13 = [v12 isRealTimeAppActive];
 
   if ((v13 & 1) == 0)
   {
     v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no realtime app active",  "-[WiFiAIRAgent waitForConfirmationWithTimeout:withBssEnvironment:withMgrCallback:]");
+      [qword_100219F60 WFLog:@"%s: no realtime app active" message:3];
     }
     objc_autoreleasePoolPop(v22);
     v19 = self;
@@ -120,7 +120,7 @@
     goto LABEL_18;
   }
 
-  v14 = (void *)objc_claimAutoreleasedReturnValue( +[WiFiUserInteractionMonitor sharedInstance]( &OBJC_CLASS___WiFiUserInteractionMonitor,  "sharedInstance"));
+  v14 = [WiFiUserInteractionMonitor sharedInstance];
   [v14 registerStateChangeCallback:&stru_1001E25D8 withCallbackContext:self];
 
   self->_cbRegisteredWithUserActivity = 1;
@@ -158,13 +158,13 @@ LABEL_19:
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: AIR agent request complete with result:%lu",  "-[WiFiAIRAgent _evaluationComplete:]",  a3);
+      [qword_100219F60 WFLog:@"%s: AIR agent request complete with result:%lu" message:3, "-[WiFiAIRAgent _evaluationComplete:]", a3];
     }
     objc_autoreleasePoolPop(v5);
     self->_isEvalInProgress = 0;
     if (self->_cbRegisteredWithUserActivity)
     {
-      id v6 = (void *)objc_claimAutoreleasedReturnValue( +[WiFiUserInteractionMonitor sharedInstance]( &OBJC_CLASS___WiFiUserInteractionMonitor,  "sharedInstance"));
+      id v6 = [WiFiUserInteractionMonitor sharedInstance];
       [v6 unregisterStateChangeCallback:self];
 
       self->_cbRegisteredWithUserActivity = 0;

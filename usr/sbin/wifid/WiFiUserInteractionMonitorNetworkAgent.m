@@ -68,14 +68,14 @@
   v9 = -[NSUUID initWithUUIDString:](objc_alloc(&OBJC_CLASS___NSUUID), "initWithUUIDString:", v6);
   -[WiFiUserInteractionMonitorNetworkAgent setAgentUUID:](v8, "setAgentUUID:", v9);
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent agentUUID](v8, "agentUUID"));
+  v10 = [v8 agentUUID];
   if (!v10) {
     goto LABEL_5;
   }
   v11 = -[NWNetworkAgentRegistration initWithNetworkAgentClass:]( objc_alloc(&OBJC_CLASS___NWNetworkAgentRegistration),  "initWithNetworkAgentClass:",  objc_opt_class(&OBJC_CLASS___WiFiUserInteractionMonitorNetworkAgent));
   -[WiFiUserInteractionMonitorNetworkAgent setRegistration:](v8, "setRegistration:", v11);
 
-  v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent registration](v8, "registration"));
+  v12 = -[WiFiUserInteractionMonitorNetworkAgent registration];
   if (!v12) {
     goto LABEL_5;
   }
@@ -88,7 +88,7 @@
   -[WiFiUserInteractionMonitorNetworkAgent setNetworkProvider:](v8, "setNetworkProvider:", 0LL);
   -[WiFiUserInteractionMonitorNetworkAgent setAssertCount:](v8, "setAssertCount:", 0LL);
   -[WiFiUserInteractionMonitorNetworkAgent setAvcMinJB:](v8, "setAvcMinJB:", 0LL);
-  v13 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent registration](v8, "registration"));
+  v13 = -[WiFiUserInteractionMonitorNetworkAgent registration];
   unsigned __int8 v14 = [v13 registerNetworkAgent:v8];
 
   if ((v14 & 1) == 0)
@@ -115,17 +115,17 @@ LABEL_5:
   {
     v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null userInfo",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
+      [qword_100219F60 WFLog:@"%s: null userInfo" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
     }
     goto LABEL_18;
   }
 
-  uint64_t v7 = objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:NWNetworkAgentStartOptionClientUUID]);
+  uint64_t v7 = [v4 objectForKeyedSubscript:NWNetworkAgentStartOptionClientUUID];
   if (!v7)
   {
     v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null clientUUID",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
+      [qword_100219F60 WFLog:@"%s: null clientUUID" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
     }
 LABEL_18:
     objc_autoreleasePoolPop(v17);
@@ -133,7 +133,7 @@ LABEL_18:
   }
 
   v8 = (void *)v7;
-  v9 = (void *)objc_claimAutoreleasedReturnValue(+[NWPath pathForClientID:](&OBJC_CLASS___NWPath, "pathForClientID:", v7));
+  v9 = [NWPath pathForClientID:v7];
   if (v9)
   {
     v10 = v9;
@@ -143,7 +143,7 @@ LABEL_18:
   {
     v18 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null clientPath",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
+      [qword_100219F60 WFLog:@"%s: null clientPath" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
     }
     objc_autoreleasePoolPop(v18);
   }
@@ -154,15 +154,15 @@ LABEL_8:
     || v5 != (void *)-[WiFiUserInteractionMonitorNetworkAgent avcMinJB](self, "avcMinJB"))
   {
     -[WiFiUserInteractionMonitorNetworkAgent setActive:](self, "setActive:", 1LL);
-    v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent registration](self, "registration"));
+    v11 = -[WiFiUserInteractionMonitorNetworkAgent registration];
     [v11 updateNetworkAgent:self];
 
-    v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+    v12 = [self client];
     if (v12)
     {
-      v13 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+      v13 = [self client];
       unsigned __int8 v14 = (void (**)(void, void, void))objc_claimAutoreleasedReturnValue([v13 callback]);
-      v15 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+      v15 = [self client];
       ((void (**)(void, id, uint64_t))v14)[2](v14, [v15 context], 1);
     }
   }
@@ -187,15 +187,15 @@ LABEL_8:
     {
       -[WiFiUserInteractionMonitorNetworkAgent setActive:](self, "setActive:", 0LL);
       -[WiFiUserInteractionMonitorNetworkAgent setAvcMinJB:](self, "setAvcMinJB:", 0LL);
-      v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent registration](self, "registration"));
+      v5 = -[WiFiUserInteractionMonitorNetworkAgent registration];
       [v5 updateNetworkAgent:self];
 
-      id v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+      id v6 = [self client];
       if (v6)
       {
         uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
-        v8 = (void (**)(void, void, void))objc_claimAutoreleasedReturnValue([v7 callback]);
-        v9 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+        v8 = [v7 callback];
+        v9 = -[WiFiUserInteractionMonitorNetworkAgent client];
         ((void (**)(void, id, uint64_t))v8)[2](v8, [v9 context], 1);
       }
     }
@@ -217,10 +217,10 @@ LABEL_8:
   v9 = objc_alloc_init(&OBJC_CLASS___WiFiUserInteractionMonitorClient);
   -[WiFiUserInteractionMonitorNetworkAgent setClient:](self, "setClient:", v9);
 
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+  id v10 = -[WiFiUserInteractionMonitorNetworkAgent client];
   [v10 setCallback:v12];
 
-  v11 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserInteractionMonitorNetworkAgent client](self, "client"));
+  v11 = -[WiFiUserInteractionMonitorNetworkAgent client];
   [v11 setContext:a4];
 }
 

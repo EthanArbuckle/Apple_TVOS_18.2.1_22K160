@@ -46,7 +46,7 @@
   if (v5)
   {
     v5->_msgId = (unsigned __int16)[v4 decodeInt64ForKey:@"message"];
-    uint64_t v6 = objc_claimAutoreleasedReturnValue([v4 decodeObjectForKey:@"arguments"]);
+    uint64_t v6 = [v4 decodeObjectForKey:@"arguments"];
     arguments = v5->_arguments;
     v5->_arguments = (NSDictionary *)v6;
   }

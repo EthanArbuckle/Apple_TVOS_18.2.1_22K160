@@ -7,7 +7,7 @@
 + (id)consolidatedDataForRequests:(id)a3
 {
   id v3 = a3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableData data](&OBJC_CLASS___NSMutableData, "data"));
+  v4 = [NSMutableData data];
   __int128 v14 = 0u;
   __int128 v15 = 0u;
   __int128 v16 = 0u;
@@ -34,7 +34,7 @@
           goto LABEL_11;
         }
 
-        v12 = (void *)objc_claimAutoreleasedReturnValue([v10 value]);
+        v12 = (void *)[v10 value];
         [v4 appendData:v12];
       }
 

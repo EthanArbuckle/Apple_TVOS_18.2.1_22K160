@@ -16,19 +16,19 @@
 {
   id v5 = a3;
   v12.receiver = self;
-  v12.super_class = (Class)&OBJC_CLASS___BKDisplayBrightnessUpdateTransactionManager;
-  v6 = -[BKDisplayBrightnessUpdateTransactionManager init](&v12, "init");
+  v12.super_class = [BKDisplayBrightnessUpdateTransactionManager class];
+  BKDisplayBrightnessUpdateTransactionManager *v6 = [[BKDisplayBrightnessUpdateTransactionManager alloc] init];
   v7 = v6;
   if (v6)
   {
     *(void *)&v6->_lock._os_unfair_lock_opaque = 0LL;
     v6->_commitPending = 0;
-    v8 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults externalDefaults](&OBJC_CLASS___BKSDefaults, "externalDefaults"));
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v8 springBoardDefaults]);
+    v8 = [BKSDefaults externalDefaults];
+    v9 = [v8 springBoardDefaults];
     [v9 brightness];
     v7->_systemDisplayBrightness = v10;
 
-    objc_storeStrong((id *)&v7->_brightnessController, a3);
+    [v7 setBrightnessController:a3];
   }
 
   return v7;
@@ -39,11 +39,11 @@
   p_lock = &self->_lock;
   os_unfair_lock_assert_not_owner(&self->_lock);
   os_unfair_lock_lock(p_lock);
-  *(float *)&double v4 = self->_systemDisplayBrightness;
-  -[BKDisplayBrightnessController setBrightnessLevel:reason:options:]( self->_brightnessController,  "setBrightnessLevel:reason:options:",  @"synchronizeALSPreferencesAndDisplayBrightness",  2LL,  v4);
+  float v4 = self->_systemDisplayBrightness;
+  [self->_brightnessController setBrightnessLevel:@"synchronizeALSPreferencesAndDisplayBrightness" reason:2 options:v4];
   if (sub_1000538D0())
   {
-    -[BKDisplayBrightnessController brightnessLevel](self->_brightnessController, "brightnessLevel");
+    [self->_brightnessController brightnessLevel];
     self->_systemDisplayBrightness = v5;
   }
 
@@ -70,7 +70,7 @@
     v11 = @"setDisplayBrightness (transient)";
   }
   *(float *)&double v8 = a3;
-  -[BKDisplayBrightnessController setBrightnessLevel:reason:options:]( self->_brightnessController,  "setBrightnessLevel:reason:options:",  v11,  v10,  v8);
+  [self->_brightnessController setBrightnessLevel:v11 reason:v10 options:v8];
   if (!v4 && self->_systemDisplayBrightness >= 0.0)
   {
     self->_shouldRestoreSystemBrightness = 1;
@@ -78,7 +78,7 @@
       goto LABEL_10;
     }
 LABEL_12:
-    -[BKDisplayBrightnessUpdateTransactionManager _lock_commitDisplayBrightness](self, "_lock_commitDisplayBrightness");
+    [_lock_commitDisplayBrightness];
     goto LABEL_13;
   }
 
@@ -115,9 +115,9 @@ LABEL_13:
       self->_shouldRestoreSystemBrightness = 0;
       brightnessController = self->_brightnessController;
       v7 = NSStringFromSelector(a2);
-      double v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
-      *(float *)&double v9 = systemDisplayBrightness;
-      -[BKDisplayBrightnessController setBrightnessLevel:reason:options:]( brightnessController,  "setBrightnessLevel:reason:options:",  v8,  10LL,  v9);
+      double v8 = v7;
+      float v9 = systemDisplayBrightness;
+      [brightnessController setBrightnessLevel:v8 reason:10 options:v9];
 
       sub_1000538D0();
     }
@@ -135,13 +135,13 @@ LABEL_13:
   self->_int numPendingTransactions = numPendingTransactions + 1;
   if (!numPendingTransactions)
   {
-    v6 = (BSInvalidatable *)objc_claimAutoreleasedReturnValue( -[BKDisplayBrightnessController suppressBrightnessNotificationsForReason:]( self->_brightnessController,  "suppressBrightnessNotificationsForReason:",  @"update-transaction"));
+    v6 = [self->_brightnessController suppressBrightnessNotificationsForReason:@"update-transaction"];
     suppressBrightnessNotifications = self->_suppressBrightnessNotifications;
     self->_suppressBrightnessNotifications = v6;
   }
 
   uint64_t v8 = BKLogBacklight();
-  double v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+  double v9 = (os_log_s *)v8;
   if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
   {
     int v10 = self->_numPendingTransactions;
@@ -164,7 +164,7 @@ LABEL_13:
   os_unfair_lock_lock(&self->_lock);
   --self->_numPendingTransactions;
   uint64_t v6 = BKLogBacklight();
-  v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  os_log_s *v7 = v6;
   if (os_log_type_enabled(v7, OS_LOG_TYPE_DEFAULT))
   {
     int numPendingTransactions = self->_numPendingTransactions;
@@ -180,14 +180,14 @@ LABEL_13:
   int v9 = self->_numPendingTransactions;
   if (v9 < 0)
   {
-    int v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"There shouldn't be a negative number of pending transactions"));
+    NSString *v11 = [NSString stringWithFormat:@"There shouldn't be a negative number of pending transactions"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       id v12 = NSStringFromSelector(a2);
-      __int16 v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
-      v15 = (objc_class *)objc_opt_class(self, v14);
+      __int16 v13 = [v12 autorelease];
+      v15 = [self class];
       v16 = NSStringFromClass(v15);
-      v17 = (void *)objc_claimAutoreleasedReturnValue(v16);
+      v17 = v16;
       int v18 = 138544642;
       id v19 = v13;
       __int16 v20 = 2114;
@@ -210,11 +210,11 @@ LABEL_13:
 
   if (!v9)
   {
-    -[BSInvalidatable invalidate](self->_suppressBrightnessNotifications, "invalidate");
+    [self->_suppressBrightnessNotifications invalidate];
     suppressBrightnessNotifications = self->_suppressBrightnessNotifications;
     self->_suppressBrightnessNotifications = 0LL;
 
-    -[BKDisplayBrightnessUpdateTransactionManager _lock_commitDisplayBrightness](self, "_lock_commitDisplayBrightness");
+    [self _lock_commitDisplayBrightness];
   }
 
   os_unfair_lock_unlock(&self->_lock);
@@ -224,14 +224,14 @@ LABEL_13:
 {
   if (self->_commitPending)
   {
-    -[BKDisplayBrightnessController brightnessLevel](self->_brightnessController, "brightnessLevel");
+    [self->_brightnessController brightnessLevel];
     float v4 = v3;
-    -[BKDisplayBrightnessController setBrightnessLevel:reason:options:]( self->_brightnessController,  "setBrightnessLevel:reason:options:",  @"commitDisplayBrightness",  7LL);
+    [self->_brightnessController setBrightnessLevel:@"commitDisplayBrightness" reason:7 options:nil];
     if (vabds_f32(self->_systemDisplayBrightness, v4) < 0.0001)
     {
       sub_100053828();
-      id v5 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults externalDefaults](&OBJC_CLASS___BKSDefaults, "externalDefaults"));
-      uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 springBoardDefaults]);
+      BKSDefaults *v5 = [BKSDefaults externalDefaults];
+      uint64_t v6 = (void *)[v5 springBoardDefaults];
       *(float *)&double v7 = v4;
       [v6 setBrightness:v7];
     }

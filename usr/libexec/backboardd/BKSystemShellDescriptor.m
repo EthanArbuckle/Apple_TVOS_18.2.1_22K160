@@ -22,14 +22,14 @@
 
 - (BKSystemShellDescriptor)init
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"cannot directly allocate BKSystemShellDescriptor"));
+  v4 = [NSString stringWithFormat:@"cannot directly allocate BKSystemShellDescriptor"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     v5 = NSStringFromSelector(a2);
     v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    v8 = (objc_class *)objc_opt_class(self, v7);
+    v8 = [self class];
     v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = [v9 autorelease];
     int v12 = 138544642;
     v13 = v6;
     __int16 v14 = 2114;
@@ -52,16 +52,16 @@
 
 - (unint64_t)hash
 {
-  NSUInteger v3 = -[NSString hash](self->_bundleIdentifier, "hash");
-  unint64_t v4 = -[NSString hash](self->_bundlePath, "hash") ^ v3;
-  unint64_t v5 = v4 ^ -[NSString hash](self->_jobLabel, "hash");
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", self->_pid));
+  NSUInteger v3 = [self->_bundleIdentifier hash];
+  unint64_t v4 = [self->_bundlePath hash] ^ v3;
+  unint64_t v5 = v4 ^ [NSString hash];
+  v6 = [NSNumber numberWithInt:self->_pid];
   unint64_t v7 = v5 ^ (unint64_t)[v6 hash];
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithDouble:]( &OBJC_CLASS___NSNumber,  "numberWithDouble:",  self->_systemIdleSleepInterval));
+  v8 = [NSNumber numberWithDouble:self->_systemIdleSleepInterval];
   unint64_t v9 = (unint64_t)[v8 hash];
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", self->_watchdogType));
+  v10 = [NSNumber numberWithInteger:self->_watchdogType];
   unint64_t v11 = v7 ^ v9 ^ (unint64_t)[v10 hash];
 
   unint64_t v12 = 0x94D049BB133111EBLL
@@ -72,7 +72,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKSystemShellDescriptor, v5);
+  uint64_t v6 = [BKSystemShellDescriptor class];
   if ((objc_opt_isKindOfClass(v4, v6) & 1) != 0)
   {
     unint64_t v7 = v4;
@@ -94,31 +94,31 @@
 
 - (id)copyWithZone:(_NSZone *)a3
 {
-  return sub_100054568(objc_alloc(&OBJC_CLASS___BKSystemShellDescriptor), self);
+  return [BKSystemShellDescriptor initWithShell:self];
 }
 
 - (id)mutableCopyWithZone:(_NSZone *)a3
 {
-  return sub_100054568(objc_alloc(&OBJC_CLASS___BKMutableSystemShellDescriptor), self);
+  return [BKMutableSystemShellDescriptor initWithSystemShell:self];
 }
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (NSString)debugDescription
 {
-  NSUInteger v3 = (void *)objc_claimAutoreleasedReturnValue(+[BSDescriptionStyle debugStyle](&OBJC_CLASS___BSDescriptionStyle, "debugStyle"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionStream descriptionForRootObject:withStyle:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:withStyle:",  self,  v3));
+  NSUInteger v3 = [BSDescriptionStyle debugStyle];
+  id v4 = [BSDescriptionStream descriptionForRootObject:self withStyle:v3];
 
   return (NSString *)v4;
 }
 
 - (id)succinctDescription
 {
-  NSUInteger v3 = (void *)objc_claimAutoreleasedReturnValue(+[BSDescriptionStyle succinctStyle](&OBJC_CLASS___BSDescriptionStyle, "succinctStyle"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionStream descriptionForRootObject:withStyle:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:withStyle:",  self,  v3));
+  NSUInteger v3 = [BSDescriptionStyle succinctStyle];
+  id v4 = [BSDescriptionStream descriptionForRootObject:self withStyle:v3];
 
   return v4;
 }
@@ -127,7 +127,7 @@
 {
   id v12 = a3;
   uint64_t v4 = BSProcessDescriptionForPID(self->_pid);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
+  uint64_t v5 = v4;
   [v12 appendString:v5 withName:0];
 
   if (([v12 hasSuccinctStyle] & 1) == 0)
@@ -143,7 +143,7 @@
         unint64_t v11 = @"shell";
       }
       else {
-        unint64_t v11 = (__CFString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"<unknown:%lX>",  self->_watchdogType));
+        NSString *v11 = [NSString stringWithFormat:@"<unknown:%lX>", self->_watchdogType];
       }
     }
 
@@ -193,9 +193,9 @@
 + (id)build:(id)a3
 {
   NSUInteger v3 = (void (**)(id, id))a3;
-  uint64_t v4 = objc_alloc(&OBJC_CLASS___BKMutableSystemShellDescriptor);
+  BKMutableSystemShellDescriptor *v4 = [[BKMutableSystemShellDescriptor alloc] init];
   id v6 = sub_1000545FC(v4, v5);
-  v3[2](v3, v6);
+  v3[2] = v6;
 
   id v7 = [v6 copy];
   return v7;
@@ -203,14 +203,14 @@
 
 + (BKSystemShellDescriptor)new
 {
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"cannot directly allocate BKSystemShellDescriptor"));
+  uint64_t v4 = [NSString stringWithFormat:@"cannot directly allocate BKSystemShellDescriptor"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     uint64_t v5 = NSStringFromSelector(a2);
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    id v8 = (objc_class *)objc_opt_class(a1, v7);
+    id v6 = v5;
+    id v8 = [a1 class];
     id v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = [v9 autorelease];
     int v12 = 138544642;
     v13 = v6;
     __int16 v14 = 2114;

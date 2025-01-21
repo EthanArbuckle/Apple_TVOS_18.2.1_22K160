@@ -16,8 +16,8 @@
 
 - (unint64_t)childrenCount
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue([v2 collections]);
+  v2 = -[BTAVRCP_VFSFolder query];
+  v3 = [v2 collections];
   id v4 = [v3 count];
 
   return (unint64_t)v4;
@@ -25,20 +25,20 @@
 
 - (unsigned)createFolderWithUid:(unint64_t)a3 folder:(id *)a4
 {
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v6 collectionWithUid:a3 property:MPMediaItemPropertyAlbumPersistentID]);
+  v6 = -[BTAVRCP_VFSFolder query];
+  v7 = (void *)[v6 collectionWithUid:a3 property:MPMediaItemPropertyAlbumPersistentID];
 
   if (v7)
   {
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v7 representativeItem]);
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v8 valueForProperty:MPMediaItemPropertyAlbumPersistentID]);
+    v8 = [v7 representativeItem];
+    v9 = (void *)[v8 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v7 representativeItem]);
-    v11 = (void *)objc_claimAutoreleasedReturnValue([v10 valueForProperty:MPMediaItemPropertyAlbumTitle]);
+    v10 = [v7 representativeItem];
+    v11 = [v10 valueForProperty:MPMediaItemPropertyAlbumTitle];
 
     v12 =  -[BTAVRCP_VFSFolder initWithName:uid:]( [BTAVRCP_AudiobookItemsFolder alloc],  "initWithName:uid:",  v11,  [v9 unsignedLongLongValue]);
     *a4 = v12;
-    v13 = (void *)objc_claimAutoreleasedReturnValue( +[MPMediaPropertyPredicate predicateWithValue:forProperty:]( &OBJC_CLASS___MPMediaPropertyPredicate,  "predicateWithValue:forProperty:",  v9,  MPMediaItemPropertyAlbumPersistentID));
+    v13 = [MPMediaPropertyPredicate predicateWithValue:v9 forProperty:MPMediaItemPropertyAlbumPersistentID];
     -[BTAVRCP_VFSFolder storePredicate:](v12, "storePredicate:", v13);
 
     unsigned __int8 v14 = 4;
@@ -54,15 +54,15 @@
 
 - (id)replyItemAtIndex:(unint64_t)a3 attributeIDs:(id)a4
 {
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query", a3, a4));
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v6 collectionAtIndex:a3]);
+  v6 = -[BTAVRCP_VFSFolder query:a3:a4];
+  v7 = (void *)[v6 collectionAtIndex:a3];
 
   if (v7)
   {
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v7 representativeItem]);
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v8 valueForProperty:MPMediaItemPropertyAlbumPersistentID]);
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v7 representativeItem]);
-    v11 = (void *)objc_claimAutoreleasedReturnValue([v10 valueForProperty:MPMediaItemPropertyAlbumTitle]);
+    v8 = (void *)[v7 representativeItem];
+    v9 = [v8 valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+    v10 = [v7 representativeItem];
+    v11 = [v10 valueForProperty:MPMediaItemPropertyAlbumTitle];
     v12 = (void *)objc_claimAutoreleasedReturnValue( -[BTAVRCP_VFSFolder replyFolderWithType:uid:name:]( self,  "replyFolderWithType:uid:name:",  1LL,  v9,  v11));
   }
 
@@ -76,7 +76,7 @@
 
 - (id)replyAttributesForUid:(unint64_t)a3 attributeIDs:(id)a4
 {
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query", a3, a4));
+  v5 = -[BTAVRCP_VFSFolder query:a3 withOptions:a4];
   v6 = (void *)objc_claimAutoreleasedReturnValue([v5 collectionWithUid:a3 property:MPMediaItemPropertyAlbumPersistentID]);
 
   if (v6) {
@@ -89,7 +89,7 @@
 
 - (unsigned)playItemWithUid:(unint64_t)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_VFSFolder query](self, "query"));
+  id v4 = -[BTAVRCP_VFSFolder query];
   v5 = (void *)objc_claimAutoreleasedReturnValue([v4 collectionWithUid:a3 property:MPMediaItemPropertyAlbumPersistentID]);
 
   if (v5) {

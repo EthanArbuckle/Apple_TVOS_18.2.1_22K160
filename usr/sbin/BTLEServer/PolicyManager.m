@@ -46,7 +46,7 @@
   objc_super v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:NSKeyValueChangeOldKey]);
   id v6 = [v5 unsignedIntegerValue];
 
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:NSKeyValueChangeNewKey]);
+  v7 = [v4 objectForKeyedSubscript:NSKeyValueChangeNewKey];
   id v8 = [v7 unsignedIntegerValue];
 
   v9 = (os_log_s *)qword_100070CC8;

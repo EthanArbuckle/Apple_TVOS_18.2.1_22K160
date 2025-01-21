@@ -15,7 +15,7 @@
   v2 = -[UninstallObserver init](&v5, "init");
   if (v2)
   {
-    v3 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
+    v3 = [+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace") autorelease];
     [v3 addObserver:v2];
   }
 
@@ -24,7 +24,7 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
+  v3 = [+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace") autorelease];
   [v3 removeObserver:self];
 
   v4.receiver = self;

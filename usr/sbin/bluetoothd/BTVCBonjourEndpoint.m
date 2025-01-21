@@ -269,7 +269,7 @@ LABEL_13:
   if (self->_connection)
   {
     id v8 = v6;
-    id v9 = dispatch_data_create([v8 bytes], (size_t)objc_msgSend(v8, "length"), 0, 0);
+    id v9 = dispatch_data_create([v8 bytes], (size_t)[v8 length], 0, 0);
     metadata = nw_ws_create_metadata(nw_ws_opcode_binary);
     id v11 = nw_content_context_create("send");
     nw_content_context_set_metadata_for_protocol(v11, metadata);
@@ -290,8 +290,8 @@ LABEL_5:
   {
     NSErrorUserInfoKey v17 = NSLocalizedDescriptionKey;
     id v18 = @"Unable to send message, nil connection";
-    id v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v18,  &v17,  1LL));
-    id v9 = (dispatch_data_s *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSOSStatusErrorDomain,  -6700LL,  v13));
+    id v13 = [NSDictionary dictionaryWithObjects:forKeys:count:v18, v17, 1LL];
+    id v9 = [NSError errorWithDomain:NSOSStatusErrorDomain code:-6700LL userInfo:v13];
 
     (*((void (**)(id, dispatch_data_s *))v7 + 2))(v7, v9);
     goto LABEL_5;

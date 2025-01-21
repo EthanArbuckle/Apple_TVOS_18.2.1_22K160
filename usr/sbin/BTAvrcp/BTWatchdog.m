@@ -23,7 +23,7 @@
   objc_sync_enter(obj);
   -[BTWatchdog setIsTransacting:](obj, "setIsTransacting:", 1LL);
   -[BTWatchdog setTransactionCount:]( obj,  "setTransactionCount:",  (char *)-[BTWatchdog transactionCount](obj, "transactionCount") + 1);
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](obj, "timer"));
+  v2 = [obj timer];
 
   if (!v2) {
     -[BTWatchdog _startTimer](obj, "_startTimer");
@@ -46,7 +46,7 @@
   dispatch_source_t v5 = dispatch_source_create((dispatch_source_type_t)&_dispatch_source_type_timer, 0LL, 0LL, v4);
   -[BTWatchdog setTimer:](self, "setTimer:", v5);
 
-  v6 = (dispatch_source_s *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](self, "timer"));
+  v6 = [self timer];
   handler[0] = _NSConcreteStackBlock;
   handler[1] = 3221225472LL;
   handler[2] = sub_100004C78;
@@ -54,7 +54,7 @@
   handler[4] = self;
   dispatch_source_set_event_handler(v6, handler);
 
-  v7 = (dispatch_source_s *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](self, "timer"));
+  v7 = [self timer];
   v11[0] = _NSConcreteStackBlock;
   v11[1] = 3221225472LL;
   v11[2] = sub_100004C80;
@@ -62,17 +62,17 @@
   v11[4] = self;
   dispatch_source_set_cancel_handler(v7, v11);
 
-  v8 = (dispatch_source_s *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](self, "timer"));
+  v8 = [self timer];
   dispatch_time_t v9 = dispatch_time(0LL, 10000000000LL);
   dispatch_source_set_timer(v8, v9, 0x2540BE400uLL, 0x3B9ACA00uLL);
 
-  v10 = (dispatch_object_s *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](self, "timer"));
+  v10 = [self timer];
   dispatch_resume(v10);
 }
 
 - (void)_stopTimer
 {
-  v2 = (dispatch_source_s *)objc_claimAutoreleasedReturnValue(-[BTWatchdog timer](self, "timer"));
+  v2 = [self timer];
   dispatch_source_cancel(v2);
 }
 

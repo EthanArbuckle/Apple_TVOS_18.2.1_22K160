@@ -43,7 +43,7 @@
   v2 = -[UARPServiceUARPControllerManager init](&v12, "init");
   if (v2)
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v3 = [+[NSMutableDictionary dictionary] autorelease];
     uarpAccessoryUARPServiceMap = v2->uarpAccessoryUARPServiceMap;
     v2->uarpAccessoryUARPServiceMap = (NSMutableDictionary *)v3;
 
@@ -84,7 +84,7 @@
     goto LABEL_8;
   }
 
-  v13 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
+  v13 = -[UARPServiceUARPControllerManager uarpController];
   unsigned __int8 v14 = [v13 accessoryReachable:v9];
 
   if ((v14 & 1) == 0)
@@ -98,7 +98,7 @@ LABEL_8:
   }
 
   uarpAccessoryUARPServiceMap = self->uarpAccessoryUARPServiceMap;
-  v16 = (void *)objc_claimAutoreleasedReturnValue([v9 uuid]);
+  v16 = [v9 uuid];
   -[NSMutableDictionary setObject:forKey:](uarpAccessoryUARPServiceMap, "setObject:forKey:", v8, v16);
 
   BOOL v17 = 1;
@@ -113,20 +113,20 @@ LABEL_9:
   id v7 = a4;
   if (v7)
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
+    id v8 = [self uarpController];
     unsigned __int8 v9 = [v8 accessoryUnreachable:v7];
 
     if ((v9 & 1) == 0 && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003C764();
     }
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
+    id v10 = [self uarpController];
     unsigned __int8 v11 = [v10 removeAccessory:v7];
 
     if ((v11 & 1) == 0 && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003C704();
     }
     uarpAccessoryUARPServiceMap = self->uarpAccessoryUARPServiceMap;
-    v13 = (void *)objc_claimAutoreleasedReturnValue([v7 uuid]);
+    v13 = [v7 uuid];
     -[NSMutableDictionary removeObjectForKey:](uarpAccessoryUARPServiceMap, "removeObjectForKey:", v13);
   }
 
@@ -151,7 +151,7 @@ LABEL_9:
   v2 = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, 1uLL, 1);
   uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(v2);
   v4 = objc_alloc(&OBJC_CLASS___NSString);
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v3 objectAtIndexedSubscript:0]);
+  v5 = [v3 objectAtIndexedSubscript:0];
   id v6 = -[NSString initWithFormat:](v4, "initWithFormat:", @"%@/Logs/Bluetooth/UARPLogs", v5);
 
   return v6;
@@ -159,7 +159,7 @@ LABEL_9:
 
 - (BOOL)_createUARPLogPath
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+  uint64_t v3 = (void *)[NSFileManager defaultManager];
   uarpLogPath = self->_uarpLogPath;
   id v7 = 0LL;
   [v3 createDirectoryAtPath:uarpLogPath withIntermediateDirectories:1 attributes:0 error:&v7];
@@ -187,7 +187,7 @@ LABEL_9:
 - (BOOL)getAndRemoveFromUARPTransportDict:(id)a3
 {
   id v4 = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_uarpAACPTransportAvailability, "objectForKey:", v4));
+  id v5 = [self->_uarpAACPTransportAvailability objectForKey:v4];
 
   id v6 = (void *)qword_100070CC8;
   BOOL v7 = os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG);
@@ -196,8 +196,8 @@ LABEL_9:
     if (v7) {
       sub_10003C934(v6, v4);
     }
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpAACPTransportAvailability]( self,  "uarpAACPTransportAvailability"));
-    unsigned __int8 v9 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKey:v4]);
+    id v8 = [self uarpAACPTransportAvailability];
+    unsigned __int8 v9 = (void *)[v8 objectForKey:v4];
     BOOL v10 = v9 != 0LL;
 
     -[NSMutableDictionary removeObjectForKey:](self->_uarpAACPTransportAvailability, "removeObjectForKey:", v4);
@@ -222,7 +222,7 @@ LABEL_9:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
     sub_10003C9BC(v9, v7, v8);
   }
-  BOOL v10 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v7));
+  BOOL v10 = [self uarpServiceForAccessoryUuid:v7];
   [v10 recvDataOverAACP:v8];
 
   return 1;
@@ -242,7 +242,7 @@ LABEL_9:
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "setOpportunisticConnection - isOpportunistic %u, uuid %@",  (uint8_t *)v10,  0x12u);
   }
 
-  id v8 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v6));
+  id v8 = -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:v6];
   unsigned __int8 v9 = v8;
   if (v4) {
     [v8 decOpportunisticConnection];
@@ -258,16 +258,16 @@ LABEL_9:
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     BOOL v4 = v3;
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpLogPath](self, "uarpLogPath"));
+    id v5 = [self uarpLogPath];
     int v11 = 138412290;
     id v12 = v5;
     _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "startTapToRadar - URL %@",  (uint8_t *)&v11,  0xCu);
   }
 
   self->_tapToRadarIsOngoing = 1;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpLogPath](self, "uarpLogPath"));
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSURL fileURLWithPath:isDirectory:](&OBJC_CLASS___NSURL, "fileURLWithPath:isDirectory:", v7, 1LL));
+  id v6 = [self uarpController];
+  id v7 = [self uarpLogPath];
+  id v8 = [NSURL fileURLWithPath:v7 isDirectory:1LL];
   unsigned __int8 v9 = [v6 startTapToRadar:v8];
 
   return v9;
@@ -283,7 +283,7 @@ LABEL_9:
   }
 
   self->_tapToRadarIsOngoing = 0;
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
+  BOOL v4 = [self uarpController];
   [v4 stopTapToRadar];
 }
 
@@ -351,8 +351,8 @@ LABEL_9:
 
     if (v21)
     {
-      v22 = (void *)objc_claimAutoreleasedReturnValue([v6 uuid]);
-      v23 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v22));
+      v22 = [v6 uuid];
+      v23 = [self uarpServiceForAccessoryUuid:v22];
       [v23 incOpportunisticConnection];
     }
 
@@ -406,7 +406,7 @@ LABEL_9:
   {
     int v12 = (void *)objc_claimAutoreleasedReturnValue(-[UARPServiceUARPControllerManager uarpController](self, "uarpController"));
     id v14 = v8;
-    id v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v14, 1LL));
+    id v13 = [NSArray arrayWithObjects:&v14, 1LL];
     [v12 applyStagedFirmwareOnAccessoryList:v13 withUserIntent:1];
   }
 }
@@ -425,8 +425,8 @@ LABEL_9:
     _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "stagedFirmwareApplicationComplete - accessory:%@ status:%s",  (uint8_t *)&v11,  0x16u);
   }
 
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v6 uuid]);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v9));
+  id v9 = [v6 uuid];
+  id v10 = [self uarpServiceForAccessoryUuid:v9];
   [v10 decOpportunisticConnection];
 }
 
@@ -438,8 +438,8 @@ LABEL_9:
   {
     id v10 = v9;
     id v11 = a4;
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v8 uuid]);
-    __int16 v13 = (void *)objc_claimAutoreleasedReturnValue([v11 tag]);
+    id v12 = [v8 uuid];
+    __int16 v13 = [v11 tag];
 
     int v16 = 138413058;
     __int16 v17 = v12;
@@ -452,8 +452,8 @@ LABEL_9:
     _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_DEFAULT,  "assetSolicitationComplete: Accessory %@ returning asset tag 0x%08x status %s (%lu)",  (uint8_t *)&v16,  0x26u);
   }
 
-  uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v8 uuid]);
-  id v15 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v14));
+  uint64_t v14 = (void *)[v8 uuid];
+  id v15 = [self uarpServiceForAccessoryUuid:v14];
   [v15 assetSolicitationComplete];
 }
 
@@ -470,13 +470,13 @@ LABEL_9:
     _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "queryCompleteForAccessory: HW Fusing type updated for accessory %@",  (uint8_t *)&v17,  0xCu);
   }
 
-  id v12 = (void *)objc_claimAutoreleasedReturnValue([v8 uuid]);
+  id v12 = (void *)[v8 uuid];
   __int16 v13 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v12));
   char v14 = objc_opt_respondsToSelector(v13, "queryCompleteForAccessory:hwFusingType:error:");
 
   if ((v14 & 1) != 0)
   {
-    id v15 = (void *)objc_claimAutoreleasedReturnValue([v8 uuid]);
+    id v15 = [v8 uuid];
     int v16 = (void *)objc_claimAutoreleasedReturnValue( -[UARPServiceUARPControllerManager uarpServiceForAccessoryUuid:]( self,  "uarpServiceForAccessoryUuid:",  v15));
     [v16 queryCompleteForAccessory:v8 hwFusingType:v9 error:v10];
   }

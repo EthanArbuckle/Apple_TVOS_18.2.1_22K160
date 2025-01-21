@@ -32,7 +32,7 @@
     loggingTimeoutTimer = v2->loggingTimeoutTimer;
     v2->loggingTimeoutTimer = 0LL;
 
-    uint64_t v5 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+    uint64_t v5 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
     requestedUUIDs = v3->_requestedUUIDs;
     v3->_requestedUUIDs = (NSMutableArray *)v5;
 
@@ -43,7 +43,7 @@
     xpcConnection = v3->_xpcConnection;
     v3->_xpcConnection = 0LL;
 
-    v10 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcServer](v3, "xpcServer"));
+    v10 = [LoggingManager xpcServer];
     handler[0] = _NSConcreteStackBlock;
     handler[1] = 3221225472LL;
     handler[2] = sub_100019C6C;
@@ -52,7 +52,7 @@
     v15 = v11;
     xpc_connection_set_event_handler(v10, handler);
 
-    v12 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcServer](v11, "xpcServer"));
+    v12 = [LoggingManager xpcServer];
     xpc_connection_resume(v12);
   }
 
@@ -70,7 +70,7 @@
 - (BOOL)wasUUIDRequestedForLogRetrieval:(id)a3
 {
   id v4 = a3;
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[LoggingManager requestedUUIDs](self, "requestedUUIDs"));
+  uint64_t v5 = (void *)[self requestedUUIDs];
   objc_sync_enter(v5);
   LOBYTE(self) = -[NSMutableArray containsObject:](self->_requestedUUIDs, "containsObject:", v4);
   objc_sync_exit(v5);
@@ -80,7 +80,7 @@
 
 - (BOOL)isXpcConnected
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+  v2 = -[LoggingManager xpcConnection];
   BOOL v3 = v2 != 0LL;
 
   return v3;
@@ -113,11 +113,11 @@
     _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "LoggingManager - XPC connection: %p %@",  buf,  0x16u);
   }
 
-  v6 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcServer](self, "xpcServer"));
+  v6 = [LoggingManager xpcServer];
   xpc_connection_suspend(v6);
 
   -[LoggingManager setXpcConnection:](self, "setXpcConnection:", v4);
-  v7 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+  v7 = [LoggingManager xpcConnection];
   handler[0] = _NSConcreteStackBlock;
   handler[1] = 3221225472LL;
   handler[2] = sub_100019F44;
@@ -125,7 +125,7 @@
   void handler[4] = self;
   xpc_connection_set_event_handler(v7, handler);
 
-  v8 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+  v8 = [LoggingManager xpcConnection];
   xpc_connection_resume(v8);
 }
 
@@ -135,17 +135,17 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     id v4 = v3;
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+    uint64_t v5 = (void *)[self xpcConnection];
     int v8 = 138412290;
     v9 = v5;
     _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "LoggingManager - XPC disconnection: %@",  (uint8_t *)&v8,  0xCu);
   }
 
   -[LoggingManager setXpcConnection:](self, "setXpcConnection:", 0LL);
-  v6 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcServer](self, "xpcServer"));
+  v6 = [LoggingManager xpcServer];
   xpc_connection_resume(v6);
 
-  v7 = (void *)objc_claimAutoreleasedReturnValue( +[UARPServiceUARPControllerManager instance]( &OBJC_CLASS___UARPServiceUARPControllerManager,  "instance"));
+  v7 = [UARPServiceUARPControllerManager instance];
   [v7 stopTapToRadar];
 
   -[LoggingManager cleanup](self, "cleanup");
@@ -184,13 +184,13 @@
   id v4 = a3;
   string = xpc_dictionary_get_string(v4, "kMsgId");
   xpc_object_t value = xpc_dictionary_get_value(v4, "kMsgArgs");
-  v7 = (void *)objc_claimAutoreleasedReturnValue(value);
+  v7 = (void *)value;
 
   int v8 = (void *)qword_100070CC8;
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     v9 = v8;
-    v10 = (void *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+    v10 = [self xpcConnection];
     int v11 = 134218242;
     __int16 v12 = v10;
     __int16 v13 = 2080;
@@ -231,7 +231,7 @@
     _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "LoggingManager - sending XPC message to %p: %@",  (uint8_t *)&v14,  0x16u);
   }
 
-  __int16 v13 = (_xpc_connection_s *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+  __int16 v13 = (_xpc_connection_s *)[self xpcConnection];
   xpc_connection_send_message(v13, v8);
 }
 
@@ -242,7 +242,7 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     id v6 = v5;
-    id v7 = (char *)objc_claimAutoreleasedReturnValue(-[LoggingManager xpcConnection](self, "xpcConnection"));
+    id v7 = [self xpcConnection];
     *(_DWORD *)buf = 134217984;
     v22 = v7;
     _os_log_impl( (void *)&_mh_execute_header,  v6,  OS_LOG_TYPE_DEFAULT,  "LoggingManager - handleLogRetrievalRequest Received RetrieveLogs XPC message from %p",  buf,  0xCu);
@@ -260,7 +260,7 @@
         if (string)
         {
           __int16 v12 = objc_alloc(&OBJC_CLASS___NSUUID);
-          __int16 v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", string));
+          __int16 v13 = [NSString stringWithUTF8String:string];
           int v14 = -[NSUUID initWithUUIDString:](v12, "initWithUUIDString:", v13);
 
           if (v14)
@@ -323,25 +323,25 @@
 
 - (void)logRetrievalComplete
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue( +[UARPServiceUARPControllerManager instance]( &OBJC_CLASS___UARPServiceUARPControllerManager,  "instance"));
+  v2 = [UARPServiceUARPControllerManager instance];
   [v2 stopTapToRadar];
 
   xpc_object_t xarray = xpc_array_create_empty();
-  BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[UARPServiceUARPControllerManager instance]( &OBJC_CLASS___UARPServiceUARPControllerManager,  "instance"));
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 uarpLogPath]);
-  uint64_t v6 = objc_claimAutoreleasedReturnValue(+[NSURL fileURLWithPath:isDirectory:](&OBJC_CLASS___NSURL, "fileURLWithPath:isDirectory:", v5, 1LL));
+  BOOL v3 = +[NSFileManager defaultManager];
+  id v4 = [UARPServiceUARPControllerManager instance];
+  uint64_t v5 = (void *)[v4 uarpLogPath];
+  uint64_t v6 = [NSURL fileURLWithPath:v5 isDirectory:1LL];
 
   NSURLResourceKey v7 = NSURLFileResourceTypeKey;
   NSURLResourceKey v47 = NSURLFileResourceTypeKey;
   v31 = (void *)v6;
   v32 = v3;
-  v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v47, 1LL));
+  v30 = [NSArray arrayWithObjects:&v47, nil];
   __int128 v38 = 0u;
   __int128 v39 = 0u;
   __int128 v40 = 0u;
   __int128 v41 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:", v6));
+  id obj = [v3 enumeratorAtURL:v6 includingPropertiesForKeys:nil options:0 errorHandler:nil];
   id v8 = [obj countByEnumeratingWithState:&v38 objects:v46 count:16];
   size_t v9 = (os_log_t *)&qword_100070CC8;
   if (v8)
@@ -374,13 +374,13 @@
           if (os_log_type_enabled(*v9, OS_LOG_TYPE_DEFAULT))
           {
             v23 = v18;
-            v24 = (void *)objc_claimAutoreleasedReturnValue([v14 path]);
+            v24 = [v14 path];
             *(_DWORD *)buf = 138412290;
             size_t v45 = (size_t)v24;
             _os_log_impl( (void *)&_mh_execute_header,  v23,  OS_LOG_TYPE_DEFAULT,  "LoggingManager - file path: %@",  buf,  0xCu);
           }
 
-          id v25 = objc_claimAutoreleasedReturnValue([v14 path]);
+          id v25 = [v14 path];
           xpc_object_t v26 = xpc_string_create((const char *)[v25 UTF8String]);
 
           xpc_array_append_value(xarray, v26);

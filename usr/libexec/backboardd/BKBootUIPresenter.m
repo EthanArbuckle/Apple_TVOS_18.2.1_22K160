@@ -36,30 +36,30 @@
   id v14 = a6;
   id v15 = a7;
   v39.receiver = self;
-  v39.super_class = (Class)&OBJC_CLASS___BKBootUIPresenter;
-  v16 = -[BKBootUIPresenter init](&v39, "init");
+  v39.super_class = [BKBootUIPresenter class];
+  BKBootUIPresenter *v16 = [[BKBootUIPresenter alloc] init];
   v17 = v16;
   if (v16)
   {
-    objc_storeStrong((id *)&v16->_systemAppSentinel, a3);
-    objc_storeStrong((id *)&v17->_bootUIOverlayVendor, a6);
-    objc_storeStrong((id *)&v17->_renderOverlayManager, a7);
-    objc_storeStrong((id *)&v17->_firstBootDetector, a5);
-    v19 = (objc_class *)objc_opt_class(v17, v18);
+    [v16 setSystemAppSentinel:a3];
+    v17->_bootUIOverlayVendor = a6;
+    [v17 setRenderOverlayManager:a7];
+    v17->_firstBootDetector = a5;
+    v19 = [v17 class];
     v20 = NSStringFromClass(v19);
-    v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
+    v21 = [v20 autorelease];
     uint64_t SerialWithQoS = BSDispatchQueueCreateSerialWithQoS(v21, 33LL);
     queue = v17->_queue;
     v17->_queue = (OS_dispatch_queue *)SerialWithQoS;
 
     v17->_screenOwnerPID = -1;
-    -[BKFirstBootDetector addObserver:](v17->_firstBootDetector, "addObserver:", v17);
-    uint64_t v24 = objc_claimAutoreleasedReturnValue( -[BKSystemShellSentinel addSystemShellObserver:reason:]( v17->_systemAppSentinel,  "addSystemShellObserver:reason:",  v17,  @"BootUIPresenter"));
+    [v17->_firstBootDetector addObserver:v17];
+    uint64_t v24 = [v17->_systemAppSentinel addSystemShellObserver:@"BootUIPresenter" reason:v17];
     systemShellObserving = v17->_systemShellObserving;
     v17->_systemShellObserving = (BSInvalidatable *)v24;
 
-    v26 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
-    v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "hideAppleLogoOnLaunch"));
+    BKSDefaults *v26 = [BKSDefaults localDefaults];
+    v27 = [NSString stringWithUTF8String:@"hideAppleLogoOnLaunch"];
     v28 = v17->_queue;
     v36[0] = _NSConcreteStackBlock;
     v36[1] = 3221225472LL;
@@ -87,14 +87,14 @@
 {
   if (self->_systemActivityAssertion)
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Must dismiss overlay before releasing"));
+    v5 = [NSString stringWithFormat:@"Must dismiss overlay before releasing"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v6 = NSStringFromSelector(a2);
-      v7 = (void *)objc_claimAutoreleasedReturnValue(v6);
-      v9 = (objc_class *)objc_opt_class(self, v8);
+      v7 = [v6 autorelease];
+      v9 = [self class];
       v10 = NSStringFromClass(v9);
-      v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
+      v11 = (void *)v10;
       *(_DWORD *)buf = 138544642;
       v28 = v7;
       __int16 v29 = 2114;
@@ -117,14 +117,14 @@
 
   if (self->_overlay)
   {
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Must dismiss overlay before releasing"));
+    id v12 = [NSString stringWithFormat:@"Must dismiss overlay before releasing"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       id v13 = NSStringFromSelector(a2);
       id v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
-      v16 = (objc_class *)objc_opt_class(self, v15);
+      v16 = [self class];
       v17 = NSStringFromClass(v16);
-      uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
+      uint64_t v18 = [v17 autorelease];
       *(_DWORD *)buf = 138544642;
       v28 = v14;
       __int16 v29 = 2114;
@@ -147,14 +147,14 @@
 
   if (self->_underlay)
   {
-    v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Must dismiss underlay before releasing"));
+    v19 = [NSString stringWithFormat:@"Must dismiss underlay before releasing"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v20 = NSStringFromSelector(a2);
-      v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
-      v23 = (objc_class *)objc_opt_class(self, v22);
+      v21 = [v20 autorelease];
+      v23 = [self class];
       uint64_t v24 = NSStringFromClass(v23);
-      v25 = (void *)objc_claimAutoreleasedReturnValue(v24);
+      v25 = v24;
       *(_DWORD *)buf = 138544642;
       v28 = v21;
       __int16 v29 = 2114;
@@ -175,24 +175,24 @@
     JUMPOUT(0x10006E7FCLL);
   }
 
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  v4 = [NSNotificationCenter defaultCenter];
   [v4 removeObserver:self];
 
   v26.receiver = self;
-  v26.super_class = (Class)&OBJC_CLASS___BKBootUIPresenter;
-  -[BKBootUIPresenter dealloc](&v26, "dealloc");
+  v26.super_class = [BKBootUIPresenter class];
+  [v26 dealloc];
 }
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescription](self->_overlay, "succinctDescription"));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
+  v4 = [BKDisplayRenderOverlay succinctDescription];
   id v5 = [v3 appendObject:v4 withName:@"_overlay" skipIfNil:1];
 
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescription](self->_underlay, "succinctDescription"));
+  v6 = [self->_underlay succinctDescription];
   id v7 = [v3 appendObject:v6 withName:@"_underlay" skipIfNil:1];
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  uint64_t v8 = (void *)[v3 build];
   return (NSString *)v8;
 }
 
@@ -317,13 +317,13 @@
 {
   uint64_t v3 = *(void *)&a3;
   self->_screenOwnerPID = a3;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BKSystemShellSentinel systemShells](self->_systemAppSentinel, "systemShells"));
+  id v5 = [BKSystemShellSentinel systemShells];
   __int128 v22 = 0u;
   __int128 v23 = 0u;
   __int128 v24 = 0u;
   __int128 v25 = 0u;
   id v6 = v5;
-  id v7 = [v6 countByEnumeratingWithState:&v22 objects:v30 count:16];
+  id v7 = [v6 countByEnumeratingWithState:v22 objects:v30 count:16];
   if (v7)
   {
     id v8 = v7;
@@ -335,10 +335,10 @@
         if (*(void *)v23 != v9) {
           objc_enumerationMutation(v6);
         }
-        uint64_t v11 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)i);
+        uint64_t v11 = [v22 objectAtIndex:i];
         if (objc_msgSend(v11, "pid", (void)v22) == (_DWORD)v3)
         {
-          v16 = (void *)objc_claimAutoreleasedReturnValue([v11 bundleIdentifier]);
+          v16 = [v11 bundleIdentifier];
           v17 = (NSString *)[v16 copy];
           screenOwnerBundleIdentifier = self->_screenOwnerBundleIdentifier;
           self->_screenOwnerBundleIdentifier = v17;
@@ -357,13 +357,13 @@
   }
 
   uint64_t v13 = BSBundleIDForPID(v3, v12);
-  char v14 = (NSString *)objc_claimAutoreleasedReturnValue(v13);
+  char v14 = [v13 UTF8String];
   uint64_t v15 = self->_screenOwnerBundleIdentifier;
   self->_screenOwnerBundleIdentifier = v14;
 LABEL_11:
 
   id v19 = sub_10003F0B0();
-  v20 = (os_log_s *)objc_claimAutoreleasedReturnValue(v19);
+  v20 = [v19 autorelease];
   if (os_log_type_enabled(v20, OS_LOG_TYPE_DEFAULT))
   {
     v21 = self->_screenOwnerBundleIdentifier;
@@ -379,7 +379,7 @@ LABEL_11:
 {
   id v4 = a3;
   BSDispatchQueueAssert(self->_queue, v5);
-  uint64_t v6 = objc_claimAutoreleasedReturnValue(-[BKSystemShellSentinel systemShellState](self->_systemAppSentinel, "systemShellState"));
+  uint64_t v6 = [self->_systemAppSentinel systemShellState];
   uint64_t v7 = v6;
   if (v6)
   {
@@ -387,7 +387,7 @@ LABEL_11:
     if (*(_BYTE *)(v7 + 8))
     {
       id v9 = sub_10003F0B0();
-      id v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+      os_log_s *v10 = [v9 autorelease];
       if (!os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT)) {
         goto LABEL_34;
       }
@@ -410,7 +410,10 @@ LABEL_8:
       __int128 v60 = 0u;
       __int128 v61 = 0u;
       id v10 = v15;
-      id v16 = -[os_log_s countByEnumeratingWithState:objects:count:]( v10,  "countByEnumeratingWithState:objects:count:",  &v58,  v64,  16LL);
+      [v10 enumerateObjectsWithOptions:v58 usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    v64 = idx;
+    v16 = obj;
+}];
       if (v16)
       {
         id v17 = v16;
@@ -428,7 +431,7 @@ LABEL_8:
             if (v21 == [v20 pid])
             {
               id v30 = sub_10003F0B0();
-              __int16 v31 = (os_log_s *)objc_claimAutoreleasedReturnValue(v30);
+              os_log_s *v31 = [v30 autorelease];
               if (os_log_type_enabled(v31, OS_LOG_TYPE_DEFAULT))
               {
                 int v32 = *p_screenOwnerPID;
@@ -448,13 +451,13 @@ LABEL_8:
             screenOwnerBundleIdentifier = self->_screenOwnerBundleIdentifier;
             if (screenOwnerBundleIdentifier)
             {
-              __int128 v23 = (void *)objc_claimAutoreleasedReturnValue([v20 bundleIdentifier]);
-              unsigned int v24 = -[NSString isEqual:](screenOwnerBundleIdentifier, "isEqual:", v23);
+              __int128 v23 = (void *)[v20 bundleIdentifier];
+              unsigned int v24 = [screenOwnerBundleIdentifier isEqual:v23];
 
               if (v24)
               {
                 id v25 = sub_10003F0B0();
-                objc_super v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+                os_log_s *v26 = [v25 autorelease];
                 if (os_log_type_enabled(v26, OS_LOG_TYPE_DEFAULT))
                 {
                   *(_DWORD *)buf = 138543362;
@@ -464,7 +467,7 @@ LABEL_8:
 
                 id v27 = v20;
                 self->_int screenOwnerPID = [v27 pid];
-                __int16 v28 = (NSString *)objc_claimAutoreleasedReturnValue([v27 bundleIdentifier]);
+                __int16 v28 = [v27 bundleIdentifier];
                 __int16 v29 = self->_screenOwnerBundleIdentifier;
                 self->_screenOwnerBundleIdentifier = v28;
 
@@ -473,7 +476,10 @@ LABEL_8:
             }
           }
 
-          id v17 = -[os_log_s countByEnumeratingWithState:objects:count:]( v10,  "countByEnumeratingWithState:objects:count:",  &v58,  v64,  16LL);
+          [v10 enumerateObjectsWithOptions:v58 usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    v64 = idx;
+    v17 = obj;
+}]
           id v4 = v56;
           if (v17) {
             continue;
@@ -489,7 +495,7 @@ LABEL_8:
   if (self->_systemActivityAssertion)
   {
     id v6 = sub_10003F0B0();
-    uint64_t v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+    uint64_t v7 = [v6 autorelease];
     if (os_log_type_enabled(v7, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)uint64_t v11 = 0;
@@ -499,12 +505,12 @@ LABEL_8:
     overlay = self->_overlay;
     if (overlay)
     {
-      -[BKDisplayRenderOverlayManager removeOverlay:withAnimationSettings:]( self->_renderOverlayManager,  "removeOverlay:withAnimationSettings:",  overlay,  v4);
+      [self->_renderOverlayManager removeOverlay:overlay withAnimationSettings:v4];
       id v9 = self->_overlay;
       self->_overlay = 0LL;
     }
 
-    -[SWSystemActivityAssertion invalidate](self->_systemActivityAssertion, "invalidate");
+    [self->_systemActivityAssertion invalidate];
     systemActivityAssertion = self->_systemActivityAssertion;
     self->_systemActivityAssertion = 0LL;
   }
@@ -517,7 +523,7 @@ LABEL_8:
   BSDispatchQueueAssert(self->_queue, v7);
   systemActivityAssertion = self->_systemActivityAssertion;
   id v9 = sub_10003F0B0();
-  id v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+  os_log_s *v10 = v9;
   uint64_t v11 = v10;
   if (systemActivityAssertion)
   {
@@ -531,15 +537,15 @@ LABEL_8:
     }
 
     LODWORD(v12) = 1161523200;
-    uint32_t v13 = (BKDisplayRenderOverlay *)objc_claimAutoreleasedReturnValue( -[BKBootUIOverlayVendor currentOverlayWithLevel:]( self->_bootUIOverlayVendor,  "currentOverlayWithLevel:",  v12));
+    BKDisplayRenderOverlay *v13 = [self->_bootUIOverlayVendor currentOverlayWithLevel:v12];
     overlay = self->_overlay;
     self->_overlay = v13;
 
-    -[BKDisplayRenderOverlay setAnimates:](self->_overlay, "setAnimates:", 1LL);
-    uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay descriptor](self->_overlay, "descriptor"));
+    [self->_overlay setAnimates:YES];
+    uint64_t v15 = (void *)[self->_overlay descriptor];
     [v15 _setInterstitial:1];
 
-    -[BKDisplayRenderOverlayManager applyOverlay:withAnimationSettings:]( self->_renderOverlayManager,  "applyOverlay:withAnimationSettings:",  self->_overlay,  0LL);
+    [self->_renderOverlayManager applyOverlay:self->_overlay withAnimationSettings:0LL];
   }
 
   else
@@ -560,17 +566,17 @@ LABEL_8:
   id v9 = a3;
   id v10 = a5;
   BSDispatchQueueAssert(self->_queue, v11);
-  double v12 = -[SWSystemActivityAssertion initWithIdentifier:]( objc_alloc(&OBJC_CLASS___SWSystemActivityAssertion),  "initWithIdentifier:",  @"BKBootUIPresenter");
+  double v12 = [SWSystemActivityAssertion initWithIdentifier:@"BKBootUIPresenter"];
   if (!v12)
   {
-    __int128 v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"nil activity assertion"));
+    NSString *v22 = [NSString stringWithFormat:@"nil activity assertion"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       __int128 v23 = NSStringFromSelector(a2);
-      unsigned int v24 = (void *)objc_claimAutoreleasedReturnValue(v23);
-      objc_super v26 = (objc_class *)objc_opt_class(self, v25);
+      unsigned int v24 = [v23 autorelease];
+      objc_super v26 = (objc_class *)self;
       id v27 = NSStringFromClass(v26);
-      __int16 v28 = (void *)objc_claimAutoreleasedReturnValue(v27);
+      __int16 v28 = [v27 autorelease];
       *(_DWORD *)buf = 138544642;
       *(void *)id v36 = v24;
       *(_WORD *)&v36[8] = 2114;
@@ -593,7 +599,7 @@ LABEL_8:
 
   uint32_t v13 = v12;
   id v14 = sub_10003F0B0();
-  uint64_t v15 = (os_log_s *)objc_claimAutoreleasedReturnValue(v14);
+  uint64_t v15 = [os_log_s class];
   if (os_log_type_enabled(v15, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 67109378;
@@ -604,7 +610,7 @@ LABEL_8:
   }
 
   double v17 = BSContinuousMachTimeNow(v16);
-  objc_storeStrong((id *)&self->_systemActivityAssertion, v13);
+  self->_systemActivityAssertion = v13;
   systemActivityAssertion = self->_systemActivityAssertion;
   v29[0] = _NSConcreteStackBlock;
   v29[1] = 3221225472LL;
@@ -618,7 +624,7 @@ LABEL_8:
   id v19 = v13;
   id v20 = v10;
   id v21 = v9;
-  -[SWSystemActivityAssertion acquireWithTimeout:handler:]( systemActivityAssertion,  "acquireWithTimeout:handler:",  v29,  16.0);
+  [systemActivityAssertion acquireWithTimeout:16.0 handler:v29];
 }
 
 - (void)_queue_addOverlayForReason:(id)a3
@@ -633,13 +639,13 @@ LABEL_8:
     unint64_t v8 = 1LL;
   }
   self->_unint64_t addOverlayGeneration = v8;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  id v9 = [BKSDefaults localDefaults];
   unsigned int v10 = [v9 hideAppleLogoOnLaunch];
 
   if (v10)
   {
     id v11 = sub_10003F0B0();
-    double v12 = (os_log_s *)objc_claimAutoreleasedReturnValue(v11);
+    double v12 = [v11 doubleValue];
     if (os_log_type_enabled(v12, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 67109378;
@@ -658,7 +664,7 @@ LABEL_10:
   if (self->_systemActivityAssertion)
   {
     id v14 = sub_10003F0B0();
-    double v12 = (os_log_s *)objc_claimAutoreleasedReturnValue(v14);
+    double v12 = [v14 autorelease];
     if (os_log_type_enabled(v12, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 67109378;
@@ -671,13 +677,13 @@ LABEL_10:
 
 - (void)_queue_addUnderlay
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  uint64_t v3 = [BKSDefaults localDefaults];
   unsigned int v4 = [v3 hideAppleLogoOnLaunch];
 
   if (v4)
   {
     id v5 = sub_10003F0B0();
-    uint64_t v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    uint64_t v6 = [v5 autorelease];
     if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)buf = 0;
@@ -689,7 +695,7 @@ LABEL_10:
   {
     underlay = self->_underlay;
     id v8 = sub_10003F0B0();
-    id v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+    id v9 = v8;
     BOOL v10 = os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT);
     if (underlay)
     {
@@ -709,11 +715,11 @@ LABEL_10:
       }
 
       LODWORD(v11) = -1.0;
-      double v12 = (BKDisplayRenderOverlay *)objc_claimAutoreleasedReturnValue( -[BKBootUIOverlayVendor currentOverlayWithLevel:]( self->_bootUIOverlayVendor,  "currentOverlayWithLevel:",  v11));
+      double v12 = [self->_bootUIOverlayVendor currentOverlayWithLevel:v11];
       uint32_t v13 = self->_underlay;
       self->_underlay = v12;
 
-      -[BKDisplayRenderOverlayManager applyOverlay:withAnimationSettings:]( self->_renderOverlayManager,  "applyOverlay:withAnimationSettings:",  self->_underlay,  0LL);
+      [self->_renderOverlayManager applyOverlay:self->_underlay withAnimationSettings:0LL];
     }
   }
 
@@ -722,14 +728,14 @@ LABEL_10:
   if (self->_underlay)
   {
     id v3 = sub_10003F0B0();
-    unsigned int v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+    os_log_s *v4 = v3;
     if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)uint64_t v6 = 0;
       _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "_queue_removeUnderlay: Removing the underlay",  v6,  2u);
     }
 
-    -[BKDisplayRenderOverlayManager removeOverlay:withAnimationSettings:]( self->_renderOverlayManager,  "removeOverlay:withAnimationSettings:",  self->_underlay,  0LL);
+    [self->_renderOverlayManager removeOverlay:self->_underlay withAnimationSettings:0LL];
     underlay = self->_underlay;
     self->_underlay = 0LL;
   }

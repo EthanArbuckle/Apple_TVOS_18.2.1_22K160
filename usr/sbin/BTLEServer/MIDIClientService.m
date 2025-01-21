@@ -32,8 +32,8 @@
   v5.receiver = self;
   v5.super_class = (Class)&OBJC_CLASS___MIDIClientService;
   -[ClientService start](&v5, "start");
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+  v3 = [NSNotificationCenter defaultCenter];
+  v4 = [self peripheral];
   [v3 postNotificationName:@"PeerIsUsingBuiltinServiceNotification" object:v4];
 
   -[ClientService notifyDidStart](self, "notifyDidStart");

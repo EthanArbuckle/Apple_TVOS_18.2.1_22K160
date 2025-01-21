@@ -13,7 +13,7 @@
   v8[3] = &unk_10013CA98;
   id v9 = a3;
   id v4 = v9;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSArray indexesOfObjectsPassingTest:](self, "indexesOfObjectsPassingTest:", v8));
+  v5 = -[NSArray indexesOfObjectsPassingTest:v8];
   v6 = (void *)objc_claimAutoreleasedReturnValue(-[NSArray objectsAtIndexes:](self, "objectsAtIndexes:", v5));
 
   return v6;
@@ -23,7 +23,7 @@
 {
   if (-[NSArray count](self, "count"))
   {
-    v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableString string](&OBJC_CLASS___NSMutableString, "string"));
+    v3 = [NSMutableString string];
     __int128 v12 = 0u;
     __int128 v13 = 0u;
     __int128 v14 = 0u;
@@ -43,7 +43,7 @@
           if (*(void *)v13 != v8) {
             objc_enumerationMutation(v4);
           }
-          objc_msgSend( v3,  "appendFormat:",  @"%x",  objc_msgSend(*(id *)(*((void *)&v12 + 1) + 8 * (void)v9), "unsignedIntValue"));
+          [v3 appendFormat:@"%x" , [*(id *)(*((void *)&v12 + 1) + 8 * (void)v9) unsignedIntValue]];
           id v9 = (char *)v9 + 1;
         }
 

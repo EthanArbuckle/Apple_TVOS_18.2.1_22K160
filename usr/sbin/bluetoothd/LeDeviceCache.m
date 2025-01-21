@@ -212,7 +212,7 @@ LABEL_14:
 
 - (void)clearAllDatabases
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"DELETE FROM %s",  "CustomProperties"));
+  v3 = [NSString stringWithFormat:@"DELETE FROM %s" @"CustomProperties"];
   unsigned int v4 = -[LeDeviceCache _genericExecute:inDatabase:](self, "_genericExecute:inDatabase:", v3, self->_pairedDatabase);
   id v5 = (os_log_s *)qword_1008F75A0;
   if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_DEFAULT))
@@ -235,7 +235,7 @@ LABEL_14:
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Executing %@ on _otherDatabase devices returned %d",  buf,  0x12u);
   }
 
-  uint64_t v8 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"DELETE FROM %s",  -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL)));
+  uint64_t v8 = [NSString stringWithFormat:@"DELETE FROM %s" [self tableNameForType:0LL]];
 
   int v9 = (void *)v8;
   unsigned int v10 = -[LeDeviceCache _genericExecute:inDatabase:](self, "_genericExecute:inDatabase:", v8, self->_pairedDatabase);
@@ -267,15 +267,15 @@ LABEL_14:
 {
   v7 = objc_autoreleasePoolPush();
   self->_listener = a3;
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
-  int v9 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache databaseContainerURL](self, "databaseContainerURL"));
-  unsigned int v10 = (void *)objc_claimAutoreleasedReturnValue([v9 path]);
+  uint64_t v8 = (void *)[NSFileManager defaultManager];
+  int v9 = -[LeDeviceCache databaseContainerURL];
+  unsigned int v10 = (void *)[v9 path];
   unsigned __int8 v11 = [v8 fileExistsAtPath:v10];
 
   if ((v11 & 1) == 0)
   {
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
-    unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache databaseContainerURL](self, "databaseContainerURL"));
+    v12 = [NSFileManager defaultManager];
+    unsigned int v13 = (void *)[self databaseContainerURL];
     id v37 = 0LL;
     unsigned __int8 v14 = [v12 createDirectoryAtURL:v13 withIntermediateDirectories:1 attributes:0 error:&v37];
     id v15 = v37;
@@ -285,10 +285,10 @@ LABEL_14:
       objc_super v16 = (os_log_s *)qword_1008F75A0;
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
       {
-        v27 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache databaseContainerURL](self, "databaseContainerURL"));
-        id v28 = objc_claimAutoreleasedReturnValue([v27 path]);
+        v27 = -[LeDeviceCache databaseContainerURL];
+        id v28 = [v27 path];
         id v29 = [v28 UTF8String];
-        id v30 = objc_claimAutoreleasedReturnValue([v15 localizedDescription]);
+        id v30 = [v15 localizedDescription];
         id v31 = [v30 UTF8String];
         *(_DWORD *)buf = 136315394;
         *(void *)&uint8_t buf[4] = v29;
@@ -401,7 +401,7 @@ LABEL_30:
     v3 = (void **)__p[0];
   }
   unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v3));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 stringByAppendingPathComponent:@"/Library/Database"]);
+  id v5 = [v4 stringByAppendingPathComponent:@"/Library/Database"];
 
   unsigned int v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSURL fileURLWithPath:isDirectory:](&OBJC_CLASS___NSURL, "fileURLWithPath:isDirectory:", v5, 1LL));
   if (SHIBYTE(v9) < 0) {
@@ -447,7 +447,7 @@ LABEL_30:
     }
 
     unsigned __int8 v14 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-    id v15 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    id v15 = [v6 UUIDString];
     id v16 = sub_1005BFB9C(a3);
     uint32_t v17 = (void *)objc_claimAutoreleasedReturnValue(v16);
     id v18 = sub_1005BFB9C(a3);
@@ -484,7 +484,7 @@ LABEL_30:
     }
 
     v27 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-    id v28 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    id v28 = [v6 UUIDString];
     id v29 = sub_1005BFB9C(a3);
     id v30 = (void *)objc_claimAutoreleasedReturnValue(v29);
     id v31 = sub_1005BFB9C(a3);
@@ -504,7 +504,7 @@ LABEL_30:
   if (v8)
   {
     uint64_t v9 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v8 UUIDString]);
+    uint64_t v10 = (void *)[v8 UUIDString];
     unsigned __int8 v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Uuid = '%@'",  v9,  v10));
   }
 
@@ -514,7 +514,7 @@ LABEL_30:
     id v13 = sub_1005BFB9C(a4);
     uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(v13);
     id v14 = sub_1005BFB9C(a4);
-    id v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
+    id v15 = v14;
     unsigned __int8 v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Address = '%@' OR ResolvedAddress = '%@'",  v12,  v10,  v15));
   }
 
@@ -528,7 +528,7 @@ LABEL_30:
     id v18 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 1LL);
     if (v8)
     {
-      __int16 v19 = (void *)objc_claimAutoreleasedReturnValue([v8 UUIDString]);
+      __int16 v19 = [v8 UUIDString];
       uint64_t v20 = v11;
       unsigned __int8 v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Uuid = '%@'",  v18,  v19));
     }
@@ -539,7 +539,7 @@ LABEL_30:
       __int16 v19 = (void *)objc_claimAutoreleasedReturnValue(v24);
       id v25 = sub_1005BFB9C(a4);
       uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue(v25);
-      uint64_t v26 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Address = '%@' OR ResolvedAddress = '%@'",  v18,  v19,  v20));
+      uint64_t v26 = [NSString stringWithFormat:@"SELECT * FROM %s WHERE Address = '%@' OR ResolvedAddress = '%@'", v18, v19, v20];
 
       unsigned __int8 v11 = (void *)v26;
     }
@@ -632,7 +632,7 @@ LABEL_25:
     }
     sub_1000B1CE0(buf, (uint64_t)&v40, v37);
     v38 = sub_100241F94(buf);
-    id v22 = (void *)objc_claimAutoreleasedReturnValue(v38);
+    id v22 = v38;
     v27 = (os_log_s *)qword_1008F75A0;
     goto LABEL_31;
   }
@@ -665,7 +665,7 @@ LABEL_14:
 {
   id v4 = a3;
   BOOL v5 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-  unsigned int v6 = (void *)objc_claimAutoreleasedReturnValue([v4 UUIDString]);
+  unsigned int v6 = (void *)[v4 UUIDString];
   v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Uuid = '%@'",  v5,  v6));
 
   id v8 = -[LeDeviceCache readDeviceFromDatabase:statement:]( self,  "readDeviceFromDatabase:statement:",  self->_pairedDatabase,  v7);
@@ -689,7 +689,7 @@ LABEL_14:
 
     if (self->_otherDatabase)
     {
-      uint64_t v11 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Uuid = '%@'",  -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 1LL),  v4));
+      uint64_t v11 = [NSString stringWithFormat:@"SELECT * FROM %s WHERE Uuid = '%@'", [LeDeviceCache tableNameForType:1LL], v4];
 
       uint64_t v9 = -[LeDeviceCache readDeviceFromDatabase:statement:]( self,  "readDeviceFromDatabase:statement:",  self->_otherDatabase,  v11);
       if (!v9)
@@ -764,7 +764,7 @@ LABEL_14:
       id v16 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 1LL);
       id v17 = sub_1005BFB9C(a3);
       id v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
-      uint64_t v19 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s WHERE Address = '%@'",  v16,  v18));
+      uint64_t v19 = [NSString stringWithFormat:@"SELECT * FROM %s WHERE Address = '%@'", v16, v18];
 
       id v12 = -[LeDeviceCache readDeviceFromDatabase:statement:]( self,  "readDeviceFromDatabase:statement:",  self->_otherDatabase,  v19);
       if (!v12)
@@ -773,7 +773,7 @@ LABEL_14:
         if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_INFO))
         {
           id v21 = sub_1005BFB9C(a3);
-          id v22 = (char *)objc_claimAutoreleasedReturnValue(v21);
+          id v22 = [v21 autorelease];
           __int16 v23 = -[LeDeviceCache friendlyNameForType:](self, "friendlyNameForType:", 1LL);
           *(_DWORD *)buf = 138543618;
           id v28 = v22;
@@ -811,12 +811,12 @@ LABEL_14:
   id v6 = a4;
   int v15 = 0;
   v7 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+  id v8 = [v6 UUIDString];
   id v9 = sub_1005BFB9C(a3);
   uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
   id v11 = sub_1005BFB9C(a3);
   id v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-  id v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT COUNT() FROM %s WHERE Uuid != '%@' AND (Address = '%@' OR ResolvedAddress = '%@')",  v7,  v8,  v10,  v12));
+  id v13 = [NSString stringWithFormat:@"SELECT COUNT() FROM %s WHERE Uuid != '%@' AND (Address = '%@' OR ResolvedAddress = '%@')" v7, v8, v10, v12];
 
   -[LeDeviceCache readIntFromDatabase:statement:value:]( self,  "readIntFromDatabase:statement:value:",  self->_pairedDatabase,  v13,  &v15);
   LODWORD(self) = v15;
@@ -853,14 +853,14 @@ LABEL_14:
     }
     if (*((void *)a3 + 24))
     {
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray arrayWithCapacity:](&OBJC_CLASS___NSMutableArray, "arrayWithCapacity:"));
+      id v13 = [NSMutableArray arrayWithCapacity:];
       id v14 = (void *)*((void *)a3 + 22);
       if (v14 != (void *)((char *)a3 + 184))
       {
         do
         {
           int v15 = v14 + 4;
-          id v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v15));
+          id v16 = [NSString stringWithUTF8String:v15];
           [v13 addObject:v16];
 
           id v17 = (void *)v14[1];
@@ -893,7 +893,7 @@ LABEL_14:
         while (v18 != (void *)((char *)a3 + 184));
       }
 
-      uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v13 componentsJoinedByString:@","]);
+      uint64_t v20 = (void *)[v13 componentsJoinedByString:@","];
     }
 
     else
@@ -909,7 +909,7 @@ LABEL_14:
     }
     id v22 = (sqlite3_stmt *)(&self->super.isa)[v21];
     id v23 = *(id *)a3;
-    id v24 = objc_claimAutoreleasedReturnValue([v23 UUIDString]);
+    id v24 = [v23 UUIDString];
     sqlite3_bind_text( v22,  1,  (const char *)[v24 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
     id v25 = (sqlite3_stmt *)(&self->super.isa)[v21];
@@ -945,7 +945,7 @@ LABEL_14:
     if (v31)
     {
       id v32 = sub_1005BFB9C(*((void *)a3 + 3));
-      v27 = (sqlite3_stmt *) objc_claimAutoreleasedReturnValue(v32);
+      v27 = (sqlite3_stmt *) [v32 autorelease];
       char v33 = (const char *)-[sqlite3_stmt UTF8String](v27, "UTF8String");
     }
 
@@ -1059,15 +1059,15 @@ LABEL_14:
 {
   int v38 = 0;
   BOOL v7 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)a3 UUIDString]);
-  id v9 = (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT COUNT() FROM %s WHERE Uuid = '%@'",  v7,  v8));
+  uint64_t v8 = (void *)[*(id *)a3 UUIDString];
+  id v9 = [NSString stringWithFormat:@"SELECT COUNT() FROM %s WHERE Uuid = '%@'", v7, v8];
 
   -[LeDeviceCache readIntFromDatabase:statement:value:]( self,  "readIntFromDatabase:statement:value:",  self->_pairedDatabase,  v9,  &v38);
   if (v38)
   {
     id v10 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 0LL);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)a3 UUIDString]);
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"DELETE FROM %s WHERE Uuid = '%@'",  v10,  v11));
+    id v11 = [*(id *)a3 UUIDString];
+    id v12 = [NSString stringWithFormat:@"DELETE FROM %s WHERE Uuid = '%@'", v10, v11];
 
     pairedDatabase = self->_pairedDatabase;
     id v9 = v12;
@@ -1078,7 +1078,7 @@ LABEL_14:
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_DEFAULT))
       {
         id v16 = *(id *)a3;
-        id v17 = (char *)objc_claimAutoreleasedReturnValue([v16 UUIDString]);
+        id v17 = [v16 UUIDString];
         id v18 = -[LeDeviceCache friendlyNameForType:](self, "friendlyNameForType:", 0LL);
         *(_DWORD *)buf = 138543618;
         id v40 = v17;
@@ -1089,7 +1089,7 @@ LABEL_14:
     }
 
     id v19 = *(id *)a3;
-    uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v19 UUIDString]);
+    uint64_t v20 = (void *)[v19 UUIDString];
     -[LeDeviceCache removeCustomPropertiesJSONForDeviceUUID:inDatabase:]( self,  "removeCustomPropertiesJSONForDeviceUUID:inDatabase:",  v20,  self->_pairedDatabase);
 
     goto LABEL_24;
@@ -1099,18 +1099,18 @@ LABEL_14:
   {
     int v37 = 0;
     uint64_t v21 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 1LL);
-    id v22 = (void *)objc_claimAutoreleasedReturnValue([*(id *)a3 UUIDString]);
-    id v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT LastConnectionTime FROM %s WHERE Uuid = '%@'",  v21,  v22));
+    id v22 = [*(id *)a3 UUIDString];
+    id v23 = [NSString stringWithFormat:@"SELECT LastConnectionTime FROM %s WHERE Uuid = '%@'", v21, v22];
 
     if (-[LeDeviceCache readIntFromDatabase:statement:value:]( self,  "readIntFromDatabase:statement:value:",  self->_otherDatabase,  v23,  &v37))
     {
       id v24 = *(id *)a3;
-      id v25 = (void *)objc_claimAutoreleasedReturnValue([v24 UUIDString]);
+      id v25 = [v24 UUIDString];
       -[LeDeviceCache removeCustomPropertiesJSONForDeviceUUID:inDatabase:]( self,  "removeCustomPropertiesJSONForDeviceUUID:inDatabase:",  v25,  self->_otherDatabase);
 
       uint64_t v26 = -[LeDeviceCache tableNameForType:](self, "tableNameForType:", 1LL);
-      v27 = (void *)objc_claimAutoreleasedReturnValue([*(id *)a3 UUIDString]);
-      id v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"DELETE FROM %s WHERE Uuid = '%@'",  v26,  v27));
+      v27 = [*(id *)a3 UUIDString];
+      id v28 = [NSString stringWithFormat:@"DELETE FROM %s WHERE Uuid = '%@'", v26, v27];
 
       otherDatabase = self->_otherDatabase;
       id v30 = v28;
@@ -1193,16 +1193,16 @@ LABEL_14:
 
 - (BOOL)loadDatabase:(unint64_t)a3
 {
-  v88 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+  v88 = [NSFileManager defaultManager];
   if (a3)
   {
-    BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache databaseContainerURL](self, "databaseContainerURL"));
+    BOOL v5 = -[LeDeviceCache databaseContainerURL];
     int v6 = (void *)objc_claimAutoreleasedReturnValue( [v5 URLByAppendingPathComponent:@"com.apple.MobileBluetooth.ledevices.other.db"]);
 
-    id v7 = objc_claimAutoreleasedReturnValue([v6 path]);
+    id v7 = [v6 path];
     uint64_t v8 = (const char *)[v7 UTF8String];
 
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v6 path]);
+    id v9 = [v6 path];
     p_otherDatabase = &self->_otherDatabase;
     ppStmt = &self->_writeOtherDeviceStmt;
     if ([v88 fileExistsAtPath:v9])
@@ -1220,7 +1220,7 @@ LABEL_14:
         int v16 = (os_log_s *)qword_1008F75A0;
         if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_DEFAULT))
         {
-          id v17 = objc_claimAutoreleasedReturnValue([v6 path]);
+          id v17 = [v6 path];
           buf.st_dev = 136315394;
           *(void *)&buf.st_mode = "/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.other.db";
           WORD2(buf.st_ino) = 2080;
@@ -1229,7 +1229,7 @@ LABEL_14:
         }
 
         chmod("/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.other.db", 0x1B6u);
-        __int16 v18 = (void *)objc_claimAutoreleasedReturnValue([v6 path]);
+        __int16 v18 = (void *)[v6 path];
         id v93 = 0LL;
         unsigned int v19 = [v88 copyItemAtPath:@"/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.other.db" toPath:v18 error:&v93];
         id v20 = v93;
@@ -1244,7 +1244,7 @@ LABEL_14:
           v27 = (os_log_s *)qword_1008F75A0;
           if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
           {
-            id v78 = objc_claimAutoreleasedReturnValue([v20 localizedDescription]);
+            id v78 = [v20 localizedDescription];
             id v79 = [v78 UTF8String];
             buf.st_dev = 136446210;
             *(void *)&buf.st_mode = v79;
@@ -1257,13 +1257,13 @@ LABEL_14:
 
   else
   {
-    id v12 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache databaseContainerURL](self, "databaseContainerURL"));
+    id v12 = -[LeDeviceCache databaseContainerURL];
     int v6 = (void *)objc_claimAutoreleasedReturnValue( [v12 URLByAppendingPathComponent:@"com.apple.MobileBluetooth.ledevices.paired.db"]);
 
-    id v13 = objc_claimAutoreleasedReturnValue([v6 path]);
+    id v13 = [v6 path];
     uint64_t v8 = (const char *)[v13 UTF8String];
 
-    int v14 = (void *)objc_claimAutoreleasedReturnValue([v6 path]);
+    int v14 = (void *)[v6 path];
     p_otherDatabase = &self->_pairedDatabase;
     ppStmt = &self->_writePairedDeviceStmt;
     if ([v88 fileExistsAtPath:v14])
@@ -1283,7 +1283,7 @@ LABEL_14:
       __int16 v22 = (os_log_s *)qword_1008F75A0;
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_DEFAULT))
       {
-        id v23 = objc_claimAutoreleasedReturnValue([v6 path]);
+        id v23 = [v6 path];
         buf.st_dev = 136315394;
         *(void *)&buf.st_mode = "/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.paired.db";
         WORD2(buf.st_ino) = 2080;
@@ -1292,7 +1292,7 @@ LABEL_14:
       }
 
       chmod("/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.paired.db", 0x1B6u);
-      __int16 v24 = (void *)objc_claimAutoreleasedReturnValue([v6 path]);
+      __int16 v24 = [v6 path];
       id v94 = 0LL;
       unsigned int v25 = [v88 copyItemAtPath:@"/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.paired.db" toPath:v24 error:&v94];
       id v26 = v94;
@@ -1307,7 +1307,7 @@ LABEL_14:
         id v28 = (os_log_s *)qword_1008F75A0;
         if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
         {
-          id v80 = objc_claimAutoreleasedReturnValue([v26 localizedDescription]);
+          id v80 = [v26 localizedDescription];
           id v81 = [v80 UTF8String];
           buf.st_dev = 136446210;
           *(void *)&buf.st_mode = v81;
@@ -1391,10 +1391,10 @@ LABEL_14:
     }
   }
 
-  id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a5)));
+  id v9 = [NSString stringWithUTF8String: +[LeDeviceCache tableNameForType:](self, "tableNameForType:", a5)];
   int v72 = (void *)objc_claimAutoreleasedReturnValue([v67 objectForKeyedSubscript:v9]);
 
-  uint64_t v71 = (void *)objc_claimAutoreleasedReturnValue([v72 keyEnumerator]);
+  uint64_t v71 = (void *)[v72 keyEnumerator];
   ppStmt = 0LL;
   int v10 = sqlite3_prepare_v2( a4,  "INSERT INTO Temp (Uuid, Name, NameOrigin, Address, ResolvedAddress, LastSeenTime, LastConnectionTime, GATTServ iceChangeConfig, Tags, iCloudIdentifier) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",  -1,  &ppStmt,  0LL);
   db = a4;
@@ -1419,50 +1419,50 @@ LABEL_14:
   {
     while (1)
     {
-      int v14 = (void *)objc_claimAutoreleasedReturnValue([v71 nextObject]);
+      int v14 = (void *)[v71 nextObject];
       if (!v14) {
         break;
       }
       id v15 = v14;
-      __int16 v16 = (void *)objc_claimAutoreleasedReturnValue([v72 objectForKeyedSubscript:v15]);
+      __int16 v16 = (void *)[v72 objectForKeyedSubscript:v15];
       int v17 = ppStmt;
       id v18 = v15;
       sqlite3_bind_text( v17,  1,  (const char *)[v18 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
       unsigned int v19 = ppStmt;
-      id v20 = objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"Name"]);
+      id v20 = [v16 objectForKeyedSubscript:@"Name"];
       sqlite3_bind_text( v19,  2,  (const char *)[v20 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
       unsigned int v21 = ppStmt;
-      __int16 v22 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"NameOrigin"]);
+      __int16 v22 = (void *)[v16 objectForKeyedSubscript:@"NameOrigin"];
       sqlite3_bind_int(v21, 3, (int)[v22 intValue]);
 
       id v23 = ppStmt;
-      id v24 = objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"Address"]);
+      id v24 = [v16 objectForKeyedSubscript:@"Address"];
       sqlite3_bind_text( v23,  4,  (const char *)[v24 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
       unsigned int v25 = ppStmt;
-      id v26 = objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"ResolvedAddress"]);
+      id v26 = [v16 objectForKeyedSubscript:@"ResolvedAddress"];
       sqlite3_bind_text( v25,  5,  (const char *)[v26 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
       v27 = ppStmt;
-      id v28 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"LastSeenTime"]);
+      id v28 = [v16 objectForKeyedSubscript:@"LastSeenTime"];
       sqlite3_bind_int(v27, 6, (int)[v28 intValue]);
 
       id v29 = ppStmt;
-      int v30 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"LastConnectionTime"]);
+      int v30 = (void *)[v16 objectForKeyedSubscript:@"LastConnectionTime"];
       sqlite3_bind_int(v29, 7, (int)[v30 intValue]);
 
       uint64_t v31 = ppStmt;
-      id v32 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"GATTServiceChangeConfig"]);
+      id v32 = [v16 objectForKeyedSubscript:@"GATTServiceChangeConfig"];
       sqlite3_bind_int(v31, 8, (int)[v32 intValue]);
 
       uint64_t v33 = ppStmt;
-      unsigned __int8 v34 = (void *)objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"Tags"]);
-      id v35 = objc_claimAutoreleasedReturnValue([v34 componentsJoinedByString:@","]);
+      unsigned __int8 v34 = (void *)[v16 objectForKeyedSubscript:@"Tags"];
+      id v35 = [v34 componentsJoinedByString:@","];
       sqlite3_bind_text( v33,  9,  (const char *)[v35 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
       uint64_t v36 = ppStmt;
-      id v37 = objc_claimAutoreleasedReturnValue([v16 objectForKeyedSubscript:@"iCloudIdentifier"]);
+      id v37 = [v16 objectForKeyedSubscript:@"iCloudIdentifier"];
       sqlite3_bind_text( v36,  10,  (const char *)[v37 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
       int v38 = sqlite3_step(ppStmt);
@@ -1493,7 +1493,7 @@ LABEL_14:
     sqlite3_finalize(ppStmt);
   }
 
-  id v43 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"INSERT INTO %s SELECT * FROM Temp ORDER BY LastConnectionTime,LastSeenTime ASC; DROP TABLE Temp",
+  @"INSERT INTO %s SELECT * FROM Temp ORDER BY LastConnectionTime,LastSeenTime ASC; DROP TABLE Temp",
                                        -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a5))));
   int v44 = sqlite3_exec(db, (const char *)[v43 UTF8String], 0, 0, 0);
   if (v44)
@@ -1513,7 +1513,7 @@ LABEL_14:
     }
   }
 
-  v46 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"UPDATE %s SET LastSeenTime = ROWID WHERE LastSeenTime > 0; UPDATE %s SET LastConnectionTime = ROWID WHERE LastConnectionTime > 0",
+  @"UPDATE %s SET LastSeenTime = ROWID WHERE LastSeenTime > 0; UPDATE %s SET LastConnectionTime = ROWID WHERE LastConnectionTime > 0",
                     -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a5),
                     -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a5)));
 
@@ -1548,7 +1548,7 @@ LABEL_14:
       _os_log_impl( (void *)&_mh_execute_header,  v50,  OS_LOG_TYPE_INFO,  "Backing up legacy plist from \"%s\" to \"%s\"",  buf,  0x16u);
     }
 
-    v51 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    v51 = [NSFileManager defaultManager];
     id v74 = 0LL;
     [v51 copyItemAtPath:@"/var/mobile/Library/Preferences/com.apple.MobileBluetooth.ledevices.plist" toPath:@"/var/mobile/Library/MobileBluetooth/com.apple.MobileBluetooth.ledevices.plist" error:&v74];
     id v52 = v74;
@@ -1558,7 +1558,7 @@ LABEL_14:
       int v53 = (os_log_s *)qword_1008F75A0;
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
       {
-        id v63 = objc_claimAutoreleasedReturnValue([v52 localizedDescription]);
+        id v63 = [v52 localizedDescription];
         id v64 = [v63 UTF8String];
         *(_DWORD *)stat buf = 136446210;
         *(void *)int v77 = v64;
@@ -1566,7 +1566,7 @@ LABEL_14:
       }
     }
 
-    v54 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    v54 = [NSFileManager defaultManager];
     id v73 = 0LL;
     [v54 removeItemAtPath:@"/var/mobile/Library/Preferences/com.apple.MobileBluetooth.ledevices.plist" error:&v73];
     id v55 = v73;
@@ -1576,7 +1576,7 @@ LABEL_14:
       v56 = (os_log_s *)qword_1008F75A0;
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
       {
-        id v65 = objc_claimAutoreleasedReturnValue([v55 localizedDescription]);
+        id v65 = [v55 localizedDescription];
         id v66 = [v65 UTF8String];
         *(_DWORD *)stat buf = 136446210;
         *(void *)int v77 = v66;
@@ -1607,7 +1607,7 @@ LABEL_14:
   uint64_t v8 = (sqlite3 *)(&self->super.isa)[v7];
   if (v8)
   {
-    id v9 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"UPDATE %s SET NameOrigin = %d WHERE iCloudIdentifier = ''", -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a3), 1LL));
+    id v9 = [NSString stringWithFormat:@"UPDATE %s SET NameOrigin = %d WHERE iCloudIdentifier = ''" , [self tableNameForType:a3], 1LL];
     int v10 = sqlite3_exec(v8, (const char *)[v9 UTF8String], 0, 0, 0);
     if (v10)
     {
@@ -1732,7 +1732,7 @@ LABEL_14:
   retstr->var1 = 0LL;
   retstr->var2.var0 = 0LL;
   retstr->var0 = 0LL;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s",  "CustomProperties"));
+  id v7 = [NSString stringWithFormat:@"SELECT * FROM %s", @"CustomProperties"];
   ppStmt = 0LL;
   otherDatabase = self->_otherDatabase;
   id v56 = v7;
@@ -1744,7 +1744,7 @@ LABEL_14:
       unsigned int v13 = sqlite3_column_text(ppStmt, 1);
       if (v13 && v12)
       {
-        __int16 v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+        __int16 v14 = [NSString stringWithUTF8String:v13];
         unsigned int v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v12));
         if (-[LeDeviceCache json:hasAnyProperty:](self, "json:hasAnyProperty:", v14, v6))
         {
@@ -1848,7 +1848,7 @@ LABEL_14:
       if (v35 && v34)
       {
         uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v35));
-        id v37 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v34));
+        id v37 = [NSString stringWithUTF8String:v34];
         if (-[LeDeviceCache json:hasAnyProperty:](self, "json:hasAnyProperty:", v36, v6))
         {
           sub_10002418C(__p, (char *)[v37 UTF8String]);
@@ -1949,7 +1949,7 @@ LABEL_14:
   retstr->var1 = 0LL;
   retstr->var2.var0 = 0LL;
   retstr->var0 = 0LL;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"SELECT * FROM %s",  "CustomProperties"));
+  id v7 = [NSString stringWithFormat:@"SELECT * FROM %s" @"CustomProperties"];
   ppStmt = 0LL;
   otherDatabase = self->_otherDatabase;
   id v56 = v7;
@@ -1961,8 +1961,8 @@ LABEL_14:
       unsigned int v13 = sqlite3_column_text(ppStmt, 1);
       if (v13 && v12)
       {
-        __int16 v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
-        unsigned int v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v12));
+        __int16 v14 = [NSString stringWithUTF8String:v13];
+        unsigned int v15 = [NSString stringWithUTF8String:v12];
         if (-[LeDeviceCache json:hasAllProperties:](self, "json:hasAllProperties:", v14, v6))
         {
           sub_10002418C(__p, (char *)[v15 UTF8String]);
@@ -2065,7 +2065,7 @@ LABEL_14:
       if (v35 && v34)
       {
         uint64_t v36 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v35));
-        id v37 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v34));
+        id v37 = [NSString stringWithUTF8String:v34];
         if (-[LeDeviceCache json:hasAllProperties:](self, "json:hasAllProperties:", v36, v6))
         {
           sub_10002418C(__p, (char *)[v37 UTF8String]);
@@ -2211,7 +2211,7 @@ LABEL_23:
     {
       unsigned int v15 = objc_alloc(&OBJC_CLASS___NSString);
       id v19 = 0LL;
-      __int16 v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization dataWithJSONObject:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "dataWithJSONObject:options:error:",  v7,  3LL,  &v19));
+      __int16 v16 = [NSJSONSerialization dataWithJSONObject:v7 options:3 error:&v19];
       id v17 = v19;
       unsigned __int8 v3 = -[NSString initWithData:encoding:](v15, "initWithData:encoding:", v16, 4LL);
 
@@ -2246,9 +2246,9 @@ LABEL_22:
   id v6 = a4;
   if (v5)
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 dataUsingEncoding:4]);
+    id v7 = [v5 dataUsingEncoding:4];
     id v23 = 0LL;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization JSONObjectWithData:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "JSONObjectWithData:options:error:",  v7,  17LL,  &v23));
+    id v8 = [NSJSONSerialization JSONObjectWithData:v7 options:17 error:&v23];
     id v9 = v23;
 
     if (v9)
@@ -2325,9 +2325,9 @@ LABEL_19:
   id v6 = a4;
   if (v5)
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 dataUsingEncoding:4]);
+    id v7 = (void *)[v5 dataUsingEncoding:4];
     id v17 = 0LL;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization JSONObjectWithData:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "JSONObjectWithData:options:error:",  v7,  17LL,  &v17));
+    id v8 = [NSJSONSerialization JSONObjectWithData:v7 options:17 error:&v17];
     id v9 = v17;
 
     if (v9)
@@ -2343,8 +2343,8 @@ LABEL_19:
       if ((objc_opt_isKindOfClass(v8, v11) & 1) != 0)
       {
         id v12 = v8;
-        id v13 = (void *)objc_claimAutoreleasedReturnValue([v12 allKeys]);
-        uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v13));
+        id v13 = (void *)[v12 allKeys];
+        uint64_t v14 = (void *)[NSSet setWithArray:v13];
 
         unsigned int v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSSet setWithArray:](&OBJC_CLASS___NSSet, "setWithArray:", v6));
         unsigned __int8 v10 = [v15 isSubsetOfSet:v14];
@@ -2374,9 +2374,9 @@ LABEL_12:
   id v6 = v5;
   if (a3 && v5)
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 dataUsingEncoding:4]);
+    id v7 = (void *)[v5 dataUsingEncoding:4];
     id v22 = 0LL;
-    id v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization JSONObjectWithData:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "JSONObjectWithData:options:error:",  v7,  17LL,  &v22));
+    id v8 = [NSJSONSerialization JSONObjectWithData:v7 options:17 error:&v22];
     id v17 = v22;
 
     if (v17 && os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR)) {
@@ -2390,7 +2390,7 @@ LABEL_12:
       __int128 v19 = 0u;
       __int128 v20 = 0u;
       __int128 v21 = 0u;
-      uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v10 allKeys]);
+      uint64_t v11 = (void *)[v10 allKeys];
       id v12 = [v11 countByEnumeratingWithState:&v18 objects:v23 count:16];
       if (v12)
       {
@@ -2403,7 +2403,7 @@ LABEL_12:
               objc_enumerationMutation(v11);
             }
             unsigned int v15 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-            uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKey:v15]);
+            uint64_t v16 = (void *)[v10 objectForKey:v15];
             sub_1005C51A8((uint64_t)a3, v15, v16);
           }
 
@@ -2428,11 +2428,11 @@ LABEL_12:
     id v7 = *(id *)a3;
     if (v7)
     {
-      id v8 = (void *)objc_claimAutoreleasedReturnValue(-[LeDeviceCache customPropertiesJSONFromDevice:](self, "customPropertiesJSONFromDevice:", a3));
+      id v8 = [self customPropertiesJSONFromDevice:a3];
       if (v8)
       {
         ppStmt = 0LL;
-        id v9 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"INSERT OR REPLACE INTO %s (%s, %s) VALUES (?1, ?2)", "CustomProperties", "Uuid", "JSON"));
+        id v9 = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %s (%s, %s) VALUES (?1, ?2)", "CustomProperties", "Uuid", "JSON"];
         if (sqlite3_prepare_v2(a4, (const char *)[v9 UTF8String], -1, &ppStmt, 0))
         {
           if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR)) {
@@ -2443,7 +2443,7 @@ LABEL_12:
         else
         {
           id v12 = ppStmt;
-          id v13 = objc_claimAutoreleasedReturnValue([v7 UUIDString]);
+          id v13 = [v7 UUIDString];
           sqlite3_bind_text( v12,  1,  (const char *)[v13 UTF8String],  -1,  (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
 
           sqlite3_bind_text( ppStmt, 2, (const char *)[v8 UTF8String], -1, (void (__cdecl *)(void *))0xFFFFFFFFFFFFFFFFLL);
@@ -2473,7 +2473,7 @@ LABEL_12:
 
       else
       {
-        uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v7 UUIDString]);
+        uint64_t v11 = (void *)[v7 UUIDString];
         -[LeDeviceCache removeCustomPropertiesJSONForDeviceUUID:inDatabase:]( self,  "removeCustomPropertiesJSONForDeviceUUID:inDatabase:",  v11,  a4);
       }
     }
@@ -2500,7 +2500,7 @@ LABEL_12:
   if (v7)
   {
     ppStmt = 0LL;
-    id v8 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"DELETE FROM %s WHERE %s = '%@'", "CustomProperties", "Uuid", v6));
+    id v8 = [NSString stringWithFormat:@"DELETE FROM %s WHERE %s = '%@'", "CustomProperties", "Uuid", v6];
     int v9 = sqlite3_prepare_v2(a4, (const char *)[v8 UTF8String], -1, &ppStmt, 0);
     if (v9)
     {
@@ -2557,7 +2557,7 @@ LABEL_12:
   if (v5 && a4)
   {
     ppStmt = 0LL;
-    id v7 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"SELECT * FROM %s WHERE %s = '%@'", "CustomProperties", "Uuid", v5));
+    id v7 = [NSString stringWithFormat:@"SELECT * FROM %s WHERE %s = '%@'", "CustomProperties", "Uuid", v5];
     int v8 = sqlite3_prepare_v2(a4, (const char *)[v7 UTF8String], -1, &ppStmt, 0);
     if (v8)
     {
@@ -2590,7 +2590,7 @@ LABEL_12:
         id v11 = sqlite3_column_text(ppStmt, 1);
         if (v11)
         {
-          id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v11));
+          id v6 = [NSString stringWithUTF8String:v11];
 LABEL_14:
           sqlite3_finalize(ppStmt);
 LABEL_15:
@@ -2617,7 +2617,7 @@ LABEL_15:
     int v8 = v7;
     if (v7)
     {
-      int v9 = (void *)objc_claimAutoreleasedReturnValue([v7 UUIDString]);
+      int v9 = (void *)[v7 UUIDString];
       int v10 = (void *)objc_claimAutoreleasedReturnValue( -[LeDeviceCache readCustomPropertiesJSONForDeviceUUID:inDatabase:]( self,  "readCustomPropertiesJSONForDeviceUUID:inDatabase:",  v9,  a4));
 
       if (v10) {
@@ -2709,7 +2709,7 @@ LABEL_31:
         int v15 = *(uint64_t **)&buf[8 * v12];
         if (!*v15)
         {
-          uint64_t v17 = objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v18));
+          uint64_t v17 = [NSString stringWithUTF8String:v18];
           goto LABEL_15;
         }
       }
@@ -2724,7 +2724,7 @@ LABEL_31:
         if (!*v15)
         {
           id v16 = +[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", sqlite3_column_int(ppStmt, v12));
-          uint64_t v17 = objc_claimAutoreleasedReturnValue(v16);
+          uint64_t v17 = [v16 autorelease];
 LABEL_15:
           __int16 v19 = (void *)*v15;
           *int v15 = v17;
@@ -2847,13 +2847,13 @@ LABEL_64:
 
 - (id)nameFromSanitizedName:(id)a3
 {
-  unsigned __int8 v3 = (void *)objc_claimAutoreleasedReturnValue([a3 componentsSeparatedByString:@"///900"]);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 componentsJoinedByString:@"’"]);
+  unsigned __int8 v3 = (void *)[a3 componentsSeparatedByString:@"///900"];
+  id v4 = [v3 componentsJoinedByString:@"’"];
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 componentsSeparatedByString:@"///901"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 componentsJoinedByString:@"'"]);
+  id v5 = [v4 componentsSeparatedByString:@"///901"];
+  id v6 = [v5 componentsJoinedByString:@"'"];
 
-  int v7 = (void *)objc_claimAutoreleasedReturnValue([v6 componentsSeparatedByString:@"///902"]);
+  int v7 = (void *)[v6 componentsSeparatedByString:@"///902"];
 
   return v8;
 }
@@ -2871,13 +2871,13 @@ LABEL_64:
       {
         id v5 = sqlite3_column_text(ppStmt, 0);
         if (v5) {
-          id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v5));
+          id v6 = [NSString stringWithUTF8String:v5];
         }
         else {
           id v6 = 0LL;
         }
         otherDatabase = self->_otherDatabase;
-        id v10 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"DELETE FROM OtherDevices WHERE Uuid = '%s'", v5));
+        id v10 = [NSString stringWithFormat:@"DELETE FROM OtherDevices WHERE Uuid = '%s'", v5];
         int v11 = sqlite3_exec(otherDatabase, (const char *)[v10 UTF8String], 0, 0, 0);
 
         uint64_t v12 = (os_log_s *)qword_1008F75A0;
@@ -2948,13 +2948,13 @@ LABEL_33:
       {
         int v8 = sqlite3_column_text(ppStmt, 0);
         if (v8) {
-          id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v8));
+          id v6 = [NSString stringWithUTF8String:v8];
         }
         else {
           id v6 = 0LL;
         }
         id v16 = self->_otherDatabase;
-        id v17 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"DELETE FROM OtherDevices WHERE Uuid = '%s'", v8));
+        id v17 = [NSString stringWithFormat:@"DELETE FROM OtherDevices WHERE Uuid = '%s'" v8];
         int v18 = sqlite3_exec(v16, (const char *)[v17 UTF8String], 0, 0, 0);
 
         __int16 v19 = (os_log_s *)qword_1008F75A0;
@@ -3058,7 +3058,7 @@ LABEL_33:
   if (v8)
   {
     ppStmt = 0LL;
-    id v9 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"SELECT * FROM %s", -[LeDeviceCache tableNameForType:](self, "tableNameForType:", a3)));
+    id v9 = [NSString stringWithFormat:@"SELECT * FROM %s" [self tableNameForType:a3]];
     int v10 = sqlite3_prepare_v2(v8, (const char *)[v9 UTF8String], -1, &ppStmt, 0);
 
     if (!v10)
@@ -3086,7 +3086,7 @@ LABEL_33:
               goto LABEL_19;
             }
 
-            uint64_t v17 = objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v18));
+            uint64_t v17 = [NSString stringWithUTF8String:v18];
           }
 
           else
@@ -3096,7 +3096,7 @@ LABEL_33:
               continue;
             }
             id v16 = +[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", sqlite3_column_int(ppStmt, i));
-            uint64_t v17 = objc_claimAutoreleasedReturnValue(v16);
+            uint64_t v17 = [v16 autorelease];
           }
 
           __int16 v19 = (void **)v74[i];
@@ -3205,7 +3205,7 @@ LABEL_35:
         if ([v58 length])
         {
           __int128 v43 = sub_1001FD17C(buf, (uint64_t)", Tags: ", 8LL);
-          id v44 = objc_claimAutoreleasedReturnValue( objc_msgSend( v58, "stringByReplacingOccurrencesOfString:withString:", @",", @", "));
+          id v44 = [v58 stringByReplacingOccurrencesOfString:@"," withString:@","];
           id v45 = (const char *)[v44 UTF8String];
           size_t v46 = strlen(v45);
           sub_1001FD17C(v43, (uint64_t)v45, v46);

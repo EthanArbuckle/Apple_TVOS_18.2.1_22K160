@@ -18,7 +18,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS____BKKeyDownKey, v5);
+  BKKeyDownKey *v6 = [BKKeyDownKey class];
   id v7 = v4;
   v8 = v7;
   if (v6)
@@ -44,7 +44,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3

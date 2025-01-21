@@ -60,38 +60,38 @@
 
 - (BKHIDDirectTouchEventProcessor)initWithContext:(id)a3
 {
-  obj = objc_alloc_init(&OBJC_CLASS___BKHIDEventHitTestDispatcher);
+  BKHIDEventHitTestDispatcher *obj = [[BKHIDEventHitTestDispatcher alloc] init];
   id v5 = sub_10002D41C();
-  id v41 = (id)objc_claimAutoreleasedReturnValue(v5);
-  id v43 = (id)objc_claimAutoreleasedReturnValue( +[BKIOHIDServicePersistentPropertyController digitizerServicePersistentPropertyController]( &OBJC_CLASS___BKIOHIDServicePersistentPropertyController,  "digitizerServicePersistentPropertyController"));
+  id v41 = [v5 autorelease];
+  id v43 = [BKIOHIDServicePersistentPropertyController digitizerServicePersistentPropertyController];
   if (self
     && (v60.receiver = self,
         v60.super_class = (Class)&OBJC_CLASS___BKHIDDirectTouchEventProcessor,
         v6 = -[BKHIDDirectTouchEventProcessor init](&v60, "init"),
         (v7 = v6) != 0LL))
   {
-    objc_storeStrong((id *)&v6->_dispatcher, obj);
-    objc_storeStrong((id *)&v7->_touchEventServer, v41);
-    objc_storeStrong((id *)&v7->_persistentPropertyController, v43);
+    [v6 setDispatcher:obj];
+    [v7 setTouchEventServer:v41];
+    [v7 setPersistentPropertyController:v43];
     uint64_t v8 = BSDispatchQueueCreateWithFixedPriority("BKDigitizerInfoArbiterDispatchQueue", 0LL, 63LL);
     queue = v7->_queue;
     v7->_queue = (OS_dispatch_queue *)v8;
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue([a3 serviceMatcherDataProvider]);
-    v11 = objc_alloc(&OBJC_CLASS___BKIOHIDServiceSimplePersistentPropertySupport);
-    v12 = (void *)objc_claimAutoreleasedReturnValue( +[BKSHIDEventSenderDescriptor stylusOpaqueTouchDigitizer]( &OBJC_CLASS___BKSHIDEventSenderDescriptor,  "stylusOpaqueTouchDigitizer"));
-    v13 = -[BKIOHIDServiceSimplePersistentPropertySupport initWithSenderDescriptor:matcherDataProvider:persistentPropertyController:]( v11,  "initWithSenderDescriptor:matcherDataProvider:persistentPropertyController:",  v12,  v10,  v43);
+    v10 = [a3 serviceMatcherDataProvider];
+    BKIOHIDServiceSimplePersistentPropertySupport *v11 = [[BKIOHIDServiceSimplePersistentPropertySupport alloc] init];
+    v12 = [BKSHIDEventSenderDescriptor stylusOpaqueTouchDigitizer];
+    BKIOHIDServiceSimplePersistentPropertySupport *v13 = [[BKIOHIDServiceSimplePersistentPropertySupport alloc] initWithSenderDescriptor:v12 matcherDataProvider:v10 persistentPropertyController:v43];
     pencilOpaqueTouchPersistentPropertySupport = v7->_pencilOpaqueTouchPersistentPropertySupport;
     v7->_pencilOpaqueTouchPersistentPropertySupport = v13;
 
     [v43 registerHandler:v7->_pencilOpaqueTouchPersistentPropertySupport];
-    v15 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v15 = [[NSMutableArray alloc] init];
     __int128 v58 = 0u;
     __int128 v59 = 0u;
     __int128 v56 = 0u;
     __int128 v57 = 0u;
-    v16 = (void *)objc_claimAutoreleasedReturnValue( +[BKHIDDirectTouchEventProcessor digitizerMatchingDictionaries]( &OBJC_CLASS___BKHIDDirectTouchEventProcessor,  "digitizerMatchingDictionaries"));
-    id v17 = [v16 countByEnumeratingWithState:&v56 objects:v63 count:16];
+    NSArray *v16 = [BKHIDDirectTouchEventProcessor digitizerMatchingDictionaries];
+    id v17 = [v16 countByEnumeratingWithState:v56 objects:v63 count:16];
     if (v17)
     {
       uint64_t v18 = *(void *)v57;
@@ -102,25 +102,27 @@
           if (*(void *)v57 != v18) {
             objc_enumerationMutation(v16);
           }
-          v20 = -[BKIOHIDServiceMatcher initWithMatchingDictionary:dataProvider:]( objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher),  "initWithMatchingDictionary:dataProvider:",  *(void *)(*((void *)&v56 + 1) + 8LL * (void)i),  v10);
-          -[NSMutableArray addObject:](v15, "addObject:", v20);
+          BKIOHIDServiceMatcher *v20 = [[BKIOHIDServiceMatcher alloc] initWithMatchingDictionary:v56 dataProvider:v10];
+          [v15 addObject:v20];
         }
 
-        id v17 = [v16 countByEnumeratingWithState:&v56 objects:v63 count:16];
+        id v17 = [v16 countByEnumeratingWithState:v56 objects:v63 count:16];
       }
 
       while (v17);
     }
 
-    objc_storeStrong((id *)&v7->_matchers, v15);
+    v7->_matchers = v15;
     v7->_queue_startMainDisplayDigitizerMatchingTime = BSContinuousMachTimeNow(v21);
-    objc_initWeak(&location, v7);
+    [location release];
+location = v7;
+[location retain];
     __int128 v53 = 0u;
     __int128 v54 = 0u;
     __int128 v51 = 0u;
     __int128 v52 = 0u;
     v22 = v15;
-    id v23 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v22,  "countByEnumeratingWithState:objects:count:",  &v51,  v62,  16LL);
+    [v22 countByEnumeratingWithState:v51 objects:v62 count:16];
     if (v23)
     {
       uint64_t v24 = *(void *)v52;
@@ -134,23 +136,23 @@
           [*(id *)(*((void *)&v51 + 1) + 8 * (void)j) startObserving:v7 queue:v7->_queue];
         }
 
-        id v23 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v22,  "countByEnumeratingWithState:objects:count:",  &v51,  v62,  16LL);
+        [v22 countByEnumeratingWithState:&v51 objects:v62 count:16];
       }
 
       while (v23);
     }
 
-    v40 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
-    v26 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "digitizerSignpostsEnabled"));
+    BKSDefaults *v40 = [BKSDefaults localDefaults];
+    v26 = [NSString stringWithUTF8String:@"digitizerSignpostsEnabled"];
     dispatch_queue_global_t global_queue = dispatch_get_global_queue(21LL, 0LL);
-    v28 = (void *)objc_claimAutoreleasedReturnValue(global_queue);
+    v28 = [global_queue autorelease];
     id v29 = [v40 observeDefault:v26 onQueue:v28 withBlock:&stru_1000B6830];
 
-    v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "digitizerVisualizeTouches"));
+    v30 = [NSString stringWithUTF8String:@"digitizerVisualizeTouches"];
     v61[0] = v30;
-    v31 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "digitizerVisualizeHitTestRegions"));
+    v31 = [NSString stringWithUTF8String:@"digitizerVisualizeHitTestRegions"];
     v61[1] = v31;
-    v32 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v61, 2LL));
+    v32 = [NSArray arrayWithObjects:v61, 2LL];
     v49[0] = _NSConcreteStackBlock;
     v49[1] = 3221225472LL;
     v49[2] = sub_10003ECB8;
@@ -166,21 +168,21 @@
     v47[3] = &unk_1000B76D8;
     objc_copyWeak(&v48, &location);
     id v36 = (id)BSLogAddStateCaptureBlockWithTitle( v35,  @"BKDirectTouch",  v47);
-    v37 = (void *)objc_claimAutoreleasedReturnValue(+[CAWindowServer serverIfRunning](&OBJC_CLASS___CAWindowServer, "serverIfRunning"));
+    v37 = [CAWindowServer serverIfRunning];
     v44[0] = _NSConcreteStackBlock;
     v44[1] = 3221225472LL;
     v44[2] = sub_10003ED88;
     v44[3] = &unk_1000B6878;
-    objc_copyWeak(&v46, &location);
+    [v46 copy];
     v38 = v33;
     v45 = v38;
     [v37 setSlotDeletionCallback:v44];
 
-    -[BKIOHIDServicePersistentPropertyController registerHandler:]( v7->_persistentPropertyController,  "registerHandler:",  v38);
-    objc_destroyWeak(&v46);
-    objc_destroyWeak(&v48);
+    [v7->_persistentPropertyController registerHandler:v38];
+    [v46 release];
+    [v48 release];
 
-    objc_destroyWeak(&location);
+    [location release];
   }
 
   else
@@ -194,17 +196,17 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKHIDDirectTouchEventProcessor;
-  -[BKHIDDirectTouchEventProcessor dealloc](&v3, "dealloc");
+  [v3 superclass] = [BKHIDDirectTouchEventProcessor class];
+  [v3 dealloc];
 }
 
 - (void)didInitializeRegistryWithContext:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue([a3 eventProcessorRegistry]);
-  id v6 = objc_msgSend(v4, "eventProcessorOfClass:", objc_opt_class(BKKeyboardHIDEventProcessor, v5));
-  id v9 = (id)objc_claimAutoreleasedReturnValue(v6);
+  v4 = [a3 eventProcessorRegistry];
+  BKKeyboardHIDEventProcessor *v6 = [v4 eventProcessorOfClass:[BKKeyboardHIDEventProcessor class]];
+  id v9 = [v6 autorelease];
 
-  v7 = (BSInvalidatable *)objc_claimAutoreleasedReturnValue([v9 addGlobalKeyboardObserver:self]);
+  v7 = [v9 addGlobalKeyboardObserver:self];
   globalKeyboardObserver = self->_globalKeyboardObserver;
   self->_globalKeyboardObserver = v7;
 }
@@ -291,7 +293,7 @@
 {
   uint64_t v5 = (uint64_t)[a3 count];
   uint64_t v7 = BKLogTouchEvents(v5, v6);
-  uint64_t v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+  uint64_t v8 = [v7 autorelease];
   id v9 = v8;
   if (v5 < 31)
   {
@@ -326,7 +328,7 @@
 - (void)cancelTouchesOnDisplay:(id)a3
 {
   uint64_t v5 = BKLogTouchEvents(self, a2);
-  uint64_t v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  uint64_t v6 = v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     id v7 = a3;
@@ -350,7 +352,7 @@
   v13[4] = self;
   v13[5] = a3;
   dispatch_async(queue, v13);
-  v12 = (void *)objc_claimAutoreleasedReturnValue(+[BKTouchPadManager sharedInstance](&OBJC_CLASS___BKTouchPadManager, "sharedInstance"));
+  v12 = [BKTouchPadManager sharedInstance];
   [v12 sendCancelEventForDisplay:a3];
 }
 
@@ -361,7 +363,7 @@
 - (void)cancelTouchesOnAllDisplays
 {
   uint64_t v3 = BKLogTouchEvents(self, a2);
-  v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)buf = 0;
@@ -375,14 +377,14 @@
   block[3] = &unk_1000B8058;
   block[4] = self;
   dispatch_async(queue, block);
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[BKTouchPadManager sharedInstance](&OBJC_CLASS___BKTouchPadManager, "sharedInstance"));
+  uint64_t v6 = [BKTouchPadManager sharedInstance];
   [v6 sendCancelEventForAllDisplays];
 }
 
 - (id)cancelAndSuppressTouchesOnDisplay:(id)a3 reason:(id)a4
 {
   uint64_t v7 = BKLogTouchEvents(self, a2);
-  id v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+  os_log_s *v8 = v7;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543362;
@@ -390,7 +392,7 @@
     _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "canceling events for suppression reason: %{public}@",  buf,  0xCu);
   }
 
-  id v9 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+  NSMutableArray *v9 = [[NSMutableArray alloc] init];
   queue = (dispatch_queue_s *)self->_queue;
   block[0] = _NSConcreteStackBlock;
   block[1] = 3221225472LL;
@@ -402,7 +404,7 @@
   v19 = v11;
   id v20 = a4;
   dispatch_sync(queue, block);
-  id v12 = objc_alloc(&OBJC_CLASS___BSSimpleAssertion);
+  BSSimpleAssertion *v12 = [[BSSimpleAssertion alloc] init];
   v16[0] = _NSConcreteStackBlock;
   v16[1] = 3221225472LL;
   v16[2] = sub_10003E894;
@@ -544,7 +546,7 @@
   else
   {
     uint64_t v5 = BKLogTouchEvents(self, a2);
-    uint64_t v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    os_log_s *v6 = v5;
     if (os_log_type_enabled(v6, OS_LOG_TYPE_ERROR))
     {
       *(_WORD *)buf = 0;
@@ -570,7 +572,7 @@
   else
   {
     uint64_t v5 = BKLogTouchEvents(self, a2);
-    uint64_t v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    uint64_t v6 = v5;
     if (os_log_type_enabled(v6, OS_LOG_TYPE_ERROR))
     {
       *(_WORD *)buf = 0;
@@ -629,11 +631,11 @@
   }
   persistentPropertyController = self->_persistentPropertyController;
   unsigned int v12 = @"GraphicsOrientation";
-  unsigned int v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v5));
+  unsigned int v7 = [NSNumber numberWithUnsignedInt:v5];
   uint64_t v13 = v7;
-  CGPoint v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v13,  &v12,  1LL));
-  unsigned int v9 = (void *)objc_claimAutoreleasedReturnValue( +[BKSHIDEventSenderDescriptor anyBuiltinTouchscreenDigitizer]( &OBJC_CLASS___BKSHIDEventSenderDescriptor,  "anyBuiltinTouchscreenDigitizer"));
-  -[BKIOHIDServicePersistentPropertyController setPersistentProperties:forSenderDescriptor:]( persistentPropertyController,  "setPersistentProperties:forSenderDescriptor:",  v8,  v9);
+  CGPoint v8 = [NSDictionary dictionaryWithObjects:forKeys:count:v13, v12, 1LL];
+  unsigned int v9 = [BKSHIDEventSenderDescriptor anyBuiltinTouchscreenDigitizer];
+  [persistentPropertyController setPersistentProperties:v8 forSenderDescriptor:v9];
 
   queue = (dispatch_queue_s *)self->_queue;
   block[0] = _NSConcreteStackBlock;
@@ -693,7 +695,7 @@
   __int128 v17 = 0u;
   __int128 v18 = 0u;
   uint64_t v3 = self->_queue_touchEnterSlotIDs;
-  id v4 = -[NSMutableOrderedSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v15,  v21,  16LL);
+  [v3 countByEnumeratingWithState:v15 objects:v21 count:16];
   if (v4)
   {
     uint64_t v5 = 0LL;
@@ -706,7 +708,7 @@
         if (*(void *)v16 != v6) {
           objc_enumerationMutation(v3);
         }
-        unsigned int v8 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKey:]( self->_queue_slotIDToSlotRecord,  "objectForKey:",  *(void *)(*((void *)&v15 + 1) + 8LL * (void)v7),  (void)v15));
+        unsigned int v8 = [self->_queue_slotIDToSlotRecord objectForKey:v15];
         if (v8)
         {
           else {
@@ -719,7 +721,7 @@
       }
 
       while (v4 != v7);
-      id v4 = -[NSMutableOrderedSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v15,  v21,  16LL);
+      [v3 countByEnumeratingWithState:v15 objects:v21 count:16];
       v5 += (uint64_t)v7;
     }
 
@@ -727,7 +729,7 @@
   }
 
   uint64_t v12 = BKLogTouchEvents(v10, v11);
-  uint64_t v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+  uint64_t v13 = [v12];
   if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
   {
     queue_touchEnterSlotIDs = self->_queue_touchEnterSlotIDs;
@@ -761,11 +763,11 @@
 {
   uint64_t v3 = *(void *)&a3;
   dispatch_assert_queue_V2((dispatch_queue_t)self->_queue);
-  id v5 = -[NSMutableDictionary count](self->_queue_slotIDToSlotRecord, "count");
+  id v5 = [self->_queue_slotIDToSlotRecord count];
   if (v5)
   {
     uint64_t v7 = BKLogTouchEvents(v5, v6);
-    unsigned int v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+    os_log_s *v8 = v7;
     if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
     {
       v10[0] = 67109120;
@@ -773,10 +775,10 @@
       _os_log_impl((void *)&_mh_execute_header, v8, OS_LOG_TYPE_DEFAULT, "CA didDeleteSlot:%X", (uint8_t *)v10, 8u);
     }
 
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v3));
-    -[NSMutableDictionary removeObjectForKey:](self->_queue_slotIDToSlotRecord, "removeObjectForKey:", v9);
-    -[NSMutableOrderedSet removeObject:](self->_queue_touchEnterSlotIDs, "removeObject:", v9);
-    -[BKHIDDirectTouchEventProcessor _queue_resetTouchAuthenticationInitialSampleEvent]( self,  "_queue_resetTouchAuthenticationInitialSampleEvent");
+    uint64_t v9 = [NSNumber numberWithUnsignedInt:v3];
+    [self->_queue_slotIDToSlotRecord removeObjectForKey:v9];
+    [self->_queue_touchEnterSlotIDs removeObject:v9];
+    [self _queue_resetTouchAuthenticationInitialSampleEvent];
   }
 
 - (void)_queue_enumerateDigitizersForDisplay:(id)a3 usingBlock:(id)a4
@@ -789,14 +791,14 @@
   }
   id v10 = v9;
 
-  uint64_t v11 = (id *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_queue_perDisplayInfo,  "objectForKeyedSubscript:",  v10));
+  uint64_t v11 = [self->_queue_perDisplayInfo objectForKeyedSubscript:v10];
   __int128 v19 = 0u;
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
   uint64_t v12 = sub_100005584(v11);
-  uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
-  id v14 = [v13 countByEnumeratingWithState:&v17 objects:v21 count:16];
+  uint64_t v13 = v12;
+  id v14 = [v13 countByEnumeratingWithState:v17 objects:v21 count:16];
   if (v14)
   {
     uint64_t v15 = *(void *)v18;
@@ -808,12 +810,12 @@
         if (*(void *)v18 != v15) {
           objc_enumerationMutation(v13);
         }
-        (*((void (**)(id, void))a4 + 2))(a4, *(void *)(*((void *)&v17 + 1) + 8LL * (void)v16));
+        [v17 performSelector:v16];
         unsigned int v16 = (char *)v16 + 1;
       }
 
       while (v14 != v16);
-      id v14 = [v13 countByEnumeratingWithState:&v17 objects:v21 count:16];
+      id v14 = [v13 countByEnumeratingWithState:v17 objects:v21 count:16];
     }
 
     while (v14);
@@ -828,7 +830,7 @@
   v6[2] = sub_10003B550;
   v6[3] = &unk_1000B6B68;
   v6[4] = a3;
-  -[NSMutableDictionary enumerateKeysAndObjectsUsingBlock:]( queue_perDisplayInfo,  "enumerateKeysAndObjectsUsingBlock:",  v6);
+  [queue_perDisplayInfo enumerateKeysAndObjectsUsingBlock:v6];
 }
 
 - (void)_queue_enumerateTouchStreamsForAllDisplaysUsingBlock:(id)a3
@@ -839,7 +841,7 @@
   v6[2] = sub_10003B4E4;
   v6[3] = &unk_1000B6B68;
   v6[4] = a3;
-  -[NSMutableDictionary enumerateKeysAndObjectsUsingBlock:]( queue_perDisplayInfo,  "enumerateKeysAndObjectsUsingBlock:",  v6);
+  [queue_perDisplayInfo enumerateKeysAndObjectsUsingBlock:v6];
 }
 
 - (BOOL)handlesPersistentPropertiesForSenderDescriptor:(id)a3
@@ -850,8 +852,8 @@
   __int128 v18 = 0u;
   __int128 v19 = 0u;
   __int128 v20 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue( +[BKHIDDirectTouchEventProcessor digitizerMatchingDictionaries]( &OBJC_CLASS___BKHIDDirectTouchEventProcessor,  "digitizerMatchingDictionaries"));
-  id v6 = [obj countByEnumeratingWithState:&v17 objects:v21 count:16];
+  id obj = [BKHIDDirectTouchEventProcessor digitizerMatchingDictionaries];
+  id v6 = [obj countByEnumeratingWithState:v17 objects:v21 count:16];
   if (v6)
   {
     uint64_t v7 = *(void *)v18;
@@ -863,10 +865,10 @@
           objc_enumerationMutation(obj);
         }
         uint64_t v9 = *(void **)(*((void *)&v17 + 1) + 8LL * (void)i);
-        id v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:@"DeviceUsagePage"]);
+        id v10 = [v9 objectForKey:@"DeviceUsagePage"];
         unsigned int v11 = [v10 unsignedIntValue];
 
-        uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:@"DeviceUsage"]);
+        uint64_t v12 = (void *)[v9 objectForKey:@"DeviceUsage"];
         LODWORD(v10) = [v12 unsignedIntValue];
 
         BOOL v13 = v5 == (_DWORD)v10 || v5 == 0;
@@ -877,7 +879,7 @@
         }
       }
 
-      id v6 = [obj countByEnumeratingWithState:&v17 objects:v21 count:16];
+      id v6 = [obj countByEnumeratingWithState:v17 objects:v21 count:16];
       if (v6) {
         continue;
       }
@@ -909,7 +911,7 @@ LABEL_15:
   v45[1] = 3221225472LL;
   v45[2] = sub_10003B248;
   v45[3] = &unk_1000B6BB0;
-  id v31 = (id)objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _persistentPropertyKeyDenylist]( self,  "_persistentPropertyKeyDenylist"));
+  id v31 = [self _persistentPropertyKeyDenylist];
   id v46 = v31;
   v47 = &v48;
   [a3 enumerateKeysAndObjectsUsingBlock:v45];
@@ -920,8 +922,8 @@ LABEL_15:
 
   else
   {
-    id v29 = (void *)objc_claimAutoreleasedReturnValue([a3 objectForKey:@"HoverDisabled"]);
-    uint64_t v9 = objc_opt_class(&OBJC_CLASS___NSNumber, v8);
+    id v29 = [a3 objectForKey:@"HoverDisabled"];
+    NSNumber *v9 = [NSNumber class];
     id v10 = v29;
     unsigned int v11 = v10;
     if (v9)
@@ -966,7 +968,7 @@ LABEL_15:
       __int128 v32 = 0u;
       __int128 v33 = 0u;
       id v17 = (id)v40[5];
-      id v18 = [v17 countByEnumeratingWithState:&v32 objects:v56 count:16];
+      id v18 = [v17 countByEnumeratingWithState:v32 objects:v56 count:16];
       id v20 = v18;
       if (v18)
       {
@@ -981,10 +983,10 @@ LABEL_15:
             }
             id v23 = *(void **)(*((void *)&v32 + 1) + 8LL * (void)v22);
             uint64_t v24 = BKLogTouchEvents(v18, v19);
-            v25 = (os_log_s *)objc_claimAutoreleasedReturnValue(v24);
+            os_log_s *v25 = [v24 autorelease];
             if (os_log_type_enabled(v25, OS_LOG_TYPE_DEFAULT))
             {
-              v26 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  a3));
+              BSDescriptionStream *v26 = [BSDescriptionStream descriptionForRootObject:a3];
               *(_DWORD *)buf = 138543618;
               id v53 = v26;
               __int16 v54 = 2114;
@@ -997,7 +999,7 @@ LABEL_15:
           }
 
           while (v20 != v22);
-          id v18 = [v17 countByEnumeratingWithState:&v32 objects:v56 count:16];
+          id v18 = [v17 countByEnumeratingWithState:v32 objects:v56 count:16];
           id v20 = v18;
         }
 
@@ -1008,7 +1010,7 @@ LABEL_15:
     else
     {
       uint64_t v27 = BKLogTouchEvents(0LL, v16);
-      id v17 = (id)objc_claimAutoreleasedReturnValue(v27);
+      id v17 = [v27 autorelease];
       if (os_log_type_enabled((os_log_t)v17, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 138543362;
@@ -1030,17 +1032,17 @@ LABEL_15:
   uint64_t v8 = *a3;
   v28 = v8;
   BOOL v27 = 0;
-  uint64_t v9 = (__IOHIDEvent *)objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _determineServiceForEvent:sender:fromTouchPad:]( self,  "_determineServiceForEvent:sender:fromTouchPad:",  v8,  a4,  &v27));
+  uint64_t v9 = [self _determineServiceForEvent:v8 sender:a4 fromTouchPad:&v27];
   unsigned int v11 = v9;
   if (v9)
   {
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[__IOHIDEvent displayUUID](v9, "displayUUID"));
-    unsigned int v13 = -[__IOHIDEvent primaryUsagePage](v11, "primaryUsagePage");
-    unsigned int v14 = -[__IOHIDEvent primaryUsage](v11, "primaryUsage");
+    uint64_t v12 = (void *)[v9 displayUUID];
+    unsigned int v13 = [v11 primaryUsagePage];
+    unsigned int v14 = [v11 primaryUsage];
     if (v27)
     {
 LABEL_3:
-      id v15 = (void *)objc_claimAutoreleasedReturnValue(+[BKTouchPadManager sharedInstance](&OBJC_CLASS___BKTouchPadManager, "sharedInstance"));
+      BKTouchPadManager *v15 = [BKTouchPadManager sharedInstance];
       [v15 processEvent:&v28 sender:a4 dispatcher:a5];
 LABEL_4:
 
@@ -1061,20 +1063,20 @@ LABEL_4:
       BOOL v27 = 0;
     }
 
-    id v19 = -[__IOHIDEvent isBuiltIn](v11, "isBuiltIn");
+    BOOL v19 = [v11 isBuiltIn];
     if ((v12 != 0LL) != (_DWORD)v19)
     {
-      unsigned int v21 = -[__IOHIDEvent primaryUsagePage](v11, "primaryUsagePage");
-      id v19 = -[__IOHIDEvent primaryUsage](v11, "primaryUsage");
+      unsigned int v21 = [v11 primaryUsagePage];
+      id v19 = [v11 primaryUsage];
       if ((v19 | (v21 << 16)) - 851969 <= 0x1F && ((1 << ((_BYTE)v19 - 1)) & 0x80000009) != 0)
       {
-        -[BKHIDDirectTouchEventProcessor _handleDirectTouchEvent:service:]( self,  "_handleDirectTouchEvent:service:",  v8,  v11);
+        [self _handleDirectTouchEvent:v8 service:v11];
         goto LABEL_7;
       }
     }
 
     uint64_t v22 = BKLogTouchEvents(v19, v20);
-    id v15 = (void *)objc_claimAutoreleasedReturnValue(v22);
+    id v15 = v22;
     if (os_log_type_enabled((os_log_t)v15, OS_LOG_TYPE_ERROR))
     {
       id v23 = v12;
@@ -1098,7 +1100,7 @@ LABEL_4:
   }
 
   uint64_t v16 = BKLogTouchEvents(0LL, v10);
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(v16);
+  uint64_t v12 = [v16 autorelease];
   if (os_log_type_enabled((os_log_t)v12, OS_LOG_TYPE_ERROR))
   {
     *(_DWORD *)buf = 138543618;
@@ -1110,8 +1112,8 @@ LABEL_4:
 
 - (void)matcher:(id)a3 servicesDidMatch:(id)a4
 {
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-  int64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 senderCache]);
+  BKHIDSystemInterface *v6 = [BKHIDSystemInterface sharedInstance];
+  int64_t v7 = (void *)[v6 senderCache];
 
   id v44 = v7;
   [v7 addSenderInfo:a4];
@@ -1120,7 +1122,7 @@ LABEL_4:
   __int128 v45 = 0u;
   __int128 v46 = 0u;
   id v8 = a4;
-  id v9 = [v8 countByEnumeratingWithState:&v45 objects:v53 count:16];
+  id v9 = [v8 countByEnumeratingWithState:v45 objects:v53 count:16];
   if (v9)
   {
     uint64_t v10 = *(void *)v46;
@@ -1135,12 +1137,12 @@ LABEL_4:
         id v13 = [v12 isBuiltIn];
         int v14 = (int)v13;
         uint64_t v16 = BKLogTouchEvents(v13, v15);
-        id v17 = (os_log_s *)objc_claimAutoreleasedReturnValue(v16);
+        os_log_s *v17 = v16;
         if (os_log_type_enabled(v17, OS_LOG_TYPE_DEFAULT))
         {
           id v18 = [v12 senderID];
           *(_DWORD *)buf = 134218242;
-          double v50 = *(double *)&v18;
+          double v50 = v18;
           __int16 v51 = 2114;
           __int128 v52 = v12;
           _os_log_impl( (void *)&_mh_execute_header,  v17,  OS_LOG_TYPE_DEFAULT,  "digitizer attached (sender %llX) service:%{public}@",  buf,  0x16u);
@@ -1157,7 +1159,7 @@ LABEL_4:
               if (!self->_queue_mainDisplayAOPDigitizerService)
               {
                 uint64_t v40 = BKLogTouchEvents(v20, v21);
-                uint64_t v41 = (os_log_s *)objc_claimAutoreleasedReturnValue(v40);
+                uint64_t v41 = [v40 autorelease];
                 if (os_log_type_enabled(v41, OS_LOG_TYPE_DEFAULT))
                 {
                   *(_WORD *)buf = 0;
@@ -1171,7 +1173,7 @@ LABEL_4:
               }
 
               uint64_t v27 = BKLogTouchEvents(v20, v21);
-              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)objc_claimAutoreleasedReturnValue(v27);
+              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)[BKIOHIDService serviceWithDevice:v27];
               if (os_log_type_enabled(queue_mainDisplayAOPDigitizerService, OS_LOG_TYPE_ERROR))
               {
                 *(_WORD *)buf = 0;
@@ -1187,7 +1189,7 @@ LABEL_21:
               if (!self->_queue_mainDisplayDigitizerService)
               {
                 uint64_t v31 = BKLogTouchEvents(v20, v21);
-                __int128 v32 = (os_log_s *)objc_claimAutoreleasedReturnValue(v31);
+                os_log_s *v32 = [v31 autorelease];
                 BOOL v33 = os_log_type_enabled(v32, OS_LOG_TYPE_DEFAULT);
                 if (v33)
                 {
@@ -1197,7 +1199,7 @@ LABEL_21:
                   _os_log_impl( (void *)&_mh_execute_header,  v32,  OS_LOG_TYPE_DEFAULT,  "*** acquired main display digitizer (after %gs)",  buf,  0xCu);
                 }
 
-                -[BSContinuousMachTimer invalidate](self->_queue_mainDisplayDigitizerSentinelTimer, "invalidate");
+                [self->_queue_mainDisplayDigitizerSentinelTimer invalidate];
                 queue_mainDisplayDigitizerSentinelTimer = self->_queue_mainDisplayDigitizerSentinelTimer;
                 self->_queue_mainDisplayDigitizerSentinelTimer = 0LL;
 
@@ -1208,7 +1210,7 @@ LABEL_21:
               }
 
               uint64_t v28 = BKLogTouchEvents(v20, v21);
-              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)objc_claimAutoreleasedReturnValue(v28);
+              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)[v28 autorelease];
               if (os_log_type_enabled(queue_mainDisplayAOPDigitizerService, OS_LOG_TYPE_ERROR))
               {
                 *(_WORD *)buf = 0;
@@ -1222,7 +1224,7 @@ LABEL_21:
               if (self->_queue_mainDisplayPencilDigitizerService)
               {
                 uint64_t v23 = BKLogTouchEvents(v20, v21);
-                queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)objc_claimAutoreleasedReturnValue(v23);
+                queue_mainDisplayAOPDigitizerService = [BKIOHIDService serviceWithDigitizerService:v23];
                 if (os_log_type_enabled(queue_mainDisplayAOPDigitizerService, OS_LOG_TYPE_ERROR))
                 {
                   *(_WORD *)buf = 0;
@@ -1235,7 +1237,7 @@ LABEL_21:
               else
               {
                 uint64_t v37 = BKLogTouchEvents(v20, v21);
-                v38 = (os_log_s *)objc_claimAutoreleasedReturnValue(v37);
+                v38 = [v37 autorelease];
                 if (os_log_type_enabled(v38, OS_LOG_TYPE_DEFAULT))
                 {
                   *(_WORD *)buf = 0;
@@ -1250,7 +1252,7 @@ LABEL_21:
               break;
             default:
               uint64_t v30 = BKLogTouchEvents(v20, v21);
-              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)objc_claimAutoreleasedReturnValue(v30);
+              queue_mainDisplayAOPDigitizerService = (BKIOHIDService *)[v30 autorelease];
               if (!os_log_type_enabled(queue_mainDisplayAOPDigitizerService, OS_LOG_TYPE_ERROR)) {
                 break;
               }
@@ -1265,10 +1267,10 @@ LABEL_24:
           }
         }
 
-        id v43 =  -[BKHIDDirectTouchEventProcessor _queue_addDigitizerStateForService:]( self,  "_queue_addDigitizerStateForService:",  v12);
+        [self _queue_addDigitizerStateForService:v12];
       }
 
-      id v9 = [v8 countByEnumeratingWithState:&v45 objects:v53 count:16];
+      id v9 = [v8 countByEnumeratingWithState:v45 objects:v53 count:16];
     }
 
     while (v9);
@@ -1278,7 +1280,7 @@ LABEL_24:
 - (void)serviceDidDisappear:(id)a3
 {
   uint64_t v7 = BKLogTouchEvents(v5, v6);
-  id v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+  os_log_s *v8 = v7;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
   {
     int v27 = 134218240;
@@ -1291,7 +1293,7 @@ LABEL_24:
   if (self->_queue_mainDisplayDigitizerService == a3)
   {
     uint64_t v11 = BKLogTouchEvents(v9, v10);
-    uint64_t v12 = (os_log_s *)objc_claimAutoreleasedReturnValue(v11);
+    uint64_t v12 = [v11 autorelease];
     if (os_log_type_enabled(v12, OS_LOG_TYPE_ERROR))
     {
       LOWORD(v27) = 0;
@@ -1305,7 +1307,7 @@ LABEL_24:
   if (self->_queue_mainDisplayPencilDigitizerService == a3)
   {
     uint64_t v14 = BKLogTouchEvents(v9, v10);
-    uint64_t v15 = (os_log_s *)objc_claimAutoreleasedReturnValue(v14);
+    uint64_t v15 = (os_log_s *)v14;
     if (os_log_type_enabled(v15, OS_LOG_TYPE_ERROR))
     {
       LOWORD(v27) = 0;
@@ -1316,7 +1318,7 @@ LABEL_24:
     self->_queue_mainDisplayPencilDigitizerService = 0LL;
   }
 
-  id v17 = (id)objc_claimAutoreleasedReturnValue([a3 displayUUID]);
+  id v17 = [a3 displayUUID];
   id v18 = [v17 length];
   unsigned int v19 = (void *)BKSDisplayUUIDMainKey;
   if (v18) {
@@ -1324,9 +1326,9 @@ LABEL_24:
   }
   id v20 = v19;
 
-  uint64_t v21 = (void *)objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_digitizerStateForService:]( self,  "_queue_digitizerStateForService:",  a3));
+  uint64_t v21 = [self _queue_digitizerStateForService:a3];
   uint64_t v23 = BKLogTouchEvents(v21, v22);
-  id v24 = (os_log_s *)objc_claimAutoreleasedReturnValue(v23);
+  os_log_s *v24 = [v23 autorelease];
   if (os_log_type_enabled(v24, OS_LOG_TYPE_DEFAULT))
   {
     int v27 = 138543362;
@@ -1335,7 +1337,7 @@ LABEL_24:
   }
 
   [v21 invalidate];
-  uint64_t v25 = objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_queue_perDisplayInfo, "objectForKey:", v20));
+  uint64_t v25 = [self->_queue_perDisplayInfo objectForKey:v20];
   id v26 = (void *)v25;
   if (v25) {
     [*(id *)(v25 + 48) removeObjectForKey:a3];
@@ -1364,14 +1366,14 @@ LABEL_24:
   queue_perDisplayInfo = self->_queue_perDisplayInfo;
   if (!queue_perDisplayInfo)
   {
-    id v8 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v8 = [[NSMutableDictionary alloc] init];
     uint64_t v9 = self->_queue_perDisplayInfo;
     self->_queue_perDisplayInfo = v8;
 
     queue_perDisplayInfo = self->_queue_perDisplayInfo;
   }
 
-  uint64_t v10 = (BKDirectTouchPerDisplayInfo *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( queue_perDisplayInfo,  "objectForKeyedSubscript:",  a3));
+  BKDirectTouchPerDisplayInfo *v10 = [queue_perDisplayInfo objectForKey:a3];
   if (v10) {
     BOOL v11 = 1;
   }
@@ -1380,27 +1382,27 @@ LABEL_24:
   }
   if (!v11)
   {
-    uint64_t v10 = objc_alloc_init(&OBJC_CLASS___BKDirectTouchPerDisplayInfo);
+    BKDirectTouchPerDisplayInfo *v10 = [[BKDirectTouchPerDisplayInfo alloc] init];
     else {
-      uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue( +[BKSHIDEventDisplay displayWithHardwareIdentifier:]( &OBJC_CLASS___BKSHIDEventDisplay,  "displayWithHardwareIdentifier:",  a3));
+      uint64_t v12 = [BKSHIDEventDisplay displayWithHardwareIdentifier:a3];
     }
     id v13 = v12;
     if (v10) {
-      objc_storeStrong((id *)&v10->_display, v12);
+      v10->_display = v12;
     }
     defaultDisplayController = self->_defaultDisplayController;
     if (defaultDisplayController) {
       uint64_t v15 = defaultDisplayController;
     }
     else {
-      uint64_t v15 = (BKDisplayController *)objc_claimAutoreleasedReturnValue( +[BKDisplayController sharedInstance]( &OBJC_CLASS___BKDisplayController,  "sharedInstance"));
+      uint64_t v15 = [BKDisplayController sharedInstance];
     }
     uint64_t v16 = v15;
     if (v10) {
-      objc_storeStrong((id *)&v10->_displayController, v15);
+      v10->_displayController = v15;
     }
 
-    -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_queue_perDisplayInfo,  "setObject:forKeyedSubscript:",  v10,  a3);
+    [self->_queue_perDisplayInfo setObject:v10 forKeyedSubscript:a3];
   }
 
   return v10;
@@ -1408,8 +1410,8 @@ LABEL_24:
 
 - (id)_queue_addDigitizerStateForService:(id)a3
 {
-  v72 = (void *)objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_applyCachedPropertiesToMultitouchService:]( self,  "_queue_applyCachedPropertiesToMultitouchService:",  a3));
-  id v5 = (id)objc_claimAutoreleasedReturnValue([a3 displayUUID]);
+  v72 = [self _queue_applyCachedPropertiesToMultitouchService:a3];
+  id v5 = [a3 displayUUID];
   id v6 = [v5 length];
   uint64_t v7 = (void *)BKSDisplayUUIDMainKey;
   if (v6) {
@@ -1418,13 +1420,13 @@ LABEL_24:
   id v8 = v7;
 
   v71 = v8;
-  uint64_t v9 = objc_alloc(&OBJC_CLASS___BKTouchDeliveryStatisticsLoggingObserver);
-  uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( NSString,  "stringWithFormat:",  @"%llX-%@",  [a3 senderID],  v8));
-  v73 = -[BKTouchDeliveryStatisticsLoggingObserver initWithLabel:](v9, "initWithLabel:", v10);
+  BKTouchDeliveryStatisticsLoggingObserver *v9 = [[BKTouchDeliveryStatisticsLoggingObserver alloc] init];
+  uint64_t v10 = [NSString stringWithFormat:@"%llX-%@", [a3 senderID], v8];
+  BKTouchDeliveryStatisticsLoggingObserver *v73 = [[BKTouchDeliveryStatisticsLoggingObserver alloc] initWithLabel:v10];
 
-  uint64_t v11 = objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_displayInfoForDisplay:createIfNeeded:]( self,  "_queue_displayInfoForDisplay:createIfNeeded:",  v8,  1LL));
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue( +[BKTouchDeliveryObservationManager sharedInstance]( &OBJC_CLASS___BKTouchDeliveryObservationManager,  "sharedInstance"));
-  id v13 = objc_alloc(&OBJC_CLASS___BKDirectTouchState);
+  uint64_t v11 = [self _queue_displayInfoForDisplay:v8 createIfNeeded:1LL];
+  uint64_t v12 = [BKTouchDeliveryObservationManager sharedInstance];
+  BKDirectTouchState *v13 = [[BKDirectTouchState alloc] init];
   if (v13
     && (dispatcher = self->_dispatcher,
         v74.receiver = v13,
@@ -1432,17 +1434,17 @@ LABEL_24:
         uint64_t v15 = -[BKHIDDirectTouchEventProcessor init](&v74, "init"),
         (id v17 = v15) != 0LL))
   {
-    uint64_t v18 = objc_opt_class(v15, v16);
+    uint64_t v18 = [v15 class];
     if (v18 != objc_opt_class(&OBJC_CLASS___BKDirectTouchState, v19))
     {
-      v64 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Subclasses not allowed"));
+      v64 = [NSString stringWithFormat:@"Subclasses not allowed"];
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         v65 = NSStringFromSelector( "initWithHIDService:eventProcessor:displayInfo:dispatcher:touchDeliveryObserver:statisticsObserver:delive ryPolicyServer:eventSystemInteface:");
-        id v66 = (id)objc_claimAutoreleasedReturnValue(v65);
-        v68 = (objc_class *)objc_opt_class(v17, v67);
+        id v66 = v65;
+        v68 = [v17 class];
         v69 = NSStringFromClass(v68);
-        v70 = (void *)objc_claimAutoreleasedReturnValue(v69);
+        v70 = v69;
         *(_DWORD *)v75 = 138544642;
         *(void *)&v75[4] = v66;
         *(_WORD *)&v75[12] = 2114;
@@ -1463,61 +1465,61 @@ LABEL_24:
       JUMPOUT(0x100039864LL);
     }
 
-    objc_storeStrong((id *)&v17->_queue, a3);
-    objc_storeStrong((id *)&v17->_touchEventServer, self);
-    objc_storeStrong((id *)&v17->_matchers, (id)v11);
-    objc_storeStrong((id *)&v17->_pencilOpaqueTouchPersistentPropertySupport, dispatcher);
-    objc_storeStrong((id *)&v17->_queue_mainDisplayAOPDigitizerService, v12);
-    objc_storeStrong((id *)&v17->_queue_mainDisplayDigitizerService, 0LL);
-    objc_storeStrong((id *)&v17->_queue_mainDisplayDigitizerSentinelTimer, 0LL);
-    id v20 = objc_alloc_init(&OBJC_CLASS___BKTouchContactSet);
+    v17->_queue = a3;
+    [v17 setTouchEventServer:self];
+    v17->_matchers = v11;
+    [v17 setPencilOpaqueTouchPersistentPropertySupport:dispatcher];
+    v17->_queue_mainDisplayAOPDigitizerService = v12;
+    v17->_queue_mainDisplayDigitizerService = nil;
+    v17->_queue_mainDisplayDigitizerSentinelTimer = nil;
+    BKTouchContactSet *v20 = [[BKTouchContactSet alloc] init];
     globalKeyboardObserver = v17->_globalKeyboardObserver;
     v17->_globalKeyboardObserver = (BSInvalidatable *)v20;
 
-    uint64_t v22 = objc_alloc_init(&OBJC_CLASS___BSMutableIntegerMap);
+    BSMutableIntegerMap *v22 = [[BSMutableIntegerMap alloc] init];
     queue_perDisplayInfo = v17->_queue_perDisplayInfo;
     v17->_queue_perDisplayInfo = v22;
 
-    id v24 = objc_alloc_init(&OBJC_CLASS___BSMutableIntegerMap);
+    BSMutableIntegerMap *v24 = [[BSMutableIntegerMap alloc] init];
     queue_referenceToTouchStreamClient = v17->_queue_referenceToTouchStreamClient;
     v17->_queue_referenceToTouchStreamClient = v24;
 
-    id v26 = objc_alloc_init(&OBJC_CLASS___BSMutableIntegerMap);
+    BSMutableIntegerMap *v26 = [[BSMutableIntegerMap alloc] init];
     int v27 = *(void **)&v17->_queue_previousVendedTouchStreamReference;
-    *(void *)&v17->_queue_previousVendedTouchStreamReference = v26;
+    v17->_queue_previousVendedTouchStreamReference = v26;
 
-    id v28 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v28 = [[NSMutableSet alloc] init];
     queue_slotIDToSlotRecord = v17->_queue_slotIDToSlotRecord;
     v17->_queue_slotIDToSlotRecord = (NSMutableDictionary *)v28;
 
-    unsigned int v30 = objc_alloc(&OBJC_CLASS___BKDirectTouchStateHitTester);
+    BKDirectTouchStateHitTester *v30 = [[BKDirectTouchStateHitTester alloc] init];
     uint64_t v31 = v17;
     __int128 v32 = self;
     id v33 = (id)v11;
     if (v30)
     {
       *(void *)v75 = v30;
-      *(void *)&v75[8] = &OBJC_CLASS___BKDirectTouchStateHitTester;
-      double v34 = (BKDirectTouchStateHitTester *)objc_msgSendSuper2((objc_super *)v75, "init");
+      v75[8] = [BKDirectTouchStateHitTester class];
+      BKDirectTouchStateHitTester *v34 = [[BKDirectTouchStateHitTester alloc] init];
       unsigned int v30 = v34;
       if (v34)
       {
-        objc_storeStrong((id *)&v34->_state, v17);
-        objc_storeStrong((id *)&v30->_eventProcessor, self);
-        objc_storeStrong((id *)&v30->_displayInfo, (id)v11);
-        objc_storeStrong((id *)&v30->_touchDeliveryPolicyServer, 0LL);
+        v34->_state = v17;
+        [v30 setEventProcessor:self];
+        v30->_displayInfo = v11;
+        v30->_touchDeliveryPolicyServer = 0LL;
       }
     }
 
     id v35 = v31[3];
     v31[3] = v30;
 
-    id v36 = objc_alloc(&OBJC_CLASS___BKDirectTouchUpdateEvents);
+    BKDirectTouchUpdateEvents *v36 = [[BKDirectTouchUpdateEvents alloc] init];
     if (v36)
     {
       *(void *)v75 = v36;
-      *(void *)&v75[8] = &OBJC_CLASS___BKDirectTouchUpdateEvents;
-      uint64_t v37 = (id *)objc_msgSendSuper2((objc_super *)v75, "init");
+      v75[8] = [BKDirectTouchUpdateEvents class];
+      uint64_t v37 = [super init];
       v38 = v37;
       if (v37) {
         objc_storeStrong(v37 + 3, v17);
@@ -1532,7 +1534,7 @@ LABEL_24:
     id v39 = v31[23];
     v31[23] = v38;
 
-    uint64_t v40 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v40 = [[NSMutableArray alloc] init];
     id v41 = v31[9];
     v31[9] = v40;
 
@@ -1543,7 +1545,7 @@ LABEL_24:
       [v31[9] addObject:v12];
     }
     *((_BYTE *)v31 + 205) = [a3 primaryUsage] == 32;
-    v42 = (void *)objc_claimAutoreleasedReturnValue(-[OS_dispatch_queue propertyForKey:](v17->_queue, "propertyForKey:", @"MaxHoverHeight"));
+    v42 = [v17->_queue propertyForKey:@"MaxHoverHeight"];
     id v43 = v42;
     if (v42)
     {
@@ -1551,10 +1553,10 @@ LABEL_24:
       v31[24] = v44;
     }
 
-    __int128 v45 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
-    sub_1000563FC( (uint64_t)v31,  (uint64_t)[v45 digitizerVisualizeTouches],  (uint64_t)objc_msgSend(v45, "digitizerVisualizeHitTestRegions"));
+    BKSDefaults *v45 = [BKSDefaults localDefaults];
+    sub_1000563FC((uint64_t)v31, (uint64_t)[v45 digitizerVisualizeTouches], (uint64_t)[v45 digitizerVisualizeHitTestRegions]);
     uint64_t v48 = BKLogTouchEvents(v46, v47);
-    v49 = (os_log_s *)objc_claimAutoreleasedReturnValue(v48);
+    v49 = os_log_create("com.apple.Bluetooth", "com.apple.Bluetooth.btstack");
     if (os_log_type_enabled(v49, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)v75 = 138543362;
@@ -1575,7 +1577,7 @@ LABEL_24:
     __int128 v52 = *(void **)(v11 + 48);
     if (!v52)
     {
-      id v53 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+      NSMutableDictionary *v53 = [[NSMutableDictionary alloc] init];
       __int16 v54 = *(void **)(v11 + 48);
       *(void *)(v11 + 48) = v53;
 
@@ -1586,7 +1588,7 @@ LABEL_24:
   }
 
   int64_t queue_interfaceOrientation = self->_queue_interfaceOrientation;
-  __int128 v56 = (void *)objc_claimAutoreleasedReturnValue([v72 objectForKey:@"HoverDisabled"]);
+  __int128 v56 = (void *)[v72 objectForKey:@"HoverDisabled"];
   unsigned int v57 = [v56 BOOLValue];
 
   if (v57)
@@ -1617,10 +1619,10 @@ LABEL_34:
     id v58 = 0LL;
   }
 
-  __int128 v59 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  __int128 v59 = [BKSDefaults localDefaults];
   id v60 = [v59 digitizerVisualizeTouches];
 
-  v61 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  BKSDefaults *v61 = [BKSDefaults localDefaults];
   id v62 = [v61 digitizerVisualizeHitTestRegions];
 
   sub_1000563FC((uint64_t)v50, (uint64_t)v60, (uint64_t)v62);
@@ -1631,7 +1633,7 @@ LABEL_34:
 
 - (id)_queue_digitizerStateForService:(id)a3
 {
-  id v5 = (id)objc_claimAutoreleasedReturnValue([a3 displayUUID]);
+  id v5 = [a3 displayUUID];
   id v6 = [v5 length];
   uint64_t v7 = (void *)BKSDisplayUUIDMainKey;
   if (v6) {
@@ -1639,10 +1641,10 @@ LABEL_34:
   }
   id v8 = v7;
 
-  uint64_t v9 = objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_displayInfoForDisplay:createIfNeeded:]( self,  "_queue_displayInfoForDisplay:createIfNeeded:",  v8,  1LL));
+  uint64_t v9 = [self _queue_displayInfoForDisplay:v8 createIfNeeded:1LL];
   uint64_t v10 = (void *)v9;
   if (v9) {
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(v9 + 48) objectForKeyedSubscript:a3]);
+    uint64_t v11 = (void *)[*(id *)(v9 + 48) objectForKeyedSubscript:a3];
   }
   else {
     uint64_t v11 = 0LL;
@@ -1663,7 +1665,7 @@ LABEL_34:
   }
   id v10 = v9;
 
-  uint64_t v11 = objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_displayInfoForDisplay:createIfNeeded:]( self,  "_queue_displayInfoForDisplay:createIfNeeded:",  v10,  1LL));
+  uint64_t v11 = [self _queue_displayInfoForDisplay:v10 createIfNeeded:1];
   uint64_t v12 = (id *)v11;
   if (v11) {
     id v13 = *(void **)(v11 + 24);
@@ -1675,7 +1677,7 @@ LABEL_34:
   uint64_t v15 = v14;
   if (v4 && !v14)
   {
-    uint64_t v16 = objc_alloc_init(&OBJC_CLASS___BKDigitizerTouchStreamAggregate);
+    BKDigitizerTouchStreamAggregate *v16 = [[BKDigitizerTouchStreamAggregate alloc] init];
     uint64_t v15 = v16;
     if (v16) {
       objc_setProperty_nonatomic_copy(v16, v17, v10, 8LL);
@@ -1695,13 +1697,13 @@ LABEL_34:
   if (a3) {
     *((_DWORD *)a3 + 4) = v8;
   }
-  uint64_t v9 = objc_claimAutoreleasedReturnValue( -[BKHIDDirectTouchEventProcessor _queue_touchStreamInfoForDisplayUUID:createIfNeeded:]( self,  "_queue_touchStreamInfoForDisplayUUID:createIfNeeded:",  a4,  1LL));
+  uint64_t v9 = [self _queue_touchStreamInfoForDisplayUUID:a4 createIfNeeded:1LL];
   id v10 = (id *)v9;
   if (v9)
   {
     if (!*(void *)(v9 + 16))
     {
-      uint64_t v11 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+      NSMutableArray *v11 = [[NSMutableArray alloc] init];
       id v12 = v10[2];
       _DWORD v10[2] = v11;
     }
@@ -1715,18 +1717,18 @@ LABEL_34:
   queue_referenceToTouchStreamClient = self->_queue_referenceToTouchStreamClient;
   if (!queue_referenceToTouchStreamClient)
   {
-    uint64_t v14 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v14 = [[NSMutableDictionary alloc] init];
     uint64_t v15 = self->_queue_referenceToTouchStreamClient;
     self->_queue_referenceToTouchStreamClient = v14;
 
     queue_referenceToTouchStreamClient = self->_queue_referenceToTouchStreamClient;
   }
 
-  uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  self->_queue_previousVendedTouchStreamReference));
-  -[NSMutableDictionary setObject:forKeyedSubscript:]( queue_referenceToTouchStreamClient,  "setObject:forKeyedSubscript:",  a3,  v16);
+  uint64_t v16 = [NSNumber numberWithUnsignedInt:self->_queue_previousVendedTouchStreamReference];
+  [queue_referenceToTouchStreamClient setObject:a3 forKeyedSubscript:v16];
 
   uint64_t v19 = BKLogTouchEvents(v17, v18);
-  id v20 = (os_log_s *)objc_claimAutoreleasedReturnValue(v19);
+  id v20 = [v19 autorelease];
   if (os_log_type_enabled(v20, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543362;
@@ -1734,25 +1736,27 @@ LABEL_34:
     _os_log_impl((void *)&_mh_execute_header, v20, OS_LOG_TYPE_DEFAULT, "create touch stream %{public}@", buf, 0xCu);
   }
 
-  objc_initWeak(&location, a3);
+  [location release];
+location = a3;
+[location retain];
   queue = self->_queue;
   v33[0] = _NSConcreteStackBlock;
   v33[1] = 3221225472LL;
   v33[2] = sub_10003ADB4;
   v33[3] = &unk_1000B7B58;
-  objc_copyWeak(&v34, &location);
+  [v34 copy];
   if (a3)
   {
     if (*((void *)a3 + 7))
     {
-      id v26 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"_processDeathWatcher == nil"));
+      id v26 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"_processDeathWatcher == nil"];
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         int v27 = NSStringFromSelector("watchForProcessDeathOnQueue:block:");
-        id v28 = (void *)objc_claimAutoreleasedReturnValue(v27);
-        unsigned int v30 = (objc_class *)objc_opt_class(a3, v29);
+        v28 = v27;
+        unsigned int v30 = [a3 class];
         uint64_t v31 = NSStringFromClass(v30);
-        __int128 v32 = (void *)objc_claimAutoreleasedReturnValue(v31);
+        __int128 v32 = [v31 autorelease];
         *(_DWORD *)buf = 138544642;
         id v37 = v28;
         __int16 v38 = 2114;
@@ -1773,14 +1777,14 @@ LABEL_34:
       JUMPOUT(0x100039EA0LL);
     }
 
-    uint64_t v22 = -[BSProcessDeathWatcher initWithPID:queue:deathHandler:]( objc_alloc(&OBJC_CLASS___BSProcessDeathWatcher),  "initWithPID:queue:deathHandler:",  *((unsigned int *)a3 + 10),  queue,  v33);
+    BSProcessDeathWatcher *v22 = [[BSProcessDeathWatcher alloc] initWithPID:*((unsigned int *)a3 + 10) queue:queue deathHandler:v33];
     uint64_t v23 = (void *)*((void *)a3 + 7);
     *((void *)a3 + 7) = v22;
   }
 
   unsigned int queue_previousVendedTouchStreamReference = self->_queue_previousVendedTouchStreamReference;
-  objc_destroyWeak(&v34);
-  objc_destroyWeak(&location);
+  [v34 release];
+  [location release];
 
   return queue_previousVendedTouchStreamReference;
 }
@@ -1790,22 +1794,22 @@ LABEL_34:
   uint64_t v3 = *(void *)&a3;
   dispatch_assert_queue_V2((dispatch_queue_t)self->_queue);
   queue_referenceToTouchStreamClient = self->_queue_referenceToTouchStreamClient;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v3));
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( queue_referenceToTouchStreamClient,  "objectForKeyedSubscript:",  v6));
+  id v6 = [NSNumber numberWithUnsignedInt:v3];
+  id v7 = [queue_referenceToTouchStreamClient objectForKeyedSubscript:v6];
 
   return v7;
 }
 
 - (id)_queue_applyCachedPropertiesToMultitouchService:(id)a3
 {
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([a3 displayUUID]);
+  id v5 = [a3 displayUUID];
   if ([a3 primaryUsagePage] == 13 && objc_msgSend(a3, "primaryUsage") == 4)
   {
     uint64_t v22 = 0x3FF0000000000000LL;
     sub_100019B10(v5, 0LL, 0LL, (double *)&v22, 0LL, 0LL);
-    double v6 = *(double *)&v22;
+    double v6 = v22;
     uint64_t v9 = BKLogTouchEvents(v7, v8);
-    id v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+    os_log_s *v10 = [v9 autorelease];
     if (os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT))
     {
       id v11 = [a3 senderID];
@@ -1816,19 +1820,19 @@ LABEL_34:
       _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_DEFAULT,  "service %llX setProperty:%d forKey:QuantizationDPI",  buf,  0x12u);
     }
 
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( &OBJC_CLASS___NSNumber,  "numberWithInt:",  (int)(v6 * 160.0)));
+    id v12 = [NSNumber numberWithInt:v6 * 160.0];
     [a3 setProperty:v12 forKey:@"QuantizationDPI"];
   }
 
   persistentPropertyController = self->_persistentPropertyController;
-  uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([a3 senderDescriptor]);
-  uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue( -[BKIOHIDServicePersistentPropertyController allPersistentPropertiesForServicesMatchingDescriptor:]( persistentPropertyController,  "allPersistentPropertiesForServicesMatchingDescriptor:",  v14));
+  uint64_t v14 = (void *)[a3 senderDescriptor];
+  uint64_t v15 = [BKIOHIDServicePersistentPropertyController allPersistentPropertiesForServicesMatchingDescriptor:v14];
 
   id v16 = [v15 count];
   if (v16)
   {
     uint64_t v18 = BKLogTouchEvents(v16, v17);
-    uint64_t v19 = (os_log_s *)objc_claimAutoreleasedReturnValue(v18);
+    uint64_t v19 = v18;
     if (os_log_type_enabled(v19, OS_LOG_TYPE_DEFAULT))
     {
       id v20 = [a3 senderID];
@@ -1847,7 +1851,7 @@ LABEL_34:
 
 - (BOOL)_queue_hasTouchEnterSlots
 {
-  return -[NSMutableOrderedSet count](self->_queue_touchEnterSlotIDs, "count") != 0LL;
+  return [self->_queue_touchEnterSlotIDs count] != 0LL;
 }
 
 - (id)_queue_slotRecordForSlotID:(unsigned int)a3
@@ -1857,8 +1861,8 @@ LABEL_34:
     uint64_t v3 = *(void *)&a3;
     dispatch_assert_queue_V2((dispatch_queue_t)self->_queue);
     queue_slotIDToSlotRecord = self->_queue_slotIDToSlotRecord;
-    double v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v3));
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( queue_slotIDToSlotRecord,  "objectForKeyedSubscript:",  v6));
+    double v6 = [NSNumber numberWithUnsignedInt:v3];
+    uint64_t v7 = [queue_slotIDToSlotRecord objectForKeyedSubscript:v6];
   }
 
   else
@@ -1878,12 +1882,12 @@ LABEL_34:
 {
   if (!a4)
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"must have a service here"));
+    NSString *v9 = [NSString stringWithFormat:@"must have a service here"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       id v10 = NSStringFromSelector(a2);
-      id v11 = (id)objc_claimAutoreleasedReturnValue(v10);
-      id v13 = (objc_class *)objc_opt_class(self, v12);
+      id v11 = [v10 autorelease];
+      id v13 = [self class];
       uint64_t v14 = NSStringFromClass(v13);
       uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
       *(_DWORD *)buf = 138544642;
@@ -1939,10 +1943,10 @@ LABEL_34:
 
 - (id)_determineServiceForEvent:(__IOHIDEvent *)a3 sender:(id)a4 fromTouchPad:(BOOL *)a5
 {
-  uint64_t v9 = objc_opt_class(&OBJC_CLASS___BKHIDAccessibilitySender, a2);
+  uint64_t v9 = [BKHIDAccessibilitySender class];
   if ((objc_opt_isKindOfClass(a4, v9) & 1) == 0 || (id v11 = a4) == 0LL)
   {
-    uint64_t v18 = objc_opt_class(&OBJC_CLASS___BKIOHIDService, v10);
+    uint64_t v18 = [BKIOHIDService class];
     id v19 = a4;
     id v20 = v19;
     if (v18)
@@ -1968,15 +1972,15 @@ LABEL_34:
   }
 
   uint64_t v12 = v11;
-  id v13 = (void *)objc_claimAutoreleasedReturnValue([v11 displayUUID]);
+  id v13 = [v11 displayUUID];
 
   if (v13)
   {
     uint64_t v16 = BKLogTouchEvents(v14, v15);
-    uint64_t v17 = (os_log_s *)objc_claimAutoreleasedReturnValue(v16);
+    uint64_t v17 = (os_log_s *)v16;
     if (os_log_type_enabled(v17, OS_LOG_TYPE_ERROR))
     {
-      uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue([v12 displayUUID]);
+      uint64_t v31 = (void *)[v12 displayUUID];
       int v32 = 138543362;
       id v33 = v31;
       _os_log_error_impl( (void *)&_mh_execute_header,  v17,  OS_LOG_TYPE_ERROR,  "Not supported: accessibility digitizer for external display (%{public}@)",  (uint8_t *)&v32,  0xCu);
@@ -1989,8 +1993,8 @@ LABEL_34:
   __int128 v17 = 0u;
   __int128 v18 = 0u;
   uint64_t v7 = sub_100005584((id *)a4);
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
-  id v9 = [v8 countByEnumeratingWithState:&v15 objects:v19 count:16];
+  uint64_t v8 = [v7 autorelease];
+  id v9 = [v8 countByEnumeratingWithState:v15 objects:v19 count:16];
   if (v9)
   {
     uint64_t v10 = *(void *)v16;
@@ -2007,13 +2011,13 @@ LABEL_34:
           uint64_t v12 = (void *)v12[1];
         }
         id v13 = v12;
-        uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v13, "senderDescriptor", (void)v15));
+        uint64_t v14 = [v13 senderDescriptor];
 
         id v11 = (char *)v11 + 1;
       }
 
       while (v9 != v11);
-      id v9 = [v8 countByEnumeratingWithState:&v15 objects:v19 count:16];
+      id v9 = [v8 countByEnumeratingWithState:v15 objects:v19 count:16];
     }
 
     while (v9);
@@ -2022,8 +2026,8 @@ LABEL_34:
 
 - (id)_queue_servicesMatchingSenderDescriptor:(id)a3
 {
-  id v5 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
-  double v6 = (void *)objc_claimAutoreleasedReturnValue([a3 associatedDisplay]);
+  NSMutableArray *v5 = [[NSMutableArray alloc] init];
+  double v6 = [a3 associatedDisplay];
   uint64_t v7 = v6;
   if (v6)
   {
@@ -2031,7 +2035,7 @@ LABEL_34:
     if ((_DWORD)v8)
     {
       uint64_t v10 = BKLogTouchEvents(v8, v9);
-      id v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v10);
+      os_log_s *v11 = [v10];
       if (os_log_type_enabled(v11, OS_LOG_TYPE_ERROR))
       {
         *(_WORD *)uint64_t v25 = 0;
@@ -2041,7 +2045,7 @@ LABEL_34:
 
     else
     {
-      __int128 v17 = (void *)objc_claimAutoreleasedReturnValue([v7 _hardwareIdentifier]);
+      __int128 v17 = (void *)[v7 _hardwareIdentifier];
       queue_perDisplayInfo = self->_queue_perDisplayInfo;
       id v19 = v17;
       id v20 = [v19 length];
@@ -2051,20 +2055,20 @@ LABEL_34:
       }
       id v22 = v21;
 
-      BOOL v23 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](queue_perDisplayInfo, "objectForKey:", v22));
-      -[BKHIDDirectTouchEventProcessor _queue_addServicesMatchingSenderDescriptor:inPerDisplayInfo:toArray:]( self,  "_queue_addServicesMatchingSenderDescriptor:inPerDisplayInfo:toArray:",  a3,  v23,  v5);
+      BOOL v23 = [queue_perDisplayInfo objectForKey:v22];
+      [self _queue_addServicesMatchingSenderDescriptor:a3 inPerDisplayInfo:v23 toArray:v5];
     }
   }
 
   else
   {
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allValues](self->_queue_perDisplayInfo, "allValues"));
+    uint64_t v12 = (void *)[self->_queue_perDisplayInfo allValues];
     __int128 v28 = 0u;
     __int128 v29 = 0u;
     __int128 v26 = 0u;
     __int128 v27 = 0u;
     id v13 = v12;
-    id v14 = [v13 countByEnumeratingWithState:&v26 objects:v30 count:16];
+    id v14 = [v13 countByEnumeratingWithState:v26 objects:v30 count:16];
     if (v14)
     {
       uint64_t v15 = *(void *)v27;
@@ -2075,10 +2079,10 @@ LABEL_34:
           if (*(void *)v27 != v15) {
             objc_enumerationMutation(v13);
           }
-          -[BKHIDDirectTouchEventProcessor _queue_addServicesMatchingSenderDescriptor:inPerDisplayInfo:toArray:]( self,  "_queue_addServicesMatchingSenderDescriptor:inPerDisplayInfo:toArray:",  a3,  *(void *)(*((void *)&v26 + 1) + 8LL * (void)i),  v5);
+          [self _queue_addServicesMatchingSenderDescriptor:a3 inPerDisplayInfo:v26 toArray:v5];
         }
 
-        id v14 = [v13 countByEnumeratingWithState:&v26 objects:v30 count:16];
+        id v14 = [v13 countByEnumeratingWithState:v26 objects:v30 count:16];
       }
 
       while (v14);
@@ -2098,21 +2102,21 @@ LABEL_34:
   v11[1] = @"DeviceUsage";
   v12[0] = &off_1000C04B0;
   v12[1] = &off_1000C04C8;
-  v2 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  2LL));
+  v2 = [NSDictionary dictionaryWithObjects:v12 forKeys:v11 count:2];
   v13[0] = v2;
   v9[0] = @"DeviceUsagePage";
   v9[1] = @"DeviceUsage";
   v10[0] = &off_1000C04B0;
   v10[1] = &off_1000C04E0;
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v10,  v9,  2LL));
+  uint64_t v3 = [NSDictionary dictionaryWithObjects:v10 forKeys:v9 count:2];
   v13[1] = v3;
   v7[0] = @"DeviceUsagePage";
   v7[1] = @"DeviceUsage";
   v8[0] = &off_1000C04B0;
   v8[1] = &off_1000C04F8;
-  BOOL v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v8,  v7,  2LL));
+  BOOL v4 = [NSDictionary dictionaryWithObjects:v8 forKeys:v7 count:2];
   v13[2] = v4;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v13, 3LL));
+  id v5 = [NSArray arrayWithObjects:count:v13, 3LL];
 
   return (NSArray *)v5;
 }

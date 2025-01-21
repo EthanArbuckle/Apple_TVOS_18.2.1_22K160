@@ -134,13 +134,13 @@
   }
   if (v4 && v36)
   {
-    v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    v15 = [NSDate date];
     -[GenericSiriRemoteListener setLastAudioDate:](self, "setLastAudioDate:", v15);
 
-    v16 = (GenericSiriRemoteListener *)objc_claimAutoreleasedReturnValue(+[NSData dataWithData:](&OBJC_CLASS___NSData, "dataWithData:", v4));
+    v16 = [NSData dataWithData:v4];
     if (objc_opt_class(&OBJC_CLASS___SLGLog, v17))
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+      v18 = [SLGLog sharedInstance];
       v34[0] = _NSConcreteStackBlock;
       v34[1] = 3221225472LL;
       v34[2] = sub_100010F68;
@@ -151,17 +151,17 @@
 
     v19 = self;
     objc_sync_enter(v19);
-    v20 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener audioBuffer](v19, "audioBuffer"));
+    v20 = -[GenericSiriRemoteListener audioBuffer];
 
     if (v20)
     {
-      v21 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener audioBuffer](v19, "audioBuffer"));
+      v21 = -[GenericSiriRemoteListener audioBuffer];
       [v21 addObject:v16];
     }
 
     else
     {
-      v21 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioRelay](v19, "doapAudioRelay"));
+      v21 = -[GenericSiriRemoteListener doapAudioRelay];
       [v21 sendAudioFrame:v16];
     }
 
@@ -175,21 +175,21 @@ LABEL_21:
   {
     if (objc_opt_class(&OBJC_CLASS___SLGLog, v14))
     {
-      v30 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+      v30 = [SLGLog sharedInstance];
       [v30 logBlock:&stru_10005CEE8];
     }
 
-    v31 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStop](self, "doapAudioStop"));
+    v31 = (void *)[self doapAudioStop];
 
     if (v31)
     {
-      v32 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStop](self, "doapAudioStop"));
+      v32 = [self doapAudioStop];
       dispatch_semaphore_signal(v32);
     }
 
     v16 = self;
     objc_sync_enter(v16);
-    v33 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener audioBuffer](v16, "audioBuffer"));
+    v33 = [v16 audioBuffer];
     [v33 removeAllObjects];
 
     objc_sync_exit(v16);
@@ -212,7 +212,7 @@ LABEL_22:
     NSErrorUserInfoKey v11 = NSLocalizedDescriptionKey;
     uint64_t v12 = v5;
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v12,  &v11,  1LL));
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
+    id v7 = [NSError errorWithDomain:NSMachErrorDomain code:-536870185LL userInfo:v6];
 
     v4[2](v4, v7);
   }
@@ -239,16 +239,16 @@ LABEL_22:
     NSErrorUserInfoKey v51 = NSLocalizedDescriptionKey;
     v52 = v5;
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v52,  &v51,  1LL));
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
+    id v7 = [NSError errorWithDomain:NSMachErrorDomain code:-536870185LL userInfo:v6];
 
     v4[2](v4, v7);
-    uint64_t v8 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStart](self, "doapAudioStart"));
+    uint64_t v8 = (dispatch_semaphore_s *)[self doapAudioStart];
     dispatch_semaphore_signal(v8);
 
     goto LABEL_18;
   }
 
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener lastAudioDate](self, "lastAudioDate"));
+  uint64_t v9 = (void *)[self lastAudioDate];
   [v9 timeIntervalSinceNow];
   double v11 = fabs(v10);
 
@@ -258,7 +258,7 @@ LABEL_22:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
       uint64_t v26 = v25;
-      uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener lastAudioDate](self, "lastAudioDate"));
+      uint64_t v27 = (void *)[self lastAudioDate];
       [v27 timeIntervalSinceNow];
       *(_DWORD *)buf = 134217984;
       double v50 = fabs(v28) * 1000.0;
@@ -268,15 +268,15 @@ LABEL_22:
     goto LABEL_17;
   }
 
-  uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStop](self, "doapAudioStop"));
+  uint64_t v12 = (void *)[self doapAudioStop];
 
   if (v12)
   {
-    uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener lastAudioDate](self, "lastAudioDate"));
+    uint64_t v13 = (void *)[self lastAudioDate];
     [v13 timeIntervalSinceNow];
     double v15 = v14;
 
-    v16 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStop](self, "doapAudioStop"));
+    v16 = [self doapAudioStop];
     dispatch_time_t v17 = dispatch_time(0LL, 1000000 * vcvtpd_s64_f64((v15 + 0.105) * 1000.0));
     uint64_t v18 = dispatch_semaphore_wait(v16, v17);
 
@@ -287,7 +287,7 @@ LABEL_22:
       if (v20)
       {
         v21 = v19;
-        v22 = (void *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener lastAudioDate](self, "lastAudioDate"));
+        v22 = [self lastAudioDate];
         [v22 timeIntervalSinceNow];
         *(_DWORD *)buf = 134217984;
         double v50 = fabs(v23) * 1000.0;
@@ -321,10 +321,10 @@ LABEL_22:
     NSErrorUserInfoKey v12 = NSLocalizedDescriptionKey;
     uint64_t v13 = v5;
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v13,  &v12,  1LL));
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSMachErrorDomain,  -536870185LL,  v6));
+    id v7 = [NSError errorWithDomain:NSMachErrorDomain code:-536870185LL userInfo:v6];
 
     v4[2](v4, v7);
-    uint64_t v8 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[GenericSiriRemoteListener doapAudioStart](self, "doapAudioStart"));
+    uint64_t v8 = (dispatch_semaphore_s *)[self doapAudioStart];
     dispatch_semaphore_signal(v8);
   }
 

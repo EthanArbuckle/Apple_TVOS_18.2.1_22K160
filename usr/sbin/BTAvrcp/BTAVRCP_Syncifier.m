@@ -39,8 +39,8 @@
 
 - (BOOL)wait:(double)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate dateWithTimeIntervalSinceNow:](&OBJC_CLASS___NSDate, "dateWithTimeIntervalSinceNow:", a3));
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_Syncifier condition](self, "condition"));
+  v4 = [NSDate dateWithTimeIntervalSinceNow:a3];
+  v5 = -[BTAVRCP_Syncifier condition];
   [v5 lock];
 
   while (1)

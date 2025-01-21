@@ -15,22 +15,22 @@
 
 - (void)start
 {
-  id v4 = (id)objc_claimAutoreleasedReturnValue(+[ServerServiceManager instance](&OBJC_CLASS___ServerServiceManager, "instance"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[ServerService service](self, "service"));
+  id v4 = [ServerServiceManager instance];
+  v3 = [self service];
   [v4 addService:v3];
 }
 
 - (void)stop
 {
-  id v4 = (id)objc_claimAutoreleasedReturnValue(+[ServerServiceManager instance](&OBJC_CLASS___ServerServiceManager, "instance"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[ServerService service](self, "service"));
+  id v4 = [ServerServiceManager instance];
+  v3 = -[ServerService service];
   [v4 removeService:v3];
 }
 
 - (void)respondToRequest:(id)a3 withResult:(int64_t)a4
 {
   id v5 = a3;
-  id v6 = (id)objc_claimAutoreleasedReturnValue(+[ServerServiceManager instance](&OBJC_CLASS___ServerServiceManager, "instance"));
+  id v6 = [ServerServiceManager instance];
   [v6 respondToRequest:v5 withResult:a4];
 }
 
@@ -39,7 +39,7 @@
   id v7 = a5;
   id v8 = a4;
   id v9 = a3;
-  id v10 = (id)objc_claimAutoreleasedReturnValue(+[ServerServiceManager instance](&OBJC_CLASS___ServerServiceManager, "instance"));
+  id v10 = [ServerServiceManager instance];
   [v10 updateValue:v9 forCharacteristic:v8 onSubscribedCentrals:v7];
 }
 
@@ -78,7 +78,7 @@
   else if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     v11 = v10;
-    v12 = (void *)objc_claimAutoreleasedReturnValue([v8 UUID]);
+    v12 = [v8 UUID];
     int v13 = 138412290;
     v14 = v12;
     _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "Service %@ has been published",  (uint8_t *)&v13,  0xCu);

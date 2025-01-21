@@ -21,25 +21,25 @@
 - (BKAccelerometerInterface)init
 {
   v27.receiver = self;
-  v27.super_class = (Class)&OBJC_CLASS___BKAccelerometerInterface;
-  v2 = -[BKAccelerometerInterface init](&v27, "init");
+  v27.super_class = [BKAccelerometerInterface class];
+  v2 = [BKAccelerometerInterface init];
   if (v2)
   {
-    v3 = objc_alloc_init(&OBJC_CLASS___NSLock);
+    NSLock *v3 = [[NSLock alloc] init];
     lock = v2->_lock;
     v2->_lock = v3;
 
-    v5 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v5 = [[NSMutableSet alloc] init];
     lock_accelerometerClients = v2->_lock_accelerometerClients;
     v2->_lock_accelerometerClients = v5;
 
     id v7 = sub_100065B98();
-    uint64_t v8 = objc_claimAutoreleasedReturnValue(v7);
+    uint64_t v8 = [v7 autorelease];
     lock_orientationManager = v2->_lock_orientationManager;
     v2->_lock_orientationManager = (BKOrientationManager *)v8;
 
     v10 = sub_100067104((id *)&v2->_lock_orientationManager->super.isa, v2);
-    uint64_t v11 = objc_claimAutoreleasedReturnValue(v10);
+    uint64_t v11 = v10;
     id lock_orientationManagerObservationAssertion = v2->_lock_orientationManagerObservationAssertion;
     v2->_id lock_orientationManagerObservationAssertion = (id)v11;
 
@@ -69,20 +69,20 @@
       BOOL v17 = 0LL;
     }
 
-    -[BKAccelerometerInterface orientationManager:deviceOrientationMayHaveChanged:changeSource:isDeviceOrientationLocked:]( v2,  "orientationManager:deviceOrientationMayHaveChanged:changeSource:isDeviceOrientationLocked:",  v13,  v14,  0LL,  v17);
-    uint64_t v18 = objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+    [v2 orientationManager:v13 deviceOrientationMayHaveChanged:v14 changeSource:v17 isDeviceOrientationLocked:0LL];
+    uint64_t v18 = [BKSDefaults localDefaults];
     localDefaults = v2->_localDefaults;
     v2->_localDefaults = (BKSLocalDefaults *)v18;
 
-    v20 = objc_alloc(&OBJC_CLASS___SLGNotificationActivatedLogger);
-    id v21 = objc_alloc(&OBJC_CLASS___SLGActivatableLogger);
-    v22 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+    SLGNotificationActivatedLogger *v20 = [[SLGNotificationActivatedLogger alloc] init];
+    SLGActivatableLogger *v21 = [[SLGActivatableLogger alloc] init];
+    v22 = [SLGLog sharedInstance];
     id v23 = [v21 initWithLogger:v22];
-    v24 = -[SLGNotificationActivatedLogger initWithLogger:](v20, "initWithLogger:", v23);
+    SLGNotificationActivatedLogger *v24 = [[SLGNotificationActivatedLogger alloc] initWithLogger:v23];
     studyLog = v2->_studyLog;
     v2->_studyLog = v24;
 
-    -[SLGNotificationActivatedLogger addBeginNotification:endNotification:]( v2->_studyLog,  "addBeginNotification:endNotification:",  @"SBStudyLogBeginCameraButtonLogging",  @"SBStudyLogEndCameraButtonLogging");
+    [v2->_studyLog addBeginNotification:@"SBStudyLogBeginCameraButtonLogging" endNotification:@"SBStudyLogEndCameraButtonLogging"];
   }
 
   return v2;
@@ -90,14 +90,14 @@
 
 - (void)dealloc
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"this object should not be deallocated"));
+  v4 = [NSString stringWithFormat:@"this object should not be deallocated"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     v5 = NSStringFromSelector(a2);
-    v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    uint64_t v8 = (objc_class *)objc_opt_class(self, v7);
+    v6 = v5;
+    uint64_t v8 = [self class];
     v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = (void *)[v9 autorelease];
     int v11 = 138544642;
     v12 = v6;
     __int16 v13 = 2114;
@@ -127,7 +127,7 @@
   float v9 = a5;
   float v10 = a6;
   float v11 = a7;
-  -[BKAccelerometerInterface _handleAccelerometerRequestForPort:auditToken:updateBlock:]( self,  "_handleAccelerometerRequestForPort:auditToken:updateBlock:",  a3,  a8,  v8);
+  [self _handleAccelerometerRequestForPort:a3 auditToken:a8 updateBlock:v8];
 }
 
 - (void)bksAccelerometerClientRequestedOrientationEvents:(id)a3 enabled:(BOOL)a4 passiveEvents:(BOOL)a5 auditToken:(id *)a6
@@ -138,15 +138,15 @@
   v6[3] = &unk_1000B6D88;
   BOOL v7 = a4;
   BOOL v8 = a5;
-  -[BKAccelerometerInterface _handleAccelerometerRequestForPort:auditToken:updateBlock:]( self,  "_handleAccelerometerRequestForPort:auditToken:updateBlock:",  a3,  a6,  v6);
+  [self _handleAccelerometerRequestForPort:a3 auditToken:a6 updateBlock:v6];
 }
 
 - (void)systemAppSetOrientationEventsClient:(id)a3 wantsOrientationEvents:(BOOL)a4 auditToken:(id *)a5
 {
   BOOL v6 = a4;
   id v8 = a3;
-  uint64_t v9 = BKLogOrientationDevice(-[NSLock lock](self->_lock, "lock"));
-  float v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+  uint64_t v9 = [self->_lock lock];
+  float v10 = (os_log_s *)[v9 autorelease];
   if (os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT))
   {
     int v11 = 138543618;
@@ -156,14 +156,14 @@
     _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_DEFAULT,  "systemAppSetOrientationEventsClient:%{public}@ wantsOrientationEvents:%{BOOL}u",  (uint8_t *)&v11,  0x12u);
   }
 
-  -[BKAccelerometerInterface _lock_systemAppSetOrientationEventsClient:wantsOrientationEvents:auditToken:]( self,  "_lock_systemAppSetOrientationEventsClient:wantsOrientationEvents:auditToken:",  v8,  v6,  a5);
-  -[NSLock unlock](self->_lock, "unlock");
-  -[BKAccelerometerInterface _updateSettings](self, "_updateSettings");
+  [self _lock_systemAppSetOrientationEventsClient:v8 wantsOrientationEvents:v6 auditToken:a5];
+  [self->_lock unlock];
+  [self _updateSettings];
 }
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
   lock_orientationManager = self->_lock_orientationManager;
   if (lock_orientationManager)
   {
@@ -191,7 +191,7 @@
   id v7 = [v3 appendBool:v6 withName:@"eventsEnabled"];
   id v8 = [v3 appendObject:self->_lock_accelerometerClients withName:@"clients"];
   id v9 =  [v3 appendObject:self->_lock_systemAppOrientationClient withName:@"systemAppOrientationClient"];
-  float v10 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  float v10 = [v3 build];
 
   return (NSString *)v10;
 }
@@ -206,7 +206,7 @@
   double v11 = IOHIDEventGetFloatValue(v6, 851970LL);
   int IntegerValue = IOHIDEventGetIntegerValue(v6, 851971LL);
   id v13 = sub_10003F450();
-  BOOL v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+  BOOL v14 = [os_log_s logWithName:v13];
   if (os_log_type_enabled(v14, OS_LOG_TYPE_DEBUG))
   {
     *(_DWORD *)buf = 67109888;
@@ -220,13 +220,13 @@
     _os_log_debug_impl((void *)&_mh_execute_header, v14, OS_LOG_TYPE_DEBUG, "Acc (type %d): %f %f %f", buf, 0x26u);
   }
 
-  -[NSLock lock](self->_lock, "lock");
+  [self->_lock lock];
   __int128 v32 = 0u;
   __int128 v33 = 0u;
   __int128 v30 = 0u;
   __int128 v31 = 0u;
   uint64_t v15 = self->_lock_accelerometerClients;
-  id v16 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v15,  "countByEnumeratingWithState:objects:count:",  &v30,  v34,  16LL);
+  v16 = [v15 countByEnumeratingWithState:v30 objects:v34 count:16];
   if (v16)
   {
     id v20 = v16;
@@ -250,13 +250,13 @@
       }
 
       while (v20 != v25);
-      id v20 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v15,  "countByEnumeratingWithState:objects:count:",  &v30,  v34,  16LL);
+      [v15 countByEnumeratingWithState:&v30 objects:v34 count:16];
     }
 
     while (v20);
   }
 
-  -[NSLock unlock](self->_lock, "unlock");
+  [self->_lock unlock];
   if ((-[BKSLocalDefaults disableStudyLogAccelerometerLogging]( self->_localDefaults,  "disableStudyLogAccelerometerLogging") & 1) == 0)
   {
     studyLog = self->_studyLog;
@@ -268,7 +268,7 @@
     *(double *)&v28[5] = v10;
     *(double *)&v28[6] = v11;
     int v29 = IntegerValue;
-    -[SLGNotificationActivatedLogger logBlock:domain:]( studyLog,  "logBlock:domain:",  v28,  @"com.apple.backboard.hid.accelerometer");
+    [SLGNotificationActivatedLogger logBlock:v28 domain:@"com.apple.backboard.hid.accelerometer"];
   }
 
   return 1LL;
@@ -278,38 +278,38 @@
 {
   lock = self->_lock;
   v5 = (BKAccelerometerClient *)a3;
-  -[NSLock lock](lock, "lock");
-  -[BKHIDEventClient invalidate](v5, "invalidate");
-  -[NSMutableSet removeObject:](self->_lock_accelerometerClients, "removeObject:", v5);
+  [lock lock];
+  [v5 invalidate];
+  [self->_lock_accelerometerClients removeObject:v5];
   lock_systemAppOrientationClient = self->_lock_systemAppOrientationClient;
 
   if (lock_systemAppOrientationClient == v5) {
-    -[BKAccelerometerInterface _lock_clearSystemAppOrientationClient](self, "_lock_clearSystemAppOrientationClient");
+    [self _lock_clearSystemAppOrientationClient];
   }
-  -[NSLock unlock](self->_lock, "unlock");
-  -[BKAccelerometerInterface _updateSettings](self, "_updateSettings");
+  [self->_lock unlock];
+  [self _updateSettings];
 }
 
 - (void)_handleAccelerometerRequestForPort:(id)a3 auditToken:(id *)a4 updateBlock:(id)a5
 {
   id v10 = a3;
   double v8 = (void (**)(id, BKAccelerometerClientBKSAccelerometer *))a5;
-  -[NSLock lock](self->_lock, "lock");
-  id v9 = (BKAccelerometerClientBKSAccelerometer *)objc_claimAutoreleasedReturnValue( -[BKAccelerometerInterface _lock_existingClientForSendRight:]( self,  "_lock_existingClientForSendRight:",  v10));
+  [self->_lock lock];
+  id v9 = [BKAccelerometerInterface _lock_existingClientForSendRight:v10];
   if (!v9)
   {
-    id v9 = -[BKHIDEventClient initWithPid:sendRight:]( objc_alloc(&OBJC_CLASS___BKAccelerometerClientBKSAccelerometer),  "initWithPid:sendRight:",  BSPIDForAuditToken(a4),  v10);
-    -[BKHIDEventClient setDelegate:](v9, "setDelegate:", self);
+    id v9 = [BKHIDEventClient initWithPid:BSPIDForAuditToken(a4) sendRight:v10];
+    [v9 setDelegate:self];
     if (v9) {
-      -[NSMutableSet addObject:](self->_lock_accelerometerClients, "addObject:", v9);
+      [self->_lock_accelerometerClients addObject:v9];
     }
   }
 
   if (v8) {
-    v8[2](v8, v9);
+    [v8 objectAtIndex:2];
   }
-  -[NSLock unlock](self->_lock, "unlock");
-  -[BKAccelerometerInterface _updateSettings](self, "_updateSettings");
+  [self->_lock unlock];
+  [self _updateSettings];
 }
 
 - (void)_updateSettings
@@ -320,7 +320,7 @@
   __int128 v34 = 0u;
   __int128 v35 = 0u;
   v3 = self->_lock_accelerometerClients;
-  id v4 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v32,  v42,  16LL);
+  [v3 countByEnumeratingWithState:v32 objects:v42 count:16];
   if (!v4)
   {
     char v6 = 0;
@@ -342,7 +342,7 @@
         objc_enumerationMutation(v3);
       }
       double v11 = *(void **)(*((void *)&v32 + 1) + 8LL * (void)i);
-      objc_msgSend(v11, "accelerometerUpdateInterval", (void)v32);
+      [v11 setAccelerometerUpdateInterval:v32];
       if (v12 > 0.0)
       {
         double lock_samplingInterval = self->_lock_samplingInterval;
@@ -424,7 +424,7 @@ LABEL_41:
       }
     }
 
-    id v5 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v32,  v42,  16LL);
+    [v3 countByEnumeratingWithState:v32 objects:v42 count:16];
   }
 
   while (v5);
@@ -452,7 +452,7 @@ LABEL_50:
   if (v22 < 0.0 || v24 / v23 > 1.25 && v24 / v23 < 1.75) {
     self->_double lock_samplingInterval = v25;
   }
-  -[NSLock unlock](self->_lock, "unlock", (void)v32);
+  [self->_lock unlock];
   lock_orientationManager = self->_lock_orientationManager;
   if (lock_orientationManager)
   {
@@ -507,7 +507,7 @@ LABEL_50:
   id v6 = v4;
   id v10 = v6;
   double v11 = &v12;
-  -[NSMutableSet enumerateObjectsUsingBlock:](lock_accelerometerClients, "enumerateObjectsUsingBlock:", v9);
+  [lock_accelerometerClients enumerateObjectsUsingBlock:v9];
   id v7 = (id)v13[5];
 
   _Block_object_dispose(&v12, 8);
@@ -518,8 +518,8 @@ LABEL_50:
 {
   if (self->_lock_systemAppOrientationClient)
   {
-    -[NSMutableSet removeObject:](self->_lock_accelerometerClients, "removeObject:");
-    -[BKHIDEventClient invalidate](self->_lock_systemAppOrientationClient, "invalidate");
+    [self->_lock_accelerometerClients removeObject:];
+    [self->_lock_systemAppOrientationClient invalidate];
     lock_systemAppOrientationClient = self->_lock_systemAppOrientationClient;
     self->_lock_systemAppOrientationClient = 0LL;
   }
@@ -529,7 +529,7 @@ LABEL_50:
   BOOL v5 = a4;
   id v7 = a3;
   uint64_t ClientConnectionManager = BKHIDEventRoutingGetClientConnectionManager(v7, v8);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue(ClientConnectionManager);
+  id v10 = ClientConnectionManager;
   id v11 = [v10 pidForBundleID:v7];
 
   if (v7 && (int)v11 >= 1 && v5)
@@ -537,21 +537,21 @@ LABEL_50:
     p_lock_systemAppOrientationClient = (id *)&self->_lock_systemAppOrientationClient;
     if (-[BKHIDEventClient pid](self->_lock_systemAppOrientationClient, "pid") != (_DWORD)v11)
     {
-      -[BKAccelerometerInterface _lock_clearSystemAppOrientationClient](self, "_lock_clearSystemAppOrientationClient");
-      id v13 = -[BKHIDEventClient initWithPid:sendRight:]( objc_alloc(&OBJC_CLASS___BKAccelerometerClientUIApp),  "initWithPid:sendRight:",  v11,  0LL);
-      -[BKHIDEventClient setDelegate:](v13, "setDelegate:", self);
-      -[BKAccelerometerClient setWantsOrientationEvents:](v13, "setWantsOrientationEvents:", 1LL);
-      -[NSMutableSet addObject:](self->_lock_accelerometerClients, "addObject:", v13);
+      [self _lock_clearSystemAppOrientationClient];
+      id v13 = [BKAccelerometerClientUIApp initWithPid:v11 sendRight:0LL];
+      [v13 setDelegate:self];
+      [v13 setWantsOrientationEvents:YES];
+      [self->_lock_accelerometerClients addObject:v13];
       objc_storeStrong((id *)&self->_lock_systemAppOrientationClient, v13);
       uint64_t v20 = 0LL;
       BOOL v14 = sub_100066954((uint64_t)self->_lock_orientationManager, (uint64_t)&v20);
       uint64_t v15 = BKLogOrientationDevice(v14);
-      float v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+      os_log_s *v16 = v15;
       if (os_log_type_enabled(v16, OS_LOG_TYPE_DEFAULT))
       {
         id v17 = *p_lock_systemAppOrientationClient;
         uint64_t v18 = BSDeviceOrientationDescription(v20);
-        float v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
+        float v19 = [v18 floatValue];
         *(_DWORD *)buf = 138543874;
         id v22 = v17;
         __int16 v23 = 2114;
@@ -569,17 +569,17 @@ LABEL_50:
 
   else
   {
-    -[BKAccelerometerInterface _lock_clearSystemAppOrientationClient](self, "_lock_clearSystemAppOrientationClient");
+    [self _lock_clearSystemAppOrientationClient];
   }
 
 - (void)orientationManager:(id)a3 deviceOrientationMayHaveChanged:(int64_t)a4 changeSource:(int64_t)a5 isDeviceOrientationLocked:(BOOL)a6
 {
   BOOL v6 = a6;
-  -[NSLock lock](self->_lock, "lock", a3, a4, a5);
+  [self->_lock lock];
   lock_systemAppOrientationClient = self->_lock_systemAppOrientationClient;
   if (lock_systemAppOrientationClient)
   {
-    -[BKAccelerometerClient handleOrientationEvent:orientationLocked:]( lock_systemAppOrientationClient,  "handleOrientationEvent:orientationLocked:",  a4,  v6);
+    [lock_systemAppOrientationClient handleOrientationEvent:a4 orientationLocked:v6];
   }
 
   else
@@ -592,15 +592,15 @@ LABEL_50:
     if (DeviceOrientationEventWithUsage)
     {
       id v13 = (const void *)DeviceOrientationEventWithUsage;
-      BOOL v14 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-      uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDUnknownSender unknownSenderInfo](&OBJC_CLASS___BKHIDUnknownSender, "unknownSenderInfo"));
+      BOOL v14 = [BKHIDSystemInterface sharedInstance];
+      uint64_t v15 = [BKHIDUnknownSender unknownSenderInfo];
       [v14 postEvent:v13 fromSender:v15];
 
       CFRelease(v13);
     }
   }
 
-  -[NSLock unlock](self->_lock, "unlock");
+  [self->_lock unlock];
 }
 
 - (void).cxx_destruct

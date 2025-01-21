@@ -16,24 +16,24 @@
 {
   id v5 = a3;
   v22.receiver = self;
-  v22.super_class = (Class)&OBJC_CLASS___BKSystemShellServiceListener;
-  v6 = -[BKSystemShellServiceListener init](&v22, "init");
+  v22.super_class = [BKSystemShellServiceListener class];
+  BKSystemShellServiceListener *v6 = [[BKSystemShellServiceListener alloc] init];
   if (v6)
   {
-    v7 = (void *)objc_claimAutoreleasedReturnValue(+[BSDispatchQueueAttributes serial](&OBJC_CLASS___BSDispatchQueueAttributes, "serial"));
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v7 serviceClass:25]);
+    v7 = [BSDispatchQueueAttributes serial];
+    v8 = [v7 serviceClass:25];
     uint64_t v9 = BSDispatchQueueCreate(@"com.apple.backboard.systemshell", v8);
     queue = v6->_queue;
     v6->_queue = (OS_dispatch_queue *)v9;
 
-    objc_storeStrong((id *)&v6->_systemShellSentinel, a3);
+    v6->_systemShellSentinel = a3;
     v20[0] = _NSConcreteStackBlock;
     v20[1] = 3221225472LL;
     v20[2] = sub_10000B3BC;
     v20[3] = &unk_1000B8190;
     v11 = v6;
     v21 = v11;
-    uint64_t v12 = objc_claimAutoreleasedReturnValue( +[BSServiceConnectionListener listenerWithConfigurator:]( &OBJC_CLASS___BSServiceConnectionListener,  "listenerWithConfigurator:",  v20));
+    uint64_t v12 = [BSServiceConnectionListener listenerWithConfigurator:v20];
     connectionListener = v11->_connectionListener;
     v11->_connectionListener = (BSServiceConnectionListener *)v12;
 
@@ -43,7 +43,7 @@
     v18[3] = &unk_1000B8190;
     v14 = v11;
     v19 = v14;
-    uint64_t v15 = objc_claimAutoreleasedReturnValue( +[BSServiceConnectionListener listenerWithConfigurator:]( &OBJC_CLASS___BSServiceConnectionListener,  "listenerWithConfigurator:",  v18));
+    uint64_t v15 = [BSServiceConnectionListener listenerWithConfigurator:v18];
     dataMigrationCheckInListener = v14->_dataMigrationCheckInListener;
     v14->_dataMigrationCheckInListener = (BSServiceConnectionListener *)v15;
   }
@@ -66,26 +66,26 @@
   id v10 = a5;
   if (self->_connectionListener == v18)
   {
-    -[BKSystemShellServiceListener _shellListener:didReceiveConnection:withContext:]( self,  "_shellListener:didReceiveConnection:withContext:");
+    [self->_shellListener _shellListener:self->_shellListener didReceiveConnection:v1 withContext:v2];
     goto LABEL_5;
   }
 
   if (self->_dataMigrationCheckInListener == v18)
   {
-    -[BKSystemShellServiceListener _dataMigrationCheckInListener:didReceiveConnection:withContext:]( self,  "_dataMigrationCheckInListener:didReceiveConnection:withContext:");
+    [self _dataMigrationCheckInListener:didReceiveConnection:withContext:];
 LABEL_5:
 
     return;
   }
 
-  v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"shouldn't be here"));
+  v11 = [NSString stringWithFormat:@"shouldn't be here"];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     uint64_t v12 = NSStringFromSelector(a2);
-    v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
-    uint64_t v15 = (objc_class *)objc_opt_class(self, v14);
+    v13 = [v12 autorelease];
+    uint64_t v15 = (objc_class *)[self class];
     v16 = NSStringFromClass(v15);
-    v17 = (void *)objc_claimAutoreleasedReturnValue(v16);
+    v17 = v16;
     *(_DWORD *)buf = 138544642;
     v20 = v13;
     __int16 v21 = 2114;
@@ -107,7 +107,7 @@ LABEL_5:
 
 - (BOOL)_remoteProcessIsAlreadyConnected:(id)a3
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue([a3 auditToken]);
+  v4 = [a3 auditToken];
   id v5 = v4;
   if (v4) {
     [v4 realToken];
@@ -115,7 +115,7 @@ LABEL_5:
   else {
     memset(v8, 0, sizeof(v8));
   }
-  BOOL v6 = -[BKSystemShellSentinel auditTokenRepresentsSystemApp:]( self->_systemShellSentinel,  "auditTokenRepresentsSystemApp:",  v8);
+  BOOL v6 = [self->_systemShellSentinel auditTokenRepresentsSystemApp:v8];
 
   return v6;
 }
@@ -125,9 +125,9 @@ LABEL_5:
   id v6 = a3;
   uint64_t v7 = BKSSystemShellConnectionContextKeyLaunchJobLabel;
   id v8 = a4;
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 decodeStringForKey:v7]);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v8 decodeStringForKey:BKSSystemShellConnectionContextKeyBundlePath]);
-  v11 = (void *)objc_claimAutoreleasedReturnValue([v8 decodeStringForKey:BKSSystemShellConnectionContextKeyBundleID]);
+  id v9 = [v8 decodeStringForKey:v7];
+  id v10 = [v8 decodeStringForKey:BKSSystemShellConnectionContextKeyBundlePath];
+  v11 = [v8 decodeStringForKey:BKSSystemShellConnectionContextKeyBundleID];
   [v8 decodeDoubleForKey:BKSSystemShellConnectionContextKeyIdleSleepInterval];
   uint64_t v13 = v12;
   id v14 = [v8 decodeInt64ForKey:BKSSystemShellConnectionContextKeyWatchdogType];
@@ -135,7 +135,7 @@ LABEL_5:
   if (!v9)
   {
     uint64_t v17 = BKLogSystemShell();
-    v18 = (os_log_s *)objc_claimAutoreleasedReturnValue(v17);
+    v18 = v17;
     if (!os_log_type_enabled(v18, OS_LOG_TYPE_ERROR)) {
       goto LABEL_13;
     }
@@ -147,7 +147,7 @@ LABEL_5:
   if (!v10)
   {
     uint64_t v20 = BKLogSystemShell();
-    v18 = (os_log_s *)objc_claimAutoreleasedReturnValue(v20);
+    os_log_s *v18 = v20;
     if (!os_log_type_enabled(v18, OS_LOG_TYPE_ERROR)) {
       goto LABEL_13;
     }
@@ -159,7 +159,7 @@ LABEL_5:
   if (!v11)
   {
     uint64_t v21 = BKLogSystemShell();
-    v18 = (os_log_s *)objc_claimAutoreleasedReturnValue(v21);
+    v18 = v21;
     if (!os_log_type_enabled(v18, OS_LOG_TYPE_ERROR)) {
       goto LABEL_13;
     }
@@ -180,10 +180,10 @@ LABEL_17:
 {
   id v6 = a3;
   id v7 = a5;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 remoteProcess]);
+  id v8 = [v6 remoteProcess];
   int v9 = [v8 pid];
   uint64_t v10 = BKLogSystemShell();
-  v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v10);
+  v11 = (os_log_s *)[v10 autorelease];
   if (os_log_type_enabled(v11, OS_LOG_TYPE_DEBUG))
   {
     int v18 = 138543874;
@@ -198,7 +198,7 @@ LABEL_17:
   if (v9 <= 0)
   {
     uint64_t v13 = BKLogSystemShell();
-    id v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+    os_log_s *v14 = v13;
     if (os_log_type_enabled(v14, OS_LOG_TYPE_ERROR))
     {
       int v18 = 138543874;
@@ -217,7 +217,7 @@ LABEL_17:
   if (([v8 hasEntitlement:BKBackBoardClientEntitlement] & 1) == 0)
   {
     uint64_t v15 = BKLogSystemShell();
-    v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+    v16 = [OSLog logWithSubsystem:v15 category:v17];
     if (os_log_type_enabled(v16, OS_LOG_TYPE_ERROR))
     {
       int v18 = 138543618;
@@ -241,8 +241,8 @@ LABEL_13:
 - (void)_dataMigrationCheckInListener:(id)a3 didReceiveConnection:(id)a4 withContext:(id)a5
 {
   id v6 = a4;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 remoteProcess]);
-  unsigned int v8 = -[BKSystemShellServiceListener _remoteProcessIsAlreadyConnected:](self, "_remoteProcessIsAlreadyConnected:", v7);
+  id v7 = [v6 remoteProcess];
+  unsigned int v8 = [self _remoteProcessIsAlreadyConnected:v7];
 
   if (v8)
   {
@@ -253,17 +253,17 @@ LABEL_13:
     id v9 = v6;
     id v17 = v9;
     int v18 = self;
-    [v9 configureConnection:&v13];
-    objc_msgSend(v9, "activate", v13, v14, v15, v16);
+    [v9 configureConnection:v13];
+    [v9 activate:v13, v14, v15, v16];
   }
 
   else
   {
     uint64_t v10 = BKLogSystemShell();
-    v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v10);
+    v11 = [os_log logWithName:v10];
     if (os_log_type_enabled(v11, OS_LOG_TYPE_ERROR))
     {
-      BOOL v12 = (void *)objc_claimAutoreleasedReturnValue([v6 remoteProcess]);
+      BOOL v12 = [v6 remoteProcess];
       *(_DWORD *)buf = 138543362;
       __int16 v20 = v12;
       _os_log_error_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_ERROR,  "[DataMigrationCheckIn] unknown system shell:'%{public}@'",  buf,  0xCu);
@@ -287,7 +287,7 @@ LABEL_13:
     id v11 = v8;
     BOOL v12 = self;
     [v8 configureConnection:v10];
-    -[BKSystemShellServiceListener _activateConnection:withContext:](self, "_activateConnection:withContext:", v8, v7);
+    [self _activateConnection:v8 withContext:v7];
   }
 
   else

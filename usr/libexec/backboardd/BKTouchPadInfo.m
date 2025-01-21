@@ -26,19 +26,19 @@
 {
   id v5 = a3;
   v32.receiver = self;
-  v32.super_class = (Class)&OBJC_CLASS___BKTouchPadInfo;
-  v6 = -[BKTouchPadInfo init](&v32, "init");
+  v32.super_class = [BKTouchPadInfo class];
+  BKTouchPadInfo *v6 = [[BKTouchPadInfo alloc] init];
   v7 = v6;
   if (v6)
   {
-    objc_storeStrong((id *)&v6->_senderInfo, a3);
-    id v9 = objc_msgSend( v5,  "propertyOfClass:forKey:",  objc_opt_class(NSDictionary, v8),  @"SurfaceDimensions");
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    [v6 setSenderInfo:a3];
+    NSDictionary *v9 = [v5 propertyOfClass:[NSDictionary class] forKey:@"SurfaceDimensions"];
+    v10 = [v9 autorelease];
     v12 = v10;
     if (v10)
     {
-      v13 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"Width"]);
-      uint64_t v15 = objc_opt_class(&OBJC_CLASS___NSNumber, v14);
+      v13 = [v10 objectForKeyedSubscript:@"Width"];
+      uint64_t v15 = [NSNumber numberWithBool:v14];
       id v16 = v13;
       v17 = v16;
       if (v15)
@@ -58,8 +58,8 @@
 
       id v19 = v18;
 
-      v20 = (void *)objc_claimAutoreleasedReturnValue([v12 objectForKeyedSubscript:@"Height"]);
-      uint64_t v22 = objc_opt_class(&OBJC_CLASS___NSNumber, v21);
+      v20 = [v12 objectForKeyedSubscript:@"Height"];
+      NSNumber *v22 = [NSNumber class];
       id v23 = v20;
       v24 = v23;
       if (v22)
@@ -85,8 +85,8 @@
       v7->_digitizerSurfaceDimensions.height = (double)(uint64_t)v27 * 0.0000152587891;
     }
 
-    id v28 = objc_msgSend( v5,  "propertyOfClass:forKey:",  objc_opt_class(NSNumber, v11),  @"AccurateMaxDigitizerPressureValue");
-    v29 = (void *)objc_claimAutoreleasedReturnValue(v28);
+    NSNumber *v28 = [v5 propertyOfClass:[NSNumber class] forKey:@"AccurateMaxDigitizerPressureValue"];
+    v29 = [v28 autorelease];
     [v29 floatValue];
     v7->_maxForce = v30;
   }
@@ -96,17 +96,17 @@
 
 - (id)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [[BSDescriptionBuilder alloc] initWithObject:self];
   id v4 = [v3 appendInteger:self->_pathIndexInRangeMask withName:@"pathIndexInRangeMask"];
   id v5 = [v3 appendInteger:self->_pathIndexTouchingMask withName:@"pathIndexTouchingMask"];
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%g",  self->_maxForce));
+  v6 = [NSString stringWithFormat:@"%g" self->_maxForce];
   [v3 appendString:v6 withName:@"maxForce"];
 
   id v7 = [v3 appendObject:self->_currentDestinations withName:@"currentDestinations"];
   id v8 = [v3 appendObject:self->_senderInfo withName:@"senderInfo"];
   id v9 =  [v3 appendObject:self->_overrideSenderDescriptor withName:@"overrideSenderDescriptor" skipIfNil:1];
   id v10 = [v3 appendObject:self->_eventDispatcher withName:@"dispatcher"];
-  uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  uint64_t v11 = (void *)[v3 build];
 
   return v11;
 }
@@ -119,7 +119,7 @@
   eventDispatcher = self->_eventDispatcher;
   self->_eventDispatcher = 0LL;
 
-  *(void *)&self->_pathIndexInRangeMask = 0LL;
+  self->_pathIndexInRangeMask = 0LL;
 }
 
 - (BKHIDEventSenderInfo)senderInfo

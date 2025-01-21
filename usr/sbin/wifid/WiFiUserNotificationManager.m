@@ -102,7 +102,7 @@
 {
   v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: listening for user notifications",  "-[WiFiUserNotificationManager startListening]");
+    [qword_100219F60 WFLog:@"%s: listening for user notifications" message:3];
   }
   objc_autoreleasePoolPop(v2);
 }
@@ -110,7 +110,7 @@
 + (BOOL)canRepromptForNotificationType:(int)a3 blacklistType:(int)a4 atDate:(id)a5 count:(unint64_t)a6
 {
   uint64_t v7 = *(void *)&a4;
-  objc_msgSend(a5, "timeIntervalSinceNow", *(void *)&a3);
+  [a5 timeIntervalSinceNow:a3];
   return -v8 > (double)+[WiFiUserNotificationManager defaultThrottlingPeriodForBlacklistingType:count:]( &OBJC_CLASS___WiFiUserNotificationManager,  "defaultThrottlingPeriodForBlacklistingType:count:",  v7,  a6);
 }
 
@@ -138,7 +138,7 @@
   {
     double v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: canceling timer",  "-[WiFiUserNotificationManager userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:]");
+      [qword_100219F60 WFLog:@"%s: canceling timer" message:3];
     }
     objc_autoreleasePoolPop(v8);
     dispatch_source_cancel((dispatch_source_t)self->_timeoutTimer);
@@ -147,7 +147,7 @@
   id v45 = objc_msgSend(objc_msgSend(objc_msgSend(a4, "notification", a3), "request"), "identifier");
   id v9 = -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager notificationMapping](self, "notificationMapping"),  "objectForKey:",  v45);
   id v10 = [v9 objectForKey:@"SSID"];
-  objc_msgSend( -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager recentNotifications](self, "recentNotifications"),  "objectForKey:",  v10),  "timeIntervalSinceNow");
+  [[-[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager recentNotifications](self, "recentNotifications"),  "objectForKey:",  v10) timeIntervalSinceNow];
   double v12 = v11;
   id v13 = [a4 actionIdentifier];
   id v14 = objc_msgSend( objc_msgSend(objc_msgSend(objc_msgSend(a4, "notification"), "request"), "content"),  "categoryIdentifier");
@@ -253,7 +253,7 @@ LABEL_16:
     {
       double v11 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [(id)qword_100219F60 WFLog:3, "%s: unable to dispatch recommendation for %@, reason: %@", "-[WiFiUserNotificationManager dispatchNotificationWithRecommendation:currentLocation:force:]", objc_msgSend(a3, "SSID"), sub_10008FA54(v10) message];
+        [qword_100219F60 WFLog:3, @"%s: unable to dispatch recommendation for %@, reason: %@", @"-[WiFiUserNotificationManager dispatchNotificationWithRecommendation:currentLocation:force:]", [a3 SSID], sub_10008FA54(v10) message];
       }
       objc_autoreleasePoolPop(v11);
       if (v10 == 2) {
@@ -315,7 +315,7 @@ LABEL_16:
     id v21 = [a3 network];
     if (v20 == (id)2)
     {
-      id v22 = -[NSString stringByAppendingFormat:]( v19,  "stringByAppendingFormat:",  @"\nSource: 3Bars\nScore: %lu\nAccessPoints: %lu\nBSSID: %@",  objc_msgSend(objc_msgSend(v21, "popularityScore"), "score"),  objc_msgSend(objc_msgSend(objc_msgSend(a3, "network"), "accessPoints"), "count"),  objc_msgSend(objc_msgSend(a3, "scannedNetwork"), "BSSID"));
+      id v22 = [NSString stringByAppendingFormat:@"\nSource: 3Bars\nScore: %lu\nAccessPoints: %lu\nBSSID: %@"
     }
 
     else
@@ -359,7 +359,7 @@ LABEL_32:
         return v10;
       }
 
-      id v22 = -[NSString stringByAppendingFormat:]( v19,  "stringByAppendingFormat:",  @"\nSource: Wallet\nIdentifier: %@",  objc_msgSend(objc_msgSend(a3, "network"), "uniqueIdentifier"),  v26,  v27);
+      id v22 = [v19 stringByAppendingFormat:@"\nSource: Wallet\nIdentifier: %@\n" v26 v27];
     }
 
     int v19 = v22;
@@ -368,7 +368,7 @@ LABEL_32:
 
   double v12 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil recommendation",  "-[WiFiUserNotificationManager dispatchNotificationWithRecommendation:currentLocation:force:]");
+    [qword_100219F60 WFLog:@"%s: nil recommendation" message:4];
   }
   objc_autoreleasePoolPop(v12);
   return 1;
@@ -434,7 +434,7 @@ LABEL_32:
   {
     BOOL v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil ssid",  "-[WiFiUserNotificationManager dispatchNotificationWithRandomMAC:]");
+      [qword_100219F60 WFLog:@"%s: nil ssid" message:4];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -553,7 +553,7 @@ LABEL_32:
   else
   {
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil ssid",  "-[WiFiUserNotificationManager dispatchJoinAlertForNetwork:withProviderName:andReason:]");
+      [qword_100219F60 WFLog:@"%s: nil ssid" message:4];
     }
     objc_autoreleasePoolPop(v9);
   }
@@ -646,7 +646,7 @@ LABEL_32:
   {
     uint64_t v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil ssid",  "-[WiFiUserNotificationManager dispatchLowDataModeAlertForNetwork:withReason:]");
+      [qword_100219F60 WFLog:@"%s: nil ssid" message:4];
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -657,7 +657,7 @@ LABEL_32:
   {
     uint64_t v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil toScanResult.networkName",  "-[WiFiUserNotificationManager dispatchNotificationWithColocatedScanResult:fromScanResult:]");
+      [qword_100219F60 WFLog:@"%s: nil toScanResult.networkName" message:4 "-[WiFiUserNotificationManager dispatchNotificationWithColocatedScanResult:fromScanResult:]"];
     }
     goto LABEL_9;
   }
@@ -666,7 +666,7 @@ LABEL_32:
   {
     uint64_t v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil fromScanResult.networkName",  "-[WiFiUserNotificationManager dispatchNotificationWithColocatedScanResult:fromScanResult:]");
+      [qword_100219F60 WFLog:@"%s: nil fromScanResult.networkName" message:4 "-[WiFiUserNotificationManager dispatchNotificationWithColocatedScanResult:fromScanResult:]"];
     }
 LABEL_9:
     objc_autoreleasePoolPop(v7);
@@ -825,7 +825,7 @@ LABEL_28:
   {
     v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: nil SSID",  "-[WiFiUserNotificationManager dispatchNotificationWithAskToJoinHotspotRecommendation:]");
+      [qword_100219F60 WFLog:@"%s: nil SSID" message:4 "-[WiFiUserNotificationManager dispatchNotificationWithAskToJoinHotspotRecommendation:]"];
     }
     objc_autoreleasePoolPop(v6);
     return 1;
@@ -880,7 +880,7 @@ LABEL_28:
     BOOL v3 = a3;
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: test mode %d",  "-[WiFiUserNotificationManager enableTestMode:]",  v3);
+      [qword_100219F60 WFLog:@"-[WiFiUserNotificationManager enableTestMode:] test mode %d" message:3];
     }
     objc_autoreleasePoolPop(v5);
     self->_enableTestMode = v3;
@@ -947,7 +947,7 @@ LABEL_28:
     dispatch_time_t v10 = -[WiFiUserNotificationManager callback](self, "callback");
     v10[2](v10, v9, v8, 5LL, -[WiFiUserNotificationManager callbackContext](self, "callbackContext"));
     id v11 = -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager notificationMapping](self, "notificationMapping"),  "objectForKey:",  v6);
-    objc_msgSend( -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager recentNotifications](self, "recentNotifications"),  "objectForKey:",  v8),  "timeIntervalSinceNow");
+    [ -[NSMutableDictionary objectForKey:]( -[WiFiUserNotificationManager recentNotifications](self, "recentNotifications"),  "objectForKey:",  v8) timeIntervalSinceNow];
     double v13 = -v12;
     if ((_DWORD)v9 == 1)
     {
@@ -956,7 +956,7 @@ LABEL_28:
       {
         v15 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: location is not present",  "-[WiFiUserNotificationManager _timeoutTimerDidFire:]");
+          [qword_100219F60 WFLog:@"%s: location is not present" message:3];
         }
         objc_autoreleasePoolPop(v15);
       }
@@ -1019,7 +1019,7 @@ LABEL_28:
 {
   BOOL v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: resetting states",  "-[WiFiUserNotificationManager reset]");
+    [qword_100219F60 WFLog:@"%s: resetting states" message:3];
   }
   objc_autoreleasePoolPop(v3);
   uint64_t v4 = objc_autoreleasePoolPush();

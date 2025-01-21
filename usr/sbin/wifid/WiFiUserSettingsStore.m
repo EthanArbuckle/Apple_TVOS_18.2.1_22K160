@@ -34,7 +34,7 @@ LABEL_8:
   {
     v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error: User Settings CWFKeyValueStore alloc failed",  "-[WiFiUserSettingsStore init]");
+      [qword_100219F60 WFLog:@"Error: User Settings CWFKeyValueStore alloc failed" message:4];
     }
     objc_autoreleasePoolPop(v6);
     goto LABEL_8;
@@ -64,7 +64,7 @@ LABEL_8:
   {
     v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: KVS change disregarded, syncing not enabled",  "-[WiFiUserSettingsStore _kvsDidChangeWithKeys:isExternal:]",  v21);
+      [qword_100219F60 WFLog:@"%s: KVS change disregarded, syncing not enabled" message:3 v21];
     }
     goto LABEL_25;
   }
@@ -106,7 +106,7 @@ LABEL_25:
       v15 = *(void **)(*((void *)&v23 + 1) + 8LL * (void)i);
       if ([v15 isEqualToString:v12])
       {
-        v16 = (void *)objc_claimAutoreleasedReturnValue(-[CWFKeyValueStore objectForKey:](self->_userSettingsKVS, "objectForKey:", v12));
+        v16 = [self->_userSettingsKVS objectForKey:v12];
         -[NSMutableDictionary setObject:forKey:](v7, "setObject:forKey:", v16, v12);
         v17 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
@@ -116,7 +116,7 @@ LABEL_25:
 
       else
       {
-        v16 = (void *)objc_claimAutoreleasedReturnValue(-[CWFKeyValueStore objectForKey:](self->_userSettingsKVS, "objectForKey:", v13));
+        v16 = [self->_userSettingsKVS objectForKey:v13];
         -[NSMutableDictionary setObject:forKey:](v7, "setObject:forKey:", v16, v13);
         v17 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
@@ -148,11 +148,11 @@ LABEL_20:
 {
   if (-[WiFiUserSettingsStore syncingEnabled](self, "syncingEnabled"))
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserSettingsStore userSettingsKVS](self, "userSettingsKVS"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+    v5 = -[WiFiUserSettingsStore userSettingsKVS];
+    id v6 = [NSNumber numberWithInteger:a3];
     [v5 setObject:v6 forKey:CWFUserSettingsStoreAutoHotspotModeKey];
 
-    id v8 = (id)objc_claimAutoreleasedReturnValue(-[WiFiUserSettingsStore userSettingsKVS](self, "userSettingsKVS"));
+    id v8 = [WiFiUserSettingsStore userSettingsKVS];
     [v8 synchronize];
   }
 
@@ -169,11 +169,11 @@ LABEL_20:
 {
   if (-[WiFiUserSettingsStore syncingEnabled](self, "syncingEnabled"))
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiUserSettingsStore userSettingsKVS](self, "userSettingsKVS"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+    v5 = -[WiFiUserSettingsStore userSettingsKVS];
+    id v6 = [NSNumber numberWithInteger:a3];
     [v5 setObject:v6 forKey:CWFUserSettingsStoreAskToJoinModeKey];
 
-    id v8 = (id)objc_claimAutoreleasedReturnValue(-[WiFiUserSettingsStore userSettingsKVS](self, "userSettingsKVS"));
+    id v8 = [WiFiUserSettingsStore userSettingsKVS];
     [v8 synchronize];
   }
 
@@ -181,7 +181,7 @@ LABEL_20:
   {
     objc_super v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ask to join mode change disregarded, syncing not enabled (new value: %ld)",  "-[WiFiUserSettingsStore setAskToJoinMode:]",  a3);
+      [qword_100219F60 WFLog:@"%s: ask to join mode change disregarded, syncing not enabled (new value: %ld)" message:3 a3];
     }
     objc_autoreleasePoolPop(v7);
   }

@@ -20,15 +20,15 @@
 - (BKTouchPadManager)init
 {
   v15.receiver = self;
-  v15.super_class = (Class)&OBJC_CLASS___BKTouchPadManager;
-  v2 = -[BKTouchPadManager init](&v15, "init");
+  v15.super_class = [BKTouchPadManager class];
+  BKTouchPadManager *v2 = [[BKTouchPadManager alloc] init];
   if (v2)
   {
     uint64_t Serial = BSDispatchQueueCreateSerial(@"BKTouchPadQueue");
     touchPadQueue = v2->_touchPadQueue;
     v2->_touchPadQueue = (OS_dispatch_queue *)Serial;
 
-    v5 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
+    NSMutableDictionary *v5 = [[NSMutableDictionary alloc] init];
     queue_currentTouchPads = v2->_queue_currentTouchPads;
     v2->_queue_currentTouchPads = v5;
 
@@ -36,20 +36,20 @@
     v19[1] = @"DeviceUsage";
     v20[0] = &off_1000C03F0;
     v20[1] = &off_1000C0408;
-    v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v20,  v19,  2LL));
+    v7 = [NSDictionary dictionaryWithObjects:forKeys:count:v20, v19, 2];
     v16 = v7;
     v17 = @"DeviceUsagePairs";
-    v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v16, 1LL));
+    v8 = [NSArray arrayWithObjects:&v16, nil];
     v18 = v8;
-    v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v18,  &v17,  1LL));
+    v9 = [NSDictionary dictionaryWithObjects:v18 forKeys:v17 count:1];
 
-    v10 = objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher);
-    v11 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-    v12 = -[BKIOHIDServiceMatcher initWithMatchingDictionary:dataProvider:]( v10,  "initWithMatchingDictionary:dataProvider:",  v9,  v11);
+    BKIOHIDServiceMatcher *v10 = [[BKIOHIDServiceMatcher alloc] init];
+    v11 = [BKHIDSystemInterface sharedInstance];
+    BKIOHIDServiceMatcher *v12 = [[BKIOHIDServiceMatcher alloc] initWithMatchingDictionary:v9 dataProvider:v11];
     touchPadMatcher = v2->_touchPadMatcher;
     v2->_touchPadMatcher = v12;
 
-    -[BKIOHIDServiceMatcher startObserving:queue:]( v2->_touchPadMatcher,  "startObserving:queue:",  v2,  v2->_touchPadQueue);
+    [v2->_touchPadMatcher startObserving:v2 queue:v2->_touchPadQueue];
   }
 
   return v2;
@@ -58,13 +58,13 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKTouchPadManager;
-  -[BKTouchPadManager dealloc](&v3, "dealloc");
+  v3.super_class = [BKTouchPadManager class];
+  [v3 dealloc];
 }
 
 - (int64_t)processEvent:(__IOHIDEvent *)a3 sender:(id)a4 dispatcher:(id)a5
 {
-  return -[BKTouchPadManager processEvent:sender:display:dispatcher:]( self,  "processEvent:sender:display:dispatcher:",  a3,  a4,  0LL,  a5);
+  return [self processEvent:a3 sender:a4 display:a5 dispatcher:a5];
 }
 
 - (int64_t)processEvent:(__IOHIDEvent *)a3 sender:(id)a4 display:(id)a5 dispatcher:(id)a6
@@ -121,18 +121,18 @@
   touchPadQueue = (dispatch_queue_s *)self->_touchPadQueue;
   id v5 = a3;
   dispatch_assert_queue_V2(touchPadQueue);
-  -[BKTouchPadManager _queue_touchPadRemoved:](self, "_queue_touchPadRemoved:", v5);
+  [self _queue_touchPadRemoved:v5];
 }
 
 - (void)_queue_touchPadRemoved:(id)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( NSNumber,  "numberWithUnsignedLongLong:",  [a3 senderID]));
-  uint64_t v5 = objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_queue_currentTouchPads, "objectForKey:", v4));
+  id v4 = [NSNumber numberWithUnsignedLongLong:a3.senderID];
+  uint64_t v5 = [self->_queue_currentTouchPads objectForKey:v4];
   v7 = (void *)v5;
   if (v5)
   {
     uint64_t v8 = BKLogTouchEvents(v5, v6);
-    v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+    v9 = v8;
     if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
     {
       int v10 = 138543362;
@@ -140,8 +140,8 @@
       _os_log_impl( (void *)&_mh_execute_header,  v9,  OS_LOG_TYPE_DEFAULT,  "TouchPad was removed: %{public}@",  (uint8_t *)&v10,  0xCu);
     }
 
-    -[BKTouchPadManager _queue_sendCancelEventForTouchPad:](self, "_queue_sendCancelEventForTouchPad:", v7);
-    -[NSMutableDictionary removeObjectForKey:](self->_queue_currentTouchPads, "removeObjectForKey:", v4);
+    [self _queue_sendCancelEventForTouchPad:v7];
+    [self->_queue_currentTouchPads removeObjectForKey:v4];
     if (!-[NSMutableDictionary count](self->_queue_currentTouchPads, "count")) {
       BKSHIDServicesSetTouchPadAvailability();
     }
@@ -158,11 +158,11 @@
 
   if (touchPadMatcher == v7)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue(+[BKHIDSystemInterface sharedInstance](&OBJC_CLASS___BKHIDSystemInterface, "sharedInstance"));
-    int v10 = (void *)objc_claimAutoreleasedReturnValue([v9 senderCache]);
+    BKHIDSystemInterface *v9 = [[BKHIDSystemInterface sharedInstance] autorelease];
+    int v10 = (void *)[v9 senderCache];
     [v10 addSenderInfo:v11];
 
-    -[BKTouchPadManager _queue_touchPadsDetected:](self, "_queue_touchPadsDetected:", v11);
+    [self _queue_touchPadsDetected:v11];
   }
 }
 
@@ -171,14 +171,14 @@
   id v6 = a3;
   if ([v6 count])
   {
-    id v4 = -[NSMutableDictionary count](self->_queue_currentTouchPads, "count");
+    v4 = [self->_queue_currentTouchPads count];
     v7[0] = _NSConcreteStackBlock;
     v7[1] = 3221225472LL;
     v7[2] = sub_10000E350;
     v7[3] = &unk_1000B5B00;
     v7[4] = self;
     [v6 enumerateObjectsUsingBlock:v7];
-    id v5 = -[NSMutableDictionary count](self->_queue_currentTouchPads, "count");
+    id v5 = [self->_queue_currentTouchPads count];
     if (!v4)
     {
       if (v5) {
@@ -221,7 +221,7 @@
 {
   id v8 = a4;
   id v9 = a5;
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v8 currentDestinations]);
+  id v10 = [v8 currentDestinations];
   if ((IOHIDEventGetIntegerValue(a3, 720903) & 0x80) != 0 && [v10 count])
   {
     __int128 v51 = 0u;
@@ -229,7 +229,7 @@
     __int128 v49 = 0u;
     __int128 v50 = 0u;
     id v11 = v10;
-    id v12 = [v11 countByEnumeratingWithState:&v49 objects:v62 count:16];
+    id v12 = [v11 countByEnumeratingWithState:v49 objects:v62 count:16];
     if (v12)
     {
       id v13 = v12;
@@ -241,10 +241,10 @@
           if (*(void *)v50 != v14) {
             objc_enumerationMutation(v11);
           }
-          -[BKTouchPadManager _queue_sendEvent:fromTouchPad:toDestination:dispatcher:]( self,  "_queue_sendEvent:fromTouchPad:toDestination:dispatcher:",  a3,  v8,  *(void *)(*((void *)&v49 + 1) + 8LL * (void)i),  v9);
+          [self _queue_sendEvent:a3 fromTouchPad:v8 toDestination:v49 dispatcher:v9];
         }
 
-        id v13 = [v11 countByEnumeratingWithState:&v49 objects:v62 count:16];
+        id v13 = [v11 countByEnumeratingWithState:v49 objects:v62 count:16];
       }
 
       while (v13);
@@ -310,10 +310,10 @@
           while (v19 != v21);
         }
 
-        v30 = (void *)objc_claimAutoreleasedReturnValue([v8 senderInfo]);
-        v31 = (void *)objc_claimAutoreleasedReturnValue([v30 displayUUID]);
+        v30 = [v8 senderInfo];
+        v31 = [v30 displayUUID];
         uint64_t v33 = BKLogTouchEvents(v31, v32);
-        v34 = (os_log_s *)objc_claimAutoreleasedReturnValue(v33);
+        v34 = v33;
         if (os_log_type_enabled(v34, OS_LOG_TYPE_DEBUG))
         {
           *(_DWORD *)buf = 67109888;
@@ -334,8 +334,8 @@
 
         else
         {
-          v35 = (void *)objc_claimAutoreleasedReturnValue([v8 overrideSenderDescriptor]);
-          id v36 = (id)objc_claimAutoreleasedReturnValue([v9 destinationsForEvent:a3 fromSender:v30 overrideSenderDescriptor:v35]);
+          v35 = (void *)[v8 overrideSenderDescriptor];
+          id v36 = [v9 destinationsForEvent:a3 fromSender:v30 overrideSenderDescriptor:v35];
 
           [v8 setCurrentDestinations:v36];
           [v8 setEventDispatcher:v9];
@@ -351,7 +351,7 @@
         __int128 v45 = 0u;
         __int128 v46 = 0u;
         id v37 = v36;
-        id v38 = [v37 countByEnumeratingWithState:&v45 objects:v53 count:16];
+        id v38 = [v37 countByEnumeratingWithState:v45 objects:v53 count:16];
         if (v38)
         {
           id v39 = v38;
@@ -363,10 +363,10 @@
               if (*(void *)v46 != v40) {
                 objc_enumerationMutation(v37);
               }
-              -[BKTouchPadManager _queue_sendEvent:fromTouchPad:toDestination:dispatcher:]( self,  "_queue_sendEvent:fromTouchPad:toDestination:dispatcher:",  a3,  v8,  *(void *)(*((void *)&v45 + 1) + 8LL * (void)j),  v9);
+              [self _queue_sendEvent:a3 fromTouchPad:v8 toDestination:v45 dispatcher:v9];
             }
 
-            id v39 = [v37 countByEnumeratingWithState:&v45 objects:v53 count:16];
+            id v39 = [v37 countByEnumeratingWithState:v45 objects:v53 count:16];
           }
 
           while (v39);
@@ -382,7 +382,7 @@
 {
   id v4 = a3;
   uint64_t v6 = BKLogTouchEvents(v4, v5);
-  v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  v7 = os_log_s *v6;
   if (os_log_type_enabled(v7, OS_LOG_TYPE_DEBUG))
   {
     *(_DWORD *)buf = 138543362;
@@ -390,13 +390,13 @@
     _os_log_debug_impl((void *)&_mh_execute_header, v7, OS_LOG_TYPE_DEBUG, "touchpad: Cancel (%{public}@)", buf, 0xCu);
   }
 
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v4 currentDestinations]);
+  id v8 = [v4 currentDestinations];
   if ([v8 count])
   {
     uint64_t v9 = mach_absolute_time();
     DigitizerEvent = (const void *)IOHIDEventCreateDigitizerEvent( 0LL,  v9,  3LL,  0LL,  0LL,  128LL,  0LL,  0LL,  0.0,  0.0,  0.0,  0.0,  0.0,  0LL);
     IOHIDEventSetIntegerValue(DigitizerEvent, 720921LL, 0LL);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([v4 senderInfo]);
+    id v11 = [v4 senderInfo];
     IOHIDEventSetSenderID(DigitizerEvent, [v11 senderID]);
 
     __int128 v21 = 0u;
@@ -404,7 +404,7 @@
     __int128 v19 = 0u;
     __int128 v20 = 0u;
     id v12 = v8;
-    id v13 = [v12 countByEnumeratingWithState:&v19 objects:v23 count:16];
+    id v13 = [v12 countByEnumeratingWithState:v19 objects:v23 count:16];
     if (v13)
     {
       id v14 = v13;
@@ -418,14 +418,14 @@
             objc_enumerationMutation(v12);
           }
           uint64_t v17 = *(void *)(*((void *)&v19 + 1) + 8LL * (void)v16);
-          uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v4 eventDispatcher]);
-          -[BKTouchPadManager _queue_sendEvent:fromTouchPad:toDestination:dispatcher:]( self,  "_queue_sendEvent:fromTouchPad:toDestination:dispatcher:",  DigitizerEvent,  v4,  v17,  v18);
+          uint64_t v18 = (void *)[v4 eventDispatcher];
+          [self _queue_sendEvent:DigitizerEvent fromTouchPad:v4 toDestination:v17 dispatcher:v18];
 
           id v16 = (char *)v16 + 1;
         }
 
         while (v14 != v16);
-        id v14 = [v12 countByEnumeratingWithState:&v19 objects:v23 count:16];
+        id v14 = [v12 countByEnumeratingWithState:v19 objects:v23 count:16];
       }
 
       while (v14);

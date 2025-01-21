@@ -19,7 +19,7 @@
       uint64_t v9 = 0LL;
       memset(v8, 0, sizeof(v8));
       mDNS_snprintf(v8);
-      v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%s", v8));
+      v3 = [NSString stringWithFormat:@"%s" v8];
     }
   }
 

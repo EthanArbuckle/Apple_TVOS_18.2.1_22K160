@@ -23,7 +23,7 @@
   {
     v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s Failed to allocate",  "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]");
+      [qword_100219F60 WFLog:@"Failed to allocate" message:4];
     }
     goto LABEL_9;
   }
@@ -33,7 +33,7 @@
   {
     v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s deviceManager is nil",  "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]");
+      [qword_100219F60 WFLog:@"%s deviceManager is nil" message:4 "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]"];
     }
 LABEL_9:
     objc_autoreleasePoolPop(v10);

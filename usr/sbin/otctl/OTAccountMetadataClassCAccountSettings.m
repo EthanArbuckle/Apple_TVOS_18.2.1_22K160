@@ -64,19 +64,19 @@
   v8.super_class = (Class)&OBJC_CLASS___OTAccountMetadataClassCAccountSettings;
   id v3 = -[OTAccountMetadataClassCAccountSettings description](&v8, "description");
   v4 = (void *)objc_claimAutoreleasedReturnValue(v3);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[OTAccountMetadataClassCAccountSettings dictionaryRepresentation](self, "dictionaryRepresentation"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%@ %@", v4, v5));
+  v5 = -[OTAccountMetadataClassCAccountSettings dictionaryRepresentation];
+  v6 = [NSString stringWithFormat:@"%@ %@", v4, v5];
 
   return v6;
 }
 
 - (id)dictionaryRepresentation
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  id v3 = [NSMutableDictionary dictionary];
   char has = (char)self->_has;
   if ((has & 1) != 0)
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", self->_w));
+    v5 = [NSNumber numberWithBool:self->_w];
     [v3 setObject:v5 forKey:@"w"];
 
     char has = (char)self->_has;
@@ -84,7 +84,7 @@
 
   if ((has & 2) != 0)
   {
-    v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", self->_webAccess));
+    v6 = [NSNumber numberWithBool:self->_webAccess];
     [v3 setObject:v6 forKey:@"webAccess"];
   }
 

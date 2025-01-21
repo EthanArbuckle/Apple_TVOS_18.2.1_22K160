@@ -39,7 +39,7 @@
 {
   v3 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
   dispatch_semaphore_t v4 = dispatch_semaphore_create(0LL);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v5 = [self control];
   v12 = _NSConcreteStackBlock;
   uint64_t v13 = 3221225472LL;
   v14 = sub_100008A48;
@@ -70,7 +70,7 @@
   uint64_t v22 = 0LL;
   if (v4)
   {
-    id v6 = objc_claimAutoreleasedReturnValue([v4 description]);
+    id v6 = [v4 description];
     printf("Beginning local reset for %s...\n", (const char *)[v6 UTF8String]);
   }
 
@@ -80,7 +80,7 @@
   }
 
   dispatch_semaphore_t v7 = dispatch_semaphore_create(0LL);
-  dispatch_time_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  dispatch_time_t v8 = -[self control];
   v16[0] = _NSConcreteStackBlock;
   v16[1] = 3221225472LL;
   v16[2] = sub_1000089D4;
@@ -124,7 +124,7 @@
   uint64_t v22 = 0LL;
   if (v4)
   {
-    id v6 = objc_claimAutoreleasedReturnValue([v4 description]);
+    id v6 = [v4 description];
     printf("Beginning CloudKit reset for %s...\n", (const char *)[v6 UTF8String]);
   }
 
@@ -178,7 +178,7 @@
   uint64_t v22 = 0LL;
   if (v4)
   {
-    id v6 = objc_claimAutoreleasedReturnValue([v4 description]);
+    id v6 = [v4 description];
     printf("Beginning resync for %s...\n", (const char *)[v6 UTF8String]);
   }
 
@@ -261,7 +261,7 @@
 {
   id v6 = a3;
   dispatch_semaphore_t v7 = dispatch_semaphore_create(0LL);
-  dispatch_time_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  dispatch_time_t v8 = [self control];
   v14[0] = _NSConcreteStackBlock;
   v14[1] = 3221225472LL;
   v14[2] = sub_100006D5C;
@@ -293,7 +293,7 @@
   uint64_t v19 = 0x2020000000LL;
   uint64_t v20 = 0LL;
   dispatch_semaphore_t v5 = dispatch_semaphore_create(0LL);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v6 = -[CKKSControlCLI control];
   v14[0] = _NSConcreteStackBlock;
   v14[1] = 3221225472LL;
   v14[2] = sub_100006CBC;
@@ -335,7 +335,7 @@
   uint64_t v19 = 0x2020000000LL;
   uint64_t v20 = 0LL;
   dispatch_semaphore_t v5 = dispatch_semaphore_create(0LL);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v6 = [self control];
   v14[0] = _NSConcreteStackBlock;
   v14[1] = 3221225472LL;
   v14[2] = sub_100006C1C;
@@ -376,7 +376,7 @@
   uint64_t v17 = 0x2020000000LL;
   uint64_t v18 = 0LL;
   dispatch_semaphore_t v3 = dispatch_semaphore_create(0LL);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v4 = -[CKKSControlCLI control];
   v12[0] = _NSConcreteStackBlock;
   v12[1] = 3221225472LL;
   v12[2] = sub_100006B7C;
@@ -414,7 +414,7 @@
 {
   id v7 = a4;
   id v8 = a5;
-  int64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 dataUsingEncoding:4]);
+  int64_t v9 = (void *)[v8 dataUsingEncoding:4];
   id v21 = 0LL;
   dispatch_time_t v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization JSONObjectWithData:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "JSONObjectWithData:options:error:",  v9,  0LL,  &v21));
   id v11 = v21;
@@ -428,7 +428,7 @@
   if (!v12)
   {
     int64_t v13 = (const char *)[v7 UTF8String];
-    id v14 = objc_claimAutoreleasedReturnValue([v11 description]);
+    id v14 = [v11 description];
     printf("Unable to parse %s as JSON: %s\n", v13, (const char *)[v14 UTF8String]);
 LABEL_9:
     BOOL v16 = 0LL;
@@ -436,12 +436,12 @@ LABEL_9:
   }
 
   id v20 = 0LL;
-  uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(-[objc_class parseFromJSONDict:error:](a3, "parseFromJSONDict:error:", v10, &v20));
+  uint64_t v15 = (void *)[objc_class parseFromJSONDict:v10 error:&v20];
   id v11 = v20;
   if (!v15)
   {
     uint64_t v17 = (const char *)[v7 UTF8String];
-    id v18 = objc_claimAutoreleasedReturnValue([v11 description]);
+    id v18 = [v11 description];
     printf("Unable to parse %s from JSON: %s\n", v17, (const char *)[v18 UTF8String]);
 
     printf("JSON: %s\n", (const char *)[v8 UTF8String]);
@@ -467,7 +467,7 @@ LABEL_10:
   uint64_t v42 = 0x2020000000LL;
   int v43 = 1;
   id v11 = -[CKKSControlCLI parseJSON:name:json:]( self,  "parseJSON:name:json:",  objc_opt_class(&OBJC_CLASS___CKKSExternalKey),  @"TLK",  v10);
-  BOOL v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
+  BOOL v12 = [v11 autorelease];
   if (!v12) {
     goto LABEL_4;
   }
@@ -525,7 +525,7 @@ LABEL_4:
   }
 
   dispatch_semaphore_t v22 = dispatch_semaphore_create(0LL);
-  v23 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  v23 = [self control];
   v33[0] = _NSConcreteStackBlock;
   v33[1] = 3221225472LL;
   v33[2] = sub_100006B08;
@@ -614,7 +614,7 @@ LABEL_22:
   v45 = &v44;
   uint64_t v46 = 0x2020000000LL;
   int v47 = 1;
-  int64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  int64_t v9 = [NSMutableArray array];
   __int128 v42 = 0u;
   __int128 v43 = 0u;
   __int128 v40 = 0u;
@@ -651,7 +651,7 @@ LABEL_22:
     }
   }
 
-  BOOL v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  BOOL v16 = [NSMutableArray array];
   __int128 v38 = 0u;
   __int128 v39 = 0u;
   __int128 v36 = 0u;
@@ -688,7 +688,7 @@ LABEL_22:
   }
 
   dispatch_semaphore_t v22 = dispatch_semaphore_create(0LL);
-  int v23 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  int v23 = [self control];
   v33[0] = _NSConcreteStackBlock;
   v33[1] = 3221225472LL;
   v33[2] = sub_100005FCC;
@@ -733,7 +733,7 @@ LABEL_26:
   uint64_t v19 = 0x2020000000LL;
   int v20 = 1;
   dispatch_semaphore_t v5 = dispatch_semaphore_create(0LL);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v6 = [self control];
   v14[0] = _NSConcreteStackBlock;
   v14[1] = 3221225472LL;
   v14[2] = sub_100005F58;
@@ -774,7 +774,7 @@ LABEL_26:
   uint64_t v14 = 0x2020000000LL;
   int v15 = 1;
   dispatch_semaphore_t v3 = dispatch_semaphore_create(0LL);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI control](self, "control"));
+  id v4 = [self control];
   v9[0] = _NSConcreteStackBlock;
   v9[1] = 3221225472LL;
   v9[2] = sub_100005EC0;

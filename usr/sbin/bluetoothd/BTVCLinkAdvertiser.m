@@ -315,8 +315,8 @@
       v18 = (const __CFString *)v17;
     }
     v20 = v18;
-    v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v20,  &v19,  1LL));
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  NSOSStatusErrorDomain,  (int)v14,  v3));
+    v3 = [NSDictionary dictionaryWithObjects:forKeys:count:&v20, &v19, 1LL];
+    id v12 = [NSError errorWithDomain:NSOSStatusErrorDomain code:(int)v14 userInfo:v3];
     char v13 = 0;
 LABEL_22:
     v5[2](v5, v12);
@@ -449,7 +449,7 @@ LABEL_11:
     if (btvcBonjourLink)
     {
 LABEL_9:
-      uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[BTVCLinkClient btvcLinkClient](&OBJC_CLASS___BTVCLinkClient, "btvcLinkClient"));
+      uint64_t v14 = (void *)[BTVCLinkClient btvcLinkClient];
       [v14 removeBTVCBonjourLinkDelegate:self];
 
       btvcBonjourLink = self->_btvcBonjourLink;

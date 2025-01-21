@@ -40,16 +40,16 @@
 
     else
     {
-      endpointList = (HHSynchronizedEndpointList *)objc_claimAutoreleasedReturnValue( +[HHManagementClient clientWithQueue:]( &OBJC_CLASS___HHManagementClient,  "clientWithQueue:",  v9));
-      uint64_t v13 = objc_claimAutoreleasedReturnValue( +[HHSynchronizedEndpointList synchronizedEndpointListWithClient:]( &OBJC_CLASS___HHSynchronizedEndpointList,  "synchronizedEndpointListWithClient:",  endpointList));
+      endpointList = [HHManagementClient clientWithQueue:v9];
+      uint64_t v13 = [HHSynchronizedEndpointList synchronizedEndpointListWithClient:endpointList];
       v14 = v11->_endpointList;
       v11->_endpointList = (HHSynchronizedEndpointList *)v13;
     }
 
-    v15 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerHomeHub endpointList](v11, "endpointList"));
+    v15 = -[WiFiManagerHomeHub endpointList];
     [v15 setDelegate:v11];
 
-    v16 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerHomeHub endpointList](v11, "endpointList"));
+    v16 = -[WiFiManagerHomeHub endpointList];
     [v16 resume];
   }
 

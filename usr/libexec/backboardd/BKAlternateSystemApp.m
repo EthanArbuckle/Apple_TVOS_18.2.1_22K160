@@ -28,14 +28,14 @@
   id v9 = a4;
   id v10 = a5;
   v14.receiver = self;
-  v14.super_class = (Class)&OBJC_CLASS___BKAlternateSystemApp;
-  v11 = -[BKAlternateSystemApp init](&v14, "init");
+  v14.super_class = [BKAlternateSystemApp class];
+  BKAlternateSystemApp *v11 = [[BKAlternateSystemApp alloc] init];
   v12 = v11;
   if (v11)
   {
-    -[BKAlternateSystemApp setBundleID:](v11, "setBundleID:", v8);
-    -[BKAlternateSystemApp setOptions:](v12, "setOptions:", v9);
-    -[BKAlternateSystemApp setQueue:](v12, "setQueue:", v10);
+    [v11 setBundleID:v8];
+    [v12 setOptions:v9];
+    [v12 setQueue:v10];
   }
 
   return v12;
@@ -43,7 +43,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3
@@ -67,14 +67,14 @@
   location = (id *)&self->_processHandle;
   if (self->_processHandle)
   {
-    v71 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"_processHandle == nil"));
+    v71 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"_processHandle == nil"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v72 = NSStringFromSelector(a2);
-      v73 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue(v72);
-      v75 = (objc_class *)objc_opt_class(self, v74);
+      v73 = [v72 autorelease];
+      v75 = [self class];
       v76 = NSStringFromClass(v75);
-      v77 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue(v76);
+      BKAlternateSystemApp *v77 = [v76 autorelease];
       *(_DWORD *)buf = 138544642;
       v122 = v73;
       __int16 v123 = 2114;
@@ -96,7 +96,7 @@
   }
 
   uint64_t v8 = BKLogAlternateSystemApp();
-  id v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+  id v9 = [v8 autorelease];
   if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
   {
     *(_DWORD *)buf = 138543362;
@@ -116,18 +116,18 @@
   id pendingExitBlock = self->_pendingExitBlock;
   self->_id pendingExitBlock = v10;
 
-  id v13 = objc_msgSend((id)objc_opt_class(self, v12), "_bundleInfoOverrides");
-  v92 = (void *)objc_claimAutoreleasedReturnValue(v13);
-  objc_super v14 = (void *)objc_claimAutoreleasedReturnValue([v92 objectForKey:self->_bundleID]);
+  NSDictionary *v13 = [self _bundleInfoOverrides];
+  v92 = v13;
+  objc_super v14 = [v92 objectForKey:self->_bundleID];
   v95 = v14;
   if (v14)
   {
-    v15 = (void *)objc_claimAutoreleasedReturnValue([v14 objectForKey:@"OverrideURL"]);
-    v94 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue(+[NSURL URLWithString:](&OBJC_CLASS___NSURL, "URLWithString:", v15));
+    v15 = [v14 objectForKey:@"OverrideURL"];
+    v94 = [NSURL URLWithString:v15];
 
-    v96 = (__CFString *)objc_claimAutoreleasedReturnValue([v95 objectForKey:@"OverrideAppType"]);
+    v96 = (__CFString *)[v95 objectForKey:@"OverrideAppType"];
     uint64_t v16 = BKLogAlternateSystemApp();
-    v17 = (os_log_s *)objc_claimAutoreleasedReturnValue(v16);
+    os_log_s *v17 = [v16 autorelease];
     if (os_log_type_enabled(v17, OS_LOG_TYPE_DEFAULT))
     {
       bundleID = self->_bundleID;
@@ -147,34 +147,34 @@
 
   v19 = self->_bundleID;
   id v115 = 0LL;
-  v96 = (__CFString *)objc_claimAutoreleasedReturnValue( +[LSBundleRecord bundleRecordWithBundleIdentifier:allowPlaceholder:error:]( &OBJC_CLASS___LSBundleRecord,  "bundleRecordWithBundleIdentifier:allowPlaceholder:error:",  v19,  0LL,  &v115));
+  v96 = [LSBundleRecord bundleRecordWithBundleIdentifier:v19 allowPlaceholder:0LL error:&v115];
   v20 = (BKAlternateSystemApp *)v115;
   if (v96 && !v20)
   {
-    v94 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue(-[__CFString URL](v96, "URL"));
+    v94 = [v96 URL];
 LABEL_11:
 
-    v96 = (__CFString *)objc_claimAutoreleasedReturnValue(-[BKAlternateSystemApp path](v94, "path"));
+    v96 = [v94 path];
     id v91 = [[BSCFBundle alloc] initWithPath:v96];
-    v90 = (void *)objc_claimAutoreleasedReturnValue([v91 executablePath]);
+    v90 = [v91 executablePath];
     if (v90)
     {
-      v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-      v99 = +[BSMutableMachServiceAliases new](&OBJC_CLASS___BSMutableMachServiceAliases, "new");
-      v87 = (void *)objc_claimAutoreleasedReturnValue(-[NSString stringByAppendingString:](self->_bundleID, "stringByAppendingString:", @".jail."));
-      v86 = (void *)objc_claimAutoreleasedReturnValue([v87 stringByAppendingString:@"com.apple.frontboard.systemappservices"]);
-      v85 = (void *)objc_claimAutoreleasedReturnValue([v87 stringByAppendingString:@"com.apple.frontboard.workspace"]);
+      v21 = [NSMutableDictionary dictionary];
+      BSMutableMachServiceAliases *v99 = [[BSMutableMachServiceAliases alloc] init];
+      v87 = [self->_bundleID stringByAppendingString:@".jail."];
+      v86 = [v87 stringByAppendingString:@"com.apple.frontboard.systemappservices"];
+      v85 = [v87 stringByAppendingString:@"com.apple.frontboard.workspace"];
       [v21 setObject:&__kCFBooleanTrue forKey:v86];
       [v21 setObject:&__kCFBooleanTrue forKey:v85];
-      -[BSMutableMachServiceAliases setService:forAlias:]( v99,  "setService:forAlias:",  v86,  @"com.apple.frontboard.systemappservices");
-      -[BSMutableMachServiceAliases setService:forAlias:]( v99,  "setService:forAlias:",  v85,  @"com.apple.frontboard.workspace");
-      v83 = (void *)objc_claimAutoreleasedReturnValue([v91 infoDictionary]);
-      v84 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v83, "bs_safeDictionaryForKey:", @"BKSLaunchdPlist"));
+      [v99 setService:@"com.apple.frontboard.systemappservices" forAlias:v86];
+      [v99 setService:v85 forAlias:@"com.apple.frontboard.workspace"];
+      v83 = (void *)[v91 infoDictionary];
+      v84 = [v83 bs_safeDictionaryForKey:@"BKSLaunchdPlist"];
       __int128 v113 = 0u;
       __int128 v114 = 0u;
       __int128 v111 = 0u;
       __int128 v112 = 0u;
-      id obj = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v84, "bs_safeDictionaryForKey:", @"MachServices"));
+      id obj = [v84 bs_safeDictionaryForKey:@"MachServices"];
       id v22 = [obj countByEnumeratingWithState:&v111 objects:v120 count:16];
       if (v22)
       {
@@ -192,7 +192,7 @@ LABEL_11:
             }
           }
 
-          id v22 = [obj countByEnumeratingWithState:&v111 objects:v120 count:16];
+          id v22 = [obj countByEnumeratingWithState:v111 objects:v120 count:16];
         }
 
         while (v22);
@@ -202,8 +202,8 @@ LABEL_11:
       __int128 v110 = 0u;
       __int128 v107 = 0u;
       __int128 v108 = 0u;
-      id v26 = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v84, "bs_safeDictionaryForKey:", @"AlternateMachServices"));
-      id v27 = [v26 countByEnumeratingWithState:&v107 objects:v119 count:16];
+      id v26 = [v84 bs_safeDictionaryForKey:@"AlternateMachServices"];
+      id v27 = [v26 countByEnumeratingWithState:v107 objects:v119 count:16];
       if (v27)
       {
         uint64_t v28 = *(void *)v108;
@@ -217,14 +217,14 @@ LABEL_11:
             v30 = *(BKAlternateSystemApp **)(*((void *)&v107 + 1) + 8LL * (void)j);
             if (-[BKAlternateSystemApp length](v30, "length"))
             {
-              v31 = (__CFString *)objc_claimAutoreleasedReturnValue(objc_msgSend(v26, "bs_safeStringForKey:", v30));
+              v31 = [v26 bs_safeStringForKey:v30];
               if (-[__CFString length](v31, "length"))
               {
-                v32 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:v31]);
+                v32 = [v21 objectForKey:v31];
                 BOOL v33 = v32 == 0LL;
 
                 uint64_t v34 = BKLogAlternateSystemApp();
-                v35 = (os_log_s *)objc_claimAutoreleasedReturnValue(v34);
+                os_log_s *v35 = v34;
                 v36 = v35;
                 if (v33)
                 {
@@ -259,26 +259,26 @@ LABEL_11:
                     _os_log_impl( (void *)&_mh_execute_header,  v36,  OS_LOG_TYPE_DEFAULT,  "launchWithResultBlock %p: [%{public}@] Registering alternate mach service %@ in place of %@.",  buf,  0x2Au);
                   }
 
-                  -[BSMutableMachServiceAliases setService:forAlias:](v99, "setService:forAlias:", v31, v30);
+                  [v99 setService:v31 forAlias:v30];
                 }
               }
             }
           }
 
-          id v27 = [v26 countByEnumeratingWithState:&v107 objects:v119 count:16];
+          id v27 = [v26 countByEnumeratingWithState:v107 objects:v119 count:16];
         }
 
         while (v27);
       }
 
-      v82 = (void *)objc_claimAutoreleasedReturnValue( +[RBSProcessIdentity identityForEmbeddedApplicationIdentifier:]( &OBJC_CLASS___RBSProcessIdentity,  "identityForEmbeddedApplicationIdentifier:",  val->_bundleID));
-      v39 = (void *)objc_claimAutoreleasedReturnValue( +[RBSLaunchContext contextWithIdentity:]( &OBJC_CLASS___RBSLaunchContext,  "contextWithIdentity:",  v82));
+      RBSProcessIdentity *v82 = [RBSProcessIdentity identityForEmbeddedApplicationIdentifier:val->_bundleID];
+      RBSLaunchContext *v39 = [RBSLaunchContext contextWithIdentity:v82];
       [v39 setSpawnType:1];
       [v39 _setOverrideExecutablePath:v90];
-      v40 = (void *)objc_claimAutoreleasedReturnValue(-[BSMutableMachServiceAliases environmentRepresentation](v99, "environmentRepresentation"));
+      v40 = [BSMutableMachServiceAliases environmentRepresentation];
       [v39 _setAdditionalEnvironment:v40];
 
-      v41 = (void *)objc_claimAutoreleasedReturnValue([v21 allKeys]);
+      v41 = [v21 allKeys];
       [v39 _setAdditionalMachServices:v41];
 
       id v81 = [[RBSLaunchRequest alloc] initWithContext:v39];
@@ -291,40 +291,41 @@ LABEL_11:
       if ((v42 & 1) != 0)
       {
         objc_storeStrong(location, v43);
-        objc_initWeak(&from, val);
+        [from release];
+from = [val retain];
         processHandle = val->_processHandle;
         v102[0] = _NSConcreteStackBlock;
         v102[1] = 3221225472LL;
         v102[2] = sub_100022A04;
         v102[3] = &unk_1000B61F8;
         objc_copyWeak(&v103, &from);
-        -[RBSProcessHandle monitorForDeath:](processHandle, "monitorForDeath:", v102);
-        locationa = (id *)objc_claimAutoreleasedReturnValue( +[RBSTarget targetWithPid:environmentIdentifier:]( RBSTarget,  "targetWithPid:environmentIdentifier:",  [*location pid],  @"com.apple.backboard.alternateSystemApp"));
-        v45 = objc_alloc(&OBJC_CLASS___RBSAssertion);
-        v46 = (void *)objc_claimAutoreleasedReturnValue( +[RBSEndowmentGrant grantWithNamespace:endowment:]( &OBJC_CLASS___RBSEndowmentGrant,  "grantWithNamespace:endowment:",  @"com.apple.frontboard.visibility",  &__kCFBooleanTrue));
+        [processHandle monitorForDeath:v102];
+        locationa = [RBSTarget targetWithPid:[*location pid] environmentIdentifier:@"com.apple.backboard.alternateSystemApp"];
+        RBSAssertion *v45 = [[RBSAssertion alloc] init];
+        v46 = [RBSEndowmentGrant grantWithNamespace:@"com.apple.frontboard.visibility" endowment:YES];
         v118[0] = v46;
-        v47 = (void *)objc_claimAutoreleasedReturnValue( +[RBSJetsamPriorityGrant grantWithForegroundPriority]( &OBJC_CLASS___RBSJetsamPriorityGrant,  "grantWithForegroundPriority"));
+        RBSJetsamPriorityGrant *v47 = [RBSJetsamPriorityGrant grantWithForegroundPriority];
         v118[1] = v47;
-        v48 = (void *)objc_claimAutoreleasedReturnValue( +[RBSCPUAccessGrant grantWithUserInteractivity]( &OBJC_CLASS___RBSCPUAccessGrant,  "grantWithUserInteractivity"));
+        v48 = [RBSCPUAccessGrant grantWithUserInteractivity];
         v118[2] = v48;
-        v49 = (void *)objc_claimAutoreleasedReturnValue(+[RBSGPUAccessGrant grant](&OBJC_CLASS___RBSGPUAccessGrant, "grant"));
+        v49 = [RBSGPUAccessGrant grant];
         v118[3] = v49;
-        v50 = (void *)objc_claimAutoreleasedReturnValue( +[RBSResistTerminationGrant grantWithResistance:]( &OBJC_CLASS___RBSResistTerminationGrant,  "grantWithResistance:",  40LL));
+        RBSResistTerminationGrant *v50 = [[RBSResistTerminationGrant alloc] initWithResistance:40LL];
         v118[4] = v50;
-        v51 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v118, 5LL));
-        v52 = -[RBSAssertion initWithExplanation:target:attributes:]( v45,  "initWithExplanation:target:attributes:",  @"Alternate system app",  locationa,  v51);
+        v51 = [NSArray arrayWithObjects:v118, 5LL];
+        RBSAssertion *v52 = [[RBSAssertion alloc] initWithExplanation:@"Alternate system app" target:locationa attributes:v51];
         visibilityAssertion = val->_visibilityAssertion;
         val->_visibilityAssertion = v52;
 
         v54 = val->_visibilityAssertion;
         id v101 = 0LL;
-        unsigned __int8 v55 = -[RBSAssertion acquireWithError:](v54, "acquireWithError:", &v101);
+        unsigned __int8 v55 = [RBSAssertion acquireWithError:&v101];
         id v56 = v101;
 
         if ((v55 & 1) != 0)
         {
           uint64_t v57 = BKLogAlternateSystemApp();
-          v58 = (os_log_s *)objc_claimAutoreleasedReturnValue(v57);
+          v58 = os_log_create("com.apple.springboard", "com.apple.springboard.launchd");
           if (os_log_type_enabled(v58, OS_LOG_TYPE_DEFAULT))
           {
             *(_DWORD *)buf = 134218242;
@@ -340,10 +341,10 @@ LABEL_11:
         else
         {
           uint64_t v65 = BKLogAlternateSystemApp();
-          v66 = (os_log_s *)objc_claimAutoreleasedReturnValue(v65);
+          v66 = v65;
           if (os_log_type_enabled(v66, OS_LOG_TYPE_ERROR))
           {
-            v70 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue([v56 descriptionWithMultilinePrefix:0]);
+            v70 = [v56 descriptionWithMultilinePrefix:0];
             *(_DWORD *)buf = 134218242;
             v122 = val;
             __int16 v123 = 2114;
@@ -351,22 +352,22 @@ LABEL_11:
             _os_log_error_impl( (void *)&_mh_execute_header,  v66,  OS_LOG_TYPE_ERROR,  "launchWithResultBlock %p: launch succeeded but app was not made visible: %{public}@",  buf,  0x16u);
           }
 
-          -[BKAlternateSystemApp terminate](val, "terminate");
+          [BKAlternateSystemApp terminate];
           ((void (*)(void))v89[2])();
         }
 
-        objc_destroyWeak(&v103);
-        objc_destroyWeak(&from);
+        v103 = nil;
+        [from release];
         id v97 = v56;
       }
 
       else
       {
         uint64_t v61 = BKLogAlternateSystemApp();
-        v62 = (os_log_s *)objc_claimAutoreleasedReturnValue(v61);
+        v62 = v61;
         if (os_log_type_enabled(v62, OS_LOG_TYPE_ERROR))
         {
-          v68 = (BKAlternateSystemApp *)objc_claimAutoreleasedReturnValue([v97 descriptionWithMultilinePrefix:0]);
+          v68 = [v97 descriptionWithMultilinePrefix:0];
           *(_DWORD *)buf = 134218242;
           v122 = val;
           __int16 v123 = 2114;
@@ -382,7 +383,7 @@ LABEL_11:
     else
     {
       uint64_t v59 = BKLogAlternateSystemApp();
-      v60 = (os_log_s *)objc_claimAutoreleasedReturnValue(v59);
+      v60 = [os_log logWithName:@"com.apple.BKHIDEventClient"];
       if (os_log_type_enabled(v60, OS_LOG_TYPE_ERROR))
       {
         *(_DWORD *)buf = 134218242;
@@ -401,7 +402,7 @@ LABEL_11:
 
   v94 = v20;
   uint64_t v63 = BKLogAlternateSystemApp();
-  v64 = (os_log_s *)objc_claimAutoreleasedReturnValue(v63);
+  v64 = [os_log logWithName:v63];
   if (os_log_type_enabled(v64, OS_LOG_TYPE_ERROR))
   {
     v69 = self->_bundleID;
@@ -426,20 +427,20 @@ LABEL_58:
   id pendingExitBlock = self->_pendingExitBlock;
   self->_id pendingExitBlock = 0LL;
 
-  -[RBSAssertion invalidate](self->_visibilityAssertion, "invalidate");
+  [self->_visibilityAssertion invalidate];
   visibilityAssertion = self->_visibilityAssertion;
   self->_visibilityAssertion = 0LL;
 
   processHandle = self->_processHandle;
   if (processHandle)
   {
-    id v6 = -[RBSProcessHandle pid](processHandle, "pid");
+    [processHandle pid];
     id v7 = [[RBSTerminateContext alloc] initWithExplanation:@"Alternate system app termination requested."];
     [v7 setReportType:0];
     [v7 setMaximumTerminationResistance:40];
-    id v8 = objc_alloc(&OBJC_CLASS___RBSTerminateRequest);
-    id v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v6));
-    uint64_t v10 = objc_claimAutoreleasedReturnValue( +[RBSProcessPredicate predicateMatchingIdentifier:]( &OBJC_CLASS___RBSProcessPredicate,  "predicateMatchingIdentifier:",  v9));
+    RBSTerminateRequest *v8 = [[RBSTerminateRequest alloc] init];
+    id v9 = [NSNumber numberWithInt:v6];
+    uint64_t v10 = [RBSProcessPredicate predicateMatchingIdentifier:v9];
     id v11 = [v8 initWithPredicate:v10 context:v7];
 
     id v18 = 0LL;
@@ -448,7 +449,7 @@ LABEL_58:
     if ((v10 & 1) == 0)
     {
       uint64_t v13 = BKLogAlternateSystemApp();
-      objc_super v14 = (os_log_s *)objc_claimAutoreleasedReturnValue(v13);
+      os_log_s *v14 = [v13 autorelease];
       if (os_log_type_enabled(v14, OS_LOG_TYPE_ERROR))
       {
         bundleID = self->_bundleID;
@@ -472,7 +473,7 @@ LABEL_58:
   id v4 = a3;
   dispatch_assert_queue_V2((dispatch_queue_t)self->_queue);
   uint64_t v5 = BKLogAlternateSystemApp();
-  id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  id v6 = [v5 autorelease];
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
     int v11 = 138543618;
@@ -490,7 +491,7 @@ LABEL_58:
     self->_id pendingExitBlock = 0LL;
   }
 
-  -[RBSAssertion invalidate](self->_visibilityAssertion, "invalidate");
+  [self->_visibilityAssertion invalidate];
   visibilityAssertion = self->_visibilityAssertion;
   self->_visibilityAssertion = 0LL;
 
@@ -563,9 +564,9 @@ LABEL_58:
   v6[0] = @"file:///Applications/PreBoard.app";
   v6[1] = @"System";
   id v7 = @"com.apple.PreBoard";
-  v2 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v6,  v5,  2LL));
+  v2 = [NSDictionary dictionaryWithObjects:v6 forKeys:v5 count:2];
   id v8 = v2;
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v8,  &v7,  1LL));
+  v3 = [NSDictionary dictionaryWithObjects:&v8 forKeys:&v7 count:1];
 
   return v3;
 }

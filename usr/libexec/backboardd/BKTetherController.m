@@ -22,8 +22,8 @@
 - (BKTetherController)init
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS___BKTetherController;
-  v2 = -[BKTetherController init](&v8, "init");
+  [v8 super_class] = [BKTetherController class];
+  BKTetherController *v2 = [[BKTetherController alloc] init];
   v3 = v2;
   if (v2)
   {
@@ -36,10 +36,10 @@
 
     if (-[BKTetherController isTethered](v3, "isTethered"))
     {
-      v5 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+      v5 = [BKSDefaults localDefaults];
       id v6 = [v5 isDitheringEnabled];
 
-      -[BKTetherController setDitheringEnabled:](v3, "setDitheringEnabled:", v6);
+      [v3 setDitheringEnabled:v6];
     }
   }
 
@@ -51,8 +51,8 @@
   DarwinNotifyCenter = CFNotificationCenterGetDarwinNotifyCenter();
   CFNotificationCenterRemoveEveryObserver(DarwinNotifyCenter, self);
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKTetherController;
-  -[BKTetherController dealloc](&v4, "dealloc");
+  v4.super_class = [BKTetherController class];
+  [v4 dealloc];
 }
 
 - (unsigned)_demoCardConnection
@@ -75,11 +75,11 @@
     if ((_DWORD)v4)
     {
       uint64_t v5 = BKLogCommon(v4);
-      id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+      id v6 = v5;
       if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 136315138;
-        v23 = "-[BKTetherController _demoCardConnection]";
+        v23 = [BKTetherController _demoCardConnection];
         v7 = "%s IOMainPort failed";
 LABEL_5:
         objc_super v8 = v6;
@@ -99,22 +99,22 @@ LABEL_13:
       if ((_DWORD)MatchingServices)
       {
         uint64_t v12 = BKLogCommon(MatchingServices);
-        id v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+        id v6 = v12;
         if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
         {
           *(_DWORD *)buf = 136315138;
-          v23 = "-[BKTetherController _demoCardConnection]";
+          v23 = [BKTetherController _demoCardConnection];
           v7 = "%s IOServiceGetMatchingServices failed";
           goto LABEL_5;
         }
 
 - (void)_postDisplayPortNotificationCode:(int)a3
 {
-  uint64_t v4 = -[NSString initWithFormat:]( objc_alloc(&OBJC_CLASS___NSString),  "initWithFormat:",  @"com.apple.mobile.demo.mode-%d",  *(void *)&a3);
+  uint64_t v4 = [NSString stringWithFormat:@"com.apple.mobile.demo.mode-%d", *(void *)&a3];
   DarwinNotifyCenter = CFNotificationCenterGetDarwinNotifyCenter();
   CFNotificationCenterPostNotification(DarwinNotifyCenter, v4, 0LL, 0LL, 1u);
   uint64_t v6 = BKLogDetailed();
-  v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+  v7 = (os_log_s *)v6;
   if (os_log_type_enabled(v7, OS_LOG_TYPE_DEBUG))
   {
     *(_DWORD *)buf = 67109120;
@@ -155,7 +155,7 @@ LABEL_13:
   }
   if (!-[BKTetherController usesDisplayPortTethering](self, "usesDisplayPortTethering"))
   {
-    mach_port_t v10 = -[BKTetherController _demoCardConnection](self, "_demoCardConnection");
+    mach_port_t v10 = [self _demoCardConnection];
     if (v10)
     {
       uint64_t input = 0LL;
@@ -177,8 +177,8 @@ LABEL_13:
     goto LABEL_15;
   }
 
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults externalDefaults](&OBJC_CLASS___BKSDefaults, "externalDefaults"));
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue([v3 lockdownDefaults]);
+  BKSDefaults *v3 = [BKSDefaults externalDefaults];
+  uint64_t v4 = (void *)[v3 lockdownDefaults];
   unsigned int v5 = [v4 tetheredDisplayPortMode];
 
   uint64_t v6 = self;
@@ -186,17 +186,17 @@ LABEL_13:
   {
     uint64_t v11 = 2LL;
 LABEL_15:
-    -[BKTetherController _setTetherState:](v6, "_setTetherState:", v11);
+    [v6 _setTetherState:v11];
     return self->_tetherState == 1;
   }
 
   else {
     uint64_t v7 = 8LL;
   }
-  -[BKTetherController _postDisplayPortNotificationCode:](self, "_postDisplayPortNotificationCode:", v7);
+  [self _postDisplayPortNotificationCode:v7];
   id v8 = sub_100065B98();
-  int v9 = (void *)objc_claimAutoreleasedReturnValue(v8);
-  -[BKTetherController noteInterfaceOrientationChangedWithInterfaceOrientation:]( self,  "noteInterfaceOrientationChangedWithInterfaceOrientation:",  sub_1000667B0((uint64_t)v9));
+  int v9 = [v8 autorelease];
+  [self noteInterfaceOrientationChangedWithInterfaceOrientation:sub_1000667B0((uint64_t)v9)];
 
   return self->_tetherState == 1;
 }
@@ -213,15 +213,15 @@ LABEL_15:
 {
   if (-[BKTetherController usesDisplayPortTethering](self, "usesDisplayPortTethering"))
   {
-    -[BKTetherController _setTetherState:](self, "_setTetherState:", 0LL);
-    v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    [self _setTetherState:0LL];
+    v3 = [NSNotificationCenter defaultCenter];
     [v3 postNotificationName:@"BKTetherControllerTetherStateChangedNotification" object:self];
 
     uint64_t v4 = BKLogDetailed();
-    unsigned int v5 = (os_log_s *)objc_claimAutoreleasedReturnValue(v4);
+    os_log_s *v5 = [v4 autorelease];
     if (os_log_type_enabled(v5, OS_LOG_TYPE_DEBUG))
     {
-      unsigned int v7 = -[BKTetherController isTethered](self, "isTethered");
+      unsigned int v7 = [self isTethered];
       id v8 = @"not tethered";
       if (v7) {
         id v8 = @"tethered";
@@ -239,7 +239,7 @@ LABEL_15:
 {
   if (-[BKTetherController usesDisplayPortTethering](self, "usesDisplayPortTethering"))
   {
-    unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayController sharedInstance](&OBJC_CLASS___BKDisplayController, "sharedInstance"));
+    unsigned int v5 = [BKDisplayController sharedInstance];
     unsigned __int8 v6 = [v5 displayIsBlanked:0];
 
     if ((v6 & 1) == 0)
@@ -317,7 +317,7 @@ LABEL_37:
     if ((_DWORD)v7 != self->_lastOrientationCode)
     {
       if (!self->_orientationNotificationsDisabled) {
-        -[BKTetherController _postDisplayPortNotificationCode:](self, "_postDisplayPortNotificationCode:", v7);
+        [self _postDisplayPortNotificationCode:v7];
       }
       self->_lastOrientationCode = v7;
     }
@@ -325,7 +325,7 @@ LABEL_37:
     return;
   }
 
-  mach_port_t v8 = -[BKTetherController _demoCardConnection](self, "_demoCardConnection");
+  mach_port_t v8 = [self _demoCardConnection];
   if (!v8) {
     return;
   }
@@ -352,7 +352,7 @@ LABEL_16:
   {
     int v14 = v13;
     uint64_t v15 = BKLogCommon(v13);
-    v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+    v16 = v15;
     if (os_log_type_enabled(v16, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 67109120;
@@ -374,7 +374,7 @@ LABEL_16:
     if (!(_DWORD)v7)
     {
       uint64_t v19 = BKLogCommon(v7);
-      BOOL v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v19);
+      BOOL v11 = [os_log_s class];
       if (os_log_type_enabled(v11, OS_LOG_TYPE_DEFAULT))
       {
         *(_WORD *)int v21 = 0;
@@ -386,7 +386,7 @@ LABEL_16:
 - (BOOL)_serviceExists:(__CFString *)a3
 {
   uint64_t v4 = BKLogCommon(self);
-  unsigned int v5 = (os_log_s *)objc_claimAutoreleasedReturnValue(v4);
+  os_log_s *v5 = [v4 autorelease];
   if (os_log_type_enabled(v5, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)buf = 0;
@@ -409,7 +409,7 @@ LABEL_16:
     int v19 = 1001;
 LABEL_22:
     uint64_t v21 = BKLogCommon(v8);
-    v22 = (os_log_s *)objc_claimAutoreleasedReturnValue(v21);
+    os_log_s *v22 = [v21 autorelease];
     if (os_log_type_enabled(v22, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 67109120;
@@ -461,7 +461,7 @@ LABEL_16:
       }
 
       uint64_t v24 = BKLogCommon(v18);
-      v25 = (os_log_s *)objc_claimAutoreleasedReturnValue(v24);
+      v25 = v24;
       if (os_log_type_enabled(v25, OS_LOG_TYPE_DEFAULT))
       {
         *(_WORD *)buf = 0;
@@ -502,14 +502,14 @@ LABEL_25:
 - (BOOL)_reverseTetheringActive
 {
   uint64_t v3 = BKLogCommon(self);
-  uint64_t v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  uint64_t v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)buf = 0;
     _os_log_impl((void *)&_mh_execute_header, v4, OS_LOG_TYPE_DEFAULT, "Reverse-Tethering - Getting State", buf, 2u);
   }
 
-  unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+  NSFileManager *v5 = [NSFileManager defaultManager];
   unsigned int v6 = [v5 fileExistsAtPath:@"/Library/Preferences/SystemConfiguration/rtether.plist"];
 
   if (!v6) {
@@ -519,7 +519,7 @@ LABEL_25:
   if (!v7)
   {
     uint64_t v15 = BKLogCommon(0LL);
-    BOOL v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+    BOOL v11 = [os_log_s class];
     if (os_log_type_enabled(v11, OS_LOG_TYPE_DEFAULT))
     {
       *(_WORD *)buf = 0;
@@ -531,15 +531,15 @@ LABEL_25:
 
 - (void)updatePreferencesIfNeeded
 {
-  id v6 = (id)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  id v6 = [BKSDefaults localDefaults];
   if (-[BKTetherController isTethered](self, "isTethered")
     && ([v6 ignoreTetheringPreferences] & 1) == 0)
   {
     DarwinNotifyCenter = CFNotificationCenterGetDarwinNotifyCenter();
     CFNotificationCenterPostNotification( DarwinNotifyCenter,  @"com.apple.backboardd.tetherPrefsNeedUpdate",  0LL,  0LL,  1u);
     [v6 setDitheringEnabled:0];
-    uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[BKSDefaults externalDefaults](&OBJC_CLASS___BKSDefaults, "externalDefaults"));
-    unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue([v4 persistentConnectionDefaults]);
+    uint64_t v4 = [BKSDefaults externalDefaults];
+    unsigned int v5 = [v4 persistentConnectionDefaults];
 
     [v5 setForceDemoMaxHBI:300];
     if (-[BKTetherController _reverseTetheringActive](self, "_reverseTetheringActive")) {

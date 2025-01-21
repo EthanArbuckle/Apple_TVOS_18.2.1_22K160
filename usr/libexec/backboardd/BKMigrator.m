@@ -9,10 +9,10 @@
 
 - (void)migrateIfNecessary
 {
-  double v3 = BSContinuousMachTimeNow(-[BKMigrator _migrateBackBoard](self, "_migrateBackBoard"));
+  double v3 = [BKMigrator _migrateBackBoard];
   uint64_t v4 = DMPerformMigrationIfNeeded();
   uint64_t v5 = BKLogCommon(v4);
-  v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  v6 = [v5 autorelease];
   BOOL v7 = os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT);
   if (v7)
   {
@@ -24,7 +24,7 @@
 
 - (void)_migrateBackBoard
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+  BKSDefaults *v2 = [BKSDefaults localDefaults];
   [v2 migrateDefaultsIfNecessary];
 }
 
@@ -41,12 +41,12 @@
   if (*v4 != 35)
   {
 LABEL_6:
-    v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:",  @"~/Library/Calendar/Calendar.sqlitedb.restored",  @"~/Library/AddressBook/AddressBook.sqlitedb.restored",  @"~/Library/AddressBook/AddressBookImages.sqlitedb.restored",  @"~/Library/SpringBoard/IconState.plist.restored",  @"~/Library/Preferences/com.apple.springboard.plist.restored",  0LL));
+    v6 = [NSArray arrayWithObjects:@"~/Library/Calendar/Calendar.sqlitedb.restored", @"~/Library/AddressBook/AddressBook.sqlitedb.restored", @"~/Library/AddressBook/AddressBookImages.sqlitedb.restored", @"~/Library/SpringBoard/IconState.plist.restored", @"~/Library/Preferences/com.apple.springboard.plist.restored", nil];
     __int128 v12 = 0u;
     __int128 v13 = 0u;
     __int128 v14 = 0u;
     __int128 v15 = 0u;
-    id v7 = [v6 countByEnumeratingWithState:&v12 objects:v17 count:16];
+    id v7 = [v6 countByEnumeratingWithState:v12 objects:v17 count:16];
     if (v7)
     {
       id v8 = v7;
@@ -58,11 +58,11 @@ LABEL_6:
           if (*(void *)v13 != v9) {
             objc_enumerationMutation(v6);
           }
-          v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v12 + 1) + 8 * (void)i) stringByExpandingTildeInPath]);
-          -[BKMigrator _moveRestoredFileAtPath:](self, "_moveRestoredFileAtPath:", v11);
+          v11 = [*(id *)(*((void *)&v12 + 1) + 8 * (void)i) stringByExpandingTildeInPath];
+          [self _moveRestoredFileAtPath:v11];
         }
 
-        id v8 = [v6 countByEnumeratingWithState:&v12 objects:v17 count:16];
+        id v8 = [v6 countByEnumeratingWithState:v12 objects:v17 count:16];
       }
 
       while (v8);
@@ -82,13 +82,13 @@ LABEL_6:
 - (BOOL)_moveRestoredFileAtPath:(id)a3
 {
   id v3 = a3;
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v3 stringByDeletingPathExtension]);
+  uint64_t v4 = (void *)[NSFileManager defaultManager];
+  uint64_t v5 = (void *)[v3 stringByDeletingPathExtension];
   id v6 = [v4 fileExistsAtPath:v3];
   if ((_DWORD)v6)
   {
     uint64_t v7 = BKLogCommon(v6);
-    id v8 = (os_log_s *)objc_claimAutoreleasedReturnValue(v7);
+    id v8 = [v7 autorelease];
     if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
     {
       *(_DWORD *)buf = 138543618;
@@ -106,7 +106,7 @@ LABEL_6:
     if ((v9 & 1) == 0)
     {
       uint64_t v12 = BKLogCommon(v10);
-      __int128 v13 = (os_log_s *)objc_claimAutoreleasedReturnValue(v12);
+      os_log_s *v13 = [v12 autorelease];
       if (os_log_type_enabled(v13, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 138543874;

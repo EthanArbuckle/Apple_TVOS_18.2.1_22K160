@@ -24,8 +24,8 @@
   id v10 = a3;
   id v11 = a4;
   v21.receiver = self;
-  v21.super_class = (Class)&OBJC_CLASS___BKImageSequence;
-  v12 = -[BKImageSequence init](&v21, "init");
+  v21.super_class = [BKImageSequence class];
+  BKImageSequence *v12 = [[BKImageSequence alloc] init];
   v13 = v12;
   if (v12)
   {
@@ -35,13 +35,13 @@
     basename = v13->_basename;
     v13->_basename = v14;
 
-    objc_storeStrong((id *)&v13->_bundle, a4);
-    uint64_t v16 = objc_claimAutoreleasedReturnValue(+[NSPointerArray pointerArrayWithOptions:](&OBJC_CLASS___NSPointerArray, "pointerArrayWithOptions:", 0LL));
+    v13->_bundle = a4;
+    uint64_t v16 = [NSPointerArray pointerArrayWithOptions:0LL];
     images = v13->_images;
     v13->_images = (NSPointerArray *)v16;
 
-    -[NSPointerArray setCount:](v13->_images, "setCount:", a5);
-    uint64_t v18 = objc_claimAutoreleasedReturnValue(-[BKImageSequence _idiomSuffix](v13, "_idiomSuffix"));
+    [v13->_images setCount:a5];
+    uint64_t v18 = [v13 _idiomSuffix];
     idiomSuffix = v13->_idiomSuffix;
     v13->_idiomSuffix = (NSString *)v18;
   }
@@ -51,7 +51,7 @@
 
 - (id)allImages
 {
-  return -[NSPointerArray allObjects](self->_images, "allObjects");
+  return [self->_images allObjects];
 }
 
 - (CGImage)_createImageForIndex:(unint64_t)a3 basename:(id)a4 scale:(double)a5 idiom:(id)a6 bundle:(id)a7
@@ -60,7 +60,7 @@
   id v12 = a6;
   id v13 = a7;
   id v14 = sub_10003F0B0();
-  v15 = (os_log_s *)objc_claimAutoreleasedReturnValue(v14);
+  v15 = v14;
   if (os_log_type_enabled(v15, OS_LOG_TYPE_DEBUG))
   {
     *(_DWORD *)buf = 67109890;
@@ -76,22 +76,22 @@
 
   if (a5 <= 1.0)
   {
-    v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@%d%@%@",  v11,  a3,  &stru_1000BB628,  v12));
+    v17 = [NSString stringWithFormat:@"%@%d%@%@", v11, a3, &stru_1000BB628, v12];
   }
 
   else
   {
-    uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"@%dx",  (int)a5));
-    v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@%d%@%@",  v11,  a3,  v16,  v12));
+    uint64_t v16 = [NSString stringWithFormat:@"@%dx", (int)a5];
+    v17 = [NSString stringWithFormat:@"%@%d%@%@", v11, a3, v16, v12];
   }
 
-  uint64_t v18 = (const __CFURL *)objc_claimAutoreleasedReturnValue([v13 URLForResource:v17 withExtension:@".png"]);
+  uint64_t v18 = (const __CFURL *)[v13 URLForResource:v17 withExtension:@".png"];
   v19 = v18;
   if (v18 && (CGImageSourceRef v20 = CGImageSourceCreateWithURL(v18, 0LL)) != 0LL)
   {
     objc_super v21 = v20;
     id v22 = sub_10003F0B0();
-    v23 = (os_log_s *)objc_claimAutoreleasedReturnValue(v22);
+    v23 = v22;
     if (os_log_type_enabled(v23, OS_LOG_TYPE_DEBUG))
     {
       *(_DWORD *)buf = 138543362;
@@ -106,10 +106,10 @@
   else
   {
     id v25 = sub_10003F0B0();
-    v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+    os_log_s *v26 = v25;
     if (os_log_type_enabled(v26, OS_LOG_TYPE_DEBUG))
     {
-      v28 = (void *)objc_claimAutoreleasedReturnValue([v13 bundlePath]);
+      v28 = [v13 bundlePath];
       *(_DWORD *)buf = 138543618;
       *(void *)v30 = v17;
       *(_WORD *)&v30[8] = 2114;
@@ -132,14 +132,14 @@
 {
   if (self->_maximumImageCount <= a3)
   {
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"imageIndex < _maximumImageCount"));
+    id v12 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"imageIndex < _maximumImageCount"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       id v13 = NSStringFromSelector(a2);
-      id v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
-      uint64_t v16 = (objc_class *)objc_opt_class(self, v15);
+      v14 = v13;
+      uint64_t v16 = (objc_class *)[self class];
       v17 = NSStringFromClass(v16);
-      uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
+      uint64_t v18 = v17;
       *(_DWORD *)buf = 138544642;
       *(void *)CGImageSourceRef v20 = v14;
       *(_WORD *)&v20[8] = 2114;
@@ -160,22 +160,22 @@
     JUMPOUT(0x100028EE8LL);
   }
 
-  v5 = -[NSPointerArray pointerAtIndex:](self->_images, "pointerAtIndex:");
+  id v5 = [self->_images pointerAtIndex:];
   if (!v5)
   {
-    v5 = -[BKImageSequence _createImageForIndex:basename:scale:idiom:bundle:]( self,  "_createImageForIndex:basename:scale:idiom:bundle:",  a3,  self->_basename,  self->_idiomSuffix,  self->_bundle,  self->_scale);
+    v5 = [self _createImageForIndex:a3 basename:self->_basename scale:self->_idiomSuffix bundle:self->_bundle];
     if (v5
       || -[NSString length](self->_idiomSuffix, "length")
       && (v5 = -[BKImageSequence _createImageForIndex:basename:scale:idiom:bundle:]( self,  "_createImageForIndex:basename:scale:idiom:bundle:",  a3,  self->_basename,  &stru_1000BB628,  self->_bundle,  self->_scale)) != 0LL)
     {
-      -[NSPointerArray replacePointerAtIndex:withPointer:](self->_images, "replacePointerAtIndex:withPointer:", a3, v5);
+      [self->_images replacePointerAtIndex:a3 withPointer:v5];
       CGImageRelease(v5);
     }
 
     else
     {
       id v6 = sub_10003F0B0();
-      v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+      os_log_s *v7 = [v6 autorelease];
       if (os_log_type_enabled(v7, OS_LOG_TYPE_ERROR))
       {
         basename = self->_basename;
@@ -202,7 +202,7 @@
   {
     int64_t v3 = 0LL;
     do
-      -[BKImageSequence _imageAtIndex:](self, "_imageAtIndex:", v3++);
+      [self _imageAtIndex:v3++];
     while (v3 < self->_maximumImageCount);
   }
 

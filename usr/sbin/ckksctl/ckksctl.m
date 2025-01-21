@@ -496,7 +496,7 @@ uint64_t sub_100005EC0(uint64_t a1, int a2, void *a3)
 {
   if (a3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([a3 description]);
+    id v4 = [a3 description];
     printf("Error causing havoc: %s\n", (const char *)[v4 UTF8String]);
   }
 
@@ -519,7 +519,7 @@ uint64_t sub_100005F58(uint64_t a1, void *a2)
 {
   if (a2)
   {
-    id v3 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v3 = [a2 description];
     printf("Error deleting zone: %s\n", (const char *)[v3 UTF8String]);
   }
 
@@ -536,7 +536,7 @@ uint64_t sub_100005FCC(uint64_t a1, void *a2)
 {
   if (a2)
   {
-    id v3 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v3 = [a2 description];
     printf("Error modifying tlk shares: %s\n", (const char *)[v3 UTF8String]);
   }
 
@@ -558,7 +558,7 @@ void sub_100006040(uint64_t a1, void *a2, void *a3, void *a4, void *a5)
   uint64_t v12 = v11;
   if (v11)
   {
-    id v13 = objc_claimAutoreleasedReturnValue([v11 description]);
+    id v13 = [v11 description];
     printf("Error fetching view: %s\n", (const char *)[v13 UTF8String]);
   }
 
@@ -566,7 +566,7 @@ void sub_100006040(uint64_t a1, void *a2, void *a3, void *a4, void *a5)
   {
     if (*(_BYTE *)(a1 + 48))
     {
-      id v14 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+      id v14 = [NSMutableDictionary dictionary];
       [v14 setObject:v17 forKeyedSubscript:@"tlk"];
       [v14 setObject:v9 forKeyedSubscript:@"pastTLKs"];
       [v14 setObject:v10 forKeyedSubscript:@"tlkShares"];
@@ -576,13 +576,13 @@ void sub_100006040(uint64_t a1, void *a2, void *a3, void *a4, void *a5)
 
     else
     {
-      id v15 = objc_claimAutoreleasedReturnValue([v17 description]);
+      id v15 = [v17 description];
       printf("TLK: %s\n", (const char *)[v15 UTF8String]);
 
-      id v16 = objc_claimAutoreleasedReturnValue([v9 description]);
+      id v16 = [v9 description];
       printf("Old TLKs: %s\n", (const char *)[v16 UTF8String]);
 
-      id v14 = objc_claimAutoreleasedReturnValue([v10 description]);
+      id v14 = [v10 description];
       printf("TLKShares: %s\n", (const char *)[v14 UTF8String]);
     }
 
@@ -597,7 +597,7 @@ void sub_1000061E4(void *a1)
   id v1 = sub_1000062B8(a1);
   uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(v1);
   id v6 = 0LL;
-  id v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSJSONSerialization dataWithJSONObject:options:error:]( &OBJC_CLASS___NSJSONSerialization,  "dataWithJSONObject:options:error:",  v2,  3LL,  &v6));
+  id v3 = [NSJSONSerialization dataWithJSONObject:v2 options:3 error:&v6];
   id v4 = v6;
 
   if (v3)
@@ -608,7 +608,7 @@ void sub_1000061E4(void *a1)
 
   else
   {
-    uint64_t v5 = (NSString *)objc_claimAutoreleasedReturnValue([v4 localizedDescription]);
+    uint64_t v5 = (NSString *)[v4 localizedDescription];
     NSLog(@"error: %@", v5);
   }
 }
@@ -636,7 +636,7 @@ id sub_1000062B8(void *a1)
             objc_enumerationMutation(v2);
           }
           uint64_t v7 = *(void *)(*((void *)&v12 + 1) + 8LL * (void)i);
-          uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v1 objectForKeyedSubscript:v7]);
+          uint64_t v8 = (void *)[v1 objectForKeyedSubscript:v7];
           id v9 = sub_1000067C0(v8);
           id v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
           [v1 setObject:v10 forKeyedSubscript:v7];
@@ -660,8 +660,8 @@ id sub_1000062B8(void *a1)
 void sub_1000063FC(void *a1, int a2)
 {
   id v3 = a1;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 allKeys]);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 sortedArrayUsingSelector:"localizedCaseInsensitiveCompare:"]);
+  id v4 = [v3 allKeys];
+  uint64_t v5 = (void *)[v4 sortedArrayUsingSelector:@"localizedCaseInsensitiveCompare:"];
 
   __int128 v15 = 0u;
   __int128 v16 = 0u;
@@ -752,7 +752,7 @@ void sub_1000066EC( void *a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t a5
 void sub_100006758(uint64_t a1, void *a2, uint64_t a3)
 {
   id v5 = a2;
-  id v6 = (id)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInteger:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInteger:", a3));
+  id v6 = [NSNumber numberWithUnsignedInteger:a3];
   sub_10000654C(v6, v5, *(unsigned int *)(a1 + 32));
 }
 
@@ -779,12 +779,12 @@ LABEL_7:
 
     if ((objc_opt_respondsToSelector(v1, "jsonDictionary") & 1) != 0)
     {
-      id v12 = (id)objc_claimAutoreleasedReturnValue([v1 jsonDictionary]);
+      id v12 = [v1 jsonDictionary];
       if (+[NSJSONSerialization isValidJSONObject:](&OBJC_CLASS___NSJSONSerialization, "isValidJSONObject:", v12)) {
         id v13 = v12;
       }
       else {
-        id v13 = (id)objc_claimAutoreleasedReturnValue([v1 description]);
+        id v13 = [v1 description];
       }
       id v7 = v13;
     }
@@ -798,7 +798,7 @@ LABEL_7:
       uint64_t v15 = objc_opt_class(&OBJC_CLASS___NSData);
       if ((objc_opt_isKindOfClass(v1, v15) & 1) != 0)
       {
-        id v11 = (id)objc_claimAutoreleasedReturnValue([v1 base64EncodedStringWithOptions:0]);
+        id v11 = [v1 base64EncodedStringWithOptions:0];
         goto LABEL_7;
       }
 
@@ -806,19 +806,19 @@ LABEL_7:
       if ((objc_opt_isKindOfClass(v1, v17) & 1) != 0)
       {
         uint64_t v18 = sub_1000062B8(v1);
-        id v11 = (id)objc_claimAutoreleasedReturnValue(v18);
+        id v11 = [v18 autorelease];
         goto LABEL_7;
       }
 
       uint64_t v19 = objc_opt_class(&OBJC_CLASS___NSArray);
       if ((objc_opt_isKindOfClass(v1, v19) & 1) == 0)
       {
-        id v11 = (id)objc_claimAutoreleasedReturnValue([v1 description]);
+        id v11 = [v1 description];
         goto LABEL_7;
       }
 
       id v20 = v1;
-      id v7 = (id)objc_claimAutoreleasedReturnValue( +[NSMutableArray arrayWithCapacity:]( NSMutableArray,  "arrayWithCapacity:",  [v20 count]));
+      id v7 = [NSMutableArray arrayWithCapacity:[v20 count]];
       __int128 v27 = 0u;
       __int128 v28 = 0u;
       __int128 v29 = 0u;
@@ -838,7 +838,7 @@ LABEL_7:
             }
             uint64_t v25 = sub_1000067C0(*(void *)(*((void *)&v27 + 1) + 8LL * (void)i));
             uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue(v25);
-            objc_msgSend(v7, "addObject:", v26, (void)v27);
+            [v7 addObject:v26];
           }
 
           id v22 = [v12 countByEnumeratingWithState:&v27 objects:v31 count:16];
@@ -853,15 +853,15 @@ LABEL_7:
 
   v32[0] = @"code";
   id v3 = v1;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](NSNumber, "numberWithInteger:", [v3 code]));
+  id v4 = [NSNumber numberWithInteger:[v3 code]];
   v32[1] = @"domain";
   v33[0] = v4;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 domain]);
+  id v5 = [v3 domain];
   v33[1] = v5;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v33,  v32,  2LL));
+  id v6 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v33,  v32,  2LL);
   id v7 = [v6 mutableCopy];
 
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v3 userInfo]);
+  uint64_t v8 = (void *)[v3 userInfo];
   uint64_t v9 = sub_1000062B8(v8);
   uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
   [v7 setObject:v10 forKeyedSubscript:@"userInfo"];
@@ -874,7 +874,7 @@ uint64_t sub_100006B08(uint64_t a1, void *a2)
 {
   if (a2)
   {
-    id v3 = objc_claimAutoreleasedReturnValue([a2 description]);
+    id v3 = [a2 description];
     printf("Error proposing TLK: %s\n", (const char *)[v3 UTF8String]);
   }
 
@@ -893,7 +893,7 @@ void sub_100006B7C(uint64_t a1, void *a2)
   id v6 = v3;
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("Error sending metric: %s\n", (const char *)[v4 UTF8String]);
 
     if ([v6 code]) {
@@ -920,7 +920,7 @@ void sub_100006C1C(uint64_t a1, void *a2)
   id v6 = v3;
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("Error pushing: %s\n", (const char *)[v4 UTF8String]);
 
     if ([v6 code]) {
@@ -947,7 +947,7 @@ void sub_100006CBC(uint64_t a1, void *a2)
   id v6 = v3;
   if (v3)
   {
-    id v4 = objc_claimAutoreleasedReturnValue([v3 description]);
+    id v4 = [v3 description];
     printf("Error fetching: %s\n", (const char *)[v4 UTF8String]);
 
     if ([v6 code]) {
@@ -975,11 +975,11 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
   id v7 = v6;
   if (v6)
   {
-    id v8 = objc_claimAutoreleasedReturnValue([v6 description]);
+    id v8 = [v6 description];
     printf("ERROR FETCHING STATUS: %s\n", (const char *)[v8 UTF8String]);
   }
 
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v5 objectAtIndexedSubscript:0]);
+  uint64_t v9 = (void *)[v5 objectAtIndexedSubscript:0];
   id v10 = [v9 mutableCopy];
 
   id v11 = &NSLog_ptr;
@@ -988,7 +988,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
   v209 = v7;
   if (v10)
   {
-    id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"reachability"]);
+    id v12 = [v10 objectForKeyedSubscript:@"reachability"];
     [v10 setObject:0 forKeyedSubscript:@"reachability"];
     uint64_t v13 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v12, v13) & 1) != 0) {
@@ -999,7 +999,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v252 = v14;
 
-    uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"ckdeviceID"]);
+    uint64_t v15 = (void *)[v10 objectForKeyedSubscript:@"ckdeviceID"];
     [v10 setObject:0 forKeyedSubscript:@"ckdeviceID"];
     uint64_t v16 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v15, v16) & 1) != 0) {
@@ -1010,7 +1010,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v250 = v17;
 
-    uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"ckdeviceIDError"]);
+    uint64_t v18 = (void *)[v10 objectForKeyedSubscript:@"ckdeviceIDError"];
     [v10 setObject:0 forKeyedSubscript:@"ckdeviceIDError"];
     uint64_t v19 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v18, v19) & 1) != 0) {
@@ -1021,7 +1021,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v248 = v20;
 
-    id v21 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lockstatetracker"]);
+    id v21 = [v10 objectForKeyedSubscript:@"lockstatetracker"];
     [v10 setObject:0 forKeyedSubscript:@"lockstatetracker"];
     uint64_t v22 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v21, v22) & 1) != 0) {
@@ -1032,7 +1032,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v246 = v23;
 
-    uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"cloudkitRetryAfter"]);
+    uint64_t v24 = (void *)[v10 objectForKeyedSubscript:@"cloudkitRetryAfter"];
     [v10 setObject:0 forKeyedSubscript:@"cloudkitRetryAfter"];
     uint64_t v25 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v24, v25) & 1) != 0) {
@@ -1043,7 +1043,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v244 = v26;
 
-    __int128 v27 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastCKKSPush"]);
+    __int128 v27 = (void *)[v10 objectForKeyedSubscript:@"lastCKKSPush"];
     [v10 setObject:0 forKeyedSubscript:@"lastCKKSPush"];
     uint64_t v28 = objc_opt_class(&OBJC_CLASS___NSDate);
     if ((objc_opt_isKindOfClass(v27, v28) & 1) != 0) {
@@ -1054,7 +1054,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v242 = v29;
 
-    __int128 v30 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"policy"]);
+    __int128 v30 = (void *)[v10 objectForKeyedSubscript:@"policy"];
     [v10 setObject:0 forKeyedSubscript:@"policy"];
     uint64_t v31 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v30, v31) & 1) != 0) {
@@ -1065,7 +1065,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v240 = v32;
 
-    uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"viewsFromPolicy"]);
+    uint64_t v33 = (void *)[v10 objectForKeyedSubscript:@"viewsFromPolicy"];
     [v10 setObject:0 forKeyedSubscript:@"viewsFromPolicy"];
     uint64_t v34 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v33, v34) & 1) != 0) {
@@ -1076,7 +1076,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v36 = v35;
 
-    v37 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"activeAccount"]);
+    v37 = [v10 objectForKeyedSubscript:@"activeAccount"];
     [v10 setObject:0 forKeyedSubscript:@"activeAccount"];
     uint64_t v38 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v37, v38) & 1) != 0) {
@@ -1087,7 +1087,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v227 = v39;
 
-    __int128 v40 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"ckaccountstatus"]);
+    __int128 v40 = (void *)[v10 objectForKeyedSubscript:@"ckaccountstatus"];
     [v10 setObject:0 forKeyedSubscript:@"ckaccountstatus"];
     uint64_t v41 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v40, v41) & 1) != 0) {
@@ -1098,7 +1098,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v43 = v42;
 
-    __int128 v44 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"accounttracker"]);
+    __int128 v44 = (void *)[v10 objectForKeyedSubscript:@"accounttracker"];
     [v10 setObject:0 forKeyedSubscript:@"accounttracker"];
     uint64_t v45 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v44, v45) & 1) != 0) {
@@ -1109,7 +1109,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v47 = v46;
 
-    v48 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"fetcher"]);
+    v48 = [v10 objectForKeyedSubscript:@"fetcher"];
     [v10 setObject:0 forKeyedSubscript:@"fetcher"];
     uint64_t v49 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v48, v49) & 1) != 0) {
@@ -1120,7 +1120,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v238 = v50;
 
-    v51 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"ckksstate"]);
+    v51 = [v10 objectForKeyedSubscript:@"ckksstate"];
     [v10 setObject:0 forKeyedSubscript:@"ckksstate"];
     uint64_t v52 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v51, v52) & 1) != 0) {
@@ -1131,7 +1131,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v54 = v53;
 
-    v55 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastIncomingQueueOperation"]);
+    v55 = (void *)[v10 objectForKeyedSubscript:@"lastIncomingQueueOperation"];
     [v10 setObject:0 forKeyedSubscript:@"lastIncomingQueueOperation"];
     uint64_t v56 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v55, v56) & 1) != 0) {
@@ -1142,7 +1142,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v236 = v57;
 
-    v58 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastNewTLKOperation"]);
+    v58 = (void *)[v10 objectForKeyedSubscript:@"lastNewTLKOperation"];
     [v10 setObject:0 forKeyedSubscript:@"lastNewTLKOperation"];
     uint64_t v59 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v58, v59) & 1) != 0) {
@@ -1153,7 +1153,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v234 = v60;
 
-    v61 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastOutgoingQueueOperation"]);
+    v61 = (void *)[v10 objectForKeyedSubscript:@"lastOutgoingQueueOperation"];
     [v10 setObject:0 forKeyedSubscript:@"lastOutgoingQueueOperation"];
     uint64_t v62 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v61, v62) & 1) != 0) {
@@ -1164,7 +1164,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v232 = v63;
 
-    v64 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastProcessReceivedKeysOperation"]);
+    v64 = (void *)[v10 objectForKeyedSubscript:@"lastProcessReceivedKeysOperation"];
     [v10 setObject:0 forKeyedSubscript:@"lastProcessReceivedKeysOperation"];
     uint64_t v65 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v64, v65) & 1) != 0) {
@@ -1175,7 +1175,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v230 = v66;
 
-    v67 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKeyedSubscript:@"lastReencryptOutgoingItemsOperation"]);
+    v67 = (void *)[v10 objectForKeyedSubscript:@"lastReencryptOutgoingItemsOperation"];
     [v10 setObject:0 forKeyedSubscript:@"lastReencryptOutgoingItemsOperation"];
     uint64_t v68 = objc_opt_class(&OBJC_CLASS___NSString);
     if ((objc_opt_isKindOfClass(v67, v68) & 1) != 0) {
@@ -1186,7 +1186,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     }
     id v70 = v69;
 
-    v71 = (void *)objc_claimAutoreleasedReturnValue([v210 objectForKeyedSubscript:@"launchSequence"]);
+    v71 = (void *)[v210 objectForKeyedSubscript:@"launchSequence"];
     [v210 setObject:0 forKeyedSubscript:@"launchSequence"];
     uint64_t v72 = objc_opt_class(&OBJC_CLASS___NSArray);
     if ((objc_opt_isKindOfClass(v71, v72) & 1) != 0) {
@@ -1212,35 +1212,35 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
     id v78 = v47;
     printf("Account tracker:      %s\n", (const char *)[v78 UTF8String]);
     v79 = v240;
-    id v80 = objc_claimAutoreleasedReturnValue([v240 description]);
+    id v80 = [v240 description];
     printf("Syncing Policy:       %s\n", (const char *)[v80 UTF8String]);
 
-    id v81 = objc_claimAutoreleasedReturnValue([v36 description]);
+    id v81 = [v36 description];
     printf("Views from policy:    %s\n", (const char *)[v81 UTF8String]);
 
     if (!*(_BYTE *)(a1 + 40))
     {
       id v228 = v76;
-      id v82 = objc_claimAutoreleasedReturnValue([v252 description]);
+      id v82 = [v252 description];
       printf("Reachability:         %s\n", (const char *)[v82 UTF8String]);
 
-      id v83 = objc_claimAutoreleasedReturnValue([v244 description]);
+      id v83 = [v244 description];
       printf("Retry:                %s\n", (const char *)[v83 UTF8String]);
 
-      id v84 = objc_claimAutoreleasedReturnValue([v250 description]);
+      id v84 = [v250 description];
       printf("CK DeviceID:          %s\n", (const char *)[v84 UTF8String]);
 
-      id v85 = objc_claimAutoreleasedReturnValue([v248 description]);
+      id v85 = [v248 description];
       printf("CK DeviceID Error:    %s\n", (const char *)[v85 UTF8String]);
 
-      id v86 = objc_claimAutoreleasedReturnValue([v246 description]);
+      id v86 = [v246 description];
       printf("Lock state:           %s\n", (const char *)[v86 UTF8String]);
 
-      id v87 = objc_claimAutoreleasedReturnValue([v242 description]);
+      id v87 = [v242 description];
       printf("Last CKKS push:       %s\n", (const char *)[v87 UTF8String]);
 
       putchar(10);
-      id v88 = objc_claimAutoreleasedReturnValue([v238 description]);
+      id v88 = [v238 description];
       printf("zone change fetcher:                 %s\n", (const char *)[v88 UTF8String]);
 
       if (v236) {
@@ -1300,7 +1300,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
             if (*(void *)v263 != v98) {
               objc_enumerationMutation(v95);
             }
-            id v100 = objc_claimAutoreleasedReturnValue( [*(id *)(*((void *)&v262 + 1) + 8 * (void)i) description]);
+            id v100 = [*(id *)(*((void *)&v262 + 1) + 8 * (void)i) description];
             printf("\t%s\n", (const char *)[v100 UTF8String]);
           }
 
@@ -1352,7 +1352,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
         }
         int v105 = *(unsigned __int8 *)(a1 + 40);
         id v106 = [*(id *)(*((void *)&v258 + 1) + 8 * (void)v104) mutableCopy];
-        v107 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"view"]);
+        v107 = (void *)[v106 objectForKeyedSubscript:@"view"];
         [v106 setObject:0 forKeyedSubscript:@"view"];
         uint64_t v108 = objc_opt_class(v11[13]);
         if ((objc_opt_isKindOfClass(v107, v108) & 1) != 0) {
@@ -1365,7 +1365,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
         if (v105)
         {
-          v111 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"keystate"]);
+          v111 = (void *)[v106 objectForKeyedSubscript:@"keystate"];
           [v106 setObject:0 forKeyedSubscript:@"keystate"];
           uint64_t v112 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v111, v112) & 1) != 0) {
@@ -1398,7 +1398,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v219 = v121;
 
-          v122 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"zoneCreated"]);
+          v122 = (void *)[v106 objectForKeyedSubscript:@"zoneCreated"];
           [v106 setObject:0 forKeyedSubscript:@"zoneCreated"];
           uint64_t v123 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v122, v123) & 1) != 0) {
@@ -1409,7 +1409,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v253 = v124;
 
-          v125 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"zoneSubscribed"]);
+          v125 = (void *)[v106 objectForKeyedSubscript:@"zoneSubscribed"];
           [v106 setObject:0 forKeyedSubscript:@"zoneSubscribed"];
           uint64_t v126 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v125, v126) & 1) != 0) {
@@ -1420,7 +1420,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v251 = v127;
 
-          v128 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"zoneInitializeScheduler"]);
+          v128 = [v106 objectForKeyedSubscript:@"zoneInitializeScheduler"];
           [v106 setObject:0 forKeyedSubscript:@"zoneInitializeScheduler"];
           uint64_t v129 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v128, v129) & 1) != 0) {
@@ -1431,7 +1431,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v247 = v130;
 
-          v131 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"keystate"]);
+          v131 = (void *)[v106 objectForKeyedSubscript:@"keystate"];
           [v106 setObject:0 forKeyedSubscript:@"keystate"];
           uint64_t v132 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v131, v132) & 1) != 0) {
@@ -1442,7 +1442,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v216 = v133;
 
-          v134 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"statusError"]);
+          v134 = [v106 objectForKeyedSubscript:@"statusError"];
           [v106 setObject:0 forKeyedSubscript:@"statusError"];
           uint64_t v135 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v134, v135) & 1) != 0) {
@@ -1453,7 +1453,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v137 = v136;
 
-          v138 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"itemsyncing"]);
+          v138 = (void *)[v106 objectForKeyedSubscript:@"itemsyncing"];
           [v106 setObject:0 forKeyedSubscript:@"itemsyncing"];
           uint64_t v139 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v138, v139) & 1) != 0) {
@@ -1464,7 +1464,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v241 = v140;
 
-          v141 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentTLK"]);
+          v141 = (void *)[v106 objectForKeyedSubscript:@"currentTLK"];
           [v106 setObject:0 forKeyedSubscript:@"currentTLK"];
           uint64_t v142 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v141, v142) & 1) != 0) {
@@ -1475,7 +1475,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v239 = v143;
 
-          v144 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentClassA"]);
+          v144 = (void *)[v106 objectForKeyedSubscript:@"currentClassA"];
           [v106 setObject:0 forKeyedSubscript:@"currentClassA"];
           uint64_t v145 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v144, v145) & 1) != 0) {
@@ -1486,7 +1486,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v237 = v146;
 
-          v147 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentClassC"]);
+          v147 = (void *)[v106 objectForKeyedSubscript:@"currentClassC"];
           [v106 setObject:0 forKeyedSubscript:@"currentClassC"];
           uint64_t v148 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v147, v148) & 1) != 0) {
@@ -1497,7 +1497,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v235 = v149;
 
-          v150 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentTLKPtr"]);
+          v150 = (void *)[v106 objectForKeyedSubscript:@"currentTLKPtr"];
           [v106 setObject:0 forKeyedSubscript:@"currentTLKPtr"];
           uint64_t v151 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v150, v151) & 1) != 0) {
@@ -1508,7 +1508,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v245 = v152;
 
-          v153 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentClassAPtr"]);
+          v153 = (void *)[v106 objectForKeyedSubscript:@"currentClassAPtr"];
           [v106 setObject:0 forKeyedSubscript:@"currentClassAPtr"];
           uint64_t v154 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v153, v154) & 1) != 0) {
@@ -1519,7 +1519,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v222 = v155;
 
-          v156 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"currentClassCPtr"]);
+          v156 = (void *)[v106 objectForKeyedSubscript:@"currentClassCPtr"];
           [v106 setObject:0 forKeyedSubscript:@"currentClassCPtr"];
           uint64_t v157 = objc_opt_class(v11[13]);
           if ((objc_opt_isKindOfClass(v156, v157) & 1) != 0) {
@@ -1530,7 +1530,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v221 = v158;
 
-          v159 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"launchSequence"]);
+          v159 = (void *)[v106 objectForKeyedSubscript:@"launchSequence"];
           [v106 setObject:0 forKeyedSubscript:@"launchSequence"];
           uint64_t v160 = objc_opt_class(&OBJC_CLASS___NSArray);
           if ((objc_opt_isKindOfClass(v159, v160) & 1) != 0) {
@@ -1541,7 +1541,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v218 = v161;
 
-          v162 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"oqe"]);
+          v162 = [v106 objectForKeyedSubscript:@"oqe"];
           [v106 setObject:0 forKeyedSubscript:@"oqe"];
           uint64_t v163 = objc_opt_class(&OBJC_CLASS___NSDictionary);
           if ((objc_opt_isKindOfClass(v162, v163) & 1) != 0) {
@@ -1552,7 +1552,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v233 = v164;
 
-          v165 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"iqe"]);
+          v165 = (void *)[v106 objectForKeyedSubscript:@"iqe"];
           [v106 setObject:0 forKeyedSubscript:@"iqe"];
           uint64_t v166 = objc_opt_class(&OBJC_CLASS___NSDictionary);
           if ((objc_opt_isKindOfClass(v165, v166) & 1) != 0) {
@@ -1563,7 +1563,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v231 = v167;
 
-          v168 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"keys"]);
+          v168 = (void *)[v106 objectForKeyedSubscript:@"keys"];
           [v106 setObject:0 forKeyedSubscript:@"keys"];
           uint64_t v169 = objc_opt_class(&OBJC_CLASS___NSDictionary);
           if ((objc_opt_isKindOfClass(v168, v169) & 1) != 0) {
@@ -1574,7 +1574,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v229 = v170;
 
-          v171 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"ckmirror"]);
+          v171 = (void *)[v106 objectForKeyedSubscript:@"ckmirror"];
           [v106 setObject:0 forKeyedSubscript:@"ckmirror"];
           uint64_t v172 = objc_opt_class(&OBJC_CLASS___NSDictionary);
           if ((objc_opt_isKindOfClass(v171, v172) & 1) != 0) {
@@ -1585,7 +1585,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v226 = v173;
 
-          v174 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"devicestates"]);
+          v174 = [v106 objectForKeyedSubscript:@"devicestates"];
           [v106 setObject:0 forKeyedSubscript:@"devicestates"];
           uint64_t v175 = objc_opt_class(&OBJC_CLASS___NSArray);
           if ((objc_opt_isKindOfClass(v174, v175) & 1) != 0) {
@@ -1596,7 +1596,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           }
           id v224 = v176;
 
-          v177 = (void *)objc_claimAutoreleasedReturnValue([v106 objectForKeyedSubscript:@"tlkshares"]);
+          v177 = [v106 objectForKeyedSubscript:@"tlkshares"];
           [v106 setObject:0 forKeyedSubscript:@"tlkshares"];
           uint64_t v178 = objc_opt_class(&OBJC_CLASS___NSArray);
           if ((objc_opt_isKindOfClass(v177, v178) & 1) != 0) {
@@ -1618,13 +1618,13 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
           if (![v253 isEqualToString:@"yes"]
             || ([v251 isEqualToString:@"yes"] & 1) == 0)
           {
-            id v182 = objc_claimAutoreleasedReturnValue([v253 description]);
+            id v182 = [v253 description];
             printf("CK Zone Created:            %s\n", (const char *)[v182 UTF8String]);
 
-            id v183 = objc_claimAutoreleasedReturnValue([v251 description]);
+            id v183 = [v251 description];
             printf("CK Zone Subscribed:         %s\n", (const char *)[v183 UTF8String]);
 
-            id v184 = objc_claimAutoreleasedReturnValue([v247 description]);
+            id v184 = [v247 description];
             printf("CK Zone initialize retry:   %s\n", (const char *)[v184 UTF8String]);
 
             putchar(10);
@@ -1646,7 +1646,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v190 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              id v190 = [v11[13] stringWithFormat:@"missing; pointer is %@"];
                                                     v245)));
               printf("Current TLK:          %s\n", (const char *)[v190 UTF8String]);
             }
@@ -1658,7 +1658,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v191 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              id v191 = [v11[13] stringWithFormat:@"missing; pointer is %@"];
                                                     v222)));
               printf("Current ClassA:       %s\n", (const char *)[v191 UTF8String]);
             }
@@ -1670,7 +1670,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v192 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              id v192 = [v11[13] stringWithFormat:@"missing; pointer is %@"];
                                                     v221)));
               printf("Current ClassC:       %s\n", (const char *)[v192 UTF8String]);
             }
@@ -1678,33 +1678,33 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
           else
           {
-            id v189 = objc_claimAutoreleasedReturnValue([v245 description]);
+            id v189 = [v245 description];
             printf("Current TLK:          %s\n", (const char *)[v189 UTF8String]);
 
             v188 = v218;
           }
 
-          id v193 = objc_claimAutoreleasedReturnValue([v249 description]);
+          id v193 = [v249 description];
           printf("TLK shares:           %s\n", (const char *)[v193 UTF8String]);
 
           if (v187)
           {
-            id v194 = objc_claimAutoreleasedReturnValue([v241 description]);
+            id v194 = [v241 description];
             printf("Item syncing:          %s\n", (const char *)[v194 UTF8String]);
 
-            id v195 = objc_claimAutoreleasedReturnValue([v233 description]);
+            id v195 = [v233 description];
             printf("Outgoing Queue counts: %s\n", (const char *)[v195 UTF8String]);
 
-            id v196 = objc_claimAutoreleasedReturnValue([v231 description]);
+            id v196 = [v231 description];
             printf("Incoming Queue counts: %s\n", (const char *)[v196 UTF8String]);
 
-            id v197 = objc_claimAutoreleasedReturnValue([v229 description]);
+            id v197 = [v229 description];
             printf("Key counts: %s\n", (const char *)[v197 UTF8String]);
 
-            id v198 = objc_claimAutoreleasedReturnValue([v226 description]);
+            id v198 = [v226 description];
             printf("Item counts (by key):  %s\n", (const char *)[v198 UTF8String]);
 
-            id v199 = objc_claimAutoreleasedReturnValue([v224 description]);
+            id v199 = [v224 description];
             printf("Peer states:           %s\n", (const char *)[v199 UTF8String]);
           }
 
@@ -1726,7 +1726,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
                 if (*(void *)v255 != v203) {
                   objc_enumerationMutation(v200);
                 }
-                id v205 = objc_claimAutoreleasedReturnValue( [*(id *)(*((void *)&v254 + 1) + 8 * (void)j) description]);
+                id v205 = [*(id *)(*((void *)&v254 + 1) + 8 * (void)j) description];
                 printf("\t%s\n", (const char *)[v205 UTF8String]);
               }
 
@@ -1736,12 +1736,12 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
             while (v202);
           }
 
-          v206 = (void *)objc_claimAutoreleasedReturnValue([v106 allKeys]);
+          v206 = [v106 allKeys];
           id v207 = [v206 count];
 
           if (v207)
           {
-            id v208 = objc_claimAutoreleasedReturnValue([v106 description]);
+            id v208 = [v106 description];
             printf("\nExtra information: %s\n", (const char *)[v208 UTF8String]);
           }
 
@@ -1772,7 +1772,7 @@ void sub_100008758(uint64_t a1, void *a2, void *a3)
   id v7 = v6;
   if (v6)
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 description]);
+    id v8 = [v6 description];
     [*(id *)(a1 + 32) setObject:v8 forKeyedSubscript:@"error"];
   }
 
@@ -1873,7 +1873,7 @@ void sub_100008A48(uint64_t a1, void *a2, void *a3)
   id v6 = a2;
   if (a3)
   {
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([a3 description]);
+    uint64_t v5 = (void *)[a3 description];
     [*(id *)(a1 + 32) setObject:v5 forKeyedSubscript:@"error"];
   }
 
@@ -2145,19 +2145,19 @@ LABEL_60:
 
       id v54 = -[CKKSControlCLI initWithCKKSControl:]( objc_alloc(&OBJC_CLASS___CKKSControlCLI),  "initWithCKKSControl:",  v52);
       if (qword_100010C10) {
-        id v78 = (char **)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  qword_100010C10,  4LL));
+        id v78 = [NSString stringWithCString:qword_100010C10 encoding:4];
       }
       else {
         id v78 = 0LL;
       }
       if (qword_100010C38) {
-        v55 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  qword_100010C38,  4LL));
+        v55 = [NSString stringWithCString:qword_100010C38 encoding:4LL];
       }
       else {
         v55 = 0LL;
       }
       if (qword_100010C40) {
-        id v76 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  qword_100010C40,  4LL));
+        id v76 = [NSString stringWithCString:qword_100010C40 encoding:4LL];
       }
       else {
         id v76 = 0LL;
@@ -2165,7 +2165,7 @@ LABEL_60:
       uint64_t v56 = &NSLog_ptr;
       if (qword_100010C20)
       {
-        uint64_t v57 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+        uint64_t v57 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
         if (qword_100010C20)
         {
           unint64_t v58 = 0LL;
@@ -2189,7 +2189,7 @@ LABEL_60:
 
       if (qword_100010C30)
       {
-        uint64_t v60 = objc_claimAutoreleasedReturnValue([v56[10] array]);
+        uint64_t v60 = [v56[10] array];
         if (qword_100010C30)
         {
           unint64_t v61 = 0LL;
@@ -2215,7 +2215,7 @@ LABEL_60:
         v63 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
         if (dword_100010C00)
         {
-          v64 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI fetchPerformanceCounters](v54, "fetchPerformanceCounters"));
+          v64 = [v54 fetchPerformanceCounters];
           -[NSMutableDictionary setObject:forKeyedSubscript:]( v63,  "setObject:forKeyedSubscript:",  v64,  @"performance");
         }
 
@@ -2237,7 +2237,7 @@ LABEL_60:
       if (dword_100010C00)
       {
         v63 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
-        v67 = (void *)objc_claimAutoreleasedReturnValue(-[CKKSControlCLI fetchPerformanceCounters](v54, "fetchPerformanceCounters"));
+        v67 = [v54 fetchPerformanceCounters];
         -[NSMutableDictionary setObject:forKeyedSubscript:]( v63,  "setObject:forKeyedSubscript:",  v67,  @"performance");
 
         sub_1000063FC(v63, 0);

@@ -59,7 +59,7 @@
     {
       v4 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: [MOTION] this device does not support motion data",  "-[WiFiManagerMotionServices init]");
+        [qword_100219F60 WFLog:@"%s: [MOTION] this device does not support motion data" message:3];
       }
       objc_autoreleasePoolPop(v4);
     }
@@ -194,7 +194,7 @@
     self->_walkingAlarm = -[CMActivityAlarm initWithTrigger:duration:onQueue:withHandler:]( objc_alloc(&OBJC_CLASS___CMActivityAlarm),  "initWithTrigger:duration:onQueue:withHandler:",  0LL,  -[WiFiManagerMotionServices serialActivityDispatchQ](self, "serialActivityDispatchQ"),  v10,  v6);
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: [MOTION] Setting up Walking Ended Alarm, dur:%.1fsecs",  "-[WiFiManagerMotionServices setupWalkingEndedAlarm]",  *(void *)&v7);
+      [qword_100219F60 WFLog:@"%s: [MOTION] Setting up Walking Ended Alarm, dur:%.1fsecs" message:3, "-[WiFiManagerMotionServices setupWalkingEndedAlarm]", *(void *)&v7];
     }
   }
 
@@ -202,7 +202,7 @@
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: [MOTION] activity alarm is not available",  "-[WiFiManagerMotionServices setupWalkingEndedAlarm]",  v9);
+      [qword_100219F60 WFLog:@"%s: [MOTION] activity alarm is not available" message:3 v9];
     }
   }
 
@@ -278,7 +278,7 @@
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: [MOTION] activity alarm is not available",  "-[WiFiManagerMotionServices setupDrivingEndedAlarm]",  v9);
+      [qword_100219F60 WFLog:@"[MOTION] activity alarm is not available" message:3];
     }
   }
 

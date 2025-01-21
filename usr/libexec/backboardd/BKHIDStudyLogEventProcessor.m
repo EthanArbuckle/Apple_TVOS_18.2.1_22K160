@@ -29,15 +29,15 @@
   if (+[BKHIDStudyLogEventProcessor shouldCreateStudyLogger]( &OBJC_CLASS___BKHIDStudyLogEventProcessor,  "shouldCreateStudyLogger"))
   {
     v22.receiver = self;
-    v22.super_class = (Class)&OBJC_CLASS___BKHIDStudyLogEventProcessor;
-    v5 = -[BKHIDStudyLogEventProcessor init](&v22, "init");
+    v22.super_class = [BKHIDStudyLogEventProcessor class];
+    BKHIDStudyLogEventProcessor *v5 = [[BKHIDStudyLogEventProcessor alloc] init];
     if (v5)
     {
-      uint64_t v6 = objc_claimAutoreleasedReturnValue(+[BKSDefaults localDefaults](&OBJC_CLASS___BKSDefaults, "localDefaults"));
+      uint64_t v6 = [BKSDefaults localDefaults];
       localDefaults = v5->_localDefaults;
       v5->_localDefaults = (BKSLocalDefaults *)v6;
 
-      uint64_t v8 = objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+      uint64_t v8 = [SLGLog sharedInstance];
       keyboardLog = v5->_keyboardLog;
       v5->_keyboardLog = (SLGLog *)v8;
 
@@ -45,22 +45,24 @@
       matcherQueue = v5->_matcherQueue;
       v5->_matcherQueue = (OS_dispatch_queue *)v10;
 
-      v12 = (void *)objc_claimAutoreleasedReturnValue([v4 serviceMatcherDataProvider]);
-      v13 = -[BKIOHIDServiceMatcher initWithUsagePage:usage:builtIn:dataProvider:]( objc_alloc(&OBJC_CLASS___BKIOHIDServiceMatcher),  "initWithUsagePage:usage:builtIn:dataProvider:",  65280LL,  9LL,  1LL,  v12);
+      v12 = [v4 serviceMatcherDataProvider];
+      BKIOHIDServiceMatcher *v13 = [[BKIOHIDServiceMatcher alloc] initWithUsagePage:65280LL usage:9LL builtIn:1LL dataProvider:v12];
       gyroMatcher = v5->_gyroMatcher;
       v5->_gyroMatcher = v13;
 
-      -[BKIOHIDServiceMatcher startObserving:queue:](v5->_gyroMatcher, "startObserving:queue:", v5, v5->_matcherQueue);
-      v15 = objc_alloc(&OBJC_CLASS___SLGTimedLogger);
-      id v16 = objc_alloc(&OBJC_CLASS___SLGActivatableLogger);
-      v17 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+      [v5->_gyroMatcher startObserving:v5 queue:v5->_matcherQueue];
+      SLGTimedLogger *v15 = [[SLGTimedLogger alloc] init];
+      SLGActivatableLogger *v16 = [[SLGActivatableLogger alloc] init];
+      v17 = [SLGLog sharedInstance];
       id v18 = [v16 initWithLogger:v17];
-      v19 = -[SLGTimedLogger initWithLogger:duration:](v15, "initWithLogger:duration:", v18, 1.0);
+      SLGTimedLogger *v19 = [[SLGTimedLogger alloc] initWithLogger:v15 duration:1.0];
       cameraLog = v5->_cameraLog;
       v5->_cameraLog = v19;
 
-      -[SLGTimedLogger setActivationHandler:](v5->_cameraLog, "setActivationHandler:", &stru_1000B5638);
-      -[SLGTimedLogger setDeactivationHandler:](v5->_cameraLog, "setDeactivationHandler:", &stru_1000B5658);
+      [v5->_cameraLog setActivationHandler:^() {
+stru_1000B5638();
+}];
+      [v5->_cameraLog setDeactivationHandler:&stru_1000B5658];
     }
   }
 
@@ -76,8 +78,8 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKHIDStudyLogEventProcessor;
-  -[BKHIDStudyLogEventProcessor dealloc](&v3, "dealloc");
+  [v3 superclass] = [BKHIDStudyLogEventProcessor class];
+  [v3 dealloc];
 }
 
 - (int64_t)processEvent:(__IOHIDEvent *)a3 sender:(id)a4 dispatcher:(id)a5
@@ -98,19 +100,19 @@
         v36 = v6;
         v20 = @"com.apple.backboard.hid.gyro";
 LABEL_16:
-        -[SLGTimedLogger logBlock:domain:](v19, "logBlock:domain:", &v32, v20);
+        [v19 logBlock:v32 domain:v20];
       }
 
 - (void)matcher:(id)a3 servicesDidMatch:(id)a4
 {
-  v5 = (BKIOHIDService *)objc_claimAutoreleasedReturnValue(objc_msgSend(a4, "firstObject", a3));
+  BKIOHIDService *v5 = [a4 firstObject];
   gyroService = self->_gyroService;
   self->_gyroService = v5;
 
-  -[BKIOHIDService addDisappearanceObserver:queue:]( self->_gyroService,  "addDisappearanceObserver:queue:",  self,  self->_matcherQueue);
+  [self->_gyroService addDisappearanceObserver:self queue:self->_matcherQueue];
   v7 = self->_gyroService;
-  id v8 = (id)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", 100000.0));
-  -[BKIOHIDService setProperty:forKey:](v7, "setProperty:forKey:", v8, @"ReportInterval");
+  id v8 = [NSNumber numberWithDouble:100000.0];
+  [v7 setProperty:v8 forKey:@"ReportInterval"];
 }
 
 - (void)serviceDidDisappear:(id)a3
@@ -189,13 +191,13 @@ LABEL_16:
 
 + (BOOL)shouldCreateStudyLogger
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[SLGLog sharedInstance](&OBJC_CLASS___SLGLog, "sharedInstance"));
+  SLGLog *v2 = [SLGLog sharedInstance];
   unsigned int v3 = [v2 isEnabled];
 
   if (v3)
   {
     id v4 = sub_10003F124();
-    v5 = (os_log_s *)objc_claimAutoreleasedReturnValue(v4);
+    v5 = v4;
     if (os_log_type_enabled(v5, OS_LOG_TYPE_ERROR))
     {
       *(_WORD *)v7 = 0;

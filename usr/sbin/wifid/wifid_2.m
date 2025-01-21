@@ -58,7 +58,7 @@ void sub_100124B84(uint64_t a1, uint64_t a2, void *a3, int a4, void *a5)
   else
   {
     id v10 = objc_alloc_init(&OBJC_CLASS___CWFSensingResult);
-    objc_msgSend(v10, "setData:", objc_msgSend(a3, "copy"));
+    [v10 setData:[a3 copy]];
     id v11 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
     [v11 setObject:v10 forKeyedSubscript:CWFXPCResultKey];
     if ([a5 response])
@@ -146,7 +146,7 @@ void sub_1001261D8(uint64_t a1)
           objc_msgSend(*(id *)(a1 + 40), "__setCompanionCountryCode:", *(void *)(a1 + 32));
           break;
         case 35LL:
-          objc_msgSend(*(id *)(a1 + 40), "__getThermalIndex:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __getThermalIndex:*(void *)(a1 + 32)];
           break;
         default:
 LABEL_25:
@@ -217,40 +217,40 @@ LABEL_25:
         case 'n':
           goto LABEL_25;
         case '9':
-          objc_msgSend(*(id *)(a1 + 40), "__getCurrentScanResult:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __getCurrentScanResult:*(void *)(a1 + 32)];
           break;
         case ':':
-          objc_msgSend( *(id *)(a1 + 40),  "__getCurrentNetworkProfile:XPCConnection:",  *(void *)(a1 + 32),  *(void *)(a1 + 48));
+          [*(id *)(a1 + 40) __getCurrentNetworkProfile:XPCConnection:*(void *)(a1 + 32) XPCConnection:*(void *)(a1 + 48)];
           break;
         case ';':
-          objc_msgSend(*(id *)(a1 + 40), "__addKnownNetworkProfile:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __addKnownNetworkProfile:*(void *)(a1 + 32)];
           break;
         case '<':
-          objc_msgSend(*(id *)(a1 + 40), "__removeKnownNetworkProfile:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __removeKnownNetworkProfile:*(void *)(a1 + 32)];
           break;
         case '=':
           objc_msgSend( *(id *)(a1 + 40),  "__updateKnownNetworkProfile:XPCConnection:",  *(void *)(a1 + 32),  *(void *)(a1 + 48));
           break;
         case '>':
-          objc_msgSend(*(id *)(a1 + 40), "__associate:XPCConnection:", *(void *)(a1 + 32), *(void *)(a1 + 48));
+          [*(id *)(a1 + 40) __associate:XPCConnection:*(void *)(a1 + 32) XPCConnection:*(void *)(a1 + 48)];
           break;
         case '?':
           objc_msgSend(*(id *)(a1 + 40), "__disassociate:XPCConnection:", *(void *)(a1 + 32), *(void *)(a1 + 48));
           break;
         case '@':
-          objc_msgSend(*(id *)(a1 + 40), "__performScan:XPCConnection:", *(void *)(a1 + 32), *(void *)(a1 + 48));
+          [*(id *)(a1 + 40) __performScan:XPCConnection:*(void *)(a1 + 32), *(void *)(a1 + 48)];
           break;
         case 'A':
-          objc_msgSend(*(id *)(a1 + 40), "__performANQP:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __performANQP:*(void *)(a1 + 32)];
           break;
         case 'B':
-          objc_msgSend( *(id *)(a1 + 40),  "__startAWDLPeerAssistedDiscovery:XPCConnection:",  *(void *)(a1 + 32),  *(void *)(a1 + 48));
+          [*(id *)(a1 + 40) __startAWDLPeerAssistedDiscovery:XPCConnection: *(void *)(a1 + 32) *(void *)(a1 + 48)];
           break;
         case 'C':
-          objc_msgSend( *(id *)(a1 + 40),  "__stopAWDLPeerAssistedDiscovery:XPCConnection:",  *(void *)(a1 + 32),  *(void *)(a1 + 48));
+          [*(id *)(a1 + 40) __stopAWDLPeerAssistedDiscovery:XPCConnection: *(void *)(a1 + 32) *(void *)(a1 + 48)];
           break;
         case 'D':
-          objc_msgSend(*(id *)(a1 + 40), "__setRangeable:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __setRangeable:*(void *)(a1 + 32)];
           break;
         case 'E':
           objc_msgSend(*(id *)(a1 + 40), "__performRanging:", *(void *)(a1 + 32));
@@ -274,13 +274,13 @@ LABEL_12:
         case 'i':
         case 'l':
         case 'o':
-          objc_msgSend(*(id *)(a1 + 40), "__handleActivity:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __handleActivity:*(void *)(a1 + 32)];
           break;
         default:
           if (v6 != 36) {
             goto LABEL_25;
           }
-          objc_msgSend(*(id *)(a1 + 40), "__setThermalIndex:", *(void *)(a1 + 32));
+          [*(id *)(a1 + 40) __setThermalIndex:*(void *)(a1 + 32)];
           break;
       }
     }
@@ -291,7 +291,7 @@ LABEL_12:
     switch(v6)
     {
       case 174LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setRangingIdentifier:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setRangingIdentifier:*(void *)(a1 + 32)];
         break;
       case 175LL:
       case 176LL:
@@ -336,10 +336,10 @@ LABEL_12:
       case 242LL:
         goto LABEL_25;
       case 177LL:
-        objc_msgSend(*(id *)(a1 + 40), "__performAutoJoin:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __performAutoJoin:*(void *)(a1 + 32)];
         break;
       case 179LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getUserAutoJoinState:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getUserAutoJoinState:*(void *)(a1 + 32)];
         break;
       case 180LL:
         objc_msgSend( *(id *)(a1 + 40),  "__setUserAutoJoinState:XPCConnection:",  *(void *)(a1 + 32),  *(void *)(a1 + 48));
@@ -350,22 +350,22 @@ LABEL_12:
       case 237LL:
         goto LABEL_12;
       case 182LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getAutoHotspotMode:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getAutoHotspotMode:*(void *)(a1 + 32)];
         break;
       case 183LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setAutoHotspotMode:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setAutoHotspotMode:*(void *)(a1 + 32)];
         break;
       case 188LL:
-        objc_msgSend(*(id *)(a1 + 40), "__performSensing:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __performSensing:*(void *)(a1 + 32)];
         break;
       case 189LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getUserSettings:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getUserSettings:*(void *)(a1 + 32)];
         break;
       case 190LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setUserSettings:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setUserSettings:*(void *)(a1 + 32)];
         break;
       case 193LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getAutoJoinMetric:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getAutoJoinMetric:*(void *)(a1 + 32)];
         break;
       case 194LL:
         objc_msgSend(*(id *)(a1 + 40), "__getAutoJoinStatistics:", *(void *)(a1 + 32));
@@ -377,22 +377,22 @@ LABEL_12:
         objc_msgSend(*(id *)(a1 + 40), "__getCountryBandSupport:", *(void *)(a1 + 32));
         break;
       case 198LL:
-        objc_msgSend(*(id *)(a1 + 40), "__addKnownBSS:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __addKnownBSS:*(void *)(a1 + 32)];
         break;
       case 199LL:
         objc_msgSend(*(id *)(a1 + 40), "__removeKnownBSS:", *(void *)(a1 + 32));
         break;
       case 200LL:
-        objc_msgSend(*(id *)(a1 + 40), "__updateKnownBSS:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __updateKnownBSS:*(void *)(a1 + 32)];
         break;
       case 201LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getPassword:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getPassword:*(void *)(a1 + 32)];
         break;
       case 202LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setPassword:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setPassword:*(void *)(a1 + 32)];
         break;
       case 218LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setBlockedBands:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setBlockedBands:*(void *)(a1 + 32)];
         break;
       case 219LL:
         objc_msgSend(*(id *)(a1 + 40), "__updateSoftAPBand:XPCConnection:", *(void *)(a1 + 32), *(void *)(a1 + 48));
@@ -410,16 +410,16 @@ LABEL_12:
         objc_msgSend(*(id *)(a1 + 40), "__performNDD:XPCConnection:", *(void *)(a1 + 32), *(void *)(a1 + 48));
         break;
       case 243LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getBackgroundScanConfiguration:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getBackgroundScanConfiguration:*(void *)(a1 + 32)];
         break;
       case 244LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setBackgroundScanConfiguration:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setBackgroundScanConfiguration:*(void *)(a1 + 32)];
         break;
       case 245LL:
-        objc_msgSend(*(id *)(a1 + 40), "__getAutoJoinDenyList:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getAutoJoinDenyList:*(void *)(a1 + 32)];
         break;
       case 246LL:
-        objc_msgSend(*(id *)(a1 + 40), "__setAutoJoinDenyList:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __setAutoJoinDenyList:*(void *)(a1 + 32)];
         break;
       case 247LL:
         objc_msgSend(*(id *)(a1 + 40), "__clearAutoJoinDenyList:", *(void *)(a1 + 32));
@@ -428,7 +428,7 @@ LABEL_12:
         if (v6 != 145) {
           goto LABEL_25;
         }
-        objc_msgSend(*(id *)(a1 + 40), "__getDeviceUUID:", *(void *)(a1 + 32));
+        [*(id *)(a1 + 40) __getDeviceUUID:*(void *)(a1 + 32)];
         break;
     }
   }
@@ -443,7 +443,7 @@ id sub_100126744(uint64_t a1)
   __int128 v13 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
-  id v3 = objc_msgSend(v2, "allKeys", 0);
+  id v3 = [v2 allKeys];
   id result = [v3 countByEnumeratingWithState:&v12 objects:v16 count:16];
   if (result)
   {
@@ -784,7 +784,7 @@ LABEL_12:
   {
     uint64_t v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: cmdQueue size %ld exceeding recurse limit of %ld. Back to runloop.",  "WiFiCommandQueueSignal",  v5,  10);
+      [qword_100219F60 WFLog:@"%s: cmdQueue size %ld exceeding recurse limit of %ld. Back to runloop." message:4, @"WiFiCommandQueueSignal", v5, 10];
     }
     objc_autoreleasePoolPop(v6);
   }
@@ -796,7 +796,7 @@ LABEL_12:
   {
     CFIndex v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: timer is running. Will not signal cmdQueue",  "WiFiCommandQueueSignal");
+      [qword_100219F60 WFLog:@"timer is running. Will not signal cmdQueue"];
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -842,7 +842,7 @@ void sub_100128AB8(uint64_t a1)
   {
     id v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:%d cmdQueue is EMPTY!!!!",  "__WiFiCommandQueueCallback",  506);
+      [qword_100219F60 WFLog:@"%s:%d cmdQueue is EMPTY!!!!" message:3];
     }
     objc_autoreleasePoolPop(v3);
   }
@@ -1077,7 +1077,7 @@ void sub_100129044(uint64_t a1)
   *(_BYTE *)(a1 + 72) = 0;
   CFNumberRef v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: retrying command", "__WiFiCommandQueueTimerCallback");
+    [qword_100219F60 WFLog:@"%s: retrying command" message:3];
   }
   objc_autoreleasePoolPop(v2);
   sub_100128AB8(a1);
@@ -1225,7 +1225,7 @@ void sub_10012A0E0(id a1, id a2, NSError *a3)
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "Failed to register for WAGroupTypeWiFi with the WA daemon (wifianalyticsd). Error code: %ld. *** All message/met ric submission is likely broken.",  -[NSError code](v4, "code"),  v6);
+      [qword_100219F60 WFLog:@"Failed to register for WAGroupTypeWiFi with the WA daemon (wifianalyticsd). Error code: %ld. *** All message/met ric submission is likely broken." message:[NSError code:v4, "code"] error:v6];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -1239,7 +1239,7 @@ void sub_10012A168(id a1, id a2, NSError *a3)
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "Failed to register for WAGroupTypeWiFi with the WA daemon (wifianalyticsd). Error code: %ld. *** All message/met ric submission is likely broken.",  -[NSError code](v4, "code"),  v6);
+      [qword_100219F60 WFLog:@"Failed to register for WAGroupTypeWiFi with the WA daemon (wifianalyticsd). Error code: %ld. *** All message/met ric submission is likely broken." message:[NSError code:v4 code]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -1281,14 +1281,14 @@ void sub_10012A44C(uint64_t a1, void *a2, void *a3)
     {
       if (qword_100219F60)
       {
-        CFNumberRef v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) key]);
+        CFNumberRef v8 = [*(id *)(a1 + 40) key];
         [v7 WFLog:4, "FAILED to submit GeoServices message with key: %@. Error: %@", v8, v5 message];
       }
     }
 
     else if (qword_100219F60)
     {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Successfully submitted GEOWiFiConnectionQuality instance",  "-[WiFiManagerAnalytics submitGeoServicesMessage:]_block_invoke");
+      [qword_100219F60 WFLog:@"Successfully submitted GEOWiFiConnectionQuality instance" message:3];
     }
 
     objc_autoreleasePoolPop(v6);
@@ -1305,14 +1305,14 @@ void sub_10012A5C0(uint64_t a1, void *a2, void *a3)
   {
     if (qword_100219F60)
     {
-      CFNumberRef v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) key]);
+      CFNumberRef v8 = [*(id *)(a1 + 32) key];
       [v7 WFLog:4, "FAILED to submit datapath diagnostics message with key: %@. Error: %@", v8, v5 message];
     }
   }
 
   else if (qword_100219F60)
   {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Successfully submitted WiFiDiagnostics instance",  "-[WiFiManagerAnalytics triggerDatapathDiagnosticsNoReply:]_block_invoke");
+    [qword_100219F60 WFLog:@"Successfully submitted WiFiDiagnostics instance" message:3];
   }
 
   objc_autoreleasePoolPop(v6);
@@ -1362,12 +1362,12 @@ LABEL_4:
   {
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s result is nil",  "-[WiFiManagerAnalytics getDeviceAnalyticsConfigurationWithCompletion:]_block_invoke",  v9);
+      [qword_100219F60 WFLog:@"%s result is nil" message:4];
     }
     goto LABEL_4;
   }
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSDictionary dictionaryWithDictionary:](&OBJC_CLASS___NSDictionary, "dictionaryWithDictionary:"));
+  id v7 = [NSDictionary dictionaryWithDictionary:];
 LABEL_7:
   uint64_t v8 = *(void *)(a1 + 32);
   if (v8) {
@@ -1412,7 +1412,7 @@ LABEL_15:
     if ((_DWORD)v7) {
       uint64_t v9 = "YES";
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s triggerDeviceAnalyticsStoreMigration success? %s",  "-[WiFiManagerAnalytics triggerDeviceAnalyticsStoreMigrationWithCompletion:]_block_invoke",  v9);
+    [qword_100219F60 WFLog:@"-[WiFiManagerAnalytics triggerDeviceAnalyticsStoreMigrationWithCompletion:]_block_invoke" message:4 "%s triggerDeviceAnalyticsStoreMigration success? %s" v9];
   }
 
   objc_autoreleasePoolPop(v8);
@@ -1431,14 +1431,14 @@ void sub_10012AD88(uint64_t a1, void *a2, void *a3)
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "standard reply produced a null message.. identifier: %u",  *(unsigned int *)(a1 + 48));
+      [qword_100219F60 WFLog:@"standard reply produced a null message.. identifier: %u" message:4];
     }
     objc_autoreleasePoolPop(v7);
   }
 
   if (*(void *)(a1 + 40))
   {
-    uint64_t v8 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) serialQ]);
+    uint64_t v8 = (dispatch_queue_s *)[*(id *)(a1 + 32) serialQ];
     block[0] = _NSConcreteStackBlock;
     block[1] = 3221225472LL;
     block[2] = sub_10012AEDC;
@@ -1466,7 +1466,7 @@ void sub_10012AEDC(void *a1)
   uint64_t v2 = objc_autoreleasePoolPush();
   id v3 = [(id)objc_opt_class(a1[4]) instanceMethodSignatureForSelector:"_runReplyBlock:withMessage:andError:"];
   CFIndex v4 = (void *)objc_claimAutoreleasedReturnValue(v3);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSInvocation invocationWithMethodSignature:]( &OBJC_CLASS___NSInvocation,  "invocationWithMethodSignature:",  v4));
+  id v5 = [NSInvocation invocationWithMethodSignature:v4];
 
   [v5 setSelector:"_runReplyBlock:withMessage:andError:"];
   [v5 setTarget:a1[4]];
@@ -1555,7 +1555,7 @@ void sub_10012B4E8(id *a1, void *a2, void *a3)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "Failed to register for WAGroupTypeWiFiGeoServices, can't submit ConnectionQuality message");
+      [qword_100219F60 WFLog:@"Failed to register for WAGroupTypeWiFiGeoServices, can't submit ConnectionQuality message"];
     }
     objc_autoreleasePoolPop(v12);
     (*((void (**)(void))a1[6] + 2))();
@@ -1565,7 +1565,7 @@ void sub_10012B4E8(id *a1, void *a2, void *a3)
   {
     id v7 = dispatch_group_create();
     dispatch_group_enter(v7);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+    id v8 = [WAClient sharedClient];
     v20[0] = _NSConcreteStackBlock;
     v20[1] = 3221225472LL;
     v20[2] = sub_10012B774;
@@ -1577,7 +1577,7 @@ void sub_10012B4E8(id *a1, void *a2, void *a3)
     v23 = v9;
     [v8 getNewMessageForKey:@"CQ" groupType:2 andReply:v20];
 
-    id v10 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([a1[5] serialQ]);
+    id v10 = [a1[5] serialQ];
     block[0] = _NSConcreteStackBlock;
     block[1] = 3221225472LL;
     block[2] = sub_10012C934;
@@ -1586,7 +1586,7 @@ void sub_10012B4E8(id *a1, void *a2, void *a3)
     id v18 = a1[4];
     dispatch_group_notify(v9, v10, block);
 
-    id v11 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue([a1[5] serialQ]);
+    id v11 = [a1[5] serialQ];
     v13[0] = _NSConcreteStackBlock;
     v13[1] = 3221225472LL;
     v13[2] = sub_10012CE70;
@@ -1631,97 +1631,97 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
 
   else
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 fieldForKey:@"CQ_overAllStay"]);
+    id v8 = [v7 fieldForKey:@"CQ_overAllStay"];
     dispatch_block_t v9 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"overallStay"]);
-    objc_msgSend(v8, "setUint64Value:", objc_msgSend(v9, "unsignedLongLongValue"));
+    [v8 setUint64Value:[v9 unsignedLongLongValue]];
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lowLQMStay"]);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"lowLqmStay"]);
+    id v10 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lowLQMStay"];
+    id v11 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"lowLqmStay"];
     objc_msgSend(v10, "setUint64Value:", objc_msgSend(v11, "unsignedLongLongValue"));
 
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_faultyStay"]);
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"faultyStay"]);
+    id v12 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_faultyStay"];
+    id v13 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"faultyStay"];
     objc_msgSend(v12, "setUint64Value:", objc_msgSend(v13, "unsignedLongLongValue"));
 
-    id v14 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lqmTranCount"]);
-    id v15 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"lqmTransitionCount"]);
+    id v14 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lqmTranCount"];
+    id v15 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"lqmTransitionCount"];
     objc_msgSend(v14, "setUint64Value:", objc_msgSend(v15, "unsignedLongLongValue"));
 
     qos_class_t v16 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_packetsIn"]);
-    CFIndex v17 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"packetsIn"]);
+    CFIndex v17 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"packetsIn"];
     objc_msgSend(v16, "setUint64Value:", objc_msgSend(v17, "unsignedLongLongValue"));
 
-    id v18 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_packetsOut"]);
-    CFRange v19 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"packetsOut"]);
-    objc_msgSend(v18, "setUint64Value:", objc_msgSend(v19, "unsignedLongLongValue"));
+    id v18 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_packetsOut"];
+    CFRange v19 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"packetsOut"];
+    [v18 setUint64Value:[v19 unsignedLongLongValue]];
 
-    CFRange v20 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesInTotal"]);
-    id v21 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"bytesIn"]);
-    objc_msgSend(v20, "setUint64Value:", objc_msgSend(v21, "unsignedLongLongValue"));
+    CFRange v20 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesInTotal"];
+    id v21 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"bytesIn"];
+    [v20 setUint64Value:[v21 unsignedLongLongValue]];
 
-    id v22 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesOutTotal"]);
-    v23 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"bytesOut"]);
+    id v22 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesOutTotal"];
+    v23 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"bytesOut"];
     objc_msgSend(v22, "setUint64Value:", objc_msgSend(v23, "unsignedLongLongValue"));
 
     v24 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_reTxBytes"]);
-    v25 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"reTxBytes"]);
+    v25 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"reTxBytes"];
     objc_msgSend(v24, "setUint64Value:", objc_msgSend(v25, "unsignedLongLongValue"));
 
-    id v26 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_dataStalls"]);
+    id v26 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_dataStalls"];
     v27 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"dataStalls"]);
     objc_msgSend(v26, "setUint64Value:", objc_msgSend(v27, "unsignedLongLongValue"));
 
-    v28 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_receivedDupes"]);
-    v29 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"rxDupeBytes"]);
+    v28 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_receivedDupes"];
+    v29 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"rxDupeBytes"];
     objc_msgSend(v28, "setUint64Value:", objc_msgSend(v29, "unsignedLongLongValue"));
 
-    v30 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_rxOutOfOrderBytes"]);
-    v31 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"rxOOOBytes"]);
+    v30 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_rxOutOfOrderBytes"];
+    v31 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"rxOOOBytes"];
     objc_msgSend(v30, "setUint64Value:", objc_msgSend(v31, "unsignedLongLongValue"));
 
     v32 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeMin"]);
-    v33 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"rttMin"]);
+    v33 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"rttMin"];
     [v33 floatValue];
     objc_msgSend(v32, "setFloatValue:");
 
-    v34 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeAvg"]);
-    v35 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"rttAvg"]);
+    v34 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeAvg"];
+    v35 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"rttAvg"];
     [v35 floatValue];
     objc_msgSend(v34, "setFloatValue:");
 
-    v36 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeVar"]);
-    v37 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"rttVar"]);
+    v36 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeVar"];
+    v37 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"rttVar"];
     [v37 floatValue];
     objc_msgSend(v36, "setFloatValue:");
 
     v38 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_successfulConnections"]);
-    v39 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"connSuccesses"]);
-    objc_msgSend(v38, "setUint64Value:", objc_msgSend(v39, "unsignedLongLongValue"));
+    v39 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"connSuccesses"];
+    [v38 setUint64Value:[v39 unsignedLongLongValue]];
 
     v40 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_failedConnections"]);
-    v41 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"connAttempts"]);
+    v41 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"connAttempts"];
     v42 = [v41 unsignedLongLongValue];
-    v43 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"connSuccesses"]);
-    objc_msgSend(v40, "setUint64Value:", v42 - (_BYTE *)objc_msgSend(v43, "unsignedLongLongValue"));
+    v43 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"connSuccesses"];
+    [v40 setUint64Value:v42 - (unsigned long long)[v43 unsignedLongLongValue]];
 
     v44 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_sslConnectionCount"]);
-    v45 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"connAttempts"]);
-    objc_msgSend(v44, "setUint32Value:", objc_msgSend(v45, "unsignedIntegerValue"));
+    v45 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"connAttempts"];
+    [v44 setUint32Value:[v45 unsignedIntegerValue]];
 
-    v46 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_sslErrorCount"]);
+    v46 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_sslErrorCount"];
     v47 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"certErrors"]);
     objc_msgSend(v46, "setUint32Value:", objc_msgSend(v47, "unsignedIntegerValue"));
 
-    v48 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesInActive"]);
-    v49 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseBytesIn"]);
-    objc_msgSend(v48, "setUint64Value:", objc_msgSend(v49, "unsignedLongLongValue"));
+    v48 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesInActive"];
+    v49 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseBytesIn"];
+    [v48 setUint64Value:[v49 unsignedLongLongValue]];
 
     v50 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_bytesOutActive"]);
-    v51 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseBytesOut"]);
-    objc_msgSend(v50, "setUint64Value:", objc_msgSend(v51, "unsignedLongLongValue"));
+    v51 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseBytesOut"];
+    [v50 setUint64Value:[v51 unsignedLongLongValue]];
 
-    v52 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeAvgActive"]);
-    v53 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseRttAvg"]);
+    v52 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeAvgActive"];
+    v53 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaActiveUseRttAvg"];
     [v53 floatValue];
     objc_msgSend(v52, "setFloatValue:");
 
@@ -1730,65 +1730,65 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
     [v55 floatValue];
     objc_msgSend(v54, "setFloatValue:");
 
-    v56 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeVarActive"]);
-    v57 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAactiveUseRttVar"]);
+    v56 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_roundTripTimeVarActive"];
+    v57 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAactiveUseRttVar"];
     [v57 floatValue];
     objc_msgSend(v56, "setFloatValue:");
 
     v58 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_cca"]);
     v59 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaCCA"]);
-    objc_msgSend(v58, "setInt32Value:", objc_msgSend(v59, "integerValue"));
+    [v58 setInt32Value:[v59 integerValue]];
 
-    v60 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_rssi"]);
-    v61 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaRSSI"]);
-    objc_msgSend(v60, "setInt32Value:", objc_msgSend(v61, "integerValue"));
+    v60 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_rssi"];
+    v61 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaRSSI"];
+    [v60 setInt32Value:[v61 integerValue]];
 
     v62 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_snr"]);
-    v63 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSNR"]);
-    objc_msgSend(v62, "setInt32Value:", objc_msgSend(v63, "integerValue"));
+    v63 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSNR"];
+    [v62 setInt32Value:[v63 integerValue]];
 
-    v64 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_uniqueID"]);
-    v65 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaBSSIDConnected"]);
+    v64 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_uniqueID"];
+    v65 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaBSSIDConnected"];
     [v64 setStringValue:v65];
 
-    v66 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_hotspot20"]);
-    v67 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaHS2"]);
-    objc_msgSend(v66, "setBoolValue:", objc_msgSend(v67, "BOOLValue"));
+    v66 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_hotspot20"];
+    v67 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaHS2"];
+    [v66 setBoolValue:[v67 BOOLValue]];
 
     v68 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_band"]);
-    v69 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaBand"]);
+    v69 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaBand"];
     objc_msgSend(v68, "setUint32Value:", objc_msgSend(v69, "unsignedIntegerValue"));
 
     v70 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_channel"]);
     v71 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaChannel"]);
-    objc_msgSend(v70, "setUint32Value:", objc_msgSend(v71, "unsignedIntegerValue"));
+    [v70 setUint32Value:[v71 unsignedIntegerValue]];
 
-    v72 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_channelWidth"]);
+    v72 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_channelWidth"];
     v73 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaChWidth"]);
     objc_msgSend(v72, "setUint32Value:", objc_msgSend(v73, "unsignedIntegerValue"));
 
-    v74 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_phyMode"]);
+    v74 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_phyMode"];
     v75 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaPhyMode"]);
     objc_msgSend(v74, "setUint32Value:", objc_msgSend(v75, "unsignedIntegerValue"));
 
     v76 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_timeOfDay"]);
-    v77 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaTimeOfDay"]);
-    objc_msgSend(v76, "setUint64Value:", objc_msgSend(v77, "unsignedLongLongValue"));
+    v77 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaTimeOfDay"];
+    [v76 setUint64Value:[v77 unsignedLongLongValue]];
 
     v78 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_networkType"]);
     v79 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAdvertisedNetworkType"]);
     objc_msgSend(v78, "setInt32Value:", objc_msgSend(v79, "unsignedIntegerValue"));
 
     v80 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_wasCaptiveFlag"]);
-    v81 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaWasCaptive"]);
-    objc_msgSend(v80, "setUint32Value:", objc_msgSend(v81, "BOOLValue"));
+    v81 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaWasCaptive"];
+    [v80 setUint32Value:[v81 BOOLValue]];
 
     v82 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_networkOrigin"]);
-    v83 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaNetworkOriginator"]);
-    objc_msgSend(v82, "setInt32Value:", objc_msgSend(v83, "intValue") + 1);
+    v83 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaNetworkOriginator"];
+    [v82 setInt32Value:[v83 intValue] + 1];
 
     v84 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_topDLRate"]);
-    v85 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"topDownloadRate"]);
+    v85 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"topDownloadRate"];
     [v85 floatValue];
     objc_msgSend(v84, "setFloatValue:");
 
@@ -1796,23 +1796,23 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
     v87 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"isKnownGood"]);
     objc_msgSend(v86, "setBoolValue:", objc_msgSend(v87, "intValue") != 0);
 
-    v88 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lowInternetDL"]);
-    v89 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"isLowInternetDL"]);
-    objc_msgSend(v88, "setBoolValue:", objc_msgSend(v89, "BOOLValue"));
+    v88 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lowInternetDL"];
+    v89 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"isLowInternetDL"];
+    [v88 setBoolValue:[v89 BOOLValue]];
 
     v90 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_lowInternetUL"]);
     v91 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"isLowInternetUL"]);
-    objc_msgSend(v90, "setBoolValue:", objc_msgSend(v91, "BOOLValue"));
+    [v90 setBoolValue:[v91 BOOLValue]];
 
     v92 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_isEdgeBSS"]);
-    v93 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaIsEdgeBSS"]);
-    objc_msgSend(v92, "setBoolValue:", objc_msgSend(v93, "BOOLValue"));
+    v93 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaIsEdgeBSS"];
+    [v92 setBoolValue:[v93 BOOLValue]];
 
     v94 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_authTraits"]);
-    v95 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSecType"]);
+    v95 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSecType"];
     if (v95)
     {
-      v96 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSecType"]);
+      v96 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSecType"];
       unsigned __int8 v97 = [v96 unsignedIntegerValue];
       if ((v97 & 8) != 0)
       {
@@ -1842,38 +1842,38 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
       [v94 addRepeatableInt32Value:1];
     }
 
-    v99 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_associationReason"]);
-    v100 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAssocReason"]);
-    objc_msgSend(v99, "setInt32Value:", objc_msgSend(v100, "integerValue"));
+    v99 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_associationReason"];
+    v100 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAssocReason"];
+    [v99 setInt32Value:[v100 integerValue]];
 
-    v101 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_disassociationReason"]);
-    v102 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaDisassocReason"]);
-    objc_msgSend(v101, "setInt32Value:", objc_msgSend(v102, "integerValue"));
+    v101 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_disassociationReason"];
+    v102 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaDisassocReason"];
+    [v101 setInt32Value:[v102 integerValue]];
 
     v103 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_captiveDetermination"]);
-    v104 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaCaptiveFlag"]);
-    objc_msgSend(v103, "setInt32Value:", objc_msgSend(v104, "integerValue"));
+    v104 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaCaptiveFlag"];
+    [v103 setInt32Value:[v104 integerValue]];
 
     v105 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_apMode"]);
-    v106 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAPMode"]);
-    objc_msgSend(v105, "setInt32Value:", objc_msgSend(v106, "integerValue"));
+    v106 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAPMode"];
+    [v105 setInt32Value:[v106 integerValue]];
 
     v107 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_associationLength"]);
-    v108 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAssociatedTime"]);
-    objc_msgSend(v107, "setInt32Value:", objc_msgSend(v108, "integerValue"));
+    v108 = (void *)[*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaAssociatedTime"];
+    [v107 setInt32Value:[v108 integerValue]];
 
     v109 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_location"]);
-    v110 = (void *)objc_claimAutoreleasedReturnValue([v109 subMessageValue]);
-    v111 = (void *)objc_claimAutoreleasedReturnValue([v110 fieldForKey:@"GEOL_latLng"]);
-    v112 = (void *)objc_claimAutoreleasedReturnValue([v111 subMessageValue]);
+    v110 = (void *)[v109 subMessageValue];
+    v111 = (void *)[v110 fieldForKey:@"GEOL_latLng"];
+    v112 = (void *)[v111 subMessageValue];
 
-    v113 = (void *)objc_claimAutoreleasedReturnValue([v112 fieldForKey:@"GEOLL_lat"]);
-    v114 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaLat"]);
+    v113 = [v112 fieldForKey:@"GEOLL_lat"];
+    v114 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaLat"];
     [v114 doubleValue];
     objc_msgSend(v113, "setDoubleValue:");
 
-    v115 = (void *)objc_claimAutoreleasedReturnValue([v112 fieldForKey:@"GEOLL_lng"]);
-    v116 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaLon"]);
+    v115 = (void *)[v112 fieldForKey:@"GEOLL_lng"];
+    v116 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaLon"];
     [v116 doubleValue];
     objc_msgSend(v115, "setDoubleValue:");
 
@@ -1881,7 +1881,7 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
     v118 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaSSID"]);
     [v117 setStringValue:v118];
 
-    uint64_t v120 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaColoState"]);
+    uint64_t v120 = [*(id *)(a1 + 40) objectForKeyedSubscript:@"ppaColoState"];
     unsigned int v119 = [(id)v120 unsignedIntegerValue];
 
     LODWORD(v120) = 0;
@@ -1889,7 +1889,7 @@ void sub_10012B774(uint64_t a1, void *a2, void *a3)
     {
       if (((v119 >> v120) & 1) != 0)
       {
-        v121 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_traits"]);
+        v121 = [*(id *)(*(void *)(*(void *)(a1 + 56) + 8) + 40) fieldForKey:@"CQ_traits"];
         uint64_t v120 = (v120 + 1);
         [v121 addRepeatableInt32Value:v120];
       }
@@ -1929,8 +1929,8 @@ void sub_10012C9D4(uint64_t a1, void *a2, void *a3)
     __int128 v49 = 0u;
     __int128 v46 = 0u;
     __int128 v47 = 0u;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaBSSIDsMatchingSSID"]);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 allObjects]);
+    id v7 = [*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaBSSIDsMatchingSSID"];
+    id v8 = [v7 allObjects];
 
     id obj = v8;
     id v9 = [v8 countByEnumeratingWithState:&v46 objects:v51 count:16];
@@ -1947,22 +1947,22 @@ void sub_10012C9D4(uint64_t a1, void *a2, void *a3)
           }
           id v13 = *(void **)(*((void *)&v46 + 1) + 8LL * (void)i);
           id v14 = [v5 copy];
-          id v15 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"AP2_uniqueID"]);
-          qos_class_t v16 = (void *)objc_claimAutoreleasedReturnValue([v13 bssid]);
+          id v15 = [v14 fieldForKey:@"AP2_uniqueID"];
+          qos_class_t v16 = (void *)[v13 bssid];
           [v15 setStringValue:v16];
 
           CFIndex v17 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"AP2_channel"]);
-          id v18 = (void *)objc_claimAutoreleasedReturnValue([v13 channel]);
+          id v18 = [v13 channel];
           objc_msgSend(v17, "setUint32Value:", objc_msgSend(v18, "unsignedIntValue"));
 
           CFRange v19 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"AP2_rssi"]);
-          CFRange v20 = (void *)objc_claimAutoreleasedReturnValue([v13 rssi]);
-          objc_msgSend(v19, "setInt32Value:", objc_msgSend(v20, "intValue"));
+          CFRange v20 = [v13 rssi];
+          [v19 setInt32Value:[v20 intValue]];
 
-          id v21 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"AP2_origin"]);
-          objc_msgSend(v21, "setInt32Value:", objc_msgSend(v13, "origin"));
+          id v21 = [v14 fieldForKey:@"AP2_origin"];
+          [v21 setInt32Value:[v13 origin]];
 
-          id v22 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) fieldForKey:@"CQ_essMembers"]);
+          id v22 = [*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) fieldForKey:@"CQ_essMembers"];
           [v22 addRepeatableSubMessageValue:v14];
         }
 
@@ -1976,8 +1976,8 @@ void sub_10012C9D4(uint64_t a1, void *a2, void *a3)
     __int128 v45 = 0u;
     __int128 v42 = 0u;
     __int128 v43 = 0u;
-    v23 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaBSSIDsNotMatchSSID"]);
-    v24 = (void *)objc_claimAutoreleasedReturnValue([v23 allObjects]);
+    v23 = [*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaBSSIDsNotMatchSSID"];
+    v24 = [v23 allObjects];
 
     id obja = v24;
     id v25 = [v24 countByEnumeratingWithState:&v42 objects:v50 count:16];
@@ -1994,19 +1994,19 @@ void sub_10012C9D4(uint64_t a1, void *a2, void *a3)
           }
           v29 = *(void **)(*((void *)&v42 + 1) + 8LL * (void)j);
           id v30 = [v5 copy];
-          v31 = (void *)objc_claimAutoreleasedReturnValue([v30 fieldForKey:@"AP2_uniqueID"]);
-          v32 = (void *)objc_claimAutoreleasedReturnValue([v29 bssid]);
+          v31 = [v30 fieldForKey:@"AP2_uniqueID"];
+          v32 = (void *)[v29 bssid];
           [v31 setStringValue:v32];
 
-          v33 = (void *)objc_claimAutoreleasedReturnValue([v30 fieldForKey:@"AP2_channel"]);
-          v34 = (void *)objc_claimAutoreleasedReturnValue([v29 channel]);
+          v33 = [v30 fieldForKey:@"AP2_channel"];
+          v34 = [v29 channel];
           objc_msgSend(v33, "setUint32Value:", objc_msgSend(v34, "unsignedIntValue"));
 
-          v35 = (void *)objc_claimAutoreleasedReturnValue([v30 fieldForKey:@"AP2_rssi"]);
-          v36 = (void *)objc_claimAutoreleasedReturnValue([v29 rssi]);
+          v35 = [v30 fieldForKey:@"AP2_rssi"];
+          v36 = [v29 rssi];
           objc_msgSend(v35, "setInt32Value:", objc_msgSend(v36, "intValue"));
 
-          v37 = (void *)objc_claimAutoreleasedReturnValue([v30 fieldForKey:@"AP2_origin"]);
+          v37 = [v30 fieldForKey:@"AP2_origin"];
           objc_msgSend(v37, "setInt32Value:", objc_msgSend(v29, "origin"));
 
           v38 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) fieldForKey:@"CQ_nearbyBSSs"]);
@@ -2034,7 +2034,7 @@ void sub_10012C9D4(uint64_t a1, void *a2, void *a3)
 
 void sub_10012CE70(uint64_t a1)
 {
-  uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  uint64_t v2 = (void *)[WAClient sharedClient];
   v3[0] = _NSConcreteStackBlock;
   v3[1] = 3221225472LL;
   v3[2] = sub_10012CF20;
@@ -2051,17 +2051,17 @@ void sub_10012CF20(uint64_t a1, void *a2, void *a3)
   id v5 = a3;
   if (!v5 && v12 && *(void *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 40LL))
   {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaDLSpeed"]);
+    uint64_t v6 = (void *)[*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaDLSpeed"];
 
     if (v6)
     {
-      id v7 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaDLSpeed"]);
+      id v7 = [*(id *)(a1 + 32) objectForKeyedSubscript:@"ppaDLSpeed"];
       id v8 = [v12 copy];
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 fieldForKey:@"CST_avgDL"]);
+      id v9 = [v8 fieldForKey:@"CST_avgDL"];
       [v7 floatValue];
-      objc_msgSend(v9, "setFloatValue:");
+      [v9 setFloatValue:];
 
-      id v10 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(*(void *)(a1 + 48) + 8) + 40) fieldForKey:@"CQ_speedTests"]);
+      id v10 = [*(id *)(*(void *)(*(void *)(a1 + 48) + 8) + 40) fieldForKey:@"CQ_speedTests"];
       [v10 addRepeatableSubMessageValue:v8];
     }
   }
@@ -2108,7 +2108,7 @@ LABEL_4:
   {
     LODWORD(valuePtr) = 0;
     CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"DPSN_symptom"]);
+    id v8 = [v5 fieldForKey:@"DPSN_symptom"];
     [v8 setInt32Value:valuePtr];
   }
 
@@ -2116,7 +2116,7 @@ LABEL_4:
   {
     LODWORD(valuePtr) = 0;
     CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"DPSN_problemAC"]);
+    id v9 = [v5 fieldForKey:@"DPSN_problemAC"];
     [v9 setUint32Value:valuePtr];
   }
 
@@ -2124,7 +2124,7 @@ LABEL_4:
   {
     LODWORD(valuePtr) = 0;
     CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-    id v10 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"DPSN_cca"]);
+    id v10 = [v5 fieldForKey:@"DPSN_cca"];
     [v10 setUint32Value:valuePtr];
   }
 
@@ -2133,7 +2133,7 @@ LABEL_4:
   {
     uint64_t valuePtr = 0LL;
     CFNumberGetValue((CFNumberRef)value, kCFNumberLongLongType, &valuePtr);
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"DPSN_timestamp"]);
+    uint64_t v11 = (void *)[v5 fieldForKey:@"DPSN_timestamp"];
     [v11 setUint64Value:valuePtr];
   }
 
@@ -2141,7 +2141,7 @@ LABEL_4:
     && BOOLean)
   {
     int v12 = CFBooleanGetValue(BOOLean);
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"DPSN_facetimeCallInProgress"]);
+    id v13 = [v5 fieldForKey:@"DPSN_facetimeCallInProgress"];
     [v13 setBoolValue:v12 != 0];
   }
 
@@ -2160,28 +2160,28 @@ void sub_10012D528(uint64_t a1, void *a2, void *a3)
 
   else
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttGatewayBE"]);
+    id v7 = [v15 fieldForKey:@"DPSAPS_rttGatewayBE"];
     [v7 setUint32Value:**(unsigned int **)(a1 + 40)];
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttGatewayBK"]);
+    id v8 = [v15 fieldForKey:@"DPSAPS_rttGatewayBK"];
     [v8 setUint32Value:*(unsigned int *)(*(void *)(a1 + 40) + 4)];
 
     id v9 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttGatewayVO"]);
     [v9 setUint32Value:*(unsigned int *)(*(void *)(a1 + 40) + 8)];
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttGatewayVI"]);
+    id v10 = [v15 fieldForKey:@"DPSAPS_rttGatewayVI"];
     [v10 setUint32Value:*(unsigned int *)(*(void *)(a1 + 40) + 12)];
 
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttPrimaryDnsBE"]);
+    uint64_t v11 = (void *)[v15 fieldForKey:@"DPSAPS_rttPrimaryDnsBE"];
     [v11 setUint32Value:0];
 
-    int v12 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttPrimaryDnsBK"]);
+    int v12 = (void *)[v15 fieldForKey:@"DPSAPS_rttPrimaryDnsBK"];
     [v12 setUint32Value:0];
 
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttPrimaryDnsVO"]);
+    id v13 = [v15 fieldForKey:@"DPSAPS_rttPrimaryDnsVO"];
     [v13 setUint32Value:0];
 
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v15 fieldForKey:@"DPSAPS_rttPrimaryDnsVI"]);
+    uint64_t v14 = (void *)[v15 fieldForKey:@"DPSAPS_rttPrimaryDnsVI"];
     [v14 setUint32Value:0];
   }
 
@@ -2203,25 +2203,25 @@ void sub_10012D7A0(uint64_t a1, void *a2, void *a3)
 
   else
   {
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_newBSSID"]);
+    id v7 = [v14 fieldForKey:@"WFAAWDWADAAD_newBSSID"];
     [v7 setBoolValue:*(_BYTE *)(*(void *)(a1 + 40) + 1) != 0];
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_changedChannel"]);
+    id v8 = [v14 fieldForKey:@"WFAAWDWADAAD_changedChannel"];
     [v8 setBoolValue:*(_BYTE *)(*(void *)(a1 + 40) + 2) != 0];
 
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_changedDNSPrimary"]);
+    id v9 = [v14 fieldForKey:@"WFAAWDWADAAD_changedDNSPrimary"];
     [v9 setBoolValue:**(_BYTE **)(a1 + 40) != 0];
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_changedDNSSecondary"]);
+    id v10 = [v14 fieldForKey:@"WFAAWDWADAAD_changedDNSSecondary"];
     [v10 setBoolValue:**(_BYTE **)(a1 + 40) != 0];
 
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_changedMAC"]);
+    uint64_t v11 = (void *)[v14 fieldForKey:@"WFAAWDWADAAD_changedMAC"];
     [v11 setBoolValue:*(_BYTE *)(*(void *)(a1 + 40) + 3) != 0];
 
-    int v12 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_eventType"]);
+    int v12 = (void *)[v14 fieldForKey:@"WFAAWDWADAAD_eventType"];
     [v12 setInt32Value:*(unsigned int *)(*(void *)(a1 + 40) + 8)];
 
-    id v13 = (void *)objc_claimAutoreleasedReturnValue([v14 fieldForKey:@"WFAAWDWADAAD_additionalInfo"]);
+    id v13 = [v14 fieldForKey:@"WFAAWDWADAAD_additionalInfo"];
     [v13 setUint32Value:*(unsigned int *)(*(void *)(a1 + 40) + 12)];
   }
 
@@ -2251,7 +2251,7 @@ void sub_10012DA28(uint64_t a1, void *a2, void *a3)
     if (Value)
     {
       id v8 = Value;
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v22 fieldForKey:@"WFAAWDWAAAPI_manufacturerElement"]);
+      id v9 = [v22 fieldForKey:@"WFAAWDWAAAPI_manufacturerElement"];
       [v9 setStringValue:v8];
     }
 
@@ -2259,7 +2259,7 @@ void sub_10012DA28(uint64_t a1, void *a2, void *a3)
     if (v10)
     {
       uint64_t v11 = v10;
-      int v12 = (void *)objc_claimAutoreleasedReturnValue([v22 fieldForKey:@"WFAAWDWAAAPI_modelName"]);
+      int v12 = (void *)[v22 fieldForKey:@"WFAAWDWAAAPI_modelName"];
       [v12 setStringValue:v11];
     }
 
@@ -2267,7 +2267,7 @@ void sub_10012DA28(uint64_t a1, void *a2, void *a3)
     if (v13)
     {
       id v14 = v13;
-      id v15 = (void *)objc_claimAutoreleasedReturnValue([v22 fieldForKey:@"WFAAWDWAAAPI_modelNumber"]);
+      id v15 = [v22 fieldForKey:@"WFAAWDWAAAPI_modelNumber"];
       [v15 setStringValue:v14];
     }
 
@@ -2275,7 +2275,7 @@ void sub_10012DA28(uint64_t a1, void *a2, void *a3)
     if (v16)
     {
       CFIndex v17 = v16;
-      id v18 = (void *)objc_claimAutoreleasedReturnValue([v22 fieldForKey:@"WFAAWDWAAAPI_deviceNameElement"]);
+      id v18 = [v22 fieldForKey:@"WFAAWDWAAAPI_deviceNameElement"];
       [v18 setStringValue:v17];
     }
 
@@ -2283,7 +2283,7 @@ void sub_10012DA28(uint64_t a1, void *a2, void *a3)
     if (v19)
     {
       CFRange v20 = v19;
-      id v21 = (void *)objc_claimAutoreleasedReturnValue([v22 fieldForKey:@"WFAAWDWAAAPI_deviceNameData"]);
+      id v21 = [v22 fieldForKey:@"WFAAWDWAAAPI_deviceNameData"];
       [v21 setStringValue:v20];
     }
   }
@@ -2322,7 +2322,7 @@ void sub_10012DCB8(uint64_t a1, void *a2, void *a3)
     {
       unsigned int valuePtr = 0;
       CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-      id v9 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"WFAAWDSWFN_actionField"]);
+      id v9 = [v5 fieldForKey:@"WFAAWDSWFN_actionField"];
       [v9 setUint32Value:valuePtr];
     }
 
@@ -2331,7 +2331,7 @@ void sub_10012DCB8(uint64_t a1, void *a2, void *a3)
     {
       unsigned int valuePtr = 0;
       CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-      id v10 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"WFAAWDSWFN_recoveryAction"]);
+      id v10 = [v5 fieldForKey:@"WFAAWDSWFN_recoveryAction"];
       [v10 setUint32Value:valuePtr];
     }
 
@@ -2340,7 +2340,7 @@ void sub_10012DCB8(uint64_t a1, void *a2, void *a3)
     {
       unsigned int valuePtr = 0;
       CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-      uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"WFAAWDSWFN_recoveryReason"]);
+      uint64_t v11 = (void *)[v5 fieldForKey:@"WFAAWDSWFN_recoveryReason"];
       [v11 setUint32Value:valuePtr];
     }
 
@@ -2349,7 +2349,7 @@ void sub_10012DCB8(uint64_t a1, void *a2, void *a3)
     {
       unsigned int valuePtr = 0;
       CFNumberGetValue((CFNumberRef)value, kCFNumberSInt32Type, &valuePtr);
-      int v12 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"WFAAWDSWFN_userInput"]);
+      int v12 = (void *)[v5 fieldForKey:@"WFAAWDSWFN_userInput"];
       [v12 setUint32Value:valuePtr];
     }
 
@@ -2357,7 +2357,7 @@ void sub_10012DCB8(uint64_t a1, void *a2, void *a3)
       && BOOLean)
     {
       int v13 = CFBooleanGetValue(BOOLean);
-      id v14 = (void *)objc_claimAutoreleasedReturnValue([v5 fieldForKey:@"WFAAWDSWFN_facetimeCallInProgress"]);
+      id v14 = (void *)[v5 fieldForKey:@"WFAAWDSWFN_facetimeCallInProgress"];
       [v14 setBoolValue:v13 != 0];
     }
   }
@@ -2382,7 +2382,7 @@ id sub_10012DFAC(uint64_t a1)
   id v7 = [v2 askToLaunchTapToRadarWithMessage:v6 timeout:&stru_1001E5F00 completionHandler:60.0];
   if ((v7 & 1) != 0)
   {
-    BOOL v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSURL URLWithString:]( &OBJC_CLASS___NSURL,  "URLWithString:",  @"tap-to-radar://new?Title=WiFi%20Password%20Missing%20From%20Keychain&AutoDiagnostics=phone&Description=WiFi%20Password%20Missing%20From%20Keychain&ComponentID=621547&ComponentName=WiFi%20Connectivity&ComponentVersion=iOS&Classification=Serious%20Bug%20&ExtensionIdentifiers=com.apple.DiagnosticExtensions.WiFi"));
+    BOOL v8 = [NSURL URLWithString:@"tap-to-radar://new?Title=WiFi%20Password%20Missing%20From%20Keychain&AutoDiagnostics=phone&Description=WiFi%20Password%20Missing%20From%20Keychain&ComponentID=621547&ComponentName=WiFi%20Connectivity&ComponentVersion=iOS&Classification=Serious%20Bug%20&ExtensionIdentifiers=com.apple.DiagnosticExtensions.WiFi"];
     id v9 = [v2 tapToRadarWithURL:v8 completionHandler:&stru_1001E5F20];
   }
 
@@ -2390,7 +2390,7 @@ id sub_10012DFAC(uint64_t a1)
   {
     id v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: User declined the TTR",  "WiFiMissingPasswordSoftErrorHandler");
+      [qword_100219F60 WFLog:@"%s: User declined the TTR" message:@"WiFiMissingPasswordSoftErrorHandler"];
     }
     objc_autoreleasePoolPop(v10);
   }
@@ -2435,7 +2435,7 @@ id sub_10012E668(uint64_t a1)
     else {
       id v3 = "Stopped";
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: %s tracking NOIs.",  "-[WiFiNOIManager asyncTrackNetworksOfInterest:]_block_invoke",  v3);
+    [qword_100219F60 WFLog:@"%s: %s tracking NOIs." message:3, "%s: %s tracking NOIs.",  "-[WiFiNOIManager asyncTrackNetworksOfInterest:]_block_invoke",  v3];
   }
 
   objc_autoreleasePoolPop(v2);
@@ -2477,7 +2477,7 @@ id sub_10012E834(uint64_t a1)
 LABEL_8:
   uint64_t v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [(id)qword_100219F60 WFLog:3, "%s: Setting home NOI for %s to : %@(%d)", "-[WiFiNOIManager setNetworkOfInterest:]_block_invoke", objc_msgSend(v2, "UTF8String"), sub_10003B334(v3), v3 message];
+    [qword_100219F60 WFLog:3, "%s: Setting home NOI for %s to : %@(%d)", "-[WiFiNOIManager setNetworkOfInterest:]_block_invoke", [v2 UTF8String], sub_10003B334(v3), v3 message];
   }
   objc_autoreleasePoolPop(v4);
   sub_10009FA58(*(const void **)(a1 + 48), v3);
@@ -2485,7 +2485,7 @@ LABEL_11:
   if (![*(id *)(*(void *)(a1 + 32) + 80) count]) {
     return [*(id *)(a1 + 32) asyncTrackNetworksOfInterest:0];
   }
-  unsigned __int8 v5 = objc_msgSend( v2,  "isEqualToString:",  objc_msgSend(*(id *)(*(void *)(a1 + 32) + 80), "firstObject"));
+  unsigned __int8 v5 = [v2 isEqualToString:[*(id *)(*(void *)(a1 + 32) + 80) firstObject]];
   uint64_t v6 = 1LL;
   if ((v5 & 1) != 0) {
     goto LABEL_15;
@@ -2500,7 +2500,7 @@ LABEL_15:
 
   id v7 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [(id)qword_100219F60 WFLog:3, "%s: Setting work NOI for %s to : %@(%d)", "-[WiFiNOIManager setNetworkOfInterest:]_block_invoke", objc_msgSend(v2, "UTF8String"), sub_10003B360(v3), v3 message];
+    [qword_100219F60 WFLog:3, "%s: Setting work NOI for %s to : %@(%d)", "-[WiFiNOIManager setNetworkOfInterest:]_block_invoke", [v2 UTF8String], sub_10003B360(v3), v3 message];
   }
   objc_autoreleasePoolPop(v7);
   sub_10009F864(*(const void **)(a1 + 48), v3);
@@ -2963,7 +2963,7 @@ _OWORD *sub_10012FED8( uint64_t a1, uint64_t a2, const __CFDictionary *a3, uint6
   {
     v34 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: null intfDictionary.",  "WiFiVirtualInterfaceCreateWithCompletion");
+      [qword_100219F60 WFLog:@"%s: null intfDictionary." message:4];
     }
     goto LABEL_33;
   }
@@ -2972,7 +2972,7 @@ _OWORD *sub_10012FED8( uint64_t a1, uint64_t a2, const __CFDictionary *a3, uint6
   {
     v34 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: null device.",  "WiFiVirtualInterfaceCreateWithCompletion");
+      [qword_100219F60 WFLog:@"%s: null device." message:@"WiFiVirtualInterfaceCreateWithCompletion"];
     }
     goto LABEL_33;
   }
@@ -2985,7 +2985,7 @@ _OWORD *sub_10012FED8( uint64_t a1, uint64_t a2, const __CFDictionary *a3, uint6
   {
     v34 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "Cannot create interface instance", v37);
+      [qword_100219F60 WFLog:@"Cannot create interface instance" message:v37];
     }
 LABEL_33:
     objc_autoreleasePoolPop(v34);
@@ -3039,7 +3039,7 @@ LABEL_33:
           uint64_t v35 = v28;
           v31 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "Cannot open 80211 device, err %d", v35);
+            [qword_100219F60 WFLog:@"Cannot open 80211 device, err %d" message:4 v35];
           }
           goto LABEL_24;
         }
@@ -3050,7 +3050,7 @@ LABEL_33:
           uint64_t v36 = v29;
           v31 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "Cannot bind 80211 device, err %d", v36);
+            [qword_100219F60 WFLog:@"Cannot bind 80211 device, err %d" message:4 v36];
           }
           goto LABEL_24;
         }
@@ -3334,7 +3334,7 @@ void sub_1001308A8(uint64_t a1)
     CFTypeID v2 = v1;
     id v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: received APPLE80211_M_AWDL_STATISTICS event.",  "__WiFiVirtualInterfaceProcessAwdlStatisticsEvent");
+      [qword_100219F60 WFLog:@"%s: received APPLE80211_M_AWDL_STATISTICS event." message:3];
     }
     objc_autoreleasePoolPop(v3);
     sub_10002ACEC(v2[3]);
@@ -3362,7 +3362,7 @@ void sub_1001309B4(uint64_t a1)
     uint64_t v4 = *(unsigned __int8 *)(a1 + 40);
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: didStart %d",  "__WiFiVirtualInterfaceProcessAWDLRealTimeModeEvent",  v4);
+      [qword_100219F60 WFLog:@"%s: didStart %d" message:3, "__WiFiVirtualInterfaceProcessAWDLRealTimeModeEvent", v4];
     }
     objc_autoreleasePoolPop(v5);
     char v6 = (void (*)(void, uint64_t, void))v3[17];
@@ -3413,7 +3413,7 @@ void sub_100130AEC(uint64_t a1)
     {
       uint64_t v10 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "invalid args: virtInf:%s, eventDict:%s",  "Null",  "non-Null");
+        [qword_100219F60 WFLog:@"invalid args: virtInf:%s, eventDict:%s" message:4, "Null", "non-Null"];
       }
       objc_autoreleasePoolPop(v10);
     }
@@ -3487,7 +3487,7 @@ uint64_t sub_100130D8C(void *a1)
     {
       uint64_t v4 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Unable to init event monitoring",  "WiFiVirtualInterfaceMonitorEvents");
+        [qword_100219F60 WFLog:@"%s: Unable to init event monitoring" message:4];
       }
       objc_autoreleasePoolPop(v4);
     }
@@ -3568,7 +3568,7 @@ CFDataRef sub_100130EB4(uint64_t a1)
             {
               uint64_t v13 = objc_autoreleasePoolPush();
               if (qword_100219F60) {
-                objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: sysctl failed.",  "WiFiVirtualInterfaceCopyMACAddress");
+                [qword_100219F60 WFLog:@"%s: sysctl failed." message:3];
               }
               objc_autoreleasePoolPop(v13);
               CFDataRef v11 = 0LL;
@@ -3585,7 +3585,7 @@ CFDataRef sub_100130EB4(uint64_t a1)
 
           uint64_t v12 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: reqBuff is NULL.",  "WiFiVirtualInterfaceCopyMACAddress");
+            [qword_100219F60 WFLog:@"%s: reqBuff is NULL." message:3];
           }
         }
 
@@ -3593,7 +3593,7 @@ CFDataRef sub_100130EB4(uint64_t a1)
         {
           uint64_t v12 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to get mib length.",  "WiFiVirtualInterfaceCopyMACAddress");
+            [qword_100219F60 WFLog:@"%s: failed to get mib length." message:3];
           }
         }
 
@@ -3611,7 +3611,7 @@ uint64_t sub_1001310E0(uint64_t a1, CFTypeRef cf, uint64_t a3)
   {
     CFDataRef v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null virtInf.", "WiFiVirtualInterfaceSetProperty");
+      [qword_100219F60 WFLog:@"%s: null virtInf." message:3];
     }
     goto LABEL_26;
   }
@@ -3620,7 +3620,7 @@ uint64_t sub_1001310E0(uint64_t a1, CFTypeRef cf, uint64_t a3)
   {
     CFDataRef v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null key.", "WiFiVirtualInterfaceSetProperty");
+      [qword_100219F60 WFLog:@"%s: null key." message:3];
     }
     goto LABEL_26;
   }
@@ -3629,7 +3629,7 @@ uint64_t sub_1001310E0(uint64_t a1, CFTypeRef cf, uint64_t a3)
   {
     CFDataRef v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null property.", "WiFiVirtualInterfaceSetProperty");
+      [qword_100219F60 WFLog:@"%s: null property." message:3];
     }
 LABEL_26:
     objc_autoreleasePoolPop(v11);
@@ -3879,7 +3879,7 @@ uint64_t sub_100131720(uint64_t a1, unsigned int *a2)
         *a2 = [*(id *)(a1 + 184) substate];
         id v5 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: AWDL sync state is enabled with schedule state = %d",  "WiFiVirtualInterfaceGetAwdlSyncState",  *a2);
+          [qword_100219F60 WFLog:@"%s: AWDL sync state is enabled with schedule state = %d" message:3, "%s: AWDL sync state is enabled with schedule state = %d", "WiFiVirtualInterfaceGetAwdlSyncState", *a2];
         }
         objc_autoreleasePoolPop(v5);
         return 1LL;
@@ -3896,7 +3896,7 @@ uint64_t sub_1001317AC(uint64_t a1, __CFDictionary **a2)
   {
     id v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null params.",  "WiFiVirtualInterfaceCopyAwdlPreferredChannels");
+      [qword_100219F60 WFLog:@"%s: null params." message:@"WiFiVirtualInterfaceCopyAwdlPreferredChannels"];
     }
     goto LABEL_18;
   }
@@ -3905,7 +3905,7 @@ uint64_t sub_1001317AC(uint64_t a1, __CFDictionary **a2)
   {
     id v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no awdl state",  "WiFiVirtualInterfaceCopyAwdlPreferredChannels");
+      [qword_100219F60 WFLog:@"%s: no awdl state" message:3];
     }
 LABEL_18:
     objc_autoreleasePoolPop(v13);
@@ -4461,7 +4461,7 @@ void sub_100132444(uint64_t a1, uint64_t a2)
   {
     BOOL v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "Transaction %d abruptly ended because %d",  *(void *)(a1 + 32),  a2);
+      [qword_100219F60 WFLog:@"Transaction %d abruptly ended because %d" message:4, *(void *)(a1 + 32), a2];
     }
     objc_autoreleasePoolPop(v4);
   }
@@ -4494,7 +4494,7 @@ uint64_t sub_1001324B0(uint64_t a1, CFArrayRef theArray)
               CFNumberGetValue(v12, kCFNumberSInt32Type, &valuePtr);
               id v14 = objc_alloc(&OBJC_CLASS___WiFiChannel);
               LOBYTE(v17) = 0;
-              id v15 = objc_msgSend( v14,  "initWithChannelNumber:bandwidth:is2_4GHz:is5GHz:is6GHz:isDFS:extensionChannelAbove:",  valuePtr,  1,  valuePtr < 0xF,  valuePtr > 0xE,  0,  0,  v17);
+              id v15 = [v14 initWithChannelNumber:valuePtr bandwidth:1 is2_4GHz:valuePtr < 0xF is5GHz:valuePtr > 0xE is6GHz:0 isDFS:0 extensionChannelAbove:v17];
               [v5 addObject:v15];
             }
           }
@@ -4525,7 +4525,7 @@ uint64_t sub_100132600( uint64_t a1, const void *a2, const __CFDictionary *a3, v
     {
       uint64_t v30 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null follow mode policy.",  "WiFiVirtualInterfaceStartAwdl");
+        [qword_100219F60 WFLog:@"%s: null follow mode policy." message:@"WiFiVirtualInterfaceStartAwdl"];
       }
       objc_autoreleasePoolPop(v30);
       uint64_t v25 = 4294963396LL;
@@ -4589,7 +4589,7 @@ uint64_t sub_100132600( uint64_t a1, const void *a2, const __CFDictionary *a3, v
   {
     int v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: timed out waiting for assisted discovery registration",  "WiFiVirtualInterfaceStartAwdl");
+      [qword_100219F60 WFLog:@"%s: timed out waiting for assisted discovery registration" message:4];
     }
     objc_autoreleasePoolPop(v29);
 LABEL_35:
@@ -4602,7 +4602,7 @@ LABEL_35:
   if ((_DWORD)v25)
   {
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: APPLE80211_IOC_AWDL_PEER_TRAFFIC_REGISTRATION returned error %d.",  "WiFiVirtualInterfaceStartAwdl",  v25);
+      [qword_100219F60 WFLog:@"%s: APPLE80211_IOC_AWDL_PEER_TRAFFIC_REGISTRATION returned error %d." message:@"WiFiVirtualInterfaceStartAwdl" v25];
     }
     objc_autoreleasePoolPop(v26);
   }
@@ -4639,7 +4639,7 @@ __CFDictionary *sub_100132A28(uint64_t a1, const void *a2, uint64_t a3, const vo
   {
     CFTypeID v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null AWDL interface.",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null AWDL interface." message:3];
     }
     goto LABEL_16;
   }
@@ -4648,7 +4648,7 @@ __CFDictionary *sub_100132A28(uint64_t a1, const void *a2, uint64_t a3, const vo
   {
     CFTypeID v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null ifname.",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null ifname." message:3];
     }
     goto LABEL_16;
   }
@@ -4658,7 +4658,7 @@ __CFDictionary *sub_100132A28(uint64_t a1, const void *a2, uint64_t a3, const vo
   {
     CFTypeID v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null policy.",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null policy." message:3];
     }
 LABEL_16:
     objc_autoreleasePoolPop(v12);
@@ -4684,7 +4684,7 @@ LABEL_16:
       }
       CFTypeID v13 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no AWDL request",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+        [qword_100219F60 WFLog:@"__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest: no AWDL request"];
       }
     }
 
@@ -4692,7 +4692,7 @@ LABEL_16:
     {
       CFTypeID v13 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null peer Context array.",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+        [qword_100219F60 WFLog:@"%s: null peer Context array." message:3];
       }
     }
   }
@@ -4701,7 +4701,7 @@ LABEL_16:
   {
     CFTypeID v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null peerContext.",  "__WiFiVirtualInterfaceCreateFollowModePolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null peerContext." message:3];
     }
   }
 
@@ -4720,7 +4720,7 @@ __CFDictionary *sub_100132C94( void *a1, const void *a2, const __CFDictionary *a
   {
     v57 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null AWDL interface.",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null AWDL interface." message:3];
     }
     goto LABEL_169;
   }
@@ -4729,7 +4729,7 @@ __CFDictionary *sub_100132C94( void *a1, const void *a2, const __CFDictionary *a
   {
     v57 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null ifname.",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest: null ifname."];
     }
     goto LABEL_169;
   }
@@ -4739,7 +4739,7 @@ __CFDictionary *sub_100132C94( void *a1, const void *a2, const __CFDictionary *a
   {
     v57 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null policy.",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null policy." message:3];
     }
 LABEL_169:
     objc_autoreleasePoolPop(v57);
@@ -4754,7 +4754,7 @@ LABEL_169:
   {
     v58 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null peerContext.",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null peerContext." message:3];
     }
     goto LABEL_176;
   }
@@ -4764,7 +4764,7 @@ LABEL_169:
   {
     v58 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null peer Context array.",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: null peer Context array." message:3];
     }
     goto LABEL_176;
   }
@@ -4778,7 +4778,7 @@ LABEL_169:
   {
     v58 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no AWDL request",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: no AWDL request" message:3];
     }
 LABEL_176:
     objc_autoreleasePoolPop(v58);
@@ -4932,7 +4932,7 @@ LABEL_26:
   {
     uint64_t v37 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: supported channel flags key not found",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+      [qword_100219F60 WFLog:@"%s: supported channel flags key not found" message:3];
     }
     objc_autoreleasePoolPop(v37);
     LODWORD(v67) = v61;
@@ -5076,7 +5076,7 @@ LABEL_119:
 
   __int128 v42 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: overriding preferred ranging channel to channel 6 for iPhone/iPad",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest");
+    [qword_100219F60 WFLog:@"%s: overriding preferred ranging channel to channel 6 for iPhone/iPad" message:3];
   }
   objc_autoreleasePoolPop(v42);
   unsigned int v43 = 6;
@@ -5137,7 +5137,7 @@ LABEL_121:
     {
       id v51 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using fallback channel %d because preferred channel %d is not supported (flags 0x%x)",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest",  v49,  v43,  v47);
+        [qword_100219F60 WFLog:@"%s: using fallback channel %d because preferred channel %d is not supported (flags 0x%x)",  "__WiFiVirtualInterfaceCreateAssistedDiscoveryPolicyFromRequest",  v49,  v43,  v47];
       }
       objc_autoreleasePoolPop(v51);
       __int16 v63 = v49;
@@ -5230,7 +5230,7 @@ uint64_t sub_100133814(uint64_t a1, const void *a2, uint64_t a3)
     {
       CFNumberRef v16 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null follow mode policy.",  "WiFiVirtualInterfaceStopAwdl");
+        [qword_100219F60 WFLog:@"%s: null follow mode policy." message:@"WiFiVirtualInterfaceStopAwdl"];
       }
       objc_autoreleasePoolPop(v16);
       goto LABEL_18;
@@ -5326,7 +5326,7 @@ uint64_t sub_100133AB0(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4)
   {
     CFDataRef v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null virtInf.", "WiFiVirtualInterfaceSetIoctl");
+      [qword_100219F60 WFLog:@"%s: null virtInf." message:3];
     }
     goto LABEL_14;
   }
@@ -5335,7 +5335,7 @@ uint64_t sub_100133AB0(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4)
   {
     CFDataRef v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null property.", "WiFiVirtualInterfaceSetIoctl");
+      [qword_100219F60 WFLog:@"%s: null property." message:3];
     }
 LABEL_14:
     uint64_t v11 = 4294963396LL;
@@ -5349,7 +5349,7 @@ LABEL_18:
   {
     CFDataRef v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Ioctls are not supported on this interface",  "WiFiVirtualInterfaceSetIoctl");
+      [qword_100219F60 WFLog:@"Ioctls are not supported on this interface" message:3];
     }
     uint64_t v11 = 4294963393LL;
     goto LABEL_18;
@@ -5405,7 +5405,7 @@ void sub_100133C00(uint64_t a1)
 
   uint64_t v6 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: calling WiFiP2PAWDLStateMonitor endMonitoring.",  "__WiFiVirtualInterfaceRelease");
+    [qword_100219F60 WFLog:@"%s: calling WiFiP2PAWDLStateMonitor endMonitoring." message:3];
   }
   objc_autoreleasePoolPop(v6);
   [*(id *)(a1 + 192) endMonitoring];
@@ -5595,7 +5595,7 @@ void sub_100134094(uint64_t a1, int a2)
       if (a2 == 1) {
         uint64_t v5 = "Interactive";
       }
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "ATJManager: setting ask-to-join interaction mode to %s",  v5);
+      [qword_100219F60 WFLog:@"ATJManager: setting ask-to-join interaction mode to %s" message:3 v5];
     }
 
     objc_autoreleasePoolPop(v4);
@@ -5633,7 +5633,7 @@ void sub_100134140(uint64_t a1)
               if (qword_100219F60)
               {
                 dispatch_time_t v24 = v16;
-                objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: current time is less than creation time",  "__WiFiATJMgrATJHistTblEntGetAverageInRangeTime");
+                [qword_100219F60 WFLog:@"%s: current time is less than creation time" message:3];
                 uint64_t v16 = v24;
               }
 
@@ -5661,7 +5661,7 @@ LABEL_19:
               {
                 uint64_t v17 = objc_autoreleasePoolPush();
                 if (qword_100219F60) {
-                  objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: current time is less than last seen time",  "__WiFiATJMgrATJHistTblEntGetTimeElapsedSinceLastSeen");
+                  [qword_100219F60 WFLog:@"%s: current time is less than last seen time" message:3];
                 }
                 objc_autoreleasePoolPop(v17);
                 continue;
@@ -5709,7 +5709,7 @@ void sub_1001343C0(uint64_t a1, unsigned int a2)
     {
       BOOL v4 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Lockdown Mode is enabled, ignoring SetATJMode %ld",  "WiFiATJMgrSetATJMode",  a2);
+        [qword_100219F60 WFLog:@"Lockdown Mode is enabled, ignoring SetATJMode %ld" message:3];
       }
       objc_autoreleasePoolPop(v4);
     }
@@ -5746,7 +5746,7 @@ void sub_100134480(uint64_t a1, int a2)
       if (!a2) {
         BOOL v4 = "disabled";
       }
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "ATJManager: atj test mode %s ", v4);
+      [qword_100219F60 WFLog:@"ATJManager: atj test mode %s " message:3];
     }
 
     objc_autoreleasePoolPop(v3);
@@ -5792,7 +5792,7 @@ BOOL sub_10013451C(uint64_t a1, BOOL a2, const __CFArray *a3, uint64_t a4)
     else {
       uint64_t v11 = "NonInteractive";
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "ATJManager: atjAction=%d atjEnabled=%d userInteractionMode=%s discovered %ld networks",  a4,  *(unsigned __int8 *)(a1 + 16),  v11,  CFArrayGetCount((CFArrayRef)a2));
+    [qword_100219F60 WFLog:@"ATJManager: atjAction=%d atjEnabled=%d userInteractionMode=%s discovered %ld networks" message:3 a4:a4 atjEnabled:*(unsigned __int8 *)(a1 + 16) userInteractionMode:v11 discovered:CFArrayGetCount((CFArrayRef)a2)];
   }
 
   objc_autoreleasePoolPop(v10);
@@ -5829,7 +5829,7 @@ LABEL_33:
 
       dispatch_time_t v24 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in range of preferred network.",  "__WiFiATJMgrIsPreferredNetworkInRange");
+        [qword_100219F60 WFLog:@"%s: in range of preferred network." message:@"__WiFiATJMgrIsPreferredNetworkInRange"];
       }
       objc_autoreleasePoolPop(v24);
       goto LABEL_33;
@@ -6027,7 +6027,7 @@ void sub_100136350(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchNotificationWithRecommendation:currentLocation:force:]_block_invoke", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@" message:[a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6095,7 +6095,7 @@ void sub_1001368AC(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchNotificationWithRandomMAC:]_block_invoke_3", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@" message:[a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6150,7 +6150,7 @@ void sub_100136EA4(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchJoinAlertForNetwork:withProviderName:andReason:]_block_invoke_3", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@" message:[a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6204,7 +6204,7 @@ void sub_100137434(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchLowDataModeAlertForNetwork:withReason:]_block_invoke_3", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@" message:[a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6267,7 +6267,7 @@ void sub_100137B94(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchNotificationWithColocatedScanResult:fromScanResult:]_block_invoke_4", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@" message:[a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6303,7 +6303,7 @@ void sub_100137F40(uint64_t a1, void *a2)
     {
       __int128 v6 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: canceling timer",  "-[WiFiUserNotificationManager dispatchNotificationWithAskToJoinHotspotRecommendation:]_block_invoke");
+        [qword_100219F60 WFLog:@"%s: canceling timer" message:3];
       }
       objc_autoreleasePoolPop(v6);
       dispatch_source_cancel(*(dispatch_source_t *)(*(void *)(a1 + 32) + 64LL));
@@ -6321,7 +6321,7 @@ void sub_100138024(uint64_t a1, void *a2)
   if (a2)
   {
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s: Error: %@", "-[WiFiUserNotificationManager dispatchNotificationWithAskToJoinHotspotRecommendation:]_block_invoke_2", objc_msgSend(a2, "localizedDescription") message];
+      [qword_100219F60 WFLog:@"%s: Error: %@", "-[WiFiUserNotificationManager dispatchNotificationWithAskToJoinHotspotRecommendation:]_block_invoke_2", [a2 localizedDescription]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -6447,7 +6447,7 @@ LABEL_9:
         *a4 = 1;
       }
       else {
-        return objc_msgSend(*(id *)(*(void *)(a1[6] + 8) + 40), "appendString:", @", ");
+        return [*(id *)(*(void *)(a1[6] + 8) + 40) appendString:@", "];
       }
     }
   }
@@ -6498,12 +6498,12 @@ id sub_10013A0A0(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
   id result = [a2 ssid];
   if (result)
   {
-    id result = [*(id *)(*(void *)(*(void *)(a1 + 32) + 8) + 40) appendFormat:@"%@", objc_msgSend(a2, "ssid")];
+    id result = [*(id *)(*(void *)(*(void *)(a1 + 32) + 8) + 40) appendFormat:@"%@", [a2 ssid]];
     if (a3 + 1 == *(void *)(*(void *)(*(void *)(a1 + 40) + 8LL) + 24LL)) {
       *a4 = 1;
     }
     else {
-      return objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 32) + 8) + 40), "appendString:", @", ");
+      return [*(id *)(*(void *)(*(void *)(a1 + 32) + 8) + 40) appendString:@", "];
     }
   }
 
@@ -6541,26 +6541,26 @@ int64_t sub_10013A5A4(id a1, id a2, id a3)
     else {
       uint64_t v10 = 0LL;
     }
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([(id)v4 batteryLife]);
+    uint64_t v11 = (void *)[v4 batteryLife];
     if ((uint64_t)[v11 integerValue] >= 20)
     {
-      uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([(id)v4 batteryLife]);
+      uint64_t v12 = (void *)[v4 batteryLife];
       v9 += (uint64_t)[v12 integerValue] / 10;
     }
 
-    CFIndex v13 = (void *)objc_claimAutoreleasedReturnValue([v6 batteryLife]);
+    CFIndex v13 = [v6 batteryLife];
     if ((uint64_t)[v13 integerValue] >= 20)
     {
-      __int128 v14 = (void *)objc_claimAutoreleasedReturnValue([v6 batteryLife]);
+      __int128 v14 = (void *)[v6 batteryLife];
       v10 += (uint64_t)[v14 integerValue] / 10;
     }
 
     unsigned __int8 v15 = [(id)v4 networkType];
-    __int128 v16 = (void *)objc_claimAutoreleasedReturnValue([(id)v4 signalStrength]);
+    __int128 v16 = (void *)[v4 signalStrength];
     unsigned __int8 v17 = v9 + v15 + [v16 integerValue];
 
     unsigned __int8 v18 = [v6 networkType];
-    BOOL v19 = (void *)objc_claimAutoreleasedReturnValue([v6 signalStrength]);
+    BOOL v19 = [v6 signalStrength];
     unsigned __int8 v20 = v10 + v18 + [v19 integerValue];
 
     else {
@@ -6630,7 +6630,7 @@ uint64_t sub_10013AC3C(uint64_t result)
 
 id sub_10013ACE8(uint64_t a1)
 {
-  id v2 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) hotspotSession]);
+  id v2 = [*(id *)(a1 + 32) hotspotSession];
   [v2 startBrowsing];
 
   return [*(id *)(a1 + 32) setScanning:1];
@@ -6640,7 +6640,7 @@ id sub_10013AD90(uint64_t a1)
 {
   id v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "Stopping hotspot browsing (isBrowsing %d removeCache %d)",  *(unsigned __int8 *)(*(void *)(a1 + 32) + 8),  *(unsigned __int8 *)(a1 + 40));
+    [qword_100219F60 WFLog:@"Stopping hotspot browsing (isBrowsing %d removeCache %d)" message:3, *(unsigned __int8 *)(*(void *)(a1 + 32) + 8), *(unsigned __int8 *)(a1 + 40)];
   }
   objc_autoreleasePoolPop(v2);
   uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) hotspotSession]);
@@ -6847,8 +6847,8 @@ CFStringRef sub_10013B9E8(uint64_t a1)
 
 BOOL sub_10013BA24()
 {
-  v0 = (void *)objc_claimAutoreleasedReturnValue(+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults"));
-  uint64_t v1 = (void *)objc_claimAutoreleasedReturnValue([v0 stringForKey:@"DextCrashBoostMode"]);
+  v0 = [+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults") autorelease];
+  uint64_t v1 = (void *)[v0 stringForKey:@"DextCrashBoostMode"];
   CFTypeID v2 = v1;
   BOOL v3 = v1 && ![v1 caseInsensitiveCompare:@"Enable"];
 
@@ -6857,7 +6857,7 @@ BOOL sub_10013BA24()
 
 id sub_10013BAA0()
 {
-  v0 = (void *)objc_claimAutoreleasedReturnValue(+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults"));
+  v0 = [NSUserDefaults standardUserDefaults];
   id v1 = [v0 integerForKey:@"DextCrashPurgePeriodInMinutes"];
 
   return v1;
@@ -6865,7 +6865,7 @@ id sub_10013BAA0()
 
 id sub_10013BAE8()
 {
-  v0 = (void *)objc_claimAutoreleasedReturnValue(+[NSUserDefaults standardUserDefaults](&OBJC_CLASS___NSUserDefaults, "standardUserDefaults"));
+  v0 = [NSUserDefaults standardUserDefaults];
   id v1 = [v0 integerForKey:@"DextCrashMaxFilesCount"];
 
   return v1;
@@ -6881,23 +6881,23 @@ void sub_10013BB30(uint64_t *a1)
     BOOL v3 = objc_autoreleasePoolPush();
     id v4 = (void **)&qword_100219F60;
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s Begin", "dextCoreFileProcess");
+      [qword_100219F60 WFLog:@"%s Begin" message:@"dextCoreFileProcess"];
     }
     objc_autoreleasePoolPop(v3);
-    id v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  v1,  4LL));
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSURL URLWithString:](&OBJC_CLASS___NSURL, "URLWithString:", v5));
+    id v5 = [NSString stringWithCString:v1 encoding:4LL];
+    uint64_t v6 = (void *)[NSURL URLWithString:v5];
 
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    uint64_t v7 = (void *)[NSFileManager defaultManager];
     NSURLResourceKey v60 = NSURLCreationDateKey;
     char v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v60, 1LL));
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( [v7 contentsOfDirectoryAtURL:v6 includingPropertiesForKeys:v8 options:4 error:0]);
+    id v9 = [v7 contentsOfDirectoryAtURL:v6 includingPropertiesForKeys:v8 options:4 error:0];
 
     if (v9 && [v9 count])
     {
       uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSPredicate predicateWithBlock:]( &OBJC_CLASS___NSPredicate,  "predicateWithBlock:",  &stru_1001E6730));
-      char v11 = (void *)objc_claimAutoreleasedReturnValue([v9 filteredArrayUsingPredicate:v10]);
+      char v11 = (void *)[v9 filteredArrayUsingPredicate:v10];
 
-      __int128 v12 = (void *)objc_claimAutoreleasedReturnValue([v11 sortedArrayUsingComparator:&stru_1001E6770]);
+      __int128 v12 = (void *)[v11 sortedArrayUsingComparator:&stru_1001E6770];
       LODWORD(v10) = *((_DWORD *)v2 + 8);
       unsigned int v13 = [v12 count];
       CFIndex v51 = v12;
@@ -6923,10 +6923,10 @@ void sub_10013BB30(uint64_t *a1)
           unsigned __int8 v18 = v12;
           do
           {
-            BOOL v19 = (void *)objc_claimAutoreleasedReturnValue([v18 objectAtIndexedSubscript:v16]);
+            BOOL v19 = [v18 objectAtIndexedSubscript:v16];
             if (v16 >= (int)v49)
             {
-              dispatch_time_t v24 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v1));
+              dispatch_time_t v24 = [NSString stringWithUTF8String:v1];
               double v25 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableString stringWithString:]( &OBJC_CLASS___NSMutableString,  "stringWithString:",  v24));
 
               [v25 appendString:@"/"];
@@ -6943,11 +6943,11 @@ void sub_10013BB30(uint64_t *a1)
               uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSTimeZone systemTimeZone](&OBJC_CLASS___NSTimeZone, "systemTimeZone"));
               -[NSDateFormatter setTimeZone:](v29, "setTimeZone:", v30);
 
-              BOOL v31 = (void *)objc_claimAutoreleasedReturnValue(-[NSDateFormatter stringFromDate:](v29, "stringFromDate:", v28));
+              BOOL v31 = [v29 stringFromDate:v28];
               [v25 appendString:v31];
 
               [v25 appendString:@".core"];
-              v32 = (void *)objc_claimAutoreleasedReturnValue([v19 path]);
+              v32 = [v19 path];
               [v7 moveItemAtPath:v32 toPath:v25 error:0];
 
               uint64_t v54 = 66565LL;
@@ -6964,7 +6964,7 @@ void sub_10013BB30(uint64_t *a1)
               uint64_t v36 = *v4;
               if (*v4)
               {
-                uint64_t v37 = objc_claimAutoreleasedReturnValue([v19 path]);
+                uint64_t v37 = [v19 path];
                 unsigned int v48 = v19;
                 id v38 = v17;
                 id v39 = v28;
@@ -6972,7 +6972,7 @@ void sub_10013BB30(uint64_t *a1)
                 CFIndex v41 = v4;
                 uint64_t v42 = v1;
                 uint64_t v43 = (void *)v37;
-                [v36 WFLog:3, "%s:process File:'%@' original path:'%@' fsctl ret:%d total_cnt:%lu purge_count:%d", "dextCoreFileProcess", v33, v37, v50, objc_msgSend(v51, "count"), v49 message];
+                [v36 WFLog:3, "%s:process File:'%@' original path:'%@' fsctl ret:%d total_cnt:%lu purge_count:%d", "dextCoreFileProcess", v33, v37, v50, [v51 count], v49 message];
 
                 uint64_t v1 = v42;
                 id v4 = v41;
@@ -6998,8 +6998,8 @@ void sub_10013BB30(uint64_t *a1)
               CFIndex v22 = *v4;
               if (*v4)
               {
-                CFIndex v23 = (void *)objc_claimAutoreleasedReturnValue([v19 path]);
-                [v22 WFLog:3, "%s removeFile path:'%@' error:%@ total_cnt:%lu purge_count:%d", "dextCoreFileProcess", v23, v20, objc_msgSend(v18, "count"), v49 message];
+                CFIndex v23 = [v19 path];
+                [v22 WFLog:3, "%s removeFile path:'%@' error:%@ total_cnt:%lu purge_count:%d", "dextCoreFileProcess", v23, v20, [v18 count], v49 message];
               }
 
               objc_autoreleasePoolPop(v21);
@@ -7053,7 +7053,7 @@ BOOL sub_10013C1A0(uint64_t a1, char a2)
   id v4 = *(id *)(a1 + 40);
   id v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiDextCrashSoftError Enter",  "WiFiDextCrashedSoftErrorHandler");
+    [qword_100219F60 WFLog:@"%s: WiFiDextCrashSoftError Enter" message:@"WiFiDextCrashedSoftErrorHandler"];
   }
   objc_autoreleasePoolPop(v5);
   if (v4 && (a2 & 1) == 0)
@@ -7065,10 +7065,10 @@ BOOL sub_10013C1A0(uint64_t a1, char a2)
 
   if ((a2 & 1) != 0)
   {
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  *(void *)a1,  4LL));
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSURL URLWithString:](&OBJC_CLASS___NSURL, "URLWithString:", v9));
+    id v9 = [NSString stringWithCString:a1 encoding:4];
+    uint64_t v10 = (void *)[NSURL URLWithString:v9];
 
-    char v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    char v11 = [NSFileManager defaultManager];
     NSURLResourceKey v30 = NSURLCreationDateKey;
     __int128 v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", &v30, 1LL));
     unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue( [v11 contentsOfDirectoryAtURL:v10 includingPropertiesForKeys:v12 options:4 error:0]);
@@ -7088,7 +7088,7 @@ BOOL sub_10013C1A0(uint64_t a1, char a2)
 
     uint64_t v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: No Dext corefiles found isRetry:%d",  "WiFiDextCrashedSoftErrorHandler",  1);
+      [qword_100219F60 WFLog:@"WiFiDextCrashedSoftErrorHandler: No Dext corefiles found isRetry:1"];
     }
     goto LABEL_28;
   }
@@ -7098,7 +7098,7 @@ BOOL sub_10013C1A0(uint64_t a1, char a2)
   {
     uint64_t v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: No Dext corefiles found isRetry:%d",  "WiFiDextCrashedSoftErrorHandler",  0);
+      [qword_100219F60 WFLog:@"WiFiDextCrashedSoftErrorHandler: No Dext corefiles found isRetry:%d" message:3, "%s: No Dext corefiles found isRetry:%d", "WiFiDextCrashedSoftErrorHandler", 0];
     }
     goto LABEL_28;
   }
@@ -7116,13 +7116,13 @@ void sub_10013C5B0(uint64_t a1, void *a2, void *a3)
     [(id)qword_100219F60 WFLog:3, "%s WiFiDextCrashSoftError askToLaunchTapToRadarWithMessage result:%@, error:%@", "WiFiDextCrashedSoftErrorHandler_block_invoke", v11, v5 message];
   }
   objc_autoreleasePoolPop(v6);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 userInfo]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKey:@"deviceNotInteractive"]);
+  id v7 = [v5 userInfo];
+  id v8 = [v7 objectForKey:@"deviceNotInteractive"];
 
   if (v8)
   {
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v5 userInfo]);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:@"deviceNotInteractive"]);
+    id v9 = [v5 userInfo];
+    uint64_t v10 = (void *)[v9 objectForKey:@"deviceNotInteractive"];
     *(_BYTE *)(*(void *)(*(void *)(a1 + 32) + 8) + 24) = [v10 BOOLValue];
   }
 }
@@ -7136,13 +7136,13 @@ void sub_10013C6A8(uint64_t a1, void *a2, void *a3)
     [(id)qword_100219F60 WFLog:3, "%s WiFiDextCrashSoftError tapToRadarWithURL result:%@, error:%@", "WiFiDextCrashedSoftErrorHandler_block_invoke_2", v11, v5 message];
   }
   objc_autoreleasePoolPop(v6);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 userInfo]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKey:@"deviceNotInteractive"]);
+  id v7 = [v5 userInfo];
+  id v8 = [v7 objectForKey:@"deviceNotInteractive"];
 
   if (v8)
   {
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v5 userInfo]);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v9 objectForKey:@"deviceNotInteractive"]);
+    id v9 = [v5 userInfo];
+    uint64_t v10 = (void *)[v9 objectForKey:@"deviceNotInteractive"];
     *(_BYTE *)(*(void *)(*(void *)(a1 + 32) + 8) + 24) = [v10 BOOLValue];
   }
 }
@@ -7166,7 +7166,7 @@ id sub_10013C9A0(uint64_t a1)
 {
   CFTypeID v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: xpc connection got invalidated",  "-[WiFi3BarsObserver init]_block_invoke_2");
+    [qword_100219F60 WFLog:@"%s: xpc connection got invalidated" message:3];
   }
   objc_autoreleasePoolPop(v2);
   return [*(id *)(a1 + 32) _cleanupMaintenanceTask];
@@ -7186,7 +7186,7 @@ id sub_10013CA68(uint64_t a1)
 {
   CFTypeID v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: xpc connection got interrupted",  "-[WiFi3BarsObserver init]_block_invoke_4");
+    [qword_100219F60 WFLog:@"%s: xpc connection got interrupted" message:3];
   }
   objc_autoreleasePoolPop(v2);
   return [*(id *)(a1 + 32) _cleanupMaintenanceTask];
@@ -7212,7 +7212,7 @@ void sub_10013CC68(uint64_t a1)
     {
       id v5 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: xpc_activity_set_state to Done failed",  "-[WiFi3BarsObserver _installDeferMonitorForActivity:proxy:]_block_invoke_2");
+        [qword_100219F60 WFLog:@"%s: xpc_activity_set_state to Done failed" message:3];
       }
       objc_autoreleasePoolPop(v5);
     }
@@ -7222,7 +7222,7 @@ void sub_10013CC68(uint64_t a1)
   {
     BOOL v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: xpc wants to defer activity",  "-[WiFi3BarsObserver _installDeferMonitorForActivity:proxy:]_block_invoke_2");
+      [qword_100219F60 WFLog:@"%s: xpc wants to defer activity" message:3];
     }
     objc_autoreleasePoolPop(v3);
     if (xpc_activity_set_state(*(xpc_activity_t *)(a1 + 48), 3LL))
@@ -7246,7 +7246,7 @@ id sub_10013CFF0(uint64_t a1)
 {
   double v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: finished running maintenance task",  "-[WiFi3BarsObserver run3BarsObserver:withActivity:withCompletion:]_block_invoke_2");
+    [qword_100219F60 WFLog:@"%s: finished running maintenance task" message:3];
   }
   objc_autoreleasePoolPop(v2);
   (*(void (**)(void))(*(void *)(a1 + 40) + 16LL))();
@@ -7431,7 +7431,7 @@ void sub_10013E570(uint64_t a1, uint64_t a2)
   {
     double v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Null scorecard",  "-[WiFiPerfPerAssoc finalizeSession:]_block_invoke");
+      [qword_100219F60 WFLog:@"%s: Null scorecard" message:3];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -7483,7 +7483,7 @@ id sub_10013EA34(_BYTE *a1)
       id v4 = result;
       double v8 = @"Reason";
       dispatch_time_t v9 = v1;
-      id result = objc_msgSend( (id)sub_10013EC80(),  "requestWithItemID:configuration:",  71,  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1));
+      id result = [sub_10013EC80() requestWithItemID:71 configuration:[NSDictionary dictionaryWithObjects:forKeys:count:v9, v8, 1]];
       if (result)
       {
         v6[0] = @"Reason";
@@ -7491,7 +7491,7 @@ id sub_10013EA34(_BYTE *a1)
         v7[0] = v1;
         v7[1] = &__kCFBooleanTrue;
         id v5 = result;
-        return objc_msgSend( v4,  "collectLogs:configuration:update:reply:",  +[NSArray arrayWithObjects:count:](NSArray, "arrayWithObjects:count:", &v5, 1),  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v7,  v6,  2),  0,  &stru_1001E6960);
+        return [v4 collectLogs:+[NSArray arrayWithObjects:count:](NSArray, "arrayWithObjects:count:", &v5, 1) dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v7,  v6,  2) 0 &stru_1001E6960);
       }
     }
   }
@@ -7592,7 +7592,7 @@ id sub_10013EDC0(_BYTE *a1)
         v7[0] = v1;
         v7[1] = &__kCFBooleanTrue;
         id v5 = result;
-        return objc_msgSend( v4,  "collectLogs:configuration:update:reply:",  +[NSArray arrayWithObjects:count:](NSArray, "arrayWithObjects:count:", &v5, 1),  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v7,  v6,  2),  0,  &stru_1001E6980);
+        return [v4 collectLogs:+[NSArray arrayWithObjects:count:](NSArray, "arrayWithObjects:count:", &v5, 1) dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v7,  v6,  2) 0,  &stru_1001E6980);
       }
     }
   }
@@ -7711,7 +7711,7 @@ void sub_10013FF1C(uint64_t a1)
   }
   uint64_t v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: received com.apple.system.console_mode_changed (%llu)",  "-[WiFiUserInteractionMonitor _initPrivate]_block_invoke_2",  state64);
+    [qword_100219F60 WFLog:@"%s: received com.apple.system.console_mode_changed (%llu)", @"-[WiFiUserInteractionMonitor _initPrivate]_block_invoke_2", state64];
   }
   objc_autoreleasePoolPop(v2);
   uint64_t v3 = state64;
@@ -7733,7 +7733,7 @@ LABEL_11:
   __int128 v15 = 0u;
   __int128 v12 = 0u;
   __int128 v13 = 0u;
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) clients]);
+  id v5 = [*(id *)(a1 + 32) clients];
   id v6 = [v5 countByEnumeratingWithState:&v12 objects:v17 count:16];
   if (v6)
   {
@@ -7783,7 +7783,7 @@ void sub_1001422C0(uint64_t a1)
     __int128 v18 = 0u;
     __int128 v15 = 0u;
     __int128 v16 = 0u;
-    uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue([v2 infoDictionary]);
+    uint64_t v4 = (void *)[v2 infoDictionary];
     id v5 = [v4 objectForKey:@"UIBackgroundModes" ofClass:objc_opt_class(NSArray)];
     id v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
 
@@ -7830,7 +7830,7 @@ void sub_100142D44(uint64_t a1, uint64_t a2, uint64_t a3)
   {
     uint64_t v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error %d from Managed Event Fetch",  "-[WiFiUserInteractionMonitor _handleManagedEventNotification]_block_invoke",  a2);
+      [qword_100219F60 WFLog:@"%s: Error %d from Managed Event Fetch" message:4];
     }
 LABEL_4:
     objc_autoreleasePoolPop(v4);
@@ -7854,26 +7854,26 @@ LABEL_4:
     [*(id *)(a1 + 32) setAppAwareDetails:v8];
 
     uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  kManagedEventKeyBackgroundCombinedFlowProperties));
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v9]);
+    uint64_t v10 = (void *)[v7 objectForKeyedSubscript:v9];
     objc_msgSend(*(id *)(a1 + 32), "setSymptomBackgroundFlowProperties:", objc_msgSend(v10, "unsignedLongLongValue"));
 
     uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  kManagedEventKeyForegroundCombinedFlowProperties));
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v11]);
+    uint64_t v12 = (void *)[v7 objectForKeyedSubscript:v11];
     objc_msgSend(*(id *)(a1 + 32), "setSymptomForegroundFlowProperties:", objc_msgSend(v12, "unsignedLongLongValue"));
 
     uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  kManagedEventKeyBackgroundSpecificFlowClassifications));
-    __int128 v14 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v13]);
+    __int128 v14 = (void *)[v7 objectForKeyedSubscript:v13];
     objc_msgSend(*(id *)(a1 + 32), "setSymptomBackgroundFlowClassification:", objc_msgSend(v14, "unsignedIntValue"));
 
     __int128 v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  kManagedEventKeyForegroundSpecificFlowClassifications));
-    __int128 v16 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v15]);
+    __int128 v16 = (void *)[v7 objectForKeyedSubscript:v15];
     objc_msgSend(*(id *)(a1 + 32), "setSymptomForegroundFlowClassification:", objc_msgSend(v16, "unsignedIntValue"));
 
     __int128 v26 = 0u;
     __int128 v27 = 0u;
     __int128 v24 = 0u;
     __int128 v25 = 0u;
-    __int128 v17 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) clients]);
+    __int128 v17 = (void *)[*(id *)(a1 + 32) clients];
     id v18 = [v17 countByEnumeratingWithState:&v24 objects:v28 count:16];
     if (v18)
     {
@@ -7908,7 +7908,7 @@ NSMutableDictionary *sub_100143B04(void *a1, uint64_t a2)
   {
     CFRange v84 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRef ",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+      [qword_100219F60 WFLog:@"%s: null networkRef " message:3];
     }
     goto LABEL_102;
   }
@@ -7917,7 +7917,7 @@ NSMutableDictionary *sub_100143B04(void *a1, uint64_t a2)
   {
     CFRange v84 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null manager",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+      [qword_100219F60 WFLog:@"%s: null manager" message:3];
     }
     goto LABEL_102;
   }
@@ -7928,7 +7928,7 @@ NSMutableDictionary *sub_100143B04(void *a1, uint64_t a2)
   {
     CFRange v84 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: network object passed in is not WiFiNetwork type",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+      [qword_100219F60 WFLog:@"%s: network object passed in is not WiFiNetwork type" message:3];
     }
     goto LABEL_102;
   }
@@ -7938,7 +7938,7 @@ NSMutableDictionary *sub_100143B04(void *a1, uint64_t a2)
   {
     CFRange v84 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null cloudNetwork",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+      [qword_100219F60 WFLog:@"%s: null cloudNetwork" message:3];
     }
 LABEL_102:
     objc_autoreleasePoolPop(v84);
@@ -7956,7 +7956,7 @@ LABEL_102:
     {
       CFRange v86 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null ssid... abort",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+        [qword_100219F60 WFLog:@"%s: null ssid... abort" message:3];
       }
       objc_autoreleasePoolPop(v86);
       goto LABEL_92;
@@ -7975,7 +7975,7 @@ LABEL_102:
     {
       CFRange v87 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: error - null apMode",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+        [qword_100219F60 WFLog:@"%s: error - null apMode" message:3];
       }
       objc_autoreleasePoolPop(v87);
       uint64_t v4 = v97;
@@ -8244,7 +8244,7 @@ LABEL_92:
         {
           CFRange v88 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null customNetworkSetDictRef",  "__WiFiNetworkSyncHelperIsCustomNetwork");
+            [qword_100219F60 WFLog:@"%s: null customNetworkSetDictRef" message:3];
           }
           objc_autoreleasePoolPop(v88);
         }
@@ -8270,7 +8270,7 @@ LABEL_92:
 
   CFRange v85 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRecord",  "WiFiNetworkSyncHelperCreateSyncableNetworkRecord");
+    [qword_100219F60 WFLog:@"%s: null networkRecord" message:3];
   }
   objc_autoreleasePoolPop(v85);
 LABEL_93:
@@ -8289,7 +8289,7 @@ void sub_1001447AC(uint64_t a1)
   {
     id v1 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null network",  "WiFiNetworkSyncHelperSanitizeNetwork");
+      [qword_100219F60 WFLog:@"%s: null network" message:3];
     }
     objc_autoreleasePoolPop(v1);
   }
@@ -8301,7 +8301,7 @@ _WORD *sub_10014480C(void *a1)
   {
     v40 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null cloudNetworkDict",  "WiFiNetworkSyncHelperCreateNetworkRef");
+      [qword_100219F60 WFLog:@"%s: null cloudNetworkDict" message:3];
     }
     goto LABEL_70;
   }
@@ -8311,7 +8311,7 @@ _WORD *sub_10014480C(void *a1)
   {
     v40 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRecord",  "WiFiNetworkSyncHelperCreateNetworkRef");
+      [qword_100219F60 WFLog:@"%s: null networkRecord" message:3];
     }
 LABEL_70:
     objc_autoreleasePoolPop(v40);
@@ -8369,7 +8369,7 @@ LABEL_70:
     }
     __int128 v16 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [(id)qword_100219F60 WFLog:3, "%s for <%@>", "WiFiNetworkSyncHelperCreateNetworkRef", objc_msgSend(a1, "objectForKey:", @"SSID_STR") message];
+      [qword_100219F60 WFLog:@"%s for <%@>", @"WiFiNetworkSyncHelperCreateNetworkRef", [a1 objectForKey:@"SSID_STR"] message];
     }
     objc_autoreleasePoolPop(v16);
     id v17 = [a1 objectForKey:@"SHARE_MODE"];
@@ -8454,7 +8454,7 @@ LABEL_70:
   {
     CFIndex v41 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null WIFICLOUDSYNC_NETWORKKEY_SSID",  "WiFiNetworkSyncHelperCreateNetworkRef");
+      [qword_100219F60 WFLog:@"%s: null WIFICLOUDSYNC_NETWORKKEY_SSID" message:3];
     }
     objc_autoreleasePoolPop(v41);
     uint64_t v37 = 0LL;
@@ -8484,14 +8484,14 @@ void sub_100144DA4(void *a1, uint64_t a2)
       if (v4 != v5)
       {
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: network object passed in is not WiFiNetwork type",  "WiFiNetworkSyncHelperAddNetworkToPlist");
+          [qword_100219F60 WFLog:@"message: %s: network object passed in is not WiFiNetwork type" message:@"WiFiNetworkSyncHelperAddNetworkToPlist"];
         }
         id v8 = v6;
         goto LABEL_13;
       }
 
       if (qword_100219F60) {
-        objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s", "WiFiNetworkSyncHelperAddNetworkToPlist");
+        [qword_100219F60 WFLog:@"WiFiNetworkSyncHelperAddNetworkToPlist"];
       }
       objc_autoreleasePoolPop(v6);
       if (!sub_100096D08((const __CFDictionary *)a1)
@@ -8504,7 +8504,7 @@ void sub_100144DA4(void *a1, uint64_t a2)
 
       id v7 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WPA3 not supported, will not add WPA3-only network",  "WiFiNetworkSyncHelperAddNetworkToPlist");
+        [qword_100219F60 WFLog:@"%s: WPA3 not supported, will not add WPA3-only network" message:@"WiFiNetworkSyncHelperAddNetworkToPlist"];
       }
     }
 
@@ -8512,7 +8512,7 @@ void sub_100144DA4(void *a1, uint64_t a2)
     {
       id v7 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null manager",  "WiFiNetworkSyncHelperAddNetworkToPlist");
+        [qword_100219F60 WFLog:@"%s: null manager" message:3];
       }
     }
   }
@@ -8521,7 +8521,7 @@ void sub_100144DA4(void *a1, uint64_t a2)
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRef ",  "WiFiNetworkSyncHelperAddNetworkToPlist");
+      [qword_100219F60 WFLog:@"%s: null networkRef " message:3];
     }
   }
 
@@ -8536,7 +8536,7 @@ void sub_100144F3C(void *a1, uint64_t a2)
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRef ",  "WiFiNetworkSyncHelperRemoveNetworkFromPlist");
+      [qword_100219F60 WFLog:@"%s: null networkRef " message:3];
     }
     goto LABEL_11;
   }
@@ -8545,7 +8545,7 @@ void sub_100144F3C(void *a1, uint64_t a2)
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null manager",  "WiFiNetworkSyncHelperRemoveNetworkFromPlist");
+      [qword_100219F60 WFLog:@"%s: null manager" message:3];
     }
 LABEL_11:
     id v8 = v7;
@@ -8560,14 +8560,14 @@ LABEL_15:
   if (v4 != v5)
   {
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: network object passed in is not WiFiNetwork type",  "WiFiNetworkSyncHelperRemoveNetworkFromPlist");
+      [qword_100219F60 WFLog:@"%s: network object passed in is not WiFiNetwork type" message:3];
     }
     id v8 = v6;
     goto LABEL_15;
   }
 
   if (qword_100219F60) {
-    objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s", "WiFiNetworkSyncHelperRemoveNetworkFromPlist");
+    [qword_100219F60 WFLog:@"WiFiNetworkSyncHelperRemoveNetworkFromPlist"];
   }
   objc_autoreleasePoolPop(v6);
   sub_100076340(a2, a1, 4LL);
@@ -8580,7 +8580,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null syncFormattedNetworkRecord",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: null syncFormattedNetworkRecord" message:3];
     }
     goto LABEL_40;
   }
@@ -8590,7 +8590,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: missing WIFICLOUDSYNC_NETWORKKEY_ISEAP key, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: missing WIFICLOUDSYNC_NETWORKKEY_ISEAP key, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8599,7 +8599,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: EAP network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"EAP network, not syncable" message:@"WiFiNetworkSyncHelperIsNetworkSyncable"];
     }
     goto LABEL_40;
   }
@@ -8609,7 +8609,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: missing WIFICLOUDSYNC_NETWORKKEY_ISCUSTOMIZED key, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: missing WIFICLOUDSYNC_NETWORKKEY_ISCUSTOMIZED key, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8618,7 +8618,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: customized network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: customized network, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8628,7 +8628,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: missing WIFICLOUDSYNC_NETWORKKEY_ISCONFIGURED key, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: missing WIFICLOUDSYNC_NETWORKKEY_ISCONFIGURED key, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8637,7 +8637,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: configured network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"WiFiNetworkSyncHelperIsNetworkSyncable configured network, not syncable"];
     }
     goto LABEL_40;
   }
@@ -8647,7 +8647,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: non-infrastructure network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: non-infrastructure network, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8657,7 +8657,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: app based network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: app based network, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8667,7 +8667,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: expirable network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"%s: expirable network, not syncable" message:3];
     }
     goto LABEL_40;
   }
@@ -8677,7 +8677,7 @@ uint64_t sub_100145088(void *a1)
   {
     id v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: carplay only network, not syncable",  "WiFiNetworkSyncHelperIsNetworkSyncable");
+      [qword_100219F60 WFLog:@"carplay only network, not syncable" message:3];
     }
 LABEL_40:
     objc_autoreleasePoolPop(v12);
@@ -8698,7 +8698,7 @@ uint64_t sub_1001453B4(void *a1)
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null syncFormattedNetworkRecord",  "WiFiNetworkSyncHelperGetNetworkSecurity");
+      [qword_100219F60 WFLog:@"%s: null syncFormattedNetworkRecord" message:3];
     }
     objc_autoreleasePoolPop(v7);
     goto LABEL_7;
@@ -8736,7 +8736,7 @@ void sub_100145508(uint64_t a1)
 {
   id v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s", "WiFiCoexManagerRegister");
+    [qword_100219F60 WFLog:@"WiFiCoexManagerRegister"];
   }
   objc_autoreleasePoolPop(v2);
   if (&WCMEnabled)
@@ -8771,7 +8771,7 @@ void sub_100145508(uint64_t a1)
 
     id v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "Error: %s: failed to create xpc connection",  "WiFiCoexManagerRegister");
+      [qword_100219F60 WFLog:@"Error: %s: failed to create xpc connection" message:3];
     }
   }
 
@@ -8792,7 +8792,7 @@ void sub_100145728(uint64_t a1, xpc_object_t object)
   {
     uint64_t v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "Error: %s: eventObject is null",  "__WiFiCoexManagerHandleEvent");
+      [qword_100219F60 WFLog:@"Error: %s: eventObject is null" message:3];
     }
     goto LABEL_14;
   }
@@ -8817,7 +8817,7 @@ void sub_100145728(uint64_t a1, xpc_object_t object)
     {
       uint64_t v4 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: about to Die", "__WiFiCoexManagerHandleEvent");
+        [qword_100219F60 WFLog:@"%s: about to Die" message:3];
       }
       goto LABEL_14;
     }
@@ -8826,7 +8826,7 @@ void sub_100145728(uint64_t a1, xpc_object_t object)
     {
       uint64_t v4 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  " %s: Invalid XPC Connection",  "__WiFiCoexManagerHandleEvent");
+        [qword_100219F60 WFLog:@"%s: Invalid XPC Connection" message:3];
       }
 LABEL_14:
       objc_autoreleasePoolPop(v4);
@@ -8848,7 +8848,7 @@ void sub_100145894(xpc_object_t *a1)
 
     uint64_t v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "Error: %s: coexMgrXpcConnection is null",  "WiFiCoexManagerUnRegister");
+      [qword_100219F60 WFLog:@"Error: %s: coexMgrXpcConnection is null" message:3];
     }
   }
 
@@ -17513,7 +17513,7 @@ void sub_100153E24( uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t
 
 void sub_100153E98(void *a1, double a2)
 {
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue([a1 scanFailureList]);
+  uint64_t v4 = (void *)[a1 scanFailureList];
   unsigned int v5 = [v4 count];
   xpc_object_t v6 = (void *)objc_claimAutoreleasedReturnValue([a1 joinFailureList]);
   int v7 = 136315650;
@@ -17713,67 +17713,67 @@ void sub_100154AF8()
 
 id objc_msgSend__isSymptomTrackingRtTrafficForFlowNamed_withProperties_andClassification_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "_isSymptomTrackingRtTrafficForFlowNamed:withProperties:andClassification:");
+  return [a1 _isSymptomTrackingRtTrafficForFlowNamed:withProperties:andClassification:];
 }
 
 id objc_msgSend_addRangingRttSampleWithRssi_rtt_snr_flags_channel_coreId_bitErrorRate_phyError_andPeerSnr_andPeerCoreId_andPeerBitErrorRate_andPeerPhyError_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "addRangingRttSampleWithRssi:rtt:snr:flags:channel:coreId:bitErrorRate:phyError:andPeerSnr:andPeerCoreId:andPe erBitErrorRate:andPeerPhyError:");
+  return [a1 addRangingRttSampleWithRssi:rssi rtt:rtt snr:snr flags:flags channel:channel coreId:coreId bitErrorRate:bitErrorRate phyError:phyError andPeerSnr:peerSnr andPeerCoreId:peerCoreId andPeerBitErrorRate:peerBitErrorRate andPeerPhyError:peerPhyError];
 }
 
 id objc_msgSend_addSoftApClientEvent_identifier_isAppleClient_isInstantHotspot_isAutoHotspot_isHidden_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "addSoftApClientEvent:identifier:isAppleClient:isInstantHotspot:isAutoHotspot:isHidden:");
+  return [a1 addSoftApClientEvent:identifier:isAppleClient:isInstantHotspot:isAutoHotspot:isHidden:];
 }
 
 id objc_msgSend_addSoftApCoexEvent_deniedUnii1ChannelMap_deniedUnii2aChannelMap_deniedUnii2cChannelMap_deniedUnii3ChannelMap_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "addSoftApCoexEvent:deniedUnii1ChannelMap:deniedUnii2aChannelMap:deniedUnii2cChannelMap:deniedUnii3ChannelMap:");
+  return [a1 addSoftApCoexEvent:deniedUnii1ChannelMap:deniedUnii2aChannelMap:deniedUnii2cChannelMap:deniedUnii3ChannelMap:];
 }
 
 id objc_msgSend_bssWithIdentifier_apProfile_apMode_phyMode_channel_channelFlags_channelWidth_rssi_latitude_longitude_isEdgeBss_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "bssWithIdentifier:apProfile:apMode:phyMode:channel:channelFlags:channelWidth:rssi:latitude:longitude:isEdgeBss:");
+  return [a1 bssWithIdentifier:apProfile:apMode:phyMode:channel:channelFlags:channelWidth:rssi:latitude:longitude:isEdgeBss:];
 }
 
 id objc_msgSend_copyScoreSortedNetworksAvailableAtLocationWithinDistance_distance_authComparator_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "copyScoreSortedNetworksAvailableAtLocationWithinDistance:distance:authComparator:");
+  return [a1 copyScoreSortedNetworksAvailableAtLocationWithinDistance:distance:authComparator:];
 }
 
 id objc_msgSend_initWithChannelNumber_bandwidth_is2_4GHz_is5GHz_is6GHz_isDFS_extensionChannelAbove_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "initWithChannelNumber:bandwidth:is2_4GHz:is5GHz:is6GHz:isDFS:extensionChannelAbove:");
+  return [a1 initWithChannelNumber:bandwidth:is2_4GHz:is5GHz:is6GHz:isDFS:extensionChannelAbove:];
 }
 
 id objc_msgSend_initWithClient_network_bundleId_localizedAppName_originator_poweredOff_wapi_sessionBased_useSSIDPrefix_callback_context_bypassPrompt_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "initWithClient:network:bundleId:localizedAppName:originator:poweredOff:wapi:sessionBased:useSSIDPrefix:callba ck:context:bypassPrompt:");
+  return [a1 initWithClient:a2 network:a3 bundleId:a4 localizedAppName:a5 originator:a6 poweredOff:a7 wapi:a8 sessionBased:a9 useSSIDPrefix:a10 callback:a11 context:a12 bypassPrompt:a13];
 }
 
 id objc_msgSend_initWithCoordinate_altitude_horizontalAccuracy_verticalAccuracy_timestamp_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:timestamp:");
+  return [a1 initWithCoordinate:a2 altitude:a3 horizontalAccuracy:a4 verticalAccuracy:a5 timestamp:a6];
 }
 
 id objc_msgSend_initWithManager_availabilityEngine_scanResults_disableProminentFiltering_blacklistedSSIDs_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "initWithManager:availabilityEngine:scanResults:disableProminentFiltering:blacklistedSSIDs:");
+  return [a1 initWithManager:a2 availabilityEngine:a3 scanResults:a4 disableProminentFiltering:a5 blacklistedSSIDs:a6];
 }
 
 id objc_msgSend_initializeDeviceLockState_displayState_motionState_callState_mediaState_chargingState_companionConnectionState_andSecondaryInterfaceName_compatibilityMode_badLinkRssi_goodLinkRssi_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "initializeDeviceLockState:displayState:motionState:callState:mediaState:chargingState:companionConnectionStat e:andSecondaryInterfaceName:compatibilityMode:badLinkRssi:goodLinkRssi:");
+  return [a1 initializeDeviceLockState:displayState:motionState:callState:mediaState:chargingState:companionConnectionStat e:andSecondaryInterfaceName:compatibilityMode:badLinkRssi:goodLinkRssi:];
 }
 
 id objc_msgSend_joinRecommendationEventWithSource_action_BSSID_latitude_longitude_score_visibleDuration_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "joinRecommendationEventWithSource:action:BSSID:latitude:longitude:score:visibleDuration:");
+  return [a1 joinRecommendationEventWithSource:action:BSSID:latitude:longitude:score:visibleDuration:];
 }
 
 id objc_msgSend_maintenanceTask_location_predictedForDuration_maxPredictedLocations_completionHandler_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "maintenanceTask:location:predictedForDuration:maxPredictedLocations:completionHandler:");
+  return [a1 maintenanceTask:location:predictedForDuration:maxPredictedLocations:completionHandler:];
 }
 
 id objc_msgSend_notifyDriverAvailability_available_version_flags_eventID_reason_subReason_minorReason_reasonString_( void *a1, const char *a2, ...)
@@ -17783,12 +17783,12 @@ id objc_msgSend_notifyDriverAvailability_available_version_flags_eventID_reason_
 
 id objc_msgSend_notifyIpConfigurationStateWithMethod_dhcpLeaseDuration_hasRoutableIpV4_hasRoutableIpV6_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "notifyIpConfigurationStateWithMethod:dhcpLeaseDuration:hasRoutableIpV4:hasRoutableIpV6:");
+  return [a1 notifyIpConfigurationStateWithMethod:dhcpLeaseDuration:hasRoutableIpV4:hasRoutableIpV6:];
 }
 
 id objc_msgSend_populateWithRssi_rssi0_rssi1_rssiMode_noise_noise0_noise1_snr_selfCca_otherCca_interference_totalReportedCca_beaconPer_rxCrsGlitch_rxBadPLCP_rxStart_rxBphyCrsGlitch_rxBphyBadPLCP_sampleDuration_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "populateWithRssi:rssi0:rssi1:rssiMode:noise:noise0:noise1:snr:selfCca:otherCca:interference:totalReportedCca: beaconPer:rxCrsGlitch:rxBadPLCP:rxStart:rxBphyCrsGlitch:rxBphyBadPLCP:sampleDuration:");
+  return [a1 populateWithRssi:rssi0:rssi1:rssiMode:noise:noise0:noise1:snr:selfCca:otherCca:interference:totalReportedCca: beaconPer:rxCrsGlitch:rxBadPLCP:rxStart:rxBphyCrsGlitch:rxBphyBadPLCP:sampleDuration:];
 }
 
 id objc_msgSend_populateWithTxFrames_RxFrames_TxFails_TxRetries_RxRetries_TxRate_RxRate_txRTS_txRTSFail_txMpdu_txAMPDU_( void *a1, const char *a2, ...)
@@ -17798,7 +17798,7 @@ id objc_msgSend_populateWithTxFrames_RxFrames_TxFails_TxRetries_RxRetries_TxRate
 
 id objc_msgSend_rangingSessionRequestedWithSelfPreferredChannel_selfMainChannel_selfChannelFlags_peerPreferredChannel_peerMainChannel_peerChannelFlags_requester_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "rangingSessionRequestedWithSelfPreferredChannel:selfMainChannel:selfChannelFlags:peerPreferredChannel:peerMai nChannel:peerChannelFlags:requester:");
+  return [a1 rangingSessionRequestedWithSelfPreferredChannel:selfMainChannel:selfChannelFlags:peerPreferredChannel:peerMai nChannel:peerChannelFlags:requester:];
 }
 
 id objc_msgSend_receivedBssTransitionRequest_candidateListIncluded_isAbridged_disassociationImminent_bssTerminationIncluded_essDisassociationImminent_( void *a1, const char *a2, ...)
@@ -17808,52 +17808,52 @@ id objc_msgSend_receivedBssTransitionRequest_candidateListIncluded_isAbridged_di
 
 id objc_msgSend_setApplicationRunningState_foregroundState_andNetworkingState_forBundleId_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "setApplicationRunningState:foregroundState:andNetworkingState:forBundleId:");
+  return [a1 setApplicationRunningState:foregroundState:andNetworkingState:forBundleId:];
 }
 
 id objc_msgSend_setBluetoothState_connectedDeviceCount_inA2dp_inSco_inUniAoS_inBiAoS_btAudioBand_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "setBluetoothState:connectedDeviceCount:inA2dp:inSco:inUniAoS:inBiAoS:btAudioBand:");
+  return [a1 setBluetoothState:connectedDeviceCount:inA2dp:inSco:inUniAoS:inBiAoS:btAudioBand:];
 }
 
 id objc_msgSend_setDestinationFile_runLoopRef_runLoopMode_classC_dateFormatter_maxFileSizeInMB_logLifespanInDays_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setDestinationFile:runLoopRef:runLoopMode:classC:dateFormatter:maxFileSizeInMB:logLifespanInDays:");
+  return [a1 setDestinationFile:runLoopRef:runLoopMode:classC:dateFormatter:maxFileSizeInMB:logLifespanInDays:];
 }
 
 id objc_msgSend_setDestinationFileLocation_fileNamePrefix_runLoopRef_runLoopMode_classC_dateFormatter_maxFileSizeInMB_logLifespanInDays_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setDestinationFileLocation:fileNamePrefix:runLoopRef:runLoopMode:classC:dateFormatter:maxFileSizeInMB:logLifespanInDays:");
+  return [a1 setDestinationFileLocation:fileNamePrefix:runLoopRef:runLoopMode:classC:dateFormatter:maxFileSizeInMB:logLifespanInDays:];
 }
 
 id objc_msgSend_setJoinEvent_withReason_lastDisconnectReason_lastJoinFailure_andNetworkDetails_forInterface_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setJoinEvent:withReason:lastDisconnectReason:lastJoinFailure:andNetworkDetails:forInterface:");
+  return [a1 setJoinEvent:withReason:lastDisconnectReason:lastJoinFailure:andNetworkDetails:forInterface:];
 }
 
 id objc_msgSend_setLinkEvent_isInvoluntary_linkChangeReason_linkChangeSubreason_withNetworkDetails_forInterface_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setLinkEvent:isInvoluntary:linkChangeReason:linkChangeSubreason:withNetworkDetails:forInterface:");
+  return [a1 setLinkEvent:isInvoluntary:linkChangeReason:linkChangeSubreason:withNetworkDetails:forInterface:];
 }
 
 id objc_msgSend_setRoamingState_withReason_asString_andStatus_asString_andLatency_andRoamData_andPingPongSequence_forInterface_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setRoamingState:withReason:asString:andStatus:asString:andLatency:andRoamData:andPingPongSequence:forInterface:");
+  return [a1 setRoamingState:withReason:asString:andStatus:asString:andLatency:andRoamData:andPingPongSequence:forInterface:];
 }
 
 id objc_msgSend_setScanningState_client_neighborBSS_otherBSS_withChannelInfoList_withRequest_forInterface_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "setScanningState:client:neighborBSS:otherBSS:withChannelInfoList:withRequest:forInterface:");
+  return [a1 setScanningState:client:neighborBSS:otherBSS:withChannelInfoList:withRequest:forInterface:];
 }
 
 id objc_msgSend_setSoftApState_requester_status_changeReason_channelNumber_countryCode_isHidden_isInfraConnected_isAwdlUp_lowPowerModeDuration_compatibilityMode_requestToUpLatency_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setSoftApState:requester:status:changeReason:channelNumber:countryCode:isHidden:isInfraConnected:isAwdlUp:low PowerModeDuration:compatibilityMode:requestToUpLatency:");
+  return [a1 setSoftApState:requester:status:changeReason:channelNumber:countryCode:isHidden:isInfraConnected:isAwdlUp:low PowerModeDuration:compatibilityMode:requestToUpLatency:];
 }
 
 id objc_msgSend_setSteeringRequest_preferredChannel_preferredBand_preferredSSID_targetSSIDDiffersFromCurrent_preferredBSS_ssidIsSplit_transitionCandidates_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "setSteeringRequest:preferredChannel:preferredBand:preferredSSID:targetSSIDDiffersFromCurrent:preferredBSS:ssi dIsSplit:transitionCandidates:");
+  return [a1 setSteeringRequest:preferredChannel:preferredBand:preferredSSID:targetSSIDDiffersFromCurrent:preferredBSS:ssi dIsSplit:transitionCandidates:];
 }
 
 id objc_msgSend_updateWithBspOverflowed_IsBSPActive_BspTimeToTST_BspSampleDurationMS_IsScanActiveBSP_IsP2PActiveBSP_BspTriggerCount_BspMutePercentage_BspMaxMuteMS_BspAvgMuteMS_BspErrorPercentage_BspTimeOutPercentageOfTriggers_BspRejectOrFailPercentageOfTriggers_bspMaxConsecutiveFails_supportsLinkRecommendation_forInterface_( void *a1, const char *a2, ...)
@@ -17863,15 +17863,15 @@ id objc_msgSend_updateWithBspOverflowed_IsBSPActive_BspTimeToTST_BspSampleDurati
 
 id objc_msgSend_updateWithChQualScore_txLatencyScore_rxLatencyScore_txLossScore_rxLossScore_txLatencyP95_linkRecommendationFlags_rtTrafficStatus_forInterface_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "updateWithChQualScore:txLatencyScore:rxLatencyScore:txLossScore:rxLossScore:txLatencyP95:linkRecommendationFl ags:rtTrafficStatus:forInterface:");
+  return [a1 updateWithChQualScore:txLatencyScore:rxLatencyScore:txLossScore:rxLossScore:txLatencyP95:linkRecommendationFlags:rtTrafficStatus:forInterface:];
 }
 
 id objc_msgSend_userNotificationCenter_didReceiveNotificationResponse_withCompletionHandler_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:");
+  return [a1 userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:];
 }
 
 id objc_msgSend_writeToURL_atomically_encoding_error_(void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "writeToURL:atomically:encoding:error:");
+  return [a1 writeToURL:atomically:encoding:error:];
 }

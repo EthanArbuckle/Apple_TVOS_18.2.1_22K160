@@ -9,13 +9,13 @@
 - (void)applyToLayer:(id)a3 forContent:(id)a4
 {
   id v9 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___CAShapeLayer, v5);
+  CAShapeLayer *v6 = [CAShapeLayer class];
   if ((objc_opt_isKindOfClass(v9, v6) & 1) != 0) {
-    -[BKDisplayAnnotationTextBackgroundStyle applyAppearanceToShapeLayer:](self, "applyAppearanceToShapeLayer:", v9);
+    [self applyAppearanceToShapeLayer:v9];
   }
-  uint64_t v8 = objc_opt_class(&OBJC_CLASS___CATextLayer, v7);
+  uint64_t v8 = [CATextLayer class];
   if ((objc_opt_isKindOfClass(v9, v8) & 1) != 0) {
-    -[BKDisplayAnnotationTextBackgroundStyle applyAppearanceToTextLayer:](self, "applyAppearanceToTextLayer:", v9);
+    [self applyAppearanceToTextLayer:v9];
   }
 }
 
@@ -32,8 +32,8 @@
   }
   CFRelease(v3);
   [v4 setFontSize:14.0];
-  objc_msgSend(v4, "bk_setForegroundColorRed:green:blue:alpha:", 1.0, 1.0, 1.0, 0.8);
-  objc_msgSend(v4, "bk_setBackgroundColorRed:green:blue:alpha:", 0.2, 0.2, 0.2, 0.8);
+  [v4 bk_setForegroundColorRed:1.0 green:1.0 blue:1.0 alpha:0.8];
+  [v4 bk_setBackgroundColorRed:0.2 green:0.2 blue:0.2 alpha:0.8];
 }
 
 @end

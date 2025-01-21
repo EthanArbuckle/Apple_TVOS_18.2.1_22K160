@@ -22,7 +22,7 @@
 
 - (id)copyWithZone:(_NSZone *)a3
 {
-  id result = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationLocation);
+  BKDisplayAnnotationLocation *result = [[BKDisplayAnnotationLocation alloc] init];
   *((_BYTE *)result + 8) = self->_inhibitRotation;
   *((_BYTE *)result + 9) = self->_shouldAutoposition;
   *((_OWORD *)result + 1) = self->_superBias;
@@ -37,7 +37,7 @@
   if (!v5) {
     goto LABEL_11;
   }
-  uint64_t v6 = objc_opt_class(self, v4);
+  uint64_t v6 = [self class];
   if ((objc_opt_isKindOfClass(v5, v6) & 1) == 0) {
     goto LABEL_11;
   }
@@ -125,9 +125,9 @@
 {
   double y = a3.y;
   double x = a3.x;
-  id v5 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationLocation);
-  -[BKDisplayAnnotationLocation setSuperBias:](v5, "setSuperBias:", 0.5, 0.5);
-  -[BKDisplayAnnotationLocation setPoint:](v5, "setPoint:", ceil(x), ceil(y));
+  BKDisplayAnnotationLocation *v5 = [[BKDisplayAnnotationLocation alloc] init];
+  [v5 setSuperBias:CGPointMake(0.5, 0.5)];
+  [v5 setPoint:CGPointMake(ceil(x), ceil(y))];
   return v5;
 }
 
@@ -135,10 +135,10 @@
 {
   double y = a3.y;
   double x = a3.x;
-  id v5 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationLocation);
-  -[BKDisplayAnnotationLocation setShouldAutoposition:](v5, "setShouldAutoposition:", 1LL);
-  -[BKDisplayAnnotationLocation setSuperBias:](v5, "setSuperBias:", 0.0, 0.0);
-  -[BKDisplayAnnotationLocation setPoint:](v5, "setPoint:", ceil(x), ceil(y));
+  BKDisplayAnnotationLocation *v5 = [[BKDisplayAnnotationLocation alloc] init];
+  [v5 setShouldAutoposition:YES];
+  [v5 setSuperBias:CGPointMake(0.0, 0.0)];
+  [v5 setPoint:CGPointMake(ceil(x), ceil(y))];
   return v5;
 }
 
@@ -146,10 +146,10 @@
 {
   double y = a3.y;
   double x = a3.x;
-  id v5 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationLocation);
-  -[BKDisplayAnnotationLocation setShouldAutoposition:](v5, "setShouldAutoposition:", 1LL);
-  -[BKDisplayAnnotationLocation setSuperBias:](v5, "setSuperBias:", 0.0, 1.0);
-  -[BKDisplayAnnotationLocation setPoint:](v5, "setPoint:", ceil(x), ceil(y));
+  BKDisplayAnnotationLocation *v5 = [[BKDisplayAnnotationLocation alloc] init];
+  [v5 setShouldAutoposition:YES];
+  [v5 setSuperBias:CGPointMake(0.0, 1.0)];
+  [v5 setPoint:CGPointMake(ceil(x), ceil(y))];
   return v5;
 }
 
@@ -157,10 +157,10 @@
 {
   double y = a3.y;
   double x = a3.x;
-  id v5 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationLocation);
-  -[BKDisplayAnnotationLocation setShouldAutoposition:](v5, "setShouldAutoposition:", 1LL);
-  -[BKDisplayAnnotationLocation setSuperBias:](v5, "setSuperBias:", 0.5, 1.0);
-  -[BKDisplayAnnotationLocation setPoint:](v5, "setPoint:", ceil(x), ceil(y));
+  BKDisplayAnnotationLocation *v5 = [[BKDisplayAnnotationLocation alloc] init];
+  [v5 setShouldAutoposition:YES];
+  [v5 setSuperBias:CGPointMake(0.5, 1.0)];
+  [v5 setPoint:CGPointMake(ceil(x), ceil(y))];
   return v5;
 }
 

@@ -12,12 +12,12 @@
 {
   v5 = (os_unfair_lock_s *)a3;
   v9.receiver = self;
-  v9.super_class = (Class)&OBJC_CLASS____BKDisplayAnnotationControllerReference;
-  v6 = -[_BKDisplayAnnotationControllerReference init](&v9, "init");
+  v9.super_class = [BKDisplayAnnotationControllerReference class];
+  _BKDisplayAnnotationControllerReference *v6 = [[_BKDisplayAnnotationControllerReference alloc] init];
   v7 = v6;
   if (v6)
   {
-    objc_storeStrong((id *)&v6->_controller, a3);
+    v6->_controller = a3;
     if (v5)
     {
       os_unfair_lock_lock(v5 + 8);
@@ -40,14 +40,14 @@
     controller->_uint64_t lock_externalReferenceCount = lock_externalReferenceCount - 1;
     if (lock_externalReferenceCount <= 0)
     {
-      v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"_lock_externalReferenceCount >= 0"));
+      v15 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"_lock_externalReferenceCount >= 0"];
       if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
       {
         v16 = NSStringFromSelector("removeExternalReference");
-        v17 = (BKDisplayAnnotationController *)objc_claimAutoreleasedReturnValue(v16);
-        v19 = (objc_class *)objc_opt_class(controller, v18);
+        v17 = (BKDisplayAnnotationController *)[v16 autorelease];
+        v19 = [controller class];
         v20 = NSStringFromClass(v19);
-        v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
+        v21 = [v20 autorelease];
         *(_DWORD *)buf = 138544642;
         v24 = v17;
         __int16 v25 = 2114;
@@ -75,7 +75,7 @@
       if (displayController)
       {
         id v8 = sub_10003F198();
-        objc_super v9 = (os_log_s *)objc_claimAutoreleasedReturnValue(v8);
+        os_log_s *v9 = [v8 autorelease];
         if (os_log_type_enabled(v9, OS_LOG_TYPE_DEFAULT))
         {
           *(_DWORD *)buf = 138543362;
@@ -84,8 +84,8 @@
         }
 
         os_unfair_lock_lock(&displayController->_lock);
-        v10 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayAnnotationController display](v7, "display"));
-        id v11 = (id)objc_claimAutoreleasedReturnValue([v10 uniqueId]);
+        v10 = [BKDisplayAnnotationController display];
+        id v11 = [v10 uniqueId];
         id v12 = [v11 length];
         v13 = (void *)BKSDisplayUUIDMainKey;
         if (v12) {
@@ -93,19 +93,19 @@
         }
         id v14 = v13;
 
-        -[NSMutableDictionary removeObjectForKey:]( displayController->_lock_displayToAnnotationContext,  "removeObjectForKey:",  v14);
+        [displayController->_lock_displayToAnnotationContext removeObjectForKey:v14];
         os_unfair_lock_unlock(&displayController->_lock);
       }
 
-      -[BKDisplayAnnotationController _lock_invalidate](v7, "_lock_invalidate");
+      [v7 _lock_invalidate];
     }
 
     os_unfair_lock_unlock(p_lock);
   }
 
   v22.receiver = self;
-  v22.super_class = (Class)&OBJC_CLASS____BKDisplayAnnotationControllerReference;
-  -[_BKDisplayAnnotationControllerReference dealloc](&v22, "dealloc");
+  v22.super_class = [BKDisplayAnnotationControllerReference class];
+  [_BKDisplayAnnotationControllerReference dealloc];
 }
 
 - (id)forwardingTargetForSelector:(SEL)a3

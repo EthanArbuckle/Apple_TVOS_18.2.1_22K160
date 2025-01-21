@@ -126,7 +126,7 @@ LABEL_23:
   }
 
   int v19 = 0;
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_whbHostTable, "objectForKeyedSubscript:", v4));
+  v6 = -[self->_whbHostTable objectForKeyedSubscript:v4];
   if (v6)
   {
     v7 = v6;
@@ -159,7 +159,7 @@ LABEL_23:
       }
     }
 
-    v14 = (void *)objc_claimAutoreleasedReturnValue([v7 coexUsage]);
+    v14 = [v7 coexUsage];
     id v15 = [v14 numLEConnection];
 
     if ((unint64_t)v15 >= v12)
@@ -170,7 +170,7 @@ LABEL_23:
     else
     {
       v16 = (char *)[v7 estimatedConnections];
-      v17 = (void *)objc_claimAutoreleasedReturnValue([v7 coexUsage]);
+      v17 = [v7 coexUsage];
       unint64_t v5 = &v16[(void)[v17 numLEConnection]] < (char *)3;
     }
 
@@ -191,8 +191,8 @@ LABEL_27:
   if (v5)
   {
     v21 = v5;
-    v7 = (void *)objc_claimAutoreleasedReturnValue([v5 hostMap]);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 allKeys]);
+    v7 = [v5 hostMap];
+    id v8 = [v7 allKeys];
     v26[0] = _NSConcreteStackBlock;
     v26[1] = 3221225472LL;
     v26[2] = sub_10002508C;
@@ -200,7 +200,7 @@ LABEL_27:
     v26[4] = self;
     id v20 = v4;
     id v27 = v20;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v8 sortedArrayUsingComparator:v26]);
+    id v9 = (void *)[v8 sortedArrayUsingComparator:v26];
 
     id v10 = [v9 mutableCopy];
     __int128 v22 = 0u;
@@ -253,7 +253,7 @@ LABEL_27:
       && dword_1008D60F8 <= 30
       && (dword_1008D60F8 != -1 || _LogCategory_Initialize(&dword_1008D60F8, 30LL)))
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v10, "componentsJoinedByString:", @", "));
+      v18 = [v10 componentsJoinedByString:@","];
       LogPrintF_safe(&dword_1008D60F8, "-[CBWHBRouter rankWHBHosts:]", 30LL, "RankedHosts: %@", v18);
     }
 
@@ -276,13 +276,13 @@ LABEL_27:
 
 - (void)subscribeToCoexStateUpdates
 {
-  id v3 = (id)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  id v3 = [NSNotificationCenter defaultCenter];
   [v3 addObserver:self selector:"coexChangeNotification:" name:@"com.apple.bluetooth.leconnection" object:0];
 }
 
 - (void)unSubscribeFromCoexStateUpdates
 {
-  id v3 = (id)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  id v3 = [NSNotificationCenter defaultCenter];
   [v3 removeObserver:self name:@"com.apple.bluetooth.leconnection" object:0];
 }
 
@@ -304,15 +304,15 @@ LABEL_27:
 {
   id v6 = a3;
   id v7 = a4;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 stableIdentifier]);
+  id v8 = [v6 stableIdentifier];
   if (v8)
   {
-    id v9 = (CBDeviceEntry *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_deviceTable,  "objectForKeyedSubscript:",  v8));
+    id v9 = [self->_deviceTable objectForKeyedSubscript:v8];
     if (v9)
     {
       id v10 = v9;
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBDeviceEntry hostMap](v9, "hostMap"));
-      id v12 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:v7]);
+      id v11 = -[CBDeviceEntry hostMap](v9, "hostMap");
+      id v12 = [v11 objectForKeyedSubscript:v7];
       id v13 = v12;
       if (v12)
       {
@@ -325,14 +325,14 @@ LABEL_27:
           && (dword_1008D60F8 != -1 || _LogCategory_Initialize(&dword_1008D60F8, 30LL)))
         {
           id v17 = [v6 bleRSSI];
-          v18 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:v7]);
+          v18 = [v11 objectForKeyedSubscript:v7];
           LogPrintF_safe( &dword_1008D60F8,  "-[CBWHBRouter insertIntoDeviceTableWithKey:value:]",  30LL,  "Updated an entry on Device Table with RSSI %d and  Average RSSI : %@",  v17,  v18);
         }
       }
 
       else
       {
-        v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  [v6 bleRSSI]));
+        v21 = [NSNumber numberWithInt:[v6 bleRSSI]];
         [v11 setObject:v21 forKeyedSubscript:v7];
 
         if (dword_1008D60F8 <= 30
@@ -346,8 +346,8 @@ LABEL_27:
     else
     {
       id v10 = objc_alloc_init(&OBJC_CLASS___CBDeviceEntry);
-      int v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", [v6 bleRSSI]));
-      id v20 = (void *)objc_claimAutoreleasedReturnValue(-[CBDeviceEntry hostMap](v10, "hostMap"));
+      int v19 = [NSNumber numberWithInt:[v6 bleRSSI]];
+      id v20 = [v10 hostMap];
       [v20 setObject:v19 forKeyedSubscript:v7];
 
       -[NSMutableDictionary setObject:forKeyedSubscript:](self->_deviceTable, "setObject:forKeyedSubscript:", v10, v8);
@@ -366,11 +366,11 @@ LABEL_27:
 {
   id v10 = a3;
   id v6 = a4;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceTable, "objectForKeyedSubscript:", v10));
+  id v7 = -[self->_deviceTable objectForKeyedSubscript:v10];
   id v8 = v7;
   if (v7)
   {
-    id v9 = (void *)objc_claimAutoreleasedReturnValue([v7 hostMap]);
+    id v9 = [v7 hostMap];
     [v9 removeObjectForKey:v6];
   }
 
@@ -382,7 +382,7 @@ LABEL_27:
 - (void)removeFromDeviceTableWithKey:(id)a3 value:(id)a4
 {
   id v7 = a4;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([a3 stableIdentifier]);
+  id v6 = [a3 stableIdentifier];
   if (v6) {
     -[CBWHBRouter removeDeviceFromDeviceTable:value:](self, "removeDeviceFromDeviceTable:value:", v6, v7);
   }
@@ -396,12 +396,12 @@ LABEL_27:
   unint64_t v9 = 0LL;
   if (v6 && v7)
   {
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceTable, "objectForKeyedSubscript:", v6));
+    id v10 = [self->_deviceTable objectForKeyedSubscript:v6];
     id v11 = v10;
     if (v10)
     {
-      id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 hostMap]);
-      id v13 = (void *)objc_claimAutoreleasedReturnValue([v12 objectForKeyedSubscript:v8]);
+      id v12 = [v10 hostMap];
+      id v13 = [v12 objectForKeyedSubscript:v8];
       float v14 = v13;
       if (v13)
       {
@@ -464,14 +464,14 @@ LABEL_27:
 {
   id v6 = a3;
   id v7 = a4;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v7 stableIdentifier]);
+  id v8 = [v7 stableIdentifier];
   if (v8)
   {
     unint64_t v9 = (CBWHBHostEntry *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_whbHostTable,  "objectForKeyedSubscript:",  v6));
     if (v9)
     {
       id v10 = v9;
-      id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBHostEntry deviceList](v9, "deviceList"));
+      id v11 = -[CBWHBHostEntry deviceList];
       [v11 setObject:v7 forKeyedSubscript:v8];
 
       if (dword_1008D60F8 <= 30
@@ -484,7 +484,7 @@ LABEL_27:
     else
     {
       id v10 = objc_alloc_init(&OBJC_CLASS___CBWHBHostEntry);
-      id v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBHostEntry deviceList](v10, "deviceList"));
+      id v12 = -[CBWHBHostEntry deviceList];
       [v12 setObject:v7 forKeyedSubscript:v8];
 
       -[NSMutableDictionary setObject:forKeyedSubscript:](self->_whbHostTable, "setObject:forKeyedSubscript:", v10, v6);
@@ -510,14 +510,14 @@ LABEL_27:
 {
   id v11 = a3;
   id v6 = a4;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v6 stableIdentifier]);
+  id v7 = [v6 stableIdentifier];
   if (v7)
   {
     id v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_whbHostTable, "objectForKeyedSubscript:", v11));
     unint64_t v9 = v8;
     if (v8)
     {
-      id v10 = (void *)objc_claimAutoreleasedReturnValue([v8 deviceList]);
+      id v10 = [v8 deviceList];
       [v10 removeObjectForKey:v7];
     }
 
@@ -539,7 +539,7 @@ LABEL_27:
 - (void)removefromRemoteHostMapWithKey:(id)a3
 {
   id v6 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_whbHostTable, "objectForKeyedSubscript:"));
+  id v4 = [self->_whbHostTable objectForKeyedSubscript:@"objectForKeyedSubscript:"];
   if (v4)
   {
     if (dword_1008D60F8 <= 30
@@ -548,7 +548,7 @@ LABEL_27:
       LogPrintF_safe( &dword_1008D60F8,  "-[CBWHBRouter removefromRemoteHostMapWithKey:]",  30LL,  "Removing all the devices on WHBHost: %@",  v6);
     }
 
-    unint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 deviceList]);
+    unint64_t v5 = (void *)[v4 deviceList];
     v7[0] = _NSConcreteStackBlock;
     v7[1] = 3221225472LL;
     v7[2] = sub_100025E44;
@@ -575,12 +575,12 @@ LABEL_27:
       id v11 = v4;
       if ([v4 bleRSSI])
       {
-        id v6 = (void *)objc_claimAutoreleasedReturnValue([v11 stableIdentifier]);
+        id v6 = [v11 stableIdentifier];
         if (v6)
         {
-          id v7 = (void *)objc_claimAutoreleasedReturnValue([v11 remoteHostID]);
+          id v7 = [v11 remoteHostID];
           if (v7) {
-            id v8 = (__CFString *)objc_claimAutoreleasedReturnValue([v11 remoteHostID]);
+            id v8 = [v11 remoteHostID];
           }
           else {
             id v8 = @"CBLocalHostID";
@@ -632,12 +632,12 @@ LABEL_23:
     if (v4)
     {
       int v10 = v4;
-      id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 stableIdentifier]);
+      id v6 = [v4 stableIdentifier];
       if (v6)
       {
-        id v7 = (void *)objc_claimAutoreleasedReturnValue([v10 remoteHostID]);
+        id v7 = [v10 remoteHostID];
         if (v7) {
-          id v8 = (__CFString *)objc_claimAutoreleasedReturnValue([v10 remoteHostID]);
+          id v8 = [v10 remoteHostID];
         }
         else {
           id v8 = @"CBLocalHostID";
@@ -688,7 +688,7 @@ LABEL_18:
     }
 
     -[CBWHBRouter removefromRemoteHostMapWithKey:](self, "removefromRemoteHostMapWithKey:", v7);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+    id v8 = [CBMetricsDaemon sharedCBMetricsDaemon];
     [v8 reportWhbMetric:&off_1008C2F08];
 
     goto LABEL_12;
@@ -721,7 +721,7 @@ LABEL_12:
     }
 
     -[CBWHBRouter deviceLost:](self, "deviceLost:", v9);
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+    id v7 = [CBMetricsDaemon sharedCBMetricsDaemon];
     [v7 reportWhbMetric:&off_1008C2F30];
 
     goto LABEL_10;
@@ -747,7 +747,7 @@ LABEL_10:
     if (a4) {
       *a4 = 0;
     }
-    id v7 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceTable, "objectForKeyedSubscript:", v6));
+    id v7 = [self->_deviceTable objectForKeyedSubscript:v6];
     if (!v7)
     {
       if (dword_1008D60F8 <= 90
@@ -767,12 +767,12 @@ LABEL_10:
     id v9 = v8;
     if (v8)
     {
-      uint64_t v10 = objc_claimAutoreleasedReturnValue([v8 firstObject]);
+      uint64_t v10 = [v8 firstObject];
       if (v10)
       {
         id v11 = (void *)v10;
-        id v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBRouter getCBDeviceForStableId:onHost:](self, "getCBDeviceForStableId:onHost:", v6, v10));
-        id v13 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_whbHostTable,  "objectForKeyedSubscript:",  v11));
+        id v12 = [self getCBDeviceForStableId:v6 onHost:v10];
+        id v13 = -[self->_whbHostTable objectForKeyedSubscript:v11];
         objc_msgSend(v13, "setEstimatedConnections:", (char *)objc_msgSend(v13, "estimatedConnections") + 1);
         [v13 setEstimatedConnectionsLastUpdatedTicks:mach_absolute_time()];
         if (dword_1008D60F8 <= 30
@@ -809,8 +809,8 @@ LABEL_10:
     float v14 = @"None";
 LABEL_27:
     __int128 v25 = v14;
-    id v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v23,  &v20,  3LL));
-    BOOL v18 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+    id v17 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v23,  &v20,  3LL);
+    BOOL v18 = [CBMetricsDaemon sharedCBMetricsDaemon];
     [v18 reportWhbMetric:v17];
 
     if (dword_1008D60F8 <= 30
@@ -848,7 +848,7 @@ LABEL_33:
   id v22 = 0LL;
   if (v8)
   {
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v8 deviceList]);
+    uint64_t v10 = (void *)[v8 deviceList];
     v13[0] = _NSConcreteStackBlock;
     v13[1] = 3221225472LL;
     v13[2] = sub_100026924;
@@ -936,7 +936,7 @@ LABEL_7:
 - (void)updateCoexUpdate:(id)a3 whbHost:(id)a4
 {
   id v12 = a4;
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([a3 objectForKeyedSubscript:@"NUMBER_OF_LE_CONNECTIONS"]);
+  id v6 = (void *)[a3 objectForKeyedSubscript:@"NUMBER_OF_LE_CONNECTIONS"];
   id v7 = [v6 unsignedLongValue];
   int v8 = (CBWHBHostEntry *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_whbHostTable,  "objectForKeyedSubscript:",  v12));
   if (v8)
@@ -944,14 +944,14 @@ LABEL_7:
     id v9 = v8;
     -[CBWHBHostEntry setEstimatedConnections:](v8, "setEstimatedConnections:", 0LL);
     -[CBWHBHostEntry setEstimatedConnectionsLastUpdatedTicks:](v9, "setEstimatedConnectionsLastUpdatedTicks:", 0LL);
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBHostEntry coexUsage](v9, "coexUsage"));
+    id v10 = [v9 coexUsage];
     [v10 setNumLEConnection:v7];
   }
 
   else
   {
     id v9 = objc_alloc_init(&OBJC_CLASS___CBWHBHostEntry);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBHostEntry coexUsage](v9, "coexUsage"));
+    id v11 = [v9 coexUsage];
     [v11 setNumLEConnection:v7];
 
     -[NSMutableDictionary setObject:forKeyedSubscript:](self->_whbHostTable, "setObject:forKeyedSubscript:", v9, v12);
@@ -964,7 +964,7 @@ LABEL_7:
   id v7 = a4;
   if (self->_isActivated)
   {
-    int v8 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"NUMBER_OF_LE_CONNECTIONS"]);
+    int v8 = (void *)[v6 objectForKeyedSubscript:@"NUMBER_OF_LE_CONNECTIONS"];
     id v9 = v8;
     if (v8)
     {
@@ -975,11 +975,11 @@ LABEL_7:
       v15[0] = @"CoexUpdateEvent";
       v15[1] = @"ReceivedCoexUpdate";
       v14[2] = @"CBWHBMetricsKeyNumLEConnections";
-      id v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v10));
+      id v11 = [NSNumber numberWithUnsignedLongLong:v10];
       v15[2] = v11;
-      id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v15,  v14,  3LL));
+      id v12 = [NSDictionary dictionaryWithObjects:v15 forKeys:v14 count:3];
 
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+      id v13 = [CBMetricsDaemon sharedCBMetricsDaemon];
       [v13 reportWhbMetric:v12];
     }
 

@@ -8,7 +8,7 @@
 {
   id v5 = a3;
   id v6 = a4;
-  uint64_t v8 = objc_opt_class(&OBJC_CLASS___CAShapeLayer, v7);
+  uint64_t v8 = [CAShapeLayer class];
   id v9 = v5;
   id v23 = v9;
   if (v8)
@@ -28,7 +28,7 @@
 
   id v11 = v10;
 
-  uint64_t v13 = objc_opt_class(&OBJC_CLASS___BKDisplayAnnotationShapeContent, v12);
+  BKDisplayAnnotationShapeContent *v13 = [BKDisplayAnnotationShapeContent class];
   id v14 = v6;
   v15 = v14;
   if (v13)
@@ -58,7 +58,7 @@
   v24.size.width = v19;
   v24.size.height = v21;
   CGPathAddRect(Mutable, 0LL, v24);
-  objc_msgSend(v11, "setBounds:", 0.0, 0.0, v19, v21);
+  [v11 setBounds:CGRectMake(0.0, 0.0, v19, v21)];
   [v11 setPath:Mutable];
 
   CFRelease(Mutable);

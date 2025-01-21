@@ -315,7 +315,7 @@ LABEL_21:
             objc_enumerationMutation(v5);
           }
           uint64_t v9 = *(void *)(*((void *)&v13 + 1) + 8LL * (void)i);
-          v10 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_deviceMap,  "objectForKeyedSubscript:",  v9));
+          v10 = -[self->_deviceMap objectForKeyedSubscript:v9];
           if (((unint64_t)[v10 discoveryFlags] & 0xA00000) == 0)
           {
             -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_deviceMap,  "setObject:forKeyedSubscript:",  0LL,  v9);
@@ -509,8 +509,8 @@ LABEL_12:
   v13[4] = &v14;
   if (sub_1005D5604((uint64_t)off_1008D5F28, v6, v13) && v15[3])
   {
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
-    id v8 = (CBDevice *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceMap, "objectForKeyedSubscript:", v7));
+    uint64_t v7 = (void *)[v6 UUIDString];
+    id v8 = [self->_deviceMap objectForKeyedSubscript:v7];
     if (v8)
     {
       uint64_t v9 = 0LL;
@@ -558,7 +558,7 @@ LABEL_12:
   sub_1005C8684( (uint64_t)off_1008D5F28,  (v7 << 40) | (v8 << 32) | (v9 << 24) | (v10 << 16) | (v11 << 8) | v12,  1u,  1u,  0LL,  0LL,  (unsigned __int8 *)v22);
   __int128 v13 = sub_100241F94((const unsigned __int8 *)v22);
   uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(v13);
-  __int128 v15 = (void *)objc_claimAutoreleasedReturnValue([v14 UUIDString]);
+  __int128 v15 = (void *)[v14 UUIDString];
   if (v15)
   {
     uint64_t v16 = (CBDevice *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_deviceMap,  "objectForKeyedSubscript:",  v15));
@@ -641,14 +641,14 @@ LABEL_12:
           __int128 v13 = v12;
           if (v12)
           {
-            uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v12 objectForKeyedSubscript:@"Accessory Identifier"]);
+            uint64_t v14 = (void *)[v12 objectForKeyedSubscript:@"Accessory Identifier"];
             if (v14)
             {
               __int128 v15 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_deviceMap,  "objectForKeyedSubscript:",  v14));
               uint64_t v16 = v15;
               if (v15 && ([v15 connectedServices] & 0x400000) != 0)
               {
-                objc_msgSend( v16,  "setChangeFlags:",  (unint64_t)objc_msgSend(v16, "changeFlags") | (unint64_t)objc_msgSend( v16,  "updateWithPowerSourceDescription:",  v13));
+                [v16 setChangeFlags:((unint64_t)[v16 changeFlags] | (unint64_t)[v16 updateWithPowerSourceDescription:v13])];
                 ++v20;
               }
 

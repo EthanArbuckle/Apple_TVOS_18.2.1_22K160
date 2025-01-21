@@ -13,13 +13,13 @@
     GSKeyboardRelease(gsKeyboard, a2);
   }
   v4.receiver = self;
-  v4.super_class = (Class)&OBJC_CLASS___BKKeyboardInfo;
-  -[BKKeyboardInfo dealloc](&v4, "dealloc");
+  v4.super_class = [BKKeyboardInfo class];
+  [v4 dealloc];
 }
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToFormatter:(id)a3

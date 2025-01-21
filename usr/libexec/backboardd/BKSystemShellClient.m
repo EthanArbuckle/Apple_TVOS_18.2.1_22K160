@@ -8,13 +8,13 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (NSString)debugDescription
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[BSDescriptionStyle debugStyle](&OBJC_CLASS___BSDescriptionStyle, "debugStyle"));
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionStream descriptionForRootObject:withStyle:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:withStyle:",  self,  v3));
+  BSDescriptionStyle *v3 = [BSDescriptionStyle debugStyle];
+  BSDescriptionStream *v4 = [BSDescriptionStream descriptionForRootObject:self withStyle:v3];
 
   return (NSString *)v4;
 }

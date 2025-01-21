@@ -16,10 +16,10 @@
 {
   id v8 = a3;
   id v6 = a4;
-  -[BKDisplayAnnotationStyle applyToLayer:forContent:](self->_baseStyle, "applyToLayer:forContent:", v8, v6);
+  [self->_baseStyle applyToLayer:v8 forContent:v6];
   styleModifier = self->_styleModifier;
   if (styleModifier && self->_baseStyle != styleModifier) {
-    -[BKDisplayAnnotationStyle applyToLayer:forContent:](styleModifier, "applyToLayer:forContent:", v8, v6);
+    [styleModifier applyToLayer:v8 forContent:v6];
   }
 }
 
@@ -27,14 +27,14 @@
 {
   id v7 = a3;
   if ((objc_opt_respondsToSelector(self->_baseStyle, "sizeLayer:toFitAtScale:") & 1) != 0) {
-    -[BKDisplayAnnotationStyle sizeLayer:toFitAtScale:](self->_baseStyle, "sizeLayer:toFitAtScale:", v7, a4);
+    [self->_baseStyle sizeLayer:v7 toFitAtScale:a4];
   }
   styleModifier = self->_styleModifier;
   if (styleModifier
     && self->_baseStyle != styleModifier
     && (objc_opt_respondsToSelector(styleModifier, "sizeLayer:toFitAtScale:") & 1) != 0)
   {
-    -[BKDisplayAnnotationStyle sizeLayer:toFitAtScale:](self->_styleModifier, "sizeLayer:toFitAtScale:", v7, a4);
+    [self->_styleModifier sizeLayer:v7 toFitAtScale:a4];
   }
 }
 
@@ -50,13 +50,13 @@
 - (id)newLayerForContent:(id)a3 scale:(double)a4
 {
   id v5 = a3;
-  uint64_t v7 = objc_opt_class(&OBJC_CLASS___BKDisplayAnnotationStringContent, v6);
+  BKDisplayAnnotationStringContent *v7 = [BKDisplayAnnotationStringContent class];
   if ((objc_opt_isKindOfClass(v5, v7) & 1) != 0)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue(+[CATextLayer layer](&OBJC_CLASS___CATextLayer, "layer"));
-    v10 = (void *)objc_claimAutoreleasedReturnValue([v5 string]);
+    v9 = [CATextLayer layer];
+    v10 = (void *)[v5 string];
     [v9 setString:v10];
-    v11 = (void *)objc_claimAutoreleasedReturnValue([@"Text annotation: " stringByAppendingString:v10]);
+    v11 = [@"Text annotation: " stringByAppendingString:v10];
     [v9 setName:v11];
 
     [v9 setContentsScale:a4];
@@ -66,16 +66,16 @@
 
   else
   {
-    uint64_t v12 = objc_opt_class(&OBJC_CLASS___BKDisplayAnnotationShapeContent, v8);
+    uint64_t v12 = [BKDisplayAnnotationShapeContent class];
     if ((objc_opt_isKindOfClass(v5, v12) & 1) != 0)
     {
-      v9 = (void *)objc_claimAutoreleasedReturnValue(+[CAShapeLayer layer](&OBJC_CLASS___CAShapeLayer, "layer"));
+      v9 = [CAShapeLayer layer];
       [v9 setName:@"Shape annotation"];
     }
 
     else
     {
-      v9 = (void *)objc_claimAutoreleasedReturnValue(+[CALayer layer](&OBJC_CLASS___CALayer, "layer"));
+      v9 = [CALayer layer];
     }
   }
 

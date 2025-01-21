@@ -40,18 +40,18 @@
   id v8 = a3;
   if (!v8)
   {
-    v19 = (objc_class *)objc_opt_class(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor, v9);
+    BKSDisplayRenderOverlayDescriptor *v19 = [BKSDisplayRenderOverlayDescriptor class];
     v20 = NSStringFromClass(v19);
-    v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
-    v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Value for '%@' was unexpectedly nil. Expected %@.",  @"descriptor",  v21));
+    v21 = [v20 autorelease];
+    v22 = [NSString stringWithFormat:@"Value for '%@' was unexpectedly nil. Expected %@.", @"descriptor", v21];
 
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v23 = NSStringFromSelector(a2);
       v24 = (void *)objc_claimAutoreleasedReturnValue(v23);
-      v26 = (objc_class *)objc_opt_class(self, v25);
+      v26 = [self class];
       v27 = NSStringFromClass(v26);
-      v28 = (void *)objc_claimAutoreleasedReturnValue(v27);
+      v28 = [v27 autorelease];
       *(_DWORD *)buf = 138544642;
       *(void *)&buf[4] = v24;
       *(_WORD *)&buf[12] = 2114;
@@ -73,27 +73,27 @@
   }
 
   v10 = v8;
-  uint64_t v11 = objc_opt_class(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor, v9);
+  BKSDisplayRenderOverlayDescriptor *v11 = [BKSDisplayRenderOverlayDescriptor class];
   if ((objc_opt_isKindOfClass(v10, v11) & 1) == 0)
   {
     v29 = (objc_class *)[v10 classForCoder];
     if (!v29) {
-      v29 = (objc_class *)objc_opt_class(v10, v30);
+      v29 = [v10 class];
     }
     v31 = NSStringFromClass(v29);
-    v32 = (void *)objc_claimAutoreleasedReturnValue(v31);
-    v34 = (objc_class *)objc_opt_class(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor, v33);
+    v32 = v31;
+    BKSDisplayRenderOverlayDescriptor *v34 = [BKSDisplayRenderOverlayDescriptor class];
     v35 = NSStringFromClass(v34);
-    v36 = (void *)objc_claimAutoreleasedReturnValue(v35);
-    v37 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Value for '%@' was of unexpected class %@. Expected %@.",  @"descriptor",  v32,  v36));
+    v36 = [v35 autorelease];
+    v37 = [NSString stringWithFormat:@"Value for '%@' was of unexpected class %@. Expected %@.", @"descriptor", v32, v36];
 
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v38 = NSStringFromSelector(a2);
-      v39 = (void *)objc_claimAutoreleasedReturnValue(v38);
-      v41 = (objc_class *)objc_opt_class(self, v40);
+      v39 = [v38 autorelease];
+      v41 = [self class];
       v42 = NSStringFromClass(v41);
-      v43 = (void *)objc_claimAutoreleasedReturnValue(v42);
+      v43 = [v42 autorelease];
       *(_DWORD *)buf = 138544642;
       *(void *)&buf[4] = v39;
       *(_WORD *)&buf[12] = 2114;
@@ -115,23 +115,23 @@
   }
 
   v44.receiver = self;
-  v44.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlay;
-  v12 = -[BKDisplayRenderOverlay init](&v44, "init");
+  v44.super_class = [BKDisplayRenderOverlay class];
+  BKDisplayRenderOverlay *v12 = [[BKDisplayRenderOverlay alloc] init];
   v13 = v12;
   if (v12)
   {
-    objc_storeStrong((id *)&v12->_descriptor, a3);
+    v12->_descriptor = a3;
     v13->_level = a4;
-    uint64_t v14 = objc_claimAutoreleasedReturnValue( +[BKDisplayRenderOverlayPersistenceCoordinator sharedInstance]( &OBJC_CLASS___BKDisplayRenderOverlayPersistenceCoordinator,  "sharedInstance"));
+    uint64_t v14 = [BKDisplayRenderOverlayPersistenceCoordinator sharedInstance];
     persistenceCoordinator = v13->_persistenceCoordinator;
     v13->_persistenceCoordinator = (BKDisplayRenderOverlayPersistenceCoordinator *)v14;
 
     v13->_type = 0LL;
-    *(_WORD *)&v13->_visible = 0;
-    v16 = (void *)objc_claimAutoreleasedReturnValue([v10 display]);
+    v13->_visible = 0;
+    v16 = [v10 display];
     if ([v16 isExternal])
     {
-      v17 = (void *)objc_claimAutoreleasedReturnValue([v16 currentMode]);
+      v17 = [v16 currentMode];
       v13->_scale = (double)(unint64_t)[v17 preferredScale];
     }
 
@@ -157,12 +157,12 @@
   if (a3)
   {
     id v4 = a3;
-    v5 = (void *)objc_claimAutoreleasedReturnValue([v4 descriptor]);
+    v5 = [v4 descriptor];
     [v4 level];
     int v7 = v6;
 
     LODWORD(v8) = v7;
-    uint64_t v9 = -[BKDisplayRenderOverlay initWithOverlayDescriptor:level:](self, "initWithOverlayDescriptor:level:", v5, v8);
+    uint64_t v9 = [BKDisplayRenderOverlay initWithOverlayDescriptor:v5 level:v8];
 
     self = v9;
     v10 = self;
@@ -180,14 +180,14 @@
 {
   if (self->_visible)
   {
-    id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Must dismiss before releasing"));
+    id v4 = [NSString stringWithFormat:@"Must dismiss before releasing"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v5 = NSStringFromSelector(a2);
       int v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-      double v8 = (objc_class *)objc_opt_class(self, v7);
+      double v8 = [self class];
       uint64_t v9 = NSStringFromClass(v8);
-      v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+      v10 = [v9 autorelease];
       *(_DWORD *)buf = 138544642;
       v13 = v6;
       __int16 v14 = 2114;
@@ -209,38 +209,38 @@
   }
 
   v11.receiver = self;
-  v11.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlay;
-  -[BKDisplayRenderOverlay dealloc](&v11, "dealloc");
+  v11.super_class = [BKDisplayRenderOverlay class];
+  [v11 dealloc];
 }
 
 - (NSString)name
 {
-  return (NSString *)-[BKSDisplayRenderOverlayDescriptor name](self->_descriptor, "name");
+  return [self->_descriptor name];
 }
 
 - (CADisplay)display
 {
-  return (CADisplay *)-[BKSDisplayRenderOverlayDescriptor display](self->_descriptor, "display");
+  return [self->_descriptor display];
 }
 
 - (int64_t)interfaceOrientation
 {
-  return (int64_t)-[BKSDisplayRenderOverlayDescriptor interfaceOrientation]( self->_descriptor,  "interfaceOrientation");
+  return [self->_descriptor interfaceOrientation];
 }
 
 - (BOOL)lockBacklight
 {
-  return -[BKSDisplayRenderOverlayDescriptor lockBacklight](self->_descriptor, "lockBacklight");
+  return [self->_descriptor lockBacklight];
 }
 
 - (BKSDisplayProgressIndicatorProperties)progressIndicatorProperties
 {
-  return (BKSDisplayProgressIndicatorProperties *)-[BKSDisplayRenderOverlayDescriptor progressIndicatorProperties]( self->_descriptor,  "progressIndicatorProperties");
+  return [self->_descriptor progressIndicatorProperties];
 }
 
 - (BOOL)isInterstitial
 {
-  return -[BKSDisplayRenderOverlayDescriptor isInterstitial](self->_descriptor, "isInterstitial");
+  return [self->_descriptor isInterstitial];
 }
 
 - (void)setAnimates:(BOOL)a3
@@ -253,7 +253,7 @@
     v3[2] = sub_100023AC8;
     v3[3] = &unk_1000B8058;
     v3[4] = self;
-    -[BKDisplayRenderOverlay _wrapInCATransaction:](self, "_wrapInCATransaction:", v3);
+    [self _wrapInCATransaction:v3];
   }
 
 - (BOOL)presentWithAnimationSettings:(id)a3
@@ -267,10 +267,10 @@
     goto LABEL_5;
   }
   id v5 = sub_10003F368();
-  int v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+  int v6 = (os_log_s *)v5;
   if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
   {
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescription](self, "succinctDescription"));
+    uint64_t v7 = (void *)[self succinctDescription];
     *(_DWORD *)buf = 138543618;
     __int16 v18 = v7;
     __int16 v19 = 2114;
@@ -285,13 +285,13 @@
   v12 = &v13;
   v10[4] = self;
   id v11 = v4;
-  -[BKDisplayRenderOverlay _wrapInCATransaction:](self, "_wrapInCATransaction:", v10);
+  [self _wrapInCATransaction:v10];
   self->_visible = 1;
 
   if (*((_BYTE *)v14 + 24))
   {
 LABEL_5:
-    +[CATransaction flush](&OBJC_CLASS___CATransaction, "flush");
+    [CATransaction flush];
     BOOL v8 = *((_BYTE *)v14 + 24) != 0;
   }
 
@@ -309,14 +309,14 @@ LABEL_5:
 {
   if (!self->_visible)
   {
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Can't freeze a hidden overlay"));
+    NSString *v7 = [NSString stringWithFormat:@"Can't freeze a hidden overlay"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       BOOL v8 = NSStringFromSelector(a2);
-      uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(v8);
-      id v11 = (objc_class *)objc_opt_class(self, v10);
+      uint64_t v9 = [v8 autorelease];
+      [self class]
       v12 = NSStringFromClass(v11);
-      uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
+      uint64_t v13 = v12;
       *(_DWORD *)buf = 138544642;
       char v16 = v9;
       __int16 v17 = 2114;
@@ -341,10 +341,10 @@ LABEL_5:
   {
     self->_frozen = 1;
     id v3 = sub_10003F368();
-    id v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+    id v4 = v3;
     if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
     {
-      id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescription](self, "succinctDescription"));
+      id v5 = [BKDisplayRenderOverlay succinctDescription];
       *(_DWORD *)buf = 138543362;
       char v16 = v5;
       _os_log_impl((void *)&_mh_execute_header, v4, OS_LOG_TYPE_DEFAULT, "Freezing overlay: %{public}@", buf, 0xCu);
@@ -355,7 +355,7 @@ LABEL_5:
     v14[2] = sub_100023A70;
     v14[3] = &unk_1000B8058;
     v14[4] = self;
-    -[BKDisplayRenderOverlay _wrapInCATransaction:](self, "_wrapInCATransaction:", v14);
+    [self _wrapInCATransaction:v14];
   }
 
 - (void)dismissWithAnimationSettings:(id)a3
@@ -364,10 +364,10 @@ LABEL_5:
   if (self->_visible)
   {
     id v5 = sub_10003F368();
-    int v6 = (os_log_s *)objc_claimAutoreleasedReturnValue(v5);
+    int v6 = (os_log_s *)v5;
     if (os_log_type_enabled(v6, OS_LOG_TYPE_DEFAULT))
     {
-      uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescription](self, "succinctDescription"));
+      uint64_t v7 = [self succinctDescription];
       *(_DWORD *)buf = 138543618;
       id v11 = v7;
       __int16 v12 = 2114;
@@ -381,7 +381,7 @@ LABEL_5:
     v8[3] = &unk_1000B8030;
     v8[4] = self;
     id v9 = v4;
-    -[BKDisplayRenderOverlay _wrapInCATransaction:](self, "_wrapInCATransaction:", v8);
+    [self _wrapInCATransaction:v8];
     self->_visible = 0;
   }
 }
@@ -393,11 +393,11 @@ LABEL_5:
 
 - (id)_persistenceData
 {
-  id v3 = objc_alloc_init(&OBJC_CLASS____BKDisplayRenderOverlayPersistenceData);
-  -[_BKDisplayRenderOverlayPersistenceData setOverlayType:]( v3,  "setOverlayType:",  -[BKDisplayRenderOverlay type](self, "type"));
-  -[_BKDisplayRenderOverlayPersistenceData setDescriptor:](v3, "setDescriptor:", self->_descriptor);
-  *(float *)&double v4 = self->_level;
-  -[_BKDisplayRenderOverlayPersistenceData setLevel:](v3, "setLevel:", v4);
+  BKDisplayRenderOverlayPersistenceData *v3 = [[BKDisplayRenderOverlayPersistenceData alloc] init];
+  [v3 setOverlayType:[self type]];
+  [v3 setDescriptor:self->_descriptor];
+  self->_level = v4;
+  [v3 setLevel:v4];
   return v3;
 }
 
@@ -406,36 +406,36 @@ LABEL_5:
   if (a3)
   {
     id v3 = (void (**)(void))a3;
-    +[CATransaction begin](&OBJC_CLASS___CATransaction, "begin");
-    v3[2](v3);
+    [CATransaction begin];
+    v3[2];
 
-    +[CATransaction commit](&OBJC_CLASS___CATransaction, "commit");
+    [CATransaction commit];
   }
 
 - (NSString)description
 {
-  return (NSString *)-[BKDisplayRenderOverlay descriptionWithMultilinePrefix:]( self,  "descriptionWithMultilinePrefix:",  0LL);
+  return [self descriptionWithMultilinePrefix:0LL];
 }
 
 - (id)succinctDescription
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescriptionBuilder](self, "succinctDescriptionBuilder"));
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([v2 build]);
+  v2 = [self succinctDescriptionBuilder];
+  id v3 = [v2 build];
 
   return v3;
 }
 
 - (id)succinctDescriptionBuilder
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  id v3 = [BSDescriptionBuilder builderWithObject:self];
   id v4 = [v3 appendFloat:@"level" withName:0 decimalPrecision:self->_level];
   return v3;
 }
 
 - (id)descriptionWithMultilinePrefix:(id)a3
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayRenderOverlay descriptionBuilderWithMultilinePrefix:]( self,  "descriptionBuilderWithMultilinePrefix:",  a3));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  id v3 = [BKDisplayRenderOverlay descriptionBuilderWithMultilinePrefix:a3];
+  id v4 = [v3 build];
 
   return v4;
 }
@@ -447,7 +447,7 @@ LABEL_5:
   v8[1] = 3221225472LL;
   v8[2] = sub_1000239E4;
   v8[3] = &unk_1000B8030;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay succinctDescriptionBuilder](self, "succinctDescriptionBuilder"));
+  id v5 = [self succinctDescriptionBuilder];
   id v9 = v5;
   uint64_t v10 = self;
   [v5 appendBodySectionWithName:0 multilinePrefix:v4 block:v8];

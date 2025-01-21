@@ -48,7 +48,7 @@
 - (void)writeUint8:(unsigned __int8)a3
 {
   unsigned __int8 v4 = a3;
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  v3 = [self stream];
   [v3 appendBytes:&v4 length:1];
 }
 
@@ -61,7 +61,7 @@
     __int16 v6 = v3;
   }
   __int16 v8 = v6;
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  v7 = [self stream];
   [v7 appendBytes:&v8 length:2];
 }
 
@@ -73,7 +73,7 @@
     unsigned int v6 = a3;
   }
   unsigned int v8 = v6;
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  v7 = [self stream];
   [v7 appendBytes:&v8 length:4];
 }
 
@@ -93,7 +93,7 @@
   v9[0] = v7;
   v9[1] = BYTE1(a3);
   v9[2] = v6;
-  unsigned int v8 = (void *)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  unsigned int v8 = [self stream];
   [v8 appendBytes:v9 length:3];
 }
 
@@ -125,27 +125,27 @@
   }
   v11[3] = v6;
   v11[4] = v7;
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  v10 = [self stream];
   [v10 appendBytes:v11 length:5];
 }
 
 - (void)writeData:(id)a3
 {
   id v4 = a3;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  id v5 = [self stream];
   [v5 appendData:v4];
 }
 
 - (void)writeBytes:(const void *)a3 length:(unint64_t)a4
 {
-  id v6 = (id)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  id v6 = [self stream];
   [v6 appendBytes:a3 length:a4];
 }
 
 - (void)writeString:(id)a3
 {
   id v4 = (const char *)[a3 UTF8String];
-  id v5 = (id)objc_claimAutoreleasedReturnValue(-[DataOutputStream stream](self, "stream"));
+  id v5 = [self stream];
   [v5 appendBytes:v4 length:strlen(v4) + 1];
 }
 

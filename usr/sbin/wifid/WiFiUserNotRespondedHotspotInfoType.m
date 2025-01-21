@@ -16,7 +16,7 @@
   if (v6)
   {
     objc_storeStrong((id *)&v6->_hotspotDevice, a3);
-    uint64_t v8 = objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    uint64_t v8 = [NSDate date];
     lastNotifiedAt = v7->_lastNotifiedAt;
     v7->_lastNotifiedAt = (NSDate *)v8;
   }

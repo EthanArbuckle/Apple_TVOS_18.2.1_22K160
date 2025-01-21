@@ -62,30 +62,30 @@
   v12.super_class = (Class)&OBJC_CLASS___AuthenticationService;
   -[ClientService start](&v12, "start");
   [(id)qword_100070CB8 addObject:self];
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"9FBF120D-6301-42D9-8C58-25E699A21DBD"));
+  v3 = [CBUUID UUIDWithString:@"9FBF120D-6301-42D9-8C58-25E699A21DBD"];
   v13[0] = v3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"0188BF66-463A-405D-91FD-0B8940B92254"));
+  v4 = [CBUUID UUIDWithString:@"0188BF66-463A-405D-91FD-0B8940B92254"];
   v13[1] = v4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"2BDCAEBE-8746-45DF-A841-96B840980FB7"));
+  v5 = [CBUUID UUIDWithString:@"2BDCAEBE-8746-45DF-A841-96B840980FB7"];
   v13[2] = v5;
-  v6 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"2BDCAEBE-8746-45DF-A841-96B840980FB8"));
+  v6 = [CBUUID UUIDWithString:@"2BDCAEBE-8746-45DF-A841-96B840980FB8"];
   v13[3] = v6;
-  v7 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"30E69638-3752-4FEB-A3AA-3226BCD05ACE"));
+  v7 = [CBUUID UUIDWithString:@"30E69638-3752-4FEB-A3AA-3226BCD05ACE"];
   v13[4] = v7;
   objc_super v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithObjects:count:](&OBJC_CLASS___NSArray, "arrayWithObjects:count:", v13, 5LL));
 
-  v9 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService service](self, "service"));
+  v9 = [self peripheral];
+  v10 = [self service];
   [v9 discoverCharacteristics:v8 forService:v10];
 
   -[AuthenticationService setAuthState:](self, "setAuthState:", 1LL);
-  v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSTimer scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:]( &OBJC_CLASS___NSTimer,  "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:",  self,  "authTimeout",  0LL,  0LL,  90.0));
+  v11 = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(authTimeout) userInfo:nil repeats:NO];
   -[AuthenticationService setAuthTimer:](self, "setAuthTimer:", v11);
 }
 
 - (void)stop
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService authTimer](self, "authTimer"));
+  v3 = [self authTimer];
   [v3 invalidate];
 
   [(id)qword_100070CB8 removeObject:self];
@@ -112,14 +112,14 @@
 
 - (void)issueChallenge
 {
-  id v37 = (id)objc_claimAutoreleasedReturnValue(-[AuthenticationService versionCharacteristic](self, "versionCharacteristic"));
-  uint64_t v3 = objc_claimAutoreleasedReturnValue([v37 value]);
+  id v37 = [self versionCharacteristic];
+  uint64_t v3 = [v37 value];
   if (!v3) {
     goto LABEL_9;
   }
   objc_super v4 = (void *)v3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate1Characteristic](self, "certificate1Characteristic"));
-  uint64_t v6 = objc_claimAutoreleasedReturnValue([v5 value]);
+  v5 = [self certificate1Characteristic];
+  uint64_t v6 = [v5 value];
   if (!v6)
   {
 
@@ -129,13 +129,13 @@ LABEL_9:
 
   v7 = (void *)v6;
   objc_super v8 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic"));
-  v9 = (void *)objc_claimAutoreleasedReturnValue([v8 value]);
+  v9 = [v8 value];
 
   if (!v9) {
     return;
   }
-  v10 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService versionCharacteristic](self, "versionCharacteristic"));
-  v11 = (void *)objc_claimAutoreleasedReturnValue([v10 value]);
+  v10 = [self versionCharacteristic];
+  v11 = [v10 value];
   objc_super v12 = (void *)objc_claimAutoreleasedReturnValue( +[DataInputStream inputStreamWithData:byteOrder:]( &OBJC_CLASS___DataInputStream,  "inputStreamWithData:byteOrder:",  v11,  1LL));
 
   __int16 v40 = 0;
@@ -170,18 +170,18 @@ LABEL_9:
 
   int valuePtr = v13;
   Mutable = CFDataCreateMutable(kCFAllocatorDefault, 0LL);
-  v16 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate1Characteristic](self, "certificate1Characteristic"));
-  id v17 = objc_claimAutoreleasedReturnValue([v16 value]);
+  v16 = [self certificate1Characteristic];
+  id v17 = [v16 value];
   v18 = (const UInt8 *)[v17 bytes];
   v19 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate1Characteristic](self, "certificate1Characteristic"));
-  v20 = (void *)objc_claimAutoreleasedReturnValue([v19 value]);
+  v20 = [v19 value];
   CFDataAppendBytes(Mutable, v18, (CFIndex)[v20 length]);
 
-  v21 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic"));
-  id v22 = objc_claimAutoreleasedReturnValue([v21 value]);
+  v21 = -[AuthenticationService certificate2Characteristic];
+  id v22 = [v21 value];
   v23 = (const UInt8 *)[v22 bytes];
-  v24 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic"));
-  v25 = (void *)objc_claimAutoreleasedReturnValue([v24 value]);
+  v24 = [self certificate2Characteristic];
+  v25 = [v24 value];
   CFDataAppendBytes(Mutable, v23, (CFIndex)[v25 length]);
 
   v26 = -[AuthenticationService authInfo](self, "authInfo");
@@ -206,13 +206,13 @@ LABEL_9:
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
       sub_10003D2B8();
     }
-    v30 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    v30 = [self peripheral];
     v31 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
     [v30 setNotifyValue:1 forCharacteristic:v31];
 
-    v32 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    v32 = [self peripheral];
     v33 = value;
-    v34 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
+    v34 = [self challengeResponseCharacteristic];
     [v32 writeValue:v33 forCharacteristic:v34 type:0];
 
     -[AuthenticationService setAuthState:](self, "setAuthState:", 2LL);
@@ -238,7 +238,7 @@ LABEL_26:
       sub_10003D4C0(v3);
     }
     objc_super v4 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
+    v5 = [self challengeResponseCharacteristic];
     [v4 readValueForCharacteristic:v5];
 
     -[AuthenticationService setAuthState:](self, "setAuthState:", 3LL);
@@ -249,13 +249,13 @@ LABEL_26:
     uint64_t v6 = -[AuthenticationService authInfo](self, "authInfo");
     v7 = (const void *)kAuthResponseBufferKey;
     objc_super v8 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v8 value]);
+    v9 = [v8 value];
     CFDictionarySetValue(v6, v7, v9);
 
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG)) {
       sub_10003D5F8();
     }
-    v10 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService authTimer](self, "authTimer"));
+    v10 = [self authTimer];
     [v10 invalidate];
 
     -[AuthenticationService setAuthState:](self, "setAuthState:", 4LL);
@@ -275,8 +275,8 @@ LABEL_26:
       if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
       {
         v15 = v14;
-        v16 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
-        id v17 = (__CFDictionary *)objc_claimAutoreleasedReturnValue([v16 name]);
+        v16 = -[ClientService peripheral];
+        id v17 = [v16 name];
         int v18 = 138412290;
         v19 = v17;
         _os_log_impl( (void *)&_mh_execute_header,  v15,  OS_LOG_TYPE_DEFAULT,  "Authentication has succeeded on peripheral \"%@\"",  (uint8_t *)&v18,  0xCu);
@@ -304,7 +304,7 @@ LABEL_26:
     if (v5) {
       sub_10003D69C(v4);
     }
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    uint64_t v6 = (void *)[self peripheral];
     v7 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
     [v6 readValueForCharacteristic:v7];
 
@@ -328,7 +328,7 @@ LABEL_26:
     __int128 v44 = 0u;
     __int128 v41 = 0u;
     __int128 v42 = 0u;
-    id obj = (id)objc_claimAutoreleasedReturnValue([a4 characteristics]);
+    id obj = [a4 characteristics];
     id v8 = [obj countByEnumeratingWithState:&v41 objects:v45 count:16];
     if (v8)
     {
@@ -352,8 +352,8 @@ LABEL_26:
           else
           {
             id v15 = v9;
-            v16 = (void *)objc_claimAutoreleasedReturnValue([v12 UUID]);
-            id v17 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"9FBF120D-6301-42D9-8C58-25E699A21DBD"));
+            v16 = [v12 UUID];
+            id v17 = [CBUUID UUIDWithString:@"9FBF120D-6301-42D9-8C58-25E699A21DBD"];
             if ([v16 isEqual:v17])
             {
 
@@ -363,8 +363,8 @@ LABEL_22:
               goto LABEL_23;
             }
 
-            v26 = (void *)objc_claimAutoreleasedReturnValue([v12 UUID]);
-            v27 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"0188BF66-463A-405D-91FD-0B8940B92254"));
+            v26 = [v12 UUID];
+            v27 = [CBUUID UUIDWithString:@"0188BF66-463A-405D-91FD-0B8940B92254"];
             unsigned int v28 = [v26 isEqual:v27];
 
             self = v38;
@@ -381,8 +381,8 @@ LABEL_22:
 
           else
           {
-            int v18 = (void *)objc_claimAutoreleasedReturnValue([v12 UUID]);
-            v19 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"2BDCAEBE-8746-45DF-A841-96B840980FB7"));
+            int v18 = (void *)[v12 UUID];
+            v19 = [CBUUID UUIDWithString:@"2BDCAEBE-8746-45DF-A841-96B840980FB7"];
             unsigned int v20 = [v18 isEqual:v19];
 
             if (v20)
@@ -392,20 +392,20 @@ LABEL_22:
             }
           }
 
-          v21 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic"));
+          v21 = [self certificate2Characteristic];
           if (v21)
           {
 
 LABEL_19:
-            v25 = (void *)objc_claimAutoreleasedReturnValue( -[AuthenticationService challengeResponseCharacteristic]( self,  "challengeResponseCharacteristic"));
+            v25 = [self challengeResponseCharacteristic];
             if (v25)
             {
             }
 
             else
             {
-              v30 = (void *)objc_claimAutoreleasedReturnValue([v12 UUID]);
-              v31 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"30E69638-3752-4FEB-A3AA-3226BCD05ACE"));
+              v30 = [v12 UUID];
+              v31 = [CBUUID UUIDWithString:@"30E69638-3752-4FEB-A3AA-3226BCD05ACE"];
               unsigned int v32 = [v30 isEqual:v31];
 
               if (v32) {
@@ -416,8 +416,8 @@ LABEL_19:
             goto LABEL_27;
           }
 
-          id v22 = (void *)objc_claimAutoreleasedReturnValue([v12 UUID]);
-          v23 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  @"2BDCAEBE-8746-45DF-A841-96B840980FB8"));
+          id v22 = [v12 UUID];
+          v23 = [CBUUID UUIDWithString:@"2BDCAEBE-8746-45DF-A841-96B840980FB8"];
           unsigned int v24 = [v22 isEqual:v23];
 
           if (!v24) {
@@ -425,7 +425,7 @@ LABEL_19:
           }
           -[AuthenticationService setCertificate2Characteristic:](self, "setCertificate2Characteristic:", v12);
 LABEL_23:
-          v29 = (void *)objc_claimAutoreleasedReturnValue([v12 value]);
+          v29 = [v12 value];
 
           if (!v29) {
             [v39 readValueForCharacteristic:v12];
@@ -442,12 +442,12 @@ LABEL_27:
     }
 
     -[AuthenticationService issueChallenge](self, "issueChallenge");
-    v33 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService versionCharacteristic](self, "versionCharacteristic"));
+    v33 = [self versionCharacteristic];
 
     if (!v33 && os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_ERROR)) {
       sub_10003D840();
     }
-    uint64_t v34 = objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate1Characteristic](self, "certificate1Characteristic"));
+    uint64_t v34 = [self certificate1Characteristic];
     if (!v34
       || (v35 = (void *)v34,
           v36 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic")),
@@ -475,7 +475,7 @@ LABEL_27:
   id v10 = a5;
   if (v10)
   {
-    id v11 = (id)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
+    id v11 = [self challengeResponseCharacteristic];
 
     if (v11 == v9)
     {
@@ -488,13 +488,13 @@ LABEL_27:
     goto LABEL_14;
   }
 
-  uint64_t v12 = objc_claimAutoreleasedReturnValue(-[AuthenticationService versionCharacteristic](self, "versionCharacteristic"));
+  uint64_t v12 = [self versionCharacteristic];
   int v13 = v9;
   if ((id)v12 == v9) {
     goto LABEL_12;
   }
   uint64_t v14 = (void *)v12;
-  uint64_t v15 = objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate1Characteristic](self, "certificate1Characteristic"));
+  uint64_t v15 = [self certificate1Characteristic];
   if ((id)v15 == v9)
   {
 
@@ -505,7 +505,7 @@ LABEL_12:
   }
 
   v16 = (void *)v15;
-  id v17 = (id)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificate2Characteristic](self, "certificate2Characteristic"));
+  id v17 = [self certificate2Characteristic];
 
   if (v17 == v9)
   {
@@ -514,7 +514,7 @@ LABEL_13:
     goto LABEL_14;
   }
 
-  id v18 = (id)objc_claimAutoreleasedReturnValue(-[AuthenticationService challengeResponseCharacteristic](self, "challengeResponseCharacteristic"));
+  id v18 = [self challengeResponseCharacteristic];
 
   if (v18 == v9) {
     -[AuthenticationService verifyChallenge](self, "verifyChallenge");
@@ -547,7 +547,7 @@ LABEL_14:
 
 - (BOOL)verifyCertificateIsUnique
 {
-  int64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[AuthenticationService certificateSerialNumber](self, "certificateSerialNumber"));
+  int64_t v3 = (void *)[self certificateSerialNumber];
   char v4 = v3 != 0LL;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
@@ -569,7 +569,7 @@ LABEL_14:
         id v10 = *(AuthenticationService **)(*((void *)&v14 + 1) + 8LL * (void)i);
         if (v10 != self)
         {
-          uint64_t v11 = objc_claimAutoreleasedReturnValue(-[AuthenticationService certificateSerialNumber](v10, "certificateSerialNumber", (void)v14));
+          uint64_t v11 = [v10 certificateSerialNumber];
           uint64_t v12 = (void *)v11;
           if (v11) {
             LOBYTE(v11) = [v3 isEqualToData:v11];
@@ -590,7 +590,7 @@ LABEL_14:
 - (void)authenticationDidSucceed
 {
   int64_t v3 = -[AuthenticationService authInfo](self, "authInfo");
-  char v4 = (void *)objc_claimAutoreleasedReturnValue(-[__CFDictionary objectForKeyedSubscript:](v3, "objectForKeyedSubscript:", kAuthVersionKey));
+  char v4 = (void *)[v3 objectForKeyedSubscript:kAuthVersionKey];
   int v5 = [v4 intValue];
   uint64_t CertClass = 0x7FFFFFFFLL;
   if (v5 <= 2
@@ -605,21 +605,21 @@ LABEL_14:
   else
   {
     v13[0] = @"AuthenticationServiceCertClassUserInfoKey";
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", CertClass));
+    uint64_t v9 = (void *)[NSNumber numberWithUnsignedInt:CertClass];
     v13[1] = @"AuthenticationServiceAuthVersionKey";
     v14[0] = v9;
     v14[1] = v4;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  2LL));
+    id v10 = [NSDictionary dictionaryWithObjects:v14 forKeys:v13 count:2];
 
     uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
-    uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
+    uint64_t v12 = (void *)[self peripheral];
     [v11 postNotificationName:@"AuthenticationServiceAuthDidSucceedNotification" object:v12 userInfo:v10];
   }
 }
 
 - (void)authenticationDidFail
 {
-  id v4 = (id)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+  id v4 = [NSNotificationCenter defaultCenter];
   int64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[ClientService peripheral](self, "peripheral"));
   [v4 postNotificationName:@"AuthenticationServiceAuthDidFailNotification" object:v3];
 }

@@ -18,7 +18,7 @@
       id v20 = [(id)objc_opt_class(0) description];
       v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
       uint64_t v22 = CBErrorF(4294960540LL, "%@ super init failed", v21);
-      *a4 = (id)objc_claimAutoreleasedReturnValue(v22);
+      *a4 = v22;
     }
 
     goto LABEL_13;
@@ -37,7 +37,7 @@
     {
       uint64_t v23 = CBErrorF(4294960535LL, "Get device address failed");
       v18 = 0LL;
-      *a4 = (id)objc_claimAutoreleasedReturnValue(v23);
+      *a4 = v23;
       goto LABEL_8;
     }
 
@@ -192,7 +192,7 @@
   HIBYTE(v70) = BYTE2(a4);
   LOBYTE(v71) = BYTE1(a4);
   HIBYTE(v71) = a4;
-  v14 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice btAddressData](self, "btAddressData"));
+  v14 = [self btAddressData];
   if ([v14 length] != (id)6
     || ((v15 = [v14 bytes], v70 == *(_DWORD *)v15)
       ? (BOOL v16 = v71 == v15[2])
@@ -216,8 +216,8 @@ LABEL_18:
   else {
     v19 = off_10087F800[(char)(v18 - 1)];
   }
-  id v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%s", v19));
-  v21 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice btVersion](self, "btVersion"));
+  id v20 = [NSString stringWithFormat:@"%s" v19];
+  v21 = [self btVersion];
   id v22 = v20;
   id v23 = v21;
   if (v22 == v23)
@@ -289,12 +289,12 @@ LABEL_19:
   if (v260[215] < 0) {
     uint64_t v11 = (void *)*v11;
   }
-  v242 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v11));
+  v242 = [NSString stringWithUTF8String:v11];
   unsigned __int16 v12 = v260 + 216;
   if (v260[239] < 0) {
     unsigned __int16 v12 = (void *)*v12;
   }
-  v241 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v12));
+  v241 = [NSString stringWithUTF8String:v12];
 LABEL_20:
   uint64_t v233 = (uint64_t)v6;
   if (![v10 length])
@@ -329,12 +329,12 @@ LABEL_34:
     goto LABEL_34;
   }
 
-  id v18 = (id)objc_claimAutoreleasedReturnValue([v14 UUIDString]);
+  id v18 = [v14 UUIDString];
 
   if (!v18) {
     goto LABEL_35;
   }
-  v19 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice findMyCaseIdentifier](self, "findMyCaseIdentifier"));
+  v19 = [self findMyCaseIdentifier];
   id v18 = v18;
   id v20 = v19;
   if (v18 == v20)
@@ -361,11 +361,11 @@ LABEL_473:
   -[CBDevice setFindMyCaseIdentifier:](self, "setFindMyCaseIdentifier:", v18);
   unint64_t v23 = 0x80000000000LL;
 LABEL_36:
-  v238 = (void *)objc_claimAutoreleasedReturnValue([v17 UUIDString]);
+  v238 = [v17 UUIDString];
   if (!v238) {
     goto LABEL_44;
   }
-  uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice findMyGroupIdentifier](self, "findMyGroupIdentifier"));
+  uint64_t v24 = (void *)[self findMyGroupIdentifier];
   id v25 = v238;
   id v26 = v24;
   if (v25 == v26)

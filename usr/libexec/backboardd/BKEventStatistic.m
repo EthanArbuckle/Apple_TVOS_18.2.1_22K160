@@ -18,10 +18,10 @@
 - (void)appendDescriptionToFormatter:(id)a3
 {
   id v11 = a3;
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[NSArray bs_filter:](self->_associatedStatistics, "bs_filter:", &stru_1000B7310));
+  v4 = -[self->_associatedStatistics bs_filter:&stru_1000B7310];
   if ([v4 count])
   {
-    uint64_t v6 = objc_opt_class(&OBJC_CLASS___BSDescriptionStream, v5);
+    uint64_t v6 = [BSDescriptionStream class];
     id v7 = v11;
     v8 = v7;
     if (v6)
@@ -57,7 +57,7 @@
   __int128 v10 = 0u;
   __int128 v11 = 0u;
   v3 = self->_associatedStatistics;
-  id v4 = -[NSArray countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v8,  v12,  16LL);
+  [v3 countByEnumeratingWithState:v8 objects:v12 count:16];
   if (v4)
   {
     id v5 = v4;
@@ -70,12 +70,12 @@
         if (*(void *)v9 != v6) {
           objc_enumerationMutation(v3);
         }
-        objc_msgSend(*(id *)(*((void *)&v8 + 1) + 8 * (void)v7), "reset", (void)v8);
+        [v8 reset];
         id v7 = (char *)v7 + 1;
       }
 
       while (v5 != v7);
-      id v5 = -[NSArray countByEnumeratingWithState:objects:count:]( v3,  "countByEnumeratingWithState:objects:count:",  &v8,  v12,  16LL);
+      [v3 countByEnumeratingWithState:v8 objects:v12 count:16];
     }
 
     while (v5);
@@ -86,8 +86,8 @@
 
 - (id)copyWithZone:(_NSZone *)a3
 {
-  id v4 = objc_msgSend((id)objc_opt_class(self, a2), "statisticWithLabel:", self->_label);
-  uint64_t v5 = objc_claimAutoreleasedReturnValue(v4);
+  id v4 = [self statisticWithLabel:self->_label];
+  uint64_t v5 = [v4 autorelease];
   objc_storeStrong((id *)(v5 + 24), self->_associatedStatistics);
   *(_BYTE *)(v5 + 9) = self->_needsLogging;
   return (id)v5;
@@ -138,7 +138,7 @@
 + (BKEventStatistic)statisticWithLabel:(id)a3
 {
   id v4 = a3;
-  id v6 = objc_alloc_init((Class)objc_opt_class(a1, v5));
+  a1 *v6 = [[a1 alloc] init];
   [v6 setLabel:v4];
 
   return (BKEventStatistic *)v6;

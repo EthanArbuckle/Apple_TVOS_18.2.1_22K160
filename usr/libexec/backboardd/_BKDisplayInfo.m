@@ -20,8 +20,8 @@
 - (_BKDisplayInfo)init
 {
   v8.receiver = self;
-  v8.super_class = (Class)&OBJC_CLASS____BKDisplayInfo;
-  result = -[_BKDisplayInfo init](&v8, "init");
+  v8.super_class = [BKDisplayInfo class];
+  result = [[_BKDisplayInfo alloc] init];
   if (result)
   {
     result->_normalizedDigitizerRect.origin.x = 0.0;
@@ -40,8 +40,8 @@
   CGSize size = self->_size;
   double scale = self->_scale;
   v5 = sub_100018F98(self->_nativeRotation);
-  v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-  v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"CAWindowServerDisplay:%p size:{%g,%g} scale:%g nativeRotation:%@ normalizedDigitizerRect:{{%g,%g},{%g,%g}} external:%d",  windowServerDisplay,  size,  *(void *)&scale,  v6,  *(void *)&self->_normalizedDigitizerRect.origin.x,  *(void *)&self->_normalizedDigitizerRect.origin.y,  *(void *)&self->_normalizedDigitizerRect.size.width,  *(void *)&self->_normalizedDigitizerRect.size.height,  self->_external));
+  v6 = [v5 autorelease];
+  v7 = [NSString stringWithFormat:@"CAWindowServerDisplay:%p size:{%g,%g} scale:%g nativeRotation:%@ normalizedDigitizerRect:{{%g,%g},{%g,%g}} external:%d",  windowServerDisplay,  size,  scale,  v6,  self->_normalizedDigitizerRect.origin.x,  self->_normalizedDigitizerRect.origin.y,  self->_normalizedDigitizerRect.size.width,  self->_normalizedDigitizerRect.size.height,  self->_external];
 
   return v7;
 }

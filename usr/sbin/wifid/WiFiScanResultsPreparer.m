@@ -126,7 +126,7 @@ LABEL_7:
                   v14 = v13;
                   objc_super v15 = objc_autoreleasePoolPush();
                   if (qword_100219F60) {
-                    [(id)qword_100219F60 WFLog:3, "%s: recommendation for %@ (network %@)", "-[WiFiScanResultsPreparer _prepareScanResults:]", objc_msgSend(v14, "scannedNetwork"), objc_msgSend(v14, "network") message];
+                    [qword_100219F60 WFLog:3, @"%s: recommendation for %@ (network %@)", @"-[WiFiScanResultsPreparer _prepareScanResults:]", [v14 scannedNetwork], [v14 network]];
                   }
                   objc_autoreleasePoolPop(v15);
                   if ([v14 unwantedNetworkName])

@@ -117,7 +117,7 @@
     v7 = @"false";
   }
   v25 = v7;
-  v24 = (void *)objc_claimAutoreleasedReturnValue(-[TrustedPeersHelperHealthCheckResult moveRequest](self, "moveRequest"));
+  v24 = [self moveRequest];
   unint64_t v23 = -[TrustedPeersHelperHealthCheckResult totalEscrowRecords](self, "totalEscrowRecords");
   unint64_t v22 = -[TrustedPeersHelperHealthCheckResult collectableEscrowRecords](self, "collectableEscrowRecords");
   unint64_t v21 = -[TrustedPeersHelperHealthCheckResult collectedEscrowRecords](self, "collectedEscrowRecords");
@@ -169,7 +169,7 @@
     v5->_resetOctagon = [v4 decodeBoolForKey:@"resetOctagon"];
     v5->_leaveTrust = [v4 decodeBoolForKey:@"leaveTrust"];
     v5->_reroll = [v4 decodeBoolForKey:@"reroll"];
-    id v7 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(OTEscrowMoveRequestContext, v6),  @"moveRequest");
+    id v7 = [v4 decodeObjectOfClass:objc_opt_class(OTEscrowMoveRequestContext, v6) forKey:@"moveRequest"];
     uint64_t v8 = objc_claimAutoreleasedReturnValue(v7);
     moveRequest = v5->_moveRequest;
     v5->_moveRequest = (OTEscrowMoveRequestContext *)v8;
@@ -195,42 +195,42 @@
 - (void)encodeWithCoder:(id)a3
 {
   id v5 = a3;
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult postRepairCFU](self, "postRepairCFU"),  @"postRepairCFU");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult postEscrowCFU](self, "postEscrowCFU"),  @"postEscrowCFU");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult resetOctagon](self, "resetOctagon"),  @"resetOctagon");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult leaveTrust](self, "leaveTrust"),  @"leaveTrust");
-  objc_msgSend(v5, "encodeBool:forKey:", -[TrustedPeersHelperHealthCheckResult reroll](self, "reroll"), @"reroll");
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[TrustedPeersHelperHealthCheckResult moveRequest](self, "moveRequest"));
+  [v5 encodeBool:[self postRepairCFU] forKey:@"postRepairCFU"];
+  [v5 encodeBool:[self postEscrowCFU] forKey:@"postEscrowCFU"];
+  [v5 encodeBool:[self resetOctagon] forKey:@"resetOctagon"];
+  [v5 encodeBool:[self leaveTrust] forKey:@"leaveTrust"];
+  [v5 encodeBool:[self reroll] forKey:@"reroll"];
+  id v4 = [self moveRequest];
   [v5 encodeObject:v4 forKey:@"moveRequest"];
 
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalEscrowRecords](self, "totalEscrowRecords"),  @"totalEscrowRecords");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectableEscrowRecords](self, "collectableEscrowRecords"),  @"collectableEscrowRecords");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectedEscrowRecords](self, "collectedEscrowRecords"),  @"collectedEscrowRecords");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult escrowRecordGarbageCollectionEnabled]( self,  "escrowRecordGarbageCollectionEnabled"),  @"escrowRecordGarbageCollectionEnabled");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalTlkShares](self, "totalTlkShares"),  @"totalTlkShares");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectableTlkShares](self, "collectableTlkShares"),  @"collectableTlkShares");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares"),  @"collectedTlkShares");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult tlkShareGarbageCollectionEnabled](self, "tlkShareGarbageCollectionEnabled"),  @"tlkShareGarbageCollectionEnabled");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers"),  @"totalPeers");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult trustedPeers](self, "trustedPeers"),  @"trustedPeers");
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalEscrowRecords](self, "totalEscrowRecords") forKey:@"totalEscrowRecords"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectableEscrowRecords](self, "collectableEscrowRecords") forKey:@"collectableEscrowRecords"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectedEscrowRecords](self, "collectedEscrowRecords") forKey:@"collectedEscrowRecords"];
+  [v5 encodeBool:[self escrowRecordGarbageCollectionEnabled] forKey:@"escrowRecordGarbageCollectionEnabled"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalTlkShares](self, "totalTlkShares") forKey:@"totalTlkShares"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectableTlkShares](self, "collectableTlkShares") forKey:@"collectableTlkShares"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares") forKey:@"collectedTlkShares"];
+  [v5 encodeBool:[self tlkShareGarbageCollectionEnabled] forKey:@"tlkShareGarbageCollectionEnabled"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers") forKey:@"totalPeers"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult trustedPeers](self, "trustedPeers") forKey:@"trustedPeers"];
   objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult superfluousPeers](self, "superfluousPeers"),  @"superfluousPeers");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult peersCleanedup](self, "peersCleanedup"),  @"peersCleanedup");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult superfluousPeersCleanupEnabled](self, "superfluousPeersCleanupEnabled"),  @"superfluousPeersCleanupEnabled");
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult peersCleanedup](self, "peersCleanedup") forKey:@"peersCleanedup"];
+  [v5 encodeBool:[self superfluousPeersCleanupEnabled] forKey:@"superfluousPeersCleanupEnabled"];
 }
 
 - (id)dictionaryRepresentation
 {
   v3 = objc_alloc_init(&OBJC_CLASS___NSMutableDictionary);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult postRepairCFU](self, "postRepairCFU")));
+  id v4 = [NSNumber numberWithBool: +[TrustedPeersHelperHealthCheckResult postRepairCFU](self, "postRepairCFU")];
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v4, @"postRepairCFU");
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult postEscrowCFU](self, "postEscrowCFU")));
+  id v5 = [NSNumber numberWithBool:YES];
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v5, @"postEscrowCFU");
 
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult resetOctagon](self, "resetOctagon")));
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v6, @"resetOctagon");
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult leaveTrust](self, "leaveTrust")));
+  id v7 = [NSNumber numberWithBool:[self leaveTrust]];
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v7, @"leaveTrust");
 
   uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult reroll](self, "reroll")));
@@ -259,16 +259,16 @@
   v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult totalTlkShares](self, "totalTlkShares")));
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v16, @"totalTlkShares");
 
-  v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult collectableTlkShares](self, "collectableTlkShares")));
+  v17 = [NSNumber numberWithUnsignedLongLong: -[TrustedPeersHelperHealthCheckResult collectableTlkShares](self, "collectableTlkShares")];
   -[NSMutableDictionary setObject:forKeyedSubscript:]( v3,  "setObject:forKeyedSubscript:",  v17,  @"collectableTlkShares");
 
-  v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares")));
+  v18 = [NSNumber numberWithUnsignedLongLong: -[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares")];
   -[NSMutableDictionary setObject:forKeyedSubscript:]( v3,  "setObject:forKeyedSubscript:",  v18,  @"collectedTlkShares");
 
   unint64_t v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult tlkShareGarbageCollectionEnabled]( self,  "tlkShareGarbageCollectionEnabled")));
   -[NSMutableDictionary setObject:forKeyedSubscript:]( v3,  "setObject:forKeyedSubscript:",  v19,  @"tlkShareGarbageCollectionEnabled");
 
-  v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers")));
+  v20 = [NSNumber numberWithUnsignedLongLong: -[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers")];
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v20, @"totalPeers");
 
   unint64_t v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult trustedPeers](self, "trustedPeers")));
@@ -280,7 +280,7 @@
   unint64_t v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  -[TrustedPeersHelperHealthCheckResult peersCleanedup](self, "peersCleanedup")));
   -[NSMutableDictionary setObject:forKeyedSubscript:](v3, "setObject:forKeyedSubscript:", v23, @"peersCleanedup");
 
-  v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  -[TrustedPeersHelperHealthCheckResult superfluousPeersCleanupEnabled]( self,  "superfluousPeersCleanupEnabled")));
+  v24 = [NSNumber numberWithBool: -[TrustedPeersHelperHealthCheckResult superfluousPeersCleanupEnabled]( self,  "superfluousPeersCleanupEnabled")];
   -[NSMutableDictionary setObject:forKeyedSubscript:]( v3,  "setObject:forKeyedSubscript:",  v24,  @"superfluousPeersCleanupEnabled");
 
   return v3;

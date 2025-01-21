@@ -75,7 +75,7 @@
   {
     -[NSMutableArray insertObject:atIndex:](self->_sessions, "insertObject:atIndex:", v15, 0LL);
     objc_storeStrong((id *)&self->_activeSession, v15);
-    v16 = (NSDate *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    v16 = [NSDate date];
     learningStartTimestamp = self->_learningStartTimestamp;
     self->_learningStartTimestamp = v16;
 
@@ -130,7 +130,7 @@
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: network reliability evaluation complete with result:%lu",  "-[WiFiNWReliabilityMonitor _evaluationComplete:]",  a3);
+      [qword_100219F60 WFLog:@"%s: network reliability evaluation complete with result:%lu" message:3, "-[WiFiNWReliabilityMonitor _evaluationComplete:]", a3];
     }
     objc_autoreleasePoolPop(v5);
     -[WiFiNWReliabilityMonitor _cleanup](self, "_cleanup");
@@ -153,7 +153,7 @@
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: received roam event",  "-[WiFiNWReliabilityMonitor processRoamEvent:]");
+      [qword_100219F60 WFLog:@"received roam event" message:3];
     }
     objc_autoreleasePoolPop(v5);
     activeSession = self->_activeSession;
@@ -186,7 +186,7 @@
     {
       v6 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: active session is null, unexpected",  "-[WiFiNWReliabilityMonitor ingestLQMUpdate:]");
+        [qword_100219F60 WFLog:@"%s: active session is null, unexpected" message:3];
       }
       objc_autoreleasePoolPop(v6);
     }

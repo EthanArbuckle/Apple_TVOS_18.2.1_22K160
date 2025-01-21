@@ -50,7 +50,7 @@
     {
       v8 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null self._lastTriggeredTTR",  "-[WiFiDriverTriggeredTTR initWithWiFiManagerwithStringRef:withInterval:]");
+        [qword_100219F60 WFLog:@"%s: null self._lastTriggeredTTR" message:3];
       }
     }
 
@@ -96,7 +96,7 @@
     if (!-[NSMutableDictionary objectForKey:]( -[WiFiDriverTriggeredTTR _lastTriggeredTTR](self, "_lastTriggeredTTR"),  "objectForKey:",  v7)) {
       return -[WiFiDriverTriggeredTTR WiFiDriverTriggeredTTRForReason:](self, "WiFiDriverTriggeredTTRForReason:", v8);
     }
-    objc_msgSend( -[NSMutableDictionary objectForKey:]( -[WiFiDriverTriggeredTTR _lastTriggeredTTR](self, "_lastTriggeredTTR"),  "objectForKey:",  v8),  "timeIntervalSinceNow");
+    [ -[NSMutableDictionary objectForKey:]( -[WiFiDriverTriggeredTTR _lastTriggeredTTR](self, "_lastTriggeredTTR"),  "objectForKey:",  v8) timeIntervalSinceNow];
     if (v9 < -86400.0) {
       return -[WiFiDriverTriggeredTTR WiFiDriverTriggeredTTRForReason:](self, "WiFiDriverTriggeredTTRForReason:", v8);
     }
@@ -115,7 +115,7 @@
   {
     v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s unsupported platform",  "-[WiFiDriverTriggeredTTR WiFiDriverTriggeredTTRForReason:]");
+      [qword_100219F60 WFLog:@"%s unsupported platform" message:3];
     }
     objc_autoreleasePoolPop(v3);
     BOOL v4 = *((_BYTE *)v7 + 24) != 0;

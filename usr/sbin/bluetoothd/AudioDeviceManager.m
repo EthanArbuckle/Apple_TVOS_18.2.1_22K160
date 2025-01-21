@@ -246,7 +246,7 @@ LABEL_12:
         _os_log_impl( (void *)&_mh_execute_header,  v24,  OS_LOG_TYPE_DEFAULT,  "Erased %lu audio device %{public}s from audio device map. Map now has %lu devices",  buf,  0x20u);
       }
 
-      uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue(+[AudioDeviceManager sharedManager](&OBJC_CLASS___AudioDeviceManager, "sharedManager"));
+      uint64_t v26 = (void *)[AudioDeviceManager sharedManager];
       block[0] = _NSConcreteStackBlock;
       block[1] = 3221225472LL;
       block[2] = sub_1002EDAE8;

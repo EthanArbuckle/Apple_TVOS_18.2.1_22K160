@@ -13,7 +13,7 @@
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", self->_value));
+  v2 = [NSNumber numberWithInteger:self->_value];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -22,7 +22,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKIntegerEventStatistic, v5);
+  BKIntegerEventStatistic *v6 = v5;
   id v7 = v4;
   v8 = v7;
   if (v6)
@@ -54,19 +54,19 @@
   if (value)
   {
     id v5 = a3;
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(-[BKEventStatistic label](self, "label"));
+    uint64_t v6 = (void *)[self label];
     id v7 = [v5 appendInteger:value withName:v6];
 
     v8.receiver = self;
-    v8.super_class = (Class)&OBJC_CLASS___BKIntegerEventStatistic;
-    -[BKEventStatistic appendDescriptionToFormatter:](&v8, "appendDescriptionToFormatter:", v5);
+    v8.super_class = [BKIntegerEventStatistic class];
+    [v8 appendDescriptionToFormatter:v5];
   }
 
 - (void)reset
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKIntegerEventStatistic;
-  -[BKEventStatistic reset](&v3, "reset");
+  v3.super_class = [BKIntegerEventStatistic class];
+  [v3 reset];
   self->_int64_t value = 0LL;
 }
 
@@ -75,7 +75,7 @@
   if (self->_value != a3)
   {
     self->_int64_t value = a3;
-    -[BKEventStatistic setNeedsLogging:](self, "setNeedsLogging:", 1LL);
+    [self setNeedsLogging:YES];
   }
 
 - (void)increment
@@ -85,8 +85,8 @@
 - (id)copyWithZone:(_NSZone *)a3
 {
   v5.receiver = self;
-  v5.super_class = (Class)&OBJC_CLASS___BKIntegerEventStatistic;
-  id result = -[BKEventStatistic copyWithZone:](&v5, "copyWithZone:", a3);
+  v5.super_class = [BKIntegerEventStatistic class];
+  id result = [v5 copyWithZone:a3];
   *((void *)result + 4) = self->_value;
   return result;
 }

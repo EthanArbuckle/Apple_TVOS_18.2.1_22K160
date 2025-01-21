@@ -205,7 +205,7 @@ void sub_10059BBA0( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 void sub_10059BBEC(uint64_t a1, uint64_t a2)
 {
   uint64_t v3 = sub_100241F94((const unsigned __int8 *)(a1 + 40));
-  id v4 = (id)objc_claimAutoreleasedReturnValue(v3);
+  id v4 = v3;
   (*(void (**)(uint64_t))(*(void *)a2 + 80LL))(a2);
 }
 
@@ -216,7 +216,7 @@ void sub_10059BC50( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a
 void sub_10059BC64(uint64_t a1, uint64_t a2)
 {
   uint64_t v3 = sub_100241F94((const unsigned __int8 *)(a1 + 40));
-  id v4 = (id)objc_claimAutoreleasedReturnValue(v3);
+  id v4 = v3;
   (*(void (**)(uint64_t))(*(void *)a2 + 80LL))(a2);
 }
 
@@ -247,7 +247,7 @@ uint64_t sub_10059BD08( uint64_t a1, unint64_t a2, int a3, void *a4, uint64_t a5
       if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_ERROR))
       {
         int v20 = sub_100241F94(src);
-        objc_claimAutoreleasedReturnValue(v20);
+        v20;
         sub_10069861C();
       }
 
@@ -1080,7 +1080,7 @@ LABEL_12:
     else {
       uint64_t v13 = (void **)__p[0];
     }
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+    uint64_t v14 = (void *)[NSString stringWithUTF8String:v13];
     if ((v36[7] & 0x80000000) != 0) {
       operator delete(__p[0]);
     }
@@ -1307,7 +1307,7 @@ LABEL_12:
     else {
       BOOL v13 = *(char **)out;
     }
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+    uint64_t v14 = (void *)[NSString stringWithUTF8String:v13];
     if (out[23] < 0) {
       operator delete(*(void **)out);
     }
@@ -1367,7 +1367,7 @@ uint64_t sub_10059D8A8(uint64_t a1, unint64_t a2, uint64_t a3)
     else {
       uint64_t v15 = (void **)__p[0];
     }
-    uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v15));
+    uint64_t v16 = (void *)[NSString stringWithUTF8String:v15];
     if (v18 < 0) {
       operator delete(__p[0]);
     }
@@ -1435,7 +1435,7 @@ uint64_t sub_10059DA0C(void *a1, unint64_t a2, uint64_t a3, uint64_t a4, uint64_
     else {
       uint64_t v13 = (void **)__p[0];
     }
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+    uint64_t v14 = (void *)[NSString stringWithUTF8String:v13];
     if (v23 < 0) {
       operator delete(__p[0]);
     }
@@ -1479,7 +1479,7 @@ uint64_t sub_10059DC14(uint64_t a1, unint64_t a2)
     else {
       uint64_t v13 = (void **)__p[0];
     }
-    uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+    uint64_t v14 = (void *)[NSString stringWithUTF8String:v13];
     if (v16 < 0) {
       operator delete(__p[0]);
     }
@@ -1704,7 +1704,7 @@ LABEL_12:
     else {
       BOOL v13 = (void **)__p[0];
     }
-    id v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v13));
+    id v14 = [NSString stringWithUTF8String:v13];
     if ((v38[7] & 0x80000000) != 0) {
       operator delete(__p[0]);
     }
@@ -1811,7 +1811,7 @@ void sub_10059E668(uint64_t a1, uint64_t a2)
   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
   {
     id v5 = sub_1005BF848(v8);
-    BOOL v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
+    BOOL v6 = [v5 autorelease];
     uint64_t v7 = *(void *)(a1 + 1144);
     *(_DWORD *)buf = 138543618;
     *(void *)&uint8_t buf[4] = v6;
@@ -3375,7 +3375,7 @@ uint64_t sub_1005A18B4(uint64_t a1, void *a2, uint64_t a3)
         }
         uint64_t v6 = off_1008D5F28;
         uint64_t v7 = sub_100241F94(v5 + 32);
-        BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
+        BOOL v8 = [v7 autorelease];
         unsigned int v9 = sub_1005D3540((uint64_t)v6, v8, v21);
 
         if (qword_1008D5F30 != -1) {
@@ -3720,7 +3720,7 @@ void sub_1005A2C94(uint64_t a1, void *a2, unsigned int a3, int a4, int a5)
       }
       id v7 = sub_10027D9C4((uint64_t)off_1008D67C0, v6);
       BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
-      uint64_t v9 = objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithArray:](&OBJC_CLASS___NSMutableSet, "setWithArray:", v8));
+      uint64_t v9 = [+[NSMutableSet setWithArray:] v8];
     }
 
     else
@@ -3730,7 +3730,7 @@ void sub_1005A2C94(uint64_t a1, void *a2, unsigned int a3, int a4, int a5)
       }
       id v10 = sub_10064D6E0(qword_1008D92A0, v6);
       BOOL v8 = (void *)objc_claimAutoreleasedReturnValue(v10);
-      uint64_t v9 = objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithSet:](&OBJC_CLASS___NSMutableSet, "setWithSet:", v8));
+      uint64_t v9 = [+[NSMutableSet setWithSet:] setWithSet:v8];
     }
 
     unsigned __int16 v11 = (void *)v9;
@@ -3954,7 +3954,7 @@ uint64_t sub_1005A3440(uint64_t a1, unint64_t a2, int a3, unsigned __int16 *a4, 
   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
   {
     id v13 = sub_1005BFB9C(a2);
-    id v14 = (id)objc_claimAutoreleasedReturnValue(v13);
+    id v14 = v13;
     *(_DWORD *)__int128 buf = 138544386;
     *(void *)&uint8_t buf[4] = v14;
     *(_WORD *)&_BYTE buf[12] = 2048;
@@ -4028,7 +4028,7 @@ uint64_t sub_1005A3440(uint64_t a1, unint64_t a2, int a3, unsigned __int16 *a4, 
 
               if ([*(id *)(a1 + 752) count])
               {
-                uint64_t v83 = (char *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 752) anyObject]);
+                uint64_t v83 = (char *)[*(id *)(a1 + 752) anyObject];
                 [*(id *)(a1 + 752) removeObject:v83];
                 __int128 v84 = (os_log_s *)qword_1008F7620;
                 if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
@@ -4451,7 +4451,7 @@ LABEL_275:
                   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
                   {
                     id v222 = sub_1005BF848(a2);
-                    id v223 = (id)objc_claimAutoreleasedReturnValue(v222);
+                    id v223 = v222;
                     uint64_t v224 = *(void *)(a1 + 1144);
                     *(_DWORD *)__int128 buf = 138543618;
                     *(void *)&uint8_t buf[4] = v223;
@@ -4470,7 +4470,7 @@ LABEL_275:
                   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
                   {
                     id v209 = sub_1005BF848(v207);
-                    id v210 = (id)objc_claimAutoreleasedReturnValue(v209);
+                    id v210 = [v209 autorelease];
                     *(_DWORD *)__int128 buf = 138543362;
                     *(void *)&uint8_t buf[4] = v210;
                     _os_log_impl( (void *)&_mh_execute_header,  v208,  OS_LOG_TYPE_DEFAULT,  "Ignoring expired incoming prioritized connection address:%{public}@",  buf,  0xCu);
@@ -5121,7 +5121,7 @@ void sub_1005A6774(uint64_t a1, void *a2, unsigned int a3, int a4, double a5)
     uint64_t v80 = objc_alloc_init(&OBJC_CLASS___NSDateFormatter);
     -[NSDateFormatter setDateFormat:](v80, "setDateFormat:", @"yyyy-MM-dd H:mm:ss");
     uint64_t v77 = (void *)objc_claimAutoreleasedReturnValue( +[NSDate dateWithTimeIntervalSinceReferenceDate:]( &OBJC_CLASS___NSDate,  "dateWithTimeIntervalSinceReferenceDate:",  v10));
-    uint64_t v22 = objc_claimAutoreleasedReturnValue(-[NSDateFormatter stringFromDate:](v80, "stringFromDate:"));
+    uint64_t v22 = [v80 stringFromDate:];
     unsigned int v23 = &unk_1006BB000;
     LODWORD(v23) = llround((v10 - floor(v10)) * 1000.0);
     uint64_t v79 = (void *)v22;
@@ -5445,7 +5445,7 @@ void sub_1005A6774(uint64_t a1, void *a2, unsigned int a3, int a4, double a5)
       _os_signpost_emit_with_name_impl( (void *)&_mh_execute_header,  v42,  OS_SIGNPOST_EVENT,  0xEEEEB0B5B2B2EEEELL,  "BTSignPost",  "BLE DigitalID Condition for %{public}@ Classic %d LE %d Watch %{public}s A2DP %{public}s HFP %{public}s LEA %{pu blic}s ISO %{public}s WiFi 2.4GHz %{public}s",  buf,  0x54u);
     }
 
-    id v56 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    id v56 = [NSMutableDictionary dictionary];
     unint64_t v57 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v14));
     [v56 setObject:v57 forKeyedSubscript:@"ConnectionDurationInSec"];
 
@@ -5455,16 +5455,16 @@ void sub_1005A6774(uint64_t a1, void *a2, unsigned int a3, int a4, double a5)
     int v59 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v19));
     [v56 setObject:v59 forKeyedSubscript:@"DataTransferDurationInSec"];
 
-    uint64_t v60 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v83));
+    uint64_t v60 = (void *)[NSNumber numberWithUnsignedInt:v83];
     [v56 setObject:v60 forKeyedSubscript:@"DataBytes"];
 
     int v61 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v27));
     [v56 setObject:v61 forKeyedSubscript:@"ThroughputBytesPerSec"];
 
-    int v62 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v87));
+    int v62 = (void *)[NSNumber numberWithUnsignedInt:v87];
     [v56 setObject:v62 forKeyedSubscript:@"DisconnectionReason"];
 
-    id v63 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v37 != 0));
+    id v63 = [NSNumber numberWithBool:v37 != 0];
     [v56 setObject:v63 forKeyedSubscript:@"IsWatchConnected"];
 
     unsigned __int8 v64 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v38 != 0));
@@ -5492,7 +5492,7 @@ void sub_1005A6774(uint64_t a1, void *a2, unsigned int a3, int a4, double a5)
     uint64_t v72 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v78));
     [v56 setObject:v72 forKeyedSubscript:@"ProtectLEA"];
 
-    v73 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v20));
+    v73 = [NSNumber numberWithDouble:v20];
     [v56 setObject:v73 forKeyedSubscript:@"PresentmentDuration"];
 
     uint64_t v74 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v25));
@@ -5556,20 +5556,20 @@ void sub_1005A793C(uint64_t a1, void *a2, int a3, uint64_t a4)
     dispatch_once(&qword_1008D5F30, &stru_1008A2B30);
   }
   uint64_t v11 = sub_1005D1E08((uint64_t)off_1008D5F28, v7);
-  double v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  double v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v8));
+  double v12 = +[NSMutableDictionary dictionary];
+  double v13 = [NSNumber numberWithBool:v8];
   [v12 setObject:v13 forKeyedSubscript:@"Paired"];
 
-  double v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v10));
+  double v14 = [NSNumber numberWithDouble:v10];
   [v12 setObject:v14 forKeyedSubscript:@"DurationInSeconds"];
 
-  double v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", a4));
+  double v15 = +[NSNumber numberWithUnsignedInt:a4];
   [v12 setObject:v15 forKeyedSubscript:@"DisconnectReasonCode"];
 
-  BOOL v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a3 == 0));
+  BOOL v16 = [NSNumber numberWithBool:a3 == 0];
   [v12 setObject:v16 forKeyedSubscript:@"Initiator"];
 
-  BOOL v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithShort:](&OBJC_CLASS___NSNumber, "numberWithShort:", v11));
+  BOOL v17 = [NSNumber numberWithShort:v11];
   [v12 setObject:v17 forKeyedSubscript:@"ConnectionEstablishedRSSI"];
 
   sub_100241F90(buf, v7);
@@ -5622,7 +5622,7 @@ uint64_t sub_1005A7D18( uint64_t a1, uint64_t a2, unint64_t a3, uint64_t a4, int
   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
   {
     id v18 = sub_1005BFB9C(a2);
-    id v19 = (id)objc_claimAutoreleasedReturnValue(v18);
+    id v19 = v18;
     id v20 = v19;
     *(_DWORD *)__int128 buf = 67110402;
     unsigned int v21 = "Peripheral";
@@ -5989,7 +5989,7 @@ LABEL_200:
     if (v117)
     {
       id v121 = sub_1005BFB9C(a2);
-      id v122 = (id)objc_claimAutoreleasedReturnValue(v121);
+      id v122 = v121;
       *(_DWORD *)int v214 = 67109890;
       *(_DWORD *)&v214[4] = v198;
       *(_WORD *)&v214[8] = 1024;
@@ -6006,7 +6006,7 @@ LABEL_200:
     }
     v123 = off_1008D5F28;
     v124 = sub_100241F94(uu);
-    v125 = (void *)objc_claimAutoreleasedReturnValue(v124);
+    v125 = (void *)[v124 autorelease];
     sub_1005D3C5C((uint64_t)v123, v125);
 
 LABEL_235:
@@ -6193,7 +6193,7 @@ LABEL_254:
     if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
     {
       v160 = sub_100241F94(uu);
-      id v161 = (id)objc_claimAutoreleasedReturnValue(v160);
+      id v161 = [v160 autorelease];
       *(_DWORD *)int v214 = 138543362;
       *(void *)&v214[4] = v161;
       _os_log_impl( (void *)&_mh_execute_header,  v159,  OS_LOG_TYPE_DEFAULT,  "Device %{public}@ marked to be unpaired and removed after disconnection",  v214,  0xCu);
@@ -6569,20 +6569,20 @@ void sub_1005AA414(uint64_t a1, void *a2, int a3)
       BOOL v17 = v16;
       unsigned int v42 = v14;
       double Current = CFAbsoluteTimeGetCurrent();
-      id v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-      id v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v17));
+      id v19 = [NSMutableDictionary dictionary];
+      id v20 = [NSNumber numberWithBool:v17];
       [v19 setObject:v20 forKeyedSubscript:@"Paired"];
 
-      unsigned int v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", Current - v7));
+      unsigned int v21 = [NSNumber numberWithDouble:Current - v7];
       [v19 setObject:v21 forKeyedSubscript:@"Duration"];
 
       uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
       [v19 setObject:v22 forKeyedSubscript:@"DisconnectReason"];
 
-      uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v11 != 0));
+      uint64_t v23 = (void *)[NSNumber numberWithBool:v11 != 0];
       [v19 setObject:v23 forKeyedSubscript:@"Initiator"];
 
-      __int16 v24 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v8 != 0));
+      __int16 v24 = [NSNumber numberWithBool:v8 != 0];
       [v19 setObject:v24 forKeyedSubscript:@"RemoteDisconnected"];
 
       if (v11)
@@ -6598,10 +6598,10 @@ void sub_1005AA414(uint64_t a1, void *a2, int a3)
       if (v15 == 655360)
       {
         [v19 setObject:&__kCFBooleanTrue forKeyedSubscript:@"DigitalKey"];
-        double v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v44));
+        double v27 = [NSNumber numberWithUnsignedInt:v44];
         [v19 setObject:v27 forKeyedSubscript:@"KeyRSSIEventCount"];
 
-        int v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v43));
+        int v28 = (void *)[NSNumber numberWithUnsignedInt:v43];
         [v19 setObject:v28 forKeyedSubscript:@"KeyRSSIEventWakeCount"];
       }
 
@@ -6618,7 +6618,7 @@ void sub_1005AA414(uint64_t a1, void *a2, int a3)
         BOOL v29 = (const __CFString *)*((void *)&off_1008A2D28 + v9);
       }
       [v19 setObject:v29 forKeyedSubscript:@"PeerType"];
-      __int16 v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v42));
+      __int16 v30 = [+[NSNumber numberWithUnsignedInt:] v42];
       [v19 setObject:v30 forKeyedSubscript:@"DASessionType"];
 
       if (qword_1008D5F30 != -1) {
@@ -6634,7 +6634,7 @@ void sub_1005AA414(uint64_t a1, void *a2, int a3)
         dispatch_once(&qword_1008D5F30, &stru_1008A2B30);
       }
       sub_1005D2278((uint64_t)off_1008D5F28, v48, &v54, &v55, (char *)&v54 + 1);
-      id v33 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v55));
+      id v33 = [NSNumber numberWithBool:v55];
       [v19 setObject:v33 forKeyedSubscript:@"FastLeConnectionConfigured"];
 
       uint64_t v34 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v54));
@@ -6748,7 +6748,7 @@ void sub_1005AACAC(uint64_t a1)
         if (qword_1008D6198 != -1) {
           dispatch_once(&qword_1008D6198, &stru_1008A2B70);
         }
-        sub_10044D87C( (uint64_t)off_1008D6190,  *(void **)(a1 + 32),  objc_msgSend(v9, "integerValue", (void)v10),  *(unsigned __int8 *)(a1 + 44));
+        sub_10044D87C( (uint64_t)off_1008D6190,  *(void **)(a1 + 32),  [v9 integerValue],  *(unsigned __int8 *)(a1 + 44));
         int v8 = (char *)v8 + 1;
       }
 
@@ -6834,11 +6834,11 @@ void sub_1005AB004(uint64_t a1, double a2)
   void v9[2] = sub_1005AB190;
   v9[3] = &unk_100888180;
   void v9[4] = a1;
-  uint64_t v6 = objc_claimAutoreleasedReturnValue( +[NSTimer timerWithTimeInterval:repeats:block:]( &OBJC_CLASS___NSTimer,  "timerWithTimeInterval:repeats:block:",  0LL,  v9,  a2));
+  uint64_t v6 = [NSTimer timerWithTimeInterval:repeats:block:0LL, v9, a2];
   uint64_t v7 = *(void **)(a1 + 552);
   *(void *)(a1 + 552) = v6;
 
-  int v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSRunLoop mainRunLoop](&OBJC_CLASS___NSRunLoop, "mainRunLoop"));
+  int v8 = (void *)[NSRunLoop mainRunLoop];
   [v8 addTimer:*(void *)(a1 + 552) forMode:NSDefaultRunLoopMode];
 }
 
@@ -8366,7 +8366,7 @@ void sub_1005AEFF0( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a
 void sub_1005AF08C(uint64_t a1, uint64_t a2)
 {
   uint64_t v3 = sub_100241F94((const unsigned __int8 *)(a1 + 42));
-  id v4 = (id)objc_claimAutoreleasedReturnValue(v3);
+  id v4 = v3;
   (*(void (**)(uint64_t))(*(void *)a2 + 32LL))(a2);
 }
 
@@ -8516,11 +8516,11 @@ void sub_1005B02CC(uint64_t a1, uint64_t a2)
 {
   uint64_t v3 = (const unsigned __int8 *)(a1 + 46);
   char v4 = sub_100241F94((const unsigned __int8 *)(a1 + 46));
-  id v6 = (id)objc_claimAutoreleasedReturnValue(v4);
+  id v6 = v4;
   (**(void (***)(uint64_t))a2)(a2);
 
   uint64_t v5 = sub_100241F94(v3);
-  id v7 = (id)objc_claimAutoreleasedReturnValue(v5);
+  id v7 = v5;
   (*(void (**)(uint64_t))(*(void *)a2 + 32LL))(a2);
 }
 
@@ -8582,7 +8582,7 @@ void sub_1005B0564(uint64_t a1, uint64_t a2)
 {
   uint64_t v3 = *(void *)(a1 + 32);
   char v4 = sub_100241F94((const unsigned __int8 *)(a1 + 76));
-  id v5 = (id)objc_claimAutoreleasedReturnValue(v4);
+  id v5 = v4;
   (*(void (**)(uint64_t, uint64_t))(*(void *)a2 + 40LL))(a2, v3);
 }
 
@@ -9929,7 +9929,7 @@ void sub_1005B31CC(void *a1)
         {
           double v10 = *(double *)(i + 16);
           uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDate dateWithTimeIntervalSinceReferenceDate:]( &OBJC_CLASS___NSDate,  "dateWithTimeIntervalSinceReferenceDate:",  v10));
-          BOOL v12 = (void *)objc_claimAutoreleasedReturnValue(-[NSDateFormatter stringFromDate:](v5, "stringFromDate:", v11));
+          BOOL v12 = [v5 stringFromDate:v11];
           LODWORD(v13) = llround((v10 - floor(v10)) * 1000.0);
           int v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@.%000d",  v12,  v13));
           uint64_t v15 = (os_log_s *)qword_1008F7620;
@@ -10155,7 +10155,7 @@ BOOL sub_1005B39A4(uint64_t a1, void *a2)
   v15[0] = 0LL;
   v15[1] = 0LL;
   uint64_t v16 = 0LL;
-  id v4 = objc_claimAutoreleasedReturnValue([v3 UUIDString]);
+  id v4 = [v3 UUIDString];
   sub_10002418C(v15, (char *)[v4 UTF8String]);
 
   if (SHIBYTE(v16) < 0)
@@ -10250,7 +10250,7 @@ uint64_t sub_1005B3C2C(uint64_t a1, void *a2)
   v43[0] = 0LL;
   v43[1] = 0LL;
   uint64_t v44 = 0LL;
-  id v4 = objc_claimAutoreleasedReturnValue([v3 UUIDString]);
+  id v4 = [v3 UUIDString];
   sub_10002418C(v43, (char *)[v4 UTF8String]);
 
   unsigned int v42 = 0;
@@ -11205,9 +11205,9 @@ uint64_t sub_1005B52FC(uint64_t a1)
   if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
   {
     id v3 = sub_1005BFB9C(*(void *)(*(void *)(*(void *)(a1 + 32) + 8LL) + 48LL));
-    id v4 = (id)objc_claimAutoreleasedReturnValue(v3);
+    id v4 = v3;
     id v5 = sub_1005BFB9C(*(void *)(*(void *)(*(void *)(a1 + 32) + 8LL) + 56LL));
-    id v6 = (id)objc_claimAutoreleasedReturnValue(v5);
+    id v6 = v5;
     int v7 = *(unsigned __int8 *)(a1 + 40);
     if (*(_BYTE *)(a1 + 40)) {
       int v8 = "";
@@ -11323,7 +11323,7 @@ uint64_t sub_1005B578C(uint64_t a1)
   {
     uint64_t v3 = *(void *)(a1 + 32);
     id v4 = sub_1005BFB9C(*(void *)(a1 + 40));
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
+    id v5 = v4;
     int v6 = *(_DWORD *)(a1 + 48);
     int v7 = *(unsigned __int8 *)(a1 + 58);
     *(_DWORD *)int buf = 134218754;
@@ -11869,31 +11869,31 @@ void sub_1005B67D8(uint64_t a1, void *a2, const void **a3, uint64_t a4, uint64_t
       }
       id v18 = sub_10064D6E0(qword_1008D92A0, v11);
       int v50 = (void *)objc_claimAutoreleasedReturnValue(v18);
-      uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue([v50 allObjects]);
+      uint64_t v19 = (void *)[v50 allObjects];
       int v54 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithArray:](&OBJC_CLASS___NSArray, "arrayWithArray:", v19));
 
-      unsigned int v20 = (void *)objc_claimAutoreleasedReturnValue([v54 sortedArrayUsingSelector:"compare:"]);
+      unsigned int v20 = (void *)[v54 sortedArrayUsingSelector:@"compare:"];
       int v55 = v20;
-      int32x2_t v21 = (void *)objc_claimAutoreleasedReturnValue([v20 componentsJoinedByString:@","]);
+      int32x2_t v21 = (void *)[v20 componentsJoinedByString:@","];
       [v15 setObject:v21 forKeyedSubscript:@"BundleID"];
 
-      __int16 v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(a1 + 1376)));
+      __int16 v22 = [NSNumber numberWithBool:*(unsigned __int8 *)(a1 + 1376)];
       [v15 setObject:v22 forKeyedSubscript:@"IsFWBased"];
 
       else {
         int v23 = (&off_1008A2D58)[v14];
       }
-      uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v23));
+      uint64_t v25 = (void *)[NSString stringWithUTF8String:v23];
       [v15 setObject:v25 forKeyedSubscript:@"InitialConnScanParamsType"];
 
       LODWORD(v25) = BYTE3(v56[0]);
-      BOOL v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", BYTE3(v56[0])));
+      BOOL v26 = [NSNumber numberWithBool:v56[0]];
       [v15 setObject:v26 forKeyedSubscript:@"IsWiFiCoexCriticalProtected"];
 
-      unsigned int v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", BYTE2(v56[0])));
+      unsigned int v27 = [NSNumber numberWithBool:v56[0]];
       [v15 setObject:v27 forKeyedSubscript:@"IsBTAudioProtected"];
 
-      BOOL v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", (_DWORD)v25 != 0));
+      BOOL v28 = [NSNumber numberWithBool:v25 != 0];
       [v15 setObject:v28 forKeyedSubscript:@"IsWiFi2_4GHzProtected"];
 
       uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  0LL));
@@ -11902,7 +11902,7 @@ void sub_1005B67D8(uint64_t a1, void *a2, const void **a3, uint64_t a4, uint64_t
       unsigned int v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v53));
       [v15 setObject:v30 forKeyedSubscript:@"ScanDurationReqMsec"];
 
-      int v31 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v52));
+      int v31 = (void *)[NSNumber numberWithUnsignedInt:v52];
       [v15 setObject:v31 forKeyedSubscript:@"ActualScanTimeReqMsec"];
 
       int v32 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v51));
@@ -11911,10 +11911,10 @@ void sub_1005B67D8(uint64_t a1, void *a2, const void **a3, uint64_t a4, uint64_t
       uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a6));
       [v15 setObject:v33 forKeyedSubscript:@"ScanDurationMsec"];
 
-      unsigned int v34 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a4));
+      unsigned int v34 = [NSNumber numberWithUnsignedLongLong:a4];
       [v15 setObject:v34 forKeyedSubscript:@"ActualScanTimeMsec"];
 
-      unsigned int v35 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a5));
+      unsigned int v35 = [NSNumber numberWithUnsignedLongLong:a5];
       [v15 setObject:v35 forKeyedSubscript:@"ActualScanTimeMCMsec"];
 
       if (v53) {
@@ -11953,22 +11953,22 @@ void sub_1005B67D8(uint64_t a1, void *a2, const void **a3, uint64_t a4, uint64_t
       else {
         uint64_t v41 = 100LL;
       }
-      unsigned int v42 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v37));
+      unsigned int v42 = [NSNumber numberWithUnsignedInt:v37];
       [v15 setObject:v42 forKeyedSubscript:@"ScanDurationMsecPercentage"];
 
-      float v43 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v39));
+      float v43 = [NSNumber numberWithUnsignedInt:v39];
       [v15 setObject:v43 forKeyedSubscript:@"ActualScanTimeMsecPercentage"];
 
-      BOOL v44 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v41));
+      BOOL v44 = [NSNumber numberWithUnsignedInt:v41];
       [v15 setObject:v44 forKeyedSubscript:@"ActualScanTimeMCMsecPercentage"];
 
       int v45 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v36 > 0x63));
       [v15 setObject:v45 forKeyedSubscript:@"HasScanDurationReqMet"];
 
-      int v46 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v38 > 0x63));
+      int v46 = [NSNumber numberWithBool:v38 > 0x63];
       [v15 setObject:v46 forKeyedSubscript:@"HasActualScanTimeReqMet"];
 
-      uint64_t v47 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v40 > 0x63));
+      uint64_t v47 = (void *)[NSNumber numberWithBool:v40 > 0x63];
       [v15 setObject:v47 forKeyedSubscript:@"HasActualScanTimeMCReqMet"];
 
       unint64_t v48 = (os_log_s *)qword_1008F7620;
@@ -13543,7 +13543,7 @@ void sub_1005B9A60(uint64_t a1)
       id v7 = (char *)malloc(v6);
       memcpy(v7, [*(id *)(v2 + 1536) bytes], v6);
       arc4random_buf(&v7[v6 - 4], 4uLL);
-      uint64_t v8 = objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v7, v6));
+      uint64_t v8 = [NSData dataWithBytes:v7 length:v6];
 
       free(v7);
       id v4 = (id)v8;
@@ -13578,7 +13578,7 @@ void sub_1005B9BD4(uint64_t a1)
   if (os_log_type_enabled(v1, OS_LOG_TYPE_DEFAULT))
   {
     id v2 = sub_1005BFB9C(*(void *)(a1 + 288));
-    id v3 = (id)objc_claimAutoreleasedReturnValue(v2);
+    id v3 = v2;
     *(_DWORD *)int buf = 138543362;
     *(void *)&uint8_t buf[4] = v3;
     _os_log_impl( (void *)&_mh_execute_header,  v1,  OS_LOG_TYPE_DEFAULT,  "statedump: Local address %{public}@",  buf,  0xCu);
@@ -13937,7 +13937,7 @@ void sub_1005B9BD4(uint64_t a1)
       if (os_log_type_enabled(v89, OS_LOG_TYPE_DEFAULT))
       {
         int v91 = sub_100241F94(v90 + 32);
-        id v92 = (id)objc_claimAutoreleasedReturnValue(v91);
+        id v92 = [v91 autorelease];
         *(_DWORD *)int buf = 138543362;
         *(void *)&uint8_t buf[4] = v92;
         _os_log_impl( (void *)&_mh_execute_header,  v89,  OS_LOG_TYPE_DEFAULT,  "statedump:  Device%{public}@ : Session:",  buf,  0xCu);
@@ -14043,7 +14043,7 @@ void sub_1005B9BD4(uint64_t a1)
       if (os_log_type_enabled(v89, OS_LOG_TYPE_DEFAULT))
       {
         __int16 v101 = sub_100241F94(v100 + 40);
-        id v102 = (id)objc_claimAutoreleasedReturnValue(v101);
+        id v102 = v101;
         *(_DWORD *)int buf = 138543362;
         *(void *)&uint8_t buf[4] = v102;
         _os_log_impl( (void *)&_mh_execute_header,  v89,  OS_LOG_TYPE_DEFAULT,  "statedump:  Session:  : Device%{public}@",  buf,  0xCu);
@@ -14281,7 +14281,7 @@ void sub_1005B9BD4(uint64_t a1)
       if (os_log_type_enabled((os_log_t)qword_1008F7620, OS_LOG_TYPE_DEFAULT))
       {
         v129 = sub_100241F94(v123 + 25);
-        id v233 = (id)objc_claimAutoreleasedReturnValue(v129);
+        id v233 = v129;
         sub_1005BBFF8((unint64_t *)__p, (std::stringbuf::string_type *)out);
         v130 = out;
         if (out[23] < 0) {
@@ -17454,7 +17454,7 @@ id sub_1005BF848(uint64_t a1)
   else {
     p_p = (std::stringbuf::string_type *)__p.__r_.__value_.__r.__words[0];
   }
-  uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", p_p));
+  uint64_t v2 = (void *)[NSString stringWithUTF8String:p_p];
   return v2;
 }
 
@@ -17761,7 +17761,7 @@ LABEL_9:
     goto LABEL_10;
   }
 
-  objc_msgSend(v2, "getBytes:range:", &v7, (char *)objc_msgSend(v2, "length") - 6, 6);
+  [v2 getBytes:&v7 range:NSMakeRange([v2 length] - 6, 6)];
   unint64_t v3 = ((unint64_t)v7 << 40) | ((unint64_t)BYTE1(v7) << 32) | ((unint64_t)BYTE2(v7) << 24) | ((unint64_t)HIBYTE(v7) << 16) | ((unint64_t)v8 << 8) | HIBYTE(v8) | 0x1000000000000LL;
 LABEL_10:
 
@@ -17779,7 +17779,7 @@ id sub_1005C0604(unint64_t a1)
   int v4 = v1;
   char v6 = BYTE6(v1);
   __int16 v5 = WORD2(v1);
-  uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableData data](&OBJC_CLASS___NSMutableData, "data"));
+  uint64_t v2 = (void *)[NSMutableData data];
   [v2 appendBytes:&v4 length:1];
   [v2 appendBytes:(char *)&v4 + 1 length:6];
   return v2;
@@ -17793,7 +17793,7 @@ void sub_1005C0674(_Unwind_Exception *a1)
 uint64_t sub_1005C0684(uint64_t a1, uint64_t a2)
 {
   int v4 = (const void *)a2;
-  id v5 = (id)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v4));
+  id v5 = [NSString stringWithUTF8String:v4];
   if ([v5 isEqualToString:@"APPEARANCE_KEYBOARD"])
   {
     __int16 v6 = 961;
@@ -18026,7 +18026,7 @@ void sub_1005C0C18(uint64_t a1)
     if (v3)
     {
       id v5 = v3;
-      memcpy(__dst, [v5 bytes], (size_t)objc_msgSend(v5, "length"));
+      memcpy(__dst, [v5 bytes], (size_t)[v5 length]);
       int v6 = *(unsigned __int16 *)((char *)__dst + 1);
       unsigned int v7 = *(unsigned __int16 *)((char *)__dst + 3);
     }
@@ -18257,11 +18257,11 @@ uint64_t sub_1005C132C(uint64_t a1, void *a2, void *a3)
 {
   id v5 = a2;
   id v6 = a3;
-  size_t v7 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) beaconIdentifier]);
+  size_t v7 = (void *)[*(id *)(a1 + 64) beaconIdentifier];
 
   if (v7)
   {
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) allowedSessions]);
+    uint64_t v8 = (void *)[*(id *)(a1 + 64) allowedSessions];
 
     if (v8)
     {
@@ -18282,10 +18282,10 @@ uint64_t sub_1005C132C(uint64_t a1, void *a2, void *a3)
               objc_enumerationMutation(v9);
             }
             size_t v13 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-            unsigned int v14 = (void *)objc_claimAutoreleasedReturnValue([v13 bundleId]);
+            unsigned int v14 = (void *)[v13 bundleId];
             if ([v5 isEqual:v14])
             {
-              unsigned __int8 *__attribute__((__org_typedef(uuid_t))) v15 = (void *)objc_claimAutoreleasedReturnValue([v13 userIdentifier]);
+              unsigned __int8 *__attribute__((__org_typedef(uuid_t))) v15 = (void *)[v13 userIdentifier];
               unsigned __int8 v16 = [v6 isEqual:v15];
 
               if ((v16 & 1) != 0) {
@@ -18315,11 +18315,11 @@ uint64_t sub_1005C1518(uint64_t a1, void *a2)
   id v5 = v4;
   if (v4)
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 beaconIdentifier]);
+    id v6 = [v4 beaconIdentifier];
 
     if (v6)
     {
-      size_t v7 = (void *)objc_claimAutoreleasedReturnValue([v5 allowedSessions]);
+      size_t v7 = (void *)[v5 allowedSessions];
       if (v7
         && (uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v5 allowedSessions]),
             id v9 = [v8 count],
@@ -18327,7 +18327,7 @@ uint64_t sub_1005C1518(uint64_t a1, void *a2)
             v7,
             v9))
       {
-        id v10 = (void *)objc_claimAutoreleasedReturnValue([v5 longTermKeyMap]);
+        id v10 = [v5 longTermKeyMap];
         if (v10
           && (uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v5 longTermKeyMap]),
               id v12 = [v11 count],
@@ -18335,10 +18335,10 @@ uint64_t sub_1005C1518(uint64_t a1, void *a2)
               v10,
               v12))
         {
-          size_t v13 = (void *)objc_claimAutoreleasedReturnValue([v5 serialNumber]);
+          size_t v13 = (void *)[v5 serialNumber];
           if (v13)
           {
-            unsigned int v14 = (void *)objc_claimAutoreleasedReturnValue([v5 serialNumber]);
+            unsigned int v14 = [v5 serialNumber];
             id v15 = [v14 length];
 
             if (v15)
@@ -18347,7 +18347,7 @@ uint64_t sub_1005C1518(uint64_t a1, void *a2)
               __int128 v54 = 0u;
               __int128 v51 = 0u;
               __int128 v52 = 0u;
-              id obj = (id)objc_claimAutoreleasedReturnValue([v5 longTermKeyMap]);
+              id obj = [v5 longTermKeyMap];
               id v16 = [obj countByEnumeratingWithState:&v51 objects:v67 count:16];
               if (v16)
               {
@@ -18365,7 +18365,7 @@ uint64_t sub_1005C1518(uint64_t a1, void *a2)
                     {
                       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
                       {
-                        BOOL v44 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
+                        BOOL v44 = [v5 beaconIdentifier];
                         sub_10069A838(v19, v44, (uint64_t)buf);
                       }
 
@@ -18375,8 +18375,8 @@ LABEL_44:
                       goto LABEL_40;
                     }
 
-                    __int128 v20 = (void *)objc_claimAutoreleasedReturnValue([v5 longTermKeyMap]);
-                    __int128 v21 = (void *)objc_claimAutoreleasedReturnValue([v20 objectForKeyedSubscript:v19]);
+                    __int128 v20 = (void *)[v5 longTermKeyMap];
+                    __int128 v21 = (void *)[v20 objectForKeyedSubscript:v19];
 
                     __int128 v49 = 0u;
                     __int128 v50 = 0u;
@@ -18403,7 +18403,7 @@ LABEL_44:
                           {
                             if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
                             {
-                              uint64_t v43 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
+                              uint64_t v43 = (void *)[v5 beaconIdentifier];
                               sub_10069A880(v27, v43, (uint64_t)buf);
                             }
 
@@ -18441,9 +18441,9 @@ LABEL_44:
               if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_DEFAULT))
               {
                 uint64_t v29 = *(void *)a1;
-                __int16 v30 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
-                uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue([v5 groupIdentifier]);
-                __int16 v32 = (void *)objc_claimAutoreleasedReturnValue([v5 serialNumber]);
+                __int16 v30 = (void *)[v5 beaconIdentifier];
+                uint64_t v31 = (void *)[v5 groupIdentifier];
+                __int16 v32 = [v5 serialNumber];
                 unsigned int v33 = [v5 partIdentifier];
                 unsigned int v34 = [v5 managedByFindMy];
                 *(_DWORD *)int buf = 138413570;
@@ -18483,7 +18483,7 @@ LABEL_44:
           __int128 v40 = (os_log_s *)qword_1008F75A0;
           if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
           {
-            __int128 v41 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
+            __int128 v41 = (void *)[v5 beaconIdentifier];
             sub_10069A7C4(v41, (uint64_t)buf, v40);
           }
         }
@@ -18494,7 +18494,7 @@ LABEL_44:
         int64_t v38 = (os_log_s *)qword_1008F75A0;
         if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
         {
-          int v39 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
+          int v39 = (void *)[v5 beaconIdentifier];
           sub_10069A77C(v39, (uint64_t)buf, v38);
         }
       }
@@ -18516,7 +18516,7 @@ void sub_1005C1A58( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 
 void sub_1005C1B24(uint64_t a1)
 {
-  uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) longTermKeyMap]);
+  uint64_t v2 = (void *)[*(id *)(a1 + 64) longTermKeyMap];
   id v3 = [v2 mutableCopy];
   id v4 = *(void **)(a1 + 72);
   *(void *)(a1 + 72) = v3;
@@ -18609,7 +18609,7 @@ void sub_1005C1D94(uint64_t a1, void *a2, void *a3)
 
   else
   {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v6 = [NSMutableDictionary dictionary];
     id v7 = *(void **)(a1 + 496);
     *(void *)(a1 + 496) = v6;
 
@@ -18640,7 +18640,7 @@ void sub_1005C1E50(uint64_t a1, void *a2)
       id v3 = *(void **)(a1 + 496);
       if (v3)
       {
-        char v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:v5]);
+        char v4 = (void *)[v3 objectForKeyedSubscript:v5];
 
         if (v4) {
           [*(id *)(a1 + 496) removeObjectForKey:v5];
@@ -18660,7 +18660,7 @@ id sub_1005C1ED0(uint64_t a1)
   if (!v2 || ![v2 count]) {
     return 0LL;
   }
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  id v3 = [NSMutableSet set];
   __int128 v14 = 0u;
   __int128 v15 = 0u;
   __int128 v12 = 0u;
@@ -18695,7 +18695,7 @@ id sub_1005C1ED0(uint64_t a1)
   }
 
   if ([v3 count]) {
-    id v10 = (void *)objc_claimAutoreleasedReturnValue([v3 allObjects]);
+    id v10 = [v3 allObjects];
   }
   else {
     id v10 = 0LL;
@@ -18752,7 +18752,7 @@ void sub_1005C212C(uint64_t a1, void *a2, void *a3)
 
   else
   {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v6 = [NSMutableDictionary dictionary];
     id v7 = *(void **)(a1 + 504);
     *(void *)(a1 + 504) = v6;
 
@@ -18783,7 +18783,7 @@ void sub_1005C21E8(uint64_t a1, void *a2)
       id v3 = *(void **)(a1 + 504);
       if (v3)
       {
-        id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:v5]);
+        id v4 = [v3 objectForKeyedSubscript:v5];
 
         if (v4) {
           [*(id *)(a1 + 504) removeObjectForKey:v5];
@@ -18803,7 +18803,7 @@ id sub_1005C2268(uint64_t a1)
   if (!v2 || ![v2 count]) {
     return 0LL;
   }
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  id v3 = [NSMutableSet set];
   __int128 v22 = 0u;
   __int128 v23 = 0u;
   __int128 v20 = 0u;
@@ -18821,7 +18821,7 @@ id sub_1005C2268(uint64_t a1)
         if (*(void *)v21 != v5) {
           objc_enumerationMutation(obj);
         }
-        id v7 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(a1 + 504) objectForKeyedSubscript:*(void *)(*((void *)&v20 + 1) + 8 * (void)v6)]);
+        id v7 = [*(id *)(a1 + 504) objectForKeyedSubscript:*(void *)(*((void *)&v20 + 1) + 8 * (void)v6)];
         id v8 = v7;
         if (v7 && [v7 count])
         {
@@ -18865,7 +18865,7 @@ id sub_1005C2268(uint64_t a1)
   }
 
   if ([v3 count]) {
-    __int128 v13 = (void *)objc_claimAutoreleasedReturnValue([v3 allObjects]);
+    __int128 v13 = (void *)[v3 allObjects];
   }
   else {
     __int128 v13 = 0LL;
@@ -18886,7 +18886,7 @@ id sub_1005C24C0(uint64_t a1, uint64_t a2)
   uint64_t v5 = v4;
   if (v4 && [v4 count])
   {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", a2));
+    uint64_t v6 = (void *)[NSNumber numberWithUnsignedInt:a2];
     id v7 = [v5 containsObject:v6];
   }
 
@@ -19687,8 +19687,8 @@ uint64_t sub_1005C40CC@<X0>(uint64_t a1@<X0>, std::stringbuf::string_type *a2@<X
   if (*(void *)(a1 + 64))
   {
     uint64_t v4 = sub_1001FD17C(v58, (uint64_t)", FindMyBeaconID: ", 18LL);
-    int v5 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) beaconIdentifier]);
-    id v6 = objc_claimAutoreleasedReturnValue([v5 UUIDString]);
+    int v5 = (void *)[*(id *)(a1 + 64) beaconIdentifier];
+    id v6 = [v5 UUIDString];
     uint64_t v7 = (const char *)[v6 UTF8String];
     size_t v8 = strlen(v7);
     uint64_t v9 = sub_1001FD17C(v4, (uint64_t)v7, v8);
@@ -19710,8 +19710,8 @@ uint64_t sub_1005C40CC@<X0>(uint64_t a1@<X0>, std::stringbuf::string_type *a2@<X
     sub_1001FD17C(v10, (uint64_t)p_p, size);
 
     uint32_t v14 = sub_1001FD17C(v58, (uint64_t)", FindMyUserID: ", 16LL);
-    uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) userIdentifier]);
-    id v16 = objc_claimAutoreleasedReturnValue([v15 UUIDString]);
+    uint64_t v15 = (void *)[*(id *)(a1 + 64) userIdentifier];
+    id v16 = [v15 UUIDString];
     uint64_t v17 = (const char *)[v16 UTF8String];
     size_t v18 = strlen(v17);
     __int16 v19 = sub_1001FD17C(v14, (uint64_t)v17, v18);
@@ -19732,11 +19732,11 @@ uint64_t sub_1005C40CC@<X0>(uint64_t a1@<X0>, std::stringbuf::string_type *a2@<X
     sub_1001FD17C(v20, (uint64_t)v21, v22);
 
     int v23 = sub_1001FD17C(v58, (uint64_t)" FindMyGroupID:", 15LL);
-    id v24 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) groupIdentifier]);
+    id v24 = [*(id *)(a1 + 64) groupIdentifier];
     if (v24)
     {
       int v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) groupIdentifier]);
-      id v20 = objc_claimAutoreleasedReturnValue([v11 UUIDString]);
+      id v20 = [v11 UUIDString];
       __int16 v25 = (const char *)[v20 UTF8String];
     }
 
@@ -19754,39 +19754,39 @@ uint64_t sub_1005C40CC@<X0>(uint64_t a1@<X0>, std::stringbuf::string_type *a2@<X
     __int16 v27 = sub_1001FD17C(v58, (uint64_t)" fFindMyPartID:", 15LL);
     std::ostream::operator<<(v27, [*(id *)(a1 + 64) partIdentifier]);
     id v28 = sub_1001FD17C(v58, (uint64_t)" fFindMySerialNumber:", 21LL);
-    __int16 v29 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) serialNumber]);
-    id v30 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", v29));
+    __int16 v29 = [*(id *)(a1 + 64) serialNumber];
+    id v30 = [NSString stringWithFormat:@"%@" v29];
     __int16 v31 = (const char *)[v30 UTF8String];
     size_t v32 = strlen(v31);
     sub_1001FD17C(v28, (uint64_t)v31, v32);
 
     char v33 = sub_1001FD17C(v58, (uint64_t)" keys:", 6LL);
     int v34 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) longTermKeyMap]);
-    id v35 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", v34));
+    id v35 = [NSString stringWithFormat:@"%@" v34];
     unsigned int v36 = (const char *)[v35 UTF8String];
     size_t v37 = strlen(v36);
     sub_1001FD17C(v33, (uint64_t)v36, v37);
 
     std::string::size_type v38 = sub_1001FD17C(v58, (uint64_t)" sessions:", 10LL);
     int v39 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) allowedSessions]);
-    id v40 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", v39));
+    id v40 = [NSString stringWithFormat:@"%@" v39];
     int v41 = (const char *)[v40 UTF8String];
     size_t v42 = strlen(v41);
     sub_1001FD17C(v38, (uint64_t)v41, v42);
 
     int v43 = sub_1001FD17C(v58, (uint64_t)" Valid LTKs:", 12LL);
-    id v44 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", *(void *)(a1 + 72)));
+    id v44 = [NSString stringWithFormat:@"%@"];
     int v45 = (const char *)[v44 UTF8String];
     size_t v46 = strlen(v45);
     sub_1001FD17C(v43, (uint64_t)v45, v46);
 
     std::string::size_type v47 = sub_1001FD17C(v58, (uint64_t)" Last used Address/LTK:", 23LL);
-    id v48 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", *(void *)(a1 + 80)));
+    id v48 = [NSString stringWithFormat:@"%@"];
     uint64_t v49 = (const char *)[v48 UTF8String];
     size_t v50 = strlen(v49);
     std::string::size_type v51 = sub_1001FD17C(v47, (uint64_t)v49, v50);
     __int128 v52 = sub_1001FD17C(v51, (uint64_t)"/", 1LL);
-    id v53 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", *(void *)(a1 + 88)));
+    id v53 = [NSString stringWithFormat:@"%@"];
     __int128 v54 = (const char *)[v53 UTF8String];
     size_t v55 = strlen(v54);
     sub_1001FD17C(v52, (uint64_t)v54, v55);
@@ -19865,7 +19865,7 @@ uint64_t sub_1005C4850@<X0>(uint64_t a1@<X0>, std::stringbuf::string_type *a2@<X
   {
     size_t v8 = sub_1001FD17C(v75, (uint64_t)" (", 2LL);
     id v9 = sub_1005BFB9C(*(void *)(a1 + 24));
-    id v10 = objc_claimAutoreleasedReturnValue(v9);
+    id v10 = v9;
     int v11 = (const char *)[v10 UTF8String];
     size_t v12 = strlen(v11);
     uint64_t v13 = sub_1001FD17C(v8, (uint64_t)v11, v12);
@@ -20030,7 +20030,7 @@ LABEL_43:
     __p.__r_.__value_.__s.__data_[0] = *(_BYTE *)(a1 + 528);
     int v41 = sub_1001FD17C(v40, (uint64_t)&__p, 1LL);
     size_t v42 = sub_1001FD17C(v41, (uint64_t)" data:", 6LL);
-    id v43 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString, "stringWithFormat:", @"%@", *(void *)(a1 + 520)));
+    id v43 = [NSString stringWithFormat:@"%@"];
     id v44 = (const char *)[v43 UTF8String];
     size_t v45 = strlen(v44);
     size_t v46 = sub_1001FD17C(v42, (uint64_t)v44, v45);
@@ -20130,7 +20130,7 @@ id sub_1005C50F4(uint64_t a1)
 {
   uint64_t v1 = *(void **)(a1 + 512);
   if (v1) {
-    uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue([v1 allKeys]);
+    uint64_t v2 = (void *)[v1 allKeys];
   }
   else {
     uint64_t v2 = &__NSArray0__struct;
@@ -20201,7 +20201,7 @@ LABEL_5:
     id v10 = *(void **)(a1 + 512);
   }
 
-  uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v10 objectForKey:v5]);
+  uint64_t v13 = (void *)[v10 objectForKey:v5];
   unsigned int v14 = [v13 isEqualToString:v6];
   if ((v14 & 1) == 0)
   {
@@ -20929,10 +20929,10 @@ id sub_1005C6F3C(uint64_t a1, void *a2)
         _os_log_impl( (void *)&_mh_execute_header,  v12,  OS_LOG_TYPE_INFO,  "getFindMyDeviceLTK findMyEncryptionDictionary:%{private, mask.hash}@",  buf,  0x16u);
       }
 
-      __int16 v15 = (void *)objc_claimAutoreleasedReturnValue([v11 objectForKeyedSubscript:v10]);
+      __int16 v15 = (void *)[v11 objectForKeyedSubscript:v10];
       if ([v15 count])
       {
-        uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v15 objectAtIndexedSubscript:0]);
+        uint64_t v16 = (void *)[v15 objectAtIndexedSubscript:0];
         uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v16, "subdataWithRange:", 0, 16));
         id v8 = [v17 mutableCopy];
 
@@ -21105,22 +21105,22 @@ void sub_1005C7488(uint64_t a1)
         else
         {
           __int16 v96 = objc_opt_new(&OBJC_CLASS___NSMutableSet);
-          __int128 v10 = (void *)objc_claimAutoreleasedReturnValue([v98 lastConnectedLEMAC]);
+          __int128 v10 = (void *)[v98 lastConnectedLEMAC];
           BOOL v11 = v10 == 0LL;
 
           if (!v11)
           {
-            __int128 v12 = (void *)objc_claimAutoreleasedReturnValue([v98 lastConnectedLEMAC]);
+            __int128 v12 = (void *)[v98 lastConnectedLEMAC];
             -[NSMutableSet addObject:](v96, "addObject:", v12);
           }
 
-          uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v98 longTermKeyMap]);
+          uint64_t v13 = (void *)[v98 longTermKeyMap];
           BOOL v14 = [v13 count] == 0;
 
           if (!v14)
           {
-            __int16 v15 = (void *)objc_claimAutoreleasedReturnValue([v98 longTermKeyMap]);
-            uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v15 allKeys]);
+            __int16 v15 = (void *)[v98 longTermKeyMap];
+            uint64_t v16 = (void *)[v15 allKeys];
             -[NSMutableSet addObjectsFromArray:](v96, "addObjectsFromArray:", v16);
           }
 
@@ -21128,7 +21128,7 @@ void sub_1005C7488(uint64_t a1)
           {
             *(void *)uuid_t uu = 0LL;
             uint64_t v143 = 0LL;
-            uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v98 beaconIdentifier]);
+            uint64_t v17 = (void *)[v98 beaconIdentifier];
             id v18 = sub_1005C84B8(v102, v17);
             unsigned __int8 v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
             sub_100241F90(uu, v19);
@@ -21136,7 +21136,7 @@ void sub_1005C7488(uint64_t a1)
             if (!uuid_is_null(uu)) {
               goto LABEL_46;
             }
-            int v20 = (void *)objc_claimAutoreleasedReturnValue([v98 lastConnectedLEMAC]);
+            int v20 = (void *)[v98 lastConnectedLEMAC];
             unint64_t v21 = sub_1005C04DC(v20);
 
             if (v21)
@@ -21151,7 +21151,7 @@ void sub_1005C7488(uint64_t a1)
               __int128 v122 = 0u;
               __int128 v119 = 0u;
               __int128 v120 = 0u;
-              char v22 = (void *)objc_claimAutoreleasedReturnValue([v98 longTermKeyMap]);
+              char v22 = (void *)[v98 longTermKeyMap];
               id v23 = [v22 countByEnumeratingWithState:&v119 objects:v141 count:16];
               if (v23)
               {
@@ -21209,14 +21209,14 @@ id sub_1005C84B8(uint64_t a1, void *a2)
           objc_enumerationMutation(v4);
         }
         uint64_t v8 = *(void **)(*((void *)&v16 + 1) + 8LL * (void)i);
-        BOOL v9 = (id *)objc_msgSend(*(id *)(a1 + 160), "objectForKey:", v8, (void)v16);
+        BOOL v9 = [*(id *)(a1 + 160) objectForKey:v8];
         if (v9)
         {
           id v10 = v9[8];
           BOOL v11 = v10;
           if (v10)
           {
-            __int128 v12 = (void *)objc_claimAutoreleasedReturnValue([v10 beaconIdentifier]);
+            __int128 v12 = (void *)[v10 beaconIdentifier];
             unsigned __int8 v13 = [v12 isEqual:v3];
 
             if ((v13 & 1) != 0)
@@ -21441,7 +21441,7 @@ LABEL_14:
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
       {
         id v58 = sub_1005BFB9C(v73);
-        id v59 = (id)objc_claimAutoreleasedReturnValue(v58);
+        id v59 = [v58 autorelease];
         sub_100366664((const unsigned __int8 *)(v30 + 40), &__p);
         sub_10069AE98();
       }
@@ -21943,7 +21943,7 @@ uint64_t sub_1005CA388(uint64_t a1)
     __int128 v20 = 0u;
     __int128 v17 = 0u;
     __int128 v18 = 0u;
-    id v7 = (id)objc_claimAutoreleasedReturnValue(v6);
+    id v7 = [v6 autorelease];
     id v8 = [v7 countByEnumeratingWithState:&v17 objects:v24 count:16];
     if (v8)
     {
@@ -22039,7 +22039,7 @@ void sub_1005CA760(uint64_t a1)
         if (*(void *)v7 != v4) {
           objc_enumerationMutation(v2);
         }
-        sub_1005C3B68((uint64_t)objc_msgSend( *(id *)(a1 + 160),  "objectForKey:",  *(void *)(*((void *)&v6 + 1) + 8 * (void)v5),  (void)v6));
+        sub_1005C3B68((uint64_t)[*(id *)(a1 + 160) objectForKey:*(void *)(*((void *)&v6 + 1) + 8 * (void)v5) v6]);
         uint64_t v5 = (char *)v5 + 1;
       }
 
@@ -22275,7 +22275,7 @@ void sub_1005CAD74(uint64_t a1, void *a2, int a3)
         unsigned int v9 = *((unsigned __int16 *)v6 + 196) - 961;
         if (v9 < 9 && ((0x10Fu >> (*((_WORD *)v6 + 196) + 63)) & 1) != 0)
         {
-          uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[__CFString uppercaseString](off_1008A35B8[(__int16)v9], "uppercaseString"));
+          uint64_t v10 = (void *)[off_1008A35B8[(__int16)v9] uppercaseString];
           uint64_t v50 = 0LL;
           __int128 v48 = 0u;
           memset(v49, 0, sizeof(v49));
@@ -22457,7 +22457,7 @@ void sub_1005CB544(uint64_t a1, char a2)
 {
   id v4 = sub_1005D419C(a1);
   uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(v4);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v5 = [NSMutableArray array];
   char v14 = a2;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
@@ -22827,7 +22827,7 @@ uint64_t sub_1005CBF40(uint64_t a1, int a2, int a3)
         if (*(void *)v15 != v8) {
           objc_enumerationMutation(v6);
         }
-        int v10 = objc_msgSend( *(id *)(a1 + 160),  "objectForKey:",  *(void *)(*((void *)&v14 + 1) + 8 * (void)i),  (void)v14);
+        int v10 = [*(id *)(a1 + 160) objectForKey:*(void *)(*((void *)&v14 + 1) + 8 * (void)i) v14];
         int v11 = v10[33];
         if (v11) {
           v10[33] = *(_DWORD *)(a1 + 152) + v11;
@@ -23897,7 +23897,7 @@ void sub_1005CDB8C(uint64_t a1, void *a2)
     else {
       p___int128 buf = v13;
     }
-    __int128 v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithCString:encoding:]( &OBJC_CLASS___NSString,  "stringWithCString:encoding:",  p_buf,  v14));
+    __int128 v16 = (void *)[OBJC_CLASS___NSString stringWithCString:p_buf encoding:v14];
     if (SHIBYTE(v51) < 0) {
       operator delete((void *)buf);
     }
@@ -23920,8 +23920,8 @@ void sub_1005CDB8C(uint64_t a1, void *a2)
     }
 
     id v18 = (id)v5[45];
-    int v19 = (void *)objc_claimAutoreleasedReturnValue([(id)qword_1008F79B0 objectForKey:v16]);
-    id v20 = (void *)objc_claimAutoreleasedReturnValue([(id)qword_1008F79B8 objectForKey:v16]);
+    int v19 = (void *)[qword_1008F79B0 objectForKey:v16];
+    id v20 = [qword_1008F79B8 objectForKey:v16];
     sub_10002418C(v40, "HIDDeviceKnownGoodBehavior");
     if (v7 == (void *)sub_100024098((uint64_t)(v5 + 22), (const void **)v40))
     {
@@ -24663,7 +24663,7 @@ id sub_1005CF29C(uint64_t a1, unsigned __int8 *a2)
         objc_enumerationMutation(v5);
       }
       id v9 = *(void **)(*((void *)&v22 + 1) + 8LL * (void)v8);
-      uint64_t v10 = (char *)objc_msgSend(*(id *)(a1 + 160), "objectForKey:", v9, __p[0]);
+      uint64_t v10 = (char *)[*(id *)(a1 + 160) objectForKey:v9];
       __p[0] = 0LL;
       __p[1] = 0LL;
       uint64_t v21 = 0LL;
@@ -25062,7 +25062,7 @@ void sub_1005CFDA0(uint64_t a1, void *a2, char a3)
         }
         id v7 = *(id *)(*((void *)&v24 + 1) + 8LL * (void)i);
         uint64_t v8 = objc_autoreleasePoolPush();
-        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:v7]);
+        uint64_t v9 = (void *)[v4 objectForKeyedSubscript:v7];
         id v10 = [v9 unsignedLongLongValue];
 
         uint64_t v11 = (os_log_s *)qword_1008F75A0;
@@ -25688,7 +25688,7 @@ uint64_t sub_1005D0F38@<X0>(uint64_t a1@<X0>, uint64_t a2@<X1>, unsigned __int8 
           objc_enumerationMutation(v6);
         }
         uint64_t v10 = *(void *)(*((void *)&v15 + 1) + 8LL * (void)i);
-        uint64_t v11 = objc_msgSend(*(id *)(a1 + 160), "objectForKey:", v10, (void)v15);
+        uint64_t v11 = [*(id *)(a1 + 160) objectForKey:v10];
         if (sub_1005D89C0((uint64_t)v11) && *((_BYTE *)v11 + 164))
         {
           uint64_t v12 = v11[7];
@@ -25791,7 +25791,7 @@ void sub_1005D11B0(uint64_t a1@<X0>, void *a2@<X1>, unsigned __int8 *a3@<X8>)
       if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_ERROR))
       {
         id v24 = sub_1005BFB9C(v7);
-        id v25 = (id)objc_claimAutoreleasedReturnValue(v24);
+        id v25 = [v24 autorelease];
         sub_100366664(v20, buf);
         sub_10069AE98();
       }
@@ -25853,7 +25853,7 @@ uint64_t sub_1005D16E0(uint64_t a1, const unsigned __int8 *a2)
   v9[1] = 0LL;
   sub_100242F28((uint64_t)v9, a1 + 80);
   uint64_t v4 = sub_100241F94(a2);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
+  id v5 = v4;
   unint64_t v6 = sub_1005C6AC0(a1, v5);
 
   if (v6) {
@@ -25931,7 +25931,7 @@ uint64_t sub_1005D1778(uint64_t a1, unsigned __int8 *a2, unint64_t a3)
     if (os_log_type_enabled((os_log_t)qword_1008F75A0, OS_LOG_TYPE_INFO))
     {
       id v16 = sub_1005BFB9C(a3);
-      id v17 = (id)objc_claimAutoreleasedReturnValue(v16);
+      id v17 = [v16 autorelease];
       memset(out, 0, 37);
       uuid_unparse_upper(a2, out);
       sub_10002418C(__p, out);
@@ -26585,14 +26585,14 @@ id sub_1005D2BD0(uint64_t a1, void *a2)
   id v5 = v4;
   if (v4 && [v4 count])
   {
-    uint64_t v6 = objc_claimAutoreleasedReturnValue([v5 componentsJoinedByString:@","]);
+    uint64_t v6 = [v5 componentsJoinedByString:@","];
   }
 
   else
   {
     int v7 = sub_1005CE2FC(a1, v3);
     id v8 = +[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", sub_1005D2CC4(v7));
-    uint64_t v6 = objc_claimAutoreleasedReturnValue(v8);
+    uint64_t v6 = [v8 claimAutoreleasedReturnValue];
   }
 
   id v9 = (void *)v6;
@@ -27428,7 +27428,7 @@ void sub_1005D4188( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a
 
 id sub_1005D419C(uint64_t a1)
 {
-  id v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v2 = [NSMutableArray array];
   v18[0] = 0LL;
   v18[1] = 0LL;
   sub_100242F28((uint64_t)v18, a1 + 80);
@@ -27464,7 +27464,7 @@ id sub_1005D419C(uint64_t a1)
   }
 
   sub_100242F54((uint64_t)v18);
-  char v10 = (void *)objc_claimAutoreleasedReturnValue([v2 indexesOfObjectsPassingTest:&stru_1008A3410]);
+  char v10 = (void *)[v2 indexesOfObjectsPassingTest:&stru_1008A3410];
   [v2 removeObjectsAtIndexes:v10];
 
   sub_100242FAC((uint64_t)v18);
@@ -27976,7 +27976,7 @@ uint64_t sub_1005D51BC(uint64_t a1)
         if (*(void *)v11 != v5) {
           objc_enumerationMutation(v3);
         }
-        free( objc_msgSend( *(id *)(a1 + 160),  "objectForKey:",  *(void *)(*((void *)&v10 + 1) + 8 * (void)v6),  (void)v10));
+        free( [*(id *)(a1 + 160) objectForKey:*(void *)(*((void *)&v10 + 1) + 8 * (void)v6) v10]);
         id v6 = (char *)v6 + 1;
       }
 
@@ -28067,7 +28067,7 @@ LABEL_13:
           else {
             __int16 v14 = (void **)__p[0];
           }
-          uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v14));
+          uint64_t v15 = (void *)[NSString stringWithUTF8String:v14];
           unsigned int v16 = [v5 isEqualToString:v15];
 
           if (SHIBYTE(v21) < 0) {
@@ -29003,7 +29003,7 @@ void sub_1005D73C8(uint64_t a1@<X0>, void *a2@<X1>, unsigned int a3@<W2>, uint64
       {
         if (!a3)
         {
-          id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 lastConnectedLEMAC]);
+          id v12 = (void *)[v10 lastConnectedLEMAC];
           *(void *)__int128 buf = sub_1005C04DC(v12);
           sub_1002555B0((uint64_t **)a4, (unint64_t *)buf, (uint64_t *)buf);
         }
@@ -29075,7 +29075,7 @@ id sub_1005D7650(uint64_t a1, void *a2)
   if (v4 && (id v5 = v4[8]) != 0LL)
   {
     uint64_t v6 = v5;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 beaconIdentifier]);
+    id v7 = [v5 beaconIdentifier];
   }
 
   else
@@ -29104,7 +29104,7 @@ id sub_1005D7708(uint64_t a1, void *a2)
   if (v4 && (id v5 = v4[8]) != 0LL)
   {
     uint64_t v6 = v5;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 userIdentifier]);
+    id v7 = [v5 userIdentifier];
   }
 
   else
@@ -29153,12 +29153,12 @@ id sub_1005D77C0(uint64_t a1, void *a2)
           id v11 = v10;
           if (v10)
           {
-            uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v10 serialNumber]);
+            uint64_t v12 = (void *)[v10 serialNumber];
             BOOL v13 = [v12 length] == 0;
 
             if (!v13)
             {
-              id v14 = (void *)objc_claimAutoreleasedReturnValue([v11 serialNumber]);
+              id v14 = [v11 serialNumber];
               unsigned __int8 v15 = [v3 isEqualToString:v14];
 
               if ((v15 & 1) != 0)
@@ -29229,7 +29229,7 @@ id sub_1005D7A8C(uint64_t a1, void *a2)
   v19[0] = 0LL;
   v19[1] = 0LL;
   sub_100242F28((uint64_t)v19, a1 + 80);
-  id v14 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v14 = [NSMutableArray array];
   __int128 v17 = 0u;
   __int128 v18 = 0u;
   __int128 v15 = 0u;
@@ -29251,7 +29251,7 @@ id sub_1005D7A8C(uint64_t a1, void *a2)
         id v10 = v9;
         if (v9)
         {
-          uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v9 groupIdentifier]);
+          uint64_t v11 = (void *)[v9 groupIdentifier];
           unsigned int v12 = [v11 isEqual:v3];
 
           if (v12) {
@@ -29286,7 +29286,7 @@ id sub_1005D7C70(uint64_t a1, void *a2)
   if (v4 && (id v5 = v4[8]) != 0LL)
   {
     uint64_t v6 = v5;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 groupIdentifier]);
+    id v7 = [v5 groupIdentifier];
   }
 
   else
@@ -29338,7 +29338,7 @@ id sub_1005D7D88(uint64_t a1, void *a2)
   if (v4 && (id v5 = v4[8]) != 0LL)
   {
     uint64_t v6 = v5;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v5 serialNumber]);
+    id v7 = [v5 serialNumber];
   }
 
   else
@@ -29704,7 +29704,7 @@ void sub_1005D875C(uint64_t a1, __n128 a2)
             dispatch_once(&qword_1008D6608, &stru_1008A3578);
           }
           unsigned int v12 = off_1008D6600;
-          BOOL v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v9));
+          BOOL v13 = [NSString stringWithUTF8String:v9];
           sub_10060CB10((uint64_t)v12, v13, (uint64_t)v28);
         }
 
@@ -29746,7 +29746,7 @@ void sub_1005D89A4(_Unwind_Exception *a1)
 
 BOOL sub_1005D89C0(uint64_t a1)
 {
-  uint64_t v1 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 64) longTermKeyMap]);
+  uint64_t v1 = (void *)[*(id *)(a1 + 64) longTermKeyMap];
   BOOL v2 = [v1 count] != 0;
 
   return v2;
@@ -29828,7 +29828,7 @@ id sub_1005D8C08(uint64_t a1)
   }
   id v2 = sub_10059A34C((uint64_t)off_1008D5F08);
   uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(v2);
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v4 = [NSMutableArray array];
   v20[0] = 0LL;
   v20[1] = 0LL;
   sub_100242F28((uint64_t)v20, a1 + 80);
@@ -30922,7 +30922,7 @@ LABEL_95:
     if (v55)
     {
       id v56 = v55;
-      memcpy(__dst, [v56 bytes], (size_t)objc_msgSend(v56, "length"));
+      memcpy(__dst, [v56 bytes], (size_t)[v56 length]);
       int v57 = __dst[0];
       int v58 = *(unsigned __int16 *)&__dst[1];
       DWORD2(v255) = __dst[0];
@@ -32834,7 +32834,7 @@ uint64_t sub_1005DD75C(uint64_t a1)
   *(_OWORD *)(a1 + 4352) = 0u;
   *(_WORD *)(a1 + 4382) = 1;
   *(_WORD *)(a1 + 4385) = 1;
-  uint64_t v3 = objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+  uint64_t v3 = [+[NSMutableSet set] autorelease];
   uint64_t v4 = *(void **)(a1 + 3264);
   *(void *)(a1 + 3264) = v3;
 
@@ -33081,19 +33081,19 @@ LABEL_305:
   sub_1005DFA44(a1);
   sub_1005DFAC0(a1);
   sub_1005DFC6C(a1);
-  uint64_t v126 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v126 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
   size_t v127 = *(void **)(a1 + 4352);
   *(void *)(a1 + 4352) = v126;
 
-  uint64_t v128 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v128 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
   CC_LONG v129 = *(void **)(a1 + 4360);
   *(void *)(a1 + 4360) = v128;
 
-  uint64_t v130 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v130 = [+[NSMutableArray array] autorelease];
   v131 = *(void **)(a1 + 4368);
   *(void *)(a1 + 4368) = v130;
 
-  uint64_t v132 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  uint64_t v132 = [NSMutableDictionary dictionary];
   uint64_t v133 = *(void **)(a1 + 2088);
   *(void *)(a1 + 2088) = v132;
 }
@@ -33116,7 +33116,7 @@ void sub_1005DF770(id a1, void *a2)
   uint64_t v3 = (os_log_s *)qword_1008F76D8;
   if (os_log_type_enabled((os_log_t)qword_1008F76D8, OS_LOG_TYPE_DEFAULT))
   {
-    uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    uint64_t v4 = (void *)[NSDate date];
     int v5 = 138412546;
     uint64_t v6 = v4;
     __int16 v7 = 2082;
@@ -34872,7 +34872,7 @@ void sub_1005E459C(uint64_t a1, unsigned __int8 *a2, uint64_t a3)
         goto LABEL_42;
       }
 
-      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, 16LL));
+      uint64_t v8 = (void *)[NSData dataWithBytes:a3 length:16LL];
       [*(id *)(a1 + 2088) setObject:v8 forKeyedSubscript:v7];
 
       if (qword_1008D5F50 != -1) {
@@ -34910,10 +34910,10 @@ LABEL_42:
         goto LABEL_23;
       }
 
-      uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v12));
+      uint64_t v13 = (void *)[NSString stringWithUTF8String:v12];
       if ([v13 length])
       {
-        char v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, 16LL));
+        char v14 = [NSData dataWithBytes:a3 length:16LL];
         [*(id *)(a1 + 2088) setObject:v14 forKeyedSubscript:v13];
       }
 
@@ -34940,7 +34940,7 @@ LABEL_23:
       int v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v15));
       if ([v16 length])
       {
-        uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, 16LL));
+        uint64_t v17 = (void *)[NSData dataWithBytes:a3 length:16LL];
         [*(id *)(a1 + 2088) setObject:v17 forKeyedSubscript:v16];
       }
 
@@ -34953,10 +34953,10 @@ LABEL_32:
         if ((*(char *)(v10 + 239) & 0x80000000) == 0)
         {
 LABEL_38:
-          uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v18));
+          uint64_t v19 = (void *)[NSString stringWithUTF8String:v18];
           if ([v19 length])
           {
-            __int16 v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, 16LL));
+            __int16 v20 = [NSData dataWithBytes:a3 length:16LL];
             [*(id *)(a1 + 2088) setObject:v20 forKeyedSubscript:v19];
           }
 
@@ -36645,7 +36645,7 @@ uint64_t sub_1005E7BF8(uint64_t a1, uint64_t a2)
           v35[0] = &off_1008C2C00;
           __int16 v32 = @"conf";
           __int16 v30 = @"appleType";
-          __int128 v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", 22LL));
+          __int128 v18 = [NSNumber numberWithUnsignedChar:22LL];
           BOOL v31 = v18;
           uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v31,  &v30,  1LL));
           BOOL v33 = v19;
@@ -37687,7 +37687,7 @@ void sub_1005EA3D8(uint64_t a1)
       uint64_t v8 = sub_1003ACCC0((uint64_t)off_1008D96F8);
     }
 
-    int v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    int v9 = [NSDate date];
     [v9 timeIntervalSince1970];
     double v11 = v10;
 
@@ -37814,8 +37814,8 @@ void sub_1005EA74C(uint64_t a1)
         __int128 v42 = 0u;
         __int128 v43 = 0u;
         __int128 v41 = 0u;
-        BOOL v19 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(v1 + 2112) objectAtIndex:v15]);
-        int v20 = (void *)objc_claimAutoreleasedReturnValue([v19 objectForKeyedSubscript:@"MatchActionRulePeerAddress"]);
+        BOOL v19 = [*(id *)(v1 + 2112) objectAtIndex:v15];
+        int v20 = (void *)[v19 objectForKeyedSubscript:@"MatchActionRulePeerAddress"];
         objc_msgSend(v20, "getBytes:range:", (char *)&v41 + 2, 0, 6);
 
         LOWORD(v41) = 259;
@@ -38237,7 +38237,7 @@ void sub_1005EB568(uint64_t a1, uint64_t a2)
   if (a2)
   {
     uint64_t v2 = -[NSData initWithBytes:length:]( objc_alloc(&OBJC_CLASS___NSData),  "initWithBytes:length:",  a2,  *(unsigned __int8 *)(a2 + 1) + 4LL);
-    objc_msgSend(gCBDaemonServer, "aopMessageReceived:");
+    [gCBDaemonServer aopMessageReceived:];
   }
 
 void sub_1005EB5D8( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)
@@ -38262,7 +38262,7 @@ uint64_t sub_1005EB5F0(uint64_t a1, void *a2)
       id v6 = v3;
     }
     else {
-      id v6 = (id)objc_claimAutoreleasedReturnValue(+[NSArray array](&OBJC_CLASS___NSArray, "array"));
+      id v6 = [NSArray array];
     }
     uint64_t v9 = *(void **)(a1 + 2120);
     *(void *)(a1 + 2120) = v6;
@@ -41208,7 +41208,7 @@ uint64_t sub_1005F24EC(uint64_t a1, unint64_t a2, int a3, int a4, char a5)
 
   id v14 = sub_100611384(v81);
   char v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
-  uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue([v15 cuFilteredArrayUsingBlock:&stru_1008A3AF8]);
+  uint64_t v16 = (void *)[v15 cuFilteredArrayUsingBlock:&stru_1008A3AF8];
   uint64_t v78 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet setWithArray:](&OBJC_CLASS___NSMutableSet, "setWithArray:", v16));
 
   if (sub_100611378(v81))
@@ -42069,7 +42069,7 @@ void sub_1005F3FAC(uint64_t a1, unint64_t a2, uint64_t a3, uint64_t a4)
     __int128 v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
     __int128 v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableDictionary dictionaryWithDictionary:]( &OBJC_CLASS___NSMutableDictionary,  "dictionaryWithDictionary:",  v18));
 
-    unsigned __int8 v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", 0LL));
+    unsigned __int8 v20 = [NSNumber numberWithUnsignedInt:0LL];
     [v19 setObject:v20 forKeyedSubscript:@"DASessionType"];
 
     if (qword_1008D67C8 != -1) {
@@ -42088,13 +42088,13 @@ void sub_1005F3FAC(uint64_t a1, unint64_t a2, uint64_t a3, uint64_t a4)
       BOOL v21 = 0LL;
     }
 
-    unsigned __int8 v22 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v21));
+    unsigned __int8 v22 = (void *)[NSNumber numberWithBool:v21];
     [v19 setObject:v22 forKeyedSubscript:@"SupportsStateRestoration"];
 
     uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(a2 + 140)));
     [v19 setObject:v23 forKeyedSubscript:@"ClientType"];
 
-    int v24 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a3));
+    int v24 = (void *)[NSNumber numberWithBool:a3];
     [v19 setObject:v24 forKeyedSubscript:@"IsPrioritizedOverBT"];
 
     __int128 v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a4));
@@ -42206,7 +42206,7 @@ uint64_t sub_1005F4430(uint64_t a1, uint64_t a2)
   else
   {
     id v7 = sub_100611384(a2);
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
+    id v8 = v7;
     unint64_t v9 = v8;
     if (v8 && [v8 count])
     {
@@ -42227,7 +42227,7 @@ uint64_t sub_1005F4430(uint64_t a1, uint64_t a2)
               objc_enumerationMutation(v10);
             }
             int v13 = *(void **)(*((void *)&v18 + 1) + 8 * i);
-            id v14 = objc_msgSend(v13, "longLongValue", (void)v18);
+            id v14 = [v13 longLongValue];
             if (sub_10060173C((uint64_t)v14, (int)v14))
             {
               uint64_t v15 = (os_log_s *)qword_1008F75B8;
@@ -42301,7 +42301,7 @@ uint64_t sub_1005F4684(uint64_t a1, uint64_t a2)
               objc_enumerationMutation(v10);
             }
             int v13 = *(void **)(*((void *)&v18 + 1) + 8 * i);
-            id v14 = objc_msgSend(v13, "longLongValue", (void)v18);
+            id v14 = [v13 longLongValue];
             if (sub_1006017DC((uint64_t)v14, (int)v14))
             {
               uint64_t v15 = (os_log_s *)qword_1008F75B8;
@@ -43948,7 +43948,7 @@ LABEL_114:
       *((void *)v82 + 2) = 0LL;
       sub_100050EE8( v82,  *(__int128 **)(v79 + 352),  *(__int128 **)(v79 + 360),  0xCCCCCCCCCCCCCCCDLL * ((uint64_t)(*(void *)(v79 + 360) - *(void *)(v79 + 352)) >> 2));
       LOBYTE(v279) = *(_BYTE *)(v79 + 376);
-      id v83 = (id)objc_claimAutoreleasedReturnValue( +[NSMutableString stringWithString:]( &OBJC_CLASS___NSMutableString,  "stringWithString:",  @"default"));
+      id v83 = [NSMutableString stringWithString:@"default"];
       if (!__dst[0].__r_.__value_.__s.__data_[8] || !__dst[0].__r_.__value_.__s.__data_[5])
       {
         id v184 = v83;
@@ -43983,7 +43983,7 @@ LABEL_206:
   if (*(_BYTE *)(v116 + 14))
   {
     __int16 v117 = sub_1005F9B50(v114, v116 + 48);
-    id v184 = (id)objc_claimAutoreleasedReturnValue(v117);
+    id v184 = [v117 autorelease];
     uint64_t v118 = sub_10056AAD8(*(void *)(v115 + 8) + 48LL);
     uint64_t v182 = &v165;
     size_t v119 = v118 + 5;
@@ -44002,7 +44002,7 @@ LABEL_206:
     uint64_t v213 = 0LL;
     __n128 v212 = 0LL;
     uint64_t v214 = 0LL;
-    id v124 = objc_claimAutoreleasedReturnValue([v185 UUIDString]);
+    id v124 = [v185 UUIDString];
     sub_10002418C(&v212, (char *)[v124 UTF8String]);
 
     __int128 v206 = 0uLL;
@@ -44538,7 +44538,7 @@ void sub_1005F8B2C(uint64_t a1, unint64_t a2, uint64_t a3)
       }
       sub_1005C8684((uint64_t)off_1008D5F28, a2, 0, 1u, 0LL, 0LL, (unsigned __int8 *)v55);
       BOOL v7 = sub_100241F94((const unsigned __int8 *)v55);
-      id v8 = (id)objc_claimAutoreleasedReturnValue(v7);
+      id v8 = v7;
       sub_1005BFC20(a2, (std::stringbuf::string_type *)__p);
       if (__p[23] >= 0) {
         uint64_t v9 = __p;
@@ -45009,7 +45009,7 @@ id sub_1005F9AF4(uint64_t a1)
     id v1 = *(id *)(a1 + 152);
   }
   else {
-    id v1 = (id)objc_claimAutoreleasedReturnValue(+[NSSet setWithObject:](&OBJC_CLASS___NSSet, "setWithObject:"));
+    id v1 = [NSSet setWithObject:];
   }
   return v1;
 }
@@ -46942,30 +46942,30 @@ id sub_1005FCC88(uint64_t a1, void *a2, void *a3)
   id v4 = a2;
   id v5 = a3;
   id v6 = [v4 mutableCopy];
-  int v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
+  int v7 = (void *)[v4 objectForKeyedSubscript:@"bypassFilterDuplicate"];
   unsigned __int8 v8 = [v7 unsignedIntValue];
 
-  BOOL v9 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
+  BOOL v9 = [v5 objectForKeyedSubscript:@"bypassFilterDuplicate"];
   LOBYTE(v7) = [v9 unsignedIntValue];
 
-  BOOL v10 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"rssi"]);
+  BOOL v10 = [v4 objectForKeyedSubscript:@"rssi"];
   unsigned int v11 = [v10 intValue];
 
-  int v12 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"rssi"]);
+  int v12 = (void *)[v5 objectForKeyedSubscript:@"rssi"];
   unsigned int v13 = [v12 intValue];
 
   BOOL v14 = (v8 | v7) != 0;
   else {
     unsigned __int8 v15 = v11;
   }
-  char v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v14));
+  char v16 = (void *)[NSNumber numberWithUnsignedChar:v14];
   [v6 setObject:v16 forKeyedSubscript:@"bypassFilterDuplicate"];
 
-  __int16 v17 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithChar:](&OBJC_CLASS___NSNumber, "numberWithChar:", v15));
+  __int16 v17 = [NSNumber numberWithChar:v15];
   [v6 setObject:v17 forKeyedSubscript:@"rssi"];
 
   int v18 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"mask"]);
-  uint64_t v19 = objc_claimAutoreleasedReturnValue([v5 objectForKeyedSubscript:@"mask"]);
+  uint64_t v19 = [v5 objectForKeyedSubscript:@"mask"];
   uint64_t v20 = (void *)v19;
   memset(v27, 0, sizeof(v27));
   char v28 = 0;
@@ -46989,7 +46989,7 @@ LABEL_12:
     goto LABEL_13;
   }
 
-  __int16 v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( NSData,  "dataWithBytes:length:",  v27,  [v20 length]));
+  __int16 v23 = [NSData dataWithBytes:v27 length:[v20 length]];
   unsigned int v24 = [v20 isEqual:v23];
 
   if (v24) {
@@ -47009,10 +47009,10 @@ void sub_1005FCF50(_Unwind_Exception *a1)
 uint64_t sub_1005FCFEC(uint64_t a1, void *a2)
 {
   id v2 = a2;
-  int v3 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"data"]);
+  int v3 = (void *)[v2 objectForKeyedSubscript:@"data"];
   unsigned __int16 v4 = (unsigned __int16)[v3 length];
 
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"mask"]);
+  id v5 = [v2 objectForKeyedSubscript:@"mask"];
   unsigned __int16 v6 = (unsigned __int16)[v5 length];
 
   uint64_t v7 = sub_1002E6E9C();
@@ -47028,7 +47028,7 @@ uint64_t sub_1005FCFEC(uint64_t a1, void *a2)
     BOOL v10 = (os_log_s *)qword_1008F75B8;
     if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_ERROR))
     {
-      unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+      unsigned int v13 = (void *)[v2 objectForKeyedSubscript:@"puckType"];
       v14[0] = 67109890;
       v14[1] = v8;
       __int16 v15 = 1024;
@@ -47085,7 +47085,7 @@ void sub_1005FD1A4(uint64_t a1, void *a2)
     id v8 = objc_msgSend(v7, "mutableCopy", v19, v20, v21, v22);
     if (*(void *)(*(void *)&buf[8] + 40LL))
     {
-      objc_msgSend(*(id *)(a1 + 4360), "removeObject:");
+      [*(id *)(a1 + 4360) removeObject:];
       uint64_t v9 = objc_opt_new(&OBJC_CLASS___NSData);
       [v8 setObject:v9 forKeyedSubscript:@"data"];
 
@@ -47094,7 +47094,7 @@ void sub_1005FD1A4(uint64_t a1, void *a2)
 
       uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*(void *)&buf[8] + 40) objectForKeyedSubscript:@"rssi"]);
       signed __int8 v12 = [v11 intValue];
-      unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"rssi"]);
+      unsigned int v13 = (void *)[v7 objectForKeyedSubscript:@"rssi"];
       signed __int8 v14 = [v13 intValue];
       if (v14 >= v12) {
         unsigned __int8 v15 = v12;
@@ -47147,8 +47147,8 @@ void sub_1005FD524(uint64_t a1)
 void sub_1005FD52C(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
 {
   id v7 = a2;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 32) objectForKeyedSubscript:@"uuid"]);
-  uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"uuid"]);
+  id v8 = [*(id *)(a1 + 32) objectForKeyedSubscript:@"uuid"];
+  uint64_t v9 = (void *)[v7 objectForKeyedSubscript:@"uuid"];
   unsigned int v10 = [v8 isEqual:v9];
 
   if (v10)
@@ -47177,7 +47177,7 @@ void sub_1005FD678(_Unwind_Exception *a1)
 void sub_1005FD6A8(uint64_t a1, void *a2)
 {
   id v2 = a2;
-  double v69 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  double v69 = [NSMutableArray array];
   if (sub_1005FCFEC((uint64_t)v69, v2))
   {
     __int128 v79 = 0u;
@@ -47201,7 +47201,7 @@ void sub_1005FD6A8(uint64_t a1, void *a2)
           }
           unsigned __int16 v6 = *(void **)(*((void *)&v77 + 1) + 8LL * (void)i);
           id v7 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v6, "objectForKeyedSubscript:", @"puckType", v63));
-          id v8 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+          id v8 = [v2 objectForKeyedSubscript:@"puckType"];
           unsigned int v9 = [v7 isEqual:v8];
 
           if (!v9) {
@@ -47210,8 +47210,8 @@ void sub_1005FD6A8(uint64_t a1, void *a2)
           unsigned int v10 = (os_log_s *)qword_1008F75B8;
           if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_INFO))
           {
-            uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"puckType"]);
-            uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+            uint64_t v11 = (void *)[v6 objectForKeyedSubscript:@"puckType"];
+            uint64_t v12 = (void *)[v2 objectForKeyedSubscript:@"shouldConsolidateRule"];
             unsigned int v13 = [v12 BOOLValue];
             *(_DWORD *)std::stringbuf::string_type buf = 138413058;
             *(void *)&uint8_t buf[4] = v11;
@@ -47224,8 +47224,8 @@ void sub_1005FD6A8(uint64_t a1, void *a2)
             _os_log_impl( (void *)&_mh_execute_header,  v10,  OS_LOG_TYPE_INFO,  "Already have this rule for type %@ consolidate %d %@ new rule %@.",  buf,  0x26u);
           }
 
-          int v14 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
-          uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
+          int v14 = (void *)[v6 objectForKeyedSubscript:@"bypassFilterDuplicate"];
+          uint64_t v15 = (void *)[v2 objectForKeyedSubscript:@"bypassFilterDuplicate"];
           if (([v14 isEqualToNumber:v15] & 1) == 0)
           {
 
@@ -47233,11 +47233,11 @@ LABEL_14:
             __int16 v19 = (os_log_s *)qword_1008F75B8;
             if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_INFO))
             {
-              uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"puckType"]);
-              id v21 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
-              unsigned __int8 v22 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"rssi"]);
-              id v23 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
-              unsigned int v24 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"rssi"]);
+              uint64_t v20 = (void *)[v6 objectForKeyedSubscript:@"puckType"];
+              id v21 = [v6 objectForKeyedSubscript:@"bypassFilterDuplicate"];
+              unsigned __int8 v22 = (void *)[v6 objectForKeyedSubscript:@"rssi"];
+              id v23 = [v2 objectForKeyedSubscript:@"bypassFilterDuplicate"];
+              unsigned int v24 = (void *)[v2 objectForKeyedSubscript:@"rssi"];
               *(_DWORD *)std::stringbuf::string_type buf = 138413314;
               *(void *)&uint8_t buf[4] = v20;
               *(_WORD *)&_BYTE buf[12] = 2112;
@@ -47254,18 +47254,18 @@ LABEL_14:
             goto LABEL_16;
           }
 
-          __int16 v16 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"rssi"]);
-          uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"rssi"]);
+          __int16 v16 = (void *)[v6 objectForKeyedSubscript:@"rssi"];
+          uint64_t v17 = (void *)[v2 objectForKeyedSubscript:@"rssi"];
           unsigned __int8 v18 = [v16 isEqualToNumber:v17];
 
           if ((v18 & 1) == 0) {
             goto LABEL_14;
           }
 LABEL_16:
-          id v25 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+          id v25 = [v2 objectForKeyedSubscript:@"shouldConsolidateRule"];
           if (v25)
           {
-            uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+            uint64_t v26 = (void *)[v2 objectForKeyedSubscript:@"shouldConsolidateRule"];
             unsigned int v27 = [v26 BOOLValue];
 
             int v28 = v27 ^ 1;
@@ -47276,10 +47276,10 @@ LABEL_16:
             int v28 = 0;
           }
 
-          uint64_t v29 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+          uint64_t v29 = (void *)[v6 objectForKeyedSubscript:@"shouldConsolidateRule"];
           if (v29)
           {
-            uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+            uint64_t v30 = (void *)[v6 objectForKeyedSubscript:@"shouldConsolidateRule"];
             unsigned int v31 = [v30 BOOLValue];
 
             int v32 = v31 ^ 1;
@@ -47293,8 +47293,8 @@ LABEL_16:
           if ((v28 | v32) != 1) {
             goto LABEL_35;
           }
-          int v33 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"data"]);
-          uint64_t v34 = objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"data"]);
+          int v33 = (void *)[v2 objectForKeyedSubscript:@"data"];
+          uint64_t v34 = [v6 objectForKeyedSubscript:@"data"];
           BOOL v35 = (void *)v34;
           if (!v33 || !v34) {
             goto LABEL_34;
@@ -47314,8 +47314,8 @@ LABEL_16:
                   v37,
                   (v39 & 1) != 0))
             {
-              char v40 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"rssi"]);
-              __int128 v41 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"rssi"]);
+              char v40 = (void *)[v6 objectForKeyedSubscript:@"rssi"];
+              __int128 v41 = (void *)[v2 objectForKeyedSubscript:@"rssi"];
               unsigned __int8 v42 = [v40 isEqualToNumber:v41];
 
               uint64_t v43 = (os_log_s *)qword_1008F75B8;
@@ -47323,11 +47323,11 @@ LABEL_16:
               {
                 if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEBUG))
                 {
-                  uint64_t v66 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+                  uint64_t v66 = (void *)[v2 objectForKeyedSubscript:@"puckType"];
                   unsigned int v65 = [v66 intValue];
-                  __int16 v52 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"rssi"]);
+                  __int16 v52 = (void *)[v2 objectForKeyedSubscript:@"rssi"];
                   unsigned int v64 = [v52 intValue];
-                  BOOL v53 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"shouldConsolidateRule"]);
+                  BOOL v53 = [v2 objectForKeyedSubscript:@"shouldConsolidateRule"];
                   unsigned int v54 = [v53 intValue];
                   *(_DWORD *)uint64_t v82 = v63;
                   unsigned int v83 = v65;
@@ -47346,7 +47346,7 @@ LABEL_35:
 
               if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
               {
-                uint64_t v44 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+                uint64_t v44 = (void *)[v2 objectForKeyedSubscript:@"puckType"];
                 unsigned int v45 = [v44 intValue];
                 *(_DWORD *)uint64_t v82 = 67109120;
                 unsigned int v83 = v45;
@@ -47359,7 +47359,7 @@ LABEL_35:
               __int16 v46 = (os_log_s *)qword_1008F75B8;
               if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
               {
-                int v47 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+                int v47 = (void *)[v2 objectForKeyedSubscript:@"puckType"];
                 unsigned int v48 = [v47 intValue];
                 *(_DWORD *)uint64_t v82 = 67109120;
                 unsigned int v83 = v48;
@@ -47373,7 +47373,7 @@ LABEL_35:
             int v49 = (os_log_s *)qword_1008F75B8;
             if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
             {
-              __int16 v50 = (void *)objc_claimAutoreleasedReturnValue([v2 objectForKeyedSubscript:@"puckType"]);
+              __int16 v50 = (void *)[v2 objectForKeyedSubscript:@"puckType"];
               unsigned int v51 = [v50 intValue];
               *(_DWORD *)uint64_t v82 = 67109120;
               unsigned int v83 = v51;
@@ -47411,7 +47411,7 @@ LABEL_35:
               objc_enumerationMutation(v56);
             }
             id v62 = sub_1005FCC88((uint64_t)v57, *(void **)(*((void *)&v73 + 1) + 8LL * (void)v60), v61);
-            id v55 = (id)objc_claimAutoreleasedReturnValue(v62);
+            id v55 = [v62 autorelease];
 
             unsigned int v60 = (char *)v60 + 1;
             int v61 = v55;
@@ -47588,7 +47588,7 @@ LABEL_212:
           }
           int v137 = *(void **)(*((void *)&v170 + 1) + 8LL * (void)k);
           memset(buf, 0, 20);
-          id v138 = objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"uuid"]);
+          id v138 = [v137 objectForKeyedSubscript:@"uuid"];
           size_t v139 = (int8x16_t *)[v138 bytes];
           int v140 = (void *)objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"uuid"]);
           sub_1006343C4((uint64_t)buf, v139, [v140 length]);
@@ -47596,11 +47596,11 @@ LABEL_212:
           uint64_t v141 = sub_1002E6E9C();
           __int128 v202 = *(_OWORD *)buf;
           int v203 = *(_DWORD *)&buf[16];
-          uint64_t v142 = (void *)objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"data"]);
+          uint64_t v142 = (void *)[v137 objectForKeyedSubscript:@"data"];
           LOBYTE(v140) = [v142 length];
-          id v143 = objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"data"]);
+          id v143 = [v137 objectForKeyedSubscript:@"data"];
           id v144 = [v143 bytes];
-          id v145 = objc_claimAutoreleasedReturnValue([v137 objectForKeyedSubscript:@"mask"]);
+          id v145 = [v137 objectForKeyedSubscript:@"mask"];
           LOBYTE(v146) = 1;
           LODWORD(v140) = (*(uint64_t (**)(uint64_t, __int128 *, void, uint64_t, uint64_t, void, id, id, int))(*(void *)v141 + 416))( v141,  &v202,  0,  169,  1,  v140,  v144,  [v145 bytes],  v146);
 
@@ -48801,7 +48801,7 @@ uint64_t sub_100601ABC(uint64_t a1, uint64_t a2)
               objc_enumerationMutation(v11);
             }
             unsigned int v15 = *(void **)(*((void *)&v20 + 1) + 8LL * (void)i);
-            unsigned int v16 = objc_msgSend(v15, "longLongValue", (void)v20);
+            unsigned int v16 = [v15 longLongValue];
             if (v16 == 2147418120 || v16 == 131101)
             {
               __int128 v18 = (os_log_s *)qword_1008F75B8;
@@ -48945,7 +48945,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
   unsigned int v295 = (*(uint64_t (**)(uint64_t))(*(void *)v5 + 824LL))(v5);
   uint64_t v6 = sub_1002E6E9C();
   int v289 = (*(uint64_t (**)(uint64_t))(*(void *)v6 + 2656LL))(v6);
-  __int128 v311 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  __int128 v311 = +[NSMutableDictionary dictionary];
   *(_WORD *)a2 = 0;
   a2[2] = 0;
   *((_DWORD *)a2 + 2) = 0;
@@ -48978,7 +48978,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
   }
   int v12 = !v11;
   int v279 = v12;
-  __int128 v312 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  __int128 v312 = [NSMutableArray array];
   uint64_t v13 = *(void **)(v316 + 2040);
   int v14 = &AMFDRSealingMapCopyLocalDictForClass_ptr;
   if (v13 != (void *)(v316 + 2048))
@@ -49018,7 +49018,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
       memset(&buf[72], 0, 24);
       sub_100050EE8( &buf[72],  *(__int128 **)(v19 + 352),  *(__int128 **)(v19 + 360),  0xCCCCCCCCCCCCCCCDLL * ((uint64_t)(*(void *)(v19 + 360) - *(void *)(v19 + 352)) >> 2));
       buf[96] = *(_BYTE *)(v19 + 376);
-      __int128 v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+      __int128 v21 = [NSMutableDictionary dictionary];
       __int128 v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v13[5] + 8LL) + 3LL)));
       [v21 setObject:v22 forKeyedSubscript:@"isAllowedInScreenOff"];
 
@@ -49026,13 +49026,13 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
       __int128 v24 = (void *)objc_claimAutoreleasedReturnValue(v23);
       [v21 setObject:v24 forKeyedSubscript:@"allowDupes"];
 
-      __int128 v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", 0LL));
+      __int128 v25 = (void *)[NSNumber numberWithUnsignedInt:0LL];
       [v21 setObject:v25 forKeyedSubscript:@"window"];
 
-      __int128 v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", 0LL));
+      __int128 v26 = [NSNumber numberWithUnsignedInt:0LL];
       [v21 setObject:v26 forKeyedSubscript:@"interval"];
 
-      unsigned int v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", 0LL));
+      unsigned int v27 = (void *)[NSNumber numberWithBool:0LL];
       [v21 setObject:v27 forKeyedSubscript:@"active"];
 
       int v28 = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", sub_100610DAC(v13[5]));
@@ -49042,7 +49042,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
       __int16 v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v13[5] + 81LL) == 32));
       [v21 setObject:v30 forKeyedSubscript:@"daemon"];
 
-      BOOL v31 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v13[5] + 81LL) == 16));
+      BOOL v31 = [NSNumber numberWithBool:*(unsigned __int8 *)(v13[5] + 81LL) == 16];
       [v21 setObject:v31 forKeyedSubscript:@"ForegroundApp"];
 
       int v32 = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", sub_100611304(v13[5]));
@@ -49066,13 +49066,13 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
       unsigned int v40 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v13[5] + 8LL) + 142LL)));
       [v21 setObject:v40 forKeyedSubscript:@"holdPowerAssert"];
 
-      int v41 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v13[5] + 8LL) + 143LL)));
+      int v41 = [NSNumber numberWithBool:*(unsigned __int8 *)(*(void *)(v13[5] + 8LL) + 143LL)];
       [v21 setObject:v41 forKeyedSubscript:@"isContactTracing"];
 
       int v42 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(v13[5] + 208LL)));
       [v21 setObject:v42 forKeyedSubscript:@"scanAgentType"];
 
-      id v43 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( &OBJC_CLASS___NSNumber,  "numberWithInt:",  *(unsigned int *)(v13[5] + 96LL)));
+      id v43 = [NSNumber numberWithInt:*(unsigned int *)(v13[5] + 96LL)];
       [v21 setObject:v43 forKeyedSubscript:@"agentScanLevel"];
 
       id v44 = [v14[391] stringWithUTF8String:sub_1005E2B18(v18)];
@@ -49086,7 +49086,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
         __int16 v47 = (v356.__r_.__value_.__s.__size_ & 0x80u) == 0
             ? &v356
             : (std::stringbuf::string_type *)v356.__r_.__value_.__r.__words[0];
-        int v48 = (void *)objc_claimAutoreleasedReturnValue([v46 stringWithUTF8String:v47]);
+        int v48 = (void *)[v46 stringWithUTF8String:v47];
         [v21 setObject:v48 forKeyedSubscript:@"usecaseParams"];
       }
 
@@ -49098,7 +49098,7 @@ uint64_t sub_100602018(uint64_t a1, unsigned __int8 *a2)
       else {
         unsigned int v50 = (std::stringbuf::string_type *)v356.__r_.__value_.__r.__words[0];
       }
-      __int16 v51 = (void *)objc_claimAutoreleasedReturnValue([v49 stringWithUTF8String:v50]);
+      __int16 v51 = [v49 stringWithUTF8String:v50];
       [v311 setObject:v21 forKeyedSubscript:v51];
 
       if (!sub_100617C84(v13[5])) {
@@ -50085,18 +50085,18 @@ LABEL_300:
 
   int v232 = *((unsigned __int16 *)a2 + 3);
   unsigned int v233 = *((unsigned __int16 *)a2 + 2);
-  __int16 v234 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  BOOL v235 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", *a2));
+  __int16 v234 = [+[NSMutableDictionary dictionary] autorelease];
+  BOOL v235 = [NSNumber numberWithBool:*a2];
   [v234 setObject:v235 forKeyedSubscript:@"scanParams.passive"];
 
-  __int128 v236 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[1]));
+  __int128 v236 = (void *)[NSNumber numberWithBool:a2[1]];
   [v234 setObject:v236 forKeyedSubscript:@"scanParams.limited"];
 
-  __int128 v237 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[3]));
+  __int128 v237 = (void *)[NSNumber numberWithBool:a2[3]];
   [v234 setObject:v237 forKeyedSubscript:@"scanParams.filterDups"];
 
   LOWORD(v23_Block_object_dispose(va, 8) = *((_WORD *)a2 + 2);
-  __int128 v239 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", (double)v238 * 0.625));
+  __int128 v239 = [NSNumber numberWithDouble:v238 * 0.625];
   [v234 setObject:v239 forKeyedSubscript:@"scanParams.interval"];
 
   LOWORD(v240) = *((_WORD *)a2 + 3);
@@ -50104,60 +50104,60 @@ LABEL_300:
   [v234 setObject:v241 forKeyedSubscript:@"scanParams.window"];
 
   LOWORD(v242) = *((_WORD *)a2 + 4);
-  std::stringbuf::string_type v243 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", (double)v242 * 0.625));
+  std::stringbuf::string_type v243 = [NSNumber numberWithDouble:v242 * 0.625];
   [v234 setObject:v243 forKeyedSubscript:@"scanParams.windowLPCore"];
 
   LOWORD(v244) = *((_WORD *)a2 + 5);
-  id v245 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", (double)v244 * 0.625));
+  id v245 = [NSNumber numberWithDouble:v244 * 0.625];
   [v234 setObject:v245 forKeyedSubscript:@"scanParams.windowScanCoreELNABypass"];
 
   LOWORD(v246) = *((_WORD *)a2 + 6);
   int v247 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", (double)v246 * 0.625));
   [v234 setObject:v247 forKeyedSubscript:@"scanParams.windowScanCoreELNAOn"];
 
-  __int128 v248 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[14]));
+  __int128 v248 = (void *)[NSNumber numberWithBool:a2[14]];
   [v234 setObject:v248 forKeyedSubscript:@"scanParams.concurrencyMode"];
 
-  __int128 v249 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", a2[15]));
+  __int128 v249 = (void *)[NSNumber numberWithUnsignedChar:a2[15]];
   [v234 setObject:v249 forKeyedSubscript:@"scanParams.scanningPhys"];
 
-  uint64_t v250 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[16]));
+  uint64_t v250 = (void *)[NSNumber numberWithBool:a2[16]];
   [v234 setObject:v250 forKeyedSubscript:@"scanParams.retainDuplicates"];
 
-  __int128 v251 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", a2[17]));
+  __int128 v251 = [NSNumber numberWithUnsignedChar:a2[17]];
   [v234 setObject:v251 forKeyedSubscript:@"scanParams.priorityConfig"];
 
   int v252 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[18]));
   [v234 setObject:v252 forKeyedSubscript:@"scanParams.isScanCoreCompensated"];
 
-  __int128 v253 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", *v282));
+  __int128 v253 = (void *)[NSNumber numberWithUnsignedShort:*v282];
   [v234 setObject:v253 forKeyedSubscript:@"scanParams.scanCoreCompensationPercent"];
 
   __int128 v254 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *((unsigned __int16 *)a2 + 11)));
   [v234 setObject:v254 forKeyedSubscript:@"scanParams.scanCoreCoexQueryPeriod"];
 
-  __int128 v255 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[24]));
+  __int128 v255 = (void *)[NSNumber numberWithBool:a2[24]];
   [v234 setObject:v255 forKeyedSubscript:@"scanParams.isPrioritizedOverBT"];
 
-  __int128 v256 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", a2[25]));
+  __int128 v256 = (void *)[NSNumber numberWithBool:a2[25]];
   [v234 setObject:v256 forKeyedSubscript:@"scanParams.isPrioritizedOverWiFi"];
 
   __int128 v257 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v316 + 144)));
   [v234 setObject:v257 forKeyedSubscript:@"fScreenState"];
 
-  __int128 v258 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v290));
+  __int128 v258 = (void *)[NSNumber numberWithInt:v290];
   [v234 setObject:v258 forKeyedSubscript:@"daemonInterval"];
 
   __int128 v259 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v315));
   [v234 setObject:v259 forKeyedSubscript:@"daemonWindow"];
 
-  __int128 v260 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v291));
+  __int128 v260 = (void *)[NSNumber numberWithInt:v291];
   [v234 setObject:v260 forKeyedSubscript:@"minScanLevel"];
 
   uint64_t v261 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  100 * v232 / v233));
   [v234 setObject:v261 forKeyedSubscript:@"scanPercentage"];
 
-  __int128 v262 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v287 & 1));
+  __int128 v262 = (void *)[NSNumber numberWithBool:v287 & 1];
   [v234 setObject:v262 forKeyedSubscript:@"allowInPause"];
 
   __int128 v263 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v288));
@@ -50166,28 +50166,28 @@ LABEL_300:
   __int128 v264 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v292));
   [v234 setObject:v264 forKeyedSubscript:@"onlyDoingENHWADVBuffer"];
 
-  __n128 v265 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v17));
+  __n128 v265 = [NSNumber numberWithDouble:v17];
   [v234 setObject:v265 forKeyedSubscript:@"HWADVBufferIntervalMs"];
 
-  v266 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v16));
+  v266 = [NSNumber numberWithDouble:v16];
   [v234 setObject:v266 forKeyedSubscript:@"HWADVBufferWindowMs"];
 
-  __int128 v267 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v286));
+  __int128 v267 = (void *)[NSNumber numberWithBool:v286];
   [v234 setObject:v267 forKeyedSubscript:@"scanLPCoreEnable"];
 
   __int128 v268 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v285));
   [v234 setObject:v268 forKeyedSubscript:@"isScanCoreEnabled"];
 
-  __int128 v269 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v295));
+  __int128 v269 = (void *)[NSNumber numberWithBool:v295];
   [v234 setObject:v269 forKeyedSubscript:@"supportsDiscoveryScanPrioritization"];
 
-  v270 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v309));
+  v270 = [NSNumber numberWithBool:v309];
   [v234 setObject:v270 forKeyedSubscript:@"isRangeScan"];
 
-  uint64_t v271 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v307 & 1));
+  uint64_t v271 = (void *)[NSNumber numberWithBool:v307 & 1];
   [v234 setObject:v271 forKeyedSubscript:@"isPriorityCritical"];
 
-  __int128 v272 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v304));
+  __int128 v272 = (void *)[NSNumber numberWithUnsignedInt:v304];
   [v234 setObject:v272 forKeyedSubscript:@"combinedScanAgentType"];
 
   int v273 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v294));
@@ -50196,7 +50196,7 @@ LABEL_300:
   uint64_t v274 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v313 & 1));
   [v234 setObject:v274 forKeyedSubscript:@"isPrioritizedOverBT"];
 
-  __int128 v275 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v293 & 1));
+  __int128 v275 = (void *)[NSNumber numberWithBool:v293 & 1];
   [v234 setObject:v275 forKeyedSubscript:@"isPrioritizedOverWiFi"];
 
   __int128 v276 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(v316 + 1964)));
@@ -50240,7 +50240,7 @@ uint64_t sub_1006051E8(uint64_t a1, uint64_t a2)
   *(_BYTE *)(a2 + 15) = 1;
   __int128 v249 = (unsigned __int8 *)a2;
   *(_WORD *)(a2 + 24) = 0;
-  __int128 v248 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  __int128 v248 = +[NSMutableArray array];
   unint64_t v246 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
   uint64_t v7 = *(void **)(a1 + 2040);
   uint64_t v8 = &AMFDRSealingMapCopyLocalDictForClass_ptr;
@@ -50277,7 +50277,7 @@ uint64_t sub_1006051E8(uint64_t a1, uint64_t a2)
       sub_100050EE8( &v264[72],  *(__int128 **)(v12 + 352),  *(__int128 **)(v12 + 360),  0xCCCCCCCCCCCCCCCDLL * ((uint64_t)(*(void *)(v12 + 360) - *(void *)(v12 + 352)) >> 2));
       uint64_t v250 = v10;
       v264[96] = *(_BYTE *)(v12 + 376);
-      int v252 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+      int v252 = [NSMutableDictionary dictionary];
       uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v7[5] + 8LL) + 3LL)));
       [v252 setObject:v15 forKeyedSubscript:@"isAllowedInPaused"];
 
@@ -50285,13 +50285,13 @@ uint64_t sub_1006051E8(uint64_t a1, uint64_t a2)
       double v17 = (void *)objc_claimAutoreleasedReturnValue(v16);
       [v252 setObject:v17 forKeyedSubscript:@"allowDupes"];
 
-      int v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", 0LL));
+      int v18 = [NSNumber numberWithUnsignedInt:0LL];
       [v252 setObject:v18 forKeyedSubscript:@"window"];
 
       uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", 0LL));
       [v252 setObject:v19 forKeyedSubscript:@"interval"];
 
-      __int128 v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", 0LL));
+      __int128 v20 = (void *)[NSNumber numberWithBool:0LL];
       [v252 setObject:v20 forKeyedSubscript:@"active"];
 
       __int128 v21 = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", sub_100610DAC(v7[5]));
@@ -50318,16 +50318,16 @@ uint64_t sub_1006051E8(uint64_t a1, uint64_t a2)
       __int16 v30 = (void *)objc_claimAutoreleasedReturnValue(v29);
       [v252 setObject:v30 forKeyedSubscript:@"isPriorityCritical"];
 
-      BOOL v31 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v7[5] + 8LL) + 142LL)));
+      BOOL v31 = [NSNumber numberWithBool:*(unsigned __int8 *)(*(void *)(v7[5] + 8LL) + 142LL)];
       [v252 setObject:v31 forKeyedSubscript:@"holdPowerAssert"];
 
-      int v32 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(v7[5] + 8LL) + 143LL)));
+      int v32 = [NSNumber numberWithBool:*(unsigned __int8 *)(*(void *)(v7[5] + 8LL) + 143LL)];
       [v252 setObject:v32 forKeyedSubscript:@"isContactTracing"];
 
       uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(v7[5] + 208LL)));
       [v252 setObject:v33 forKeyedSubscript:@"scanAgentType"];
 
-      int v34 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( &OBJC_CLASS___NSNumber,  "numberWithInt:",  *(unsigned int *)(v7[5] + 96LL)));
+      int v34 = [NSNumber numberWithInt:*(unsigned int *)(v7[5] + 96LL)];
       [v252 setObject:v34 forKeyedSubscript:@"agentScanLevel"];
 
       int v35 = +[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", sub_1005E2B18(v14));
@@ -50340,7 +50340,7 @@ uint64_t sub_1006051E8(uint64_t a1, uint64_t a2)
         int v37 = (__p.__r_.__value_.__s.__size_ & 0x80u) == 0
             ? &__p
             : (std::stringbuf::string_type *)__p.__r_.__value_.__r.__words[0];
-        int v38 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v37));
+        int v38 = [NSString stringWithUTF8String:v37];
         [v252 setObject:v38 forKeyedSubscript:@"usecaseParams"];
       }
 
@@ -50692,7 +50692,7 @@ LABEL_144:
       else {
         uint64_t v106 = (std::stringbuf::string_type *)v104;
       }
-      uint64_t v107 = (void *)objc_claimAutoreleasedReturnValue([v102 stringWithCString:v106 encoding:v105]);
+      uint64_t v107 = (void *)[v102 stringWithCString:v106 encoding:v105];
       char v108 = v46[391];
       uint64_t v109 = v7[5];
       uint64_t v110 = *(unsigned __int8 *)(*(void *)(v109 + 8) + 3LL);
@@ -50824,7 +50824,7 @@ LABEL_139:
   int v240 = 1;
   char v241 = 0;
 LABEL_161:
-  id obja = (id)objc_claimAutoreleasedReturnValue( objc_msgSend( v8[391],  "stringWithFormat:",  @"AD:%d AS:%d MSL:%d (%d/%d) PSV:%d",  v9 & 1,  v242,  v238,  v10,  v239,  *v249));
+  id obja = [v8[391] stringWithFormat:@"AD:%d AS:%d MSL:%d (%d/%d) PSV:%d" v9 & 1,  v242,  v238,  v10,  v239,  *v249];
   unsigned __int8 v117 = (os_log_s *)qword_1008F75B8;
   if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
   {
@@ -50858,7 +50858,7 @@ LABEL_161:
       BOOL v127 = (os_log_s *)qword_1008F75B8;
       if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
       {
-        id v128 = (id)objc_claimAutoreleasedReturnValue([v126 componentsJoinedByString:@"|"]);
+        id v128 = [v126 componentsJoinedByString:@"|"];
         *(_DWORD *)__int128 v264 = 138543362;
         *(void *)&v264[4] = v128;
         _os_log_impl((void *)&_mh_execute_header, v127, OS_LOG_TYPE_DEFAULT, "ScanParams: %{public}@", v264, 0xCu);
@@ -51260,34 +51260,34 @@ LABEL_58:
         *(_OWORD *)std::stringbuf::string_type buf = 0uLL;
         id v35 = objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"data"]);
         id v36 = [v35 bytes];
-        int v37 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"data"]);
+        int v37 = (void *)[v34 objectForKeyedSubscript:@"data"];
         sub_10056AB04(buf, v36, (size_t)[v37 length]);
 
         __int128 v136 = 0uLL;
-        id v38 = objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"mask"]);
+        id v38 = [v34 objectForKeyedSubscript:@"mask"];
         id v39 = [v38 bytes];
-        unsigned int v40 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"mask"]);
+        unsigned int v40 = (void *)[v34 objectForKeyedSubscript:@"mask"];
         sub_10056AB04(&v136, v39, (size_t)[v40 length]);
 
-        uint64_t v41 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"rssi"]);
+        uint64_t v41 = (void *)[v34 objectForKeyedSubscript:@"rssi"];
         unsigned __int8 v42 = [v41 intValue];
 
-        id v43 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"puckType"]);
+        id v43 = [v34 objectForKeyedSubscript:@"puckType"];
         unsigned __int8 v115 = [v43 unsignedIntValue];
 
-        uint64_t v44 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"bypassFilterDuplicate"]);
+        uint64_t v44 = (void *)[v34 objectForKeyedSubscript:@"bypassFilterDuplicate"];
         unsigned __int8 v114 = [v44 unsignedIntValue];
 
-        uint64_t v45 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"targetCore"]);
+        uint64_t v45 = (void *)[v34 objectForKeyedSubscript:@"targetCore"];
         unsigned __int8 v113 = [v45 unsignedIntValue];
 
-        int v46 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"rssithresholdOrder"]);
+        int v46 = (void *)[v34 objectForKeyedSubscript:@"rssithresholdOrder"];
         unsigned __int8 v47 = [v46 unsignedIntValue];
 
         int v48 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"matchAllDevices"]);
         unsigned __int8 v49 = [v48 unsignedIntValue];
 
-        unsigned int v50 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"address"]);
+        unsigned int v50 = (void *)[v34 objectForKeyedSubscript:@"address"];
         id v51 = [v50 unsignedLongLongValue];
 
         BOOL v52 = (void *)objc_claimAutoreleasedReturnValue([v34 objectForKeyedSubscript:@"report127dBm"]);
@@ -51507,9 +51507,9 @@ LABEL_114:
           uint64_t v88 = *(void **)(*((void *)&v119 + 1) + 8LL * (void)i);
           __int128 v136 = 0uLL;
           int v137 = 0;
-          id v89 = objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"uuid"]);
+          id v89 = [v88 objectForKeyedSubscript:@"uuid"];
           int v90 = (int8x16_t *)[v89 bytes];
-          int v91 = (void *)objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"uuid"]);
+          int v91 = (void *)[v88 objectForKeyedSubscript:@"uuid"];
           sub_1006343C4((uint64_t)&v136, v90, [v91 length]);
 
           if (v118 == (void *)sub_10038DAA8(v108 + 4328, (unsigned __int8 *)&v136))
@@ -51517,13 +51517,13 @@ LABEL_114:
             uint64_t v93 = sub_1002E6E9C();
             __int128 v134 = v136;
             int v135 = v137;
-            char v94 = (void *)objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"rssi"]);
+            char v94 = (void *)[v88 objectForKeyedSubscript:@"rssi"];
             unsigned __int8 v95 = [v94 intValue];
-            char v96 = (void *)objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"data"]);
+            char v96 = (void *)[v88 objectForKeyedSubscript:@"data"];
             unsigned __int8 v97 = [v96 length];
-            id v98 = objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"data"]);
+            id v98 = [v88 objectForKeyedSubscript:@"data"];
             id v99 = [v98 bytes];
-            id v100 = objc_claimAutoreleasedReturnValue([v88 objectForKeyedSubscript:@"mask"]);
+            id v100 = [v88 objectForKeyedSubscript:@"mask"];
             LOBYTE(v101) = 1;
             LODWORD(v99) = (*(uint64_t (**)(uint64_t, __int128 *, void, void, uint64_t, void, id, id, int))(*(void *)v93 + 416))( v93,  &v134,  0,  v95,  1,  v97,  v99,  [v100 bytes],  v101);
 
@@ -51597,7 +51597,7 @@ void sub_100608B40(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t 
     uint64_t v6 = *(void *)(a2 + 8);
     if (*(_BYTE *)(v6 + 288))
     {
-      char v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+      char v10 = [NSMutableDictionary dictionary];
       [v10 setObject:@"Discovery" forKeyedSubscript:@"ScanType"];
       int v11 = *(_DWORD *)(*(void *)(a2 + 8) + 168LL);
       uint64_t v12 = +[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", sub_1005E2B18(v11));
@@ -51605,11 +51605,11 @@ void sub_100608B40(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t 
       [v10 setObject:v13 forKeyedSubscript:@"CBUseCase"];
 
       id v49 = *(id *)(*(void *)(a2 + 8) + 152LL);
-      uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v49 allObjects]);
+      uint64_t v14 = (void *)[v49 allObjects];
       uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray arrayWithArray:](&OBJC_CLASS___NSArray, "arrayWithArray:", v14));
 
-      double v16 = (void *)objc_claimAutoreleasedReturnValue([v15 sortedArrayUsingSelector:"compare:"]);
-      double v17 = (void *)objc_claimAutoreleasedReturnValue([v16 componentsJoinedByString:@","]);
+      double v16 = [v15 sortedArrayUsingSelector:@"compare:"];
+      double v17 = [v16 componentsJoinedByString:@","];
       [v10 setObject:v17 forKeyedSubscript:@"BundleID"];
 
       uint64_t v18 = sub_1002E6BF0();
@@ -51624,7 +51624,7 @@ void sub_100608B40(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t 
       __int128 v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v6 + 291)));
       [v10 setObject:v22 forKeyedSubscript:@"IsBTAudioProtected"];
 
-      BOOL v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(v6 + 292)));
+      BOOL v23 = [NSNumber numberWithBool:*(unsigned __int8 *)(v6 + 292)];
       [v10 setObject:v23 forKeyedSubscript:@"IsWiFi2_4GHzProtected"];
 
       if ((v11 - 65548) < 2)
@@ -51653,19 +51653,19 @@ void sub_100608B40(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t 
       uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(v6 + 304)));
       [v10 setObject:v26 forKeyedSubscript:@"ScanDurationReqMsec"];
 
-      int v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(v6 + 296)));
+      int v27 = [NSNumber numberWithUnsignedLongLong:*(void *)(v6 + 296)];
       [v10 setObject:v27 forKeyedSubscript:@"ActualScanTimeReqMsec"];
 
-      int v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(v6 + 296)));
+      int v28 = [NSNumber numberWithUnsignedLongLong:*(void *)(v6 + 296)];
       [v10 setObject:v28 forKeyedSubscript:@"ActualScanTimeMCReqMsec"];
 
-      int v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a5));
+      int v29 = (void *)[NSNumber numberWithUnsignedLongLong:a5];
       [v10 setObject:v29 forKeyedSubscript:@"ScanDurationMsec"];
 
-      uint64_t v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a3));
+      uint64_t v30 = (void *)[NSNumber numberWithUnsignedLongLong:a3];
       [v10 setObject:v30 forKeyedSubscript:@"ActualScanTimeMsec"];
 
-      id v31 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a4));
+      id v31 = [NSNumber numberWithUnsignedLongLong:a4];
       [v10 setObject:v31 forKeyedSubscript:@"ActualScanTimeMCMsec"];
 
       unint64_t v32 = *(void *)(v6 + 304);
@@ -51699,19 +51699,19 @@ void sub_100608B40(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t 
       else {
         uint64_t v40 = 100LL;
       }
-      uint64_t v41 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v34));
+      uint64_t v41 = (void *)[NSNumber numberWithUnsignedInt:v34];
       [v10 setObject:v41 forKeyedSubscript:@"ScanDurationMsecPercentage"];
 
-      unsigned __int8 v42 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v38));
+      unsigned __int8 v42 = (void *)[NSNumber numberWithUnsignedInt:v38];
       [v10 setObject:v42 forKeyedSubscript:@"ActualScanTimeMsecPercentage"];
 
-      id v43 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:", v40));
+      id v43 = [NSNumber numberWithUnsignedInt:v40];
       [v10 setObject:v43 forKeyedSubscript:@"ActualScanTimeMCMsecPercentage"];
 
       uint64_t v44 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v33 > 0x63));
       [v10 setObject:v44 forKeyedSubscript:@"HasScanDurationReqMet"];
 
-      uint64_t v45 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v37));
+      uint64_t v45 = (void *)[NSNumber numberWithBool:v37];
       [v10 setObject:v45 forKeyedSubscript:@"HasActualScanTimeReqMet"];
 
       int v46 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v39 > 0x63));
@@ -51849,7 +51849,7 @@ uint64_t sub_1006093AC(uint64_t a1, unsigned int a2)
           objc_enumerationMutation(v5);
         }
         id v9 = *(id *)(*((void *)&v12 + 1) + 8 * i);
-        BOOL v10 = objc_msgSend(v9, "longLongValue", (void)v12) == (id)v7;
+        BOOL v10 = [v9 longLongValue] == v7;
 
         if (v10)
         {
@@ -51895,7 +51895,7 @@ uint64_t sub_100609514(uint64_t a1, unsigned int a2)
           objc_enumerationMutation(v5);
         }
         id v9 = *(id *)(*((void *)&v12 + 1) + 8 * i);
-        BOOL v10 = v7 == objc_msgSend(v9, "longLongValue", (void)v12) >> 16;
+        BOOL v10 = v7 == [v9 longLongValue] >> 16;
 
         if (v10)
         {
@@ -53700,7 +53700,7 @@ void sub_10060CB10(uint64_t a1, void *a2, uint64_t a3)
   {
     if (a3)
     {
-      uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, 16LL));
+      uint64_t v6 = (void *)[NSData dataWithBytes:a3 length:16LL];
       [*(id *)(a1 + 2088) setObject:v6 forKeyedSubscript:v5];
     }
 
@@ -53798,7 +53798,7 @@ LABEL_23:
       if ((*(char *)(v8 + 239) & 0x80000000) == 0)
       {
 LABEL_29:
-        int v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v14));
+        int v15 = [NSString stringWithUTF8String:v14];
         if ([v15 length]) {
           [*(id *)(a1 + 2088) removeObjectForKey:v15];
         }
@@ -53823,7 +53823,7 @@ void sub_10060CE50( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 BOOL sub_10060CE98(uint64_t a1, void *a2, uint64_t a3)
 {
   id v5 = a2;
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 2088) objectForKey:v5]);
+  uint64_t v6 = (void *)[*(id *)(a1 + 2088) objectForKey:v5];
   int v7 = (os_log_s *)qword_1008F75B8;
   if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_INFO))
   {
@@ -53856,7 +53856,7 @@ BOOL sub_10060CFE0(uint64_t a1, uint64_t a2, uint64_t a3)
   id v5 = *(void **)(a1 + 2088);
   id v6 = sub_1005BFB9C(a2);
   int v7 = (void *)objc_claimAutoreleasedReturnValue(v6);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v5 objectForKey:v7]);
+  id v8 = [v5 objectForKey:v7];
 
   unint64_t v9 = (os_log_s *)qword_1008F75B8;
   if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_INFO))
@@ -54164,10 +54164,10 @@ void sub_10060D784(uint64_t a1)
     int v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  *(unsigned __int8 *)(a1 + 176 * v3 + 2460)));
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v11,  @"ScanConfigPercentageNeedFWScanRestart");
 
-    unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  *(unsigned __int8 *)(a1 + 176 * v3 + 2468)));
+    unsigned int v12 = [NSNumber numberWithUnsignedChar:*(unsigned __int8 *)(a1 + 176 * v3 + 2468)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v12,  @"ScanConfigPercentageNeedNoFWScanRestart");
 
-    unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(a1 + 176 * v3 + 2484)));
+    unsigned int v13 = [NSNumber numberWithUnsignedInt:*(unsigned int *)(a1 + 176 * v3 + 2484)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v13,  @"ScanConfigCountHasMatchingRuleRequested");
 
     int v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(a1 + 176 * v3 + 2480)));
@@ -54185,31 +54185,31 @@ void sub_10060D784(uint64_t a1)
     int v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2492)));
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v18,  @"ScanConfigTimeMin");
 
-    BOOL v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2494)));
+    BOOL v19 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2494)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v19,  @"ScanConfigTimeMax");
 
-    BOOL v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2496)));
+    BOOL v20 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2496)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v20,  @"ScanConfigTimeAvg");
 
-    BOOL v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2498)));
+    BOOL v21 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2498)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v21,  @"ScanConfigTimePercentile5");
 
-    BOOL v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2500)));
+    BOOL v22 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2500)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v22,  @"ScanConfigTimePercentile25");
 
-    BOOL v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2502)));
+    BOOL v23 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2502)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v23,  @"ScanConfigTimePercentile50");
 
     uint64_t v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2504)));
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v24,  @"ScanConfigTimePercentile75");
 
-    unsigned int v25 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2506)));
+    unsigned int v25 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2506)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v25,  @"ScanConfigTimePercentile95");
 
-    unsigned int v26 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2516)));
+    unsigned int v26 = [NSNumber numberWithUnsignedShort:*(unsigned __int16 *)(a1 + 176 * v3 + 2516)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v26,  @"ScanConfigTimeAvgHeySiriUseCase");
 
-    unsigned int v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  *(unsigned int *)(a1 + 176 * v3 + 2508)));
+    unsigned int v27 = [NSNumber numberWithUnsignedInt:*(unsigned int *)(a1 + 176 * v3 + 2508)];
     -[NSMutableDictionary setObject:forKeyedSubscript:]( v7,  "setObject:forKeyedSubscript:",  v27,  @"ScanConfigCountHeySiriUseCase");
 
     uint64_t v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedShort:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedShort:",  *(unsigned __int16 *)(a1 + 176 * v3 + 2528)));
@@ -54845,12 +54845,12 @@ uint64_t sub_10060EA30(uint64_t a1, __int128 **a2, __int128 **a3, char a4, char 
   *(_OWORD *)(a1 + 360) = 0u;
   *(_BYTE *)(a1 + 376) = 1;
   *(_DWORD *)(a1 + 384) = 0;
-  uint64_t v7 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v7 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
   __int128 v8 = *(void **)(a1 + 88);
   *(void *)(a1 + 8_Block_object_dispose(va, 8) = v7;
 
   *(_BYTE *)(a1 + 4) = 0;
-  uint64_t v9 = objc_claimAutoreleasedReturnValue(+[NSSet set](&OBJC_CLASS___NSSet, "set"));
+  uint64_t v9 = [NSSet set];
   unint64_t v10 = *(void **)(a1 + 152);
   *(void *)(a1 + 152) = v9;
 
@@ -56521,7 +56521,7 @@ uint64_t sub_100610E3C(uint64_t a1)
 
 id sub_100610E48(uint64_t a1, unsigned __int8 *a2)
 {
-  id v27 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v27 = [NSMutableArray array];
   uint64_t v4 = *(void *)(a1 + 8);
   uint64_t v6 = *(void *)(v4 + 96);
   for (uint64_t i = *(void *)(v4 + 104); v6 != i; v6 += 112LL)
@@ -56570,7 +56570,7 @@ id sub_100610E48(uint64_t a1, unsigned __int8 *a2)
               if (v14 >= 0) {
                 LOBYTE(v14) = -87;
               }
-              int v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", buf, *a2));
+              int v16 = [NSData dataWithBytes:buf length:*a2];
               [v13 setObject:v16 forKeyedSubscript:@"uuid"];
 
               uint64_t v17 = sub_10056AAF0(v6 + 40);
@@ -56583,7 +56583,7 @@ id sub_100610E48(uint64_t a1, unsigned __int8 *a2)
               unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue(v21);
               [v13 setObject:v22 forKeyedSubscript:@"mask"];
 
-              BOOL v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithChar:]( &OBJC_CLASS___NSNumber,  "numberWithChar:",  v14));
+              BOOL v23 = [NSNumber numberWithChar:v14];
               [v13 setObject:v23 forKeyedSubscript:@"rssi"];
 
               [v27 addObject:v13];
@@ -59253,7 +59253,7 @@ void sub_1006163AC( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 
 id sub_1006163F8(uint64_t a1)
 {
-  id v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  id v2 = [NSMutableArray array];
   if ([*(id *)(*(void *)(a1 + 8) + 88) count])
   {
     __int128 v18 = 0u;
@@ -59324,7 +59324,7 @@ void sub_1006165E8(_Unwind_Exception *a1)
 
 id sub_100616628(uint64_t a1, int a2, _DWORD *a3)
 {
-  uint64_t v4 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v4 = [+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array") autorelease];
   uint64_t v5 = *(void *)(a1 + 8);
   uint64_t v7 = *(void *)(v5 + 64);
   uint64_t v6 = *(void *)(v5 + 72);
@@ -59356,7 +59356,7 @@ id sub_100616628(uint64_t a1, int a2, _DWORD *a3)
       else {
         unsigned __int8 v17 = 3;
       }
-      __int128 v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+      __int128 v18 = +[NSMutableDictionary dictionary];
       uint64_t v19 = sub_10056AAF0(v7 + 16);
       int v20 = +[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", v19, sub_10056AAD8(v7 + 16));
       char v21 = (void *)objc_claimAutoreleasedReturnValue(v20);
@@ -59367,25 +59367,25 @@ id sub_100616628(uint64_t a1, int a2, _DWORD *a3)
       __int128 v24 = (void *)objc_claimAutoreleasedReturnValue(v23);
       [v18 setObject:v24 forKeyedSubscript:@"mask"];
 
-      __int128 v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithChar:](&OBJC_CLASS___NSNumber, "numberWithChar:", v8));
+      __int128 v25 = (void *)[NSNumber numberWithChar:v8];
       [v18 setObject:v25 forKeyedSubscript:@"rssi"];
 
-      __int16 v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v44));
+      __int16 v26 = [NSNumber numberWithUnsignedChar:v44];
       [v18 setObject:v26 forKeyedSubscript:@"puckType"];
 
-      uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v17));
+      uint64_t v27 = (void *)[NSNumber numberWithUnsignedChar:v17];
       [v18 setObject:v27 forKeyedSubscript:@"matchAllDevices"];
 
       __int16 v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  0LL));
       [v18 setObject:v28 forKeyedSubscript:@"address"];
 
-      unsigned int v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v10));
+      unsigned int v29 = [+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v10) unsignedCharValue];
       [v18 setObject:v29 forKeyedSubscript:@"bypassFilterDuplicate"];
 
-      char v30 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v11));
+      char v30 = [NSNumber numberWithUnsignedChar:v11];
       [v18 setObject:v30 forKeyedSubscript:@"targetCore"];
 
-      BOOL v31 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedChar:](&OBJC_CLASS___NSNumber, "numberWithUnsignedChar:", v12));
+      BOOL v31 = [NSNumber numberWithUnsignedChar:v12];
       [v18 setObject:v31 forKeyedSubscript:@"rssithresholdOrder"];
 
       __int16 v32 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v42 != 0));
@@ -59496,8 +59496,8 @@ id sub_100616AD0(uint64_t a1)
     while (v7 != (const unsigned __int8 **)(a1 + 112));
   }
 
-  id v65 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
-  int v66 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableString string](&OBJC_CLASS___NSMutableString, "string"));
+  id v65 = [NSMutableDictionary dictionary];
+  int v66 = [NSMutableString string];
   uint64_t v9 = *(void *)(a1 + 8);
   char v74 = 0LL;
   uint64_t v75 = 0LL;
@@ -59524,8 +59524,8 @@ id sub_100616AD0(uint64_t a1)
       else {
         int v14 = (void **)__p[0];
       }
-      id v15 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v14));
-      int v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%@ ", v15));
+      id v15 = [NSString stringWithUTF8String:v14];
+      int v16 = [NSString stringWithFormat:@"%@ ", v15];
       [v66 appendString:v16];
 
       if (v72 < 0) {
@@ -59569,28 +59569,28 @@ id sub_100616AD0(uint64_t a1)
   }
 
   [v65 setObject:v66 forKeyedSubscript:@"ServiceUUID"];
-  __int128 v25 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", v12));
+  __int128 v25 = (void *)[NSNumber numberWithUnsignedShort:v12];
   [v65 setObject:v25 forKeyedSubscript:@"NumberOf16bitUUID"];
 
-  __int16 v26 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", v13));
+  __int16 v26 = [NSNumber numberWithUnsignedShort:v13];
   [v65 setObject:v26 forKeyedSubscript:@"NumberOf128bitUUID"];
 
   uint64_t v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLong:",  0xAAAAAAAAAAAAAAABLL * ((uint64_t)(*(void *)(*(void *)(a1 + 8) + 72LL) - *(void *)(*(void *)(a1 + 8) + 64LL)) >> 5)));
   [v65 setObject:v27 forKeyedSubscript:@"NumberOfPuckType"];
 
-  __int16 v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedShort:](&OBJC_CLASS___NSNumber, "numberWithUnsignedShort:", v22));
+  __int16 v28 = [NSNumber numberWithUnsignedShort:v22];
   [v65 setObject:v28 forKeyedSubscript:@"NumberOfPeers"];
 
-  unsigned int v29 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  *(unsigned __int8 *)(*(void *)(a1 + 8) + 122LL)));
+  unsigned int v29 = [NSNumber numberWithUnsignedChar:*(unsigned __int8 *)(*(void *)(a1 + 8) + 122LL)];
   [v65 setObject:v29 forKeyedSubscript:@"ObjectDiscoveryMask"];
 
   char v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( NSNumber,  "numberWithBool:",  [*(id *)(*(void *)(a1 + 8) + 88) count] != 0));
   [v65 setObject:v30 forKeyedSubscript:@"HasZoneFilter"];
 
-  BOOL v31 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithBool:]( &OBJC_CLASS___NSNumber,  "numberWithBool:",  *(unsigned __int8 *)(*(void *)(a1 + 8) + 143LL)));
+  BOOL v31 = [NSNumber numberWithBool:*(unsigned __int8 *)(*(void *)(a1 + 8) + 143LL)];
   [v65 setObject:v31 forKeyedSubscript:@"isContactTracing"];
 
-  __int16 v32 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(a1 + 24)));
+  __int16 v32 = [NSNumber numberWithUnsignedLongLong:*(void *)(a1 + 24)];
   [v65 setObject:v32 forKeyedSubscript:@"NumberOfEventsInBackground"];
 
   uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(a1 + 32)));
@@ -59611,17 +59611,17 @@ id sub_100616AD0(uint64_t a1)
   unint64_t v38 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(a1 + 48)));
   [v65 setObject:v38 forKeyedSubscript:@"TimeSpentInForeground"];
 
-  id v39 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  *(void *)(a1 + 56)));
+  id v39 = [NSNumber numberWithUnsignedLongLong:*(unsigned long long *)(a1 + 56)];
   [v65 setObject:v39 forKeyedSubscript:@"DurationInMS"];
 
   uint64_t v40 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", *(unsigned __int8 *)(a1 + 64)));
   [v65 setObject:v40 forKeyedSubscript:@"AppInForegroundAtStart"];
 
-  int v41 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", *(unsigned __int8 *)(a1 + 65)));
+  int v41 = [NSNumber numberWithBool:*(unsigned __int8 *)(a1 + 65)];
   [v65 setObject:v41 forKeyedSubscript:@"AppInForegroundAtStop"];
 
   int v42 = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", sub_100610CCC(a1));
-  id v43 = (void *)objc_claimAutoreleasedReturnValue(v42);
+  id v43 = v42;
   [v65 setObject:v43 forKeyedSubscript:@"AllowedInBackground"];
 
   unsigned int v44 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", *(unsigned __int8 *)(a1 + 82)));
@@ -59631,7 +59631,7 @@ id sub_100616AD0(uint64_t a1)
   uint64_t v46 = *(void *)(a1 + 8);
   if (*(_DWORD *)(v46 + 168))
   {
-    BOOL v47 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:"));
+    BOOL v47 = [NSNumber numberWithUnsignedInt:];
     -[NSMutableSet addObject:](v45, "addObject:", v47);
 
     uint64_t v46 = *(void *)(a1 + 8);
@@ -59660,7 +59660,7 @@ id sub_100616AD0(uint64_t a1)
           }
           if ([*(id *)(*((void *)&v67 + 1) + 8 * (void)i) longLongValue])
           {
-            id v55 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedInt:](&OBJC_CLASS___NSNumber, "numberWithUnsignedInt:"));
+            id v55 = [NSNumber numberWithUnsignedInt:];
             -[NSMutableSet addObject:](v45, "addObject:", v55);
           }
         }
@@ -59677,24 +59677,24 @@ id sub_100616AD0(uint64_t a1)
   if (-[NSMutableSet count](v45, "count"))
   {
     unsigned int v56 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableSet allObjects](v45, "allObjects"));
-    BOOL v57 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
-    char v58 = (void *)objc_claimAutoreleasedReturnValue([v56 sortedArrayUsingSelector:"compare:"]);
+    BOOL v57 = [NSMutableArray array];
+    char v58 = (void *)[v56 sortedArrayUsingSelector:"compare:"];
 
     for (unint64_t j = 0; j < (unint64_t)[v58 count]; ++j)
     {
-      size_t v60 = (void *)objc_claimAutoreleasedReturnValue([v58 objectAtIndex:j]);
+      size_t v60 = (void *)[v58 objectAtIndex:j];
       unint64_t v61 = +[NSString stringWithUTF8String:]( NSString,  "stringWithUTF8String:",  sub_100617558((int)[v60 longLongValue]));
       uint64_t v62 = (void *)objc_claimAutoreleasedReturnValue(v61);
       [v57 addObject:v62];
     }
 
-    BOOL v63 = (void *)objc_claimAutoreleasedReturnValue([v57 componentsJoinedByString:@","]);
+    BOOL v63 = [v57 componentsJoinedByString:@","];
     [v65 setObject:v63 forKeyedSubscript:@"CBUseCase"];
   }
 
   else
   {
-    char v58 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", "Unspecified"));
+    char v58 = [NSString stringWithUTF8String:];
     [v65 setObject:v58 forKeyedSubscript:@"CBUseCase"];
   }
 
@@ -61742,7 +61742,7 @@ uint64_t sub_10061AA00(uint64_t a1)
     sub_10029871C(0xBu, v2, 4u);
   }
 
-  uint64_t v4 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v4 = [NSMutableArray array];
   BOOL v5 = *(void **)(a1 + 24);
   *(void *)(a1 + 24) = v4;
 
@@ -61795,7 +61795,7 @@ uint64_t sub_10061AA00(uint64_t a1)
         int v32 = *(_DWORD *)&buf[v15 + 17];
         char v33 = *(_DWORD *)(a1 + 32);
         int v17 = *(void **)(a1 + 24);
-        uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", &__size[3], 21LL));
+        uint64_t v18 = (void *)[NSData dataWithBytes:&__size[3] length:21LL];
         [v17 addObject:v18];
 
         v15 += 20LL;
@@ -61828,7 +61828,7 @@ uint64_t sub_10061AA00(uint64_t a1)
           uint64_t v9 = v7[v8];
           uint64_t v10 = v8 + 1;
           int v11 = *(void **)(a1 + 24);
-          uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSData dataWithBytes:length:]( &OBJC_CLASS___NSData,  "dataWithBytes:length:",  &v7[v8 + 1],  v9));
+          uint64_t v12 = (void *)[NSData dataWithBytes:&v7[v8 + 1] length:v9];
           [v11 addObject:v12];
 
           uint64_t v8 = v10 + v9;
@@ -61844,13 +61844,13 @@ uint64_t sub_10061AA00(uint64_t a1)
   sub_10062F5D8(a1);
   if ([*(id *)(a1 + 24) count])
   {
-    id v19 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 24) objectAtIndex:0]);
+    id v19 = [*(id *)(a1 + 24) objectAtIndex:0];
     int v20 = *((unsigned __int8 *)[v19 bytes] + 16);
-    id v21 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 24) objectAtIndex:0]);
+    id v21 = [*(id *)(a1 + 24) objectAtIndex:0];
     int v22 = *((unsigned __int8 *)[v21 bytes] + 17);
-    id v23 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 24) objectAtIndex:0]);
+    id v23 = [*(id *)(a1 + 24) objectAtIndex:0];
     int v24 = *((unsigned __int8 *)[v23 bytes] + 18);
-    id v25 = objc_claimAutoreleasedReturnValue([*(id *)(a1 + 24) objectAtIndex:0]);
+    id v25 = [*(id *)(a1 + 24) objectAtIndex:0];
     *(_DWORD *)(a1 + 36) = v20 | (v22 << 8) | (v24 << 16) | (*((unsigned __int8 *)[v25 bytes] + 19) << 24);
   }
 
@@ -61889,7 +61889,7 @@ void sub_10061AEE0(uint64_t a1)
     return;
   }
 
-  char v33 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  char v33 = +[NSMutableDictionary dictionary];
   v41[0] = 0LL;
   v41[1] = 0LL;
   sub_100242F28((uint64_t)v41, a1 + 48);
@@ -61918,7 +61918,7 @@ void sub_10061AEE0(uint64_t a1)
         }
         int v7 = *(void **)(*((void *)&v37 + 1) + 8LL * (void)v6);
         uint64_t v8 = objc_autoreleasePoolPush();
-        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v3 objectForKeyedSubscript:v7]);
+        uint64_t v9 = (void *)[v3 objectForKeyedSubscript:v7];
         id v10 = [v9 unsignedLongLongValue];
 
         int v11 = (os_log_s *)qword_1008F75A8;
@@ -62121,7 +62121,7 @@ BOOL sub_10061B53C(uint64_t a1, unint64_t a2, void *a3)
       {
         id v12 = sub_100241F94(uu);
         uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
-        unsigned __int8 v14 = objc_msgSend(v5, "isEqual:", v13, v36, v37);
+        unsigned __int8 v14 = [v5 isEqual:v13, v36, v37];
 
         if ((v14 & 1) == 0)
         {
@@ -62288,7 +62288,7 @@ void sub_10061BADC(uint64_t a1)
             }
             id v12 = *(void **)(*((void *)&v38 + 1) + 8LL * (void)v11);
             uint64_t v13 = objc_autoreleasePoolPush();
-            unsigned __int8 v14 = (void *)objc_claimAutoreleasedReturnValue([v8 objectForKeyedSubscript:v12]);
+            unsigned __int8 v14 = (void *)[v8 objectForKeyedSubscript:v12];
             id v15 = [v14 unsignedLongLongValue];
 
             *(void *)uuid_t uu = 0LL;
@@ -62350,7 +62350,7 @@ void sub_10061BADC(uint64_t a1)
                 if (os_log_type_enabled((os_log_t)qword_1008F75A8, OS_LOG_TYPE_DEFAULT))
                 {
                   id v30 = sub_1005BFB9C((uint64_t)v15);
-                  id v31 = (id)objc_claimAutoreleasedReturnValue(v30);
+                  id v31 = v30;
                   memset(buf, 0, 37);
                   uuid_unparse_upper(uu, (char *)buf);
                   sub_10002418C(__p, (char *)buf);
@@ -62771,7 +62771,7 @@ uint64_t sub_10061CA00@<X0>(uint64_t a1@<X0>, unint64_t a2@<X1>, void *a3@<X8>)
   if (os_log_type_enabled((os_log_t)qword_1008F75A8, OS_LOG_TYPE_DEFAULT))
   {
     id v8 = sub_1005BFB9C(a2);
-    id v9 = (id)objc_claimAutoreleasedReturnValue(v8);
+    id v9 = v8;
     LODWORD(buf) = 138543362;
     *(void *)((char *)&buf + 4) = v9;
     _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Loading keys from keychain for device address %{public}@",  (uint8_t *)&buf,  0xCu);
@@ -63785,7 +63785,7 @@ void sub_10061DD60(uint64_t a1)
 
   else
   {
-    BOOL v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableSet set](&OBJC_CLASS___NSMutableSet, "set"));
+    BOOL v3 = [NSMutableSet set];
     if (*(void *)(a1 + 456))
     {
       BOOL v4 = *(const unsigned __int8 **)(a1 + 440);
@@ -63982,7 +63982,7 @@ BOOL sub_10061E118(uint64_t a1, int *a2, _OWORD *a3)
   else
   {
     BOOL v11 = sub_100241F94(uu);
-    id v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
+    id v12 = v11;
     BOOL v13 = sub_10061C0F8(a1, v12);
 
     int v10 = !v13;
@@ -64131,7 +64131,7 @@ uint64_t sub_10061E4A4(uint64_t a1)
 
   *(_BYTE *)(a1 + 40) = 1;
 LABEL_27:
-  uint64_t v16 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  uint64_t v16 = [NSMutableArray array];
   uint64_t v17 = *(void **)(a1 + 3752);
   *(void *)(a1 + 3752) = v16;
 
@@ -65422,7 +65422,7 @@ LABEL_22:
           uint64_t v24 = sub_1002E6E9C();
           int v25 = (*(uint64_t (**)(uint64_t, unint64_t, uint64_t, uint64_t))(*(void *)v24 + 360LL))( v24,  v23,  a3,  1LL);
           id v26 = sub_10062CCB0(a1, v23);
-          id v29 = (id)objc_claimAutoreleasedReturnValue(v26);
+          id v29 = [v26 autorelease];
           sub_10061E0B4((uint64_t)v29, v29, v25);
         }
       }
@@ -65458,7 +65458,7 @@ LABEL_22:
 
 void sub_100621680(uint64_t a1)
 {
-  id v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  id v29 = +[NSMutableDictionary dictionary];
   v34[0] = 0LL;
   v34[1] = 0LL;
   sub_100242F28((uint64_t)v34, a1 + 48);
@@ -65503,7 +65503,7 @@ void sub_100621680(uint64_t a1)
         }
         uint64_t v11 = *(void **)(*((void *)&v30 + 1) + 8LL * (void)v10);
         uint64_t v12 = objc_autoreleasePoolPush();
-        uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v11]);
+        uint64_t v13 = (void *)[v7 objectForKeyedSubscript:v11];
         id v14 = [v13 unsignedLongLongValue];
 
         if (sub_10061B53C(a1, (unint64_t)v14, v11))
@@ -65879,7 +65879,7 @@ uint64_t sub_100621BD0(void *a1)
     while (v58 != a1 + 68);
   }
 
-  uint64_t v59 = objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array", v62));
+  uint64_t v59 = [NSMutableArray array];
   char v60 = (void *)a1[466];
   a1[466] = v59;
 
@@ -67074,7 +67074,7 @@ void sub_100624468(uint64_t a1, unint64_t a2, unint64_t a3, int a4, const std::s
   if (os_log_type_enabled((os_log_t)qword_1008F75A8, OS_LOG_TYPE_INFO))
   {
     id v13 = sub_1005BFB9C(a2);
-    id v14 = (id)objc_claimAutoreleasedReturnValue(v13);
+    id v14 = v13;
     *(_DWORD *)src = 138543618;
     *(void *)&src[4] = v14;
     *(_WORD *)&src[12] = 1024;
@@ -67351,7 +67351,7 @@ LABEL_135:
         if (os_log_type_enabled((os_log_t)qword_1008F75A8, OS_LOG_TYPE_FAULT))
         {
           id v50 = sub_1005BFB9C(v108);
-          id v51 = (id)objc_claimAutoreleasedReturnValue(v50);
+          id v51 = [v50 autorelease];
           id v52 = sub_1005BFB9C(v48);
           __int16 v53 = (void *)objc_claimAutoreleasedReturnValue(v52);
           sub_10069F2F4(v51, v53, (uint64_t)&v141, v49);
@@ -68394,7 +68394,7 @@ void sub_10062641C( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 
 id sub_100626468(uint64_t a1)
 {
-  char v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  char v2 = (void *)[NSMutableArray array];
   v13[0] = 0LL;
   v13[1] = 0LL;
   sub_100242F28((uint64_t)v13, a1 + 48);
@@ -68455,7 +68455,7 @@ void sub_100626568(_Unwind_Exception *a1)
 
 id sub_1006265A0(uint64_t a1)
 {
-  char v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
+  char v2 = [NSMutableArray array];
   v14[0] = 0LL;
   v14[1] = 0LL;
   sub_100242F28((uint64_t)v14, a1 + 48);
@@ -68480,7 +68480,7 @@ id sub_1006265A0(uint64_t a1)
           goto LABEL_8;
         }
         int v9 = sub_100241F94(v3 + 32);
-        BOOL v5 = (void *)objc_claimAutoreleasedReturnValue(v9);
+        BOOL v5 = [v9 autorelease];
         [v2 addObject:v5];
       }
 

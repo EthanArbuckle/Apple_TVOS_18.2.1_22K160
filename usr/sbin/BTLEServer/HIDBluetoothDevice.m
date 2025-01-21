@@ -29,20 +29,20 @@
 {
   id v6 = a3;
   id v7 = a4;
-  v8 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"VendorIDSource"]);
+  v8 = [v6 objectForKeyedSubscript:@"VendorIDSource"];
   if ([v8 unsignedCharValue] == 1)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"VendorID"]);
+    v9 = [v6 objectForKeyedSubscript:@"VendorID"];
     unsigned int v10 = [v9 unsignedShortValue];
 
     if (v10 == 76)
     {
-      v11 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"ProductID"]);
+      v11 = [v6 objectForKeyedSubscript:@"ProductID"];
       unsigned int v12 = [v11 unsignedShortValue];
 
       if (v12 - 788 < 2 || v12 == 621 || v12 == 614)
       {
-        v13 = (void *)objc_claimAutoreleasedReturnValue([v6 objectForKeyedSubscript:@"Authenticated"]);
+        v13 = [v6 objectForKeyedSubscript:@"Authenticated"];
         unsigned int v14 = [v13 BOOLValue];
 
         if (v14)
@@ -74,13 +74,13 @@ LABEL_13:
 
 - (void)start
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue(+[PolicyManager instance](&OBJC_CLASS___PolicyManager, "instance"));
+  id v2 = [PolicyManager instance];
   objc_msgSend(v2, "setActiveHIDDeviceCount:", (char *)objc_msgSend(v2, "activeHIDDeviceCount") + 1);
 }
 
 - (void)stop
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue(+[PolicyManager instance](&OBJC_CLASS___PolicyManager, "instance"));
+  id v2 = [PolicyManager instance];
   objc_msgSend(v2, "setActiveHIDDeviceCount:", (char *)objc_msgSend(v2, "activeHIDDeviceCount") - 1);
 }
 
@@ -107,7 +107,7 @@ LABEL_13:
 
 - (HIDBluetoothDevice)init
 {
-  double v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "-[HIDBluetoothDevice init]"));
+  double v3 = [NSString stringWithUTF8String:];
   +[NSException raise:format:]( &OBJC_CLASS___NSException,  "raise:format:",  NSInvalidArgumentException,  @"Calling %@ is not allowed",  v3);
 
   return 0LL;
@@ -165,7 +165,7 @@ LABEL_13:
 {
   uint64_t v7 = *(void *)&a5;
   uint64_t v8 = a4;
-  unsigned int v10 = (void *)objc_claimAutoreleasedReturnValue(-[HIDBluetoothDevice service](self, "service"));
+  unsigned int v10 = [self service];
   LODWORD(a6) = [v10 readReportData:a3 reportID:v8 reportType:v7 error:a6];
 
   return (int)a6;
@@ -176,7 +176,7 @@ LABEL_13:
   uint64_t v7 = *(void *)&a5;
   uint64_t v8 = a4;
   id v10 = a3;
-  v11 = (void *)objc_claimAutoreleasedReturnValue(-[HIDBluetoothDevice service](self, "service"));
+  v11 = -[HIDBluetoothDevice service];
   LODWORD(a6) = [v11 writeReportData:v10 reportID:v8 reportType:v7 withResponse:1 error:a6];
 
   return (int)a6;
@@ -223,7 +223,7 @@ LABEL_13:
         if (*(void *)v11 != v5) {
           objc_enumerationMutation(v3);
         }
-        unsigned int v8 = objc_msgSend(*(id *)(*((void *)&v10 + 1) + 8 * (void)i), "ID", (void)v10);
+        unsigned int v8 = [*(id *)(*((void *)&v10 + 1) + 8 * (void)i) ID:v10];
         if (v6 == 0x7FFFFFFFFFFFFFFFLL)
         {
           uint64_t v6 = v8;

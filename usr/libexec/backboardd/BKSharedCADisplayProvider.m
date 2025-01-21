@@ -17,21 +17,21 @@
 - (BKSharedCADisplayProvider)init
 {
   v9.receiver = self;
-  v9.super_class = (Class)&OBJC_CLASS___BKSharedCADisplayProvider;
-  v2 = -[BKSharedCADisplayProvider init](&v9, "init");
+  v9.super_class = [BKSharedCADisplayProvider class];
+  BKSharedCADisplayProvider *v2 = [[BKSharedCADisplayProvider alloc] init];
   v3 = v2;
   if (v2)
   {
     v2->_lock._os_unfair_lock_opaque = 0;
-    v4 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v4 = [[NSMutableSet alloc] init];
     lock_monitors = v3->_lock_monitors;
     v3->_lock_monitors = v4;
 
-    v6 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
+    NSMutableSet *v6 = [[NSMutableSet alloc] init];
     lock_observedDisplays = v3->_lock_observedDisplays;
     v3->_lock_observedDisplays = v6;
 
-    -[BKSharedCADisplayProvider _lock_updateObservingState](v3, "_lock_updateObservingState");
+    [v3 _lock_updateObservingState];
   }
 
   return v3;
@@ -44,18 +44,18 @@
   lock_monitors = self->_lock_monitors;
   self->_lock_monitors = 0LL;
 
-  -[BKSharedCADisplayProvider _lock_updateObservingState](self, "_lock_updateObservingState");
+  [self _lock_updateObservingState];
   os_unfair_lock_unlock(p_lock);
 }
 
 - (NSArray)displays
 {
-  return (NSArray *)+[CADisplay displays](&OBJC_CLASS___CADisplay, "displays");
+  return [CADisplay displays];
 }
 
 - (CADisplay)mainDisplay
 {
-  return (CADisplay *)+[CADisplay mainDisplay](&OBJC_CLASS___CADisplay, "mainDisplay");
+  return [CADisplay mainDisplay];
 }
 
 - (void)addMonitor:(id)a3
@@ -63,9 +63,9 @@
   p_lock = &self->_lock;
   id v5 = a3;
   os_unfair_lock_lock(p_lock);
-  -[NSMutableSet addObject:](self->_lock_monitors, "addObject:", v5);
+  [self->_lock_monitors addObject:v5];
 
-  -[BKSharedCADisplayProvider _lock_updateObservingState](self, "_lock_updateObservingState");
+  [_lock_updateObservingState];
   os_unfair_lock_unlock(p_lock);
 }
 
@@ -74,9 +74,9 @@
   p_lock = &self->_lock;
   id v5 = a3;
   os_unfair_lock_lock(p_lock);
-  -[NSMutableSet removeObject:](self->_lock_monitors, "removeObject:", v5);
+  [self->_lock_monitors removeObject:v5];
 
-  -[BKSharedCADisplayProvider _lock_updateObservingState](self, "_lock_updateObservingState");
+  [self _lock_updateObservingState];
   os_unfair_lock_unlock(p_lock);
 }
 
@@ -85,7 +85,7 @@
   id v10 = a3;
   id v11 = a4;
   id v12 = a5;
-  uint64_t v14 = objc_opt_class(&OBJC_CLASS___CADisplay, v13);
+  uint64_t v14 = [CADisplay class];
   id v15 = v11;
   v16 = v15;
   if (v14)
@@ -108,11 +108,11 @@
   if (off_1000DB430 == a6)
   {
     id v20 = sub_10003F20C();
-    v21 = (os_log_s *)objc_claimAutoreleasedReturnValue(v20);
+    os_log_s *v21 = v20;
     if (!os_log_type_enabled(v21, OS_LOG_TYPE_DEFAULT)) {
       goto LABEL_19;
     }
-    v22 = (void *)objc_claimAutoreleasedReturnValue([v18 uniqueId]);
+    v22 = [v18 uniqueId];
     *(_DWORD *)buf = 138543618;
     *(void *)v96 = v18;
     *(_WORD *)&v96[8] = 2114;
@@ -127,11 +127,11 @@ LABEL_18:
   if (off_1000DB438 == a6)
   {
     id v24 = sub_10003F20C();
-    v21 = (os_log_s *)objc_claimAutoreleasedReturnValue(v24);
+    v21 = [os_log logWithName:v24];
     if (!os_log_type_enabled(v21, OS_LOG_TYPE_DEFAULT)) {
       goto LABEL_19;
     }
-    v22 = (void *)objc_claimAutoreleasedReturnValue([v18 uniqueId]);
+    v22 = [v18 uniqueId];
     *(_DWORD *)buf = 138543618;
     *(void *)v96 = v18;
     *(_WORD *)&v96[8] = 2114;
@@ -143,10 +143,10 @@ LABEL_18:
   if (off_1000DB440 == a6)
   {
     id v25 = sub_10003F20C();
-    v21 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+    v21 = [os_log logWithName:@"com.apple.backboard.hid.event.client"];
     if (os_log_type_enabled(v21, OS_LOG_TYPE_DEFAULT))
     {
-      v22 = (void *)objc_claimAutoreleasedReturnValue([v18 uniqueId]);
+      v22 = [v18 uniqueId];
       *(_DWORD *)buf = 138543618;
       *(void *)v96 = v18;
       *(_WORD *)&v96[8] = 2114;
@@ -161,12 +161,12 @@ LABEL_18:
   {
     if (!self->_isObserving)
     {
-      v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKSharedCADisplayProvider displays](self, "displays"));
+      v3 = [BKSharedCADisplayProvider displays];
       __int128 v17 = 0u;
       __int128 v18 = 0u;
       __int128 v19 = 0u;
       __int128 v20 = 0u;
-      id v4 = [v3 countByEnumeratingWithState:&v17 objects:v22 count:16];
+      id v4 = [v3 countByEnumeratingWithState:v17 objects:v22 count:16];
       if (v4)
       {
         id v5 = v4;
@@ -178,10 +178,10 @@ LABEL_18:
             if (*(void *)v18 != v6) {
               objc_enumerationMutation(v3);
             }
-            -[BKSharedCADisplayProvider _lock_addObserversToDisplay:]( self,  "_lock_addObserversToDisplay:",  *(void *)(*((void *)&v17 + 1) + 8LL * (void)i));
+            [self _lock_addObserversToDisplay:v17];
           }
 
-          id v5 = [v3 countByEnumeratingWithState:&v17 objects:v22 count:16];
+          id v5 = [v3 countByEnumeratingWithState:v17 objects:v22 count:16];
         }
 
         while (v5);
@@ -198,7 +198,7 @@ LABEL_18:
     __int128 v13 = 0u;
     __int128 v14 = 0u;
     v8 = self->_lock_observedDisplays;
-    id v9 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v8,  "countByEnumeratingWithState:objects:count:",  &v13,  v21,  16LL);
+    [v8 countByEnumeratingWithState:v13 objects:v21 count:16];
     if (v9)
     {
       id v10 = v9;
@@ -210,10 +210,10 @@ LABEL_18:
           if (*(void *)v14 != v11) {
             objc_enumerationMutation(v8);
           }
-          -[BKSharedCADisplayProvider _lock_removeObserversFromDisplay:]( self,  "_lock_removeObserversFromDisplay:",  *(void *)(*((void *)&v13 + 1) + 8LL * (void)j),  (void)v13);
+          [self _lock_removeObserversFromDisplay:v13];
         }
 
-        id v10 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v8,  "countByEnumeratingWithState:objects:count:",  &v13,  v21,  16LL);
+        [v8 countByEnumeratingWithState:v13 objects:v21 count:16];
       }
 
       while (v10);
@@ -228,11 +228,11 @@ LABEL_18:
   id v7 = a3;
   if (-[NSMutableSet containsObject:](lock_observedDisplays, "containsObject:"))
   {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    uint64_t v6 = [NSAssertionHandler currentHandler];
     [v6 handleFailureInMethod:a2 object:self file:@"BKCADisplayMonitor.m" lineNumber:162 description:@"attempting to add ourselves as an observer for an already tracked display. did we mix up mutable and immutable?"];
   }
 
-  -[NSMutableSet addObject:](self->_lock_observedDisplays, "addObject:", v7);
+  [self->_lock_observedDisplays addObject:v7];
   [v7 addObserver:self forKeyPath:@"availableModes" options:0 context:off_1000DB430];
   [v7 addObserver:self forKeyPath:@"currentMode" options:0 context:off_1000DB438];
   [v7 addObserver:self forKeyPath:@"logicalScale" options:0 context:off_1000DB440];
@@ -245,11 +245,11 @@ LABEL_18:
   id v7 = a3;
   if ((-[NSMutableSet containsObject:](lock_observedDisplays, "containsObject:") & 1) == 0)
   {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    uint64_t v6 = [NSAssertionHandler currentHandler];
     [v6 handleFailureInMethod:a2 object:self file:@"BKCADisplayMonitor.m" lineNumber:171 description:@"attempting to remove ourselves as an observer for an untracked display. did we mix up mutable and immutable?"];
   }
 
-  -[NSMutableSet removeObject:](self->_lock_observedDisplays, "removeObject:", v7);
+  [self->_lock_observedDisplays removeObject:v7];
   [v7 removeObserver:self forKeyPath:@"availableModes" context:off_1000DB430];
   [v7 removeObserver:self forKeyPath:@"currentMode" context:off_1000DB438];
   [v7 removeObserver:self forKeyPath:@"logicalScale" context:off_1000DB440];

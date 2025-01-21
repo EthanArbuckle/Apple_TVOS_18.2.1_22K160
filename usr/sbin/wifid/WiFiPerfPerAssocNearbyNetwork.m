@@ -50,23 +50,23 @@
 
 - (WiFiPerfPerAssocNearbyNetwork)init
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue( +[NSException exceptionWithName:reason:userInfo:]( &OBJC_CLASS___NSException,  "exceptionWithName:reason:userInfo:",  NSInternalInconsistencyException,  @"WiFiPerfPerAssocNearbyNetwork is useless without values - use the exposed initWith...",  0LL));
+  id v2 = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"WiFiPerfPerAssocNearbyNetwork is useless without values - use the exposed initWith..." userInfo:0LL];
   objc_exception_throw(v2);
   return (WiFiPerfPerAssocNearbyNetwork *)-[WiFiPerfPerAssocNearbyNetwork dictionaryRepresentation](v3, v4);
 }
 
 - (id)dictionaryRepresentation
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork bssid](self, "bssid"));
+  v3 = [self bssid];
 
   if (v3)
   {
     SEL v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork rssi](self, "rssi"));
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork bssid](self, "bssid"));
-    v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork channel](self, "channel"));
-    v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork channelFlags](self, "channelFlags"));
-    v8 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInteger:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInteger:",  -[WiFiPerfPerAssocNearbyNetwork origin](self, "origin")));
-    v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjectsAndKeys:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjectsAndKeys:",  v4,  @"RSSI",  v5,  @"BSSID",  v6,  @"CHANNEL",  v7,  @"CHANNEL_FLAGS",  v8,  @"pppAPESSOrigin",  0LL));
+    v5 = [self bssid];
+    v6 = [self channel];
+    v7 = [self channelFlags];
+    v8 = [NSNumber numberWithUnsignedInteger: -[WiFiPerfPerAssocNearbyNetwork origin](self, "origin")];
+    v9 = (void *)[NSDictionary dictionaryWithObjectsAndKeys:v4, @"RSSI", v5, @"BSSID", v6, @"CHANNEL", v7, @"CHANNEL_FLAGS", v8, @"pppAPESSOrigin", 0LL];
   }
 
   else
@@ -83,16 +83,16 @@
   if (!v4) {
     goto LABEL_6;
   }
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork bssid](self, "bssid"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v4 bssid]);
+  v5 = [self bssid];
+  v6 = (void *)[v4 bssid];
   unsigned int v7 = [v5 isEqualToString:v6];
 
   if (!v7) {
     goto LABEL_6;
   }
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork channel](self, "channel"));
+  v8 = [self channel];
   id v9 = [v8 unsignedIntegerValue];
-  v10 = (void *)objc_claimAutoreleasedReturnValue([v4 channel]);
+  v10 = [v4 channel];
   id v11 = [v10 unsignedIntegerValue];
 
   if (v9 == v11) {
@@ -108,10 +108,10 @@ LABEL_6:
 
 - (id)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork SSID](self, "SSID"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork bssid](self, "bssid"));
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork channel](self, "channel"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork rssi](self, "rssi"));
+  v3 = [self SSID];
+  id v4 = [self bssid];
+  v5 = -[WiFiPerfPerAssocNearbyNetwork channel];
+  v6 = -[WiFiPerfPerAssocNearbyNetwork rssi];
   unsigned int v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"WiFiPerfPerAssocNearbyNetwork with SSID: %@ bssid: %@ channel: %@ RSSI: %@ ORIGIN: %d",  v3,  v4,  v5,  v6,  -[WiFiPerfPerAssocNearbyNetwork origin](self, "origin")));
 
   return v7;
@@ -119,7 +119,7 @@ LABEL_6:
 
 - (unint64_t)hash
 {
-  id v2 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiPerfPerAssocNearbyNetwork bssid](self, "bssid"));
+  id v2 = -[WiFiPerfPerAssocNearbyNetwork bssid];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;

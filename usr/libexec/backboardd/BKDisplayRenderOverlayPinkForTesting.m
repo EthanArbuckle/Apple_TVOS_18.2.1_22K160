@@ -17,11 +17,11 @@
 - (BKDisplayRenderOverlayPinkForTesting)initWithOverlayDescriptor:(id)a3 level:(float)a4
 {
   v7.receiver = self;
-  v7.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting;
-  v4 = -[BKDisplayRenderOverlay initWithOverlayDescriptor:level:](&v7, "initWithOverlayDescriptor:level:", a3);
+  v7.super_class = [BKDisplayRenderOverlayPinkForTesting class];
+  BKDisplayRenderOverlay *v4 = [[BKDisplayRenderOverlay alloc] initWithOverlayDescriptor:a3 level:v7];
   v5 = v4;
   if (v4) {
-    -[BKDisplayRenderOverlay _setType:](v4, "_setType:", 4LL);
+    [v4 _setType:4LL];
   }
   return v5;
 }
@@ -29,8 +29,8 @@
 - (void)dealloc
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting;
-  -[BKDisplayRenderOverlay dealloc](&v3, "dealloc");
+  v3.super_class = [BKDisplayRenderOverlayPinkForTesting class];
+  [v3 dealloc];
 }
 
 - (BOOL)disablesDisplayUpdates
@@ -43,11 +43,11 @@
   id v5 = a3;
   if (self->_context)
   {
-    v28 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    v28 = [NSAssertionHandler currentHandler];
     [v28 handleFailureInMethod:a2 object:self file:@"BKDisplayRenderOverlayPinkForTesting.m" lineNumber:57 description:@"Already have a _context"];
   }
 
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+  v6 = [NSMutableDictionary dictionary];
   [v6 setObject:kCFBooleanTrue forKey:kCAContextDisplayable];
   [v6 setObject:kCFBooleanTrue forKey:kCAContextSecure];
   double v30 = 1.0;
@@ -60,22 +60,22 @@
   v31[6] = &v30;
   memset(&v31[7], 0, 24);
   sub_1000196F4(v31);
-  objc_super v7 = (CAContext *)objc_claimAutoreleasedReturnValue(+[CAContext remoteContextWithOptions:](&OBJC_CLASS___CAContext, "remoteContextWithOptions:", v6));
+  CAContext *v7 = [CAContext remoteContextWithOptions:v6];
   context = self->_context;
   self->_context = v7;
 
   v9 = self->_context;
   if (!v9)
   {
-    v29 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
+    v29 = [NSAssertionHandler currentHandler];
     [v29 handleFailureInMethod:a2 object:self file:@"BKDisplayRenderOverlayPinkForTesting.m" lineNumber:67 description:@"Couldn't create remote context"];
 
     v9 = self->_context;
   }
 
-  -[BKDisplayRenderOverlay level](self, "level");
-  -[CAContext setLevel:](v9, "setLevel:");
-  v10 = (CALayer *)objc_claimAutoreleasedReturnValue(+[CALayer layer](&OBJC_CLASS___CALayer, "layer"));
+  [self level];
+  [v9 setLevel:];
+  v10 = [CALayer layer];
   DeviceRGB = CGColorSpaceCreateDeviceRGB();
   if (DeviceRGB)
   {
@@ -84,30 +84,30 @@
     if (v13)
     {
       CGColorRef v14 = v13;
-      -[CALayer setBackgroundColor:](v10, "setBackgroundColor:", v13);
+      [v10 setBackgroundColor:v13];
       CFRelease(v14);
     }
 
     CFRelease(v12);
   }
 
-  v15 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay descriptor](self, "descriptor"));
-  v16 = (void *)objc_claimAutoreleasedReturnValue([v15 display]);
+  v15 = [BKDisplayRenderOverlay descriptor];
+  v16 = [v15 display];
   [v16 bounds];
   double v18 = v17;
   double v20 = v19;
   double v22 = v21;
   double v24 = v23;
 
-  -[CALayer setBounds:](v10, "setBounds:", v18, v20, v22, v24);
-  -[CALayer setContentsScale:](v10, "setContentsScale:", v30);
-  -[CALayer setHidden:](v10, "setHidden:", 0LL);
-  -[CALayer setPosition:](v10, "setPosition:", v22 * 0.5, v24 * 0.5);
+  [v10 setBounds:CGRectMake(v18, v20, v22, v24)];
+  [v10 setContentsScale:v30];
+  [v10 setHidden:NO];
+  [v10 setPosition:CGPointMake(v22 * 0.5, v24 * 0.5)];
   layer = self->_layer;
   self->_layer = v10;
   v26 = v10;
 
-  -[CAContext setLayer:](self->_context, "setLayer:", self->_layer);
+  [self->_context setLayer:self->_layer];
   return 1;
 }
 
@@ -123,9 +123,9 @@
 - (id)descriptionBuilderWithMultilinePrefix:(id)a3
 {
   v10.receiver = self;
-  v10.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting;
-  id v4 = -[BKDisplayRenderOverlay descriptionBuilderWithMultilinePrefix:]( &v10,  "descriptionBuilderWithMultilinePrefix:",  a3);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
+  v10.super_class = [BKDisplayRenderOverlayPinkForTesting class];
+  id v4 = [BKDisplayRenderOverlay descriptionBuilderWithMultilinePrefix:a3];
+  v5 = v4;
   context = self->_context;
   if (context)
   {
@@ -138,8 +138,8 @@
 
 - (BOOL)_applyProgressIndicatorPropertiesToKernelIfNecessary
 {
-  objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay descriptor](self, "descriptor"));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 progressIndicatorProperties]);
+  BKDisplayRenderOverlayDescriptor *v3 = [self descriptor];
+  id v4 = [v3 progressIndicatorProperties];
 
   if (v4)
   {
@@ -153,8 +153,8 @@
     double v35 = 0.0;
     double v36 = 0.0;
     double v34 = 1.0;
-    v6 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlay display](self, "display"));
-    objc_super v7 = (void *)objc_claimAutoreleasedReturnValue([v6 uniqueId]);
+    v6 = [BKDisplayRenderOverlay display];
+    objc_super v7 = [v6 uniqueId];
     sub_100019B10(v7, &v36, &v35, &v34, 0LL, 0LL);
 
     double v8 = v36 / v34;
@@ -200,7 +200,7 @@
 
     v37[2] = v20;
     id v23 = sub_10003F368();
-    double v24 = (os_log_s *)objc_claimAutoreleasedReturnValue(v23);
+    os_log_s *v24 = v23;
     if (os_log_type_enabled(v24, OS_LOG_TYPE_DEBUG))
     {
       unsigned int v33 = [v4 style];
@@ -216,7 +216,7 @@
     int v25 = sysctlbyname("kern.progressoptions", 0LL, 0LL, v37, 0x2CuLL);
     BOOL v17 = v25 >= 0;
     id v26 = sub_10003F368();
-    v27 = (os_log_s *)objc_claimAutoreleasedReturnValue(v26);
+    v27 = os_log_create(v26, "");
     BOOL v28 = os_log_type_enabled(v27, OS_LOG_TYPE_DEBUG);
     if (v25 < 0)
     {
@@ -257,31 +257,31 @@ LABEL_25:
 + (id)overlayWithLevel:(float)a3 display:(id)a4
 {
   id v6 = a4;
-  objc_super v7 = objc_alloc(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor);
-  double v9 = (objc_class *)objc_opt_class(a1, v8);
+  BKSDisplayRenderOverlayDescriptor *v7 = [[BKSDisplayRenderOverlayDescriptor alloc] init];
+  double v9 = [a1 class];
   id v10 = NSStringFromClass(v9);
-  double v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
-  double v12 = -[BKSDisplayRenderOverlayDescriptor initWithName:display:](v7, "initWithName:display:", v11, v6);
+  double v11 = [v10 doubleValue];
+  BKSDisplayRenderOverlayDescriptor *v12 = [BKSDisplayRenderOverlayDescriptor initWithName:v11 display:v6];
 
-  -[BKSDisplayRenderOverlayDescriptor setLockBacklight:](v12, "setLockBacklight:", 0LL);
-  double v13 = objc_alloc(&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting);
+  [v12 setLockBacklight:NO];
+  BKDisplayRenderOverlayPinkForTesting *v13 = [[BKDisplayRenderOverlayPinkForTesting alloc] init];
   *(float *)&double v14 = a3;
-  uint64_t v15 = -[BKDisplayRenderOverlayPinkForTesting initWithOverlayDescriptor:level:]( v13,  "initWithOverlayDescriptor:level:",  v12,  v14);
+  uint64_t v15 = [BKDisplayRenderOverlayPinkForTesting initWithOverlayDescriptor:v12 level:v14];
 
   return v15;
 }
 
 + (void)doItShowKernel
 {
-  v2 = objc_alloc(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor);
-  objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(+[CADisplay mainDisplay](&OBJC_CLASS___CADisplay, "mainDisplay"));
-  double v9 = -[BKSDisplayRenderOverlayDescriptor initWithName:display:](v2, "initWithName:display:", @"Testing", v3);
+  BKSDisplayRenderOverlayDescriptor *v2 = [[BKSDisplayRenderOverlayDescriptor alloc] init];
+  CADisplay *v3 = [CADisplay mainDisplay];
+  double v9 = [BKSDisplayRenderOverlayDescriptor initWithName:@"Testing" display:v3];
 
-  id v4 = (void *)objc_claimAutoreleasedReturnValue( +[BKSDisplayProgressIndicatorProperties progressIndicatorWithStyle:position:]( &OBJC_CLASS___BKSDisplayProgressIndicatorProperties,  "progressIndicatorWithStyle:position:",  2LL,  100.0,  175.0));
-  -[BKSDisplayRenderOverlayDescriptor setProgressIndicatorProperties:](v9, "setProgressIndicatorProperties:", v4);
-  int v5 = objc_alloc(&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting);
+  BKSDisplayProgressIndicatorProperties *v4 = [BKSDisplayProgressIndicatorProperties progressIndicatorWithStyle:2LL position:CGPointMake(100.0, 175.0)];
+  [v9 setProgressIndicatorProperties:v4];
+  BKDisplayRenderOverlayPinkForTesting *v5 = [[BKDisplayRenderOverlayPinkForTesting alloc] init];
   LODWORD(v6) = *(_DWORD *)"";
-  objc_super v7 = -[BKDisplayRenderOverlayPinkForTesting initWithOverlayDescriptor:level:]( v5,  "initWithOverlayDescriptor:level:",  v9,  v6);
+  BKDisplayRenderOverlayPinkForTesting *v7 = [[BKDisplayRenderOverlayPinkForTesting alloc] initWithOverlayDescriptor:v9 level:v6];
   uint64_t v8 = (void *)qword_1000DC178;
   qword_1000DC178 = (uint64_t)v7;
 
@@ -290,13 +290,13 @@ LABEL_25:
 
 + (void)doItShow
 {
-  v2 = objc_alloc(&OBJC_CLASS___BKSDisplayRenderOverlayDescriptor);
-  objc_super v3 = (void *)objc_claimAutoreleasedReturnValue(+[CADisplay mainDisplay](&OBJC_CLASS___CADisplay, "mainDisplay"));
-  uint64_t v8 = -[BKSDisplayRenderOverlayDescriptor initWithName:display:](v2, "initWithName:display:", @"Testing", v3);
+  BKSDisplayRenderOverlayDescriptor *v2 = [[BKSDisplayRenderOverlayDescriptor alloc] init];
+  CADisplay *v3 = [CADisplay mainDisplay];
+  uint64_t v8 = [BKSDisplayRenderOverlayDescriptor initWithName:@"Testing" display:v3];
 
-  id v4 = objc_alloc(&OBJC_CLASS___BKDisplayRenderOverlayPinkForTesting);
+  BKDisplayRenderOverlayPinkForTesting *v4 = [[BKDisplayRenderOverlayPinkForTesting alloc] init];
   LODWORD(v5) = 1161527296;
-  double v6 = -[BKDisplayRenderOverlayPinkForTesting initWithOverlayDescriptor:level:]( v4,  "initWithOverlayDescriptor:level:",  v8,  v5);
+  BKDisplayRenderOverlayPinkForTesting *v6 = [[BKDisplayRenderOverlayPinkForTesting alloc] initWithOverlayDescriptor:v8 level:v5];
   objc_super v7 = (void *)qword_1000DC178;
   qword_1000DC178 = (uint64_t)v6;
 

@@ -16,7 +16,7 @@
 {
   v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: starting",  "-[AudioRouteMonitor initializeWithHandler:]");
+    [qword_100219F60 WFLog:@"-[AudioRouteMonitor initializeWithHandler:] starting"];
   }
   objc_autoreleasePoolPop(v5);
   -[AudioRouteMonitor setAudioRouteHandler:](self, "setAudioRouteHandler:", a3);
@@ -52,7 +52,7 @@
 {
   objc_super v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: removing observer",  "-[AudioRouteMonitor stopMonitoring]");
+    [qword_100219F60 WFLog:@"-[AudioRouteMonitor stopMonitoring] removing observer"];
   }
   objc_autoreleasePoolPop(v3);
   -[NSNotificationCenter removeObserver:name:object:]( +[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"),  "removeObserver:name:object:",  self,  AVAudioSessionRouteChangeNotification,  +[AVAudioSession sharedInstance](&OBJC_CLASS___AVAudioSession, "sharedInstance"));

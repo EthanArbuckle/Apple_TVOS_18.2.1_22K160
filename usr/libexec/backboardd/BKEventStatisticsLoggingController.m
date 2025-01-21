@@ -16,8 +16,8 @@
   id v6 = a3;
   id v7 = a4;
   v26.receiver = self;
-  v26.super_class = (Class)&OBJC_CLASS___BKEventStatisticsLoggingController;
-  v8 = -[BKEventStatisticsLoggingController init](&v26, "init");
+  v26.super_class = [BKEventStatisticsLoggingController class];
+  BKEventStatisticsLoggingController *v8 = [[BKEventStatisticsLoggingController alloc] init];
   v9 = v8;
   if (v8)
   {
@@ -26,25 +26,25 @@
     label = v9->_label;
     v9->_label = v10;
 
-    objc_storeStrong((id *)&v9->_logCategory, a4);
+    [v9 setLogCategory:a4];
     objc_initWeak(&location, v9);
-    v12 = (void *)objc_claimAutoreleasedReturnValue([@"BKEventStatistics-" stringByAppendingString:v6]);
+    v12 = [@"BKEventStatistics-" stringByAppendingString:v6];
     v20 = _NSConcreteStackBlock;
     uint64_t v21 = 3221225472LL;
     v22 = sub_10004E820;
     v23 = &unk_1000B7380;
-    objc_copyWeak(&v24, &location);
-    uint64_t v13 = objc_claimAutoreleasedReturnValue( +[BSCompoundAssertion assertionWithIdentifier:stateDidChangeHandler:]( &OBJC_CLASS___BSCompoundAssertion,  "assertionWithIdentifier:stateDidChangeHandler:",  v12,  &v20));
+    [location copy];
+    uint64_t v13 = [BSCompoundAssertion assertionWithIdentifier:v12 stateDidChangeHandler:v20];
     transactionAssertion = v9->_transactionAssertion;
     v9->_transactionAssertion = (BSCompoundAssertion *)v13;
 
-    v16 = (void *)objc_opt_class(v9, v15);
-    uint64_t v17 = objc_claimAutoreleasedReturnValue(objc_msgSend(v16, "workQueue", v20, v21, v22, v23));
+    v16 = [v9 class];
+    uint64_t v17 = [v16 workQueue:v20 withIdentifier:v21 withPriority:v22 withQoSClass:v23];
     workQueue = v9->_workQueue;
     v9->_workQueue = (OS_dispatch_queue *)v17;
 
-    objc_destroyWeak(&v24);
-    objc_destroyWeak(&location);
+    [v24 release];
+    [location release];
   }
 
   return v9;
@@ -54,14 +54,14 @@
 {
   if (!self->_invalid)
   {
-    v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"someone forgot to invoke -invalidate on %@",  self));
+    v4 = [NSString stringWithFormat:@"someone forgot to invoke -invalidate on %@" self];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       v5 = NSStringFromSelector(a2);
-      id v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-      v8 = (objc_class *)objc_opt_class(self, v7);
+      id v6 = v5;
+      v8 = [self class];
       v9 = NSStringFromClass(v8);
-      v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+      v10 = [v9 autorelease];
       *(_DWORD *)buf = 138544642;
       uint64_t v13 = v6;
       __int16 v14 = 2114;
@@ -83,13 +83,13 @@
   }
 
   v11.receiver = self;
-  v11.super_class = (Class)&OBJC_CLASS___BKEventStatisticsLoggingController;
-  -[BKEventStatisticsLoggingController dealloc](&v11, "dealloc");
+  v11.super_class = [BKEventStatisticsLoggingController class];
+  [v11 dealloc];
 }
 
 - (id)beginTransactionForReason:(id)a3
 {
-  return -[BSCompoundAssertion acquireForReason:](self->_transactionAssertion, "acquireForReason:", a3);
+  return [self->_transactionAssertion acquireForReason:a3];
 }
 
 - (void)updateStatistics:(id)a3

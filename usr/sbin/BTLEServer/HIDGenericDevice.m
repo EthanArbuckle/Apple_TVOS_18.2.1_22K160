@@ -57,7 +57,7 @@
   -[HIDGenericDevice setQueue:](self, "setQueue:", v3);
 
   v4 = -[HIDGenericDevice device](self, "device");
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[HIDGenericDevice queue](self, "queue"));
+  v5 = [self queue];
   IOHIDUserDeviceScheduleWithDispatchQueue(v4, v5);
 
   -[HIDBluetoothDevice notifyDidStart](self, "notifyDidStart");
@@ -69,10 +69,10 @@
   v7.super_class = (Class)&OBJC_CLASS___HIDGenericDevice;
   -[HIDBluetoothDevice stop](&v7, "stop");
   id v3 = -[HIDGenericDevice device](self, "device");
-  v4 = (void *)objc_claimAutoreleasedReturnValue(-[HIDGenericDevice queue](self, "queue"));
+  v4 = [self queue];
   IOHIDUserDeviceUnscheduleFromDispatchQueue(v3, v4);
 
-  v5 = (dispatch_object_s *)objc_claimAutoreleasedReturnValue(-[HIDGenericDevice queue](self, "queue"));
+  v5 = [self queue];
   dispatch_set_context(v5, self);
 
   objc_super v6 = (dispatch_object_s *)objc_claimAutoreleasedReturnValue(-[HIDGenericDevice queue](self, "queue"));

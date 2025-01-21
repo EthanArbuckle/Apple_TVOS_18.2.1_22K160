@@ -92,21 +92,21 @@
     _os_log_impl( (void *)&_mh_execute_header,  v3,  OS_LOG_TYPE_DEFAULT,  "Stop DoAPSoundSensorRemoteDevice - Destroy DoAPAudioRelay",  buf,  2u);
   }
 
-  int v4 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioStart](self, "doapAudioStart"));
+  int v4 = (dispatch_semaphore_s *)[self doapAudioStart];
   dispatch_semaphore_signal(v4);
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioStop](self, "doapAudioStop"));
+  v5 = -[DoAPSoundSensorRemoteDevice doapAudioStop];
   if (v5)
   {
-    v6 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioStop](self, "doapAudioStop"));
+    v6 = [self doapAudioStop];
     dispatch_semaphore_signal(v6);
   }
 
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+  id v7 = -[DoAPSoundSensorRemoteDevice doapAudioRelay];
 
   if (v7)
   {
-    v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+    v8 = [self doapAudioRelay];
     [v8 invalidate];
 
     -[DoAPSoundSensorRemoteDevice setDoapAudioRelay:](self, "setDoapAudioRelay:", 0LL);
@@ -159,17 +159,17 @@
           [*(id *)(*((void *)&v40 + 1) + 8 * (void)i) codec];
           if (v37 == 7)
           {
-            v18 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice peripheral](self, "peripheral"));
-            v19 = (void *)objc_claimAutoreleasedReturnValue([v18 identifier]);
-            v20 = (void *)objc_claimAutoreleasedReturnValue([v19 UUIDString]);
-            v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@_%@",  v20,  @"DoAP Sound Sensor"));
+            v18 = -[DoAPDevice peripheral];
+            v19 = [v18 identifier];
+            v20 = [v19 UUIDString];
+            v21 = [NSString stringWithFormat:@"%@_%@", v20, @"DoAP Sound Sensor"];
 
-            v22 = (void *)objc_claimAutoreleasedReturnValue(+[DoAPAudioRelayHub instance](&OBJC_CLASS___DoAPAudioRelayHub, "instance"));
+            v22 = [DoAPAudioRelayHub instance];
             [v9 codec];
             objc_super v23 = (void *)objc_claimAutoreleasedReturnValue( [v22 relayWithIdentifier:v21 deviceType:4 properties:0 codecType:v36]);
             -[DoAPSoundSensorRemoteDevice setDoapAudioRelay:](self, "setDoapAudioRelay:", v23);
 
-            v24 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+            v24 = [self doapAudioRelay];
             [v24 setDelegate:self];
 
             v25 = (void *)qword_100070CC8;
@@ -289,7 +289,7 @@
 {
   if (-[DoAPDevice state](self, "state") == 5)
   {
-    uint64_t v3 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioStart](self, "doapAudioStart"));
+    uint64_t v3 = (dispatch_semaphore_s *)[self doapAudioStart];
     dispatch_semaphore_signal(v3);
   }
 
@@ -297,7 +297,7 @@
 
   if (v4)
   {
-    uint64_t v5 = (dispatch_semaphore_s *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioStop](self, "doapAudioStop"));
+    uint64_t v5 = (dispatch_semaphore_s *)[self doapAudioStop];
     dispatch_semaphore_signal(v5);
 
     -[DoAPSoundSensorRemoteDevice setDoapAudioStop:](self, "setDoapAudioStop:", 0LL);
@@ -309,7 +309,7 @@
   {
     uint64_t v7 = self;
     objc_sync_enter(v7);
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice audioBuffer](v7, "audioBuffer"));
+    uint64_t v8 = (void *)[v7 audioBuffer];
     [v8 removeAllObjects];
 
     objc_sync_exit(v7);
@@ -328,9 +328,9 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t v4 = v3;
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice peripheral](self, "peripheral"));
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 identifier]);
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    uint64_t v5 = (void *)[self peripheral];
+    uint64_t v6 = (void *)[v5 identifier];
+    uint64_t v7 = (void *)[v6 UUIDString];
     int v8 = 138477827;
     uint64_t v9 = v7;
     _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "DoAPSoundSensor - activateSoundSensorClient: ** TBD ** for ID %{private}@",  (uint8_t *)&v8,  0xCu);
@@ -345,9 +345,9 @@
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
   {
     uint64_t v4 = v3;
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPDevice peripheral](self, "peripheral"));
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 identifier]);
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    uint64_t v5 = (void *)[self peripheral];
+    uint64_t v6 = (void *)[v5 identifier];
+    uint64_t v7 = (void *)[v6 UUIDString];
     int v8 = 138412290;
     uint64_t v9 = v7;
     _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_DEFAULT,  "DoAPSoundSensor - cancelSoundSensorClient - id \"%@\"",  (uint8_t *)&v8,  0xCu);
@@ -389,10 +389,10 @@
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
     -[DoAPSoundSensorRemoteDevice setLastAudioDate:](self, "setLastAudioDate:", v7);
 
-    int v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", a3, a4));
+    int v8 = (void *)[NSData dataWithBytes:a3 length:a4];
     if (-[DoAPDevice state](self, "state") == 5)
     {
-      uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+      uint64_t v9 = (void *)[self doapAudioRelay];
       unsigned int v10 = [v9 isHubConnected];
 
       if (!v10)
@@ -404,7 +404,7 @@
         goto LABEL_15;
       }
 
-      uint64_t v11 = (DoAPSoundSensorRemoteDevice *)objc_claimAutoreleasedReturnValue(-[DoAPSoundSensorRemoteDevice doapAudioRelay](self, "doapAudioRelay"));
+      uint64_t v11 = [DoAPSoundSensorRemoteDevice doapAudioRelay];
       -[DoAPSoundSensorRemoteDevice sendAudioFrame:](v11, "sendAudioFrame:", v8);
     }
 

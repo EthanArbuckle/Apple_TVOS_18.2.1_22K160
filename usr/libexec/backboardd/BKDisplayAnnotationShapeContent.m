@@ -12,16 +12,16 @@
 {
   double height = a3.height;
   double width = a3.width;
-  id v5 = objc_alloc_init((Class)a1);
-  objc_msgSend(v5, "setShapeSize:", width, height);
+  [a1 alloc] init];
+  [v5 setShapeSize:CGSizeMake(width, height)];
   return v5;
 }
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
-  id v4 = objc_msgSend(v3, "appendSize:withName:", @"shapeSize", self->_shapeSize.width, self->_shapeSize.height);
-  id v5 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  BSDescriptionBuilder *v3 = [[BSDescriptionBuilder alloc] initWithObject:self];
+  id v4 = [v3 appendSize:@"shapeSize" withName:self->_shapeSize.width, self->_shapeSize.height];
+  id v5 = [v3 build];
 
   return (NSString *)v5;
 }

@@ -99,7 +99,7 @@
     v2->_urgentAssertions = v15;
 
     v2->_assertionTimer = 0LL;
-    uint64_t v17 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v17 = +[NSMutableDictionary dictionary];
     pendingResurrection = v2->_pendingResurrection;
     v2->_pendingResurrection = (NSMutableDictionary *)v17;
 
@@ -171,7 +171,7 @@
 {
   BOOL v4 = a4;
   id v6 = a3;
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKey:](self->_applicationMap, "objectForKey:", v6));
+  v7 = [self->_applicationMap objectForKey:v6];
   id v8 = v7;
   if (v7)
   {
@@ -228,8 +228,8 @@
   if (a5 < 3)
   {
     dispatch_time_t v14 = v11;
-    v15 = (void *)objc_claimAutoreleasedReturnValue( +[FBSOpenApplicationService serviceWithDefaultShellEndpoint]( &OBJC_CLASS___FBSOpenApplicationService,  "serviceWithDefaultShellEndpoint"));
-    id v16 = (void *)objc_claimAutoreleasedReturnValue( +[FBSOpenApplicationOptions optionsWithDictionary:]( &OBJC_CLASS___FBSOpenApplicationOptions,  "optionsWithDictionary:",  v9));
+    v15 = [FBSOpenApplicationService serviceWithDefaultShellEndpoint];
+    id v16 = [OBJC_CLASS___FBSOpenApplicationOptions optionsWithDictionary:v9];
     v17[0] = _NSConcreteStackBlock;
     v17[1] = 3221225472LL;
     v17[2] = sub_100639908;
@@ -605,7 +605,7 @@
     }
 
     notify_post("com.apple.request.hipuncap");
-    uint64_t v6 = objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
+    uint64_t v6 = [NSDate date];
     BOOL v7 = (void *)qword_1008F1F48;
     qword_1008F1F48 = v6;
   }
@@ -779,7 +779,7 @@ LABEL_10:
     goto LABEL_11;
   }
 
-  BOOL v13 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
+  BOOL v13 = [+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace") autorelease];
   unsigned __int8 v14 = [v13 applicationIsInstalled:@"com.apple.internal.WayFinder"];
 
   if ((v14 & 1) == 0)
@@ -845,8 +845,8 @@ LABEL_19:
   {
     if (self->_lastAirWaveNotificationDate)
     {
-      id v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate now](&OBJC_CLASS___NSDate, "now"));
-      id v19 = (void *)objc_claimAutoreleasedReturnValue(+[NSCalendar currentCalendar](&OBJC_CLASS___NSCalendar, "currentCalendar"));
+      id v18 = [NSDate now];
+      id v19 = [NSCalendar currentCalendar];
       uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue( [v19 components:16 fromDate:self->_lastAirWaveNotificationDate toDate:v18 options:0]);
 
       if ((uint64_t)[v20 day] <= 0)
@@ -888,7 +888,7 @@ LABEL_19:
     char v29 = v6;
     id v27 = v9;
     dispatch_async(loggingQueue, block);
-    v24 = (NSDate *)objc_claimAutoreleasedReturnValue(+[NSDate now](&OBJC_CLASS___NSDate, "now"));
+    v24 = [NSDate now];
     lastAirWaveNotificationDate = self->_lastAirWaveNotificationDate;
     self->_lastAirWaveNotificationDate = v24;
 
@@ -951,7 +951,7 @@ LABEL_15:
     else
     {
       int v17 = (void *)objc_claimAutoreleasedReturnValue( +[CBAccessoryLogging getProductNameFromProductID:]( &OBJC_CLASS___CBAccessoryLogging,  "getProductNameFromProductID:",  a4));
-      id v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@ Crash Detected",  v17));
+      id v18 = [NSString stringWithFormat:@"%@ Crash Detected", v17];
       id v19 = sub_1002E95B8(@"TITLE", v18);
       uint64_t v20 = (void *)objc_claimAutoreleasedReturnValue(v19);
 
@@ -1124,10 +1124,10 @@ LABEL_15:
   if ((a4 - 2) < 4)
   {
     if ([v7 count]) {
-      id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"AutoDiagnostics",  @"sysdiagnose-only"));
+      id v10 = [NSURLQueryItem queryItemWithName:@"AutoDiagnostics" value:@"sysdiagnose-only"];
     }
     else {
-      id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ExtensionIdentifiers",  @"com.apple.DiagnosticExtensions.BluetoothHeadset"));
+      id v10 = [NSURLQueryItem queryItemWithName:@"ExtensionIdentifiers" value:@"com.apple.DiagnosticExtensions.BluetoothHeadset"];
     }
     -[NSMutableArray addObject:](v9, "addObject:", v10);
 
@@ -1138,30 +1138,30 @@ LABEL_15:
         -[NSMutableArray addObject:](v9, "addObject:", v13);
         break;
       case 4:
-        id v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Classification",  @"Serious Bug"));
+        id v20 = [NSURLQueryItem queryItemWithName:@"Classification" value:@"Serious Bug"];
         -[NSMutableArray addObject:](v9, "addObject:", v20);
 
         uint64_t v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"[%@] A2DP Stream Start Failure: ",  v48));
-        id v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Title",  v21));
+        id v22 = [NSURLQueryItem queryItemWithName:v21 value:v21];
         -[NSMutableArray addObject:](v9, "addObject:", v22);
 
-        id v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Please describe what you were doing with your %@ here",  v48));
-        id v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Description",  v23));
+        id v23 = [NSString stringWithFormat:@"Please describe what you were doing with your %@ here" v48];
+        id v24 = [NSURLQueryItem queryItemWithName:v23 value:v23];
         -[NSMutableArray addObject:](v9, "addObject:", v24);
 
         int v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Keywords",  @"1474196"));
         -[NSMutableArray addObject:](v9, "addObject:", v13);
         break;
       case 5:
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Classification",  @"Serious Bug"));
+        id v15 = [NSURLQueryItem queryItemWithName:@"Classification" value:@"Serious Bug"];
         -[NSMutableArray addObject:](v9, "addObject:", v15);
 
         int v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"[%@] IED anomaly: ",  v48));
-        id v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Title",  v16));
+        id v17 = [NSURLQueryItem queryItemWithName:@"Title" value:v16];
         -[NSMutableArray addObject:](v9, "addObject:", v17);
 
-        id v18 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Please describe the current bud state of your %@ (Are the buds in-ear, in-case, in hand, in pocket, sitting on a table, something else):\n\nPlease describe what you are doing with the buds (including body movement like exercising, or mouth movement like talking):",  v48));
-        id v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Description",  v18));
+        id v18 = +[NSString stringWithFormat:@"Please describe the current bud state of your %@ (Are the buds in-ear, in-case, in hand, in pocket, sitting on a table, something else):\n\nPlease describe what you are doing with the buds (including body movement like exercising, or mouth movement like talking):", v48];
+        id v19 = [NSURLQueryItem queryItemWithName:v18 value:v18];
         -[NSMutableArray addObject:](v9, "addObject:", v19);
 
         int v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Keywords",  @"1521114"));
@@ -1190,13 +1190,13 @@ LABEL_15:
     uint64_t v25 = sub_1002E6BF0();
     if ((*(unsigned int (**)(uint64_t))(*(void *)v25 + 424LL))(v25))
     {
-      id v26 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentID",  @"1336450"));
+      id v26 = [NSURLQueryItem queryItemWithName:@"ComponentID" value:@"1336450"];
       -[NSMutableArray addObject:](v9, "addObject:", v26);
 
-      id v27 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentName",  @"ULLA (New Bugs)"));
+      id v27 = [NSURLQueryItem queryItemWithName:@"ComponentName" value:@"ULLA (New Bugs)"];
       -[NSMutableArray addObject:](v9, "addObject:", v27);
 
-      id v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentVersion",  @"N301 Non-UI"));
+      id v28 = [NSURLQueryItem queryItemWithName:@"ComponentVersion" value:@"N301 Non-UI"];
       -[NSMutableArray addObject:](v9, "addObject:", v28);
     }
 
@@ -1204,15 +1204,15 @@ LABEL_15:
     {
       if (a4 == 5)
       {
-        id v29 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%lu",  +[CBAccessoryLogging getComponentIDFromRadarReason:]( &OBJC_CLASS___CBAccessoryLogging,  "getComponentIDFromRadarReason:",  5LL)));
-        id v30 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentID",  v29));
+        id v29 = [NSString stringWithFormat:@"%lu" +[CBAccessoryLogging getComponentIDFromRadarReason:]( &OBJC_CLASS___CBAccessoryLogging,  "getComponentIDFromRadarReason:",  5LL)];
+        id v30 = [NSURLQueryItem queryItemWithName:v29 value:v29];
         -[NSMutableArray addObject:](v9, "addObject:", v30);
 
-        id v31 = (void *)objc_claimAutoreleasedReturnValue( +[CBAccessoryLogging getComponentNameFromRadarReason:]( &OBJC_CLASS___CBAccessoryLogging,  "getComponentNameFromRadarReason:",  5LL));
-        id v32 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentName",  v31));
+        id v31 = [CBAccessoryLogging getComponentNameFromRadarReason:5];
+        id v32 = [NSURLQueryItem queryItemWithName:v31 value:v31];
         -[NSMutableArray addObject:](v9, "addObject:", v32);
 
-        id v28 = (void *)objc_claimAutoreleasedReturnValue( +[CBAccessoryLogging getComponentVersionFromRadarReason:]( &OBJC_CLASS___CBAccessoryLogging,  "getComponentVersionFromRadarReason:",  5LL));
+        id v28 = [CBAccessoryLogging getComponentVersionFromRadarReason:5LL];
       }
 
       else
@@ -1225,7 +1225,7 @@ LABEL_15:
         char v37 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentName",  v36));
         -[NSMutableArray addObject:](v9, "addObject:", v37);
 
-        id v28 = (void *)objc_claimAutoreleasedReturnValue( +[CBAccessoryLogging getComponentVersionFromProductID:]( &OBJC_CLASS___CBAccessoryLogging,  "getComponentVersionFromProductID:",  a5));
+        id v28 = +[CBAccessoryLogging getComponentVersionFromProductID:](a5);
       }
 
       unint64_t v33 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"ComponentVersion",  v28));
@@ -1261,7 +1261,7 @@ LABEL_15:
         while (v40);
       }
 
-      v43 = (void *)objc_claimAutoreleasedReturnValue( +[NSURLQueryItem queryItemWithName:value:]( &OBJC_CLASS___NSURLQueryItem,  "queryItemWithName:value:",  @"Attachments",  v38));
+      v43 = [NSURLQueryItem queryItemWithName:@"Attachments" value:v38];
       -[NSMutableArray addObject:](v9, "addObject:", v43);
     }
 
@@ -1269,14 +1269,14 @@ LABEL_15:
     v44 = (os_log_s *)qword_1008F7578;
     if (os_log_type_enabled((os_log_t)qword_1008F7578, OS_LOG_TYPE_DEFAULT))
     {
-      v45 = (void *)objc_claimAutoreleasedReturnValue(-[NSURLComponents string](v8, "string"));
+      v45 = [v8 string];
       *(_DWORD *)buf = 138543362;
       v54 = v45;
       _os_log_impl( (void *)&_mh_execute_header,  v44,  OS_LOG_TYPE_DEFAULT,  "openTapToRadarWithAccessoryLogs: Launch Tap-to-Radar, URL = %{public}@",  buf,  0xCu);
     }
 
-    v46 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
-    v47 = (void *)objc_claimAutoreleasedReturnValue(-[NSURLComponents URL](v8, "URL"));
+    v46 = [LSApplicationWorkspace defaultWorkspace];
+    v47 = [v8 URL];
     [v46 openURL:v47 configuration:0 completionHandler:&stru_1008A4D38];
 
     goto LABEL_33;

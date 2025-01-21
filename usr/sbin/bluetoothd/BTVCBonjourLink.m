@@ -31,7 +31,7 @@
     btvcBonjourService = v10->_btvcBonjourService;
     v10->_btvcBonjourService = v11;
 
-    uint64_t v13 = objc_claimAutoreleasedReturnValue(+[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary"));
+    uint64_t v13 = [NSMutableDictionary dictionary];
     advertiserTypesAdvData = v10->_advertiserTypesAdvData;
     v10->_advertiserTypesAdvData = (NSMutableDictionary *)v13;
 
@@ -158,17 +158,17 @@
   }
 
   advertiserTypesAdvData = v8->_advertiserTypesAdvData;
-  id v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+  id v11 = [NSNumber numberWithInteger:a3];
   -[NSMutableDictionary setObject:forKeyedSubscript:](advertiserTypesAdvData, "setObject:forKeyedSubscript:", v6, v11);
 
   id location = 0LL;
   objc_initWeak(&location, v8);
   v19[0] = @"BTVCBonjourLinkType";
-  v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+  v12 = [NSNumber numberWithInteger:a3];
   v19[1] = @"BTVCBonjourPayloadKey";
   v20[0] = v12;
   v20[1] = v6;
-  id v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v20,  v19,  2LL));
+  id v13 = [NSDictionary dictionaryWithObjects:v20 forKeys:v19 count:2];
 
   v14 = (os_log_s *)qword_1008F7710;
   if (os_log_type_enabled((os_log_t)qword_1008F7710, OS_LOG_TYPE_DEFAULT))
@@ -205,8 +205,8 @@
   id v6 = self;
   objc_sync_enter(v6);
   advertiserTypesAdvData = v6->_advertiserTypesAdvData;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
-  id v9 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](advertiserTypesAdvData, "objectForKeyedSubscript:", v8));
+  id v8 = [NSNumber numberWithInteger:a3];
+  id v9 = [advertiserTypesAdvData objectForKeyedSubscript:v8];
   LODWORD(advertiserTypesAdvData) = v9 == 0LL;
 
   v10 = (os_log_s *)qword_1008F7710;
@@ -231,14 +231,14 @@
     }
 
     v22[0] = @"BTVCBonjourLinkType";
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+    v12 = [NSNumber numberWithInteger:a3];
     v22[1] = @"BTVCBonjourPayloadKey";
     v23[0] = v12;
     id v13 = v6->_advertiserTypesAdvData;
-    v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
-    id v15 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](v13, "objectForKeyedSubscript:", v14));
+    v14 = [NSNumber numberWithInteger:a3];
+    id v15 = -[v13 objectForKeyedSubscript:v14];
     v23[1] = v15;
-    v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v23,  v22,  2LL));
+    v16 = [NSDictionary dictionaryWithObjects:v23 forKeys:v22 count:2];
 
     id v17 = v6->_advertiserTypesAdvData;
     objc_super v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
@@ -286,9 +286,9 @@
   }
 
   v32 = @"scanMode";
-  __int16 v23 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a7, v29));
+  __int16 v23 = [NSNumber numberWithInteger:a7];
   v33 = v23;
-  id v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v33,  &v32,  1LL));
+  id v24 = [NSDictionary dictionaryWithObjects:forKeys:count:&v33, &v32, 1LL];
 
   v25 = (os_log_s *)qword_1008F7710;
   if (os_log_type_enabled((os_log_t)qword_1008F7710, OS_LOG_TYPE_DEFAULT))
@@ -298,7 +298,7 @@
   }
 
   scannerTypesToScan = v21->_scannerTypesToScan;
-  v27 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+  v27 = [NSNumber numberWithInteger:a3];
   -[NSMutableDictionary setObject:forKey:](scannerTypesToScan, "setObject:forKey:", v24, v27);
 
   v28 = (os_log_s *)qword_1008F7710;
@@ -327,10 +327,10 @@
   }
 
   scannerTypesToScan = v4->_scannerTypesToScan;
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3));
+  id v7 = [NSNumber numberWithInteger:a3];
   -[NSMutableDictionary removeObjectForKey:](scannerTypesToScan, "removeObjectForKey:", v7);
 
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](v4->_scannerTypesToScan, "allKeys"));
+  id v8 = -[NSMutableDictionary allKeys](v4->_scannerTypesToScan, "allKeys");
   BOOL v9 = [v8 count] == 0;
 
   btvcBonjourService = v4->_btvcBonjourService;

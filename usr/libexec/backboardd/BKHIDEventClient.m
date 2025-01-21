@@ -26,14 +26,14 @@
 
 - (BKHIDEventClient)init
 {
-  v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"use initWithPid:..."));
+  v4 = [NSString stringWithFormat:@"use initWithPid:..."];
   if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
   {
     v5 = NSStringFromSelector(a2);
     v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
-    v8 = (objc_class *)objc_opt_class(self, v7);
+    v8 = [self class];
     v9 = NSStringFromClass(v8);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
+    v10 = [v9 autorelease];
     int v12 = 138544642;
     v13 = v6;
     __int16 v14 = 2114;
@@ -56,7 +56,7 @@
 
 - (BKHIDEventClient)initWithPid:(int)a3 sendRight:(id)a4
 {
-  return -[BKHIDEventClient initWithPid:sendRight:queue:](self, "initWithPid:sendRight:queue:", *(void *)&a3, a4, 0LL);
+  return [BKHIDEventClient initWithPid:a3 sendRight:a4 queue:nil];
 }
 
 - (BKHIDEventClient)initWithPid:(int)a3 sendRight:(id)a4 queue:(id)a5
@@ -65,8 +65,8 @@
   id v8 = a5;
   id v9 = a4;
   uint64_t v10 = BSProcessDescriptionForPID(v6);
-  v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
-  int v12 = -[BKHIDEventClient initWithPid:sendRight:queue:processName:]( self,  "initWithPid:sendRight:queue:processName:",  v6,  v9,  v8,  v11);
+  v11 = [v10 autorelease];
+  int v12 = [self initWithPid:v6 sendRight:v9 queue:v8 processName:v11];
 
   return v12;
 }
@@ -77,25 +77,25 @@
   id v12 = a5;
   id v13 = a6;
   v40.receiver = self;
-  v40.super_class = (Class)&OBJC_CLASS___BKHIDEventClient;
-  __int16 v14 = -[BKHIDEventClient init](&v40, "init");
+  v40.super_class = [BKHIDEventClient class];
+  __int16 v14 = [BKHIDEventClient init];
   v15 = v14;
   if (v14)
   {
-    objc_storeStrong((id *)&v14->_queue, a5);
+    v14->_queue = a5;
     if (!v15->_queue)
     {
-      v17 = (objc_class *)objc_opt_class(v15, v16);
+      v17 = [v15 class];
       __int16 v18 = NSStringFromClass(v17);
-      v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
-      __int16 v20 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"<%@: (pid: %d) %p>",  v19,  v15->_queue_pid,  v15));
+      v19 = [v18 autorelease];
+      NSString *v20 = [NSString stringWithFormat:@"<%@: (pid: %d) %p>", v19, v15->_queue_pid, v15];
       uint64_t Serial = BSDispatchQueueCreateSerial(v20);
       queue = v15->_queue;
       v15->_queue = (OS_dispatch_queue *)Serial;
     }
 
     v15->_uint64_t queue_pid = a3;
-    objc_storeStrong((id *)&v15->_queue_sendRight, a4);
+    [v15 setQueueSendRight:a4];
     if (a3 >= 1)
     {
       v23 = (NSString *)[v13 copy];
@@ -105,7 +105,7 @@
 
     if (-[BKHIDEventClient _deathByPid](v15, "_deathByPid"))
     {
-      v25 = objc_alloc(&OBJC_CLASS___BSProcessDeathWatcher);
+      BSProcessDeathWatcher *v25 = [[BSProcessDeathWatcher alloc] init];
       uint64_t queue_pid = v15->_queue_pid;
       v27 = v15->_queue;
       v38[0] = _NSConcreteStackBlock;
@@ -115,7 +115,7 @@
       v28 = (id *)&v39;
       v29 = v15;
       v39 = v29;
-      v30 = -[BSProcessDeathWatcher initWithPID:queue:deathHandler:]( v25,  "initWithPID:queue:deathHandler:",  queue_pid,  v27,  v38);
+      BSProcessDeathWatcher *v30 = [[BSProcessDeathWatcher alloc] initWithPID:queue_pid queue:v27 deathHandler:v38];
       queue_pidWatcher = v29->_queue_pidWatcher;
       v29->_queue_pidWatcher = v30;
 
@@ -125,11 +125,11 @@ LABEL_10:
 
     if (-[BKHIDEventClient _deathBySendRight](v15, "_deathBySendRight"))
     {
-      v32 = -[BSPortDeathSentinel initWithSendRight:]( objc_alloc(&OBJC_CLASS___BSPortDeathSentinel),  "initWithSendRight:",  v15->_queue_sendRight);
+      BSPortDeathSentinel *v32 = [[BSPortDeathSentinel alloc] initWithSendRight:v15->_queue_sendRight];
       queue_portSentinel = v15->_queue_portSentinel;
       v15->_queue_portSentinel = v32;
 
-      -[BSPortDeathSentinel setQueue:](v15->_queue_portSentinel, "setQueue:", v15->_queue);
+      [v15->_queue_portSentinel setQueue:v15->_queue];
       v34 = v15->_queue_portSentinel;
       v36[0] = _NSConcreteStackBlock;
       v36[1] = 3221225472LL;
@@ -137,7 +137,7 @@ LABEL_10:
       v36[3] = &unk_1000B8058;
       v28 = (id *)&v37;
       v37 = v15;
-      -[BSPortDeathSentinel activateWithHandler:](v34, "activateWithHandler:", v36);
+      [v34 activateWithHandler:v36];
       goto LABEL_10;
     }
   }
@@ -146,14 +146,14 @@ LABEL_10:
 {
   if (!self->_queue_invalidated)
   {
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"Invalid condition not satisfying: %@",  @"_queue_invalidated"));
+    uint64_t v7 = [NSString stringWithFormat:@"Invalid condition not satisfying: %@", @"_queue_invalidated"];
     if (os_log_type_enabled((os_log_t)&_os_log_default, OS_LOG_TYPE_ERROR))
     {
       id v8 = NSStringFromSelector(a2);
-      id v9 = (void *)objc_claimAutoreleasedReturnValue(v8);
-      id v11 = (objc_class *)objc_opt_class(self, v10);
+      id v9 = [v8 autorelease];
+      v11 = [self class];
       id v12 = NSStringFromClass(v11);
-      id v13 = (void *)objc_claimAutoreleasedReturnValue(v12);
+      v13 = [v12 autorelease];
       *(_DWORD *)buf = 138544642;
       *(void *)&buf[4] = v9;
       *(_WORD *)&buf[12] = 2114;
@@ -214,8 +214,8 @@ LABEL_10:
   _Block_object_dispose(buf, 8);
 
   v14.receiver = self;
-  v14.super_class = (Class)&OBJC_CLASS___BKHIDEventClient;
-  -[BKHIDEventClient dealloc](&v14, "dealloc");
+  v14.super_class = [BKHIDEventClient class];
+  [v14 dealloc];
 }
 
 - (void)setDelegate:(id)a3
@@ -267,33 +267,33 @@ LABEL_10:
 
 - (NSString)description
 {
-  return (NSString *)-[BKHIDEventClient descriptionWithMultilinePrefix:](self, "descriptionWithMultilinePrefix:", 0LL);
+  return [self descriptionWithMultilinePrefix:0LL];
 }
 
 - (id)succinctDescription
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BKHIDEventClient succinctDescriptionBuilder](self, "succinctDescriptionBuilder"));
-  id v3 = (void *)objc_claimAutoreleasedReturnValue([v2 build]);
+  v2 = [BKHIDEventClient succinctDescriptionBuilder];
+  [v2 build];
 
   return v3;
 }
 
 - (id)succinctDescriptionBuilder
 {
-  return +[BSDescriptionBuilder builderWithObject:](&OBJC_CLASS___BSDescriptionBuilder, "builderWithObject:", self);
+  BSDescriptionBuilder *returnValue = [BSDescriptionBuilder builderWithObject:self];
 }
 
 - (id)descriptionWithMultilinePrefix:(id)a3
 {
-  id v3 = (void *)objc_claimAutoreleasedReturnValue( -[BKHIDEventClient descriptionBuilderWithMultilinePrefix:]( self,  "descriptionBuilderWithMultilinePrefix:",  a3));
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  id v3 = [self descriptionBuilderWithMultilinePrefix:a3];
+  id v4 = [v3 build];
 
   return v4;
 }
 
 - (id)descriptionBuilderWithMultilinePrefix:(id)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKHIDEventClient succinctDescriptionBuilder](self, "succinctDescriptionBuilder", a3));
+  id v4 = [self succinctDescriptionBuilder];
   v5 = v4;
   queue_procName = self->_queue_procName;
   if (queue_procName) {
@@ -309,7 +309,7 @@ LABEL_10:
   v12[3] = &unk_1000B57A0;
   id v10 = v5;
   id v13 = v10;
-  -[BSMachPortSendRight accessPort:](queue_sendRight, "accessPort:", v12);
+  [queue_sendRight accessPort:v12];
 
   return v10;
 }
@@ -332,11 +332,11 @@ LABEL_10:
     queue_delegate = self->_queue_delegate;
     self->_queue_delegate = 0LL;
 
-    -[BSProcessDeathWatcher invalidate](self->_queue_pidWatcher, "invalidate");
+    [self->_queue_pidWatcher invalidate];
     queue_pidWatcher = self->_queue_pidWatcher;
     self->_queue_pidWatcher = 0LL;
 
-    -[BSPortDeathSentinel invalidate](self->_queue_portSentinel, "invalidate");
+    [self->_queue_portSentinel invalidate];
     queue_portSentinel = self->_queue_portSentinel;
     self->_queue_portSentinel = 0LL;
   }
@@ -345,7 +345,7 @@ LABEL_10:
 {
   id v4 = a3;
   dispatch_queue_global_t global_queue = dispatch_get_global_queue(21LL, 0LL);
-  uint64_t v6 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(global_queue);
+  uint64_t v6 = [global_queue autorelease];
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;
   v8[2] = sub_100009E1C;

@@ -16,16 +16,16 @@
 + (id)statisticWithLabel:(id)a3 scale:(int64_t)a4
 {
   v8.receiver = a1;
-  v8.super_class = (Class)&OBJC_METACLASS___BKAverageTimeIntervalEventStatistic;
-  id v5 = objc_msgSendSuper2(&v8, "statisticWithLabel:", a3);
-  v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
+  v8.super_class = [BKAverageTimeIntervalEventStatistic class];
+  id v5 = [super statisticWithLabel:a3];
+  v6 = [v5 autorelease];
   v6[4] = a4;
   return v6;
 }
 
 - (unint64_t)hash
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", self->_value));
+  v2 = [NSNumber numberWithDouble:self->_value];
   id v3 = [v2 hash];
 
   return (unint64_t)v3;
@@ -34,7 +34,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKAverageTimeIntervalEventStatistic, v5);
+  BKAverageTimeIntervalEventStatistic *v6 = [BKAverageTimeIntervalEventStatistic class];
   id v7 = v4;
   objc_super v8 = v7;
   if (v6)
@@ -92,20 +92,20 @@
 
     double v9 = value * v8;
     id v10 = a3;
-    double v11 = (void *)objc_claimAutoreleasedReturnValue(-[BKEventStatistic label](self, "label"));
-    double v12 = (void *)objc_claimAutoreleasedReturnValue([v11 stringByAppendingString:v7]);
+    double v11 = [self label];
+    double v12 = [v11 stringByAppendingString:v7];
     id v13 = [v10 appendDouble:v12 withName:2 decimalPrecision:v9];
 
     v14.receiver = self;
-    v14.super_class = (Class)&OBJC_CLASS___BKAverageTimeIntervalEventStatistic;
-    -[BKEventStatistic appendDescriptionToFormatter:](&v14, "appendDescriptionToFormatter:", v10);
+    v14.super_class = [BKAverageTimeIntervalEventStatistic class];
+    [v14 appendDescriptionToFormatter:v10];
   }
 
 - (void)reset
 {
   v3.receiver = self;
-  v3.super_class = (Class)&OBJC_CLASS___BKAverageTimeIntervalEventStatistic;
-  -[BKEventStatistic reset](&v3, "reset");
+  v3.super_class = [BKAverageTimeIntervalEventStatistic class];
+  [v3 reset];
   self->_double value = 0.0;
   self->_cumulativeInterval = 0.0;
   self->_count = 0LL;
@@ -116,7 +116,7 @@
   if (self->_value != a3)
   {
     self->_double value = a3;
-    -[BKEventStatistic setNeedsLogging:](self, "setNeedsLogging:", 1LL);
+    [self setNeedsLogging:YES];
   }
 
 - (void)begin
@@ -131,15 +131,15 @@
   int64_t v5 = self->_count + 1;
   self->_count = v5;
   self->_double value = v4 / (double)v5;
-  -[BKEventStatistic setNeedsLogging:](self, "setNeedsLogging:", 1LL);
+  [self setNeedsLogging:YES];
 }
 
 - (id)copyWithZone:(_NSZone *)a3
 {
   v5.receiver = self;
-  v5.super_class = (Class)&OBJC_CLASS___BKAverageTimeIntervalEventStatistic;
-  id result = -[BKEventStatistic copyWithZone:](&v5, "copyWithZone:", a3);
-  *((void *)result + 8) = *(void *)&self->_value;
+  [v5 setSuperclass:[BKAverageTimeIntervalEventStatistic class]];
+  id result = [v5 copyWithZone:a3];
+  *((void *)result + 8) = self->_value;
   return result;
 }
 

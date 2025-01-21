@@ -90,10 +90,10 @@
   -[ConnectOptions setEnableTransportBridging:](v12, "setEnableTransportBridging:", v7);
   -[ConnectOptions setDisableLeGATT:](v12, "setDisableLeGATT:", 0LL);
   -[ConnectOptions setCtkdChosenTransport:](v12, "setCtkdChosenTransport:", 0LL);
-  v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSData data](&OBJC_CLASS___NSData, "data"));
+  v13 = [NSData data];
   -[ConnectOptions setTemporaryLTK:](v12, "setTemporaryLTK:", v13);
 
-  v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSArray array](&OBJC_CLASS___NSArray, "array"));
+  v14 = [NSArray array];
   -[ConnectOptions setConnectingClients:](v12, "setConnectingClients:", v14);
 
   -[ConnectOptions setOpportunistic:](v12, "setOpportunistic:", 0LL);
@@ -107,7 +107,7 @@
   v4 = -[ConnectOptions init]( +[ConnectOptions allocWithZone:](&OBJC_CLASS___ConnectOptions, "allocWithZone:", a3),  "init");
   -[ConnectOptions setPHYOptions:](v4, "setPHYOptions:", -[ConnectOptions PHYOptions](self, "PHYOptions"));
   -[ConnectOptions setAncsRequired:](v4, "setAncsRequired:", -[ConnectOptions ancsRequired](self, "ancsRequired"));
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectOptions clientBundleID](self, "clientBundleID"));
+  v5 = [self clientBundleID];
   -[ConnectOptions setClientBundleID:](v4, "setClientBundleID:", v5);
 
   -[ConnectOptions setConnectionAlerts:]( v4,  "setConnectionAlerts:",  -[ConnectOptions connectionAlerts](self, "connectionAlerts"));
@@ -120,7 +120,7 @@
   -[ConnectOptions setHideFromBTSettings:]( v4,  "setHideFromBTSettings:",  -[ConnectOptions hideFromBTSettings](self, "hideFromBTSettings"));
   -[ConnectOptions setInitPHYs:](v4, "setInitPHYs:", -[ConnectOptions initPHYs](self, "initPHYs"));
   -[ConnectOptions setEnableControllerBTClockUpdates:]( v4,  "setEnableControllerBTClockUpdates:",  -[ConnectOptions enableControllerBTClockUpdates](self, "enableControllerBTClockUpdates"));
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectOptions clientProcessID](self, "clientProcessID"));
+  v6 = [self clientProcessID];
   -[ConnectOptions setClientProcessID:](v4, "setClientProcessID:", v6);
 
   -[ConnectOptions setConnectionUseCase:]( v4,  "setConnectionUseCase:",  -[ConnectOptions connectionUseCase](self, "connectionUseCase"));
@@ -130,14 +130,14 @@
   -[ConnectOptions setEnableScanCore:]( v4,  "setEnableScanCore:",  -[ConnectOptions enableScanCore](self, "enableScanCore"));
   -[ConnectOptions setIsLatencyCritical:]( v4,  "setIsLatencyCritical:",  -[ConnectOptions isLatencyCritical](self, "isLatencyCritical"));
   -[ConnectOptions setCtkdChosenTransport:]( v4,  "setCtkdChosenTransport:",  -[ConnectOptions ctkdChosenTransport](self, "ctkdChosenTransport"));
-  BOOL v7 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectOptions temporaryLTK](self, "temporaryLTK"));
+  BOOL v7 = [self temporaryLTK];
   -[ConnectOptions setTemporaryLTK:](v4, "setTemporaryLTK:", v7);
 
-  v8 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectOptions connectingClients](self, "connectingClients"));
+  v8 = -[ConnectOptions connectingClients];
   -[ConnectOptions setConnectingClients:](v4, "setConnectingClients:", v8);
 
   -[ConnectOptions setOpportunistic:](v4, "setOpportunistic:", -[ConnectOptions opportunistic](self, "opportunistic"));
-  BOOL v9 = (void *)objc_claimAutoreleasedReturnValue(-[ConnectOptions useCaseList](self, "useCaseList"));
+  BOOL v9 = -[ConnectOptions useCaseList];
   -[ConnectOptions setUseCaseList:](v4, "setUseCaseList:", v9);
 
   -[ConnectOptions setRequiresLowLatency:]( v4,  "setRequiresLowLatency:",  -[ConnectOptions requiresLowLatency](self, "requiresLowLatency"));
@@ -213,7 +213,7 @@
     v24 = +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"(connect:%d disconnect:%d notify:%d delay:%ld wantsObjectDiscoverData:%d transportBridging:%d disableLeGATT:%d ancsRequired:%d)",  connectionAlerts,  disconnectionAlerts,  notificationAlerts,  delay,  wantsObjectDiscoveryData,  enableTransportBridging,  self->_disableLeGATT,  ancsRequired,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36);
   }
 
-  return (id)objc_claimAutoreleasedReturnValue(v24);
+  return v24;
 }
 
 - (BOOL)connectionAlerts

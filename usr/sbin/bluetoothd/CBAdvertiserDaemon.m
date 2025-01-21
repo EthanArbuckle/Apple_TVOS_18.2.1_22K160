@@ -154,7 +154,7 @@
     id v56 = v7;
     v9 = fidoPayloadData;
     uint64_t v10 = CUPrintNSDataHex(v9, 100LL, 1LL);
-    uint64_t v11 = objc_claimAutoreleasedReturnValue(v10);
+    uint64_t v11 = [v10 autorelease];
     v12 = (void *)v11;
     int fidoAdvertiseRate = self->_fidoAdvertiseRate;
     if (fidoAdvertiseRate <= 39)
@@ -349,7 +349,7 @@ LABEL_22:
 
     if (!self->_wiproxObservering)
     {
-      v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+      v9 = [NSNotificationCenter defaultCenter];
       [v9 addObserver:self selector:"_wiproxChanged:" name:@"WPDaemonServerStateChanged" object:0];
       self->_wiproxObservering = 1;
     }
@@ -374,12 +374,12 @@ LABEL_22:
 {
   if (self->_wiproxObservering)
   {
-    v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v3 = [NSNotificationCenter defaultCenter];
     [v3 removeObserver:self name:@"WPDaemonServerStateChanged" object:0];
     self->_wiproxObservering = 0;
   }
 
-  id v11 = (id)objc_claimAutoreleasedReturnValue([(id)qword_1008F1F50 advertisingManager]);
+  id v11 = [qword_1008F1F50 advertisingManager];
   -[CBStackBLEAdvertiser invalidate](self->_fidoStackAdvertiser, "invalidate");
   fidoStackAdvertiser = self->_fidoStackAdvertiser;
   self->_fidoStackAdvertiser = 0LL;
@@ -581,7 +581,7 @@ LABEL_33:
   id v18 = [v16 length];
   id v19 = v13;
   id v20 = v13;
-  CryptoHKDF(v15, v17, v18, [v20 bytes], objc_msgSend(v20, "length"), a7, a8, 32, v35);
+  CryptoHKDF(v15, v17, v18, [v20 bytes], [v20 length], a7, a8, 32, v35);
   __int16 v34 = 0;
   uint64_t v21 = __memcpy_chk(&v34, a3, a4, 2LL);
   uint64_t v22 = ccaes_ecb_encrypt_mode(v21);
@@ -813,7 +813,7 @@ LABEL_58:
   id var2 = a4->var2;
   id v10 = v22;
   uint64_t v11 = CUPrintNSDataHex(v8, 100LL, 1LL);
-  uint64_t v12 = objc_claimAutoreleasedReturnValue(v11);
+  uint64_t v12 = [v11 claimAutoreleasedReturnValue];
   id v13 = (void *)v12;
   int var5 = a4->var5;
   if (var5 <= 39)
@@ -916,7 +916,7 @@ LABEL_16:
   id v7 = a3->var6;
   if (v7)
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue([(id)qword_1008F1F50 advertisingManager]);
+    id v8 = [qword_1008F1F50 advertisingManager];
     if (v8) {
       BOOL v9 = v11 == 0LL;
     }
@@ -953,7 +953,7 @@ LABEL_16:
         id v7 = a3->var11;
         if (!v7)
         {
-          id v7 = (id)objc_claimAutoreleasedReturnValue(+[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
+          id v7 = [NSUUID UUID];
           objc_storeStrong(&a3->var11, v7);
         }
 
@@ -1179,7 +1179,7 @@ LABEL_11:
     uint64_t v18 = CUPrintNSDataHex(a3->var10, 100LL, 1LL);
     uint64_t v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
     uint64_t v20 = CUPrintNSDataHex(v26, 100LL, 1LL);
-    uint64_t v21 = objc_claimAutoreleasedReturnValue(v20);
+    uint64_t v21 = [v20 autorelease];
     uint64_t v22 = (void *)v21;
     int var5 = a3->var5;
     if (var5 > 39)
@@ -1358,9 +1358,9 @@ LABEL_66:
         if (v11)
         {
           char v17 = v11;
-          id v14 = (void *)objc_claimAutoreleasedReturnValue([v10 airplaySourceUWBConfigData]);
+          id v14 = [v10 airplaySourceUWBConfigData];
           id v15 = [v10 advertiseRate];
-          unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue([v10 airplaySourceAuthTagData]);
+          unsigned int v13 = (void *)[v10 airplaySourceAuthTagData];
 
           id v16 = objc_alloc_init(&OBJC_CLASS___NSMutableData);
           if ([v13 length] == (id)3) {
@@ -1427,7 +1427,7 @@ LABEL_19:
           objc_enumerationMutation(v5);
         }
         id v10 = *(void **)(*((void *)&v21 + 1) + 8LL * (void)i);
-        unsigned int v11 = objc_msgSend(v10, "airplayTargetFlags", (void)v21);
+        unsigned int v11 = [v10 airplayTargetFlags];
         if (v11)
         {
           unsigned __int8 v15 = v11;
@@ -1759,7 +1759,7 @@ LABEL_58:
           objc_enumerationMutation(v3);
         }
         uint64_t v7 = *(void **)(*((void *)&v25 + 1) + 8LL * (void)i);
-        uint64_t v8 = objc_claimAutoreleasedReturnValue([v7 fidoPayloadData]);
+        uint64_t v8 = [v7 fidoPayloadData];
         if (v8)
         {
           id v9 = (void *)v8;
@@ -1808,7 +1808,7 @@ LABEL_21:
     uint64_t v17 = CUPrintNSDataHex(self->_fidoPayloadData, 100LL, 1LL);
     id v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
     uint64_t v19 = CUPrintNSDataHex(v11, 100LL, 1LL);
-    uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+    uint64_t v20 = [v19 claimAutoreleasedReturnValue];
     __int128 v21 = (void *)v20;
     int fidoAdvertiseRate = self->_fidoAdvertiseRate;
     if (fidoAdvertiseRate > 39)
@@ -1981,7 +1981,7 @@ LABEL_76:
           objc_enumerationMutation(v5);
         }
         unsigned int v10 = *(void **)(*((void *)&v20 + 1) + 8LL * (void)i);
-        unsigned int v11 = objc_msgSend(v10, "heySiriDeviceClass", (void)v20);
+        unsigned int v11 = [v10 heySiriDeviceClass];
         if (v11)
         {
           __int16 v14 = v11;
@@ -2060,17 +2060,17 @@ LABEL_3:
     int v20 = (v18 >> 8) & 0xF;
     int v42 = v20;
     uint64_t v15 = (uint64_t)[v9 advertiseRate];
-    __int128 v21 = (void *)objc_claimAutoreleasedReturnValue([v9 nearbyActionAuthTagData]);
+    __int128 v21 = (void *)[v9 nearbyActionAuthTagData];
     if ([v21 length] == (id)3) {
       id v22 = v21;
     }
     else {
-      id v22 = (id)objc_claimAutoreleasedReturnValue(-[CBAdvertiserDaemon selfAuthTag](self, "selfAuthTag"));
+      id v22 = [CBAdvertiserDaemon selfAuthTag];
     }
     id v6 = v22;
-    uint64_t v29 = objc_claimAutoreleasedReturnValue([v9 nearbyActionTargetData]);
+    uint64_t v29 = [v9 nearbyActionTargetData];
     id v13 = v9;
-    uint64_t v30 = objc_claimAutoreleasedReturnValue([v13 watchSetupData]);
+    uint64_t v30 = [v13 watchSetupData];
 
     unsigned __int16 v16 = objc_alloc_init(&OBJC_CLASS___NSMutableData);
     char v37 = v19;
@@ -2104,7 +2104,7 @@ LABEL_18:
 LABEL_21:
         -[NSMutableData appendBytes:length:](v16, "appendBytes:length:", v26, 1LL);
 LABEL_22:
-        uint64_t v5 = (NSArray *)objc_claimAutoreleasedReturnValue([v13 nearbyActionExtraData]);
+        uint64_t v5 = [v13 nearbyActionExtraData];
         if (v5) {
           -[NSMutableData appendData:](v16, "appendData:", v5);
         }
@@ -2223,7 +2223,7 @@ LABEL_22:
           {
             unsigned __int8 v27 = [v20 nearbyActionV2Flags];
             uint64_t v24 = (uint64_t)[v20 advertiseRate];
-            uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue([v20 nearbyActionV2TargetData]);
+            uint64_t v23 = (void *)[v20 nearbyActionV2TargetData];
             char v22 = v27 & 0xFE;
 
             BOOL v26 = 1LL;
@@ -2419,20 +2419,20 @@ LABEL_11:
         }
 
         uint64_t v12 = v9;
-        unsigned __int8 v13 = (void *)objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2AuthTagData]);
+        unsigned __int8 v13 = (void *)[v11 nearbyInfoV2AuthTagData];
         id v14 = [v13 length];
 
         uint64_t v15 = (uint64_t)v41;
         if (!v41 && v14 == (id)3) {
-          uint64_t v15 = objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2AuthTagData]);
+          uint64_t v15 = [v11 nearbyInfoV2AuthTagData];
         }
         __int128 v41 = (void *)v15;
-        id v16 = (void *)objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2AuthIntegrityTagData]);
+        id v16 = [v11 nearbyInfoV2AuthIntegrityTagData];
         id v17 = [v16 length];
 
         uint64_t v9 = v12;
         if (!v12 && v17 == (id)3) {
-          uint64_t v9 = objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2AuthIntegrityTagData]);
+          uint64_t v9 = [v11 nearbyInfoV2AuthIntegrityTagData];
         }
         if (v39)
         {
@@ -2443,12 +2443,12 @@ LABEL_11:
 
         else
         {
-          double v18 = (void *)objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2RapportIRKData]);
+          double v18 = [v11 nearbyInfoV2RapportIRKData];
           id v19 = [v18 length];
 
           if (v19)
           {
-            __int128 v39 = (void *)objc_claimAutoreleasedReturnValue([v11 nearbyInfoV2RapportIRKData]);
+            __int128 v39 = (void *)[v11 nearbyInfoV2RapportIRKData];
             if (!v8) {
               goto LABEL_27;
             }
@@ -2591,7 +2591,7 @@ LABEL_55:
           char v31 = v4;
           __int128 v32 = a3;
           unsigned __int8 v16 = [v10 airdropFlags];
-          uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v10 airdropTempAuthTagData]);
+          uint64_t v12 = (void *)[v10 airdropTempAuthTagData];
           unsigned int v17 = [v10 airdropModel];
           unsigned __int16 v18 = (unsigned __int16)[v10 airdropHash1];
           unsigned __int16 v19 = (unsigned __int16)[v10 airdropHash2];
@@ -2763,7 +2763,7 @@ LABEL_50:
     uint64_t v7 = CUPrintNSObjectOneLine(v3);
     uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(v7);
     uint64_t v9 = CUPrintNSObjectOneLine(v4);
-    uint64_t v10 = objc_claimAutoreleasedReturnValue(v9);
+    uint64_t v10 = [v9 autorelease];
     unsigned int v11 = (void *)v10;
     int saAdvertiseRate = self->_saAdvertiseRate;
     if (saAdvertiseRate <= 39)
@@ -2859,10 +2859,10 @@ LABEL_40:
           objc_enumerationMutation(obj);
         }
         uint64_t v12 = *(void **)(*((void *)&v76 + 1) + 8LL * (void)v9);
-        uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue([v12 safetyAlertsAlertData]);
+        uint64_t v13 = (void *)[v12 safetyAlertsAlertData];
 
-        id v6 = (void *)objc_claimAutoreleasedReturnValue([v12 safetyAlertsAlertID]);
-        id v14 = (void *)objc_claimAutoreleasedReturnValue([v12 safetyAlertsSignature]);
+        id v6 = [v12 safetyAlertsAlertID];
+        id v14 = [v12 safetyAlertsSignature];
 
         unsigned int v15 = [v12 safetyAlertsVersion];
         unsigned int v16 = v15;
@@ -2910,7 +2910,7 @@ LABEL_40:
 {
   if (self->_spatialInteractionChanged)
   {
-    int v5 = (void *)objc_claimAutoreleasedReturnValue([(id)qword_1008F1F50 advertisingManager]);
+    int v5 = (void *)[qword_1008F1F50 advertisingManager];
     id v22 = v5;
     if (v5)
     {
@@ -2919,7 +2919,7 @@ LABEL_40:
         id v6 = self->_spatialInteractionWiProxUUID;
         if (!v6)
         {
-          id v6 = (NSUUID *)objc_claimAutoreleasedReturnValue(+[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
+          id v6 = [NSUUID UUID];
           objc_storeStrong((id *)&self->_spatialInteractionWiProxUUID, v6);
         }
 
@@ -3180,13 +3180,13 @@ LABEL_42:
           objc_enumerationMutation(v5);
         }
         id v10 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-        unsigned int v11 = objc_msgSend(v10, "nearbyActionNoWakeType", (void)v18);
+        unsigned int v11 = [v10 nearbyActionNoWakeType];
         LOBYTE(v22) = v11;
         if (v11)
         {
           unsigned __int8 v17 = [v10 nearbyActionNWPrecisionFindingStatus];
-          int v15 = (void *)objc_claimAutoreleasedReturnValue([v10 nearbyActionNoWakeAuthTagData]);
-          uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v10 nearbyActionNoWakeConfigData]);
+          int v15 = (void *)[v10 nearbyActionNoWakeAuthTagData];
+          uint64_t v14 = (void *)[v10 nearbyActionNoWakeConfigData];
           id v13 = [v10 advertiseRate];
           id v12 = [v10 enableEPAForLEAdvertisement];
 
@@ -3450,7 +3450,7 @@ LABEL_58:
         uint64_t v7 = *(void **)(*((void *)&v25 + 1) + 8LL * (void)i);
         if ([v7 nearbyActionType] != 5)
         {
-          uint64_t v8 = objc_claimAutoreleasedReturnValue([v7 watchSetupData]);
+          uint64_t v8 = [v7 watchSetupData];
           if (v8)
           {
             uint64_t v9 = (void *)v8;
@@ -3500,7 +3500,7 @@ LABEL_22:
     uint64_t v17 = CUPrintNSDataHex(self->_watchSetupPayloadData, 100LL, 1LL);
     __int128 v18 = (void *)objc_claimAutoreleasedReturnValue(v17);
     uint64_t v19 = CUPrintNSDataHex(v11, 100LL, 1LL);
-    uint64_t v20 = objc_claimAutoreleasedReturnValue(v19);
+    uint64_t v20 = [v19 autorelease];
     char v21 = (void *)v20;
     int watchSetupAdvertiseRate = self->_watchSetupAdvertiseRate;
     if (watchSetupAdvertiseRate > 39)

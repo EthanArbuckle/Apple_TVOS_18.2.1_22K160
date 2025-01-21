@@ -23,10 +23,10 @@
   v4 = -[BTAVRCP_VFSFolder initWithName:uid:](&v8, "initWithName:uid:", a3, a4);
   if (v4)
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(+[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter"));
+    v5 = [NSNotificationCenter defaultCenter];
     [v5 addObserver:v4 selector:"refreshActiveCategories" name:MPMediaLibraryDidChangeNotification object:0];
 
-    v6 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+    v6 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
     [v6 beginGeneratingLibraryChangeNotifications];
 
     -[BTAVRCP_MyMusicFolder refreshActiveCategories](v4, "refreshActiveCategories");
@@ -37,7 +37,7 @@
 
 - (void)dealloc
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+  v3 = [MPMediaLibrary defaultMediaLibrary];
   [v3 endGeneratingLibraryChangeNotifications];
 
   v4.receiver = self;
@@ -62,19 +62,19 @@
         }
         goto LABEL_13;
       case 2LL:
-        v6 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+        v6 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
         unsigned __int8 v7 = [v6 hasAlbums];
         goto LABEL_9;
       case 3LL:
-        v6 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+        v6 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
         unsigned __int8 v7 = [v6 hasSongs];
         goto LABEL_9;
       case 4LL:
-        v6 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+        v6 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
         unsigned __int8 v7 = [v6 hasGenres];
         goto LABEL_9;
       case 5LL:
-        v6 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+        v6 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
         unsigned __int8 v7 = [v6 hasComposers];
 LABEL_9:
         unsigned __int8 v8 = v7;
@@ -84,14 +84,14 @@ LABEL_9:
         }
         goto LABEL_12;
       case 6LL:
-        v9 = (void *)objc_claimAutoreleasedReturnValue(+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary"));
+        v9 = [+[MPMediaLibrary defaultMediaLibrary](&OBJC_CLASS___MPMediaLibrary, "defaultMediaLibrary") autorelease];
         unsigned __int8 v10 = [v9 hasCompilations];
 
         if ((v10 & 1) == 0) {
           goto LABEL_14;
         }
 LABEL_12:
-        v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v3));
+        v11 = [NSNumber numberWithUnsignedLongLong:v3];
         -[NSMutableArray addObject:](v12, "addObject:", v11);
 
 LABEL_13:
@@ -137,7 +137,7 @@ LABEL_14:
       v6 = @"COMPILATIONS";
       unsigned __int8 v7 = @"Compilations";
 LABEL_9:
-      unsigned __int8 v8 = (void *)objc_claimAutoreleasedReturnValue([v4 localizedStringForKey:v6 value:v7 table:0]);
+      unsigned __int8 v8 = (void *)[v4 localizedStringForKey:v6 value:v7 table:0];
       break;
     default:
       unsigned __int8 v8 = 0LL;
@@ -163,7 +163,7 @@ LABEL_9:
 
 - (unint64_t)childrenCount
 {
-  v2 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories"));
+  v2 = -[BTAVRCP_MyMusicFolder activeCategories];
   id v3 = [v2 count];
 
   return (unint64_t)v3;
@@ -171,8 +171,8 @@ LABEL_9:
 
 - (unsigned)createFolderWithUid:(unint64_t)a3 folder:(id *)a4
 {
-  unsigned __int8 v7 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories"));
-  unsigned __int8 v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a3));
+  unsigned __int8 v7 = (void *)[BTAVRCP_MyMusicFolder activeCategories];
+  unsigned __int8 v8 = [NSNumber numberWithUnsignedLongLong:a3];
   unsigned int v9 = [v7 containsObject:v8];
 
   if (!v9) {
@@ -182,7 +182,7 @@ LABEL_9:
   {
     case 1uLL:
       unsigned __int8 v10 = objc_alloc(&OBJC_CLASS___BTAVRCP_ArtistsFolder);
-      v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder folderNameForUid:](self, "folderNameForUid:", 1LL));
+      v11 = -[BTAVRCP_MyMusicFolder folderNameForUid:1LL];
       v12 = v10;
       v13 = v11;
       uint64_t v14 = 1LL;
@@ -196,7 +196,7 @@ LABEL_9:
       goto LABEL_9;
     case 3uLL:
       v17 = objc_alloc(&OBJC_CLASS___BTAVRCP_SongsFolder);
-      v11 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder folderNameForUid:](self, "folderNameForUid:", 3LL));
+      v11 = [self folderNameForUid:3LL];
       v12 = v17;
       v13 = v11;
       uint64_t v14 = 3LL;
@@ -219,11 +219,11 @@ LABEL_9:
       goto LABEL_10;
     case 6uLL:
       v20 = objc_alloc(&OBJC_CLASS___BTAVRCP_AlbumsFolder);
-      v21 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder folderNameForUid:](self, "folderNameForUid:", 6LL));
+      v21 = [self folderNameForUid:6LL];
       *a4 = -[BTAVRCP_AlbumsFolder initWithName:uid:](v20, "initWithName:uid:", v21, 6LL);
 
       id v22 = *a4;
-      v11 = (void *)objc_claimAutoreleasedReturnValue( +[MPMediaPropertyPredicate predicateWithValue:forProperty:]( &OBJC_CLASS___MPMediaPropertyPredicate,  "predicateWithValue:forProperty:",  &__kCFBooleanTrue,  MPMediaItemPropertyIsCompilation));
+      v11 = [MPMediaPropertyPredicate predicateWithValue:&__kCFBooleanTrue forProperty:MPMediaItemPropertyIsCompilation];
       [v22 storePredicate:v11];
 LABEL_10:
 
@@ -237,7 +237,7 @@ LABEL_10:
 
 - (id)replyItemAtIndex:(unint64_t)a3 attributeIDs:(id)a4
 {
-  v6 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories", a3, a4));
+  v6 = -[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories", a3, a4);
   id v7 = [v6 count];
 
   if ((unint64_t)v7 <= a3)
@@ -247,13 +247,13 @@ LABEL_10:
 
   else
   {
-    unsigned __int8 v8 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories"));
-    unsigned int v9 = (void *)objc_claimAutoreleasedReturnValue([v8 objectAtIndexedSubscript:a3]);
+    unsigned __int8 v8 = (void *)[BTAVRCP_MyMusicFolder activeCategories];
+    unsigned int v9 = (void *)[v8 objectAtIndexedSubscript:a3];
     id v10 = [v9 unsignedLongLongValue];
 
     uint64_t v11 = -[BTAVRCP_MyMusicFolder folderTypeForUid:](self, "folderTypeForUid:", v10);
-    v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", v10));
-    v13 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder folderNameForUid:](self, "folderNameForUid:", v10));
+    v12 = [NSNumber numberWithUnsignedLongLong:v10];
+    v13 = -[BTAVRCP_MyMusicFolder folderNameForUid:v10];
     uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue( -[BTAVRCP_VFSFolder replyFolderWithType:uid:name:]( self,  "replyFolderWithType:uid:name:",  v11,  v12,  v13));
   }
 
@@ -263,7 +263,7 @@ LABEL_10:
 - (id)replyAttributesForUid:(unint64_t)a3 attributeIDs:(id)a4
 {
   unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_MyMusicFolder activeCategories](self, "activeCategories", a3, a4));
-  v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithUnsignedLongLong:](&OBJC_CLASS___NSNumber, "numberWithUnsignedLongLong:", a3));
+  v6 = [NSNumber numberWithUnsignedLongLong:a3];
   unsigned int v7 = [v5 containsObject:v6];
 
   if (v7) {

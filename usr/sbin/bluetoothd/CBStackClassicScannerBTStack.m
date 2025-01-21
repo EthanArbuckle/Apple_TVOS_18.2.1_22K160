@@ -133,7 +133,7 @@ LABEL_55:
     v7 = (void *)qword_1008D9EB0;
   }
 
-  v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithLong:](&OBJC_CLASS___NSNumber, "numberWithLong:", v2));
+  v10 = [NSNumber numberWithLong:v2];
   [v7 setObject:v2 forKeyedSubscript:v10];
 
   os_unfair_lock_unlock((os_unfair_lock_t)&unk_1008D9EB8);
@@ -186,7 +186,7 @@ LABEL_13:
 
     os_unfair_lock_lock((os_unfair_lock_t)&unk_1008D9EB8);
     v3 = (void *)qword_1008D9EB0;
-    unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithLong:](&OBJC_CLASS___NSNumber, "numberWithLong:", self));
+    unsigned int v4 = [NSNumber numberWithLong:self];
     [v3 setObject:0 forKeyedSubscript:v4];
 
     os_unfair_lock_unlock((os_unfair_lock_t)&unk_1008D9EB8);
@@ -247,7 +247,7 @@ LABEL_13:
   if (!self->_invalidateCalled)
   {
     id v17 = v6;
-    v7 = (void *)objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    v7 = [v6 UUIDString];
     uint64_t v8 = (CBDevice *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceMap, "objectForKeyedSubscript:", v7));
     if (v8)
     {
@@ -319,8 +319,8 @@ LABEL_20:
 - (void)_deviceLost:(id)a3
 {
   id v8 = a3;
-  unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue([v8 UUIDString]);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary objectForKeyedSubscript:](self->_deviceMap, "objectForKeyedSubscript:", v4));
+  unsigned int v4 = (void *)[v8 UUIDString];
+  v5 = -[self->_deviceMap objectForKeyedSubscript:v4];
   if (v5)
   {
     -[NSMutableDictionary setObject:forKeyedSubscript:](self->_deviceMap, "setObject:forKeyedSubscript:", 0LL, v4);

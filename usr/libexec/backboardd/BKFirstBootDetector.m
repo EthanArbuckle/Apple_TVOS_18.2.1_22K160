@@ -22,22 +22,22 @@
   id v10 = a4;
   id v11 = a5;
   v28.receiver = self;
-  v28.super_class = (Class)&OBJC_CLASS___BKFirstBootDetector;
-  v12 = -[BKFirstBootDetector init](&v28, "init");
+  v28.super_class = [BKFirstBootDetector class];
+  BKFirstBootDetector *v12 = [[BKFirstBootDetector alloc] init];
   v13 = v12;
   if (v12)
   {
     v12->_lock._os_unfair_lock_opaque = 0;
-    objc_storeStrong((id *)&v12->_systemAppSentinel, a3);
+    [v12 setSystemAppSentinel:a3];
     objc_storeStrong((id *)&v13->_lock_firstBootToken, a4);
-    objc_storeStrong((id *)&v13->_alternateSystemAppManager, a5);
-    v14 = -[NSHashTable initWithOptions:capacity:]( objc_alloc(&OBJC_CLASS___NSHashTable),  "initWithOptions:capacity:",  517LL,  2LL);
+    v13->_alternateSystemAppManager = a5;
+    NSHashTable *v14 = [NSHashTable initWithOptions:517 capacity:2];
     queue_observers = v13->_queue_observers;
     v13->_queue_observers = v14;
 
-    v17 = (objc_class *)objc_opt_class(v13, v16);
+    v17 = [v13 class];
     v18 = NSStringFromClass(v17);
-    v19 = (void *)objc_claimAutoreleasedReturnValue(v18);
+    v19 = [v18 autorelease];
     uint64_t SerialWithQoS = BSDispatchQueueCreateSerialWithQoS(v19, 33LL);
     queue = v13->_queue;
     v13->_queue = (OS_dispatch_queue *)SerialWithQoS;
@@ -59,10 +59,10 @@
 
 - (NSString)description
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[BSDescriptionBuilder builderWithObject:]( &OBJC_CLASS___BSDescriptionBuilder,  "builderWithObject:",  self));
+  BSDescriptionBuilder *v3 = [BSDescriptionBuilder builderWithObject:self];
   id v4 = [v3 appendBool:self->_lock_isFirstBoot withName:@"isFirstBoot"];
   id v5 = [v3 appendObject:self->_lock_firstBootToken withName:@"firstBootToken"];
-  v6 = (void *)objc_claimAutoreleasedReturnValue([v3 build]);
+  v6 = [v3 build];
 
   return (NSString *)v6;
 }
@@ -119,7 +119,7 @@
 - (void)systemShellWillBootstrap
 {
   id v3 = sub_10003F0B0();
-  id v4 = (os_log_s *)objc_claimAutoreleasedReturnValue(v3);
+  id v4 = v3;
   if (os_log_type_enabled(v4, OS_LOG_TYPE_DEFAULT))
   {
     *(_WORD *)id v5 = 0;
@@ -127,7 +127,7 @@
   }
 
   os_unfair_lock_lock(&self->_lock);
-  -[BKFirstBootTokenProviding unsetToken](self->_lock_firstBootToken, "unsetToken");
+  [self->_lock_firstBootToken unsetToken];
   os_unfair_lock_unlock(&self->_lock);
 }
 
@@ -137,17 +137,17 @@
   BSDispatchQueueAssert(self->_queue, a2);
   if (-[BKFirstBootDetector isFirstBoot](self, "isFirstBoot"))
   {
-    id v5 = (void *)objc_claimAutoreleasedReturnValue(-[BKSystemShellSentinel primarySystemShell](self->_systemAppSentinel, "primarySystemShell"));
-    id v6 = (void *)objc_claimAutoreleasedReturnValue( -[BKAlternateSystemAppManager alternateSystemAppBundleIdentifier]( self->_alternateSystemAppManager,  "alternateSystemAppBundleIdentifier"));
+    id v5 = [self->_systemAppSentinel primarySystemShell];
+    id v6 = [self->_alternateSystemAppManager alternateSystemAppBundleIdentifier];
     if (v5)
     {
-      v7 = (void *)objc_claimAutoreleasedReturnValue([v5 bundleIdentifier]);
+      v7 = [v5 bundleIdentifier];
       unsigned __int8 v8 = [v7 isEqualToString:v6];
 
       if ((v8 & 1) == 0)
       {
         id v9 = sub_10003F0B0();
-        id v10 = (os_log_s *)objc_claimAutoreleasedReturnValue(v9);
+        os_log_s *v10 = [v9 autorelease];
         if (os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT))
         {
           *(_WORD *)buf = 0;
@@ -155,17 +155,17 @@
         }
 
         os_unfair_lock_lock(&self->_lock);
-        -[BKFirstBootTokenProviding unsetToken](self->_lock_firstBootToken, "unsetToken");
+        [self->_lock_firstBootToken unsetToken];
         self->_lock_isFirstBoot = 0;
         os_unfair_lock_unlock(&self->_lock);
         if (v3)
         {
-          id v11 = (void *)objc_claimAutoreleasedReturnValue(-[NSHashTable allObjects](self->_queue_observers, "allObjects"));
+          id v11 = [self->_queue_observers allObjects];
           __int128 v16 = 0u;
           __int128 v17 = 0u;
           __int128 v18 = 0u;
           __int128 v19 = 0u;
-          id v12 = [v11 countByEnumeratingWithState:&v16 objects:v21 count:16];
+          id v12 = [v11 countByEnumeratingWithState:v16 objects:v21 count:16];
           if (v12)
           {
             id v13 = v12;
@@ -178,12 +178,12 @@
                 if (*(void *)v17 != v14) {
                   objc_enumerationMutation(v11);
                 }
-                [*(id *)(*((void *)&v16 + 1) + 8 * (void)v15) firstBootDetectorDidFinishFirstBoot:self];
+                [v16 firstBootDetectorDidFinishFirstBoot:self];
                 v15 = (char *)v15 + 1;
               }
 
               while (v13 != v15);
-              id v13 = [v11 countByEnumeratingWithState:&v16 objects:v21 count:16];
+              id v13 = [v11 countByEnumeratingWithState:v16 objects:v21 count:16];
             }
 
             while (v13);

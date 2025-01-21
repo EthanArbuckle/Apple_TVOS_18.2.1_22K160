@@ -13,13 +13,13 @@
 - (BKDisplayRenderOverlayPersistenceCoordinator)init
 {
   v9.receiver = self;
-  v9.super_class = (Class)&OBJC_CLASS___BKDisplayRenderOverlayPersistenceCoordinator;
-  v2 = -[BKDisplayRenderOverlayPersistenceCoordinator init](&v9, "init");
+  v9.super_class = [BKDisplayRenderOverlayPersistenceCoordinator class];
+  BKDisplayRenderOverlayPersistenceCoordinator *v2 = [[BKDisplayRenderOverlayPersistenceCoordinator alloc] init];
   if (v2)
   {
     uint64_t v3 = BSSystemSharedDirectoryForCurrentProcess();
-    v4 = (void *)objc_claimAutoreleasedReturnValue(v3);
-    v5 = (void *)objc_claimAutoreleasedReturnValue([v4 stringByAppendingPathComponent:@"RenderOverlay"]);
+    v4 = v3;
+    v5 = [v4 stringByAppendingPathComponent:@"RenderOverlay"];
     v6 = (NSString *)[v5 copy];
     rootPersistencePath = v2->_rootPersistencePath;
     v2->_rootPersistencePath = v6;
@@ -30,17 +30,17 @@
 
 - (id)rebuildPersistentOverlays
 {
-  id v26 = (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+  id v26 = [NSMutableArray array];
+  uint64_t v3 = (void *)[NSFileManager defaultManager];
   v27 = self;
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 enumeratorAtPath:self->_rootPersistencePath]);
+  v4 = [v3 enumeratorAtPath:self->_rootPersistencePath];
 
   __int128 v32 = 0u;
   __int128 v33 = 0u;
   __int128 v30 = 0u;
   __int128 v31 = 0u;
   id obj = v4;
-  id v5 = [obj countByEnumeratingWithState:&v30 objects:v38 count:16];
+  id v5 = [obj countByEnumeratingWithState:v30 objects:v38 count:16];
   if (v5)
   {
     id v7 = v5;
@@ -54,30 +54,30 @@
         if (*(void *)v31 != v8) {
           objc_enumerationMutation(obj);
         }
-        v10 = *(void **)(*((void *)&v30 + 1) + 8LL * (void)i);
+        v10 = [v30 objectAtIndex:i];
         if (objc_msgSend(v10, "hasSuffix:", @"libitmap", v25))
         {
-          v11 = (void *)objc_claimAutoreleasedReturnValue( -[NSString stringByAppendingPathComponent:]( v27->_rootPersistencePath,  "stringByAppendingPathComponent:",  v10));
-          v12 = objc_alloc(&OBJC_CLASS___NSData);
+          v11 = [v27->_rootPersistencePath stringByAppendingPathComponent:v10];
+          NSData *v12 = [[NSData alloc] init];
           id v29 = 0LL;
-          v13 = -[NSData initWithContentsOfFile:options:error:]( v12,  "initWithContentsOfFile:options:error:",  v11,  8LL,  &v29);
+          v13 = [NSData initWithContentsOfFile:v11 options:8 error:&v29];
           id v14 = v29;
-          v15 = (void *)objc_claimAutoreleasedReturnValue( +[_BKDisplayRenderOverlayPersistenceData classesRequiredToDecode]( &OBJC_CLASS____BKDisplayRenderOverlayPersistenceData,  "classesRequiredToDecode"));
-          v16 = (void *)objc_claimAutoreleasedReturnValue( +[_BKDisplayRenderOverlayPersistenceData bs_secureDecodedFromData:withAdditionalClasses:]( &OBJC_CLASS____BKDisplayRenderOverlayPersistenceData,  "bs_secureDecodedFromData:withAdditionalClasses:",  v13,  v15));
+          v15 = [_BKDisplayRenderOverlayPersistenceData classesRequiredToDecode];
+          _BKDisplayRenderOverlayPersistenceData *v16 = [NSKeyedUnarchiver unarchiveObjectWithData:v13];
 
           unint64_t v17 = (unint64_t)[v16 overlayType];
           if (v17 <= 4)
           {
-            uint64_t v19 = objc_opt_class(*(&off_1000B6DF0)[v17], v18);
-            unint64_t v17 = objc_claimAutoreleasedReturnValue(v19);
+            uint64_t v19 = [*(*(off_1000B6DF0 + v17)) class];
+            unint64_t v17 = [v19 autorelease];
           }
 
-          id v20 = [objc_alloc((Class)(id)v17) _initWithPersistenceData:v16];
+          v20 = [[v17 alloc] initWithPersistenceData:v16];
           v21 = v20;
           if (v20)
           {
             uint64_t v22 = BKLogDisplay(v20);
-            v23 = (os_log_s *)objc_claimAutoreleasedReturnValue(v22);
+            v23 = [os_log logWithName:v22];
             if (os_log_type_enabled(v23, OS_LOG_TYPE_DEBUG))
             {
               *(_DWORD *)buf = v25;
@@ -108,25 +108,25 @@
   if (v4)
   {
     uint64_t v6 = BKLogDisplay(v4);
-    id v7 = (os_log_s *)objc_claimAutoreleasedReturnValue(v6);
+    os_log_s *v7 = [v6 autorelease];
     if (os_log_type_enabled(v7, OS_LOG_TYPE_DEBUG))
     {
-      v44 = (void *)objc_claimAutoreleasedReturnValue([v5 name]);
+      v44 = [v5 name];
       *(_DWORD *)buf = 138543362;
       uint64_t v52 = (uint64_t)v44;
       _os_log_debug_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEBUG,  "[BKDisplayRenderOverlayPersistenceCoordinator] Persisting overlay: %{public}@",  buf,  0xCu);
     }
 
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v5 _persistenceData]);
-    objc_super v9 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v8, "bs_secureEncoded"));
+    uint64_t v8 = (void *)[v5 _persistenceData];
+    objc_super v9 = [v8 bs_secureEncoded];
 
-    v10 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayRenderOverlayPersistenceCoordinator _fileNameForOverlay:]( self,  "_fileNameForOverlay:",  v5));
-    uint64_t v47 = objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlayPersistenceCoordinator _filePathForOverlay:](self, "_filePathForOverlay:", v5));
-    v11 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    v10 = [self _fileNameForOverlay:v5];
+    uint64_t v47 = [self _filePathForOverlay:v5];
+    v11 = [NSFileManager defaultManager];
     NSFileAttributeKey v59 = NSFilePosixPermissions;
     v60 = &off_1000C0528;
     unsigned int v12 = 1;
-    uint64_t v13 = objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v60,  &v59,  1LL));
+    uint64_t v13 = [NSDictionary dictionaryWithObjects:forKeys:count:&v60, &v59, 1LL];
     v46 = (void *)v13;
     if ([v11 fileExistsAtPath:self->_rootPersistencePath isDirectory:0])
     {
@@ -143,7 +143,7 @@
       if ((v12 & 1) == 0)
       {
         uint64_t v19 = BKLogCommon(v17);
-        id v20 = (os_log_s *)objc_claimAutoreleasedReturnValue(v19);
+        os_log_s *v20 = v19;
         if (os_log_type_enabled(v20, OS_LOG_TYPE_DEFAULT))
         {
           v21 = self->_rootPersistencePath;
@@ -155,7 +155,7 @@
         }
       }
 
-      uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSURL fileURLWithPath:isDirectory:]( &OBJC_CLASS___NSURL,  "fileURLWithPath:isDirectory:",  self->_rootPersistencePath,  1LL));
+      NSURL *v22 = [NSURL fileURLWithPath:self->_rootPersistencePath isDirectory:1];
       id v49 = 0LL;
       unsigned __int8 v23 = [v22 setResourceValue:&__kCFBooleanTrue forKey:NSURLIsExcludedFromBackupKey error:&v49];
       id v24 = v49;
@@ -163,7 +163,7 @@
       if ((v23 & 1) == 0)
       {
         uint64_t v25 = BKLogCommon(v24);
-        id v26 = (os_log_s *)objc_claimAutoreleasedReturnValue(v25);
+        os_log_s *v26 = v25;
         if (os_log_type_enabled(v26, OS_LOG_TYPE_DEFAULT))
         {
           v27 = self->_rootPersistencePath;
@@ -178,14 +178,14 @@
 
     NSFileAttributeKey v57 = NSFilePosixPermissions;
     v58 = &off_1000C0540;
-    v28 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v58,  &v57,  1LL));
+    v28 = [NSDictionary dictionaryWithObjects:forKeys:count:v58, v57, 1LL];
     id v29 = NSTemporaryDirectory();
-    __int128 v30 = (__CFString *)objc_claimAutoreleasedReturnValue(v29);
+    __int128 v30 = (__CFString *)v29;
     __int128 v31 = v30;
     if (!v30) {
       __int128 v30 = @"/tmp";
     }
-    __int128 v32 = (void *)objc_claimAutoreleasedReturnValue(-[__CFString stringByAppendingPathComponent:](v30, "stringByAppendingPathComponent:", v10));
+    __int128 v32 = (void *)[v30 stringByAppendingPathComponent:v10];
 
     if (!v12)
     {
@@ -207,7 +207,7 @@ LABEL_33:
       if (v15)
       {
         uint64_t v36 = BKLogDisplay(v35);
-        v37 = (os_log_s *)objc_claimAutoreleasedReturnValue(v36);
+        v37 = [os_log_s class];
         if (os_log_type_enabled(v37, OS_LOG_TYPE_DEBUG))
         {
           *(_DWORD *)buf = 138543362;
@@ -220,7 +220,7 @@ LABEL_33:
       }
 
       uint64_t v42 = BKLogCommon(v35);
-      v37 = (os_log_s *)objc_claimAutoreleasedReturnValue(v42);
+      v37 = [os_log logWithName:v42];
       if (!os_log_type_enabled(v37, OS_LOG_TYPE_DEFAULT))
       {
 LABEL_31:
@@ -244,7 +244,7 @@ LABEL_31:
     else
     {
       uint64_t v38 = BKLogCommon(v33);
-      v37 = (os_log_s *)objc_claimAutoreleasedReturnValue(v38);
+      v37 = [os_log logWithCategory:v38];
       if (!os_log_type_enabled(v37, OS_LOG_TYPE_DEFAULT))
       {
 LABEL_30:
@@ -273,10 +273,10 @@ LABEL_34:
 
 - (BOOL)destroyOverlay:(id)a3
 {
-  uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlayPersistenceCoordinator _filePathForOverlay:](self, "_filePathForOverlay:", a3));
+  uint64_t v3 = (void *)[self _filePathForOverlay:a3];
   if (v3)
   {
-    id v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"));
+    id v4 = [NSFileManager defaultManager];
     unsigned __int8 v5 = [v4 removeItemAtPath:v3 error:0];
   }
 
@@ -290,10 +290,10 @@ LABEL_34:
 
 - (id)_filePathForOverlay:(id)a3
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[BKDisplayRenderOverlayPersistenceCoordinator _fileNameForOverlay:](self, "_fileNameForOverlay:", a3));
+  id v4 = [self _fileNameForOverlay:a3];
   rootPersistencePath = self->_rootPersistencePath;
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v4 stringByAppendingPathExtension:@"libitmap"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue(-[NSString stringByAppendingPathComponent:](rootPersistencePath, "stringByAppendingPathComponent:", v6));
+  uint64_t v6 = (void *)[v4 stringByAppendingPathExtension:@"libitmap"];
+  id v7 = [rootPersistencePath stringByAppendingPathComponent:v6];
 
   return v7;
 }
@@ -301,8 +301,8 @@ LABEL_34:
 - (id)_fileNameForOverlay:(id)a3
 {
   id v3 = a3;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([v3 descriptor]);
-  uint64_t v5 = objc_claimAutoreleasedReturnValue([v4 displayUUID]);
+  id v4 = [v3 descriptor];
+  uint64_t v5 = [v4 displayUUID];
   uint64_t v6 = (void *)v5;
   if (v5) {
     id v7 = (const __CFString *)v5;
@@ -310,9 +310,9 @@ LABEL_34:
   else {
     id v7 = @"main";
   }
-  uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v3 name]);
+  uint64_t v8 = (void *)[v3 name];
 
-  objc_super v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"%@|%@", v7, v8));
+  NSString *v9 = [NSString stringWithFormat:@"%@|%@", v7, v8];
   return v9;
 }
 

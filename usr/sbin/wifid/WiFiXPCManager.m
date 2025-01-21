@@ -664,7 +664,7 @@ LABEL_33:
         {
           int v18 = v17;
           [v17 setSessionBased:v16];
-          objc_msgSend(v12, "addObject:", objc_msgSend(v18, "filteredNetworkProfileWithProperties:", v6));
+          [v12 addObject:[v18 filteredNetworkProfileWithProperties:v6]];
         }
 
         ++v13;
@@ -839,7 +839,7 @@ LABEL_17:
   {
     BOOL v16 = ether_aton((const char *)objc_msgSend(objc_msgSend(v10, "peerMACAddress"), "UTF8String"));
     if (v16) {
-      objc_msgSend( v15,  "setObject:forKeyedSubscript:",  +[NSData dataWithBytes:length:](NSData, "dataWithBytes:length:", v16, 6),  @"AWDL_IF_MAC_ADDRESS");
+      [v15 setObject:+[NSData dataWithBytes:length:](NSData, "dataWithBytes:length:", v16, 6) forKeyedSubscript:@"AWDL_IF_MAC_ADDRESS"];
     }
   }
 
@@ -852,7 +852,7 @@ LABEL_17:
   if ([v10 peerSecondaryPreferredChannel])
   {
     unsigned __int16 v25 = (unsigned __int16)[v10 peerSecondaryPreferredChannel];
-    objc_msgSend( v15,  "setObject:forKeyedSubscript:",  +[NSData dataWithBytes:length:](NSData, "dataWithBytes:length:", &v25, 2),  @"AWDL_INFO_EXT");
+    [v15 setObject:[NSData dataWithBytes:&v25 length:2] forKeyedSubscript:@"AWDL_INFO_EXT"];
   }
 
   if ([v10 peerAssistedDiscoveryMetric]) {
@@ -871,7 +871,7 @@ LABEL_17:
   if ([v10 localSecondaryPreferredChannel])
   {
     unsigned __int16 v25 = (unsigned __int16)[v10 localSecondaryPreferredChannel];
-    objc_msgSend( v17,  "setObject:forKeyedSubscript:",  +[NSData dataWithBytes:length:](NSData, "dataWithBytes:length:", &v25, 2),  @"AWDL_INFO_EXT");
+    [v17 setObject:+[NSData dataWithBytes:length:](NSData, "dataWithBytes:length:", &v25, 2) forKeyedSubscript:@"AWDL_INFO_EXT"];
   }
 
   if ([v10 localAssistedDiscoveryMetric]) {
@@ -1080,7 +1080,7 @@ LABEL_29:
 
     else
     {
-      id v29 = objc_msgSend((id)sub_1000951FC((uint64_t)v23, @"WiFiManagerKnownNetworksEventType"), "intValue");
+      id v29 = [sub_1000951FC((uint64_t)v23, @"WiFiManagerKnownNetworksEventType") intValue];
       if (sub_100072038((uint64_t)self->_managerRef, v23, (uint64_t)v29))
       {
         if ([a3 response])
@@ -1145,7 +1145,7 @@ LABEL_27:
           id v43 = v5;
           v44 = v19;
           id v22 = [v5 info];
-          id v23 = objc_msgSend( v11,  "filteredNetworkProfileWithProperties:OSSpecificKeys:",  v8,  objc_msgSend(v22, "objectForKeyedSubscript:", CWFXPCOSSpecificKeysKey));
+          id v23 = [v11 filteredNetworkProfileWithProperties:v8 OSSpecificKeys:[v22 objectForKeyedSubscript:CWFXPCOSSpecificKeysKey]];
           __int128 v45 = 0u;
           __int128 v46 = 0u;
           __int128 v47 = 0u;
@@ -1557,7 +1557,7 @@ LABEL_21:
               id v22 = [a3 info];
               id v23 = [v22 objectForKeyedSubscript:CWFXPCBSSPropertiesKey];
               id v24 = [a3 info];
-              id v25 = objc_msgSend( v10,  "filteredBSSWithProperties:OSSpecificKeys:",  v23,  objc_msgSend(v24, "objectForKeyedSubscript:", CWFXPCOSSpecificKeysKey));
+              id v25 = [v10 filteredBSSWithProperties:v23 OSSpecificKeys:[v24 objectForKeyedSubscript:CWFXPCOSSpecificKeysKey]];
               __int128 v40 = 0u;
               __int128 v41 = 0u;
               __int128 v42 = 0u;
@@ -1855,7 +1855,7 @@ LABEL_22:
     case 2uLL:
     case 5uLL:
     case 6uLL:
-      sub_10007D000( (const __CFArray *)objc_msgSend( +[WiFiXPCManager sharedXPCManager](WiFiXPCManager, "sharedXPCManager"),  "getWiFiManager"),  objc_msgSend(a4, "processName"));
+      sub_10007D000( (const __CFArray *)[WiFiXPCManager sharedXPCManager] getWiFiManager],  [a4 processName]);
       uint64_t v15 = 1011LL;
       break;
     case 3uLL:
@@ -2128,12 +2128,12 @@ LABEL_22:
       id v14 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
       if ([v10 SSID] || _os_feature_enabled_impl("CoreWiFi", "WiFi6EAlwaysFollowup"))
       {
-        objc_msgSend(v10, "setScanFlags:", objc_msgSend(v10, "scanFlags") | 0x800);
+        [v10 setScanFlags:[v10 scanFlags] | 0x800];
         if (![a4 processName]
           || (objc_msgSend(objc_msgSend(a4, "processName"), "isEqualToString:", @"locationd") & 1) == 0
           && (objc_msgSend(objc_msgSend(a4, "processName"), "isEqualToString:", @"milod") & 1) == 0)
         {
-          objc_msgSend(v10, "setScanFlags:", objc_msgSend(v10, "scanFlags") | 0x100);
+          [v10 setScanFlags:[v10 scanFlags] | 0x100];
         }
       }
 
@@ -2144,7 +2144,7 @@ LABEL_22:
       __int128 v49 = 0u;
       __int128 v50 = 0u;
       __int128 v43 = v10;
-      id v15 = objc_msgSend(v10, "channels", v12);
+      id v15 = [v10 channels];
       id v16 = [v15 countByEnumeratingWithState:&v49 objects:v60 count:16];
       if (v16)
       {
@@ -2167,7 +2167,7 @@ LABEL_22:
             v58[1] = @"CHANNEL_FLAGS";
             v59[0] = v22;
             v59[1] = +[NSNumber numberWithUnsignedInt:]( NSNumber,  "numberWithUnsignedInt:",  [v21 flags]);
-            objc_msgSend( v18,  "addObject:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v59,  v58,  2));
+            [v18 addObject:+[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v59,  v58,  2)];
           }
 
           id v17 = [v15 countByEnumeratingWithState:&v49 objects:v60 count:16];
@@ -2206,7 +2206,7 @@ LABEL_22:
             }
             v55 = @"SSID_STR";
             uint64_t v56 = v29;
-            objc_msgSend( v26,  "addObject:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v56,  &v55,  1));
+            [v26 addObject:+[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v56,  &v55,  1)];
           }
 
           id v25 = [v23 countByEnumeratingWithState:&v45 objects:v57 count:16];
@@ -2224,7 +2224,7 @@ LABEL_22:
       {
         v53 = @"SSID_STR";
         v54 = &stru_1001EB6E0;
-        objc_msgSend( v26,  "addObject:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v54,  &v53,  1));
+        [v26 addObject:+[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v54,  &v53,  1)];
       }
 
       [v41 setObject:v26 forKeyedSubscript:@"SCAN_SSID_LIST"];
@@ -2474,7 +2474,7 @@ LABEL_20:
           objc_msgSend(v20, "setObject:forKeyedSubscript:", objc_msgSend(v19, "identifier"), @"RANGING_TOKEN_ID");
         }
         if ([v19 numberOfMeasurements]) {
-          objc_msgSend( v20,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithUnsignedInteger:]( NSNumber,  "numberWithUnsignedInteger:",  objc_msgSend(v19, "numberOfMeasurements")),  @"RANGING_NUM_MEASUREMENTS");
+          [v20 setObject:[NSNumber numberWithUnsignedInteger:[v19 numberOfMeasurements]] forKeyedSubscript:@"RANGING_NUM_MEASUREMENTS"];
         }
         [v14 addObject:v20];
       }
@@ -2754,7 +2754,7 @@ LABEL_11:
   id v8 = [v7 objectForKeyedSubscript:CWFXPCUserAutoJoinStateKey];
   if (v8)
   {
-    sub_10006570C( (uint64_t)self->_managerRef,  (uint64_t)[v8 BOOLValue],  0,  (uint64_t)objc_msgSend(a4, "processName"));
+    sub_10006570C( (uint64_t)self->_managerRef,  (uint64_t)[v8 BOOLValue],  0,  (uint64_t)[a4 processName]);
     uint64_t v9 = 0LL;
   }
 
@@ -2810,7 +2810,7 @@ LABEL_11:
 {
   unsigned int v4 = sub_1000824A4((uint64_t)self->_managerRef);
   id v5 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
-  objc_msgSend( v5,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInteger:](NSNumber, "numberWithInteger:", sub_1000BD590(v4)),  CWFXPCResultKey);
+  [v5 setObject:[NSNumber numberWithInteger:sub_1000BD590(v4)] forKeyedSubscript:CWFXPCResultKey];
   if ([a3 response])
   {
     id v6 = (void (**)(id, void, id))[a3 response];
@@ -2849,7 +2849,7 @@ LABEL_11:
   [v5 setAskToJoinMode:sub_1000BD5D4(v7)];
   int v8 = sub_10006DCC8((uint64_t)self->_managerRef);
   [v5 setCompatibilityMode:sub_1000BD5B8(v8)];
-  objc_msgSend(v5, "setOSSpecificAttributes:", -[WiFiXPCManager __OSSpecificAttributes](self, "__OSSpecificAttributes"));
+  [v5 setOSSpecificAttributes:[self __OSSpecificAttributes]];
   id v9 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
   [v9 setObject:v5 forKeyedSubscript:CWFXPCResultKey];
 
@@ -3360,7 +3360,7 @@ LABEL_12:
   id v6 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v6 setType:9];
   [v6 setInterfaceName:a3];
-  objc_msgSend(v6, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v6 setTimestamp:[NSDate date]];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v6, 0LL);
   objc_autoreleasePoolPop(v5);
 }
@@ -3372,13 +3372,13 @@ LABEL_12:
   id v10 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v10 setType:6];
   [v10 setInterfaceName:a5];
-  objc_msgSend(v10, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v10 setTimestamp:[NSDate date]];
   id v11 = objc_alloc_init(&OBJC_CLASS___CWFLinkChangeStatus);
   [v11 setLinkDown:v7];
   [v11 setRSSI:a4];
   uint64_t v18 = CWFEventLinkChangeStatusKey;
   id v19 = v11;
-  uint64_t v12 = CWFGetOSLog( objc_msgSend( v10,  "setInfo:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v19,  &v18,  1)));
+  uint64_t v12 = CWFGetOSLog( +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v19,  &v18,  1));
   if (v12) {
     __int128 v13 = (os_log_s *)CWFGetOSLog(v12);
   }
@@ -3405,12 +3405,12 @@ LABEL_12:
   id v6 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v6 setType:6];
   [v6 setInterfaceName:a3];
-  objc_msgSend(v6, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v6 setTimestamp:[NSDate date]];
   id v7 = objc_alloc_init(&OBJC_CLASS___CWFLinkChangeStatus);
   [v7 setLinkDown:0];
   uint64_t v12 = CWFEventLinkChangeStatusKey;
   id v13 = v7;
-  uint64_t v8 = CWFGetOSLog( objc_msgSend( v6,  "setInfo:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v13,  &v12,  1)));
+  uint64_t v8 = CWFGetOSLog( +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v13,  &v12,  1));
   if (v8) {
     __int128 v9 = (os_log_s *)CWFGetOSLog(v8);
   }
@@ -3434,10 +3434,10 @@ LABEL_12:
   id v8 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v8 setInternalType:1];
   [v8 setInterfaceName:a4];
-  objc_msgSend(v8, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v8 setTimestamp:[NSDate date]];
   uint64_t v9 = CWFInternalEventAutoJoinTriggerKey;
   int v10 = +[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3);
-  objc_msgSend( v8,  "setInfo:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1));
+  [v8 setInfo:+[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1)];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v8, 0LL);
   objc_autoreleasePoolPop(v7);
 }
@@ -3448,10 +3448,10 @@ LABEL_12:
   id v8 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v8 setInternalType:1];
   [v8 setInterfaceName:a4];
-  objc_msgSend(v8, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v8 setTimestamp:[NSDate date]];
   uint64_t v9 = CWFInternalEventAutoJoinStateKey;
   int v10 = +[NSNumber numberWithInteger:](&OBJC_CLASS___NSNumber, "numberWithInteger:", a3);
-  objc_msgSend( v8,  "setInfo:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v10,  &v9,  1));
+  [v8 setInfo:[NSDictionary dictionaryWithObjects:forKeys:count:&v10, &v9, 1]];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v8, 0LL);
   objc_autoreleasePoolPop(v7);
 }
@@ -3463,7 +3463,7 @@ LABEL_12:
   id v8 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v8 setInternalType:1];
   [v8 setInterfaceName:a4];
-  objc_msgSend(v8, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v8 setTimestamp:[NSDate date]];
   id v9 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
   int v10 = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v5);
   [v9 setObject:v10 forKeyedSubscript:CWFInternalEventAutoJoinResultKey];
@@ -3483,12 +3483,12 @@ LABEL_12:
     id v12 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
     [v12 setInternalType:2];
     [v12 setInterfaceName:a5];
-    objc_msgSend(v12, "setTimestamp:", +[NSDate date](NSDate, "date"));
+    [v12 setTimestamp:[NSDate date]];
     v13[0] = CWFInternalEventScanResultKey;
     v13[1] = CWFInternalEventIsAutoJoinKey;
     v14[0] = v11;
     v14[1] = +[NSNumber numberWithBool:](&OBJC_CLASS___NSNumber, "numberWithBool:", v6);
-    objc_msgSend( v12,  "setInfo:",  +[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  2));
+    [v12 setInfo:+[NSDictionary dictionaryWithObjects:forKeys:count:]( NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  2)];
     -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v12, 0LL);
   }
 
@@ -3509,7 +3509,7 @@ LABEL_12:
     id v14 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
     [v14 setInternalType:3];
     [v14 setInterfaceName:a5];
-    objc_msgSend(v14, "setTimestamp:", +[NSDate date](NSDate, "date"));
+    [v14 setTimestamp:[NSDate date]];
     [v14 setInfo:v12];
     -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v14, 0LL);
   }
@@ -3522,7 +3522,7 @@ LABEL_12:
   id v3 = objc_autoreleasePoolPush();
   id v4 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v4 setType:25];
-  objc_msgSend(v4, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v4 setTimestamp:[NSDate date]];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v4, 0LL);
   objc_autoreleasePoolPop(v3);
 }
@@ -3532,7 +3532,7 @@ LABEL_12:
   id v3 = objc_autoreleasePoolPush();
   id v4 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v4 setType:26];
-  objc_msgSend(v4, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v4 setTimestamp:[NSDate date]];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v4, 0LL);
   objc_autoreleasePoolPop(v3);
 }
@@ -3549,7 +3549,7 @@ LABEL_12:
   id v7 = objc_autoreleasePoolPush();
   id v8 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v8 setType:30];
-  objc_msgSend(v8, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v8 setTimestamp:[NSDate date]];
   id v9 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
   id v10 = v9;
   if (a3) {
@@ -3605,7 +3605,7 @@ LABEL_12:
     id v12 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
     [v12 setType:34];
     [v12 setInterfaceName:a3];
-    objc_msgSend(v12, "setTimestamp:", +[NSDate date](NSDate, "date"));
+    [v12 setTimestamp:[NSDate date]];
     if (v9)
     {
       uint64_t v19 = CWFEventWiFiAssistOverrideReasonsKey;
@@ -3648,8 +3648,8 @@ LABEL_12:
 - (id)__getSensingParams:(id)a3
 {
   id v4 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
-  objc_msgSend( v4,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInteger:](NSNumber, "numberWithInteger:", objc_msgSend(a3, "numberOfReports")),  @"SENSING_PARAMS_NUMBER_OF_REPORTS");
-  objc_msgSend( v4,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", objc_msgSend(a3, "matchFrameType")),  @"SENSING_PARAMS_MATCH_FRAME_TYPE");
+  [v4 setObject:[NSNumber numberWithInteger:[a3 numberOfReports]] forKeyedSubscript:@"SENSING_PARAMS_NUMBER_OF_REPORTS"];
+  [v4 setObject:[NSNumber numberWithInt:[a3 matchFrameType]] forKeyedSubscript:@"SENSING_PARAMS_MATCH_FRAME_TYPE"];
   objc_msgSend( v4,  "setObject:forKeyedSubscript:",  objc_msgSend(a3, "matchMACAddresses"),  @"SENSING_PARAMS_MATCH_MAC_ADDRESS");
   objc_msgSend( v4,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInteger:](NSNumber, "numberWithInteger:", objc_msgSend(a3, "timeout")),  @"SENSING_PARAMS_TIMEOUT");
   objc_msgSend( v4,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithBool:](NSNumber, "numberWithBool:", objc_msgSend(a3, "submitMetric")),  @"SENSING_PARAMS_SUBMIT_METRIC");
@@ -3672,7 +3672,7 @@ LABEL_12:
   if ([a3 scheduleOnceAfter] == (id)-2 && objc_msgSend(a3, "scheduleDailyAt") == (id)-2) {
     id v6 = 0LL;
   }
-  objc_msgSend( v4,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInteger:](NSNumber, "numberWithInteger:", v6),  @"SENSING_PARAMS_SCHEDULE_ONCE_AFTER");
+  [v4 setObject:[NSNumber numberWithInteger:v6] forKeyedSubscript:@"SENSING_PARAMS_SCHEDULE_ONCE_AFTER"];
   return v4;
 }
 
@@ -3769,7 +3769,7 @@ LABEL_10:
   id v3 = objc_autoreleasePoolPush();
   id v4 = objc_alloc_init(&OBJC_CLASS___CWFXPCEvent);
   [v4 setType:27];
-  objc_msgSend(v4, "setTimestamp:", +[NSDate date](NSDate, "date"));
+  [v4 setTimestamp:[NSDate date]];
   -[CWFXPCManager sendXPCEvent:reply:](self->_XPCManager, "sendXPCEvent:reply:", v4, 0LL);
   objc_autoreleasePoolPop(v3);
 }
@@ -4282,7 +4282,7 @@ LABEL_6:
       {
         int v12 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s - WiFiDeviceManagerSetAutoJoinDenylistedNetwork %lu failed",  "-[WiFiXPCManager __setAutoJoinDenyList:]",  v9);
+          [qword_100219F60 WFLog:@"%s - WiFiDeviceManagerSetAutoJoinDenylistedNetwork %lu failed" message:3 v9];
         }
         objc_autoreleasePoolPop(v12);
       }
@@ -4341,14 +4341,14 @@ LABEL_10:
     {
       uint64_t v7 = (uint64_t)v6;
       id v8 = [a3 info];
-      uint64_t v9 = (int)objc_msgSend( objc_msgSend(v8, "objectForKeyedSubscript:", CWFAutoJoinDenyListRemoveReasonKey),  "intValue");
+      uint64_t v9 = (int)[v8[CWFAutoJoinDenyListRemoveReasonKey] intValue];
       id v10 = [a3 info];
       int v11 = sub_1000A1DEC([v10 objectForKeyedSubscript:CWFXPCNetworkProfileKey], 0);
       if ((sub_1000FBD7C(v7, v9, (uint64_t)v11) & 1) == 0)
       {
         int v12 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s - WiFiDeviceManagerClearAutoJoinDenylistedNetwork %lu failed",  "-[WiFiXPCManager __clearAutoJoinDenyList:]",  v9);
+          [qword_100219F60 WFLog:@"%s - WiFiDeviceManagerClearAutoJoinDenylistedNetwork %lu failed" message:3 v9];
         }
         objc_autoreleasePoolPop(v12);
       }

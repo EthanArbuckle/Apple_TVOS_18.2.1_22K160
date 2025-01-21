@@ -12,7 +12,7 @@
 
 - (BTXpcService)init
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "-[BTXpcService init]"));
+  v3 = [NSString stringWithUTF8String:@""];
   +[NSException raise:format:]( &OBJC_CLASS___NSException,  "raise:format:",  NSInvalidArgumentException,  @"Calling %@ is not allowed",  v3);
 
   return 0LL;

@@ -7,7 +7,7 @@
 
 - (BOOL)isEqual:(id)a3
 {
-  uint64_t v5 = objc_opt_class(&OBJC_CLASS___BKHitTestResultKey, a2);
+  uint64_t v5 = [BKHitTestResultKey class];
   id v6 = a3;
   v7 = v6;
   if (v5)
@@ -33,7 +33,7 @@
 
 - (unint64_t)hash
 {
-  return -[BKCAContextDestination hash](self->_destination, "hash");
+  return [self->_destination hash];
 }
 
 - (void).cxx_destruct

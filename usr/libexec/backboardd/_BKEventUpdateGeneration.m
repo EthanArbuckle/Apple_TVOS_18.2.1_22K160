@@ -9,11 +9,11 @@
 - (_BKEventUpdateGeneration)init
 {
   v6.receiver = self;
-  v6.super_class = (Class)&OBJC_CLASS____BKEventUpdateGeneration;
-  v2 = -[_BKEventUpdateGeneration init](&v6, "init");
+  v6.super_class = [BKEventUpdateGeneration class];
+  _BKEventUpdateGeneration *v2 = [[_BKEventUpdateGeneration alloc] init];
   if (v2)
   {
-    v3 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
+    NSMutableArray *v3 = [[NSMutableArray alloc] init];
     clients = v2->_clients;
     v2->_clients = v3;
   }
@@ -23,7 +23,7 @@
 
 - (NSString)description
 {
-  return (NSString *)+[BSDescriptionStream descriptionForRootObject:]( &OBJC_CLASS___BSDescriptionStream,  "descriptionForRootObject:",  self);
+  return [BSDescriptionStream descriptionForRootObject:self];
 }
 
 - (void)appendDescriptionToStream:(id)a3

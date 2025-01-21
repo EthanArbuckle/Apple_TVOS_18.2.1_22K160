@@ -85,7 +85,7 @@
 
       v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Failed in initWithWorkspace",  "-[WiFiMaintenanceTaskManager init]");
+        [qword_100219F60 WFLog:@"%s: Failed in initWithWorkspace" message:3];
       }
     }
 
@@ -93,7 +93,7 @@
     {
       v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Failed in initWorkspaceWithService!",  "-[WiFiMaintenanceTaskManager init]");
+        [qword_100219F60 WFLog:@"Failed in initWorkspaceWithService!"];
       }
     }
 
@@ -122,7 +122,7 @@
 {
   v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s",  "-[WiFiMaintenanceTaskManager scheduleOrphanedSetsCleanUp]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager scheduleOrphanedSetsCleanUp]"];
   }
   objc_autoreleasePoolPop(v3);
   xpc_object_t v4 = xpc_dictionary_create(0LL, 0LL, 0LL);
@@ -146,7 +146,7 @@
 {
   v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s",  "-[WiFiMaintenanceTaskManager unScheduleOutdatedListEntriesCleanUp]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager unScheduleOutdatedListEntriesCleanUp]"];
   }
   objc_autoreleasePoolPop(v2);
   xpc_activity_unregister("com.apple.wifimanager.OutdatedListEntriesCleanUpActivity");
@@ -156,7 +156,7 @@
 {
   v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s",  "-[WiFiMaintenanceTaskManager scheduleOutdatedListEntriesCleanUp]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager scheduleOutdatedListEntriesCleanUp]"];
   }
   objc_autoreleasePoolPop(v3);
   xpc_object_t v4 = xpc_dictionary_create(0LL, 0LL, 0LL);
@@ -226,7 +226,7 @@
 {
   v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s", "-[WiFiMaintenanceTaskManager schedulePNLMigration]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager schedulePNLMigration]" message:3];
   }
   objc_autoreleasePoolPop(v3);
   xpc_object_t v4 = xpc_dictionary_create(0LL, 0LL, 0LL);
@@ -250,7 +250,7 @@
 {
   v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s",  "-[WiFiMaintenanceTaskManager unScheduleHistoricNetworkPerformanceFeedSync]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager unScheduleHistoricNetworkPerformanceFeedSync]"];
   }
   objc_autoreleasePoolPop(v2);
   xpc_activity_unregister("com.apple.wifimanager.HistoricNetworkPerformanceFeedActivity");
@@ -283,7 +283,7 @@
 - (void)networkPerformanceFeedSync
 {
   context = objc_autoreleasePoolPush();
-  id v2 = objc_msgSend( +[WiFiAnalyticsManager sharedWiFiAnalyticsManager]( WiFiAnalyticsManager,  "sharedWiFiAnalyticsManager"),  "copyAllStoredNetworkSsids");
+  id v2 = [WiFiAnalyticsManager sharedWiFiAnalyticsManager] copyAllStoredNetworkSsids];
   id v3 = +[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array");
   xpc_object_t v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
@@ -374,7 +374,7 @@
 {
   xpc_object_t v2 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s",  "-[WiFiMaintenanceTaskManager unScheduleWCADownloadObserver]");
+    [qword_100219F60 WFLog:@"-[WiFiMaintenanceTaskManager unScheduleWCADownloadObserver]" message:3];
   }
   objc_autoreleasePoolPop(v2);
   xpc_activity_unregister("com.apple.wifimanager.wcaDownloadActivity");

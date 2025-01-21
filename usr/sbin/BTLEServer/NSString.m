@@ -11,7 +11,7 @@
   if (-[NSString length](self, "length"))
   {
     if ((-[NSString characterAtIndex:](self, "characterAtIndex:", (char *)-[NSString length](self, "length") - 1) & 0xFC00) == 0xD800) {
-      v3 = (__CFString *)objc_claimAutoreleasedReturnValue( -[NSString substringToIndex:]( self,  "substringToIndex:",  (char *)-[NSString length](self, "length") - 1));
+      v3 = [self substringToIndex:([self length] - 1)];
     }
     else {
       v3 = self;
@@ -49,7 +49,7 @@ LABEL_15:
 
 - (id)UTF8StringWithMaxLength:(unint64_t)a3
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( -[NSString UTF8DataWithMaxLength:ellipsis:isTruncated:]( self,  "UTF8DataWithMaxLength:ellipsis:isTruncated:",  a3,  0LL,  0LL));
+  v3 = [self UTF8DataWithMaxLength:a3 ellipsis:0LL isTruncated:0LL];
   if ([v3 length])
   {
     v4 = objc_alloc(&OBJC_CLASS___NSString);

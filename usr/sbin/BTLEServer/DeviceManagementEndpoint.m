@@ -40,7 +40,7 @@
 
 - (DeviceManagementEndpoint)init
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue( +[NSSet setWithObjects:]( &OBJC_CLASS___NSSet,  "setWithObjects:",  @"ConnectClassicDevice",  @"DisconnectClassicDevice",  @"ClassicDeviceUnexpectedDisconnection",  @"VersionInfoRequest",  @"VersionInfoResponse",  @"ClassicPairStateRequest",  @"ClassicPairStateResponse",  @"StoreClassicLinkKeyRequest",  @"StoreClassicLinkKeyRequestExtended",  @"StoreClassicLinkKeyResponse",  @"StoreClassicDeviceSettings",  @"NotifyPrimaryBudSide",  @"LeaEasyPairRequest",  @"LeaEasyPairResponse",  @"LeaStoreBondingInfoRequest",  @"LeaStoreBondingInfoResponse",  0LL));
+  v3 = [NSSet setWithObjects:@"ConnectClassicDevice", @"DisconnectClassicDevice", @"ClassicDeviceUnexpectedDisconnection", @"VersionInfoRequest", @"VersionInfoResponse", @"ClassicPairStateRequest", @"ClassicPairStateResponse", @"StoreClassicLinkKeyRequest", @"StoreClassicLinkKeyRequestExtended", @"StoreClassicLinkKeyResponse", @"StoreClassicDeviceSettings", @"NotifyPrimaryBudSide", @"LeaEasyPairRequest", @"LeaEasyPairResponse", @"LeaStoreBondingInfoRequest", @"LeaStoreBondingInfoResponse", nil];
   v6.receiver = self;
   v6.super_class = (Class)&OBJC_CLASS___DeviceManagementEndpoint;
   v4 = -[Endpoint initWithIdentifier:supportedCommands:]( &v6,  "initWithIdentifier:supportedCommands:",  @"com.apple.BTLEServer.classic",  v3);
@@ -59,7 +59,7 @@
   -[Endpoint addPipe:](&v7, "addPipe:", v3);
   v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "peer", v7.receiver, v7.super_class));
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 identifier]);
+  v5 = [v4 identifier];
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
   {
     sub_1000397D4();
@@ -84,7 +84,7 @@ LABEL_3:
   -[Endpoint removePipe:](&v7, "removePipe:", v3);
   v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "peer", v7.receiver, v7.super_class));
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 identifier]);
+  v5 = [v4 identifier];
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
   {
     sub_100039800();
@@ -117,7 +117,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -137,9 +137,9 @@ LABEL_3:
         v21[0] = @"kDeviceAddress";
         v21[1] = @"kQuickDisconnectEnabled";
         v22[0] = v6;
-        v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL));
+        v14 = [NSDictionary dictionaryWithObjects:v22 forKeys:v21 count:2];
         v24 = v14;
-        v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
+        v15 = [NSDictionary dictionaryWithObjects:forKeys:count:&v24, &v23, 1LL];
         [v13 sendMessage:v15];
 
         v12 = (char *)v12 + 1;
@@ -168,7 +168,7 @@ LABEL_3:
   __int128 v17 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v6 = [obj countByEnumeratingWithState:&v14 objects:v22 count:16];
   if (v6)
   {
@@ -188,7 +188,7 @@ LABEL_3:
         __int128 v18 = @"kDeviceAddress";
         uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v19,  &v18,  1LL));
         v21 = v11;
-        v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v21,  &v20,  1LL));
+        v12 = [NSDictionary dictionaryWithObjects:forKeys:count:&v21, &v20, 1LL];
         [v10 sendMessage:v12];
 
         id v9 = (char *)v9 + 1;
@@ -217,7 +217,7 @@ LABEL_3:
   __int128 v17 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v6 = [obj countByEnumeratingWithState:&v14 objects:v22 count:16];
   if (v6)
   {
@@ -237,7 +237,7 @@ LABEL_3:
         __int128 v18 = @"kDeviceAddress";
         uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v19,  &v18,  1LL));
         v21 = v11;
-        v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v21,  &v20,  1LL));
+        v12 = [NSDictionary dictionaryWithObjects:forKeys:count:&v21, &v20, 1LL];
         [v10 sendMessage:v12];
 
         id v9 = (char *)v9 + 1;
@@ -266,7 +266,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v26 count:16];
   if (v9)
   {
@@ -318,7 +318,7 @@ LABEL_3:
   __int128 v23 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v12 = [obj countByEnumeratingWithState:&v20 objects:v29 count:16];
   if (v12)
   {
@@ -371,7 +371,7 @@ LABEL_3:
   __int128 v17 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v6 = [obj countByEnumeratingWithState:&v14 objects:v22 count:16];
   if (v6)
   {
@@ -391,7 +391,7 @@ LABEL_3:
         __int128 v18 = @"kDeviceAddress";
         uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v19,  &v18,  1LL));
         __int128 v21 = v11;
-        id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v21,  &v20,  1LL));
+        id v12 = [NSDictionary dictionaryWithObjects:forKeys:count:&v21, &v20, 1LL];
         [v10 sendMessage:v12];
 
         id v9 = (char *)v9 + 1;
@@ -421,7 +421,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -474,7 +474,7 @@ LABEL_3:
   __int128 v23 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v12 = [obj countByEnumeratingWithState:&v20 objects:v28 count:16];
   if (v12)
   {
@@ -531,7 +531,7 @@ LABEL_3:
   __int128 v29 = 0u;
   __int128 v26 = 0u;
   __int128 v27 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v16 = [obj countByEnumeratingWithState:&v26 objects:v34 count:16];
   if (v16)
   {
@@ -589,7 +589,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -609,7 +609,7 @@ LABEL_3:
         v21[0] = @"kStoreClassicLinkKeyResult";
         v21[1] = @"kDeviceAddress";
         v22[0] = v6;
-        id v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL));
+        id v14 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL);
         id v24 = v14;
         __int128 v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
         [v13 sendMessage:v15];
@@ -649,7 +649,7 @@ LABEL_3:
   __int128 v32 = 0u;
   __int128 v29 = 0u;
   __int128 v30 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v18 = [obj countByEnumeratingWithState:&v29 objects:v37 count:16];
   if (v18)
   {
@@ -679,7 +679,7 @@ LABEL_3:
         v34[5] = v16;
         __int128 v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v34,  v33,  6LL));
         id v36 = v23;
-        id v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v36,  &v35,  1LL));
+        id v24 = [NSDictionary dictionaryWithObjects:forKeys:count:&v36, &v35, 1LL];
         [v22 sendMessage:v24];
 
         __int128 v21 = (char *)v21 + 1;
@@ -709,7 +709,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -729,9 +729,9 @@ LABEL_3:
         v21[0] = @"kPrimaryBudSide";
         v21[1] = @"kDeviceAddress";
         v22[0] = v6;
-        id v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL));
+        id v14 = +[NSDictionary dictionaryWithObjects:forKeys:count:](v22, v21, 2LL);
         id v24 = v14;
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
+        id v15 = [NSDictionary dictionaryWithObjects:forKeys:count:&v24, &v23, 1LL];
         [v13 sendMessage:v15];
 
         id v12 = (char *)v12 + 1;
@@ -762,7 +762,7 @@ LABEL_3:
   __int128 v23 = 0u;
   __int128 v20 = 0u;
   __int128 v21 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v12 = [obj countByEnumeratingWithState:&v20 objects:v28 count:16];
   if (v12)
   {
@@ -816,7 +816,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -838,7 +838,7 @@ LABEL_3:
         v22[0] = v6;
         uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL));
         id v24 = v14;
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
+        id v15 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL);
         [v13 sendMessage:v15];
 
         id v12 = (char *)v12 + 1;
@@ -872,7 +872,7 @@ LABEL_3:
   __int128 v32 = 0u;
   __int128 v29 = 0u;
   __int128 v30 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v18 = [obj countByEnumeratingWithState:&v29 objects:v37 count:16];
   if (v18)
   {
@@ -902,7 +902,7 @@ LABEL_3:
         v34[5] = v14;
         __int128 v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v34,  v33,  6LL));
         id v36 = v23;
-        id v24 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v36,  &v35,  1LL));
+        id v24 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v36,  &v35,  1LL);
         [v22 sendMessage:v24];
 
         __int128 v21 = (char *)v21 + 1;
@@ -932,7 +932,7 @@ LABEL_3:
   __int128 v20 = 0u;
   __int128 v17 = 0u;
   __int128 v18 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(-[Endpoint pipes](self, "pipes"));
+  id obj = [self pipes];
   id v9 = [obj countByEnumeratingWithState:&v17 objects:v25 count:16];
   if (v9)
   {
@@ -952,9 +952,9 @@ LABEL_3:
         v21[0] = @"kLeaStoreBondingInfoResult";
         v21[1] = @"kLeaDeviceAddress";
         v22[0] = v6;
-        id v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v22,  v21,  2LL));
+        id v14 = [NSDictionary dictionaryWithObjects:v22 forKeys:v21 count:2];
         id v24 = v14;
-        id v15 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v24,  &v23,  1LL));
+        id v15 = [NSDictionary dictionaryWithObjects:forKeys:count:&v24, &v23, 1];
         [v13 sendMessage:v15];
 
         id v12 = (char *)v12 + 1;
@@ -971,8 +971,8 @@ LABEL_3:
 - (void)handleConnectClassicDeviceCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kQuickDisconnectEnabled"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kQuickDisconnectEnabled"];
 
   id v7 = (os_log_s *)qword_100070CC8;
   if (v5)
@@ -984,12 +984,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'connect classic device' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kDeviceAddress";
     v10[1] = @"kQuickDisconnectEnabled";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL);
     [v8 sendMsg:@"ConnectClassicDevice" args:v9];
   }
 
@@ -1001,7 +1001,7 @@ LABEL_3:
 
 - (void)handleDisconnectClassicDeviceCommand:(id)a3 message:(id)a4
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a4 objectForKeyedSubscript:@"kDeviceAddress"]);
+  id v4 = [a4 objectForKeyedSubscript:@"kDeviceAddress"];
   v5 = (os_log_s *)qword_100070CC8;
   if (v4)
   {
@@ -1012,10 +1012,10 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "Received 'disconnect classic device' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v6 = [BTLEXpcServer instance];
     id v8 = @"kDeviceAddress";
     id v9 = v4;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+    id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
     [v6 sendMsg:@"DisconnectClassicDevice" args:v7];
   }
 
@@ -1027,7 +1027,7 @@ LABEL_3:
 
 - (void)handleClassicDeviceUnexpectedDisconnectionCommand:(id)a3 message:(id)a4
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a4 objectForKeyedSubscript:@"kDeviceAddress"]);
+  id v4 = [a4 objectForKeyedSubscript:@"kDeviceAddress"];
   v5 = (os_log_s *)qword_100070CC8;
   if (v4)
   {
@@ -1038,10 +1038,10 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "Received 'classic device unexpected disconnection' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v6 = [BTLEXpcServer instance];
     id v8 = @"kDeviceAddress";
     id v9 = v4;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+    id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
     [v6 sendMsg:@"ClassicDeviceUnexpectedDisconnection" args:v7];
   }
 
@@ -1055,7 +1055,7 @@ LABEL_3:
 {
   id v4 = a4;
   v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kEasyPairingVersion"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kCloudAccount"]);
+  id v6 = [v4 objectForKeyedSubscript:@"kCloudAccount"];
 
   id v7 = (os_log_s *)qword_100070CC8;
   if (v5)
@@ -1066,12 +1066,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'version info request' message",  v10,  2u);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v11[0] = @"kEasyPairingVersion";
     v11[1] = @"kCloudAccount";
     v12[0] = v5;
     v12[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  2LL));
+    id v9 = [NSDictionary dictionaryWithObjects:forKeys:count:v12, v11, 2LL];
     [v8 sendMsg:@"VersionInfoRequest" args:v9];
   }
 
@@ -1084,10 +1084,10 @@ LABEL_3:
 - (void)handleVersionInfoResponseCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kEasyPairingVersion"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kCloudAccount"]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kEasyPairingStatus"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kEasyPairingVersion"];
+  id v7 = [v4 objectForKeyedSubscript:@"kCloudAccount"];
+  id v8 = [v4 objectForKeyedSubscript:@"kEasyPairingStatus"];
 
   id v9 = (os_log_s *)qword_100070CC8;
   if (v6 && v8)
@@ -1098,7 +1098,7 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v9,  OS_LOG_TYPE_DEFAULT,  "Received 'version info response' message",  v12,  2u);
     }
 
-    id v10 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v10 = +[BTLEXpcServer instance];
     v13[0] = @"kEasyPairingVersion";
     v13[1] = @"kCloudAccount";
     v14[0] = v6;
@@ -1117,7 +1117,7 @@ LABEL_3:
 
 - (void)handleClassicPairStateRequestCommand:(id)a3 message:(id)a4
 {
-  id v4 = (void *)objc_claimAutoreleasedReturnValue([a4 objectForKeyedSubscript:@"kDeviceAddress"]);
+  id v4 = [a4 objectForKeyedSubscript:@"kDeviceAddress"];
   v5 = (os_log_s *)qword_100070CC8;
   if (v4)
   {
@@ -1128,10 +1128,10 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v5,  OS_LOG_TYPE_DEFAULT,  "Received 'classic pair state request' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v6 = [BTLEXpcServer instance];
     id v8 = @"kDeviceAddress";
     id v9 = v4;
-    id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+    id v7 = [NSDictionary dictionaryWithObjects:forKeys:count:v9, v8, 1LL];
     [v6 sendMsg:@"ClassicPairStateRequest" args:v7];
   }
 
@@ -1144,8 +1144,8 @@ LABEL_3:
 - (void)handleClassicPairStateResponseCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDevicePairState"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = (void *)[v4 objectForKeyedSubscript:@"kDevicePairState"];
 
   id v7 = (os_log_s *)qword_100070CC8;
   if (v5 && v6)
@@ -1157,12 +1157,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'classic pair state response' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kDeviceAddress";
     v10[1] = @"kDevicePairState";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = [NSDictionary dictionaryWithObjects:v11 forKeys:v10 count:2];
     [v8 sendMsg:@"ClassicPairStateResponse" args:v9];
   }
 
@@ -1175,9 +1175,9 @@ LABEL_3:
 - (void)handleStoreClassicLinkKeyRequestCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceLinkKey"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceName"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kDeviceLinkKey"];
+  id v7 = [v4 objectForKeyedSubscript:@"kDeviceName"];
 
   id v8 = (os_log_s *)qword_100070CC8;
   if (v5 && v6 && v7)
@@ -1189,14 +1189,14 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "Received 'store classic link key request' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v9 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v9 = +[BTLEXpcServer instance];
     v11[0] = @"kDeviceAddress";
     v11[1] = @"kDeviceName";
     v12[0] = v5;
     v12[1] = v7;
     void v11[2] = @"kDeviceLinkKey";
     void v12[2] = v6;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  3LL));
+    id v10 = [NSDictionary dictionaryWithObjects:v12 forKeys:v11 count:3];
     [v9 sendMsg:@"StoreClassicLinkKeyRequest" args:v10];
   }
 
@@ -1209,10 +1209,10 @@ LABEL_3:
 - (void)handleStoreClassicLinkKeyRequestExtendedCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceLinkKey"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceName"]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceServiceMask"]);
+  id v7 = [v4 objectForKeyedSubscript:@"kDeviceName"];
+  id v8 = [v4 objectForKeyedSubscript:@"kDeviceServiceMask"];
   id v9 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kClassOfDeviceMask"]);
 
   id v10 = (os_log_s *)qword_100070CC8;
@@ -1236,7 +1236,7 @@ LABEL_3:
     void v14[3] = v8;
     v13[4] = @"kClassOfDeviceMask";
     v14[4] = v9;
-    id v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  5LL));
+    id v12 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v14,  v13,  5LL);
     [v11 sendMsg:@"StoreClassicLinkKeyRequestExtended" args:v12];
   }
 
@@ -1249,7 +1249,7 @@ LABEL_3:
 - (void)handleStoreClassicLinkKeyResponseCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kStoreClassicLinkKeyResult"]);
 
   id v7 = (os_log_s *)qword_100070CC8;
@@ -1262,12 +1262,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'store classic link key response' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kDeviceAddress";
     v10[1] = @"kStoreClassicLinkKeyResult";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = [NSDictionary dictionaryWithObjects:v11 forKeys:v10 count:2];
     [v8 sendMsg:@"StoreClassicLinkKeyResponse" args:v9];
   }
 
@@ -1280,12 +1280,12 @@ LABEL_3:
 - (void)handleStoreClassicDeviceSettingsCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceName"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kClassicDeviceMicMode"]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kClassicDeviceInEarEnable"]);
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kClassicDeviceDoubleTapMode"]);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kClassicDeviceSettings"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kDeviceName"];
+  id v7 = [v4 objectForKeyedSubscript:@"kClassicDeviceMicMode"];
+  id v8 = [v4 objectForKeyedSubscript:@"kClassicDeviceInEarEnable"];
+  id v9 = [v4 objectForKeyedSubscript:@"kClassicDeviceDoubleTapMode"];
+  id v10 = [v4 objectForKeyedSubscript:@"kClassicDeviceSettings"];
 
   uint64_t v11 = (os_log_s *)qword_100070CC8;
   if (v5 && v7 && v8 && v9 && v6)
@@ -1301,7 +1301,7 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "Received 'store classic device settings' message for device %@, devName = %@, doubleTap = %@",  buf,  0x20u);
     }
 
-    id v12 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v12 = [BTLEXpcServer instance];
     if (v10)
     {
       id v27 = @"kDeviceAddress";
@@ -1338,7 +1338,7 @@ LABEL_3:
       uint64_t v15 = 5LL;
     }
 
-    id v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v13,  v14,  v15,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38));
+    id v16 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v13,  v14,  v15,  v17,  v18,  v19,  v20,  v21,  v22,  v23,  v24,  v25,  v26,  v27,  v28,  v29,  v30,  v31,  v32,  v33,  v34,  v35,  v36,  v37,  v38));
     [v12 sendMsg:@"StoreClassicDeviceSettings" args:v16];
   }
 
@@ -1351,8 +1351,8 @@ LABEL_3:
 - (void)handleNotifyPrimaryBudSideCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kPrimaryBudSide"]);
+  v5 = [v4 objectForKeyedSubscript:@"kDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kPrimaryBudSide"];
 
   id v7 = (os_log_s *)qword_100070CC8;
   if (v5 && v6)
@@ -1364,12 +1364,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'notifiy primary bud side' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kDeviceAddress";
     v10[1] = @"kPrimaryBudSide";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = [NSDictionary dictionaryWithObjects:forKeys:count:v11, v10, 2LL];
     [v8 sendMsg:@"NotifyPrimaryBudSide" args:v9];
   }
 
@@ -1382,11 +1382,11 @@ LABEL_3:
 - (void)handleLeaEasyPairRequestCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceAddress"]);
+  v5 = [v4 objectForKeyedSubscript:@"kLeaDeviceAddress"];
   if (v5)
   {
-    id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceIdentifier"]);
-    id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceTags"]);
+    id v6 = [v4 objectForKeyedSubscript:@"kLeaDeviceIdentifier"];
+    id v7 = [v4 objectForKeyedSubscript:@"kLeaDeviceTags"];
     id v8 = (os_log_s *)qword_100070CC8;
     if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEFAULT))
     {
@@ -1395,14 +1395,14 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "Received 'LEA easy pair request' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v9 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v9 = [BTLEXpcServer instance];
     v11[0] = @"kLeaDeviceAddress";
     v11[1] = @"kLeaDeviceIdentifier";
     v12[0] = v5;
     v12[1] = v6;
     void v11[2] = @"kLeaDeviceTags";
     void v12[2] = v7;
-    id v10 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  3LL));
+    id v10 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v12,  v11,  3LL);
     [v9 sendMsg:@"LeaEasyPairRequest" args:v10];
   }
 
@@ -1415,8 +1415,8 @@ LABEL_3:
 - (void)handleLeaEasyPairResponseCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDevicePairState"]);
+  v5 = [v4 objectForKeyedSubscript:@"kLeaDeviceAddress"];
+  id v6 = [v4 objectForKeyedSubscript:@"kLeaDevicePairState"];
 
   id v7 = (os_log_s *)qword_100070CC8;
   if (v5 && v6)
@@ -1428,12 +1428,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'LEA easypair response' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kLeaDeviceAddress";
     v10[1] = @"kLeaDevicePairState";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL);
     [v8 sendMsg:@"LeaEasyPairResponse" args:v9];
   }
 
@@ -1446,12 +1446,12 @@ LABEL_3:
 - (void)handleLeaStoreBondingInfoRequestCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceAddress"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceEdiv"]);
-  id v7 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceRand"]);
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceLtk"]);
-  id v9 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceIrk"]);
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceName"]);
+  v5 = [v4 objectForKeyedSubscript:@"kLeaDeviceAddress"];
+  id v6 = (void *)[v4 objectForKeyedSubscript:@"kLeaDeviceEdiv"];
+  id v7 = (void *)[v4 objectForKeyedSubscript:@"kLeaDeviceRand"];
+  id v8 = [v4 objectForKeyedSubscript:@"kLeaDeviceLtk"];
+  id v9 = [v4 objectForKeyedSubscript:@"kLeaDeviceIrk"];
+  id v10 = [v4 objectForKeyedSubscript:@"kLeaDeviceName"];
 
   uint64_t v11 = (os_log_s *)qword_100070CC8;
   if (v5 && v6 && v7 && v8 && v9 && v10)
@@ -1463,7 +1463,7 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "Received 'LEA store bonding info request' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v12 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v12 = [BTLEXpcServer instance];
     v14[0] = @"kLeaDeviceAddress";
     v14[1] = @"kLeaDeviceName";
     v15[0] = v5;
@@ -1476,7 +1476,7 @@ LABEL_3:
     void v14[5] = @"kLeaDeviceIrk";
     v15[4] = v8;
     v15[5] = v9;
-    id v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v15,  v14,  6LL));
+    id v13 = [NSDictionary dictionaryWithObjects:v15 forKeys:v14 count:6];
     [v12 sendMsg:@"LeaStoreBondingInfoRequest" args:v13];
   }
 
@@ -1489,7 +1489,7 @@ LABEL_3:
 - (void)handleLeaStoreBondingInfoResponseCommand:(id)a3 message:(id)a4
 {
   id v4 = a4;
-  v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaDeviceAddress"]);
+  v5 = [v4 objectForKeyedSubscript:@"kLeaDeviceAddress"];
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"kLeaStoreBondingInfoResult"]);
 
   id v7 = (os_log_s *)qword_100070CC8;
@@ -1502,12 +1502,12 @@ LABEL_3:
       _os_log_impl( (void *)&_mh_execute_header,  v7,  OS_LOG_TYPE_DEFAULT,  "Received 'LEA store bonding info response' message for device \"%@\"",  buf,  0xCu);
     }
 
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[BTLEXpcServer instance](&OBJC_CLASS___BTLEXpcServer, "instance"));
+    id v8 = [BTLEXpcServer instance];
     v10[0] = @"kLeaDeviceAddress";
     v10[1] = @"kLeaStoreBondingInfoResult";
     v11[0] = v5;
     v11[1] = v6;
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v11,  v10,  2LL));
+    id v9 = [NSDictionary dictionaryWithObjects:forKeys:count:v11, v10, 2LL];
     [v8 sendMsg:@"LeaStoreBondingInfoResponse" args:v9];
   }
 

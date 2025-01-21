@@ -106,7 +106,7 @@
           }
           v9 = *(void **)(*((void *)&v33 + 1) + 8LL * (void)i);
           v39[0] = @"actn";
-          uint64_t v10 = objc_claimAutoreleasedReturnValue([v9 action]);
+          uint64_t v10 = [v9 action];
           v11 = (void *)v10;
           if (v10) {
             objc_super v12 = (const __CFString *)v10;
@@ -116,7 +116,7 @@
           }
           v40[0] = v12;
           v39[1] = @"apID";
-          uint64_t v13 = objc_claimAutoreleasedReturnValue([v9 appID]);
+          uint64_t v13 = [v9 appID];
           v14 = (void *)v13;
           if (v13) {
             v15 = (const __CFString *)v13;
@@ -126,22 +126,22 @@
           }
           v40[1] = v15;
           v39[2] = @"cid";
-          v16 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( NSNumber,  "numberWithUnsignedInt:",  [v9 clientID]));
+          v16 = [NSNumber numberWithUnsignedInt:[v9 clientID]];
           v40[2] = v16;
           v39[3] = @"dsFl";
-          v17 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( NSNumber,  "numberWithUnsignedLongLong:",  [v9 discoveryFlags]));
+          v17 = [NSNumber numberWithUnsignedLongLong:v9.discoveryFlags];
           v40[3] = v17;
           v39[4] = @"pid";
-          v18 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", [v9 pid]));
+          v18 = [NSNumber numberWithInt:[v9 pid]];
           v40[4] = v18;
           v39[5] = @"scnR";
-          v19 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  [v9 scanRate]));
+          v19 = [NSNumber numberWithInt:[v9 scanRate]];
           v40[5] = v19;
           v39[6] = @"timS";
           [v9 timestamp];
-          v20 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:"));
+          v20 = [NSNumber numberWithDouble:];
           v40[6] = v20;
-          v21 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v40,  v39,  7LL));
+          v21 = +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v40,  v39,  7LL);
 
           -[NSMutableArray addObject:](v31, "addObject:", v21);
         }
@@ -155,9 +155,9 @@
     v37[0] = @"dscE";
     v37[1] = @"drpE";
     v38[0] = v31;
-    v22 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  discoveryEventsDroppedTotal - discoveryEventsDroppedReported));
+    v22 = [NSNumber numberWithUnsignedLongLong:discoveryEventsDroppedTotal - discoveryEventsDroppedReported];
     v38[1] = v22;
-    v23 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v38,  v37,  2LL));
+    v23 = [NSDictionary dictionaryWithObjects:forKeys:count:v38, v37, 2LL];
 
     if (dword_1008D6290 <= 20
       && (dword_1008D6290 != -1 || _LogCategory_Initialize(&dword_1008D6290, 20LL)))
@@ -239,7 +239,7 @@
       double v10 = v21;
 LABEL_6:
       objc_super v12 = (void *)objc_claimAutoreleasedReturnValue( +[NSDate dateWithTimeIntervalSinceReferenceDate:]( &OBJC_CLASS___NSDate,  "dateWithTimeIntervalSinceReferenceDate:",  v10));
-      id v13 = objc_claimAutoreleasedReturnValue([v12 description]);
+      id v13 = [v12 description];
       v14 = (const char *)[v13 UTF8String];
       LogPrintF_safe( &dword_1008D6290,  "-[CBMetricsDaemon _reportAuthTagType:authTagStatus:integrityTagStatus:resolutionWindow:]",  20LL,  "Reference time %f, (%s). delta: %f ±%f reliability %d",  v10,  v14,  v11,  v20,  v19);
     }
@@ -294,7 +294,7 @@ LABEL_6:
     if (dword_1008D6290 <= 20
       && (dword_1008D6290 != -1 || _LogCategory_Initialize(&dword_1008D6290, 20LL)))
     {
-      int v19 = (void *)objc_claimAutoreleasedReturnValue([v9 appID]);
+      int v19 = (void *)[v9 appID];
       LogPrintF_safe( &dword_1008D6290,  "-[CBMetricsDaemon reportCBDiscovery:daemonCnx:action:]",  20,  "Metrics event report: CBDiscovery, appID %@, action %@, PID %d, CID 0x%X. count %llu, dropped %llu",  v19,  v10,  [v9 pid],  objc_msgSend(v8, "clientID"),  v13,  discoveryEventsDroppedTotal);
     }
 
@@ -318,7 +318,7 @@ LABEL_6:
       && dword_1008D6290 <= 30
       && (dword_1008D6290 != -1 || _LogCategory_Initialize(&dword_1008D6290, 30LL)))
     {
-      uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue(-[CBMetricsDiscoveryEvent appID](v11, "appID"));
+      uint64_t v15 = (void *)[v11 appID];
       LogPrintF_safe( &dword_1008D6290,  "-[CBMetricsDaemon reportCBDiscovery:daemonCnx:action:]",  30LL,  "Metrics event dropped: CBDiscovery, appID %@, action %@, PID %d, CID 0x%X. count %llu, dropped %llu",  v15,  v10,  -[CBMetricsDiscoveryEvent pid](v11, "pid"),  -[CBMetricsDiscoveryEvent clientID](v11, "clientID"),  v13,  discoveryEventsDroppedTotal + 1);
     }
   }
@@ -328,15 +328,15 @@ LABEL_6:
 {
   id v6 = a3;
   id v7 = a4;
-  id v8 = (void *)objc_claimAutoreleasedReturnValue([v6 appID]);
+  id v8 = [v6 appID];
   if (v8) {
-    id v9 = (__CFString *)objc_claimAutoreleasedReturnValue([v6 appID]);
+    id v9 = [v6 appID];
   }
   else {
     id v9 = @"unknown";
   }
 
-  id v10 = (void *)objc_claimAutoreleasedReturnValue([v6 description]);
+  id v10 = [v6 description];
   uint64_t v24 = 0LL;
   v25 = &v24;
   uint64_t v26 = 0x3032000000LL;
@@ -414,7 +414,7 @@ LABEL_6:
     -[NSMutableDictionary enumerateKeysAndObjectsUsingBlock:]( aggrScanMetricDict,  "enumerateKeysAndObjectsUsingBlock:",  v7);
     id v8 = @"agsE";
     id v9 = v3;
-    dispatch_source_t v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v9,  &v8,  1LL));
+    dispatch_source_t v5 = [NSDictionary dictionaryWithObjects:forKeys:count:&v9, &v8, 1LL];
     if (dword_1008D6290 <= 20
       && (dword_1008D6290 != -1 || _LogCategory_Initialize(&dword_1008D6290, 20LL)))
     {
@@ -497,11 +497,11 @@ LABEL_6:
   v12[0] = @"CBWHBMetricsKeyEventType";
   v12[1] = @"CBWHBMetricsKeyRSSIChangePercent";
   v13[0] = @"RSSILevelEvent";
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithFloat:](&OBJC_CLASS___NSNumber, "numberWithFloat:", v2));
+  id v6 = [NSNumber numberWithFloat:v2];
   v13[1] = v6;
   uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  v13,  v12,  2LL));
 
-  id v8 = (void *)objc_claimAutoreleasedReturnValue(+[CBMetricsDaemon sharedCBMetricsDaemon](&OBJC_CLASS___CBMetricsDaemon, "sharedCBMetricsDaemon"));
+  id v8 = [CBMetricsDaemon sharedCBMetricsDaemon];
   [v8 reportWhbMetric:v7];
 
   self->_numRssiNoBucketChanges = 0LL;

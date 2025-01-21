@@ -231,7 +231,7 @@ LABEL_17:
     __int128 v16 = 0u;
     __int128 v13 = 0u;
     __int128 v14 = 0u;
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](v2->_accessoryDeviceInfoMap, "allKeys"));
+    v5 = -[NSMutableDictionary allKeys](v2->_accessoryDeviceInfoMap, "allKeys");
     id v6 = [v5 countByEnumeratingWithState:&v13 objects:v18 count:16];
     if (v6)
     {
@@ -255,7 +255,7 @@ LABEL_17:
             if (dword_1008D67F0 <= 30
               && (dword_1008D67F0 != -1 || _LogCategory_Initialize(&dword_1008D67F0, 30LL)))
             {
-              id v12 = (void *)objc_claimAutoreleasedReturnValue([v10 identifier]);
+              id v12 = [v10 identifier];
               LogPrintF_safe( &dword_1008D67F0,  "-[CBStackAccessoryMonitorBTStack updateAccessoryInfo]",  30LL,  "Removed Audio Accessory Device: %@",  v12);
             }
           }
@@ -311,7 +311,7 @@ LABEL_17:
   id v8 = v16;
   if (v7)
   {
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](v7, "identifier"));
+    uint64_t v9 = (void *)[v7 identifier];
     uint64_t v10 = self;
     objc_sync_enter(v10);
     v11 = (AudioAccessoryDeviceInfo *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( v10->_accessoryDeviceInfoMap,  "objectForKeyedSubscript:",  v9));

@@ -10,24 +10,24 @@
 {
   id v5 = a3;
   v17.receiver = self;
-  v17.super_class = (Class)&OBJC_CLASS___BKSystemShellControlServiceListener;
-  v6 = -[BKSystemShellControlServiceListener init](&v17, "init");
+  [v17 superclass] = [BKSystemShellControlServiceListener class];
+  BKSystemShellControlServiceListener *v6 = [[BKSystemShellControlServiceListener alloc] init];
   if (v6)
   {
-    v7 = (void *)objc_claimAutoreleasedReturnValue(+[BSDispatchQueueAttributes serial](&OBJC_CLASS___BSDispatchQueueAttributes, "serial"));
-    v8 = (void *)objc_claimAutoreleasedReturnValue([v7 serviceClass:25]);
+    v7 = [BSDispatchQueueAttributes serial];
+    v8 = [v7 serviceClass:25];
     uint64_t v9 = BSDispatchQueueCreate(@"com.apple.backboard.systemshell-control", v8);
     queue = v6->_queue;
     v6->_queue = (OS_dispatch_queue *)v9;
 
-    objc_storeStrong((id *)&v6->_systemShellSentinel, a3);
+    [v6 setSystemShellSentinel:a3];
     v15[0] = _NSConcreteStackBlock;
     v15[1] = 3221225472LL;
     v15[2] = sub_100070DCC;
     v15[3] = &unk_1000B8190;
     v11 = v6;
     v16 = v11;
-    uint64_t v12 = objc_claimAutoreleasedReturnValue( +[BSServiceConnectionListener listenerWithConfigurator:]( &OBJC_CLASS___BSServiceConnectionListener,  "listenerWithConfigurator:",  v15));
+    uint64_t v12 = [BSServiceConnectionListener listenerWithConfigurator:v15];
     connectionListener = v11->_connectionListener;
     v11->_connectionListener = (BSServiceConnectionListener *)v12;
   }
@@ -42,11 +42,11 @@
 - (void)listener:(id)a3 didReceiveConnection:(id)a4 withContext:(id)a5
 {
   id v6 = a4;
-  v7 = (void *)objc_claimAutoreleasedReturnValue([v6 remoteProcess]);
+  v7 = [v6 remoteProcess];
   id v8 = [v7 pid];
   int v9 = (int)v8;
   uint64_t v10 = BKLogSystemShell(v8);
-  v11 = (os_log_s *)objc_claimAutoreleasedReturnValue(v10);
+  v11 = [os_log logWithName:v10];
   if (os_log_type_enabled(v11, OS_LOG_TYPE_DEBUG))
   {
     *(_DWORD *)buf = 138543618;
@@ -59,7 +59,7 @@
   if (v9 <= 0)
   {
     uint64_t v14 = BKLogSystemShell(v12);
-    v15 = (void *)objc_claimAutoreleasedReturnValue(v14);
+    v15 = v14;
     if (!os_log_type_enabled((os_log_t)v15, OS_LOG_TYPE_ERROR))
     {
 LABEL_9:
@@ -84,7 +84,7 @@ LABEL_12:
   if (!(_DWORD)v13)
   {
     uint64_t v19 = BKLogSystemShell(v13);
-    v15 = (void *)objc_claimAutoreleasedReturnValue(v19);
+    v15 = v19;
     if (!os_log_type_enabled((os_log_t)v15, OS_LOG_TYPE_ERROR)) {
       goto LABEL_9;
     }

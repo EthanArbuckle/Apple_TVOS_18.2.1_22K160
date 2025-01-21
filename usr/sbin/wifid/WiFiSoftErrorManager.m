@@ -105,7 +105,7 @@
     {
       v15 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed in super-init",  "-[WiFiSoftErrorManager initWithWiFiManager:queue:]");
+        [qword_100219F60 WFLog:@"-[WiFiSoftErrorManager initWithWiFiManager:queue:] failed in super-init"];
       }
       objc_autoreleasePoolPop(v15);
       self = 0LL;
@@ -171,7 +171,7 @@ LABEL_12:
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: errorArray allocation failed",  "-[WiFiSoftErrorManager initErrorArray:]",  0);
+      [qword_100219F60 WFLog:@"%s: errorArray allocation failed" message:3];
     }
 LABEL_8:
     objc_autoreleasePoolPop(v8);
@@ -196,7 +196,7 @@ LABEL_8:
 
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: LQM Dictionary data is NULL or wrong type !",  "-[WiFiSoftErrorManager wifiSoftErrorEventHandler:eventType:eventData:]");
+      [qword_100219F60 WFLog:@"%s: LQM Dictionary data is NULL or wrong type !" message:3];
     }
     goto LABEL_15;
   }
@@ -233,7 +233,7 @@ LABEL_11:
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: SoftErrorEvent Detection Supressed",  "-[WiFiSoftErrorManager wifiSoftErrorEventHandler:eventType:eventData:]");
+      [qword_100219F60 WFLog:@"SoftErrorEvent Detection Supressed" message:3];
     }
 LABEL_15:
     v12 = v11;
@@ -287,7 +287,7 @@ LABEL_18:
   {
     v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:Invalid Soft Error",  "-[WiFiSoftErrorManager wifiSoftErrorsInProcessStateSet:]",  v5);
+      [qword_100219F60 WFLog:@"Invalid Soft Error" message:3];
     }
   }
 
@@ -318,7 +318,7 @@ LABEL_18:
     self->_softErrorInProcessFlags &= ~a3;
     v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: softErrorsInProcessFlags:0x%0x",  "-[WiFiSoftErrorManager wifiSoftErrorsInProcessStateUnset:]",  self->_softErrorInProcessFlags);
+      [qword_100219F60 WFLog:@"-[WiFiSoftErrorManager wifiSoftErrorsInProcessStateUnset:] softErrorsInProcessFlags:0x%0x" message:3, "%s: softErrorsInProcessFlags:0x%0x",  "-[WiFiSoftErrorManager wifiSoftErrorsInProcessStateUnset:]",  self->_softErrorInProcessFlags];
     }
   }
 
@@ -395,7 +395,7 @@ LABEL_8:
   double Current = CFAbsoluteTimeGetCurrent();
   if (self->_wifiToggleErrors)
   {
-    v30 = (WiFiSoftErrorContext *)objc_claimAutoreleasedReturnValue( -[WiFiSoftErrorManager fetchSoftErrorContext:softErrorType:]( self,  "fetchSoftErrorContext:softErrorType:",  a4,  1LL));
+    v30 = [self fetchSoftErrorContext:a4 softErrorType:1LL];
     if (v30) {
       goto LABEL_9;
     }
@@ -404,7 +404,7 @@ LABEL_8:
     {
       uint64_t v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to alloc wifiToggleError",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+        [qword_100219F60 WFLog:@"%s: failed to alloc wifiToggleError" message:3];
       }
 LABEL_49:
       objc_autoreleasePoolPop(v9);
@@ -425,7 +425,7 @@ LABEL_51:
     {
       uint64_t v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: wifiToggleErrorArray is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+        [qword_100219F60 WFLog:@"%s: wifiToggleErrorArray is NULL!" message:3];
       }
       goto LABEL_49;
     }
@@ -435,7 +435,7 @@ LABEL_51:
     {
       uint64_t v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to alloc wifiToggleError Context",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+        [qword_100219F60 WFLog:@"%s: failed to alloc wifiToggleError Context" message:3];
       }
       goto LABEL_49;
     }
@@ -456,12 +456,12 @@ LABEL_9:
   }
 
   v11 = v10;
-  uint64_t v12 = objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v30, "fetchSoftErrorContextData"));
+  uint64_t v12 = [v30 fetchSoftErrorContextData];
   if (!v12)
   {
     v28 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: wifiToggleEventsArray is NULL",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+      [qword_100219F60 WFLog:@"%s: wifiToggleEventsArray is NULL" message:3];
     }
     objc_autoreleasePoolPop(v28);
     v13 = 0LL;
@@ -474,7 +474,7 @@ LABEL_9:
   {
     v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Failed to alloc CurrTime",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+      [qword_100219F60 WFLog:@"Failed to alloc CurrTime" message:3];
     }
     objc_autoreleasePoolPop(v29);
     goto LABEL_51;
@@ -499,12 +499,12 @@ LABEL_9:
         while (1)
         {
           unint64_t v16 = (v16 - 1);
-          v19 = (void *)objc_claimAutoreleasedReturnValue([v13 objectAtIndex:v18]);
+          v19 = [v13 objectAtIndex:v18];
           if (!v19) {
             break;
           }
           v20 = v19;
-          v21 = (void *)objc_claimAutoreleasedReturnValue([v19 objectForKey:@"WiFiOFFEvent"]);
+          v21 = [v19 objectForKey:@"WiFiOFFEvent"];
 
           if (v21)
           {
@@ -524,7 +524,7 @@ LABEL_9:
               -[WiFiSoftErrorContext setErrorState:](v30, "setErrorState:", 2LL);
               v24 = objc_autoreleasePoolPush();
               if (qword_100219F60) {
-                objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:(Soft Error):WiFi Toggle Error Detected !",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]");
+                [qword_100219F60 WFLog:@"message:Soft Error:WiFi Toggle Error Detected !" 3];
               }
               objc_autoreleasePoolPop(v24);
               -[WiFiSoftErrorManager wifiSoftErrorsInProcessStateSet:](self, "wifiSoftErrorsInProcessStateSet:", 1LL);
@@ -543,7 +543,7 @@ LABEL_9:
 
         v26 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: eventRef at index:%u is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiToggleEventHandler:deviceContext:]",  v16);
+          [qword_100219F60 WFLog:@"%s: eventRef at index:%u is NULL!" message:3 v16];
         }
         objc_autoreleasePoolPop(v26);
       }
@@ -560,7 +560,7 @@ LABEL_9:
 {
   uint64_t v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Received zero scan results Event",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+    [qword_100219F60 WFLog:@"%s: Received zero scan results Event" message:3];
   }
   objc_autoreleasePoolPop(v5);
   if (self->_noNetworkFoundErrors)
@@ -578,12 +578,12 @@ LABEL_12:
       uint64_t v6 = v21;
 LABEL_13:
       double v22 = v6;
-      double v23 = (WiFiSoftErrorContext *)objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v6, "fetchSoftErrorContextData"));
+      double v23 = [WiFiSoftErrorContext fetchSoftErrorContextData];
       unint64_t v10 = objc_autoreleasePoolPush();
       if (!v23)
       {
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: noNetworksEventsArray is NULL",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+          [qword_100219F60 WFLog:@"noNetworksEventsArray is NULL"];
         }
         objc_autoreleasePoolPop(v10);
         goto LABEL_27;
@@ -606,7 +606,7 @@ LABEL_13:
             -[WiFiSoftErrorContext removeAllObjects](v23, "removeAllObjects");
             v17 = objc_autoreleasePoolPush();
             if (qword_100219F60) {
-              objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:(Soft Error):No Networks Found Detected !",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+              [qword_100219F60 WFLog:@"%s:(Soft Error):No Networks Found Detected !" message:3];
             }
             objc_autoreleasePoolPop(v17);
             -[WiFiSoftErrorContext setErrorState:](v22, "setErrorState:", 2LL);
@@ -649,7 +649,7 @@ LABEL_28:
 
       v19 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: numRef Null",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+        [qword_100219F60 WFLog:@"%s: numRef Null" message:3];
       }
       objc_autoreleasePoolPop(v19);
       goto LABEL_26;
@@ -657,7 +657,7 @@ LABEL_28:
 
     v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to alloc wifiToggleError",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+      [qword_100219F60 WFLog:@"%s: failed to alloc wifiToggleError" message:3];
     }
   }
 
@@ -689,7 +689,7 @@ LABEL_28:
     {
       v20 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: noNetworksErrorArray is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiScanEventHandler:]");
+        [qword_100219F60 WFLog:@"%s: noNetworksErrorArray is NULL!"];
       }
     }
   }
@@ -701,7 +701,7 @@ LABEL_28:
 {
   uint64_t v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Received delayed AutoJoin",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiAutoJoinEventHandler:]");
+    [qword_100219F60 WFLog:@"%s: Received delayed AutoJoin" message:3];
   }
   objc_autoreleasePoolPop(v5);
   if (self->_autoJoinDelayErrors)
@@ -719,7 +719,7 @@ LABEL_28:
     {
       v28 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: autoJoinDelayErrorArray is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiAutoJoinEventHandler:]");
+        [qword_100219F60 WFLog:@"%s: autoJoinDelayErrorArray is NULL!" message:3];
       }
       goto LABEL_42;
     }
@@ -733,7 +733,7 @@ LABEL_28:
     uint64_t v6 = v30;
 LABEL_9:
     v31 = v6;
-    v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v6, "fetchSoftErrorContextData"));
+    v8 = -[WiFiSoftErrorContext fetchSoftErrorContextData];
     uint64_t v9 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
       [(id)qword_100219F60 WFLog:3, "%s: slowAutoJoinEventsArray:%@", "-[WiFiSoftErrorManager wifiSoftErrorWiFiAutoJoinEventHandler:]", v8 message];
@@ -746,7 +746,7 @@ LABEL_9:
     {
       v27 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: numRef Null",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiAutoJoinEventHandler:]");
+        [qword_100219F60 WFLog:@"%s: numRef Null" message:3];
       }
       objc_autoreleasePoolPop(v27);
 
@@ -759,11 +759,11 @@ LABEL_9:
     if ([v8 count] == (id)10) {
       objc_msgSend(v8, "replaceObjectsInRange:withObjectsFromArray:range:", 0, 9, v8, 1, 9);
     }
-    v13 = (WiFiSoftErrorContext *)objc_claimAutoreleasedReturnValue( -[WiFiSoftErrorManager fetchSoftErrorContext:softErrorType:]( self,  "fetchSoftErrorContext:softErrorType:",  a3,  1LL));
+    v13 = [self fetchSoftErrorContext:a3 softErrorType:1LL];
     v29 = v13;
     if (v13)
     {
-      v14 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v13, "fetchSoftErrorContextData"));
+      v14 = [v13 fetchSoftErrorContextData];
       BOOL v15 = v14;
       if (v14 && [v14 count])
       {
@@ -778,11 +778,11 @@ LABEL_9:
           uint64_t v17 = (uint64_t)v16;
           while (1)
           {
-            uint64_t v18 = (void *)objc_claimAutoreleasedReturnValue([v15 objectAtIndex:--v17]);
+            uint64_t v18 = (void *)[v15 objectAtIndex:--v17];
             v19 = v18;
             if (v18)
             {
-              uint64_t v20 = objc_claimAutoreleasedReturnValue([v18 objectForKey:@"WiFiONEvent"]);
+              uint64_t v20 = [v18 objectForKey:@"WiFiONEvent"];
               if (v20) {
                 break;
               }
@@ -803,7 +803,7 @@ LABEL_9:
           {
             v24 = objc_autoreleasePoolPush();
             if (qword_100219F60) {
-              objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: device was just powered on - skipping delayed auto-join detection",  "-[WiFiSoftErrorManager wifiSoftErrorWiFiAutoJoinEventHandler:]");
+              [qword_100219F60 WFLog:@"device was just powered on - skipping delayed auto-join detection" message:3];
             }
             objc_autoreleasePoolPop(v24);
 
@@ -815,21 +815,21 @@ LABEL_9:
 {
   uint64_t v7 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Received Rx-Data -Stall Event",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]");
+    [qword_100219F60 WFLog:@"Received Rx-Data -Stall Event"];
   }
   objc_autoreleasePoolPop(v7);
   if (!a3 || !a4)
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: deviceRef or data is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]");
+      [qword_100219F60 WFLog:@"deviceRef or data is NULL!"];
     }
     goto LABEL_36;
   }
 
   if (self->_rxDataStallErrors)
   {
-    v8 = (WiFiSoftErrorContext *)objc_claimAutoreleasedReturnValue( -[WiFiSoftErrorManager fetchSoftErrorContext:softErrorType:]( self,  "fetchSoftErrorContext:softErrorType:",  a3,  16LL));
+    v8 = [self fetchSoftErrorContext:a3 softErrorType:16LL];
     if (v8) {
       goto LABEL_11;
     }
@@ -842,7 +842,7 @@ LABEL_9:
     {
       v19 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: rxDataStallErrorArray is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]");
+        [qword_100219F60 WFLog:@"%s: rxDataStallErrorArray is NULL!"];
       }
       goto LABEL_36;
     }
@@ -856,7 +856,7 @@ LABEL_9:
     v8 = v22;
 LABEL_11:
     double v23 = v8;
-    unint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v8, "fetchSoftErrorContextData"));
+    unint64_t v10 = (void *)[v8 fetchSoftErrorContextData];
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
       [(id)qword_100219F60 WFLog:3, "%s: rxDataStallEventsArray:%@", "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]", v10 message];
@@ -868,7 +868,7 @@ LABEL_11:
     if ((v13 & 1) != 0)
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Rx-Stall with errorCode:%lluu",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]",  v12);
+        [qword_100219F60 WFLog:@"Rx-Stall with errorCode:%lluu" message:@"%s: Rx-Stall with errorCode:%lluu" 3];
       }
       objc_autoreleasePoolPop(v14);
       double Current = CFAbsoluteTimeGetCurrent();
@@ -896,7 +896,7 @@ LABEL_11:
 
       v21 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: numRef Null",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]");
+        [qword_100219F60 WFLog:@"%s: numRef Null" message:3];
       }
       uint64_t v20 = v21;
     }
@@ -904,7 +904,7 @@ LABEL_11:
     else
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Not a Rx-Stall",  "-[WiFiSoftErrorManager wifiSoftErrorRxDataStallEventHandler:eventData:]");
+        [qword_100219F60 WFLog:@"%s: Not a Rx-Stall" message:3];
       }
       uint64_t v20 = v14;
     }
@@ -941,7 +941,7 @@ LABEL_36:
 
   if (self->_txDataStallErrors)
   {
-    v8 = (WiFiSoftErrorContext *)objc_claimAutoreleasedReturnValue( -[WiFiSoftErrorManager fetchSoftErrorContext:softErrorType:]( self,  "fetchSoftErrorContext:softErrorType:",  a3,  8LL));
+    v8 = [self fetchSoftErrorContext:a3 softErrorType:8LL];
     if (v8) {
       goto LABEL_11;
     }
@@ -954,7 +954,7 @@ LABEL_36:
     {
       v21 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: txDataStallErrorArray is NULL!",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallEventHandler:eventData:]");
+        [qword_100219F60 WFLog:@"%s: txDataStallErrorArray is NULL!"];
       }
       goto LABEL_48;
     }
@@ -965,7 +965,7 @@ LABEL_36:
   {
     v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to alloc txDataStallError",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallEventHandler:eventData:]");
+      [qword_100219F60 WFLog:@"%s: failed to alloc txDataStallError" message:3];
     }
 LABEL_48:
     objc_autoreleasePoolPop(v21);
@@ -979,7 +979,7 @@ LABEL_48:
   v8 = v23;
 LABEL_11:
   v24 = v8;
-  unint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiSoftErrorContext fetchSoftErrorContextData](v8, "fetchSoftErrorContextData"));
+  unint64_t v10 = (void *)[v8 fetchSoftErrorContextData];
   if (!-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]( self,  "wifiSoftErrorTxDataStallProcessHistory:",  a4))
   {
 LABEL_44:
@@ -989,7 +989,7 @@ LABEL_44:
 
   v11 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:Tx-Stall Instance Detected",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallEventHandler:eventData:]");
+    [qword_100219F60 WFLog:@"%s:Tx-Stall Instance Detected" message:3];
   }
   objc_autoreleasePoolPop(v11);
   double Current = CFAbsoluteTimeGetCurrent();
@@ -999,7 +999,7 @@ LABEL_44:
   {
     double v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: numRef Null",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallEventHandler:eventData:]");
+      [qword_100219F60 WFLog:@"numRef Null" message:3];
     }
     objc_autoreleasePoolPop(v22);
     goto LABEL_44;
@@ -1018,7 +1018,7 @@ LABEL_44:
 
   else
   {
-    id v16 = (NSNumber *)objc_claimAutoreleasedReturnValue([v10 objectAtIndex:0]);
+    id v16 = [v10 objectAtIndex:0];
 
     if (v16)
     {
@@ -1040,7 +1040,7 @@ LABEL_44:
           if ((v19 & 1) != 0)
           {
             if (qword_100219F60) {
-              objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: txStall NOT detected",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallEventHandler:eventData:]");
+              [qword_100219F60 WFLog:@"%s: txStall NOT detected" message:3];
             }
             objc_autoreleasePoolPop(v18);
             goto LABEL_35;
@@ -1094,7 +1094,7 @@ LABEL_36:
     else {
       uint64_t v8 = 0LL;
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: SoftError eventType is %u \n",  "-[WiFiSoftErrorManager wifiSoftErrorAwdlEventNotificationHandler:eventData:]",  v8);
+    [qword_100219F60 WFLog:@"-[WiFiSoftErrorManager wifiSoftErrorAwdlEventNotificationHandler:eventData:] SoftError eventType is %u \n" message:3];
   }
 
   objc_autoreleasePoolPop(v7);
@@ -1143,22 +1143,22 @@ LABEL_11:
   id v13 = v4;
   if (v4)
   {
-    uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 objectForKeyedSubscript:@"RSSI"]);
+    uint64_t v5 = (void *)[v4 objectForKeyedSubscript:@"RSSI"];
     self->_primaryInterfaceRssi = (int64_t)[v5 integerValue];
 
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"CCA"]);
+    uint64_t v6 = (void *)[v13 objectForKeyedSubscript:@"CCA"];
     self->_primaryInterfaceCca = (int64_t)[v6 integerValue];
 
-    uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"SNR"]);
+    uint64_t v7 = (void *)[v13 objectForKeyedSubscript:@"SNR"];
     self->_primaryInterfaceSnr = (int64_t)[v7 integerValue];
 
-    uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"TXFRAMES"]);
+    uint64_t v8 = (void *)[v13 objectForKeyedSubscript:@"TXFRAMES"];
     self->_primaryInterfaceTxFrms[self->_primaryInterfaceStatsHistoryIdx] = [v8 unsignedIntValue];
 
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"TXFAIL"]);
+    uint64_t v9 = (void *)[v13 objectForKeyedSubscript:@"TXFAIL"];
     self->_primaryInterfaceTxFail[self->_primaryInterfaceStatsHistoryIdx] = [v9 unsignedIntValue];
 
-    unint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v13 objectForKeyedSubscript:@"RXFRAMES"]);
+    unint64_t v10 = (void *)[v13 objectForKeyedSubscript:@"RXFRAMES"];
     self->_primaryInterfaceRxFrms[self->_primaryInterfaceStatsHistoryIdx] = [v10 unsignedIntValue];
 
     v11 = v13;
@@ -1169,7 +1169,7 @@ LABEL_11:
   {
     uint64_t v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: lqmDict is NULL",  "-[WiFiSoftErrorManager WiFiSoftErrorManagerLQMEventHandler:]");
+      [qword_100219F60 WFLog:@"%s: lqmDict is NULL" message:3];
     }
     objc_autoreleasePoolPop(v12);
     v11 = 0LL;
@@ -1180,7 +1180,7 @@ LABEL_11:
 {
   v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Handle DriverAvailable Event: inProcessFlags:0x%0x",  "-[WiFiSoftErrorManager WiFiSoftErrorDriverAvailableEventhandler]",  self->_softErrorInProcessFlags);
+    [qword_100219F60 WFLog:@"Handle DriverAvailable Event: inProcessFlags:0x%0x" message:3 "%s: Handle DriverAvailable Event: inProcessFlags:0x%0x" "-[WiFiSoftErrorManager WiFiSoftErrorDriverAvailableEventhandler]" self->_softErrorInProcessFlags];
   }
   objc_autoreleasePoolPop(v3);
   if ((self->_softErrorInProcessFlags & 2) != 0)
@@ -1193,7 +1193,7 @@ LABEL_11:
     self->_softErrorInProcessFlags = 0;
     id v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: DriverAvailbale event received when not expected.Clearing inProcess State",  "-[WiFiSoftErrorManager WiFiSoftErrorDriverAvailableEventhandler]");
+      [qword_100219F60 WFLog:@"%s: DriverAvailbale event received when not expected.Clearing inProcess State" message:3];
     }
     objc_autoreleasePoolPop(v4);
   }
@@ -1202,7 +1202,7 @@ LABEL_11:
 {
   v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Handle Linkup/Roam Event:inProcessFlags:0x%0x",  "-[WiFiSoftErrorManager WiFiSoftErrorDriverLinkupEventhandler]",  self->_softErrorInProcessFlags);
+    [qword_100219F60 WFLog:@"Handle Linkup/Roam Event:inProcessFlags:0x%0x" message:3];
   }
   objc_autoreleasePoolPop(v3);
   if ((self->_softErrorInProcessFlags & 8) != 0) {
@@ -1299,7 +1299,7 @@ LABEL_11:
     -[WiFiSoftErrorManager wifiSoftErrorsInProcessStateUnset:](self, "wifiSoftErrorsInProcessStateUnset:", v5);
     uint64_t v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: mitigation is supressed for SoftError:%u",  "-[WiFiSoftErrorManager wifiSoftErrorMitigation:mitigationContext:]",  v5);
+      [qword_100219F60 WFLog:@"%s: mitigation is supressed for SoftError:%u" message:3, "-[WiFiSoftErrorManager wifiSoftErrorMitigation:mitigationContext:]", v5];
     }
     objc_autoreleasePoolPop(v8);
   }
@@ -1405,7 +1405,7 @@ LABEL_11:
       CFNumberGetValue((CFNumberRef)value, kCFNumberIntType, &valuePtr);
       uint64_t v5 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Number of RateSeries Present:%u",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]",  valuePtr);
+        [qword_100219F60 WFLog:@"-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:] Number of RateSeries Present:%u" message:3 valuePtr];
       }
       objc_autoreleasePoolPop(v5);
     }
@@ -1476,7 +1476,7 @@ LABEL_11:
     {
       int v14 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Possible Tx-Stall",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]");
+        [qword_100219F60 WFLog:@"Possible Tx-Stall" message:3 "%s: Possible Tx-Stall" "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]"];
       }
       objc_autoreleasePoolPop(v14);
       LOBYTE(v13) = 1;
@@ -1487,7 +1487,7 @@ LABEL_11:
   {
     id v15 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:txFailHistoryDictionary is NULL",  "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]");
+      [qword_100219F60 WFLog:@"%s:txFailHistoryDictionary is NULL" message:3 "-[WiFiSoftErrorManager wifiSoftErrorTxDataStallProcessHistory:]"];
     }
     objc_autoreleasePoolPop(v15);
     LOBYTE(v13) = 0;
@@ -1552,7 +1552,7 @@ LABEL_11:
   {
     id v15 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Bad params!",  "-[WiFiSoftErrorManager isTxStalled:rateType:size:]");
+      [qword_100219F60 WFLog:@"Bad params!"];
     }
     objc_autoreleasePoolPop(v15);
   }
@@ -1587,7 +1587,7 @@ LABEL_11:
   {
     unsigned int v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Failure History params are invalid",  "-[WiFiSoftErrorManager populateTxFailHistory:failureHistoryArray:historyArraySz:]");
+      [qword_100219F60 WFLog:@"%s: Failure History params are invalid" message:3];
     }
     objc_autoreleasePoolPop(v11);
   }
@@ -1742,7 +1742,7 @@ LABEL_37:
         -[WiFiSoftErrorManager wifiSoftErrorUserConfirmationFlagSetting:forError:withDeviceContext:]( v14,  "wifiSoftErrorUserConfirmationFlagSetting:forError:withDeviceContext:",  0LL,  v15,  a5);
         BOOL v13 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:User-Cancelled Filing TD Radar",  "-[WiFiSoftErrorManager launchTapToRadar:displayString:deviceContext:]");
+          [qword_100219F60 WFLog:@"%s:User-Cancelled Filing TD Radar" message:3];
         }
 LABEL_34:
         objc_autoreleasePoolPop(v13);
@@ -1753,7 +1753,7 @@ LABEL_34:
           -[WiFiSoftErrorManager wifiSoftErrorUserConfirmationFlagSetting:forError:withDeviceContext:]( self,  "wifiSoftErrorUserConfirmationFlagSetting:forError:withDeviceContext:",  0LL,  64LL,  a5);
           BOOL v13 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:User-Cancelled Filing UD Radar",  "-[WiFiSoftErrorManager launchTapToRadar:displayString:deviceContext:]");
+            [qword_100219F60 WFLog:@"User-Cancelled Filing UD Radar" message:3];
           }
           goto LABEL_34;
         }
@@ -1818,11 +1818,11 @@ LABEL_32:
 
   double v9 = @"tap-to-radar://new?Title=WiFi%20Awdl%20Issues&AutoDiagnostics=phone&Description=Please%20provide%20feedback%20on%20following-%0A1.%20Which%20application%20are%20you%20running%29%20-%0A2.%20Did%20you%20see%20any%20performance%20issue%29%20-&ComponentID=482277&ComponentName=WiFi%20AWDL&ComponentVersion=iOS&Classification=Other%20Bug";
 LABEL_22:
-  uint64_t v11 = objc_claimAutoreleasedReturnValue(+[NSURL URLWithString:](&OBJC_CLASS___NSURL, "URLWithString:", v9));
+  uint64_t v11 = [NSURL URLWithString:v9];
   if (v11)
   {
     id v16 = (id)v11;
-    double v12 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
+    double v12 = +[LSApplicationWorkspace defaultWorkspace];
     [v12 openURL:v16];
   }
 
@@ -1833,17 +1833,17 @@ LABEL_22:
   {
     int v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: txStallEvents Array is NULL",  "-[WiFiSoftErrorManager purgeOutdatedEvents:currTime:]");
+      [qword_100219F60 WFLog:@"%s: txStallEvents Array is NULL" message:3];
     }
     goto LABEL_18;
   }
 
-  uint64_t v5 = objc_claimAutoreleasedReturnValue(+[NSMutableIndexSet indexSet](&OBJC_CLASS___NSMutableIndexSet, "indexSet"));
+  uint64_t v5 = [+[NSMutableIndexSet indexSet] autorelease];
   if (!v5)
   {
     int v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: outdatedEvents allocation failed",  "-[WiFiSoftErrorManager purgeOutdatedEvents:currTime:]");
+      [qword_100219F60 WFLog:@"%s: outdatedEvents allocation failed" message:3];
     }
 LABEL_18:
     objc_autoreleasePoolPop(v14);
@@ -1857,7 +1857,7 @@ LABEL_18:
     BOOL v8 = v7;
     for (CFIndex i = 0LL; i != v8; ++i)
     {
-      uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v15 objectAtIndex:i]);
+      uint64_t v10 = (void *)[v15 objectAtIndex:i];
       uint64_t v11 = v10;
       if (v10)
       {
@@ -1916,7 +1916,7 @@ LABEL_13:
   {
     uint64_t v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: NetworkReachabilityFlags :0x%0x",  "-[WiFiSoftErrorManager getReachabilityStatus]",  flags);
+      [qword_100219F60 WFLog:@"%s: NetworkReachabilityFlags :0x%0x" message:3 flags];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -1928,7 +1928,7 @@ LABEL_13:
     if (v4) {
       double v7 = "YES";
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Internet Reachability Status :%s",  "-[WiFiSoftErrorManager getReachabilityStatus]",  v7);
+    [qword_100219F60 WFLog:@"%s: Internet Reachability Status :%s" message:3, "-[WiFiSoftErrorManager getReachabilityStatus]", v7];
   }
 
   objc_autoreleasePoolPop(v6);
@@ -1942,7 +1942,7 @@ LABEL_13:
 {
   BOOL v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Supress TapToRadar on Non-iOS platform",  "-[WiFiSoftErrorManager supressTapToRadar:deviceContext:]");
+    [qword_100219F60 WFLog:@"%s: Supress TapToRadar on Non-iOS platform" message:3];
   }
   objc_autoreleasePoolPop(v4);
   return 1;
@@ -1958,7 +1958,7 @@ LABEL_13:
   }
   uint64_t v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: deviceManagerRef is NULL!",  "-[WiFiSoftErrorManager supressEventDetectionProcesssing:deviceContext:]");
+    [qword_100219F60 WFLog:@"%s: deviceManagerRef is NULL!" message:3];
   }
   objc_autoreleasePoolPop(v5);
   return 0;
@@ -1983,7 +1983,7 @@ LABEL_13:
   {
     uint64_t v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Invalid softError Type",  "-[WiFiSoftErrorManager enableSoftErrorMitigation:]");
+      [qword_100219F60 WFLog:@"Invalid softError Type" message:3];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -2000,7 +2000,7 @@ LABEL_13:
   {
     uint64_t v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Invalid softError Type",  "-[WiFiSoftErrorManager supressSoftErrorMitigation:]");
+      [qword_100219F60 WFLog:@"Invalid softError Type" message:3];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -2017,7 +2017,7 @@ LABEL_13:
   {
     double v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Invalid softError Type",  "-[WiFiSoftErrorManager isEventMitigationEnabled:]");
+      [qword_100219F60 WFLog:@"Invalid softError Type" message:3];
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -2044,7 +2044,7 @@ LABEL_13:
   {
     double v9 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Invalid softError Type",  "-[WiFiSoftErrorManager recordMitigation:]",  v10,  v11);
+      [qword_100219F60 WFLog:@"Invalid softError Type" message:3];
     }
   }
 
@@ -2083,7 +2083,7 @@ LABEL_13:
 LABEL_12:
         unsigned int v5 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Invalid softErrorType:%u",  "-[WiFiSoftErrorManager softErrorTypeIndex:]",  v3);
+          [qword_100219F60 WFLog:@"Invalid softErrorType:%u" message:3];
         }
         objc_autoreleasePoolPop(v5);
         return 255;

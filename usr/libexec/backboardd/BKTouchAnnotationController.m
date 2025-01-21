@@ -45,19 +45,19 @@
 {
   id v4 = a3;
   v16.receiver = self;
-  v16.super_class = (Class)&OBJC_CLASS___BKTouchAnnotationController;
-  v5 = -[BKTouchAnnotationController init](&v16, "init");
+  v16.super_class = [BKTouchAnnotationController class];
+  BKTouchAnnotationController *v5 = [[BKTouchAnnotationController alloc] init];
   v7 = v5;
   if (v5)
   {
-    id v8 = objc_msgSend((id)objc_opt_class(v5, v6), "workQueue");
-    uint64_t v9 = objc_claimAutoreleasedReturnValue(v8);
+    id v8 = [v5 workQueue];
+    uint64_t v9 = [v8 autorelease];
     workQueue = v7->_workQueue;
     v7->_workQueue = (OS_dispatch_queue *)v9;
 
     id v11 = sub_100019878(v4);
-    v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-    uint64_t v13 = objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationController annotationControllerForDisplay:]( &OBJC_CLASS___BKDisplayAnnotationController,  "annotationControllerForDisplay:",  v12));
+    v12 = [v11 autorelease];
+    uint64_t v13 = [BKDisplayAnnotationController annotationControllerForDisplay:v12];
     displayAnnotationController = v7->_displayAnnotationController;
     v7->_displayAnnotationController = (BKDisplayAnnotationController *)v13;
   }
@@ -182,20 +182,20 @@
 - (void)_queue_applyBasicAnnotationTextForTouchIdentifier:(unsigned int)a3 pathIndex:(int64_t)a4
 {
   uint64_t v5 = *(void *)&a3;
-  id v12 = (id)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"touch.%X.id",  *(void *)&a3));
-  v7 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotationController annotationForKeyPath:]( self->_displayAnnotationController,  "annotationForKeyPath:"));
+  id v12 = [NSString stringWithFormat:@"touch.%X.id", a3];
+  BKDisplayAnnotation *v7 = [self->_displayAnnotationController annotationForKeyPath:];
 
   if (!v7)
   {
-    id v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"t%X p%d", v5, a4));
-    id v9 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotation annotationWithString:]( &OBJC_CLASS___BKDisplayAnnotation,  "annotationWithString:",  v8));
+    id v8 = [NSString stringWithFormat:@"t%X p%d", v5, a4];
+    id v9 = [BKDisplayAnnotation annotationWithString:v8];
 
-    id v10 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationNullRenderer);
-    id v11 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStyle colorVariationStyleWithIndex:]( &OBJC_CLASS___BKDisplayAnnotationStyle,  "colorVariationStyleWithIndex:",  v5));
+    BKDisplayAnnotationNullRenderer *v10 = [[BKDisplayAnnotationNullRenderer alloc] init];
+    id v11 = [BKDisplayAnnotationStyle colorVariationStyleWithIndex:v5];
     [v9 setStyleModifier:v11];
 
     [v9 setRenderer:v10];
-    -[BKDisplayAnnotationController setAnnotation:forKeyPath:]( self->_displayAnnotationController,  "setAnnotation:forKeyPath:",  v9,  v12);
+    [self->_displayAnnotationController setAnnotation:v9 forKeyPath:v12];
   }
 }
 
@@ -368,13 +368,13 @@
 {
   uint64_t v5 = *(void *)&a3;
   if (a4 > 0.0 || a5 > 0.0) {
-    unsigned int v7 = (const __CFString *)objc_claimAutoreleasedReturnValue( objc_msgSend( @"in range",  "stringByAppendingFormat:",  @" max:%.4g z:%.4g",  *(void *)&a5,  *(void *)&a4));
+    unsigned int v7 = [@"in range" stringByAppendingFormat:@" max:%.4g z:%.4g", a5, a4];
   }
   else {
     unsigned int v7 = @"in range";
   }
   id v8 = (__CFString *)v7;
-  -[BKTouchAnnotationController _queue_annotateTouch:withString:uniqueIdentifier:fromPID:]( self,  "_queue_annotateTouch:withString:uniqueIdentifier:fromPID:",  v5,  v7,  @"withinRange",  0xFFFFFFFFLL);
+  [self _queue_annotateTouch:v5 withString:v7 uniqueIdentifier:@"withinRange" fromPID:0xFFFFFFFFLL];
 }
 
 - (void)_queue_annotateTouch:(unsigned int)a3 withUniqueString:(id)a4
@@ -383,16 +383,16 @@
 
 - (void)_queue_annotateTouch:(unsigned int)a3 withString:(id)a4 uniqueIdentifier:(id)a5 fromPID:(int)a6
 {
-  uint64_t v6 = *(void *)&a6;
+  uint64_t v6 = (uint64_t)a6;
   uint64_t v8 = *(void *)&a3;
   id v10 = a4;
   id v11 = a5;
   displayAnnotationController = self->_displayAnnotationController;
-  int64_t v13 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchAnnotationController _keyPathForTouchIdentifier:](self, "_keyPathForTouchIdentifier:", v8));
-  unsigned int v14 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotationController annotationForKeyPath:]( displayAnnotationController,  "annotationForKeyPath:",  v13));
+  int64_t v13 = [self _keyPathForTouchIdentifier:v8];
+  unsigned int v14 = [displayAnnotationController annotationForKeyPath:v13];
 
   id v15 = sub_10003F198();
-  id v16 = (os_log_s *)objc_claimAutoreleasedReturnValue(v15);
+  os_log_s *v16 = [v15 autorelease];
   id v17 = v16;
   if (v14)
   {
@@ -407,24 +407,24 @@
       _os_log_impl( (void *)&_mh_execute_header,  v17,  OS_LOG_TYPE_DEFAULT,  "touchIdentifier:%X annotation:%{public}@ pid:%d",  buf,  0x18u);
     }
 
-    id v17 = (os_log_s *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"touch.%X.%@",  v8,  v11));
+    id v17 = [NSString stringWithFormat:@"touch.%X.%@", v8, v11];
     if ([v10 length])
     {
-      unsigned int v18 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotation annotationWithString:]( &OBJC_CLASS___BKDisplayAnnotation,  "annotationWithString:",  v10));
-      int v19 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationNullRenderer);
+      BKDisplayAnnotation *v18 = [BKDisplayAnnotation annotationWithString:v10];
+      BKDisplayAnnotationNullRenderer *v19 = [[BKDisplayAnnotationNullRenderer alloc] init];
       [v18 setRenderer:v19];
       if ((int)v6 >= 1)
       {
-        v20 = (void *)objc_claimAutoreleasedReturnValue(-[BKTouchAnnotationController _stringDescribingPID:](self, "_stringDescribingPID:", v6));
+        v20 = [self _stringDescribingPID:v6];
         [v18 setSection:v20];
       }
 
-      -[BKDisplayAnnotationController setAnnotation:forKeyPath:]( self->_displayAnnotationController,  "setAnnotation:forKeyPath:",  v18,  v17);
+      [self->_displayAnnotationController setAnnotation:v18 forKeyPath:v17];
     }
 
     else
     {
-      -[BKDisplayAnnotationController removeAnnotationsForKeyPath:]( self->_displayAnnotationController,  "removeAnnotationsForKeyPath:",  v17);
+      [self->_displayAnnotationController removeAnnotationsForKeyPath:v17];
     }
   }
 
@@ -462,28 +462,28 @@
   if (a3 >= 1)
   {
     uint64_t v3 = *(void *)&a3;
-    uint64_t v5 = BSBundleIDForPID(*(void *)&a3, a2);
-    id v6 = (void *)objc_claimAutoreleasedReturnValue(v5);
+    uint64_t v5 = BSBundleIDForPID(a3, a2);
+    id v6 = v5;
     if ([v6 length])
     {
-      id v7 = (void *)objc_claimAutoreleasedReturnValue( -[BKTouchAnnotationController _stringByRemovingPrefix:fromString:]( self,  "_stringByRemovingPrefix:fromString:",  @"com.apple.",  v6));
-      id v8 = objc_msgSend(v7, "stringByAppendingFormat:", @" (%d)", v3);
+      id v7 = [BKTouchAnnotationController _stringByRemovingPrefix:@"com.apple." fromString:v6];
+      id v8 = [v7 stringByAppendingFormat:@" (%d)" v3];
     }
 
     else
     {
       uint64_t v10 = BSProcessNameForPID(v3);
-      id v7 = (void *)objc_claimAutoreleasedReturnValue(v10);
+      id v7 = v10;
       if (![v7 length])
       {
-        uint64_t v11 = objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"pid %d", v3));
+        uint64_t v11 = [NSString stringWithFormat:@"pid %d" v3];
         goto LABEL_8;
       }
 
-      id v8 = objc_msgSend(v7, "stringByAppendingFormat:", @" (%d)", v3);
+      id v8 = [v7 stringByAppendingFormat:@" (%d)" v3];
     }
 
-    uint64_t v11 = objc_claimAutoreleasedReturnValue(v8);
+    uint64_t v11 = v8;
 LABEL_8:
     unsigned int v9 = (__CFString *)v11;
 
@@ -497,21 +497,21 @@ LABEL_8:
 - (id)_stringDescribingContextID:(unsigned int)a3 clientPort:(unsigned int)a4
 {
   uint64_t v4 = *(void *)&a3;
-  uint64_t v6 = -[BKTouchAnnotationController _pidForClientPort:](self, "_pidForClientPort:", *(void *)&a4);
+  uint64_t v6 = [self _pidForClientPort:a4];
   if ((int)v6 < 1)
   {
-    int64_t v13 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"ctx:%X", v4));
+    int64_t v13 = [NSString stringWithFormat:@"ctx:%X", v4];
   }
 
   else
   {
     uint64_t v8 = v6;
     uint64_t v9 = BSBundleIDForPID(v6, v7);
-    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(v9);
-    uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue( -[BKTouchAnnotationController _stringByRemovingPrefix:fromString:]( self,  "_stringByRemovingPrefix:fromString:",  @"com.apple.",  v10));
-    unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v11, "stringByAppendingFormat:", @" (%d)", v8));
+    uint64_t v10 = [v9 autorelease];
+    uint64_t v11 = [self _stringByRemovingPrefix:@"com.apple." fromString:v10];
+    unsigned int v12 = [v11 stringByAppendingFormat:@" (%d)", v8];
 
-    int64_t v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"ctx:%X -- %@",  v4,  v12));
+    int64_t v13 = [NSString stringWithFormat:@"ctx:%X -- %@", v4, v12];
   }
 
   return v13;
@@ -521,8 +521,8 @@ LABEL_8:
 {
   uint64_t v3 = *(void *)&a3;
   uint64_t ClientConnectionManager = BKHIDEventRoutingGetClientConnectionManager(self, a2);
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(ClientConnectionManager);
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 clientForTaskPort:v3]);
+  uint64_t v5 = (void *)ClientConnectionManager;
+  uint64_t v6 = (void *)[v5 clientForTaskPort:v3];
   uint64_t v7 = v6;
   if (v6) {
     int v8 = [v6 pid];
@@ -536,55 +536,55 @@ LABEL_8:
 
 - (id)_keyPathForTouchIdentifier:(unsigned int)a3
 {
-  return +[NSString stringWithFormat:](&OBJC_CLASS___NSString, "stringWithFormat:", @"touch.%X", *(void *)&a3);
+  return [NSString stringWithFormat:@"touch.%X", a3];
 }
 
 - (void)_queue_setCenter:(CGPoint)a3 forTouchIdentifier:(unsigned int)a4
 {
   double y = a3.y;
   double x = a3.x;
-  id v11 = (id)objc_claimAutoreleasedReturnValue( -[BKTouchAnnotationController _keyPathForTouchIdentifier:]( self,  "_keyPathForTouchIdentifier:",  *(void *)&a4));
-  uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotationController annotationForKeyPath:]( self->_displayAnnotationController,  "annotationForKeyPath:"));
+  id v11 = [self _keyPathForTouchIdentifier:a4];
+  uint64_t v7 = [self->_displayAnnotationController annotationForKeyPath:];
   if (v7)
   {
-    int v8 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationLocation centerAtPoint:]( &OBJC_CLASS___BKDisplayAnnotationLocation,  "centerAtPoint:",  x,  y));
+    int v8 = [BKDisplayAnnotationLocation centerAtPoint:CGPointMake(x, y)];
     [v7 setLocation:v8];
   }
 
   else
   {
-    int v8 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotation annotationWithEllipseSize:]( &OBJC_CLASS___BKDisplayAnnotation,  "annotationWithEllipseSize:",  64.0,  64.0));
-    uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationLocation centerAtPoint:]( &OBJC_CLASS___BKDisplayAnnotationLocation,  "centerAtPoint:",  x,  y));
-    uint64_t v10 = objc_alloc_init(&OBJC_CLASS___BKDisplayAnnotationContainedSubnodeRenderer);
+    BKDisplayAnnotation *v8 = [BKDisplayAnnotation annotationWithEllipseSize:64.0];
+    uint64_t v9 = [BKDisplayAnnotationLocation centerAtPoint:CGPointMake(x, y)];
+    BKDisplayAnnotationContainedSubnodeRenderer *v10 = [[BKDisplayAnnotationContainedSubnodeRenderer alloc] init];
     [v8 setLocation:v9];
     [v8 setRenderer:v10];
-    -[BKDisplayAnnotationController setAnnotation:forKeyPath:]( self->_displayAnnotationController,  "setAnnotation:forKeyPath:",  v8,  v11);
+    [self->_displayAnnotationController setAnnotation:v8 forKeyPath:v11];
   }
 }
 
 - (void)_queue_touchWasHardCanceled:(unsigned int)a3
 {
-  id v6 = (id)objc_claimAutoreleasedReturnValue( -[BKTouchAnnotationController _keyPathForTouchIdentifier:]( self,  "_keyPathForTouchIdentifier:",  *(void *)&a3));
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotationController annotationForKeyPath:]( self->_displayAnnotationController,  "annotationForKeyPath:",  v6));
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(+[BKDisplayAnnotationStyle canceledStyle](&OBJC_CLASS___BKDisplayAnnotationStyle, "canceledStyle"));
+  id v6 = [self _keyPathForTouchIdentifier:a3];
+  uint64_t v4 = [self->_displayAnnotationController annotationForKeyPath:v6];
+  uint64_t v5 = [BKDisplayAnnotationStyle canceledStyle];
   [v4 setStyleModifier:v5];
 
-  -[BKDisplayAnnotationController removeAnnotationsForKeyPath:afterDelay:queue:]( self->_displayAnnotationController,  "removeAnnotationsForKeyPath:afterDelay:queue:",  v6,  self->_workQueue,  0.5);
+  [self->_displayAnnotationController removeAnnotationsForKeyPath:v6 afterDelay:0.5 queue:self->_workQueue];
 }
 
 - (void)_queue_touchWasSoftCanceled:(unsigned int)a3
 {
   displayAnnotationController = self->_displayAnnotationController;
-  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue( -[BKTouchAnnotationController _keyPathForTouchIdentifier:]( self,  "_keyPathForTouchIdentifier:",  *(void *)&a3));
-  uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue([v4 stringByAppendingString:@".ctx"]);
-  id v6 = (void *)objc_claimAutoreleasedReturnValue( -[BKDisplayAnnotationController allAnnotationsForKeyPath:]( displayAnnotationController,  "allAnnotationsForKeyPath:",  v5));
+  uint64_t v4 = [self _keyPathForTouchIdentifier:a3];
+  uint64_t v5 = (void *)[v4 stringByAppendingString:@".ctx"];
+  BKDisplayAnnotationController *v6 = [BKDisplayAnnotationController allAnnotationsForKeyPath:v5];
 
   __int128 v16 = 0u;
   __int128 v17 = 0u;
   __int128 v14 = 0u;
   __int128 v15 = 0u;
   id v7 = v6;
-  id v8 = [v7 countByEnumeratingWithState:&v14 objects:v18 count:16];
+  id v8 = [v7 countByEnumeratingWithState:v14 objects:v18 count:16];
   if (v8)
   {
     id v9 = v8;
@@ -598,14 +598,14 @@ LABEL_8:
           objc_enumerationMutation(v7);
         }
         unsigned int v12 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)v11);
-        int64_t v13 = (void *)objc_claimAutoreleasedReturnValue( +[BKDisplayAnnotationStyle canceledStyle]( &OBJC_CLASS___BKDisplayAnnotationStyle,  "canceledStyle",  (void)v14));
+        int64_t v13 = [BKDisplayAnnotationStyle canceledStyle];
         [v12 setStyleModifier:v13];
 
         id v11 = (char *)v11 + 1;
       }
 
       while (v9 != v11);
-      id v9 = [v7 countByEnumeratingWithState:&v14 objects:v18 count:16];
+      id v9 = [v7 countByEnumeratingWithState:v14 objects:v18 count:16];
     }
 
     while (v9);

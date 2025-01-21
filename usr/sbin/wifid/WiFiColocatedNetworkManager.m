@@ -15,7 +15,7 @@
 
 - (WiFiColocatedNetworkManager)init
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue( +[NSException exceptionWithName:reason:userInfo:]( &OBJC_CLASS___NSException,  "exceptionWithName:reason:userInfo:",  NSInternalInconsistencyException,  @"-[WiFiColocatedNetworkManager init] unavailable",  0LL));
+  id v2 = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-[WiFiColocatedNetworkManager init] unavailable" userInfo:0LL];
   objc_exception_throw(v2);
   return -[WiFiColocatedNetworkManager initWithNetwork:colocatedNetworks:](v3, v4, v5, v6);
 }
@@ -60,13 +60,13 @@
 
 - (id)_reduceNumberOfCandidatesTo:(unint64_t)a3 on:(unsigned int)a4
 {
-  id v6 = (void *)objc_claimAutoreleasedReturnValue(-[CWFScanResult channel](self->_joinedNetwork, "channel"));
+  id v6 = [self->_joinedNetwork channel];
   unsigned int v7 = [v6 band];
 
   if (v7 == 3 || (uint64_t v8 = _os_feature_enabled_impl("CoreWiFi", "LegacySSIDTransitionUI"), (v8 & 1) != 0))
   {
     v9 = objc_alloc_init(&OBJC_CLASS___NSMutableArray);
-    v10 = (void *)objc_claimAutoreleasedReturnValue(-[CWFScanResult channel](self->_joinedNetwork, "channel"));
+    v10 = [self->_joinedNetwork channel];
     unsigned int v11 = [v10 band];
 
     if (v11 != a4)
@@ -90,7 +90,7 @@
             }
             v17 = *(void **)(*((void *)&v30 + 1) + 8LL * (void)i);
             v18 = objc_autoreleasePoolPush();
-            v19 = (void *)objc_claimAutoreleasedReturnValue([v17 channel]);
+            v19 = [v17 channel];
             unsigned int v20 = [v19 band];
 
             if (v20 == a4)
@@ -116,10 +116,10 @@
 
 - (void)_reduceNetworks
 {
-  id v15 = (id)objc_claimAutoreleasedReturnValue( -[WiFiColocatedNetworkManager _reduceNumberOfCandidatesTo:on:]( self,  "_reduceNumberOfCandidatesTo:on:",  1LL,  1LL));
+  id v15 = [self _reduceNumberOfCandidatesTo:1LL on:1LL];
   v3 = (void *)objc_claimAutoreleasedReturnValue( -[WiFiColocatedNetworkManager _reduceNumberOfCandidatesTo:on:]( self,  "_reduceNumberOfCandidatesTo:on:",  1LL,  2LL));
   SEL v4 = (void *)objc_claimAutoreleasedReturnValue( -[WiFiColocatedNetworkManager _reduceNumberOfCandidatesTo:on:]( self,  "_reduceNumberOfCandidatesTo:on:",  1LL,  3LL));
-  id v5 = (void *)objc_claimAutoreleasedReturnValue(-[CWFScanResult channel](self->_joinedNetwork, "channel"));
+  id v5 = [self->_joinedNetwork channel];
   unsigned int v6 = [v5 is2GHz];
 
   if (v6)
@@ -155,7 +155,7 @@
 LABEL_6:
       v10 = v4;
 LABEL_10:
-      id v11 = (id)objc_claimAutoreleasedReturnValue([v7 arrayByAddingObjectsFromArray:v10]);
+      id v11 = [v7 arrayByAddingObjectsFromArray:v10];
       goto LABEL_11;
     }
   }

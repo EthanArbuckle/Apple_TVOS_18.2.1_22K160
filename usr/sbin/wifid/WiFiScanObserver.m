@@ -88,7 +88,7 @@
     {
       v27 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no networks to provide",  "-[WiFiScanObserver ingestScanResults:ofType:clientName:directed:]");
+        [qword_100219F60 WFLog:@"%s: no networks to provide" message:3];
       }
       objc_autoreleasePoolPop(v27);
       v11 = v30;

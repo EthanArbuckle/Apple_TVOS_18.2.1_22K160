@@ -495,7 +495,7 @@ void sub_100003FF4(uint64_t a1, _xpc_connection_s *object)
     id v8 = v7;
     if (v22[5])
     {
-      objc_msgSend(*(id *)(*(void *)(a1 + 32) + 32), "addObject:");
+      [*(id *)(*(void *)(a1 + 32) + 32) addObject:];
       uint64_t v9 = (void *)v22[5];
       v20[0] = _NSConcreteStackBlock;
       v20[1] = 3221225472LL;
@@ -683,7 +683,7 @@ void sub_100004D84(uint64_t a1, xpc_object_t object)
       }
 
       *(void *)(v8 + 8) = 0LL;
-      id v10 = objc_msgSend(*(id *)(a1 + 40), "__invalidate");
+      id v10 = [*(id *)(a1 + 40) __invalidate];
       __int128 v16 = 0u;
       __int128 v17 = 0u;
       __int128 v18 = 0u;
@@ -723,7 +723,7 @@ void sub_100004D84(uint64_t a1, xpc_object_t object)
 
     else if (object == &_xpc_error_termination_imminent)
     {
-      objc_msgSend(*(id *)(a1 + 40), "__terminationImminent");
+      [*(id *)(a1 + 40) __terminationImminent];
       CFLog(6LL, @"Connection %p received termination imminent");
     }
 
@@ -786,5 +786,5 @@ void sub_10000516C(id *a1, os_log_s *a2)
 
 id objc_msgSend_start_(void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "start:");
+  return [a1 start:];
 }

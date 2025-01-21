@@ -42,13 +42,13 @@
 
 - (void)_register
 {
-  v3 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  v3 = [WAClient sharedClient];
   [v3 registerMessageGroup:2 andReply:&stru_1001E5C48];
 
-  v4 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  v4 = [WAClient sharedClient];
   [v4 registerMessageGroup:5 andReply:&stru_1001E5C68];
 
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  v5 = [WAClient sharedClient];
   v6[0] = _NSConcreteStackBlock;
   v6[1] = 3221225472LL;
   v6[2] = sub_10012A1F0;
@@ -62,7 +62,7 @@
   v4 = (OS_dispatch_queue *)a3;
   v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  2,  "%s WiFiManagerQueue was set",  "-[WiFiManagerAnalytics setWiFiManagerQueue:]");
+    [qword_100219F60 WFLog:@"message: %s WiFiManagerQueue was set" message:@"-[WiFiManagerAnalytics setWiFiManagerQueue:]"];
   }
   objc_autoreleasePoolPop(v5);
   wifiManagerQueue = self->_wifiManagerQueue;
@@ -76,19 +76,19 @@
   v5 = (void *)qword_100219F60;
   if (qword_100219F60)
   {
-    v6 = (void *)objc_claimAutoreleasedReturnValue([v8 metricName]);
+    v6 = [v8 metricName];
     [v5 WFLog:3, "%s Received call to submit WiFi Analytics message with (%@) value", "-[WiFiManagerAnalytics submitWiFiAnalyticsMessage:]", v6 message];
   }
 
   objc_autoreleasePoolPop(v4);
-  v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics waClient](self, "waClient"));
+  v7 = [self waClient];
   [v7 submitWiFiAnalyticsMessageAdvanced:v8];
 }
 
 - (void)submitGeoServicesMessage:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics waClient](self, "waClient"));
+  v5 = -[WiFiManagerAnalytics waClient];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10012A44C;
@@ -102,7 +102,7 @@
 - (void)triggerDatapathDiagnosticsNoReply:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics waClient](self, "waClient"));
+  v5 = [self waClient];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10012A5C0;
@@ -117,7 +117,7 @@
   id v4 = a3;
   id location = (id)0xAAAAAAAAAAAAAAAALL;
   objc_initWeak(&location, self);
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics waClient](self, "waClient"));
+  v5 = -[WiFiManagerAnalytics waClient];
   v6[0] = _NSConcreteStackBlock;
   v6[1] = 3221225472LL;
   v6[2] = sub_10012A764;
@@ -132,7 +132,7 @@
 - (void)getDeviceAnalyticsConfigurationWithCompletion:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics waClient](self, "waClient"));
+  v5 = [self waClient];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10012A8A0;
@@ -145,7 +145,7 @@
 - (void)triggerDeviceAnalyticsStoreMigrationWithCompletion:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  v5 = [WAClient sharedClient];
   v7[0] = _NSConcreteStackBlock;
   v7[1] = 3221225472LL;
   v7[2] = sub_10012AA30;
@@ -179,10 +179,10 @@
     if (wifiManagerQueue)
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Received call to prepare message with identifier: 0x%x",  "-[WiFiManagerAnalytics prepareMessageForSubmission:withData:andReply:]",  v6);
+        [qword_100219F60 WFLog:@"Received call to prepare message with identifier: 0x%x" message:3 "%s Received call to prepare message with identifier: 0x%x" "-[WiFiManagerAnalytics prepareMessageForSubmission:withData:andReply:]" v6];
       }
       objc_autoreleasePoolPop(v11);
-      v12 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics serialQ](self, "serialQ"));
+      v12 = [self serialQ];
       block[0] = _NSConcreteStackBlock;
       block[1] = 3221225472LL;
       block[2] = sub_10012B044;
@@ -197,7 +197,7 @@
     else
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "Nobody set the _wifiManagerQueue, can't prepare metric with id: %u. Bailing",  v6);
+        [qword_100219F60 WFLog:@"Nobody set the _wifiManagerQueue, can't prepare metric with id: %u. Bailing" message:4 v6];
       }
       objc_autoreleasePoolPop(v11);
     }
@@ -207,17 +207,17 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "Zero(0) message identifier, bail.");
+      [qword_100219F60 WFLog:@"Zero(0) message identifier, bail."];
     }
     objc_autoreleasePoolPop(v13);
-    v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  @"com.apple.wifi.analytics.errordomain",  9010LL,  0LL));
+    v14 = (void *)[NSError errorWithDomain:@"com.apple.wifi.analytics.errordomain" code:9010 userInfo:0];
     (*((void (**)(id, void, void *))v8 + 2))(v8, 0LL, v14);
   }
 }
 
 - (WiFiManagerAnalytics)init
 {
-  id v2 = (id)objc_claimAutoreleasedReturnValue( +[NSException exceptionWithName:reason:userInfo:]( &OBJC_CLASS___NSException,  "exceptionWithName:reason:userInfo:",  NSInternalInconsistencyException,  @"-[WAClient init] unavailable",  0LL));
+  id v2 = [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-[WAClient init] unavailable" userInfo:0LL];
   objc_exception_throw(v2);
   return (WiFiManagerAnalytics *)-[WiFiManagerAnalytics _initPrivate](v3, v4);
 }
@@ -229,7 +229,7 @@
   id v2 = -[WiFiManagerAnalytics init](&v10, "init");
   if (v2)
   {
-    uint64_t v3 = objc_claimAutoreleasedReturnValue( +[WAClient sharedClientWithIdentifier:]( &OBJC_CLASS___WAClient,  "sharedClientWithIdentifier:",  @"wifid"));
+    uint64_t v3 = [OBJC_CLASS___WAClient sharedClientWithIdentifier:@"wifid"];
     waClient = v2->_waClient;
     v2->_waClient = (WAClient *)v3;
 
@@ -247,12 +247,12 @@
 {
   id v3 = a3;
   SEL v4 = objc_autoreleasePoolPush();
-  dispatch_queue_attr_t v5 = (void *)objc_claimAutoreleasedReturnValue(+[LSApplicationWorkspace defaultWorkspace](&OBJC_CLASS___LSApplicationWorkspace, "defaultWorkspace"));
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 deviceIdentifierForVendor]);
+  dispatch_queue_attr_t v5 = +[LSApplicationWorkspace defaultWorkspace];
+  uint64_t v6 = (void *)[v5 deviceIdentifierForVendor];
 
   if (v6)
   {
-    id v7 = objc_claimAutoreleasedReturnValue([v6 UUIDString]);
+    id v7 = [v6 UUIDString];
     id v8 = (const char *)[v7 cStringUsingEncoding:4];
 
     v9 = (const char *)[v3 cStringUsingEncoding:4];
@@ -272,7 +272,7 @@
   {
     v16 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to get deviceIdentifier",  "-[WiFiManagerAnalytics __copyHashOfSSID:]");
+      [qword_100219F60 WFLog:@"%s: failed to get deviceIdentifier" message:3];
     }
     objc_autoreleasePoolPop(v16);
     v13 = 0LL;
@@ -289,7 +289,7 @@
   id v8 = (void (**)(void, void, void))v7;
   if (v6 && v7)
   {
-    v9 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+    v9 = [WAClient sharedClient];
     v11[0] = _NSConcreteStackBlock;
     v11[1] = 3221225472LL;
     v11[2] = sub_10012B4E8;
@@ -304,7 +304,7 @@
   {
     __int128 v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s NULL SCORECARD, bail",  "-[WiFiManagerAnalytics _populateWiFiConnectionQualityMessageWithScorecard:andReply:]");
+      [qword_100219F60 WFLog:@"%s NULL SCORECARD, bail" message:4];
     }
     objc_autoreleasePoolPop(v10);
     v8[2](v8, 0LL, 0LL);
@@ -339,7 +339,7 @@
 - (void)_populateDPSNotificationMessage:(__CFDictionary *)a3 andReply:(id)a4
 {
   id v5 = a4;
-  int v6 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  int v6 = [WAClient sharedClient];
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;
   v8[2] = sub_10012D204;
@@ -367,7 +367,7 @@
 - (void)_populateDPSLinkStateChangeMessage:(id *)a3 andReply:(id)a4
 {
   id v5 = a4;
-  int v6 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  int v6 = [WAClient sharedClient];
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;
   v8[2] = sub_10012D7A0;
@@ -381,7 +381,7 @@
 - (void)_populateDPSAPInfoMessage:(__CFDictionary *)a3 andReply:(id)a4
 {
   id v5 = a4;
-  int v6 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  int v6 = [WAClient sharedClient];
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;
   v8[2] = sub_10012DA28;
@@ -395,7 +395,7 @@
 - (void)_populateSlowWiFiNotificationMessage:(__CFDictionary *)a3 andReply:(id)a4
 {
   id v5 = a4;
-  int v6 = (void *)objc_claimAutoreleasedReturnValue(+[WAClient sharedClient](&OBJC_CLASS___WAClient, "sharedClient"));
+  int v6 = [WAClient sharedClient];
   v8[0] = _NSConcreteStackBlock;
   v8[1] = 3221225472LL;
   v8[2] = sub_10012DCB8;

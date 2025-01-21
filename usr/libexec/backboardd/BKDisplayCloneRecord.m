@@ -8,7 +8,7 @@
 - (BOOL)isEqual:(id)a3
 {
   id v4 = a3;
-  uint64_t v6 = objc_opt_class(&OBJC_CLASS___BKDisplayCloneRecord, v5);
+  uint64_t v6 = [BKDisplayCloneRecord class];
   id v7 = v4;
   v8 = v7;
   if (v6)
@@ -35,7 +35,7 @@
         v12 == [*((id *)v10 + 3) displayId])
     && self->_clientPID == *((_DWORD *)v10 + 2))
   {
-    unsigned __int8 v13 = -[NSDictionary isEqual:](self->_options, "isEqual:", *((void *)v10 + 4));
+    BOOL v13 = [self->_options isEqual:*((void *)v10 + 4)];
   }
 
   else
@@ -48,7 +48,7 @@
 
 - (unint64_t)hash
 {
-  return (unint64_t)-[CAWindowServerDisplay hash](self->_destinationDisplay, "hash");
+  return [self->_destinationDisplay hash];
 }
 
 - (void).cxx_destruct

@@ -138,7 +138,7 @@
   id v6 = a3;
   CFTypeID TypeID = CFStringGetTypeID();
   uint64_t TypedValue = CFDictionaryGetTypedValue(v6, @"iStr", TypeID, 0LL);
-  id v9 = objc_claimAutoreleasedReturnValue(TypedValue);
+  id v9 = TypedValue;
   v10 = (const char *)[v9 UTF8String];
   if (v10)
   {
@@ -160,8 +160,8 @@
           LogPrintF_safe( &dword_1008D5F68,  "-[CBAccessoryDaemon diagnosticControl:error:]",  30LL,  "Fake accessory remove: %@",  v13);
         }
 
-        v31 = (void *)objc_claimAutoreleasedReturnValue(-[CBDevice identifier](v13, "identifier"));
-        v32 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_accessoryInfoMap,  "objectForKeyedSubscript:",  v31));
+        v31 = [v13 identifier];
+        v32 = -[self->_accessoryInfoMap objectForKeyedSubscript:v31];
         [v32 invalidate];
         -[NSMutableDictionary setObject:forKeyedSubscript:]( self->_accessoryInfoMap,  "setObject:forKeyedSubscript:",  0LL,  v31);
         accessoryFakeDevice = self->_accessoryFakeDevice;
@@ -191,8 +191,8 @@
       __int128 v51 = 0u;
       __int128 v48 = 0u;
       __int128 v49 = 0u;
-      v14 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", v11 + 18));
-      v15 = (void *)objc_claimAutoreleasedReturnValue([v14 componentsSeparatedByString:@","]);
+      v14 = [NSString stringWithUTF8String:v11 + 18];
+      v15 = [v14 componentsSeparatedByString:@","];
 
       id v16 = [v15 countByEnumeratingWithState:&v48 objects:v52 count:16];
       if (v16)
@@ -219,7 +219,7 @@ LABEL_13:
           if (![v21 length]) {
             goto LABEL_58;
           }
-          int v22 = (void *)objc_claimAutoreleasedReturnValue([v21 componentsSeparatedByString:@"="]);
+          int v22 = (void *)[v21 componentsSeparatedByString:@"="];
           if ((unint64_t)[v22 count] <= 1)
           {
             v12 = -[NSString initWithFormat:]( objc_alloc(&OBJC_CLASS___NSString),  "initWithFormat:",  @"error: bad parameter format '%@'. See accessory-help\n",  v21);
@@ -228,8 +228,8 @@ LABEL_63:
             goto LABEL_66;
           }
 
-          uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue([v22 objectAtIndexedSubscript:0]);
-          id v24 = objc_claimAutoreleasedReturnValue([v22 objectAtIndexedSubscript:1]);
+          uint64_t v23 = (void *)[v22 objectAtIndexedSubscript:0];
+          id v24 = [v22 objectAtIndexedSubscript:1];
           id v25 = [v24 UTF8String];
           if ([v23 caseInsensitiveCompare:@"id"])
           {
@@ -419,7 +419,7 @@ LABEL_56:
   char v4 = 1;
   while ((v4 & 1) != 0)
   {
-    v5 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemonServer, "stackController"));
+    v5 = -[CBDaemonServer stackController];
     char v6 = 1;
     id v25 = v5;
     do
@@ -428,7 +428,7 @@ LABEL_56:
       if (v7 != 1) {
         break;
       }
-      v8 = (void *)objc_claimAutoreleasedReturnValue([v5 getDevicesWithFlags:2 error:0]);
+      v8 = (void *)[v5 getDevicesWithFlags:2 error:0];
       id v9 = v8;
       if (v8)
       {
@@ -450,7 +450,7 @@ LABEL_56:
                 objc_enumerationMutation(v10);
               }
               v15 = *(void **)(*((void *)&v26 + 1) + 8LL * (void)i);
-              id v16 = (void *)objc_claimAutoreleasedReturnValue([v15 findMyCaseIdentifier]);
+              id v16 = [v15 findMyCaseIdentifier];
               id v17 = v3;
               id v18 = v16;
               if (v18 == v17)
@@ -633,7 +633,7 @@ LABEL_33:
   unsigned int v4 = v3;
   if (v3)
   {
-    unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue([v3 getDevicesWithFlags:1 error:0]);
+    unsigned int v5 = (void *)[v3 getDevicesWithFlags:1 error:0];
     char v6 = v5;
     if (v5)
     {
@@ -698,7 +698,7 @@ LABEL_5:
     self->_accessoryDiscovery = v3;
     unsigned int v5 = v3;
 
-    char v6 = (void *)objc_claimAutoreleasedReturnValue(-[CBAccessoryDaemon description](self, "description"));
+    char v6 = (void *)[self description];
     -[CBDiscovery setAppID:](v5, "setAppID:", v6);
 
     -[CBDiscovery setDiscoveryFlags:](v5, "setDiscoveryFlags:", 0x180000000080LL);
@@ -743,7 +743,7 @@ LABEL_5:
 - (void)_accessoryDiscoveryFoundDevice:(id)a3
 {
   id v14 = a3;
-  unsigned int v4 = (void *)objc_claimAutoreleasedReturnValue([v14 identifier]);
+  unsigned int v4 = (void *)[v14 identifier];
   if (v4)
   {
     unsigned int v5 = (CBAccessoryInfo *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_accessoryInfoMap,  "objectForKeyedSubscript:",  v4));
@@ -764,14 +764,14 @@ LABEL_5:
     }
 
     -[CBAccessoryInfo setCbDevice:](v5, "setCbDevice:", v14);
-    uint64_t v9 = objc_claimAutoreleasedReturnValue(-[CBAccessoryInfo primaryCBDevice](v5, "primaryCBDevice"));
+    uint64_t v9 = [v5 primaryCBDevice];
     if (!v9
       || (uint64_t v10 = (void *)v9,
           unint64_t v11 = (unint64_t)[v14 changeFlags],
           v10,
           (v11 & 0x80000000000LL) != 0))
     {
-      uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v14 identifier]);
+      uint64_t v12 = (void *)[v14 identifier];
       unsigned int v13 = (void *)objc_claimAutoreleasedReturnValue(-[CBAccessoryDaemon findPrimaryCBDevice:](self, "findPrimaryCBDevice:", v12));
       -[CBAccessoryInfo setPrimaryCBDevice:](v5, "setPrimaryCBDevice:", v13);
     }
@@ -851,7 +851,7 @@ LABEL_5:
   {
     if (([v4 deviceFlags] & 0x40) != 0)
     {
-      char v6 = (void *)objc_claimAutoreleasedReturnValue([v4 findMyCaseIdentifier]);
+      char v6 = [v4 findMyCaseIdentifier];
       if (v6)
       {
         id v7 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_connectionMap,  "objectForKeyedSubscript:",  v6));
@@ -957,7 +957,7 @@ LABEL_5:
   __int128 v36 = 0u;
   __int128 v37 = 0u;
   __int128 v38 = 0u;
-  id v4 = (void *)objc_claimAutoreleasedReturnValue(-[NSMutableDictionary allKeys](self->_connectionMap, "allKeys"));
+  id v4 = -[self->_connectionMap allKeys];
   id v5 = [v4 countByEnumeratingWithState:&v35 objects:v40 count:16];
   if (v5)
   {
@@ -998,7 +998,7 @@ LABEL_5:
   __int128 v32 = 0u;
   __int128 v33 = 0u;
   __int128 v34 = 0u;
-  id v14 = (void *)objc_claimAutoreleasedReturnValue([v13 allKeys]);
+  id v14 = [v13 allKeys];
   id v15 = [v14 countByEnumeratingWithState:&v31 objects:v39 count:16];
   if (v15)
   {
