@@ -54,7 +54,7 @@ LABEL_15:
   {
     v4 = objc_alloc(&OBJC_CLASS___NSString);
     id v5 = v3;
-    BOOL v6 = -[NSString initWithBytes:length:encoding:]( v4,  "initWithBytes:length:encoding:",  [v5 bytes],  objc_msgSend(v5, "length"),  4);
+    BOOL v6 = [v4 initWithBytes:[v5 bytes] length:[v5 length] encoding:4];
   }
 
   else

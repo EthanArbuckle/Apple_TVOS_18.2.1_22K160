@@ -2667,11 +2667,11 @@ LABEL_44:
 {
   id v6 = a3;
   id v7 = objc_alloc_init(&OBJC_CLASS___CBDeviceSettings);
-  objc_msgSend(v7, "setDoubleTapActionLeft:", objc_msgSend(v6, "doubleTapActionLeft"));
-  objc_msgSend(v7, "setDoubleTapActionRight:", objc_msgSend(v6, "doubleTapActionRight"));
-  objc_msgSend(v7, "setMicrophoneMode:", objc_msgSend(v6, "microphoneMode"));
-  objc_msgSend(v7, "setPlacementMode:", objc_msgSend(v6, "placementMode"));
-  objc_msgSend(v7, "setSmartRoutingMode:", objc_msgSend(v6, "smartRoutingMode"));
+  [v7 setDoubleTapActionLeft:[v6 doubleTapActionLeft]];
+  [v7 setDoubleTapActionRight:[v6 doubleTapActionRight]];
+  [v7 setMicrophoneMode:[v6 microphoneMode]];
+  [v7 setPlacementMode:[v6 placementMode]];
+  [v7 setSmartRoutingMode:[v6 smartRoutingMode]];
   LOBYTE(a4) = -[CBStackControllerBTStack modifyDevice:settings:error:]( self,  "modifyDevice:settings:error:",  v6,  v7,  a4);
 
   return (char)a4;

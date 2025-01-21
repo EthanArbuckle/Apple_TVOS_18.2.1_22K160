@@ -887,7 +887,7 @@ LABEL_41:
                     else
                     {
                       unsigned __int8 v13 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableData dataWithBytes:length:]( &OBJC_CLASS___NSMutableData,  "dataWithBytes:length:",  &v90,  1LL));
-                      objc_msgSend(v13, "appendBytes:length:", objc_msgSend(v12, "bytes"), 6);
+                      [v13 appendBytes:[v12 bytes] length:6];
                       id v9 = [v13 copy];
                     }
                   }
@@ -899,7 +899,7 @@ LABEL_41:
                 }
 
                 if ([v9 length] == (id)7) {
-                  id v14 = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "subdataWithRange:", 1, 6));
+                  id v14 = [v9 subdataWithRange:1, 6];
                 }
                 else {
                   id v14 = v9;
@@ -1213,7 +1213,7 @@ LABEL_88:
 
           if (v19[5])
           {
-            objc_msgSend(v10, "setOobKeys:");
+            [v10 setOobKeys:];
             if (dword_1008D6530 <= 20
               && (dword_1008D6530 != -1 || _LogCategory_Initialize(&dword_1008D6530, 20LL)))
             {
@@ -1738,7 +1738,7 @@ LABEL_49:
           objc_enumerationMutation(v6);
         }
         uint64_t v10 = *(void **)(*((void *)&v15 + 1) + 8LL * (void)i);
-        unint64_t v11 = (unint64_t)objc_msgSend(v10, "discoveryFlags", (void)v15);
+        unint64_t v11 = [v10 discoveryFlags];
         unint64_t v12 = (unint64_t)[v10 extraDiscoveryFlags] | v11;
         if ((v12 & a3) != 0)
         {
@@ -1987,9 +1987,9 @@ LABEL_8:
                     id v29 = (void *)objc_claimAutoreleasedReturnValue([v28 mask]);
 
                     id v30 = v112;
-                    memcpy(&__dst, [v30 bytes], (size_t)objc_msgSend(v30, "length"));
+                    memcpy(&__dst, [v30 bytes], (size_t)[v30 length]);
                     id v31 = v29;
-                    memcpy(&v150, [v31 bytes], (size_t)objc_msgSend(v31, "length"));
+                    memcpy(&v150, [v31 bytes], (size_t)[v31 length]);
                   }
 
                   goto LABEL_92;
@@ -2195,7 +2195,7 @@ LABEL_16:
           objc_enumerationMutation(v9);
         }
         unsigned int v13 = *(void **)(*((void *)&v35 + 1) + 8LL * (void)i);
-        unint64_t v14 = (unint64_t)objc_msgSend(v13, "discoveryFlags", v33);
+        unint64_t v14 = [v13 discoveryFlags];
         unint64_t v15 = (unint64_t)[v13 extraDiscoveryFlags] | v14;
         unsigned int v16 = (v15 & a4) != 0;
         if (a5 && (v15 & a4) == 0) {
@@ -2548,7 +2548,7 @@ LABEL_17:
                 __int128 v81 = 0uLL;
                 int v82 = 0;
                 id v20 = v19;
-                sub_1006343C4( (uint64_t)&v81,  (int8x16_t *)[v20 bytes],  objc_msgSend(v20, "length"));
+                sub_1006343C4( (uint64_t)&v81,  (int8x16_t *)[v20 bytes],  [v20 length]);
                 uint64_t v21 = (void *)objc_claimAutoreleasedReturnValue([v17 blobData]);
                 if ([v21 length])
                 {

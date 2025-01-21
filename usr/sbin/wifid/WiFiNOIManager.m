@@ -47,7 +47,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: nil _managerQueue",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: nil _managerQueue" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -59,7 +59,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: nil _dispatchQueue",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: nil _dispatchQueue" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -70,7 +70,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _trackedHomeNetworks",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: null _trackedHomeNetworks" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -81,7 +81,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _trackedWorkNetworks",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: null _trackedWorkNetworks" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -92,7 +92,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _noiManager",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: null _noiManager" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -107,7 +107,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _sortedTopHomeNetworks",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: null _sortedTopHomeNetworks" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
     goto LABEL_23;
   }
@@ -118,7 +118,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _sortedTopWorkNetworks",  "-[WiFiNOIManager initWithQueue:]");
+      [qword_100219F60 WFLog:@"%s: null _sortedTopWorkNetworks" message:3 "-[WiFiNOIManager initWithQueue:]"];
     }
 LABEL_23:
     objc_autoreleasePoolPop(v13);
@@ -194,7 +194,7 @@ LABEL_24:
   {
     objc_super v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null network",  "-[WiFiNOIManager setNetworkOfInterest:]");
+      [qword_100219F60 WFLog:@"%s: null network" message:3];
     }
     objc_autoreleasePoolPop(v6);
   }
@@ -246,7 +246,7 @@ LABEL_24:
   {
     uint64_t v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: null manager",  "-[WiFiNOIManager armHomeNetworkTransitionTimer:]");
+      [qword_100219F60 WFLog:@"%s: null manager" message:4 "-[WiFiNOIManager armHomeNetworkTransitionTimer:]"];
     }
     goto LABEL_15;
   }
@@ -257,7 +257,7 @@ LABEL_24:
   if (!homeTransitionTimer)
   {
     self->_deviceManager = a3;
-    objc_msgSend( -[WiFiNOIManager getHomeNetworkNextTransitionDate:](self, "getHomeNetworkNextTransitionDate:", v5),  "timeIntervalSinceNow");
+    [self getHomeNetworkNextTransitionDate:v5].timeIntervalSinceNow;
     uint64_t v8 = -[NSTimer initWithFireDate:interval:target:selector:userInfo:repeats:]( objc_alloc(&OBJC_CLASS___NSTimer),  "initWithFireDate:interval:target:selector:userInfo:repeats:",  v11,  self,  "attemptHomeNetworkTransition:",  0LL,  1LL,  v7);
     self->_homeTransitionTimer = v8;
     if (v8)
@@ -268,7 +268,7 @@ LABEL_24:
 
     uint64_t v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: _noiTransitionCheckTimer is NULL",  "-[WiFiNOIManager armHomeNetworkTransitionTimer:]");
+      [qword_100219F60 WFLog:@"%s: _noiTransitionCheckTimer is NULL" message:3 "-[WiFiNOIManager armHomeNetworkTransitionTimer:]"];
     }
 LABEL_15:
     objc_autoreleasePoolPop(v10);
@@ -314,7 +314,7 @@ LABEL_8:
   {
     id v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: null dateComponents",  "-[WiFiNOIManager copyHomeNetworkTransitionDate]");
+      [qword_100219F60 WFLog:@"%s: null dateComponents" message:4 "-[WiFiNOIManager copyHomeNetworkTransitionDate]"];
     }
     goto LABEL_11;
   }
@@ -328,7 +328,7 @@ LABEL_8:
   {
     id v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: null fireDate",  "-[WiFiNOIManager copyHomeNetworkTransitionDate]");
+      [qword_100219F60 WFLog:@"%s: null fireDate" message:4];
     }
 LABEL_11:
     objc_autoreleasePoolPop(v11);

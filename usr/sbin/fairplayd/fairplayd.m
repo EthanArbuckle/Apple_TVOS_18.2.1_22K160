@@ -295,8 +295,8 @@ uint64_t sub_100001E18()
 uint64_t sub_100001E20(void *a1, _DWORD *a2, void *a3, unsigned int *a4)
 {
   v8 = objc_autoreleasePoolPush();
-  id v9 = objc_msgSend(+[AKDevice currentDevice](AKDevice, "currentDevice"), "serverFriendlyDescription");
-  id v10 = objc_msgSend(+[AKDevice currentDevice](AKDevice, "currentDevice"), "uniqueDeviceIdentifier");
+  id v9 = [+[AKDevice currentDevice](AKDevice, "currentDevice") serverFriendlyDescription];
+  id v10 = [+[AKDevice currentDevice](AKDevice, "currentDevice") uniqueDeviceIdentifier];
   if (!v10)
   {
     *a1 = 0LL;
@@ -328,7 +328,7 @@ LABEL_6:
 id sub_100001EE4()
 {
   v0 = objc_autoreleasePoolPush();
-  id v1 = objc_msgSend( +[MCProfileConnection sharedConnection](MCProfileConnection, "sharedConnection"),  "isEphemeralMultiUser");
+  id v1 = [[MCProfileConnection sharedConnection] isEphemeralMultiUser];
   objc_autoreleasePoolPop(v0);
   return v1;
 }

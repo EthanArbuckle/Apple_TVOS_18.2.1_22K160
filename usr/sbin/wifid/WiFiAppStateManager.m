@@ -59,7 +59,7 @@
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed in super-init",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"-[WiFiAppStateManager init] failed in super-init"];
     }
     goto LABEL_25;
   }
@@ -70,7 +70,7 @@
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null _applications", "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _applications" message:3];
     }
     goto LABEL_25;
   }
@@ -81,7 +81,7 @@
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _activeApplications",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _activeApplications" message:3 "-[WiFiAppStateManager init]"];
     }
     goto LABEL_25;
   }
@@ -92,7 +92,7 @@
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _backgroundApplications",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _backgroundApplications" message:3];
     }
     goto LABEL_25;
   }
@@ -103,7 +103,7 @@
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _appsInForeground",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _appsInForeground" message:3];
     }
     goto LABEL_25;
   }
@@ -121,7 +121,7 @@ LABEL_26:
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _applicationStateMonitor",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _applicationStateMonitor" message:3 "-[WiFiAppStateManager init]"];
     }
     goto LABEL_25;
   }
@@ -132,7 +132,7 @@ LABEL_26:
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _bundleIdsToMonitor",  "-[WiFiAppStateManager init]");
+      [qword_100219F60 WFLog:@"%s: null _bundleIdsToMonitor" message:3];
     }
 LABEL_25:
     objc_autoreleasePoolPop(v11);
@@ -274,7 +274,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null userInfo",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]");
+      [qword_100219F60 WFLog:@"%s: null userInfo" message:3 "-[WiFiAppStateManager _applicationStateMonitorHandler:]"];
     }
     goto LABEL_57;
   }
@@ -283,7 +283,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Nil queue",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]");
+      [qword_100219F60 WFLog:@"%s: Nil queue" message:3];
     }
     goto LABEL_57;
   }
@@ -298,7 +298,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: pidForStateChange(%d)",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]",  valuePtr);
+      [qword_100219F60 WFLog:@"%s: pidForStateChange(%d)" message:3 valuePtr];
     }
     goto LABEL_57;
   }
@@ -308,7 +308,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null bundleID",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]");
+      [qword_100219F60 WFLog:@"%s: null bundleID" message:3];
     }
     goto LABEL_57;
   }
@@ -318,7 +318,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null applications",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]");
+      [qword_100219F60 WFLog:@"%s: null applications" message:3];
     }
     goto LABEL_57;
   }
@@ -341,7 +341,7 @@ LABEL_25:
   {
     v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Null BKSApplicationStateKey",  "-[WiFiAppStateManager _applicationStateMonitorHandler:]");
+      [qword_100219F60 WFLog:@"%s: Null BKSApplicationStateKey" message:3];
     }
 LABEL_57:
     objc_autoreleasePoolPop(v19);
@@ -408,7 +408,7 @@ LABEL_57:
             id v25 = 0LL;
             if (-[NSMutableArray count](self->_foregroundAppBundleIDs, "count"))
             {
-              id v18 = objc_msgSend(-[NSMutableArray lastObject](self->_foregroundAppBundleIDs, "lastObject"), "copy");
+              id v18 = [[self->_foregroundAppBundleIDs lastObject] copy];
               v23[3] = (uint64_t)v18;
             }
 
@@ -440,7 +440,7 @@ LABEL_57:
       v23 = &v22;
       uint64_t v24 = 0x2020000000LL;
       id v25 = (id)0xAAAAAAAAAAAAAAAALL;
-      id v25 = objc_msgSend(-[NSMutableArray lastObject](self->_foregroundAppBundleIDs, "lastObject"), "copy");
+      id v25 = [[self->_foregroundAppBundleIDs lastObject] copy];
       v15 = (dispatch_queue_s *)self->_queue;
       v21[0] = _NSConcreteStackBlock;
       v21[1] = 3221225472LL;
@@ -468,7 +468,7 @@ LABEL_43:
 
     CFMutableSetRef v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _applications",  "-[WiFiAppStateManager _unRegisterApplication:]");
+      [qword_100219F60 WFLog:@"%s: null _applications" message:3];
     }
   }
 
@@ -476,7 +476,7 @@ LABEL_43:
   {
     CFMutableSetRef v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null bundleID",  "-[WiFiAppStateManager _unRegisterApplication:]");
+      [qword_100219F60 WFLog:@"%s: null bundleID" message:3];
     }
   }
 
@@ -502,7 +502,7 @@ LABEL_43:
       {
         v11 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _applications",  "-[WiFiAppStateManager _registerApplication:capabilities:]");
+          [qword_100219F60 WFLog:@"%s: null _applications" message:3 "-[WiFiAppStateManager _registerApplication:capabilities:]"];
         }
         objc_autoreleasePoolPop(v11);
       }
@@ -514,7 +514,7 @@ LABEL_43:
     {
       CFTypeRef v10 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null capabilitiesRef",  "-[WiFiAppStateManager _registerApplication:capabilities:]");
+        [qword_100219F60 WFLog:@"%s: null capabilitiesRef" message:3 "-[WiFiAppStateManager _registerApplication:capabilities:]"];
       }
       objc_autoreleasePoolPop(v10);
     }
@@ -524,7 +524,7 @@ LABEL_43:
   {
     unsigned int v9 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null bundleID",  "-[WiFiAppStateManager _registerApplication:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: null bundleID" message:3 "-[WiFiAppStateManager _registerApplication:capabilities:]"];
     }
     objc_autoreleasePoolPop(v9);
   }
@@ -539,7 +539,7 @@ LABEL_43:
   {
     unsigned int v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null bundleID",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: null bundleID" message:3 "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]"];
     }
     goto LABEL_46;
   }
@@ -550,7 +550,7 @@ LABEL_43:
   {
     unsigned int v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null active applications",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: null active applications" message:3 "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]"];
     }
     goto LABEL_46;
   }
@@ -559,7 +559,7 @@ LABEL_43:
   {
     unsigned int v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null background applications",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: null background applications" message:3];
     }
     goto LABEL_46;
   }
@@ -594,7 +594,7 @@ LABEL_12:
   unsigned __int8 v20 = CFSetGetCount(self->_backgroundApplications);
   v21 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s %d bgBefore=%d bgAfter=%d fgBefore=%d fgAfter=%d",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]",  401,  v15,  v20,  Count,  v19);
+    [qword_100219F60 WFLog:@"-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]" message:3, "%s %d bgBefore=%d bgAfter=%d fgBefore=%d fgAfter=%d", 401, v15, v20, Count, v19];
   }
   objc_autoreleasePoolPop(v21);
   if (Count != v19)
@@ -647,7 +647,7 @@ LABEL_12:
 
     unsigned int v29 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Nil queue",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: Nil queue" message:3];
     }
 LABEL_46:
     objc_autoreleasePoolPop(v29);
@@ -692,7 +692,7 @@ LABEL_16:
   {
     BOOL v30 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: No queue",  "-[WiFiAppStateManager _setApplicationState:active:underLock:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: No queue" message:3];
     }
     objc_autoreleasePoolPop(v30);
   }
@@ -734,7 +734,7 @@ LABEL_5:
   {
     BOOL v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null bundleID",  "-[WiFiAppStateManager _appStateChanged:bundleID:capabilities:]");
+      [qword_100219F60 WFLog:@"%s: null bundleID" message:3 "-[WiFiAppStateManager _appStateChanged:bundleID:capabilities:]"];
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -772,7 +772,7 @@ LABEL_5:
   {
     unsigned int v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null _applicationStateMonitor",  "-[WiFiAppStateManager _getAppCapabilitiesForBundleID:]");
+      [qword_100219F60 WFLog:@"%s: null _applicationStateMonitor" message:3 "-[WiFiAppStateManager _getAppCapabilitiesForBundleID:]"];
     }
     objc_autoreleasePoolPop(v12);
     LODWORD(v6) = 0;

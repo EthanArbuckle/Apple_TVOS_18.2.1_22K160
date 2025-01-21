@@ -26,7 +26,7 @@
           objc_enumerationMutation(v5);
         }
         v10 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)i);
-        id v11 = objc_msgSend(v10, "offset", (void)v14);
+        id v11 = [v10 offset:(void)v14];
         if (v11 != [v4 length])
         {
 

@@ -45,7 +45,7 @@ LABEL_6:
     {
       v9 = "WiFiManager started";
 LABEL_10:
-      objc_msgSend(v8, "WFLog:message:", 4, v9, v10);
+      [v8 WFLog:v9 message:v10];
       goto LABEL_11;
     }
 
@@ -55,7 +55,7 @@ LABEL_10:
   NSLog(@"----- WiFiManager starting, version: %s -----", a2, "WiFiManager-1800.35 Nov 10 2024 02:31:40");
   objc_super v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "----- WiFiManager starting, version: %s -----",  "WiFiManager-1800.35 Nov 10 2024 02:31:40");
+    [qword_100219F60 WFLog:@"----- WiFiManager starting, version: %s -----" message:4 "WiFiManager-1800.35 Nov 10 2024 02:31:40"];
   }
   objc_autoreleasePoolPop(v5);
   v6 = (__WiFiManager *)sub_100060C04((uint64_t)kCFAllocatorDefault, (dispatch_queue_s *)a3);
@@ -85,7 +85,7 @@ LABEL_10:
 {
   objc_super v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "----- WiFiManager stopping, version: %s -----",  "WiFiManager-1800.35 Nov 10 2024 02:31:40");
+    [qword_100219F60 WFLog:@"----- WiFiManager stopping, version: %s -----" message:4 "WiFiManager-1800.35 Nov 10 2024 02:31:40"];
   }
   objc_autoreleasePoolPop(v5);
   sub_1000684E8((uint64_t)self->_manager, a3);

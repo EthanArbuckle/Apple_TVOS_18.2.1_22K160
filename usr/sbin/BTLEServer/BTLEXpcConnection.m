@@ -204,7 +204,7 @@ LABEL_13:
   else {
     id v11 = v8;
   }
-  objc_msgSend(self, v10, v11);
+  [self v10:v11];
 }
 
 - (void)handleConnectOnceMsg:(id)a3
@@ -532,11 +532,11 @@ LABEL_13:
   }
 
   v34 = (void *)objc_claimAutoreleasedReturnValue(+[EndpointManager instance](&OBJC_CLASS___EndpointManager, "instance"));
-  id v35 = objc_msgSend(v6[135], "numberWithUnsignedLongLong:", xpc_dictionary_get_uint64(v3, "kClassicDeviceMicMode"));
+  id v35 = [v6[135] numberWithUnsignedLongLong:xpc_dictionary_get_uint64(v3, "kClassicDeviceMicMode")];
   v36 = (void *)objc_claimAutoreleasedReturnValue(v35);
-  id v37 = objc_msgSend(v6[135], "numberWithUnsignedLongLong:", xpc_dictionary_get_uint64(v3, "kClassicDeviceInEarEnable"));
+  id v37 = [v6[135] numberWithUnsignedLongLong:xpc_dictionary_get_uint64(v3, "kClassicDeviceInEarEnable")];
   v38 = (void *)objc_claimAutoreleasedReturnValue(v37);
-  id v39 = objc_msgSend( v6[135],  "numberWithUnsignedLongLong:",  xpc_dictionary_get_uint64(v3, "kClassicDeviceDoubleTapMode"));
+  id v39 = [v6[135] numberWithUnsignedLongLong:xpc_dictionary_get_uint64(v3, "kClassicDeviceDoubleTapMode")];
   v40 = (void *)objc_claimAutoreleasedReturnValue(v39);
   v41 = +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  xpc_dictionary_get_string(v3, "kDeviceName"));
   v42 = (void *)objc_claimAutoreleasedReturnValue(v41);

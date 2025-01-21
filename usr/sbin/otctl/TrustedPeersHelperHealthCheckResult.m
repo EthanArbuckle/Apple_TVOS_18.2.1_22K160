@@ -169,7 +169,7 @@
     v5->_resetOctagon = [v4 decodeBoolForKey:@"resetOctagon"];
     v5->_leaveTrust = [v4 decodeBoolForKey:@"leaveTrust"];
     v5->_reroll = [v4 decodeBoolForKey:@"reroll"];
-    id v7 = objc_msgSend( v4,  "decodeObjectOfClass:forKey:",  objc_opt_class(OTEscrowMoveRequestContext, v6),  @"moveRequest");
+    id v7 = [v4 decodeObjectOfClass:objc_opt_class(OTEscrowMoveRequestContext, v6) forKey:@"moveRequest"];
     uint64_t v8 = objc_claimAutoreleasedReturnValue(v7);
     moveRequest = v5->_moveRequest;
     v5->_moveRequest = (OTEscrowMoveRequestContext *)v8;
@@ -195,27 +195,27 @@
 - (void)encodeWithCoder:(id)a3
 {
   id v5 = a3;
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult postRepairCFU](self, "postRepairCFU"),  @"postRepairCFU");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult postEscrowCFU](self, "postEscrowCFU"),  @"postEscrowCFU");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult resetOctagon](self, "resetOctagon"),  @"resetOctagon");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult leaveTrust](self, "leaveTrust"),  @"leaveTrust");
-  objc_msgSend(v5, "encodeBool:forKey:", -[TrustedPeersHelperHealthCheckResult reroll](self, "reroll"), @"reroll");
+  [v5 encodeBool:[self postRepairCFU] forKey:@"postRepairCFU"];
+  [v5 encodeBool:[self postEscrowCFU] forKey:@"postEscrowCFU"];
+  [v5 encodeBool:[self resetOctagon] forKey:@"resetOctagon"];
+  [v5 encodeBool:[self leaveTrust] forKey:@"leaveTrust"];
+  [v5 encodeBool:[self reroll] forKey:@"reroll"];
   id v4 = (void *)objc_claimAutoreleasedReturnValue(-[TrustedPeersHelperHealthCheckResult moveRequest](self, "moveRequest"));
   [v5 encodeObject:v4 forKey:@"moveRequest"];
 
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalEscrowRecords](self, "totalEscrowRecords"),  @"totalEscrowRecords");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectableEscrowRecords](self, "collectableEscrowRecords"),  @"collectableEscrowRecords");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectedEscrowRecords](self, "collectedEscrowRecords"),  @"collectedEscrowRecords");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult escrowRecordGarbageCollectionEnabled]( self,  "escrowRecordGarbageCollectionEnabled"),  @"escrowRecordGarbageCollectionEnabled");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalTlkShares](self, "totalTlkShares"),  @"totalTlkShares");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectableTlkShares](self, "collectableTlkShares"),  @"collectableTlkShares");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares"),  @"collectedTlkShares");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult tlkShareGarbageCollectionEnabled](self, "tlkShareGarbageCollectionEnabled"),  @"tlkShareGarbageCollectionEnabled");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers"),  @"totalPeers");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult trustedPeers](self, "trustedPeers"),  @"trustedPeers");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult superfluousPeers](self, "superfluousPeers"),  @"superfluousPeers");
-  objc_msgSend( v5,  "encodeInt64:forKey:",  -[TrustedPeersHelperHealthCheckResult peersCleanedup](self, "peersCleanedup"),  @"peersCleanedup");
-  objc_msgSend( v5,  "encodeBool:forKey:",  -[TrustedPeersHelperHealthCheckResult superfluousPeersCleanupEnabled](self, "superfluousPeersCleanupEnabled"),  @"superfluousPeersCleanupEnabled");
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalEscrowRecords](self, "totalEscrowRecords") forKey:@"totalEscrowRecords"];
+  [v5 encodeInt64: -[TrustedPeersHelperHealthCheckResult collectableEscrowRecords](self, "collectableEscrowRecords") forKey:@"collectableEscrowRecords"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectedEscrowRecords] forKey:@"collectedEscrowRecords"];
+  [v5 encodeBool:[self escrowRecordGarbageCollectionEnabled] forKey:@"escrowRecordGarbageCollectionEnabled"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalTlkShares] forKey:@"totalTlkShares"];
+  [v5 encodeInt64:[self collectableTlkShares] forKey:@"collectableTlkShares"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult collectedTlkShares](self, "collectedTlkShares") forKey:@"collectedTlkShares"];
+  [v5 encodeBool:[self tlkShareGarbageCollectionEnabled] forKey:@"tlkShareGarbageCollectionEnabled"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult totalPeers](self, "totalPeers") forKey:@"totalPeers"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult trustedPeers] forKey:@"trustedPeers"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult superfluousPeers](self, "superfluousPeers") forKey:@"superfluousPeers"];
+  [v5 encodeInt64:-[TrustedPeersHelperHealthCheckResult peersCleanedup](self, "peersCleanedup") forKey:@"peersCleanedup"];
+  [v5 encodeBool:[self superfluousPeersCleanupEnabled] forKey:@"superfluousPeersCleanupEnabled"];
 }
 
 - (id)dictionaryRepresentation

@@ -23,7 +23,7 @@
   {
     v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s Failed to allocate",  "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]");
+      [qword_100219F60 WFLog:@"%s Failed to allocate" message:4 "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]"];
     }
     goto LABEL_9;
   }
@@ -33,7 +33,7 @@
   {
     v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s deviceManager is nil",  "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]");
+      [qword_100219F60 WFLog:@"%s deviceManager is nil" message:4 "-[WiFiNetworkDenyListManager initWithArgs:interfaceName:]"];
     }
 LABEL_9:
     objc_autoreleasePoolPop(v10);
@@ -65,7 +65,7 @@ LABEL_9:
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s Batterylevel:%p. externalPowerSupply:%p",  "-[WiFiNetworkDenyListManager retrieveBatteryInfo:batteryLevel:]",  a4,  a3);
+      [qword_100219F60 WFLog:@"-[WiFiNetworkDenyListManager retrieveBatteryInfo:batteryLevel:]" message:4 "%s Batterylevel:%p. externalPowerSupply:%p" a4 a3];
     }
     goto LABEL_11;
   }
@@ -75,7 +75,7 @@ LABEL_9:
   if (!v6)
   {
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s Callbacks not available ",  "-[WiFiNetworkDenyListManager retrieveBatteryInfo:batteryLevel:]",  v9,  v10);
+      [qword_100219F60 WFLog:@"%s Callbacks not available " message:4 v9, v10];
     }
 LABEL_11:
     objc_autoreleasePoolPop(v7);
@@ -83,7 +83,7 @@ LABEL_11:
   }
 
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s BatteryInfo. batterylevel:%u. externalPowerSupply:%u",  "-[WiFiNetworkDenyListManager retrieveBatteryInfo:batteryLevel:]",  v11,  v12);
+    [qword_100219F60 WFLog:@"-[WiFiNetworkDenyListManager retrieveBatteryInfo:batteryLevel:] BatteryInfo. batterylevel:%u. externalPowerSupply:%u" message:3];
   }
   objc_autoreleasePoolPop(v7);
   *a3 = v12 != 0;

@@ -662,7 +662,7 @@ LABEL_8:
   uint64_t v10 = (NSString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"handle%sMsg:replyBlock:",  string));
   unsigned int v11 = NSSelectorFromString(v10);
 
-  objc_msgSend(self, v11, v7, v9);
+  [self v11:v7 v9];
 }
 
 - (void)sendReplyToMsg:(id)a3 status:(unsigned __int8)a4 args:(id)a5

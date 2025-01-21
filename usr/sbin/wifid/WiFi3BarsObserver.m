@@ -104,7 +104,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: availability engine is not enabled",  "-[WiFi3BarsObserver run3BarsObserver:withActivity:withCompletion:]");
+      [qword_100219F60 WFLog:@"%s: availability engine is not enabled" message:3];
     }
     dispatch_time_t v9 = 0LL;
 LABEL_13:
@@ -121,7 +121,7 @@ LABEL_13:
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: location not valid",  "-[WiFi3BarsObserver run3BarsObserver:withActivity:withCompletion:]");
+      [qword_100219F60 WFLog:@"%s: location not valid" message:3];
     }
     goto LABEL_13;
   }
@@ -156,7 +156,7 @@ LABEL_6:
 {
   objc_super v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: cleaning maintenance task",  "-[WiFi3BarsObserver _cleanupMaintenanceTask]");
+    [qword_100219F60 WFLog:@"%s: cleaning maintenance task" message:3];
   }
   objc_autoreleasePoolPop(v3);
   timer = self->_timer;

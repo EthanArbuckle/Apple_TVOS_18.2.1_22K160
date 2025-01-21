@@ -622,7 +622,7 @@ id sub_1000062B8(void *a1)
     __int128 v13 = 0u;
     __int128 v14 = 0u;
     __int128 v15 = 0u;
-    uint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v1, "allKeys", 0));
+    uint64_t v2 = (void *)[v1 allKeys];
     id v3 = [v2 countByEnumeratingWithState:&v12 objects:v16 count:16];
     if (v3)
     {
@@ -681,7 +681,7 @@ void sub_1000063FC(void *a1, int a2)
           objc_enumerationMutation(v6);
         }
         id v11 = *(void **)(*((void *)&v13 + 1) + 8LL * (void)i);
-        __int128 v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "objectForKeyedSubscript:", v11, (void)v13));
+        __int128 v12 = (void *)[v3 objectForKeyedSubscript:v11];
         sub_10000654C(v11, v12, a2);
       }
 
@@ -838,7 +838,7 @@ LABEL_7:
             }
             uint64_t v25 = sub_1000067C0(*(void *)(*((void *)&v27 + 1) + 8LL * (void)i));
             uint64_t v26 = (void *)objc_claimAutoreleasedReturnValue(v25);
-            objc_msgSend(v7, "addObject:", v26, (void)v27);
+            [v7 addObject:v26];
           }
 
           id v22 = [v12 countByEnumeratingWithState:&v27 objects:v31 count:16];
@@ -1646,7 +1646,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v190 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              id v190 = [v11[13] stringWithFormat:@"missing; pointer is %@"];
                                                     v245)));
               printf("Current TLK:          %s\n", (const char *)[v190 UTF8String]);
             }
@@ -1658,7 +1658,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v191 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              id v191 = [v11[13] stringWithFormat:@"missing; pointer is %@"];
                                                     v222)));
               printf("Current ClassA:       %s\n", (const char *)[v191 UTF8String]);
             }
@@ -1670,7 +1670,7 @@ void sub_100006D5C(uint64_t a1, void *a2, void *a3)
 
             else
             {
-              id v192 = objc_retainAutorelease((id)objc_claimAutoreleasedReturnValue( objc_msgSend( v11[13],  "stringWithFormat:",  @"missing; pointer is %@",
+              [v11[13] stringWithFormat:@"missing; pointer is %@",
                                                     v221)));
               printf("Current ClassC:       %s\n", (const char *)[v192 UTF8String]);
             }
@@ -1795,7 +1795,7 @@ void sub_100008758(uint64_t a1, void *a2, void *a3)
         }
         uint64_t v14 = *(void **)(*((void *)&v17 + 1) + 8LL * (void)i);
         uint64_t v15 = *(void **)(a1 + 32);
-        uint64_t v16 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v14, "objectForKeyedSubscript:", @"view", (void)v17));
+        uint64_t v16 = (void *)[v14 objectForKeyedSubscript:@"view"];
         [v15 setObject:v14 forKeyedSubscript:v16];
       }
 

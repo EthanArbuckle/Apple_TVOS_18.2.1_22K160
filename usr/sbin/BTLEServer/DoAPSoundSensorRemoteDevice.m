@@ -68,7 +68,7 @@
           if (v18)
           {
             dispatch_set_context(v18, v9);
-            dispatch_set_finalizer_f((dispatch_object_t)v9->_queue, (dispatch_function_t)j__objc_msgSend_notifyDidStop);
+            dispatch_set_finalizer_f((dispatch_object_t)v9->_queue, (dispatch_function_t)[self notifyDidStop]);
             goto LABEL_11;
           }
 

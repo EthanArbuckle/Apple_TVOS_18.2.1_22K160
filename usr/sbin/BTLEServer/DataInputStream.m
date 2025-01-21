@@ -180,7 +180,7 @@ LABEL_11:
       if (!v11) {
         break;
       }
-      objc_msgSend(v4, "appendFormat:", @"%c", v11);
+      [v4 appendFormat:@"%c" v11];
       int v8 = (void *)objc_claimAutoreleasedReturnValue(-[DataInputStream stream](self, "stream"));
       id v9 = [v8 read:&v11 maxLength:1];
     }

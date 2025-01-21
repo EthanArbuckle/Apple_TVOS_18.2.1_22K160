@@ -24,7 +24,7 @@
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s Failed to allocate",  "-[WiFiTrafficEngManager initWithArgs:]");
+      [qword_100219F60 WFLog:@"%s Failed to allocate" message:4 "-[WiFiTrafficEngManager initWithArgs:]"];
     }
     goto LABEL_9;
   }
@@ -34,7 +34,7 @@
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s lqaMgr is nil",  "-[WiFiTrafficEngManager initWithArgs:]");
+      [qword_100219F60 WFLog:@"%s lqaMgr is nil" message:4 "-[WiFiTrafficEngManager initWithArgs:]"];
     }
 LABEL_9:
     objc_autoreleasePoolPop(v8);

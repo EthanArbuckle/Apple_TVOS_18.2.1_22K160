@@ -253,7 +253,7 @@ LABEL_27:
       && dword_1008D60F8 <= 30
       && (dword_1008D60F8 != -1 || _LogCategory_Initialize(&dword_1008D60F8, 30LL)))
     {
-      v18 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v10, "componentsJoinedByString:", @", "));
+      v18 = (void *)objc_claimAutoreleasedReturnValue([v10 componentsJoinedByString:@", "]);
       LogPrintF_safe(&dword_1008D60F8, "-[CBWHBRouter rankWHBHosts:]", 30LL, "RankedHosts: %@", v18);
     }
 
@@ -773,7 +773,7 @@ LABEL_10:
         id v11 = (void *)v10;
         id v12 = (void *)objc_claimAutoreleasedReturnValue(-[CBWHBRouter getCBDeviceForStableId:onHost:](self, "getCBDeviceForStableId:onHost:", v6, v10));
         id v13 = (void *)objc_claimAutoreleasedReturnValue( -[NSMutableDictionary objectForKeyedSubscript:]( self->_whbHostTable,  "objectForKeyedSubscript:",  v11));
-        objc_msgSend(v13, "setEstimatedConnections:", (char *)objc_msgSend(v13, "estimatedConnections") + 1);
+        [v13 setEstimatedConnections:((char *)[v13 estimatedConnections]) + 1];
         [v13 setEstimatedConnectionsLastUpdatedTicks:mach_absolute_time()];
         if (dword_1008D60F8 <= 30
           && (dword_1008D60F8 != -1 || _LogCategory_Initialize(&dword_1008D60F8, 30LL)))

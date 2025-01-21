@@ -2273,7 +2273,7 @@ void sub_10062C3A4(uint64_t a1, void *a2)
           objc_enumerationMutation(v4);
         }
         uint64_t v8 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)i);
-        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v8, "UUIDString", (void)v12));
+        uint64_t v9 = (void)[v8 UUIDString];
         uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue([v3 UUIDString]);
         unsigned int v11 = [v9 isEqualToString:v10];
 
@@ -2317,7 +2317,7 @@ void sub_10062C530(uint64_t a1, void *a2)
         if (*(void *)v14 != v6) {
           objc_enumerationMutation(v4);
         }
-        uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(*((void *)&v13 + 1) + 8 * (void)v7), "UUIDString", (void)v13));
+        uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v13 + 1) + 8 * (void)v7) UUIDString]);
         uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v3 UUIDString]);
         unsigned int v10 = [v8 isEqualToString:v9];
 
@@ -2354,7 +2354,7 @@ void sub_10062C530(uint64_t a1, void *a2)
     _os_log_impl( (void *)&_mh_execute_header,  v11,  OS_LOG_TYPE_DEFAULT,  "Device '%{public}@' is not present in the authorization queue, creating device object and adding it to the queue",  buf,  0xCu);
   }
 
-  objc_msgSend(*(id *)(a1 + 3728), "addObject:", v3, (void)v13);
+  [*(id *)(a1 + 3728) addObject:v3];
 LABEL_15:
 }
 
@@ -3674,7 +3674,7 @@ id sub_10062F1A0(uint64_t a1, char a2, int a3)
     uint64_t v5 = sub_10062FA04(a1);
   }
   if ([*(id *)(a1 + 24) count]) {
-    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(a1 + 24),  "subarrayWithRange:",  v5,  (char *)objc_msgSend(*(id *)(a1 + 24), "count") - v5));
+    uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(a1 + 24) subarrayWithRange:v5 count:[*(id *)(a1 + 24) count] - v5]);
   }
   else {
     uint64_t v6 = &__NSArray0__struct;
@@ -3688,7 +3688,7 @@ uint64_t sub_10062F26C(uint64_t a1)
   {
     memset(&v24[1], 0, 13);
     uint64_t v2 = (id *)(a1 + 24);
-    uint64_t v3 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 24), "objectAtIndex:", 0, 0, 0));
+    uint64_t v3 = (void *)[*(id *)(a1 + 24) objectAtIndex:0];
     [v3 getBytes:v24 length:21];
 
     int v4 = LOBYTE(v24[2]);
@@ -8079,7 +8079,7 @@ void sub_100638928(uint64_t a1)
     }
 
     if (v2 && *(void *)(a1 + 40)) {
-      objc_msgSend(*(id *)(*(void *)(a1 + 32) + 40), "setObject:forKey:", v2);
+      [*(id *)(*(void *)(a1 + 32) + 40) setObject:v2 forKey:];
     }
     if ((_DWORD)v4)
     {
@@ -8087,7 +8087,7 @@ void sub_100638928(uint64_t a1)
       uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray arrayWithArray:](&OBJC_CLASS___NSMutableArray, "arrayWithArray:", v11));
 
       if (*(void *)(a1 + 40)) {
-        objc_msgSend(v12, "addObject:");
+        [v12 addObject:];
       }
       [*(id *)(*(void *)(a1 + 32) + 48) updateInterestedBundleIDs:v12 states:15];
       char v13 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(a1 + 32) + 48) bundleInfoValueForKey:@"UIBackgroundModes" PID:*(unsigned int *)(a1 + 48)]);
@@ -8382,7 +8382,7 @@ void sub_100639908(uint64_t a1, void *a2, void *a3)
       __int16 v16 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*(void *)(a1 + 40) + 40) objectForKeyedSubscript:*(void *)(a1 + 32)]);
       if (v16)
       {
-        objc_msgSend(v16, "setPid:", objc_msgSend(v5, "pid"));
+        [v16 setPid:[v5 pid]];
         [*(id *)(a1 + 40) takeAssertionForProcess:*(void *)(a1 + 32) duration:10 isUrgent:0];
       }
 
@@ -8433,7 +8433,7 @@ void sub_100639BF4(uint64_t a1)
           objc_enumerationMutation(obj);
         }
         id v6 = *(void **)(*((void *)&v17 + 1) + 8LL * (void)i);
-        unsigned int v7 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v6, "applicationIdentifier", v14));
+        unsigned int v7 = (void *)[v6 applicationIdentifier:v14];
         uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*(void *)(a1 + 40) + 40) objectForKey:v7]);
         unsigned int v9 = (os_log_s *)qword_1008F7680;
         if (os_log_type_enabled((os_log_t)qword_1008F7680, OS_LOG_TYPE_DEFAULT))
@@ -8581,7 +8581,7 @@ void sub_10063A3BC(uint64_t a1)
       if ([v3 isAlive])
       {
         if ([v3 state] == 1) {
-          unsigned __int8 v4 = objc_msgSend( *(id *)(a1 + 32),  "translateApplicationState:",  objc_msgSend( *(id *)(*(void *)(a1 + 32) + 48),  "applicationStateForApplication:",  *(void *)(a1 + 40)));
+          unsigned __int8 v4 = [ *(id *)(a1 + 32)  translateApplicationState: [ *(id *)(*(void *)(a1 + 32) + 48)  applicationStateForApplication: *(void *)(a1 + 40)]];
         }
         else {
           unsigned __int8 v4 = [v3 state];
@@ -8714,7 +8714,7 @@ LABEL_73:
           if (*(void *)v65 != v11) {
             objc_enumerationMutation(v9);
           }
-          __int128 v14 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v64 + 1) + 8 * (void)i),  "objectForKeyedSubscript:",  v12,  v52));
+          __int128 v14 = (void *)[*(id *)(*((void *)&v64 + 1) + 8 * (void)i) objectForKeyedSubscript:v12 v52];
           unsigned int v15 = [v14 unsignedIntValue];
 
           if (v15 == 16 || v15 == 50004)
@@ -8818,7 +8818,7 @@ void sub_10063B374(uint64_t a1)
         _os_log_impl( (void *)&_mh_execute_header,  v4,  OS_LOG_TYPE_INFO,  "Attempting to add %lu seconds to process assertion for application %{public}s",  (uint8_t *)&v11,  0x16u);
       }
 
-      objc_msgSend(v3, "setSecondsLeft:", (char *)objc_msgSend(v3, "secondsLeft") + *(void *)(a1 + 48));
+      [v3 setSecondsLeft:[v3 secondsLeft] + *(void *)(a1 + 48)];
       else {
         uint64_t v7 = (uint64_t)[v3 secondsLeft];
       }
@@ -8852,7 +8852,7 @@ void sub_10063B374(uint64_t a1)
       else
       {
         unsigned int v8 = 0LL;
-        objc_msgSend( *(id *)(a1 + 32),  "createAssertionForBundleID:duration:isUrgent:withPid:",  *(void *)(a1 + 40),  3,  1,  objc_msgSend(v2, "pid"));
+        [ *(id *)(a1 + 32) createAssertionForBundleID: *(void *)(a1 + 40) duration:3 isUrgent:1 withPid:[v2 pid]];
       }
     }
 
@@ -8909,7 +8909,7 @@ void sub_10063BB64(uint64_t a1)
 {
   unsigned __int8 v2 = *(void **)(*(void *)(a1 + 32) + 96LL);
   id v7 = (id)objc_claimAutoreleasedReturnValue([*(id *)(a1 + 40) name]);
-  id v3 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v2, "objectForKeyedSubscript:"));
+  id v3 = [v2 objectForKeyedSubscript:];
   char v4 = *(void **)(a1 + 40);
 
   if (v3 == v4)
@@ -8917,7 +8917,7 @@ void sub_10063BB64(uint64_t a1)
     uint64_t v5 = *(void **)(a1 + 40);
     id v6 = *(void **)(*(void *)(a1 + 32) + 96LL);
     id v8 = (id)objc_claimAutoreleasedReturnValue([v5 name]);
-    objc_msgSend(v6, "removeObjectForKey:");
+    [v6 removeObjectForKey:];
   }
 
 void sub_10063BC08( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t a5, uint64_t a6, uint64_t a7, uint64_t a8, uint64_t a9, void *a10)
@@ -9386,7 +9386,7 @@ void sub_10063D628(void *a1)
       [v16 openApplication:v17 withOptions:0 completion:&v18];
     }
 
-    objc_msgSend(*(id *)(a1[4] + 72), "removeObjectAtIndex:", v4, v18, v19, v20, v21);
+    [*(id *)(a1[4] + 72) removeObjectAtIndex:v4, v18, v19, v20, v21];
   }
 
 void sub_10063D8F8(_Unwind_Exception *a1)
@@ -9887,7 +9887,7 @@ LABEL_6:
         uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(ResponseValue);
         __int16 v15 = v14;
         if (v14) {
-          objc_msgSend(v5, "setPasskey:", (int)objc_msgSend(v14, "intValue"));
+          [v5 setPasskey:[v14 intValue]];
         }
         uint64_t v16 = (os_log_s *)qword_1008F7578;
         if (os_log_type_enabled((os_log_t)qword_1008F7578, OS_LOG_TYPE_DEFAULT))
@@ -10526,7 +10526,7 @@ void sub_100642768(uint64_t a1, void *a2)
         __int16 v10 = *(void **)(*((void *)&v11 + 1) + 8LL * (void)v9);
         *(void *)uuid = 0LL;
         uint64_t v16 = 0LL;
-        objc_msgSend(v10, "getUUIDBytes:", uuid, (void)v11);
+        [v10 getUUIDBytes:uuid];
         xpc_array_set_uuid(v5, 0xFFFFFFFFFFFFFFFFLL, uuid);
         CFOptionFlags v9 = (char *)v9 + 1;
       }
@@ -39267,45 +39267,45 @@ void *__cdecl operator new(size_t __sz)
 
 id objc_msgSend__addServiceUUIDsWithParametersToScanRequestIfNeeded_matchFlags_matchTypes_uuids_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "_addServiceUUIDsWithParametersToScanRequestIfNeeded:matchFlags:matchTypes:uuids:");
+  return [a1 _addServiceUUIDsWithParametersToScanRequestIfNeeded:matchFlags:matchTypes:uuids:];
 }
 
 id objc_msgSend__encryptInvitationPayload_payloadLength_authTag_irkData_keyInfo_keyInfoLength_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "_encryptInvitationPayload:payloadLength:authTag:irkData:keyInfo:keyInfoLength:");
+  return [a1 _encryptInvitationPayload:payloadLength:authTag:irkData:keyInfo:keyInfoLength:];
 }
 
 id objc_msgSend_addUserFilteredClockWithMachInterval_domainInterval_usingFilterShift_isAdaptive_error_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "addUserFilteredClockWithMachInterval:domainInterval:usingFilterShift:isAdaptive:error:");
+  return [a1 addUserFilteredClockWithMachInterval:domainInterval:usingFilterShift:isAdaptive:error:];
 }
 
 id objc_msgSend_alertOptionsWithConnectionAlerts_disconnectionAlerts_notificationAlerts_delay_bridgeTransport_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "alertOptionsWithConnectionAlerts:disconnectionAlerts:notificationAlerts:delay:bridgeTransport:");
+  return [a1 alertOptionsWithConnectionAlerts:disconnectionAlerts:notificationAlerts:delay:bridgeTransport:];
 }
 
 id objc_msgSend_diagnosticAccessoryFakeWithIdentifier_leftPercent_leftState_rightPercent_rightState_casePercent_caseState_lidClosed_obcMinutes_error_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "diagnosticAccessoryFakeWithIdentifier:leftPercent:leftState:rightPercent:rightState:casePercent:caseState:lid Closed:obcMinutes:error:");
+  return [a1 diagnosticAccessoryFakeWithIdentifier:leftPercent:leftState:rightPercent:rightState:casePercent:caseState:lid Closed:obcMinutes:error:];
 }
 
 id objc_msgSend_initWithBundleID_serviceUUID_sessionType_sessionState_supportsBackgrounding_supportsStateRestoration_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "initWithBundleID:serviceUUID:sessionType:sessionState:supportsBackgrounding:supportsStateRestoration:");
+  return [a1 initWithBundleID:sessionType:sessionState:supportsBackgrounding:supportsStateRestoration:];
 }
 
 id objc_msgSend_initWithDevice_type_timeoutValue_targetCore_rssiThreshold_rssiThresholdGone_invalidRssiHandling_rssiPrecision_rssiPrecisionGone_eventConfiguration_vseBuffering_rssiIncreaseScanThreshold_rssiIncreaseScanWindowThreshold_rssiIncreaseScanIntervalThreshold_rssiIncreaseScanTimeoutThreshold_sensorTimeoutBetweenIncreaseScan_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "initWithDevice:type:timeoutValue:targetCore:rssiThreshold:rssiThresholdGone:invalidRssiHandling:rssiPrecision :rssiPrecisionGone:eventConfiguration:vseBuffering:rssiIncreaseScanThreshold:rssiIncreaseScanWindowThreshold: rssiIncreaseScanIntervalThreshold:rssiIncreaseScanTimeoutThreshold:sensorTimeoutBetweenIncreaseScan:");
+  return [a1 initWithDevice:type:timeoutValue:targetCore:rssiThreshold:rssiThresholdGone:invalidRssiHandling:rssiPrecision :rssiPrecisionGone:eventConfiguration:vseBuffering:rssiIncreaseScanThreshold:rssiIncreaseScanWindowThreshold: rssiIncreaseScanIntervalThreshold:rssiIncreaseScanTimeoutThreshold:sensorTimeoutBetweenIncreaseScan:];
 }
 
 id objc_msgSend_signatureWithDomain_type_subType_subtypeContext_detectedProcess_triggerThresholdValues_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "signatureWithDomain:type:subType:subtypeContext:detectedProcess:triggerThresholdValues:");
+  return [a1 signatureWithDomain:type:subType:subtypeContext:detectedProcess:triggerThresholdValues:];
 }
 
 id objc_msgSend_startScanningForType_data_mask_peers_scanMode_rssi_duplicates_scanCache_useCaseList_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "startScanningForType:data:mask:peers:scanMode:rssi:duplicates:scanCache:useCaseList:");
+  return [a1 startScanningForType:data:mask:peers:scanMode:rssi:duplicates:scanCache:useCaseList:];
 }

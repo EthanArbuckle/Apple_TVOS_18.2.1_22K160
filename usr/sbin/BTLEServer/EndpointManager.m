@@ -258,7 +258,7 @@ LABEL_6:
     id v14 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
     id v15 = [v14 type];
     id v16 = (void *)objc_claimAutoreleasedReturnValue(-[EndpointManager deviceManagementEndpoint](self, "deviceManagementEndpoint"));
-    objc_msgSend(v11, "registerEndpoint:type:priority:", v13, v15, objc_msgSend(v16, "priority"));
+    [v11 registerEndpoint:v13 type:v15 priority:[v16 priority]];
   }
 
   else

@@ -62,7 +62,7 @@
   v4 = (OS_dispatch_queue *)a3;
   v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  2,  "%s WiFiManagerQueue was set",  "-[WiFiManagerAnalytics setWiFiManagerQueue:]");
+    [qword_100219F60 WFLog:@"message: %s WiFiManagerQueue was set" message:@"-[WiFiManagerAnalytics setWiFiManagerQueue:]"];
   }
   objc_autoreleasePoolPop(v5);
   wifiManagerQueue = self->_wifiManagerQueue;
@@ -179,7 +179,7 @@
     if (wifiManagerQueue)
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Received call to prepare message with identifier: 0x%x",  "-[WiFiManagerAnalytics prepareMessageForSubmission:withData:andReply:]",  v6);
+        [qword_100219F60 WFLog:@"%s Received call to prepare message with identifier: 0x%x" message:3, "-[WiFiManagerAnalytics prepareMessageForSubmission:withData:andReply:]", v6];
       }
       objc_autoreleasePoolPop(v11);
       v12 = (dispatch_queue_s *)objc_claimAutoreleasedReturnValue(-[WiFiManagerAnalytics serialQ](self, "serialQ"));
@@ -197,7 +197,7 @@
     else
     {
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "Nobody set the _wifiManagerQueue, can't prepare metric with id: %u. Bailing",  v6);
+        [qword_100219F60 WFLog:@"Nobody set the _wifiManagerQueue, can't prepare metric with id: %u. Bailing" message:4 v6];
       }
       objc_autoreleasePoolPop(v11);
     }
@@ -207,7 +207,7 @@
   {
     v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "Zero(0) message identifier, bail.");
+      [qword_100219F60 WFLog:@"Zero(0) message identifier, bail."];
     }
     objc_autoreleasePoolPop(v13);
     v14 = (void *)objc_claimAutoreleasedReturnValue( +[NSError errorWithDomain:code:userInfo:]( &OBJC_CLASS___NSError,  "errorWithDomain:code:userInfo:",  @"com.apple.wifi.analytics.errordomain",  9010LL,  0LL));
@@ -272,7 +272,7 @@
   {
     v16 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to get deviceIdentifier",  "-[WiFiManagerAnalytics __copyHashOfSSID:]");
+      [qword_100219F60 WFLog:@"%s: failed to get deviceIdentifier" message:3];
     }
     objc_autoreleasePoolPop(v16);
     v13 = 0LL;
@@ -304,7 +304,7 @@
   {
     __int128 v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s NULL SCORECARD, bail",  "-[WiFiManagerAnalytics _populateWiFiConnectionQualityMessageWithScorecard:andReply:]");
+      [qword_100219F60 WFLog:@"%s NULL SCORECARD, bail" message:4];
     }
     objc_autoreleasePoolPop(v10);
     v8[2](v8, 0LL, 0LL);

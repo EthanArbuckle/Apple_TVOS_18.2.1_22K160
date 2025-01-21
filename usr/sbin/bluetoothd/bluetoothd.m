@@ -139,7 +139,7 @@ id sub_1000062DC(uint64_t a1)
 void sub_100006448(uint64_t a1, void *a2)
 {
   id v3 = a2;
-  objc_msgSend(*(id *)(a1 + 48), "removeObject:");
+  [*(id *)(a1 + 48) removeObject:];
   if (*(_BYTE *)(a1 + 56) && ![*(id *)(a1 + 48) count])
   {
     if (dword_1008D5E28 <= 30
@@ -1678,7 +1678,7 @@ void sub_100006A94(uint64_t a1, void *a2, void *a3)
     v6 |= 0x800000000uLL;
   }
   unint64_t v9 = v6 | v8;
-  objc_msgSend(v5, "setChangeFlags:", (unint64_t)objc_msgSend(v5, "changeFlags") | v9);
+  [v5 setChangeFlags:[v5 changeFlags] | v9];
   if ((*(void *)(*(void *)(a1 + 32) + 64LL) & v9) != 0
     && (*(void *)(*(void *)(a1 + 32) + 64) & (unint64_t)[v5 discoveryFlags]) != 0)
   {
@@ -11275,7 +11275,7 @@ LABEL_180:
               _os_log_impl( (void *)&_mh_execute_header,  v57,  OS_LOG_TYPE_DEFAULT,  "Reconnecting device %{public}@ for session %{public}s linkReady %d",  buf,  0x1Cu);
             }
 
-            objc_msgSend(v54[28], "removeObjectForKey:", v7, v61);
+            [v54[28] removeObjectForKey:v7, v61];
             sub_100391320((uint64_t)v54, v55, v7, v56);
           }
         }
@@ -21458,7 +21458,7 @@ void sub_100014008(uint64_t a1, uint64_t a2, void *a3, void *a4)
             objc_enumerationMutation(v10);
           }
           id v15 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-          int8x16_t v16 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v15, "activatedController", (void)v18));
+          int8x16_t v16 = (void)[v15 activatedController];
           unsigned __int16 v17 = (unsigned __int16)[v16 internalFlags];
 
           if ((v17 & 0x2000) != 0) {
@@ -21498,7 +21498,7 @@ void sub_100014164(uint64_t a1, void *a2)
             objc_enumerationMutation(v5);
           }
           id v10 = *(void **)(*((void *)&v13 + 1) + 8LL * (void)i);
-          id v11 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v10, "activatedController", (void)v13));
+          id v11 = [v10 activatedController];
           unsigned __int16 v12 = (unsigned __int16)[v11 internalFlags];
 
           if ((v12 & 0x2000) != 0) {
@@ -22001,7 +22001,7 @@ void *sub_100015F7C(void *result)
           if (*(void *)v11 != v6) {
             objc_enumerationMutation(v3);
           }
-          uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v10 + 1) + 8 * (void)v7),  "activatedController",  (void)v10));
+          uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*((void *)&v10 + 1) + 8 * (void)v7) activatedController:v10]);
           uint64_t v9 = (void (**)(void))objc_claimAutoreleasedReturnValue([v8 discoverableStateChangedHandler]);
 
           if (v9) {
@@ -22048,7 +22048,7 @@ void *sub_1000160B8(void *result)
           if (*(void *)v11 != v6) {
             objc_enumerationMutation(v3);
           }
-          uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v10 + 1) + 8 * (void)v7),  "activatedController",  (void)v10));
+          uint64_t v8 = (void *)[*(id *)(*((void *)&v10 + 1) + 8 * (void)v7) activatedController:v10];
           uint64_t v9 = (void (**)(void))objc_claimAutoreleasedReturnValue([v8 inquiryStateChangedHandler]);
 
           if (v9) {
@@ -22095,7 +22095,7 @@ void *sub_1000161F4(void *result)
             objc_enumerationMutation(v3);
           }
           uint64_t v8 = *(void **)(*((void *)&v15 + 1) + 8LL * (void)i);
-          uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v8, "activatedController", (void)v15));
+          uint64_t v9 = (void)[v8 activatedController];
           __int128 v10 = (void (**)(void))objc_claimAutoreleasedReturnValue([v9 bluetoothStateChangedHandler]);
 
           if (v10) {
@@ -22155,7 +22155,7 @@ void sub_1000163A4(uint64_t a1, void *a2, void *a3, uint64_t a4, void *a5)
           if (*(void *)v21 != v16) {
             objc_enumerationMutation(v13);
           }
-          __int128 v18 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v20 + 1) + 8 * (void)v17),  "activatedController",  (void)v20));
+          __int128 v18 = (void *)[*(id *)(*((void *)&v20 + 1) + 8 * (void)v17) activatedController:v20];
           __int128 v19 = (void (**)(void, void, void, void, void))objc_claimAutoreleasedReturnValue([v18 relayMessageHandler]);
 
           if (v19) {
@@ -39853,7 +39853,7 @@ LABEL_77:
           else {
             id v21 = @"Wild";
           }
-          objc_msgSend(*(id *)(a1 + 152), "setObject:forKeyedSubscript:", v21, @"AdvertisementBufferType", v46);
+          [*(id *)(a1 + 152) setObject:v21 forKeyedSubscript:@"AdvertisementBufferType"];
           if (v5[3] == 255) {
             id v22 = 0LL;
           }
@@ -50094,12 +50094,12 @@ LABEL_28:
             {
               if ([*(id *)(a1 + 48) isEqual:@"agsN"])
               {
-                objc_msgSend(v12, "setScanScreenOnCount:", (char *)objc_msgSend(v12, "scanScreenOnCount") + 1);
+                [v12 setScanScreenOnCount:[v12 scanScreenOnCount] + 1];
               }
 
               else if ([*(id *)(a1 + 48) isEqual:@"agsF"])
               {
-                objc_msgSend(v12, "setScanScreenOffCount:", (char *)objc_msgSend(v12, "scanScreenOffCount") + 1);
+                [v12 setScanScreenOffCount:[v12 scanScreenOffCount] + 1];
               }
 
               objc_storeStrong((id *)(*(void *)(*(void *)(a1 + 64) + 8LL) + 40LL), v12);
@@ -52748,7 +52748,7 @@ void *sub_100034C38(void *result, uint64_t a2)
 {
   uint64_t v2 = result[5];
   if (result[4] == *(void *)(v2 + 16)) {
-    return objc_msgSend(*(id *)(v2 + 64), "deviceFound:remoteController:", a2);
+    return [*(id *)(v2 + 64) deviceFound:a2];
   }
   return result;
 }
@@ -52757,7 +52757,7 @@ void *sub_100034C58(void *result, uint64_t a2)
 {
   uint64_t v2 = result[5];
   if (result[4] == *(void *)(v2 + 16)) {
-    return objc_msgSend(*(id *)(v2 + 64), "deviceLost:remoteController:", a2);
+    return [*(id *)(v2 + 64) deviceLost:a2];
   }
   return result;
 }
@@ -66888,7 +66888,7 @@ void sub_100045E28(uint64_t a1, void *a2, void *a3)
     }
 
     if ([v5 length] == (id)7) {
-      id v11 = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v5, "subdataWithRange:", 1, 6));
+      id v11 = [v5 subdataWithRange:1, 6];
     }
     else {
       id v11 = v5;
@@ -67038,7 +67038,7 @@ void sub_1000463A0(uint64_t a1, void *a2, void *a3)
     }
 
     if ([v5 length] == (id)7) {
-      id v11 = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v5, "subdataWithRange:", 1, 6));
+      id v11 = [v5 subdataWithRange:1, 6];
     }
     else {
       id v11 = v5;
@@ -69872,7 +69872,7 @@ void sub_10004DA34(uint64_t a1, void *a2, void *a3)
   id v5 = a2;
   id v6 = a3;
   if ([v5 length] == (id)7) {
-    id v7 = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v5, "subdataWithRange:", 1, 6));
+    id v7 = [v5 subdataWithRange:1, 6];
   }
   else {
     id v7 = v5;
@@ -73645,7 +73645,7 @@ LABEL_172:
               uint64_t v83 = v82;
               if (v82)
               {
-                objc_msgSend(v22, "setConnectionUseCase:", objc_msgSend(v82, "longLongValue"));
+                [v22 setConnectionUseCase:[v82 longLongValue]];
                 __int128 v84 = (os_log_s *)qword_1008F75F0;
                 if (os_log_type_enabled((os_log_t)qword_1008F75F0, OS_LOG_TYPE_DEFAULT))
                 {
@@ -73705,7 +73705,7 @@ LABEL_172:
               [v91 getBytes:v149 length:1];
             }
 
-            objc_msgSend(v91, "getBytes:range:", &v149[1], v93, 6);
+            [v91 getBytes:&v149[1] range:v93];
             v94 = sub_1005BF848(v88);
             v95 = (void *)objc_claimAutoreleasedReturnValue(v94);
             [v22 setTemporaryIdentityAddress:v95];
@@ -76949,7 +76949,7 @@ id sub_100055D84(id result)
 {
   uint64_t v1 = (void *)*((void *)result + 5);
   if (*((void *)result + 4) == v1[9]) {
-    return objc_msgSend(v1, "_xpcPowerStateChanged:", objc_msgSend(*((id *)result + 5), "_powerStateForClient"));
+    return [v1 _xpcPowerStateChanged:[*((id *)result + 5) _powerStateForClient]];
   }
   return result;
 }
@@ -77133,7 +77133,7 @@ void *sub_1000569BC(uint64_t a1)
   uint64_t v2 = *(void *)(a1 + 32);
   id result = *(void **)(a1 + 40);
   if (v2 == result[10]) {
-    return objc_msgSend(result, "_xpcCBConnection:pairingCompletedWithDevice:error:");
+    return [result _xpcCBConnection:pairingCompletedWithDevice:error:];
   }
   return result;
 }
@@ -77143,7 +77143,7 @@ void *sub_1000569DC(uint64_t a1)
   uint64_t v2 = *(void *)(a1 + 32);
   id result = *(void **)(a1 + 40);
   if (v2 == result[10]) {
-    return objc_msgSend(result, "_xpcCBConnection:pairingPromptWithPairingInfo:");
+    return [result _xpcCBConnection:pairingPromptWithPairingInfo:];
   }
   return result;
 }
@@ -77306,7 +77306,7 @@ id sub_1000579B4(id result)
 {
   uint64_t v1 = (void *)*((void *)result + 5);
   if (*((void *)result + 4) == v1[11]) {
-    return objc_msgSend(v1, "_xpcPowerStateChanged:", objc_msgSend(*((id *)result + 5), "_powerStateForClient"));
+    return [v1 _xpcPowerStateChanged:[*((id *)result + 5) _powerStateForClient]];
   }
   return result;
 }
@@ -77317,7 +77317,7 @@ void sub_1000579F8(uint64_t a1)
   if (*(void *)(a1 + 32) == *(void *)(v1 + 88))
   {
     id v2 = (id)objc_claimAutoreleasedReturnValue([*(id *)(v1 + 136) stackController]);
-    objc_msgSend((id)v1, "_xpcDiscoverableStateChanged:", objc_msgSend(v2, "discoverableState"));
+    [v1 _xpcDiscoverableStateChanged:[v2 discoverableState]];
   }
 
 void sub_100057A5C(uint64_t a1)
@@ -77326,7 +77326,7 @@ void sub_100057A5C(uint64_t a1)
   if (*(void *)(a1 + 32) == *(void *)(v1 + 88))
   {
     id v2 = (id)objc_claimAutoreleasedReturnValue([*(id *)(v1 + 136) stackController]);
-    objc_msgSend((id)v1, "_xpcInquiryStateChanged:", objc_msgSend(v2, "inquiryState"));
+    [v1 _xpcInquiryStateChanged:[v2 inquiryState]];
   }
 
 void *sub_100057AC0(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t a5)
@@ -81970,7 +81970,7 @@ void sub_10005FE98(uint64_t a1)
   if (*(void **)(a1 + 40) == v2)
   {
     id v3 = v2;
-    objc_msgSend(v1, "_xpcPowerStateChanged:", objc_msgSend(v1, "_powerStateForClient"));
+    [v1 _xpcPowerStateChanged:[v1 _powerStateForClient]];
   }
 
 void *sub_10005FEF8(uint64_t a1, uint64_t a2)
@@ -82052,7 +82052,7 @@ void sub_100060398(uint64_t a1)
   if (*(void **)(a1 + 40) == v2)
   {
     id v3 = v2;
-    objc_msgSend(v1, "_xpcPowerStateChanged:", objc_msgSend(v1, "_powerStateForClient"));
+    [v1 _xpcPowerStateChanged:[v1 _powerStateForClient]];
   }
 
 void *sub_1000603F8(uint64_t a1, uint64_t a2)
@@ -82609,7 +82609,7 @@ id sub_100062038(id result)
 {
   uint64_t v1 = (void *)*((void *)result + 5);
   if (*((void *)result + 4) == v1[14]) {
-    return objc_msgSend(v1, "_xpcPowerStateChanged:", objc_msgSend(*((id *)result + 5), "_powerStateForClient"));
+    return [v1 _xpcPowerStateChanged:[*((id *)result + 5) _powerStateForClient]];
   }
   return result;
 }
@@ -84685,7 +84685,7 @@ LABEL_177:
           case 0x20:
             char v35 = "daemon";
 LABEL_81:
-            unint64_t v44 = objc_msgSend(v56, "isAlive", v52);
+            unint64_t v44 = [v56 isAlive:v52];
             uint64_t v45 = "false";
             *(_DWORD *)buf = 136446978;
             int v69 = v33;
@@ -84739,7 +84739,7 @@ LABEL_105:
                   *(void *)int v71 = v50;
                   _os_log_impl( (void *)&_mh_execute_header,  v48,  OS_LOG_TYPE_DEFAULT,  "State of application %{public}s is now %{public}s",  buf,  0x16u);
 LABEL_106:
-                  objc_msgSend(v56, "setState:", HIDWORD(v52), v52);
+                  [v56 setState:HIDWORD(v52), v52];
                   uint64_t v51 = *(void *)(a1 + 40);
                   if (*(void *)(v51 + 8))
                   {
@@ -84771,7 +84771,7 @@ LABEL_106:
     if (!os_log_type_enabled((os_log_t)qword_1008F7680, OS_LOG_TYPE_DEFAULT))
     {
 LABEL_91:
-      objc_msgSend(*(id *)(a1 + 40), "takeAssertionForProcess:duration:isUrgent:", v57, 10, 0, v52);
+      [*(id *)(a1 + 40) takeAssertionForProcess:v57 duration:10 isUrgent:0 v52];
       goto LABEL_92;
     }
 
@@ -84805,7 +84805,7 @@ LABEL_91:
         case 0x20:
           __int128 v42 = "daemon";
 LABEL_88:
-          int v46 = objc_msgSend(v56, "isAlive", v52);
+          int v46 = [v56 isAlive:v52];
           int v47 = "false";
           *(_DWORD *)buf = 136446978;
           int v69 = v40;
@@ -84845,7 +84845,7 @@ LABEL_88:
     _os_log_impl( (void *)&_mh_execute_header,  v24,  OS_LOG_TYPE_DEFAULT,  "Application %{public}s has been %{public}s",  buf,  0x16u);
   }
 
-  objc_msgSend(v56, "setPid:", 0, v52);
+  [v56 setPid:0 v52];
   uint64_t v27 = *(void *)(a1 + 40);
   if (*(void *)(v27 + 8))
   {

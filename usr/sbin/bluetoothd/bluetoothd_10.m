@@ -33512,7 +33512,7 @@ void sub_10054E194(void *a1)
           objc_enumerationMutation(v3);
         }
         char v7 = *(const __CFNumber **)(*((void *)&v11 + 1) + 8LL * (void)i);
-        CFDataRef v8 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(v2 + 528), "objectForKeyedSubscript:", v7, (void)v11));
+        CFDataRef v8 = (void *)[*(id *)(v2 + 528) objectForKeyedSubscript:v7];
         uint64_t v9 = (const __CFString *)a1[6];
         __int16 v10 = (__CFString *)objc_claimAutoreleasedReturnValue([v8 endpointUUID]);
         LODWORD(v9) = CFStringCompare(v9, v10, 0LL) == kCFCompareEqualTo;
@@ -52717,7 +52717,7 @@ LABEL_25:
       memset(&__dst, 0, sizeof(__dst));
       id v26 = sub_1005BFB9C((uint64_t)v25);
       id v27 = objc_claimAutoreleasedReturnValue(v26);
-      sub_10002418C(&__dst, (char *)objc_msgSend(v27, "UTF8String", v138));
+      sub_10002418C(&__dst, (char *)[v27 UTF8String]);
 
       char v28 = sub_1001FD17C(v152, (uint64_t)"instance #", 10LL);
       BOOL v29 = (void *)std::ostream::operator<<(v28, *(unsigned int *)(*(void *)(a3 + 8) + 264LL));
@@ -65731,7 +65731,7 @@ _BYTE *sub_1005900B8(uint64_t a1)
       while (v35);
     }
 
-    objc_msgSend(*(id *)(a1 + 744), "removeAllObjects", (void)v45);
+    [*(id *)(a1 + 744) removeAllObjects];
     [*(id *)(a1 + 752) removeAllObjects];
     [*(id *)(a1 + 760) removeAllObjects];
     [*(id *)(a1 + 768) removeAllObjects];
@@ -68281,7 +68281,7 @@ LABEL_16:
                   if (qword_1008D6198 != -1) {
                     dispatch_once(&qword_1008D6198, &stru_1008A2B70);
                   }
-                  sub_10044D668((uint64_t)off_1008D6190, objc_msgSend(v35, "integerValue", (void)v42));
+                  sub_10044D668((uint64_t)off_1008D6190, [v35 integerValue]);
                   char v34 = (char *)v34 + 1;
                 }
 
@@ -69053,7 +69053,7 @@ uint64_t sub_100597F98(uint64_t a1, unsigned __int8 *a2, unsigned int a3)
           if (qword_1008D6198 != -1) {
             dispatch_once(&qword_1008D6198, &stru_1008A2B70);
           }
-          sub_10044D74C((uint64_t)off_1008D6190, objc_msgSend(v27, "integerValue", (void)v31));
+          sub_10044D74C((uint64_t)off_1008D6190, [v27 integerValue]);
           BOOL v26 = (char *)v26 + 1;
         }
 

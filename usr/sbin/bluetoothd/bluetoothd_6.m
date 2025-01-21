@@ -30104,8 +30104,8 @@ void sub_1002FC0B0(uint64_t a1, uint64_t a2, void *a3)
             objc_enumerationMutation(v9);
           }
           uint64_t v13 = *(void *)(*((void *)&v15 + 1) + 8LL * (void)i);
-          uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "objectForKeyedSubscript:", v13, (void)v15));
-          objc_msgSend(*(id *)(sub_1002EDE6C(v8, (const void **)__p) + 96), "setObject:forKeyedSubscript:", v14, v13);
+          uint64_t v14 = (void *)[v9 objectForKeyedSubscript:v13];
+          [*(id *)(sub_1002EDE6C(v8, (const void **)__p) + 96) setObject:v14 forKeyedSubscript:v13];
         }
 
         id v10 = [v9 countByEnumeratingWithState:&v15 objects:v21 count:16];
@@ -31367,7 +31367,7 @@ void sub_10031D964(uint64_t a1, void *a2, int a3)
     && [v8 length] == (id)a3)
   {
     id v13 = v8;
-    memcpy(a2, [v13 bytes], (size_t)objc_msgSend(v13, "length"));
+    memcpy(a2, [v13 bytes], (size_t)[v13 length]);
     id v14 = 0LL;
   }
 
@@ -35303,7 +35303,7 @@ void sub_100327108(uint64_t a1, unsigned int a2, void *a3)
     __dst[0] = 0;
     id v7 = v5;
     id v6 = v5;
-    memcpy(__dst, [v6 bytes], (size_t)objc_msgSend(v6, "length"));
+    memcpy(__dst, [v6 bytes], (size_t)[v6 length]);
     sub_100325794(a1, a2, 0, *(unsigned __int16 *)((char *)__dst + 1), *(unsigned __int16 *)((char *)__dst + 3), 0);
     id v5 = v7;
   }
@@ -35523,7 +35523,7 @@ id sub_100327674(uint64_t a1)
         if (*(void *)v9 != v4) {
           objc_enumerationMutation(v2);
         }
-        uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(v1 + 800),  "objectForKey:",  *(void *)(*((void *)&v8 + 1) + 8 * (void)v5),  (void)v8));
+        uint64_t v6 = (void *)[*(id *)(v1 + 800) objectForKey: *(void *)(*((void *)&v8 + 1) + 8 * (void)v5)  (void)v8];
         sub_1002EFD68(v1, 0x42u, v6);
 
         id v5 = (char *)v5 + 1;
@@ -35571,7 +35571,7 @@ void sub_100327830(uint64_t a1)
   uint64_t v4 = objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"%@_%d",  v2,  *(unsigned int *)(a1 + 44)));
   id v5 = *(void **)(v1 + 352);
   id v8 = (id)v4;
-  uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v5, "objectForKey:"));
+  uint64_t v6 = (void *)[v5 objectForKey:];
   id v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  [v6 intValue] + 1));
   [v5 setObject:v7 forKey:v8];
 }
@@ -52634,7 +52634,7 @@ void sub_100346718(_Unwind_Exception *exception_object)
 
 id sub_100346734(uint64_t a1)
 {
-  return objc_msgSend( *(id *)(*(void *)(a1 + 32) + 1528),  "screenStateChanged:",  objc_msgSend(*(id *)(*(void *)(a1 + 32) + 1440), "screenOn"));
+  return [*(id *)(*(void *)(a1 + 32) + 1528) screenStateChanged:[*(id *)(*(void *)(a1 + 32) + 1440) screenOn]];
 }
 
 uint64_t sub_100346764(uint64_t a1)
@@ -54958,7 +54958,7 @@ void sub_10034AAB8(uint64_t a1)
   __int128 v28 = v4;
   while (1)
   {
-    objc_msgSend(v2, "timeIntervalSinceNow", v28);
+    [v2 timeIntervalSinceNow:v28];
     if (v5 <= 0.0) {
       break;
     }
@@ -55758,7 +55758,7 @@ id sub_10034C5D4(uint64_t a1, void *a2)
             objc_enumerationMutation(obj);
           }
           uint64_t v9 = *(void **)(*((void *)&v43 + 1) + 8LL * (void)i);
-          id v10 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v31, "matchesInString:options:range:", v9, 0, 0, objc_msgSend(v9, "length")));
+          id v10 = [v31 matchesInString:v9 options:0 range:[v9 length]];
 
           __int128 v41 = 0u;
           __int128 v42 = 0u;
@@ -55782,10 +55782,10 @@ id sub_10034C5D4(uint64_t a1, void *a2)
                 if ((unint64_t)[v13 numberOfRanges] >= 4)
                 {
                   id v14 = [v13 rangeAtIndex:1];
-                  uint64_t v16 = objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "substringWithRange:", v14, v15));
+                  uint64_t v16 = [v9 substringWithRange:v14, v15];
 
                   id v17 = [v13 rangeAtIndex:3];
-                  uint64_t v19 = objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "substringWithRange:", v17, v18));
+                  uint64_t v19 = [v9 substringWithRange:v17, v18];
 
                   id v20 = (void *)objc_claimAutoreleasedReturnValue(-[NSNumberFormatter numberFromString:](v37, "numberFromString:", v16));
                   id v21 = [v20 longValue];
@@ -64053,7 +64053,7 @@ LABEL_63:
                     id v130 = v128;
                     if ([v130 hasPrefix:@"CrashReporterKey:"])
                     {
-                      uint64_t v131 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( v130,  "substringFromIndex:",  objc_msgSend(@"CrashReporterKey:", "length")));
+                      uint64_t v131 = (void *)objc_claimAutoreleasedReturnValue( [v130 substringFromIndex:[@"CrashReporterKey:" length]]);
                       [v218 setObject:v131 forKey:@"accessory_crashreporter_key"];
                     }
                   }
@@ -64744,7 +64744,7 @@ LABEL_248:
                                   {
                                     unsigned int v186 = (void *)objc_claimAutoreleasedReturnValue( +[NSMutableString stringWithFormat:]( &OBJC_CLASS___NSMutableString,  "stringWithFormat:",  @"%04x ",  HIWORD(v222)));
                                     for (uint64_t j = 0LL; j != 28; j += 4LL)
-                                      objc_msgSend( v186,  "appendFormat:",  @"%02x%02x%02x%02x",  *(_DWORD *)&buf[j],  BYTE1(*(_DWORD *)&buf[j]),  BYTE2(*(_DWORD *)&buf[j]),  HIBYTE(*(_DWORD *)&buf[j]));
+                                      [v186 appendFormat:@"%02x%02x%02x%02x", *(_DWORD *)&buf[j], BYTE1(*(_DWORD *)&buf[j]), BYTE2(*(_DWORD *)&buf[j]), HIBYTE(*(_DWORD *)&buf[j])];
                                     v188 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedLongLong:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedLongLong:",  v180));
                                     v189 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedInt:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedInt:",  v181));
                                     uint64_t v190 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  BYTE4(v222)));
@@ -65319,7 +65319,7 @@ void sub_100360628(uint64_t a1, uint64_t a2)
   {
     uint64_t v2 = *(void **)(a1 + 424);
     id v3 = (id)objc_claimAutoreleasedReturnValue(+[NSString stringWithCString:encoding:](&OBJC_CLASS___NSString, "stringWithCString:encoding:", a2, 4LL));
-    objc_msgSend(v2, "addObject:");
+    [v2 addObject:];
   }
 
 void sub_10036068C( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)

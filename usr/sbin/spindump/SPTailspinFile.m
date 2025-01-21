@@ -160,7 +160,7 @@
       *__error() = v12;
     }
 
-    objc_msgSend( v8,  "setDataGatheringOptions:",  (unint64_t)objc_msgSend(v8, "dataGatheringOptions") & 0xFFFFFFFFFFFFFFFDLL);
+    [v8 setDataGatheringOptions:((unint64_t)[v8 dataGatheringOptions] & 0xFFFFFFFFFFFFFFFDLL)];
   }
 
   sub_10004C368( v8,  (byte_1000DFCFC >> 3) & 1,  (byte_1000DFCFC >> 2) & 1,  (byte_1000DFCFC & 0x10) == 0);

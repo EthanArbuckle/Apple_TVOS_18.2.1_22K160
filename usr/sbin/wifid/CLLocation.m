@@ -67,7 +67,7 @@
   {
     v28 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "Failed to allocate %lu bytes for the geohash", v3 + 1);
+      [qword_100219F60 WFLog:@"Failed to allocate %lu bytes for the geohash" message:3];
     }
 LABEL_24:
     objc_autoreleasePoolPop(v28);

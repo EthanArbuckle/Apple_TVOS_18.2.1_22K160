@@ -1476,7 +1476,7 @@ LABEL_279:
   uint64_t v22 = v17;
   *BOOL v17 = a1;
   uint64_t v23 =  -[NSData initWithBytesNoCopy:length:freeWhenDone:]( objc_alloc(&OBJC_CLASS___NSData),  "initWithBytesNoCopy:length:freeWhenDone:",  v17,  12LL,  1LL);
-  objc_msgSend( (id)qword_1000DF600,  "setObject:forKeyedSubscript:",  v23,  +[NSNumber numberWithUnsignedInt:](NSNumber, "numberWithUnsignedInt:", a1));
+  [qword_1000DF600 setObject:v23 forKeyedSubscript:[NSNumber numberWithUnsignedInt:a1]];
   if (byte_1000DFD38)
   {
     int v24 = *__error();
@@ -2885,10 +2885,10 @@ LABEL_103:
   }
 
   if (*(void *)(a1 + 40)) {
-    objc_msgSend(a2, "setReason:", +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:"));
+    [a2 setReason:[NSString stringWithUTF8String:]];
   }
   if (*(void *)(a1 + 48)) {
-    objc_msgSend( a2,  "setSignature:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:"));
+    [a2 setSignature:+[NSString stringWithUTF8String:]];
   }
   BOOL v32 = *(void *)(a1 + 56);
   if ((v32 & 1) != 0)
@@ -4859,9 +4859,9 @@ LABEL_104:
 
 LABEL_105:
   if (v340) {
-    objc_msgSend(v52, "addAuxiliaryData:");
+    [v52 addAuxiliaryData:];
   }
-  id v104 = objc_msgSend( v52,  "setEvent:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", sub_100020988(a16, 0)));
+  id v104 = [v52 setEvent:[NSString stringWithUTF8String:sub_100020988(a16, 0)]];
   if (a16 != 5)
   {
     if (a16 != 10 && a16 != 8)
@@ -4873,10 +4873,10 @@ LABEL_105:
       [v52 setBytesWrittenLimit:a19];
       [v52 setWriteDuration:a13];
       [v52 setWriteLimitDuration:a15];
-      objc_msgSend(-[SASamplePrinter options](v74, "options"), "setPrintSpinSignatureStack:", 1);
+      [v74 options].setPrintSpinSignatureStack:1;
     }
 
-    id v104 = [v52 setStepsNote:+[NSString stringWithFormat:]( NSString, "stringWithFormat:", @"%s/step", objc_msgSend((id)SAFormattedBytes(10485760, 0, 0), "UTF8String"))];
+    id v104 = [v52 setStepsNote:[NSString stringWithFormat:@"%s/step", [SAFormattedBytes(10485760, 0, 0) UTF8String]]];
     goto LABEL_114;
   }
 
@@ -4884,12 +4884,12 @@ LABEL_105:
   [v52 setCpuLimit:a14];
   [v52 setCpuDuration:a13];
   [v52 setCpuLimitDuration:a15];
-  id v104 = objc_msgSend(-[SASamplePrinter options](v74, "options"), "setPrintSpinSignatureStack:", 1);
+  [v74 options].setPrintSpinSignatureStack:1;
 LABEL_114:
   if (a9 > 0.0 && a10 > 0.0)
   {
     unsigned int v75 = a16 - 5;
-    id v104 = objc_msgSend( v52,  "setEventTimeRange:",  +[SATimeRange timeRangeStart:end:]( SATimeRange,  "timeRangeStart:end:",  +[SATimestamp timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:]( SATimestamp,  "timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:",  0,  0,  0.0,  0.0,  a9),  +[SATimestamp timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:]( SATimestamp,  "timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:",  0,  0,  0.0,  0.0,  a10)));
+    id v104 = [v52 setEventTimeRange:+[SATimeRange timeRangeStart:end:](SATimeRange, "timeRangeStart:end:", +[SATimestamp timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:](SATimestamp, "timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:", 0, 0, 0.0, 0.0, a9), +[SATimestamp timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:](SATimestamp, "timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:", 0, 0, 0.0, 0.0, a10))];
   }
 
   if (a7)
@@ -4908,7 +4908,7 @@ LABEL_114:
   id v104 = [v52 setActionTaken:v105];
 LABEL_122:
   if (a25) {
-    id v104 = objc_msgSend( v52,  "setSignature:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", a25));
+    id v104 = [v52 setSignature:+[NSString stringWithUTF8String:a25]];
   }
   if (v66 >= 2) {
     id v104 = [v52 setSanitizePaths:1];
@@ -4925,8 +4925,8 @@ LABEL_122:
   }
 
   -[SASamplePrinter setShareWithAppDevs:](v74, "setShareWithAppDevs:", AppAnalyticsEnabled(v104));
-  objc_msgSend(-[SASamplePrinter options](v74, "options"), "setMicrostackshotsFormat:", 1);
-  objc_msgSend(-[SASamplePrinter options](v74, "options"), "setOmitTasksBelowPercentOfTotalSamples:", v106);
+  [v74 options].setMicrostackshotsFormat:1;
+  [v74 options].setOmitTasksBelowPercentOfTotalSamples:v106;
   if (a26)
   {
     *(void *)buf = 0LL;
@@ -6295,7 +6295,7 @@ LABEL_199:
             *__error() = v119;
           }
 
-          objc_msgSend( v30,  "setDataGatheringOptions:",  (unint64_t)objc_msgSend(v30, "dataGatheringOptions") & 0xFFFFFFFFFFFFFFFDLL);
+          [v30 setDataGatheringOptions:((unint64_t)[v30 dataGatheringOptions] & 0xFFFFFFFFFFFFFFFDLL)];
         }
 
         sub_10004C368( v30,  (byte_1000DFCFC >> 3) & 1,  (byte_1000DFCFC >> 2) & 1,  (byte_1000DFCFC & 0x10) == 0);
@@ -6457,7 +6457,7 @@ LABEL_199:
       }
     }
 
-    objc_msgSend( v30,  "setMachineArchitecture:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", a11));
+    [v30 setMachineArchitecture:[NSString stringWithUTF8String:a11]];
     goto LABEL_199;
   }
 
@@ -6621,7 +6621,7 @@ LABEL_62:
                 *__error() = v74;
               }
 
-              objc_msgSend( v30,  "setDataGatheringOptions:",  (unint64_t)objc_msgSend(v30, "dataGatheringOptions") & 0xFFFFFFFFFFFFFFFDLL);
+              [v30 setDataGatheringOptions:((unint64_t)[v30 dataGatheringOptions]) & 0xFFFFFFFFFFFFFFFDLL];
             }
 
             sub_10004C368( v30,  (byte_1000DFCFC >> 3) & 1,  (byte_1000DFCFC >> 2) & 1,  (byte_1000DFCFC & 0x10) == 0);
@@ -6640,7 +6640,7 @@ LABEL_62:
           }
         }
 
-        objc_msgSend( v30,  "setMachineArchitecture:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", a11));
+        [v30 setMachineArchitecture:[NSString stringWithUTF8String:a11]];
         goto LABEL_62;
       }
 
@@ -7130,7 +7130,7 @@ LABEL_25:
 
   if (v32 != -1)
   {
-    objc_msgSend(v10, "setBytes_not_microstackshots:", (char *)objc_msgSend(v10, "bytes_not_microstackshots") + v30);
+    [v10 setBytes_not_microstackshots:((char *)[v10 bytes_not_microstackshots]) + v30];
     goto LABEL_90;
   }
 
@@ -9300,7 +9300,7 @@ double sub_100029E40(void *a1, void *a2)
 
 LABEL_48:
   if (self->_reason) {
-    objc_msgSend(a3, "setReason:");
+    [a3 setReason:];
   }
   sub_10004C368(a3, self->_shouldSymbolicate, self->_useDsymForUUIDForEverything, self->_shouldUseBulkSymbolication);
   stepsNote = self->_stepsNote;
@@ -9319,10 +9319,10 @@ LABEL_48:
 
   [a3 setTargetThreadId:0];
   if ((*p_targetProcessId & 0x80000000) == 0) {
-    objc_msgSend(a3, "setTargetProcessId:");
+    [a3 setTargetProcessId:];
   }
   if (self->_targetThreadId) {
-    objc_msgSend(a3, "setTargetThreadId:");
+    [a3 setTargetThreadId:];
   }
   if (self->_targetProcessAbsolutePath)
   {
@@ -9425,13 +9425,13 @@ LABEL_48:
 
   else
   {
-    *a14 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v45, v46));
+    *a14 = [a1 substringWithRange:v45, v46];
     unint64_t v48 = [a3 rangeWithName:@"endIndex"];
     if (v48 == (id)0x7FFFFFFFFFFFFFFFLL) {
       double v47 = *a14;
     }
     else {
-      double v47 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v48, v49));
+      double v47 = [a1 substringWithRange:v48, v49];
     }
   }
 
@@ -9960,7 +9960,7 @@ void sub_10002C660(uint64_t a1)
 int *sub_10002C6EC(uint64_t a1, void *a2)
 {
   id v3 = (int **)(a1 + 32);
-  id result = (int *)objc_msgSend( a2,  "objectForKeyedSubscript:",  +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  *(unsigned int *)(*(void *)(a1 + 32) + 72)));
+  id result = [a2 objectForKeyedSubscript:[NSNumber numberWithInt:*(unsigned int *)(*(void *)(a1 + 32) + 72)]];
   int v5 = *v3;
   if (result) {
     BOOL v6 = result == v5;
@@ -10046,7 +10046,7 @@ LABEL_83:
         *__error() = v21;
 LABEL_84:
         dispatch_semaphore_signal(*((dispatch_semaphore_t *)v17 + 53));
-        return (int *)objc_msgSend( a2,  "setObject:forKeyedSubscript:",  0,  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", (*v3)[18]));
+        return (int *)[a2 setObject:0 forKeyedSubscript:+[NSNumber numberWithInt:](NSNumber, "numberWithInt:", (*v3)[18])];
       }
     }
 
@@ -10231,7 +10231,7 @@ void sub_10002CD38(uint64_t a1)
 int *sub_10002CD94(uint64_t a1, void *a2)
 {
   id v3 = (int **)(a1 + 32);
-  id result = (int *)objc_msgSend( a2,  "objectForKeyedSubscript:",  +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  objc_msgSend(*(id *)(a1 + 32), "targetProcessId")));
+  id result = [a2 objectForKeyedSubscript:[NSNumber numberWithInt:[*(id *)(a1 + 32) targetProcessId]]];
   int v5 = *v3;
   if (!*((_BYTE *)v3 + 8))
   {
@@ -10567,7 +10567,7 @@ LABEL_282:
           dispatch_semaphore_signal(*((dispatch_semaphore_t *)*v3 + 53));
           dispatch_release(*((dispatch_object_t *)*v3 + 53));
           *((void *)*v3 + 53) = 0LL;
-          objc_msgSend( a2,  "setObject:forKeyedSubscript:",  0,  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", objc_msgSend(*v3, "targetProcessId")));
+          [a2 setObject:0 forKeyedSubscript:[NSNumber numberWithInt:[v3 targetProcessId]]];
           return (int *)[*v3 deleteHIDExitSource];
         }
       }
@@ -10931,7 +10931,7 @@ LABEL_193:
         *__error() = v25;
 LABEL_194:
         *((void *)*v3 + 53) = dispatch_semaphore_create(0LL);
-        objc_msgSend( a2,  "setObject:forKeyedSubscript:",  *v3,  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", objc_msgSend(*v3, "targetProcessId")));
+        [a2 setObject:*v3 forKeyedSubscript:[NSNumber numberWithInt:[v3 targetProcessId]]];
         return (int *)[*v3 createHIDExitSource];
       }
     }
@@ -11225,7 +11225,7 @@ LABEL_233:
 int *sub_10002E554(uint64_t a1, void *a2)
 {
   uint64_t v4 = (unsigned int *)(a1 + 64);
-  id result = (int *)objc_msgSend( a2,  "objectForKeyedSubscript:",  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", *(unsigned int *)(a1 + 64)));
+  id result = [a2 objectForKeyedSubscript:[NSNumber numberWithInt:*(unsigned int *)(a1 + 64)]];
   if (result)
   {
     uint64_t v6 = (uint64_t)result;
@@ -11536,13 +11536,13 @@ LABEL_152:
 LABEL_153:
         *__error() = v37;
 LABEL_154:
-        objc_msgSend( (id)v6,  "setEventTimeRange:",  +[SATimeRange timeRangeStart:end:]( SATimeRange,  "timeRangeStart:end:",  *(void *)(a1 + 40),  *(void *)(a1 + 32)));
+        [v6 setEventTimeRange:[SATimeRange timeRangeStart:end:][(void *)(a1 + 40),  (void *)(a1 + 32)]];
         [(id)v6 setReportTimeStart:*(void *)(a1 + 40)];
         [(id)v6 setReportTimeEnd:*(void *)(a1 + 32)];
         [(id)v6 setTargetHIDEventMachAbs:*(void *)(a1 + 56)];
-        objc_msgSend((id)v6, "setTargetHIDEventEndMachAbs:", objc_msgSend(*(id *)(a1 + 32), "machAbsTime"));
+        [v6 setTargetHIDEventEndMachAbs:[*(id *)(a1 + 32) machAbsTime]];
         dispatch_semaphore_signal(*(dispatch_semaphore_t *)(v6 + 424));
-        objc_msgSend( a2,  "setObject:forKeyedSubscript:",  0,  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", *(unsigned int *)(a1 + 64)));
+        [a2 setObject:0 forKeyedSubscript:[NSNumber numberWithInt:*(unsigned int *)(a1 + 64)]];
         return (int *)[(id)v6 deleteHIDExitSource];
       }
 
@@ -13353,7 +13353,7 @@ BOOL sub_100033530(int a1)
 _DWORD *sub_100033540(uint64_t a1, void *a2)
 {
   uint64_t v3 = (id *)(a1 + 32);
-  id result = objc_msgSend( a2,  "objectForKeyedSubscript:",  +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  *(unsigned int *)(*(void *)(a1 + 32) + 72)));
+  id result = [a2 objectForKeyedSubscript: +[NSNumber numberWithInt:]( NSNumber,  "numberWithInt:",  *(unsigned int *)(*(void *)(a1 + 32) + 72)));
   if (result && result == *v3)
   {
     if ((result[18] & 0x80000000) != 0)
@@ -13430,7 +13430,7 @@ LABEL_37:
 LABEL_41:
         *__error() = v8;
 LABEL_42:
-        objc_msgSend( a2,  "setObject:forKeyedSubscript:",  0,  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", *((unsigned int *)*v3 + 18)));
+        [a2 setObject:0 forKeyedSubscript:[NSNumber numberWithInt:*((unsigned int *)*v3 + 18)]];
         return [*v3 deleteHIDExitSource];
       }
     }
@@ -13478,13 +13478,13 @@ void sub_100033864(uint64_t a1, void *a2)
   BOOL v4 = *(_DWORD **)(a1 + 32);
   if ((v4[18] & 0x80000000) == 0)
   {
-    objc_msgSend(a2, "setTargetProcessId:");
+    [a2 setTargetProcessId:];
     BOOL v4 = *v5;
   }
 
   if (*((void *)v4 + 19))
   {
-    objc_msgSend(a2, "setTargetThreadId:");
+    [a2 setTargetThreadId:];
     BOOL v4 = *v5;
   }
 
@@ -13709,7 +13709,7 @@ LABEL_22:
 LABEL_29:
       objc_msgSend( *(id *)(a1 + 32),  "setEventTimeRange:",  +[SATimeRange timeRangeStart:end:]( SATimeRange,  "timeRangeStart:end:",  v22,  objc_msgSend(*(id *)(a1 + 40), "timestamp")));
       [*(id *)(a1 + 32) setReportTimeStart:v22];
-      objc_msgSend(*(id *)(a1 + 32), "setReportTimeEnd:", objc_msgSend(*(id *)(a1 + 40), "timestamp"));
+      [*(id *)(a1 + 32) setReportTimeEnd:[*(id *)(a1 + 40) timestamp]];
     }
   }
 
@@ -13792,7 +13792,7 @@ id sub_1000349E8(uint64_t a1, void *a2, double a3)
   LODWORD(a3) = *(_DWORD *)(*(void *)(a1 + 32) + 400LL);
   [a2 setAttemptedSamplingInterval:(double)*(unint64_t *)&a3 / 1000000.0];
   [*(id *)(a1 + 32) reportTimeThreshold];
-  objc_msgSend(a2, "setReportTimeThreshold:");
+  [a2 setReportTimeThreshold:];
   return [*(id *)(a1 + 32) _saveReportToStream:*(void *)(a1 + 40) withSampleStore:a2];
 }
 
@@ -13801,7 +13801,7 @@ uint64_t sub_100035354(uint64_t a1, void *a2, double a3)
   LODWORD(a3) = *(_DWORD *)(*(void *)(a1 + 32) + 400LL);
   [a2 setAttemptedSamplingInterval:(double)*(unint64_t *)&a3 / 1000000.0];
   [*(id *)(a1 + 32) reportTimeThreshold];
-  objc_msgSend(a2, "setReportTimeThreshold:");
+  [a2 setReportTimeThreshold:];
   [*(id *)(a1 + 32) _samplePrinterForSampleStore:a2];
   return (*(uint64_t (**)(void))(*(void *)(a1 + 40) + 16LL))();
 }
@@ -14867,7 +14867,7 @@ LABEL_292:
     }
 
     if ((a6 & 0x20) == 0) {
-      objc_msgSend(v24, "setCancelOnMemoryPressure:", 0, a5);
+      [v24 setCancelOnMemoryPressure:0, a5];
     }
   }
 
@@ -16446,7 +16446,7 @@ void sub_10003A1A0(uint64_t a1)
     goto LABEL_187;
   }
 
-  id v511 = objc_msgSend(-[WRWorkflowEventTracker workflow](v3, "workflow"), "name");
+  id v511 = [v3 workflow].name;
   if (byte_1000DFD38)
   {
     int v4 = *__error();
@@ -17047,7 +17047,7 @@ LABEL_203:
   __int128 v599 = 0u;
   __int128 v600 = 0u;
   __int128 v601 = 0u;
-  id v96 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "workflowDiagnostics");
+  id v96 = [v541 workflow].workflowDiagnostics;
   id v97 = [v96 countByEnumeratingWithState:&v598 objects:buf count:16];
   if (!v97) {
     goto LABEL_293;
@@ -17070,9 +17070,9 @@ LABEL_203:
       double v100 = v99;
       if (([v537 reportOmittingNetworkBoundIntervals] & 1) == 0)
       {
-        id v101 = objc_msgSend(-[WRWorkflowEventTracker eventEnd](v541, "eventEnd"), "machContTimeNs");
+        id v101 = [v541 eventEnd].machContTimeNs;
         double v100 = (double)(unint64_t)v101
-             - (double)(unint64_t)objc_msgSend( -[WRWorkflowEventTracker eventStart](v541, "eventStart"),  "machContTimeNs");
+             - (double)(unint64_t)[v541 eventStart].machContTimeNs;
       }
 
       [v537 triggerThresholdDurationSingle];
@@ -17141,7 +17141,7 @@ LABEL_292:
         id v115 = [v537 reportOtherSignpostWithName];
         if (v115)
         {
-          id v116 = objc_msgSend(-[WRWorkflowEventTracker allSignpostTrackers](v541, "allSignpostTrackers"), "mutableCopy");
+          id v116 = [[-[WRWorkflowEventTracker allSignpostTrackers](v541, "allSignpostTrackers") mutableCopy]];
           if ([v116 count])
           {
             unint64_t v117 = 0LL;
@@ -17223,7 +17223,7 @@ LABEL_292:
                         if (*(void *)v586 != v137) {
                           objc_enumerationMutation(v135);
                         }
-                        sub_100040678( v540,  (uint64_t)v534,  v531,  v541,  0,  v537,  (uint64_t)v119,  v528,  v113,  (uint64_t)[*(id *)(*(void *)&v585[8] + 8 * (void)m) threadID],  0,  (unint64_t)objc_msgSend( *(id *)(*(void *)&v585[8] + 8 * (void)m),  "machContTimeNs"),  (unint64_t)objc_msgSend( -[WRWorkflowEventTracker eventEnd](v541, "eventEnd"),  "machContTimeNs"));
+                        sub_100040678(v540, (uint64_t)v534, v531, v541, 0, v537, (uint64_t)v119, v528, v113, (uint64_t)[*(id *)(*(void *)&v585[8] + 8 * (void)m) threadID], 0, (unint64_t)[*(id *)(*(void *)&v585[8] + 8 * (void)m) machContTimeNs], (unint64_t)[-[WRWorkflowEventTracker eventEnd](v541, "eventEnd") machContTimeNs]);
                       }
 
                       id v136 = [v135 countByEnumeratingWithState:v585 objects:v605 count:16];
@@ -17241,7 +17241,7 @@ LABEL_292:
                     int v124 = (os_log_s *)sub_10005C68C();
                     if (os_log_type_enabled(v124, OS_LOG_TYPE_ERROR))
                     {
-                      id v142 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                      id v142 = [v541 workflow].name;
                       id v143 = objc_msgSend(objc_msgSend(v119, "signpost"), "name");
                       id v144 = [v537 name];
                       *(_DWORD *)v616 = 138412802;
@@ -17265,7 +17265,7 @@ LABEL_292:
                   if (v125)
                   {
                     int v126 = *__error();
-                    int v127 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to overall workflow, but no intervals to report",  objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name"),  objc_msgSend(objc_msgSend(v119, "signpost"), "name"),  objc_msgSend(v537, "name"));
+                    int v127 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to overall workflow, but no intervals to report",  [v541 workflow],  [v119 signpost],  [v537 name]);
                     int v128 = v127;
                     if (v127)
                     {
@@ -17300,7 +17300,7 @@ LABEL_292:
                       uint64_t v139 = (os_log_s *)sub_10005C68C();
                       if (os_log_type_enabled(v139, OS_LOG_TYPE_FAULT))
                       {
-                        id v145 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                        id v145 = [v541 workflow].name;
                         id v146 = objc_msgSend(objc_msgSend(v119, "signpost"), "name");
                         id v147 = [v537 name];
                         *(_DWORD *)v616 = 138412802;
@@ -17335,7 +17335,7 @@ LABEL_292:
 
         else
         {
-          sub_100040678( v540,  (uint64_t)v534,  v531,  v541,  0,  v537,  0,  v528,  v113,  (uint64_t)objc_msgSend(-[WRWorkflowEventTracker eventStart](v541, "eventStart"), "threadID"),  (uint64_t)objc_msgSend(-[WRWorkflowEventTracker eventEnd](v541, "eventEnd"), "threadID"),  (unint64_t)objc_msgSend(-[WRWorkflowEventTracker eventStart](v541, "eventStart"), "machContTimeNs"),  (unint64_t)objc_msgSend(-[WRWorkflowEventTracker eventEnd](v541, "eventEnd"), "machContTimeNs"));
+          sub_100040678(v540, (uint64_t)v534, v531, v541, 0, v537, 0, v528, v113, (uint64_t)[WRWorkflowEventTracker eventStart](v541, "eventStart"), (uint64_t)[WRWorkflowEventTracker eventEnd](v541, "eventEnd"), (unint64_t)[WRWorkflowEventTracker eventStart](v541, "eventStart"), (unint64_t)[WRWorkflowEventTracker eventEnd](v541, "eventEnd"));
         }
       }
 
@@ -17389,7 +17389,7 @@ LABEL_293:
           objc_enumerationMutation(v149);
         }
         v535 = *(void **)(*((void *)&v547 + 1) + 8LL * (void)v505);
-        id v151 = objc_msgSend(-[WRWorkflowEventTracker eventEnd](v541, "eventEnd"), "machContTimeNs");
+        id v151 = [[v541 eventEnd] machContTimeNs];
         if (!v535) {
           goto LABEL_455;
         }
@@ -17440,7 +17440,7 @@ LABEL_293:
                   BOOL v165 = (os_log_s *)sub_10005C68C();
                   if (os_log_type_enabled(v165, OS_LOG_TYPE_ERROR))
                   {
-                    id v221 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                    id v221 = [v541 workflow].name;
                     id v222 = objc_msgSend(objc_msgSend(v535, "signpost"), "name");
                     id v223 = [v538 name];
                     *(_DWORD *)v607 = 138412802;
@@ -17459,7 +17459,7 @@ LABEL_293:
                 if (byte_1000DFD39 && dword_1000DF4B8 <= 3)
                 {
                   int v166 = *__error();
-                  uint64_t v167 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to count threshold, but no intervals to report",  objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name"),  objc_msgSend(objc_msgSend(v535, "signpost"), "name"),  objc_msgSend(v538, "name"));
+                  uint64_t v167 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to count threshold, but no intervals to report",  [v541 workflow],  [v535 signpost],  [v538 name]);
                   uint64_t v168 = v167;
                   if (v167)
                   {
@@ -17494,7 +17494,7 @@ LABEL_293:
                     v218 = (os_log_s *)sub_10005C68C();
                     if (os_log_type_enabled(v218, OS_LOG_TYPE_FAULT))
                     {
-                      id v224 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                      id v224 = [v541 workflow].name;
                       id v225 = objc_msgSend(objc_msgSend(v535, "signpost"), "name");
                       id v226 = [v538 name];
                       *(_DWORD *)v607 = 138412802;
@@ -17582,7 +17582,7 @@ LABEL_293:
               id v178 = [v538 reportOtherSignpostWithName];
               if (v178)
               {
-                id v179 = objc_msgSend( -[WRWorkflowEventTracker allSignpostTrackers](v541, "allSignpostTrackers"),  "mutableCopy");
+                id v179 = [[-[WRWorkflowEventTracker allSignpostTrackers](v541, "allSignpostTrackers") mutableCopy];
                 if ([v179 count])
                 {
                   unint64_t v180 = 0LL;
@@ -17710,7 +17710,7 @@ LABEL_293:
                               id v206 = [*(id *)(*((void *)&v581 + 1) + 8 * (void)ii) machContTimeNs];
                             }
 
-                            sub_100040678( v540,  (uint64_t)v532,  v529,  v541,  v535,  v538,  (uint64_t)v186,  v526,  v523,  (uint64_t)[v205 threadID],  0,  (unint64_t)objc_msgSend(v205, "machContTimeNs"),  (unint64_t)objc_msgSend( -[WRWorkflowEventTracker eventEnd](v541, "eventEnd"),  "machContTimeNs"));
+                            sub_100040678( v540,  (uint64_t)v532,  v529,  v541,  v535,  v538,  (uint64_t)v186,  v526,  v523,  (uint64_t)[v205 threadID],  0,  (unint64_t)[v205 machContTimeNs],  (unint64_t)[-[WRWorkflowEventTracker eventEnd](v541, "eventEnd") machContTimeNs]);
                           }
 
                           id v202 = [v519 countByEnumeratingWithState:&v581 objects:v605 count:16];
@@ -17728,7 +17728,7 @@ LABEL_293:
                         uint64_t v190 = (os_log_s *)sub_10005C68C();
                         if (os_log_type_enabled(v190, OS_LOG_TYPE_ERROR))
                         {
-                          id v210 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                          id v210 = [v541 workflow].name;
                           id v211 = objc_msgSend(objc_msgSend(v186, "signpost"), "name");
                           id v212 = [v538 name];
                           id v213 = objc_msgSend(objc_msgSend(v186, "signpost"), "name");
@@ -17755,7 +17755,7 @@ LABEL_293:
                       if (v191)
                       {
                         int v192 = *__error();
-                        uint64_t v193 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to %@, but no intervals to report",  objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name"),  objc_msgSend(objc_msgSend(v186, "signpost"), "name"),  objc_msgSend(v538, "name"),  objc_msgSend(objc_msgSend(v186, "signpost"), "name"));
+                        uint64_t v193 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: Reporting spindump for this signpost due to %@, but no intervals to report",  [v541 workflow],  [v186 signpost],  [v538 name],  [v186 signpost]);
                         unsigned int v194 = v193;
                         if (v193)
                         {
@@ -17790,7 +17790,7 @@ LABEL_293:
                           uint64_t v207 = (os_log_s *)sub_10005C68C();
                           if (os_log_type_enabled(v207, OS_LOG_TYPE_FAULT))
                           {
-                            id v214 = objc_msgSend(-[WRWorkflowEventTracker workflow](v541, "workflow"), "name");
+                            id v214 = [v541.workflow name];
                             id v215 = objc_msgSend(objc_msgSend(v186, "signpost"), "name");
                             id v216 = [v538 name];
                             id v217 = objc_msgSend(objc_msgSend(v186, "signpost"), "name");
@@ -18350,7 +18350,7 @@ LABEL_532:
 
               if ([v318 signpostCount])
               {
-                objc_msgSend(v317, "setWrSignpostCount:", objc_msgSend(v318, "signpostCount"));
+                [v317 setWrSignpostCount:[v318 signpostCount]];
                 objc_msgSend( v317,  "setWrSignpostCountThreshold:",  objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdCount"));
               }
 
@@ -18358,27 +18358,27 @@ LABEL_532:
               if (v363 > 0.0)
               {
                 [v318 signpostDurationUnion];
-                objc_msgSend(v317, "setWrSignpostDurationUnion:");
+                [v317 setWrSignpostDurationUnion:];
                 objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdDurationUnion");
-                objc_msgSend(v317, "setWrSignpostDurationUnionThreshold:");
+                [v317 setWrSignpostDurationUnionThreshold:];
               }
 
               [v318 signpostDurationSum];
               if (v364 > 0.0)
               {
                 [v318 signpostDurationSum];
-                objc_msgSend(v317, "setWrSignpostDurationSum:");
+                [v317 setWrSignpostDurationSum];
                 objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdDurationSum");
-                objc_msgSend(v317, "setWrSignpostDurationSumThreshold:");
+                [v317 setWrSignpostDurationSumThreshold:];
               }
 
               [v318 signpostDurationSingle];
               if (v365 > 0.0)
               {
                 [v318 signpostDurationSingle];
-                objc_msgSend(v317, "setWrSignpostDurationSingle:");
+                [v317 setWrSignpostDurationSingle:];
                 objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdDurationSingle");
-                objc_msgSend(v317, "setWrSignpostDurationSingleThreshold:");
+                [v317 setWrSignpostDurationSingleThreshold:];
               }
             }
 
@@ -18407,7 +18407,7 @@ LABEL_532:
               if (byte_1000DFD39 && dword_1000DF4B8 <= 1)
               {
                 int v337 = *__error();
-                v338 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@ generating overall workflow report for %@ [%d]",  v536,  [v530 name],  objc_msgSend(v530, "pid"));
+                v338 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@ generating overall workflow report for %@ [%d]",  v536,  [v530 name],  [v530 pid]);
                 v339 = v338;
                 if (v338)
                 {
@@ -18469,24 +18469,24 @@ LABEL_532:
               if (v358 > 0.0)
               {
                 [v318 workflowDuration];
-                objc_msgSend(v317, "setWrWorkflowDuration:");
+                [v317 setWrWorkflowDuration:];
                 objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdDurationSingle");
-                objc_msgSend(v317, "setWrWorkflowDurationThreshold:");
+                [v317 setWrWorkflowDurationThreshold:];
               }
 
               [v318 workflowDurationOmittingNetworkBoundIntervals];
               if (v359 > 0.0)
               {
                 [v318 workflowDurationOmittingNetworkBoundIntervals];
-                objc_msgSend(v317, "setWrWorkflowDurationOmittingNetworkBoundIntervals:");
+                [v317 setWrWorkflowDurationOmittingNetworkBoundIntervals];
                 objc_msgSend(objc_msgSend(v318, "diagnostic"), "triggerThresholdDurationSingle");
-                objc_msgSend(v317, "setWrWorkflowDurationOmittingNetworkBoundIntervalsThreshold:");
+                [v317 setWrWorkflowDurationOmittingNetworkBoundIntervalsThreshold];
               }
 
               if ([v318 workflowEventTimedOut])
               {
                 [v319 maximumEventDuration];
-                objc_msgSend(v317, "setWrWorkflowTimeoutDuration:");
+                [v317 setWrWorkflowTimeoutDuration:];
               }
             }
 
@@ -18564,7 +18564,7 @@ LABEL_532:
 
             else
             {
-              objc_msgSend(v317, "setTargetProcess:", objc_msgSend(v316, "task"));
+              [v317 setTargetProcess:[v316 task]];
               if ([v316 thread])
               {
                 objc_msgSend(v317, "setTargetThreadId:", objc_msgSend(objc_msgSend(v316, "thread"), "threadId"));
@@ -18889,11 +18889,11 @@ LABEL_896:
               [v317 setEventTimeRange:v539];
               [v317 setCustomOutput:v503];
               v379 =  -[SASamplePrinter initWithSampleStore:]( objc_alloc(&OBJC_CLASS___SASamplePrinter),  "initWithSampleStore:",  v317);
-              objc_msgSend(-[SASamplePrinter options](v379, "options"), "setPrintHeavyStacks:", 1);
-              objc_msgSend(-[SASamplePrinter options](v379, "options"), "setPrintSpinSignatureStack:", 1);
-              objc_msgSend(-[SASamplePrinter options](v379, "options"), "setForceOneBasedTimeIndexes:", 1);
+              [v379 options].setPrintHeavyStacks:1;
+              [v379 options].setPrintSpinSignatureStack:1;
+              [v379 options].setForceOneBasedTimeIndexes:1;
               -[SASamplePrinter setIncidentUUID:](v379, "setIncidentUUID:", v509);
-              -[SASamplePrinter filterToTimestampRangeStart:end:]( v379,  "filterToTimestampRangeStart:end:",  [v539 startTime],  objc_msgSend(v539, "endTime"));
+              -[SASamplePrinter filterToTimestampRangeStart:[v539 startTime] end:[v539 endTime]];
               objc_msgSend( objc_msgSend(v539, "startTime"),  "deltaSecondsTo:timeDomainPriorityList:timeDomainUsed:",  objc_msgSend(v539, "endTime"),  &off_1000DA858,  0);
               double v381 = v380;
               objc_msgSend(objc_msgSend(v539, "startTime"), "wallTime");
@@ -18984,7 +18984,7 @@ LABEL_534:
     v269 = -[NSMutableDictionary initWithObjectsAndKeys:]( objc_alloc(&OBJC_CLASS___NSMutableDictionary),  "initWithObjectsAndKeys:",  +[NSNumber numberWithDouble:](&OBJC_CLASS___NSNumber, "numberWithDouble:", v36 * 1000.0),  @"durationms",  @"239",  @"bugtype",  v511,  @"workflow",  v496,  @"exceededThresholds",  -[NSUUID UUIDString](v509, "UUIDString"),  @"IncidentUUID",  v498,  @"stats",  0LL);
     if (-[WRWorkflowEventTracker error](v541, "error"))
     {
-      id v270 = objc_msgSend(-[WRWorkflowEventTracker error](v541, "error"), "domain");
+      id v270 = [[v541 error] domain];
       if ([v270 isEqualToString:WRErrorDomain]) {
         -[NSMutableDictionary setObject:forKeyedSubscript:]( v269,  "setObject:forKeyedSubscript:",  +[NSNumber numberWithInteger:]( NSNumber,  "numberWithInteger:",  objc_msgSend(-[WRWorkflowEventTracker error](v541, "error"), "code")),  @"error");
       }
@@ -19972,7 +19972,7 @@ LABEL_22:
         if (os_log_type_enabled(v25, OS_LOG_TYPE_ERROR))
         {
           id v83 = objc_msgSend(objc_msgSend(v15, "workflow"), "name");
-          BOOL v84 = (const __CFString *)objc_msgSend(objc_msgSend(v14, "signpost"), "name");
+          BOOL v84 = [(const __CFString *)[v14 signpost] name];
           BOOL v85 = v15;
           int v86 = v14;
           if (v84) {
@@ -20115,7 +20115,7 @@ LABEL_21:
       if (os_log_type_enabled(v60, OS_LOG_TYPE_ERROR))
       {
         id v92 = objc_msgSend(objc_msgSend(v58, "workflow"), "name");
-        double v93 = (const __CFString *)objc_msgSend(objc_msgSend(v14, "signpost"), "name");
+        double v93 = (const __CFString *)[v14 signpost];
         double v94 = v14;
         if (v93) {
           unsigned int v95 = v93;
@@ -20320,7 +20320,7 @@ LABEL_21:
         if (os_log_type_enabled(v77, OS_LOG_TYPE_FAULT))
         {
           id v100 = objc_msgSend(objc_msgSend(v48, "workflow"), "name");
-          id v101 = (const __CFString *)objc_msgSend(objc_msgSend(v51, "signpost"), "name");
+          id v101 = (const __CFString *)[v51 signpost name];
           if (v101) {
             double v102 = v101;
           }
@@ -20383,7 +20383,7 @@ LABEL_21:
 
 void *sub_100041164(void *a1, void *a2, uint64_t a3, unint64_t a4)
 {
-  id v7 = objc_msgSend( a2,  "objectForKeyedSubscript:",  +[NSNumber numberWithUnsignedLongLong:](NSNumber, "numberWithUnsignedLongLong:"));
+  id v7 = [a2 objectForKeyedSubscript:[NSNumber numberWithUnsignedLongLong:]];
   if (!v7) {
     return 0LL;
   }
@@ -20510,7 +20510,7 @@ void sub_100041314( void *a1, uint64_t a2, void *a3, void *a4, void *a5, uint64_
           else {
             uint64_t v35 = @"<entire workflow>";
           }
-          int v36 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: %@ [%d] has no thread 0x%llx, cannot generate report",  v33,  v35,  [a5 name],  objc_msgSend(a10, "name"),  objc_msgSend(a10, "pid"),  v15);
+          int v36 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@: %@ [%d] has no thread 0x%llx, cannot generate report",  v33,  v35,  [a5 name],  [a10 name],  [a10 pid],  v15);
           id v37 = v36;
           if (v36)
           {
@@ -20869,7 +20869,7 @@ void sub_100041314( void *a1, uint64_t a2, void *a3, void *a4, void *a5, uint64_
           id v308 = [a5 name];
           id v307 = [a10 name];
           unsigned int v304 = [a10 pid];
-          id v159 = objc_msgSend(objc_msgSend(a9, "startTime"), "debugDescription");
+          id v159 = [[a9 startTime] debugDescription];
           id v160 = objc_msgSend(objc_msgSend(a9, "endTime"), "debugDescription");
           *(_DWORD *)v352 = 138414082;
           *(void *)&v352[4] = v319;
@@ -21040,7 +21040,7 @@ LABEL_109:
         else {
           uint64_t v79 = @"<entire workflow>";
         }
-        uint64_t v80 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports main thread, but %@ [%d] has no main thread",  v77,  v79,  [a5 name],  objc_msgSend(a10, "name"),  objc_msgSend(a10, "pid"));
+        uint64_t v80 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports main thread, but %@ [%d] has no main thread",  v77,  v79,  [a5 name],  [a10 name],  [a10 pid]);
         uint64_t v81 = v80;
         if (v80)
         {
@@ -21113,8 +21113,8 @@ LABEL_109:
     }
   }
 
-  id v87 = objc_msgSend( objc_msgSend( objc_msgSend(a10, "threads"),  "objectForKeyedSubscript:",  +[NSNumber numberWithUnsignedLongLong:](NSNumber, "numberWithUnsignedLongLong:", a7)),  "firstThreadStateOnOrAfterTime:sampleIndex:",  objc_msgSend(a9, "startTime"),  0x7FFFFFFFFFFFFFFFLL);
-  id v88 = objc_msgSend( objc_msgSend( objc_msgSend(a10, "threads"),  "objectForKeyedSubscript:",  +[NSNumber numberWithUnsignedLongLong:](NSNumber, "numberWithUnsignedLongLong:", a8)),  "lastThreadStateOnOrBeforeTime:sampleIndex:",  objc_msgSend(a9, "endTime"),  0x7FFFFFFFFFFFFFFFLL);
+  id v87 = [[[a10 threads] objectForKeyedSubscript:[NSNumber numberWithUnsignedLongLong:a7]] firstThreadStateOnOrAfterTime:[a9 startTime] sampleIndex:0x7FFFFFFFFFFFFFFFLL];
+  id v88 = [ [ [ [a10 threads] objectForKeyedSubscript:[NSNumber numberWithUnsignedLongLong:a8]] lastThreadStateOnOrBeforeTime:[a9 endTime] sampleIndex:0x7FFFFFFFFFFFFFFFLL];
   uint64_t v89 = (uint64_t)[v87 dispatchQueue];
   unint64_t v90 = (unint64_t)[v88 dispatchQueue];
   v316 = (void *)v90;
@@ -21308,7 +21308,7 @@ LABEL_330:
         else {
           uint64_t v106 = @"<entire workflow>";
         }
-        id v107 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, but signpost starts on %@ and ends on %@, so not reporting",  v104,  v106,  [a5 name],  objc_msgSend((id)v89, "debugDescription"),  objc_msgSend(v316, "debugDescription"));
+        id v107 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, but signpost starts on %@ and ends on %@, so not reporting",  v104,  v106,  [a5 name],  [v89 debugDescription],  [v316 debugDescription]);
         unint64_t v108 = v107;
         if (v107)
         {
@@ -21431,7 +21431,7 @@ LABEL_282:
       else {
         uint64_t v141 = @"<entire workflow>";
       }
-      id v142 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, signpost starts on %@ and ends on %@, and end is at the exact time, so using that",  v139,  v141,  [a5 name],  objc_msgSend((id)v89, "debugDescription"),  objc_msgSend(v316, "debugDescription"));
+      id v142 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, signpost starts on %@ and ends on %@, and end is at the exact time, so using that",  v139,  v141,  [a5 name],  [v89 debugDescription],  [v316 debugDescription]);
       id v143 = v142;
       if (v142)
       {
@@ -21514,7 +21514,7 @@ LABEL_188:
       if (os_log_type_enabled(v126, OS_LOG_TYPE_DEBUG))
       {
         id v335 = objc_msgSend(objc_msgSend(a3, "workflow"), "name");
-        BOOL v191 = (const __CFString *)objc_msgSend(objc_msgSend(a4, "signpost"), "name");
+        BOOL v191 = [(const __CFString *)[a4 signpost] name];
         int v192 = @"<entire workflow>";
         if (v191) {
           int v192 = v191;
@@ -21551,7 +21551,7 @@ LABEL_188:
     else {
       int v129 = @"<entire workflow>";
     }
-    v130 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, signpost starts on %@ and ends on %@, and start is at the exact time, so using that",  v127,  v129,  [a5 name],  objc_msgSend((id)v89, "debugDescription"),  objc_msgSend(v316, "debugDescription"));
+    v130 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, signpost starts on %@ and ends on %@, and start is at the exact time, so using that",  v127,  v129,  [a5 name],  [v89 debugDescription],  [v316 debugDescription]);
     id v131 = v130;
     if (v130)
     {
@@ -21808,7 +21808,7 @@ LABEL_329:
     else {
       uint64_t v119 = @"<entire workflow>";
     }
-    __int16 v120 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, but signpost starts on %@ and ends on %@, neither at the exact right time, so not reporting",  v117,  v119,  [a5 name],  objc_msgSend((id)v89, "debugDescription"),  objc_msgSend(v316, "debugDescription"));
+    __int16 v120 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports this dispatch queue, but signpost starts on %@ and ends on %@, neither at the exact right time, so not reporting",  v117,  v119,  [a5 name],  [v89 debugDescription],  [v316 debugDescription]);
     unint64_t v108 = v120;
     if (v120)
     {
@@ -22100,7 +22100,7 @@ LABEL_332:
       else {
         int v243 = @"<entire workflow>";
       }
-      uint64_t v244 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports dispatch queue %@, but %@ [%d] has no such dispatch queue",  v241,  v243,  [a5 name],  v219,  objc_msgSend(a10, "name"),  objc_msgSend(a10, "pid"));
+      uint64_t v244 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"WR: %@: %@: diagnostic %@ reports dispatch queue %@, but %@ [%d] has no such dispatch queue",  v241,  v243,  [a5 name],  v219,  [a10 name],  [a10 pid]);
       v245 = v244;
       if (v244)
       {
@@ -22322,7 +22322,7 @@ NSMutableArray *sub_1000444C8(void *a1, uint64_t a2, void *a3)
     uint64_t v7 = (void *)a1[4];
     if (v7)
     {
-      id result = (NSMutableArray *)objc_msgSend( v7,  "numberOfMatchesInString:options:range:",  result,  4,  0,  -[NSMutableArray length](result, "length"));
+      id result = [v7 numberOfMatchesInString:result options:4 range:[result length]];
       if (result)
       {
 LABEL_6:
@@ -22815,7 +22815,7 @@ int *sub_100044D1C(void *a1)
       }
     }
 
-    uint64_t result = (int *)objc_msgSend(a1, "bytes_not_microstackshots");
+    uint64_t result = (int *)[a1 bytes_not_microstackshots];
     if (result)
     {
       if (byte_1000DFD38)
@@ -22832,7 +22832,7 @@ int *sub_100044D1C(void *a1)
       if (byte_1000DFD39 && dword_1000DF4B8 <= 3)
       {
         int v29 = *__error();
-        uint64_t v30 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"%llu bytes of microstackshot data was invalid (ignored)",  objc_msgSend(a1, "bytes_not_microstackshots"));
+        uint64_t v30 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"%llu bytes of microstackshot data was invalid (ignored)",  [a1 bytes_not_microstackshots]);
         if (v30)
         {
           uint64_t v31 = v30;
@@ -22891,14 +22891,14 @@ int *sub_100044D1C(void *a1)
     if (os_log_type_enabled(v39, OS_LOG_TYPE_INFO))
     {
       int v191 = v38;
-      id v40 = (char *)objc_msgSend(objc_msgSend(a1, "total"), "bytes");
+      id v40 = (char *)[a1 total].bytes;
       log = v39;
-      uint64_t v41 = &v40[(void)objc_msgSend(objc_msgSend(a1, "total"), "bytes_duplicate")];
+      uint64_t v41 = &v40[&[a1 total] bytes_duplicate];
       id v42 = objc_msgSend(objc_msgSend(a1, "total"), "bytes_out_of_order");
-      uint64_t v43 = &v41[(unint64_t)objc_msgSend(objc_msgSend(a1, "total"), "bytes_missing_load_info") + (void)v42];
-      id v188 = (char *)objc_msgSend(a1, "bytes_not_microstackshots") + (void)v43;
-      id v186 = objc_msgSend(a1, "bytes_not_microstackshots");
-      id v184 = objc_msgSend(a1, "num_microstackshots_filtered_out");
+      uint64_t v43 = &v41[&[a1 total] bytes_missing_load_info] + v42;
+      id v188 = (char *)[a1 bytes_not_microstackshots] + v43;
+      id v186 = [a1 bytes_not_microstackshots];
+      id v184 = [a1 num_microstackshots_filtered_out];
       id v182 = objc_msgSend(objc_msgSend(a1, "total"), "count");
       id v180 = objc_msgSend(objc_msgSend(a1, "total"), "bytes");
       id v178 = objc_msgSend(objc_msgSend(a1, "total"), "num_load_infos");
@@ -22939,7 +22939,7 @@ int *sub_100044D1C(void *a1)
       id v92 = objc_msgSend(objc_msgSend(a1, "io"), "bytes_out_of_order");
       id v88 = objc_msgSend(objc_msgSend(a1, "io"), "num_missing_load_info");
       id v84 = objc_msgSend(objc_msgSend(a1, "io"), "bytes_missing_load_info");
-      id v112 = objc_msgSend(objc_msgSend(a1, "pmi"), "count");
+      id v112 = [[a1 pmi] count];
       id v120 = objc_msgSend(objc_msgSend(a1, "pmi"), "bytes");
       id v116 = objc_msgSend(objc_msgSend(a1, "pmi"), "num_load_infos");
       id v110 = objc_msgSend(objc_msgSend(a1, "pmi"), "num_frames");
@@ -23149,15 +23149,15 @@ int *sub_100044D1C(void *a1)
   if (v53)
   {
     int v192 = *__error();
-    int v54 = (char *)objc_msgSend(objc_msgSend(a1, "total"), "bytes");
-    int v55 = &v54[(void)objc_msgSend(objc_msgSend(a1, "total"), "bytes_duplicate")];
+    int v54 = (char *)[a1 total].bytes;
+    int v55 = &v54[&[a1 total] bytes_duplicate];
     id v56 = objc_msgSend(objc_msgSend(a1, "total"), "bytes_out_of_order");
-    __int128 v57 = &v55[(unint64_t)objc_msgSend(objc_msgSend(a1, "total"), "bytes_missing_load_info") + (void)v56];
-    int v189 = (char *)objc_msgSend(a1, "bytes_not_microstackshots") + (void)v57;
-    id v187 = objc_msgSend(a1, "bytes_not_microstackshots");
-    id v185 = objc_msgSend(a1, "num_microstackshots_filtered_out");
-    id v183 = objc_msgSend(objc_msgSend(a1, "total"), "count");
-    id v181 = objc_msgSend(objc_msgSend(a1, "total"), "bytes");
+    __int128 v57 = &v55[&[a1 total] bytes_missing_load_info] + v56;
+    int v189 = (char *)[a1 bytes_not_microstackshots] + (void)v57;
+    id v187 = [a1 bytes_not_microstackshots];
+    id v185 = [a1 num_microstackshots_filtered_out];
+    id v183 = [[a1 total] count];
+    id v181 = [[a1 total] bytes];
     id v179 = objc_msgSend(objc_msgSend(a1, "total"), "num_load_infos");
     id v177 = objc_msgSend(objc_msgSend(a1, "total"), "num_frames");
     id v175 = objc_msgSend(objc_msgSend(a1, "total"), "num_duplicate");
@@ -23196,9 +23196,9 @@ int *sub_100044D1C(void *a1)
     id v109 = objc_msgSend(objc_msgSend(a1, "io"), "bytes_out_of_order");
     id v107 = objc_msgSend(objc_msgSend(a1, "io"), "num_missing_load_info");
     id v105 = objc_msgSend(objc_msgSend(a1, "io"), "bytes_missing_load_info");
-    id v103 = objc_msgSend(objc_msgSend(a1, "pmi"), "count");
+    id v103 = [[a1 pmi] count];
     id v101 = objc_msgSend(objc_msgSend(a1, "pmi"), "bytes");
-    id v99 = objc_msgSend(objc_msgSend(a1, "pmi"), "num_load_infos");
+    id v99 = [[a1 pmi] num_load_infos];
     id v97 = objc_msgSend(objc_msgSend(a1, "pmi"), "num_frames");
     id v95 = objc_msgSend(objc_msgSend(a1, "pmi"), "num_duplicate");
     id v93 = objc_msgSend(objc_msgSend(a1, "pmi"), "bytes_duplicate");
@@ -24788,7 +24788,7 @@ LABEL_36:
 LABEL_40:
         *__error() = v7;
 LABEL_41:
-        objc_msgSend( *(id *)(a1 + 32),  "appendFormat:",  @"No output from heap for %d\n",  *(unsigned int *)(*(void *)(a1 + 56) + 4 * *(int *)(a1 + 64)));
+        [ *(id *)(a1 + 32) appendFormat:@"No output from heap for %d\n" ,  *(unsigned int *)(*(void *)(a1 + 56) + 4 * *(int *)(a1 + 64))];
         goto LABEL_42;
       }
     }
@@ -25051,7 +25051,7 @@ LABEL_36:
 LABEL_40:
         *__error() = v7;
 LABEL_41:
-        objc_msgSend( *(id *)(a1 + 32),  "appendFormat:",  @"No output from ddt for %d\n",  *(unsigned int *)(*(void *)(a1 + 56) + 4 * *(int *)(a1 + 64)));
+        [ *(id *)(a1 + 32) appendFormat: @"No output from ddt for %d\n" , *(unsigned int *)(*(void *)(a1 + 56) + 4 * *(int *)(a1 + 64))];
         goto LABEL_42;
       }
     }
@@ -26594,11 +26594,11 @@ LABEL_36:
 
 LABEL_46:
   if (*(void *)(a1 + 32)) {
-    objc_msgSend(a2, "setPrintOptions:");
+    [a2 setPrintOptions:];
   }
   [a2 setForceOneBasedTimeIndexes:*(unsigned __int8 *)(a1 + 109)];
   if (*(void *)(a1 + 72)) {
-    objc_msgSend(a2, "setTargetThreadId:");
+    [a2 setTargetThreadId:];
   }
   if ((int)[a2 numSamplesAvoidedDueToAudio] >= 1 && !objc_msgSend(a2, "numSamples"))
   {
@@ -26683,10 +26683,10 @@ LABEL_171:
   uint64_t v32 = *(uint8_t **)(a1 + 96);
   int v33 = *(_DWORD *)(a1 + 104);
   if (*(void *)(a1 + 80)) {
-    objc_msgSend( a2,  "setSignature:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:"));
+    [a2 setSignature:[NSString stringWithUTF8String:]];
   }
   if (v26) {
-    objc_msgSend( a2,  "setReason:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", v26));
+    [a2 setReason:+[NSString stringWithUTF8String:@""]];
   }
   [a2 setUseDsymForUUIDForEverything:v29 != 0];
   [a2 setFindDsymsForIDs:v28];
@@ -27692,7 +27692,7 @@ ssize_t sub_10004C3F8(ssize_t result)
       do
       {
         *(_BYTE *)(*(void *)(*(void *)(*(void *)(v2 + 40) + 8LL) + 24LL) + result) = 0;
-        objc_msgSend( *(id *)(v2 + 32),  "appendFormat:",  @"%s",  *(void *)(*(void *)(*(void *)(v2 + 40) + 8) + 24));
+        [*(id *)(v2 + 32) appendFormat:@"%s" *(void *)(*(void *)(*(void *)(v2 + 40) + 8) + 24)];
         id result = read(*(_DWORD *)(v2 + 48), *(void **)(*(void *)(*(void *)(v2 + 40) + 8LL) + 24LL), 0x3FFuLL);
       }
 
@@ -27719,7 +27719,7 @@ ssize_t sub_10004C4B8(ssize_t result)
       do
       {
         *(_BYTE *)(*(void *)(*(void *)(*(void *)(v2 + 40) + 8LL) + 24LL) + result) = 0;
-        objc_msgSend( *(id *)(v2 + 32),  "appendFormat:",  @"%s",  *(void *)(*(void *)(*(void *)(v2 + 40) + 8) + 24));
+        [ *(id *)(v2 + 32) appendFormat:@"%s" *(void *)(*(void *)(*(void *)(v2 + 40) + 8) + 24)];
         id result = read(*(_DWORD *)(v2 + 48), *(void **)(*(void *)(*(void *)(v2 + 40) + 8LL) + 24LL), 0x3FFuLL);
       }
 
@@ -27750,7 +27750,7 @@ uint64_t sub_10004C578(uint64_t a1)
     do
     {
       *(_BYTE *)(*(void *)(*(void *)(*(void *)(a1 + 72) + 8LL) + 24LL) + v2) = 0;
-      objc_msgSend( *(id *)(a1 + 56),  "appendFormat:",  @"%s",  *(void *)(*(void *)(*(void *)(a1 + 72) + 8) + 24));
+      [ *(id *)(a1 + 56) appendFormat:@"%s" *(void *)(*(void *)(*(void *)(a1 + 72) + 8) + 24)];
       ssize_t v2 = read(*(_DWORD *)(a1 + 84), *(void **)(*(void *)(*(void *)(a1 + 72) + 8LL) + 24LL), 0x3FFuLL);
     }
 
@@ -27763,7 +27763,7 @@ uint64_t sub_10004C578(uint64_t a1)
     do
     {
       *(_BYTE *)(*(void *)(*(void *)(*(void *)(a1 + 72) + 8LL) + 24LL) + v3) = 0;
-      objc_msgSend( *(id *)(a1 + 56),  "appendFormat:",  @"%s",  *(void *)(*(void *)(*(void *)(a1 + 72) + 8) + 24));
+      [*(id *)(a1 + 56) appendFormat:@"%s" *(void *)(*(void *)(*(void *)(a1 + 72) + 8) + 24)];
       ssize_t v3 = read(*(_DWORD *)(a1 + 88), *(void **)(*(void *)(*(void *)(a1 + 72) + 8LL) + 24LL), 0x3FFuLL);
     }
 
@@ -27848,7 +27848,7 @@ id sub_10004C824()
 
 id sub_10004C82C()
 {
-  return objc_msgSend(v0, "unknown_type");
+  return [v0 unknown_type];
 }
 
 id sub_10004C834()
@@ -29592,7 +29592,7 @@ uint64_t sub_10004FA8C(uint64_t result, int a2, void *a3, uint64_t a4, uint64_t 
           {
             if (v13)
             {
-              id result = (uint64_t)objc_msgSend((id)v11, "isEqualToString:");
+              id result = [v11 isEqualToString:];
               if ((_DWORD)result) {
                 return 1LL;
               }
@@ -29690,7 +29690,7 @@ void *sub_10004FCE4( void *a1, void *a2, char a3, uint64_t a4, uint64_t a5, void
   }
   v18.receiver = a1;
   v18.super_class = (Class)&OBJC_CLASS___SPLoadInfo;
-  uint64_t v16 = objc_msgSendSuper2(&v18, "init");
+  uint64_t v16 = [super init];
   if (v16)
   {
     v16[5] = a2;
@@ -32303,7 +32303,7 @@ LABEL_616:
             if (!v335 && !*((void *)v317 + 5)) {
               goto LABEL_1087;
             }
-            sub_100058FFC( v645,  v681 + v682 * (v327 + v620),  *((_BYTE *)v317 + 8) & 1,  *((_DWORD *)v317 + 3),  v652,  (const char *)[v335 UTF8String],  (uint64_t)objc_msgSend(*((id *)v317 + 5), "UTF8String"),  0,  0);
+            sub_100058FFC( v645,  v681 + v682 * (v327 + v620),  *((_BYTE *)v317 + 8) & 1,  *((_DWORD *)v317 + 3),  v652,  (const char *)[v335 UTF8String],  (uint64_t)[(*((id *)v317 + 5)) UTF8String],  0,  0);
           }
 
           __int16 v622 = v625;
@@ -32542,7 +32542,7 @@ LABEL_621:
               else {
                 v379 = 0LL;
               }
-              double v380 = (const char *)objc_msgSend(objc_msgSend(objc_msgSend(v379, "uuid"), "UUIDString"), "UTF8String");
+              double v380 = (const char *)[v379 uuid].UUIDString.UTF8String;
               if (v373) {
                 double v381 = *(void **)(v373 + 48);
               }
@@ -34179,7 +34179,7 @@ LABEL_527:
           v428 = (os_log_s *)sub_10005C68C();
           if (os_log_type_enabled(v428, OS_LOG_TYPE_ERROR))
           {
-            uint64_t v429 = objc_msgSend(-[NSMutableArray debugDescription](v649, "debugDescription"), "UTF8String");
+            uint64_t v429 = [v649 debugDescription].UTF8String;
             uint64_t v430 = -[NSString UTF8String](v630, "UTF8String");
             *(_DWORD *)buf = 136315906;
             *(void *)&uint8_t buf[4] = "frameBodies.firstObject.length > 0";
@@ -34198,7 +34198,7 @@ LABEL_527:
         if (byte_1000DFD39 && dword_1000DF4B8 <= 3)
         {
           uint64_t v431 = *__error();
-          uint64_t v432 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"%s: No frame bodies in %s (%d: %s)",  "frameBodies.firstObject.length > 0",  objc_msgSend(-[NSMutableArray debugDescription](v649, "debugDescription"), "UTF8String"),  v642,  -[NSString UTF8String](v630, "UTF8String"));
+          uint64_t v432 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"%s: No frame bodies in %s (%d: %s)",  "frameBodies.firstObject.length > 0",  [v649 debugDescription],  v642,  [v630 UTF8String]);
           uint64_t v433 = v432;
           if (v432)
           {
@@ -34233,7 +34233,7 @@ LABEL_527:
             uint64_t v434 = (os_log_s *)sub_10005C68C();
             if (os_log_type_enabled(v434, OS_LOG_TYPE_FAULT))
             {
-              uint64_t v435 = objc_msgSend(-[NSMutableArray debugDescription](v649, "debugDescription"), "UTF8String");
+              uint64_t v435 = [v649 debugDescription].UTF8String;
               v436 = -[NSString UTF8String](v630, "UTF8String");
               *(_DWORD *)buf = 136315906;
               *(void *)&uint8_t buf[4] = "frameBodies.firstObject.length > 0";
@@ -34258,7 +34258,7 @@ LABEL_527:
           *__error() = v431;
         }
 
-        objc_msgSend(-[NSMutableArray debugDescription](v649, "debugDescription"), "UTF8String");
+        [v649 debugDescription].UTF8String;
         -[NSString UTF8String](v630, "UTF8String");
         sub_10005C564( "-[SPTextualReportParser parseSpindumpFile:andReportToStream:]",  "SPTextualReportParser.m",  484,  "%s: No frame bodies in %s (%d: %s)",  v438,  v439,  v440,  v441,  (char)"frameBodies.firstObject.length > 0");
 LABEL_1086:
@@ -34670,7 +34670,7 @@ unint64_t sub_100056C70(void *a1, void *a2, int a3, int a4, int a5)
       return 0xFFFFFFFFLL;
     }
     else {
-      return sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v6, v7));
+      return sub_1000586A0([a1 substringWithRange:v6, v7]);
     }
   }
 
@@ -34701,7 +34701,7 @@ id sub_100056D04(void *a1, uint64_t a2, void *a3, void *a4, int a5, unint64_t *a
     if (v14 == (id)0x7FFFFFFFFFFFFFFFLL) {
       goto LABEL_3;
     }
-    unint64_t v25 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v14, v15));
+    unint64_t v25 = sub_1000586A0([a1 substringWithRange:v14, v15]);
     if (v25 < (unint64_t)[a4 count])
     {
       id v16 = [a4 objectAtIndexedSubscript:v25];
@@ -34839,7 +34839,7 @@ LABEL_3:
   if (v18 != (id)0x7FFFFFFFFFFFFFFFLL)
   {
     int v30 = a1;
-    unint64_t v31 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v18, v19));
+    unint64_t v31 = [a1 substringWithRange:v18, v19];
     v190[0] = _NSConcreteStackBlock;
     v190[1] = 3221225472LL;
     v190[2] = sub_10005AE20;
@@ -34939,7 +34939,7 @@ LABEL_61:
     id v35 = v20;
     uint64_t v36 = v21;
     id v180 = a1;
-    int v37 = sub_10005AD04(objc_msgSend(a1, "substringWithRange:", v20, v21));
+    int v37 = [a1 substringWithRange:v20, v21];
     if (v37)
     {
       BOOL v38 = v37;
@@ -35375,7 +35375,7 @@ LABEL_217:
           id v28 = v129;
           BOOL v29 = v180;
 LABEL_218:
-          unint64_t v24 = sub_1000586A0(objc_msgSend(v29, "substringWithRange:", v28, v27));
+          unint64_t v24 = sub_1000586A0([v29 substringWithRange:v28, v27]);
 LABEL_219:
           *a6 = v24;
           goto LABEL_220;
@@ -35390,7 +35390,7 @@ LABEL_219:
       if (os_log_type_enabled(v75, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 138412802;
-        id v193 = objc_msgSend(a1, "substringWithRange:", v35, v36);
+        id v193 = [a1 substringWithRange:v35, v36];
         __int16 v194 = 1024;
         *(_DWORD *)__int16 v195 = v181;
         *(_WORD *)&v195[4] = 2112;
@@ -35410,7 +35410,7 @@ LABEL_219:
       goto LABEL_220;
     }
     int v48 = *__error();
-    uint64_t v49 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"Parsing spindump text: unable to parse UUID %@ in line (%d: %@)",  objc_msgSend(a1, "substringWithRange:", v35, v36),  v181,  a1);
+    uint64_t v49 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"Parsing spindump text: unable to parse UUID %@ in line (%d: %@)",  [a1 substringWithRange:v35, v36],  v181,  a1);
     if (v49) {
       goto LABEL_107;
     }
@@ -35418,7 +35418,7 @@ LABEL_219:
     if (!os_log_type_enabled(v50, OS_LOG_TYPE_FAULT)) {
       goto LABEL_165;
     }
-    id v115 = objc_msgSend(a1, "substringWithRange:", v35, v36);
+    id v115 = [a1 substringWithRange:v35, v36];
     *(_DWORD *)buf = 138412802;
     id v193 = v115;
     __int16 v194 = 1024;
@@ -35444,7 +35444,7 @@ LABEL_164:
   }
 
   id v180 = a1;
-  id v64 = objc_msgSend(a1, "substringWithRange:", v22, v23);
+  id v64 = [a1 substringWithRange:v22, v23];
   __int128 v182 = 0u;
   __int128 v183 = 0u;
   __int128 v184 = 0u;
@@ -35966,13 +35966,13 @@ void sub_100058818( void *a1, uint64_t a2, void *a3, int a4, int a5, int a6, _DW
   if (v19 != (id)0x7FFFFFFFFFFFFFFFLL
     || (id v19 = [a3 rangeWithName:@"otherInfo"], v19 != (id)0x7FFFFFFFFFFFFFFFLL))
   {
-    *a12 = objc_msgSend(a1, "substringWithRange:", v19, v20);
+    *a12 = [a1 substringWithRange:v19, v20];
   }
 
   id v21 = [a3 rangeWithName:@"stateInfo"];
   if (v21 != (id)0x7FFFFFFFFFFFFFFFLL)
   {
-    id v23 = objc_msgSend(a1, "substringWithRange:", v21, v22);
+    id v23 = [a1 substringWithRange:v21, v22];
     if (a4)
     {
       unint64_t v24 = sub_1000586A0(v23);
@@ -36052,7 +36052,7 @@ void sub_100058818( void *a1, uint64_t a2, void *a3, int a4, int a5, int a6, _DW
 
   else
   {
-    *a10 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v38, v39));
+    *a10 = [a1 substringWithRange:v38, v39];
     if ((a4 & 1) != 0)
     {
       int v40 = -1;
@@ -36144,7 +36144,7 @@ LABEL_102:
     goto LABEL_48;
   }
 
-  *a10 = sub_1000586A0(objc_msgSend(a1, "substringWithRange:", v42, v43));
+  *a10 = [a1 substringWithRange:v42, v43];
   if ((a4 & 1) != 0)
   {
     int v44 = -1;
@@ -36572,7 +36572,7 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
 {
   if (*(_BYTE *)(*(void *)(*(void *)(a1 + 48) + 8LL) + 24LL))
   {
-    id v8 = objc_msgSend(*(id *)(a1 + 32), "firstMatchInString:options:range:", a2, 0, 0, objc_msgSend(a2, "length"));
+    id v8 = [*(id *)(a1 + 32) firstMatchInString:a2 options:0 range:[a2 length]];
     if (v8)
     {
       uint64_t v9 = v8;
@@ -36657,7 +36657,7 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
           goto LABEL_196;
         }
 
-        unint64_t v14 = sub_1000586A0(objc_msgSend(a2, "substringWithRange:", v12, v13));
+        unint64_t v14 = sub_1000586A0([a2 substringWithRange:v12, v13]);
       }
 
       else
@@ -36670,7 +36670,7 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
         unint64_t v133 = 0LL;
       }
       else {
-        unint64_t v133 = sub_1000586A0(objc_msgSend(a2, "substringWithRange:", v25, v26));
+        unint64_t v133 = sub_1000586A0([a2 substringWithRange:v25, v26]);
       }
       int v130 = a4;
       id v27 = [v9 rangeWithName:@"endAddress"];
@@ -36678,21 +36678,21 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
         unint64_t v132 = 0LL;
       }
       else {
-        unint64_t v132 = sub_1000586A0(objc_msgSend(a2, "substringWithRange:", v27, v28));
+        unint64_t v132 = sub_1000586A0([a2 substringWithRange:v27, v28]);
       }
       id v29 = [v9 rangeWithName:@"bundleIdentifier"];
       if (v29 == (id)0x7FFFFFFFFFFFFFFFLL) {
         id v31 = 0LL;
       }
       else {
-        id v31 = objc_msgSend(a2, "substringWithRange:", v29, v30);
+        id v31 = [a2 substringWithRange:v29, v30];
       }
       id v32 = [v9 rangeWithName:@"name"];
       if (v32 == (id)0x7FFFFFFFFFFFFFFFLL) {
         id v34 = 0LL;
       }
       else {
-        id v34 = objc_msgSend(a2, "substringWithRange:", v32, v33);
+        id v34 = [a2 substringWithRange:v32, v33];
       }
       id v134 = (int *)v14;
       id v35 = [v9 rangeWithName:@"version"];
@@ -36700,7 +36700,7 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
         id v37 = 0LL;
       }
       else {
-        id v37 = objc_msgSend(a2, "substringWithRange:", v35, v36);
+        id v37 = [a2 substringWithRange:v35, v36];
       }
       id v38 = [v9 rangeWithName:@"binaryUuid"];
       if (v38 == (id)0x7FFFFFFFFFFFFFFFLL)
@@ -36774,20 +36774,20 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
       else
       {
         uint64_t v131 = a3;
-        int v40 = sub_10005AD04(objc_msgSend(a2, "substringWithRange:", v38, v39));
+        int v40 = [a2 substringWithRange:v38, v39];
         id v41 = [v9 rangeWithName:@"segmentName"];
         if (v41 == (id)0x7FFFFFFFFFFFFFFFLL) {
           id v43 = 0LL;
         }
         else {
-          id v43 = objc_msgSend(a2, "substringWithRange:", v41, v42);
+          id v43 = [a2 substringWithRange:v41, v42];
         }
         id v44 = [v9 rangeWithName:@"binaryPath"];
         if (v44 == (id)0x7FFFFFFFFFFFFFFFLL) {
           id v46 = 0LL;
         }
         else {
-          id v46 = objc_msgSend(a2, "substringWithRange:", v44, v45);
+          id v46 = [a2 substringWithRange:v44, v45];
         }
         id v47 = v31;
         id v48 = v34;
@@ -36902,7 +36902,7 @@ int *sub_100059930(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
               }
             }
 
-            return (int *)objc_msgSend( *(id *)(a1 + 40),  "addObject:",   sub_10004FCE4( [SPLoadInfo alloc],  v54,  v11 != (id)0x7FFFFFFFFFFFFFFFLL,  v133,  v132,  v31,  v34,  v37,  v43));
+            return (int *)[*(id *)(a1 + 40) addObject:sub_10004FCE4([SPLoadInfo alloc], v54, v11 != (id)0x7FFFFFFFFFFFFFFFLL, v133, v132, v31, v34, v37, v43)];
           }
 
           return result;
@@ -37150,7 +37150,7 @@ NSUUID *sub_10005AD04(void *a1)
 
     else
     {
-      unint64_t v3 = -[NSString initWithFormat:]( [NSString alloc],  "initWithFormat:",  @"%@-%@-%@-%@-%@",  objc_msgSend(a1, "substringWithRange:", 0, 8),  objc_msgSend(a1, "substringWithRange:", 8, 4),  objc_msgSend(a1, "substringWithRange:", 12, 4),  objc_msgSend(a1, "substringWithRange:", 16, 4),  objc_msgSend(a1, "substringWithRange:", 20, 12));
+      unint64_t v3 = -[[NSString alloc] initWithFormat: @"%@-%@-%@-%@-%@", [a1 substringWithRange:0, 8], [a1 substringWithRange:8, 4], [a1 substringWithRange:12, 4], [a1 substringWithRange:16, 4], [a1 substringWithRange:20, 12]];
       int v2 = -[NSUUID initWithUUIDString:](objc_alloc(&OBJC_CLASS___NSUUID), "initWithUUIDString:", v3);
     }
   }
@@ -37239,7 +37239,7 @@ id *sub_10005AE60(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
 
   else
   {
-    unint64_t result = (id *)objc_msgSend( *(id *)(a1 + 48),  "firstMatchInString:options:range:",  a2,  0,  0,  objc_msgSend(a2, "length"));
+    unint64_t result = [(id *)(a1 + 48) firstMatchInString:a2 options:0 range:NSMakeRange(0, [a2 length])];
     if (result)
     {
       unint64_t v20 = -1LL;
@@ -37251,9 +37251,9 @@ id *sub_10005AE60(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
           objc_msgSend(*(id *)(a1 + 56), "setObject:forKeyedSubscript:", v14[5], objc_msgSend(v14[5], "uuid"));
         }
         if (*(_BYTE *)(*(void *)(*(void *)(a1 + 80) + 8LL) + 24LL)) {
-          objc_msgSend(*(id *)(a1 + 64), "addObject:", objc_msgSend(v14[5], "uuid"));
+          [*(id *)(a1 + 64) addObject:[v14[5] uuid]];
         }
-        id v15 = objc_msgSend(*(id *)(a1 + 72), "objectForKeyedSubscript:", objc_msgSend(v14[5], "uuid"));
+        id v15 = [*(id *)(a1 + 72) objectForKeyedSubscript:[v14[5] uuid]];
         if (!v15)
         {
           id v15 = +[NSMutableDictionary dictionary](&OBJC_CLASS___NSMutableDictionary, "dictionary");
@@ -37276,8 +37276,8 @@ id *sub_10005AE60(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
         }
 
         unint64_t v19 = v20;
-        objc_msgSend( v17,  "addObject:",  +[NSNumber numberWithUnsignedLongLong:](NSNumber, "numberWithUnsignedLongLong:", v20));
-        return (id *)objc_msgSend( v17,  "addObject:",  +[NSNumber numberWithUnsignedLongLong:]( NSNumber,  "numberWithUnsignedLongLong:",  v19 - 1));
+        [v17 addObject:[NSNumber numberWithUnsignedLongLong:v20]];
+        return (id *)[v17 addObject:+[NSNumber numberWithUnsignedLongLong:]( NSNumber,  "numberWithUnsignedLongLong:",  v19 - 1)];
       }
     }
   }
@@ -37293,7 +37293,7 @@ int *sub_10005B1A8(uint64_t a1, uint64_t a2, void *a3)
   unint64_t result = (int *)[a3 cacheSymbolOwnerWithOptions:v5 pid:0xFFFFFFFFLL];
   if ((result & 1) != 0)
   {
-    id v7 = objc_msgSend(*(id *)(a1 + 40), "objectForKeyedSubscript:", objc_msgSend(a3, "uuid"));
+    id v7 = [*(id *)(a1 + 40) objectForKeyedSubscript:[a3 uuid]];
     v24[0] = _NSConcreteStackBlock;
     v24[1] = 3221225472LL;
     v24[2] = sub_10005B4C8;
@@ -37417,7 +37417,7 @@ int *sub_10005B4C8(uint64_t a1, NSNull *a2, void *a3)
           if (*(void *)v29 != v14) {
             objc_enumerationMutation(a3);
           }
-          objc_msgSend( *(id *)(a1 + 32),  "instructionAtOffsetIntoBinary:",  objc_msgSend(*(id *)(*((void *)&v28 + 1) + 8 * (void)v15), "unsignedLongLongValue"));
+          [*(id *)(a1 + 32) instructionAtOffsetIntoBinary:[*(id *)(*((void *)&v28 + 1) + 8 * (void)v15) unsignedLongLongValue]];
           id v15 = (int *)((char *)v15 + 1);
         }
 
@@ -37455,7 +37455,7 @@ int *sub_10005B4C8(uint64_t a1, NSNull *a2, void *a3)
             if (*(void *)v33 != v11) {
               objc_enumerationMutation(a3);
             }
-            objc_msgSend( v9,  "instructionAtOffsetIntoSegment:",  objc_msgSend(*(id *)(*((void *)&v32 + 1) + 8 * (void)v12), "unsignedLongLongValue"));
+            [v9 instructionAtOffsetIntoSegment:[*(id *)(*((void *)&v32 + 1) + 8 * (void)v12) unsignedLongLongValue]];
             BOOL v12 = (int *)((char *)v12 + 1);
           }
 
@@ -37490,7 +37490,7 @@ int *sub_10005B4C8(uint64_t a1, NSNull *a2, void *a3)
       if (v18)
       {
         int v19 = *__error();
-        unint64_t v20 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"Parsing spindump text: Unable to find segment %@ in %@ %@",  a2,  [*v6 uuid],  objc_msgSend(*v6, "name"));
+        unint64_t v20 = CFStringCreateWithFormat( kCFAllocatorDefault,  0,  @"Parsing spindump text: Unable to find segment %@ in %@ %@",  a2,  [*v6 uuid],  [*v6 name]);
         if (v20)
         {
           __int128 v21 = v20;
@@ -37551,7 +37551,7 @@ NSMutableArray *sub_10005B830(void *a1, void *a2, uint64_t a3, uint64_t a4, unsi
   id v13 = [a2 rangeWithName:@"fakeFrameInfo"];
   if (v13 != (id)0x7FFFFFFFFFFFFFFFLL)
   {
-    BOOL v18 = -[NSArray initWithObjects:]( [NSArray alloc],  "initWithObjects:",  objc_msgSend(a1, "substringWithRange:", v13, v14),  0);
+    BOOL v18 = -[[NSArray alloc] initWithObjects:[a1 substringWithRange:v13, v14], 0];
 LABEL_21:
     __int128 v30 = (NSMutableArray *)v18;
     goto LABEL_22;
@@ -37565,7 +37565,7 @@ LABEL_21:
 
   else
   {
-    id v19 = objc_msgSend(a1, "substringWithRange:", v15, v16);
+    [a1 substringWithRange:v15, v16];
     else {
       id v17 = v19;
     }
@@ -37576,12 +37576,12 @@ LABEL_21:
     id v22 = 0LL;
   }
   else {
-    id v22 = objc_msgSend(a1, "substringWithRange:", v20, v21);
+    [a1 substringWithRange:v20, v21];
   }
   id v23 = [a2 rangeWithName:@"binaryName"];
   if (v23 != (id)0x7FFFFFFFFFFFFFFFLL)
   {
-    __int128 v28 = (NSString *)objc_msgSend(a1, "substringWithRange:", v23, v24);
+    __int128 v28 = [a1 substringWithRange:v23, v24];
 LABEL_16:
     __int16 v27 = v28;
     goto LABEL_17;
@@ -37623,7 +37623,7 @@ LABEL_36:
 
   if (*(void *)(a3 + 48))
   {
-    id v33 = objc_msgSend(*(id *)(a3 + 40), "segmentWithName:");
+    id v33 = [*(id *)(a3 + 40) segmentWithName:];
     if (!v33)
     {
 LABEL_19:
@@ -37704,7 +37704,7 @@ void *sub_10005BBFC(uint64_t a1)
 
   else
   {
-    unint64_t v4 = sub_1000586A0(objc_msgSend(*(id *)(a1 + 40), "substringWithRange:", v2, v3));
+    unint64_t v4 = sub_1000586A0([*(id *)(a1 + 40) substringWithRange:v2, v3]);
   }
 
   id v5 = [*(id *)(a1 + 32) rangeWithName:@"sourceLineNumber"];
@@ -37712,21 +37712,21 @@ void *sub_10005BBFC(uint64_t a1)
     unint64_t v7 = 0LL;
   }
   else {
-    unint64_t v7 = sub_1000586A0(objc_msgSend(*(id *)(a1 + 40), "substringWithRange:", v5, v6));
+    unint64_t v7 = [*(id *)(a1 + 40) substringWithRange:v5, v6];
   }
   id v8 = [*(id *)(a1 + 32) rangeWithName:@"sourceColumnNumber"];
   if (v8 == (id)0x7FFFFFFFFFFFFFFFLL) {
     unint64_t v10 = 0LL;
   }
   else {
-    unint64_t v10 = sub_1000586A0(objc_msgSend(*(id *)(a1 + 40), "substringWithRange:", v8, v9));
+    unint64_t v10 = sub_1000586A0([*(id *)(a1 + 40) substringWithRange:v8, v9]);
   }
   id v11 = [*(id *)(a1 + 32) rangeWithName:@"offsetIntoBinary"];
   if (v11 == (id)0x7FFFFFFFFFFFFFFFLL) {
     unint64_t v13 = -1LL;
   }
   else {
-    unint64_t v13 = sub_1000586A0(objc_msgSend(*(id *)(a1 + 40), "substringWithRange:", v11, v12));
+    unint64_t v13 = [*(id *)(a1 + 40) substringWithRange:v11, v12];
   }
   return sub_10005BD38(*(void *)(a1 + 48), v4, *(void *)(a1 + 56), v7, v10, *(void *)(a1 + 64), v13);
 }
@@ -37746,18 +37746,18 @@ void *sub_10005BD38(uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4, uint64_t
 
   [v14 appendString:a1];
   if (a2 != -1) {
-    objc_msgSend(v15, "appendFormat:", @" + %llu", a2);
+    [v15 appendFormat: @" + %llu" a2];
   }
   if (a6)
   {
 LABEL_7:
-    objc_msgSend(v15, "appendString:", @" (");
+    [v15 appendString:@" ("];
     if (a3)
     {
       [v15 appendString:a3];
       if ((int)a4 >= 1)
       {
-        objc_msgSend(v15, "appendFormat:", @":%u", a4);
+        [v15 appendFormat:@":%u" a4];
       }
 
       [v15 appendString:@" in "];
@@ -37765,7 +37765,7 @@ LABEL_7:
 
     [v15 appendFormat:@"%@", a6];
     if (a7 != -1) {
-      objc_msgSend(v15, "appendFormat:", @" + %llu", a7);
+      [v15 appendFormat:@" + %llu" a7];
     }
     [v15 appendString:@""]);
   }
@@ -37787,7 +37787,7 @@ id sub_10005BE90(uint64_t a1, void *a2, void *a3)
 
 unint64_t sub_10005BF38(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
 {
-  id v8 = objc_msgSend(*(id *)(a1 + 32), "firstMatchInString:options:range:", a2, 0, 0, objc_msgSend(a2, "length"));
+  id v8 = [*(id *)(a1 + 32) firstMatchInString:a2 options:0 range:[a2 length]];
   if (v8)
   {
     uint64_t v9 = v8;
@@ -37836,7 +37836,7 @@ LABEL_23:
                 if (!v15) {
                   goto LABEL_23;
                 }
-                unint64_t result = (unint64_t)objc_msgSend( *(id *)(a1 + 64),  "isEqual:",  objc_msgSend(a2, "substringWithRange:", result, v14));
+                unint64_t result = [(id *)(a1 + 64) isEqual:[a2 substringWithRange:result, v14]];
                 if ((result & 1) == 0) {
                   goto LABEL_23;
                 }
@@ -37845,7 +37845,7 @@ LABEL_23:
               unint64_t result = (unint64_t)[v9 rangeWithName:@"offsetIntoSymbol"];
               if (result != 0x7FFFFFFFFFFFFFFFLL)
               {
-                unint64_t result = sub_1000586A0(objc_msgSend(a2, "substringWithRange:", result, v16));
+                unint64_t result = [a2 substringWithRange:result, v16];
                 if (result != *(void *)(a1 + 96)) {
                   goto LABEL_23;
                 }
@@ -37859,7 +37859,7 @@ LABEL_23:
 
   else
   {
-    unint64_t result = (unint64_t)objc_msgSend( *(id *)(a1 + 40),  "firstMatchInString:options:range:",  a2,  0,  0,  objc_msgSend(a2, "length"));
+    unint64_t result = [(id *)(a1 + 40) firstMatchInString:a2 options:0 range:NSMakeRange([a2 length], 0)];
     if (!result) {
       *a4 = 1;
     }
@@ -37870,7 +37870,7 @@ LABEL_23:
 
 id sub_10005C134(uint64_t a1, void *a2, uint64_t a3, _BYTE *a4)
 {
-  id result = objc_msgSend(*(id *)(a1 + 32), "firstMatchInString:options:range:", a2, 0, 0, objc_msgSend(a2, "length"));
+  id result = [*(id *)(a1 + 32) firstMatchInString:a2 options:0 range:[a2 length]];
   if (result)
   {
     uint64_t v9 = result;
@@ -39371,12 +39371,12 @@ LABEL_37:
         id v26 = [v24 longLongValue];
         if (v26 == (id)5)
         {
-          id v53 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"pid"), "intValue");
+          id v53 = [sub_100060A8C(v23, (uint64_t)@"pid") intValue];
           if ((_DWORD)v53)
           {
             uint64_t v54 = (uint64_t)v53;
-            id v55 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"flags"), "unsignedLongLongValue");
-            id v56 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"io"), "longLongValue");
+            id v55 = [sub_100060A8C(v23, (uint64_t)@"flags") unsignedLongLongValue];
+            id v56 = [sub_100060A8C(v23, (uint64_t)@"io") longLongValue];
             if ((uint64_t)v56 <= 0)
             {
               if (byte_1000DFD38)
@@ -39414,7 +39414,7 @@ LABEL_37:
 
             else
             {
-              objc_msgSend(sub_100060A8C(v23, (uint64_t)@"duration"), "doubleValue");
+              [sub_100060A8C(v23, (uint64_t)@"duration") doubleValue];
               double v58 = v57;
               if (v57 <= 0.0)
               {
@@ -39453,7 +39453,7 @@ LABEL_37:
 
               else
               {
-                objc_msgSend(sub_100060A8C(v23, (uint64_t)@"endtime"), "doubleValue");
+                [sub_100060A8C(v23, (uint64_t)@"endtime") doubleValue];
                 if (v59 <= 0.0)
                 {
                   if (byte_1000DFD38)
@@ -39522,7 +39522,7 @@ LABEL_37:
 
                   else
                   {
-                    objc_msgSend(sub_100060A8C(v23, (uint64_t)@"duration_limit"), "doubleValue");
+                    [sub_100060A8C(v23, (uint64_t)@"duration_limit") doubleValue];
                     double v63 = v62;
                     if (v62 >= 0.0)
                     {
@@ -39719,13 +39719,13 @@ LABEL_151:
 
         if (v26 == (id)3)
         {
-          id v27 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"pid"), "intValue");
+          id v27 = [sub_100060A8C(v23, (uint64_t)@"pid") intValue];
           if ((_DWORD)v27)
           {
             uint64_t v28 = (uint64_t)v27;
-            id v29 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"tid"), "unsignedLongLongValue");
-            id v30 = objc_msgSend(sub_100060A8C(v23, (uint64_t)@"flags"), "unsignedLongLongValue");
-            objc_msgSend(sub_100060A8C(v23, (uint64_t)@"cpu"), "doubleValue");
+            id v29 = [sub_100060A8C(v23, (uint64_t)@"tid") unsignedLongLongValue];
+            id v30 = [sub_100060A8C(v23, (uint64_t)@"flags") unsignedLongLongValue];
+            [sub_100060A8C(v23, (uint64_t)@"cpu") doubleValue];
             double v32 = v31;
             if (v31 <= 0.0)
             {
@@ -39766,7 +39766,7 @@ LABEL_164:
 
             else
             {
-              objc_msgSend(sub_100060A8C(v23, (uint64_t)@"duration"), "doubleValue");
+              [sub_100060A8C(v23, (uint64_t)@"duration") doubleValue];
               double v34 = v33;
               if (v33 <= 0.0)
               {
@@ -39805,7 +39805,7 @@ LABEL_164:
 
               else
               {
-                objc_msgSend(sub_100060A8C(v23, (uint64_t)@"endtime"), "doubleValue");
+                [sub_100060A8C(v23, (uint64_t)@"endtime") doubleValue];
                 if (v35 <= 0.0)
                 {
                   if (byte_1000DFD38)
@@ -39836,11 +39836,11 @@ LABEL_164:
                 else
                 {
                   double v36 = v35;
-                  objc_msgSend(sub_100060A8C(v23, (uint64_t)@"cpu_limit"), "doubleValue");
+                  [sub_100060A8C(v23, (uint64_t)@"cpu_limit") doubleValue];
                   double v38 = v37;
                   if (v37 >= 0.0)
                   {
-                    objc_msgSend(sub_100060A8C(v23, (uint64_t)@"duration_limit"), "doubleValue");
+                    [sub_100060A8C(v23, (uint64_t)@"duration_limit") doubleValue];
                     double v106 = v105;
                     if (v105 >= 0.0)
                     {
@@ -40698,7 +40698,7 @@ LABEL_64:
       stackshot_config_dealloc(v46);
     }
 
-    objc_msgSend(v3, "appendFormat:", @"lsof -n -M -P -T -w +c 0 -s +fg +L -p %d\n", *v4);
+    [v3 appendFormat:@"lsof -n -M -P -T -w +c 0 -s +fg +L -p %d\n", *v4];
     *(void *)buf = "/usr/sbin/lsof";
     *(void *)&uint8_t buf[8] = "-n";
     *(void *)&uint8_t buf[16] = "-M";
@@ -41035,7 +41035,7 @@ LABEL_242:
 LABEL_243:
         uint64_t v156 = *__error();
         id v157 = __error();
-        objc_msgSend(v3, "appendFormat:", @"Unable to spawn lsof: %d (%s)\n\n", v156, strerror(*v157));
+        [v3 appendFormat:@"Unable to spawn lsof: %d (%s)\n\n", v156, strerror(*v157)];
 LABEL_244:
         BOOL v134 = sub_100020128(*v4);
         int v158 = *v4;
@@ -41222,7 +41222,7 @@ LABEL_288:
     goto LABEL_242;
   }
 
-  objc_msgSend(v3, "appendFormat:", @"ddt %d\n", *v4);
+  [v3 appendFormat:@"ddt %d\n", *v4];
   *(void *)id v208 = "/usr/local/bin/ddt";
   *(void *)&v208[8] = __str;
   *(void *)&v208[16] = 0LL;
@@ -41346,7 +41346,7 @@ LABEL_188:
     free(v8);
     int v95 = @"\n";
 LABEL_189:
-    objc_msgSend(v3, "appendFormat:", v95, v188, v189);
+    [v3 appendFormat:v95, v188, v189];
     goto LABEL_190;
   }
 
@@ -41849,9 +41849,9 @@ LABEL_11:
       }
       [v14 setActionTaken:v19];
       int v20 = -[SASamplePrinter initWithSampleStore:]( objc_alloc(&OBJC_CLASS___SASamplePrinter),  "initWithSampleStore:",  v14);
-      objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayHeader:", 1);
-      objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayBody:", 0);
-      objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayFooter:", 0);
+      [v20 options].setDisplayHeader:1;
+      [v20 options].setDisplayBody:0;
+      [v20 options].setDisplayFooter:0;
       -[SASamplePrinter setIncidentUUID:](v20, "setIncidentUUID:", +[NSUUID UUID](&OBJC_CLASS___NSUUID, "UUID"));
       -[SASamplePrinter printToStream:](v20, "printToStream:", v13);
       fputc(10, v13);
@@ -41859,9 +41859,9 @@ LABEL_11:
       if (!v21)
       {
 LABEL_207:
-        objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayHeader:", 0);
-        objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayBody:", 1);
-        objc_msgSend(-[SASamplePrinter options](v20, "options"), "setDisplayFooter:", 1);
+        [v20 options].setDisplayHeader:0;
+        [v20 options].setDisplayBody:1;
+        [v20 options].setDisplayFooter:1;
         -[SASamplePrinter printToStream:](v20, "printToStream:", v13);
 
         fwrite("\n\n", 2uLL, 1uLL, v13);
@@ -44413,7 +44413,7 @@ uint64_t sub_100069A08(uint64_t a1)
 
 id sub_100069A78(uint64_t a1)
 {
-  return objc_msgSend( *(id *)(*(void *)(a1 + 32) + 120),  "addObject:",  +[NSNumber numberWithInt:](NSNumber, "numberWithInt:", *(unsigned int *)(a1 + 40)));
+  return [*(id *)(*(void *)(a1 + 32) + 120) addObject:[NSNumber numberWithInt:*(unsigned int *)(a1 + 40)]];
 }
 
 void sub_100069AC4(double *a1)
@@ -45792,7 +45792,7 @@ LABEL_132:
       *__error() = v61;
     }
 
-    objc_msgSend( v58,  "setDataGatheringOptions:",  (unint64_t)objc_msgSend(v58, "dataGatheringOptions") & 0xFFFFFFFFFFFFFFFDLL);
+    [v58 setDataGatheringOptions:((unint64_t)[v58 dataGatheringOptions]) & 0xFFFFFFFFFFFFFFFDLL];
   }
 
   sub_10004C368( v58,  (byte_1000DFCFC >> 3) & 1,  (byte_1000DFCFC >> 2) & 1,  (byte_1000DFCFC & 0x10) == 0);
@@ -46391,7 +46391,7 @@ LABEL_71:
       }
 
       if ([v65 bundleVersion]) {
-        objc_msgSend(v71, "setObject:forKeyedSubscript:", objc_msgSend(v65, "bundleVersion"), @"build_version");
+        [v71 setObject:[v65 bundleVersion] forKeyedSubscript:@"build_version"];
       }
       if ([v65 bundleShortVersion]) {
         objc_msgSend(v71, "setObject:forKeyedSubscript:", objc_msgSend(v65, "bundleShortVersion"), @"app_version");
@@ -46419,7 +46419,7 @@ LABEL_71:
       if (a9 > 0.0)
       {
         sub_100020834(v154, 0x32uLL, 0, a9);
-        objc_msgSend( v71,  "setObject:forKeyedSubscript:",  +[NSString stringWithUTF8String:](NSString, "stringWithUTF8String:", v154),  @"timestamp");
+        [v71 setObject:[NSString stringWithUTF8String:v154] forKeyedSubscript:@"timestamp"];
       }
 
       if (a10 > 0.0) {
@@ -50031,7 +50031,7 @@ uint64_t sub_100073E38( uint64_t a1, void *a2, uint64_t a3, uint64_t a4, void *a
           *(_WORD *)&v89[14] = 2048;
           *(void *)&v89[16] = objc_msgSend(objc_msgSend(v20, "total"), "num_missing_load_info");
           __int16 v90 = 2048;
-          id v91 = objc_msgSend(v20, "bytes_not_microstackshots");
+          id v91 = [v20 bytes_not_microstackshots];
           _os_log_impl( (void *)&_mh_execute_header,  v27,  OS_LOG_TYPE_DEFAULT,  "%{public}s [%d]: cpu resource: some microstackshots with errors: %llu out-of-order microstackshots, %llu mic rostackshots missing load infos, %llu bytes invalid",  buf,  0x30u);
         }
 
@@ -50077,9 +50077,9 @@ LABEL_85:
         *(_DWORD *)buf = 134218496;
         int v87 = objc_msgSend(objc_msgSend(v20, "total"), "num_out_of_order");
         __int16 v88 = 2048;
-        *(void *)BOOL v89 = objc_msgSend(objc_msgSend(v20, "total"), "num_missing_load_info");
+        *(void *)BOOL v89 = [v20 total].num_missing_load_info;
         *(_WORD *)&v89[8] = 2048;
-        *(void *)&v89[10] = objc_msgSend(v20, "bytes_not_microstackshots");
+        *(void *)&v89[10] = [v20 bytes_not_microstackshots];
         _os_log_impl( (void *)&_mh_execute_header,  v49,  OS_LOG_TYPE_DEFAULT,  "cpu resource: some microstackshots with errors: %llu out-of-order microstackshots, %llu microstackshots missin g load infos, %llu bytes invalid",  buf,  0x20u);
       }
 
@@ -50937,7 +50937,7 @@ uint64_t sub_100075668( uint64_t a1, void *a2, uint64_t a3, void *a4, uint64_t a
           *(_WORD *)&v87[14] = 2048;
           *(void *)&v87[16] = objc_msgSend(objc_msgSend(v18, "total"), "num_missing_load_info");
           __int16 v88 = 2048;
-          id v89 = objc_msgSend(v18, "bytes_not_microstackshots");
+          id v89 = [v18 bytes_not_microstackshots];
           _os_log_impl( (void *)&_mh_execute_header,  v25,  OS_LOG_TYPE_DEFAULT,  "%{public}s [%d]: disk writes: some microstackshots with errors: %llu out-of-order microstackshots, %llu micr ostackshots missing load infos, %llu bytes invalid",  buf,  0x30u);
         }
 
@@ -50981,11 +50981,11 @@ LABEL_85:
       if (os_log_type_enabled(v47, OS_LOG_TYPE_DEFAULT))
       {
         *(_DWORD *)buf = 134218496;
-        BOOL v85 = objc_msgSend(objc_msgSend(v18, "total"), "num_out_of_order");
+        BOOL v85 = [v18 total].num_out_of_order;
         __int16 v86 = 2048;
         *(void *)int v87 = objc_msgSend(objc_msgSend(v18, "total"), "num_missing_load_info");
         *(_WORD *)&v87[8] = 2048;
-        *(void *)&v87[10] = objc_msgSend(v18, "bytes_not_microstackshots");
+        *(void *)&v87[10] = [v18 bytes_not_microstackshots];
         _os_log_impl( (void *)&_mh_execute_header,  v47,  OS_LOG_TYPE_DEFAULT,  "disk writes: some microstackshots with errors: %llu out-of-order microstackshots, %llu microstackshots missing load infos, %llu bytes invalid",  buf,  0x20u);
       }
 
@@ -52244,7 +52244,7 @@ void sub_10007A3BC( void *a1, uint64_t a2, uint64_t a3, const char *a4, uint64_t
 
 id sub_10007A3D0()
 {
-  return objc_msgSend(v0, "bytes_not_microstackshots");
+  return [v0 bytes_not_microstackshots];
 }
 
   ;
@@ -53451,53 +53451,53 @@ void sub_10007FAB4()
 
 void sub_10007FB14(void *a1, os_log_s *a2)
 {
-  uint64_t v3 = (char *)objc_msgSend(objc_msgSend(a1, "total"), "bytes");
-  uint64_t v4 = &v3[(void)objc_msgSend(sub_10004C7B0(), "bytes_duplicate")];
-  id v5 = objc_msgSend(sub_10004C7B0(), "bytes_out_of_order");
-  uint8_t v6 = &v4[(unint64_t)objc_msgSend(sub_10004C7B0(), "bytes_missing_load_info") + (void)v5];
-  BOOL v9 = (char *)objc_msgSend(a1, "bytes_not_microstackshots") + (void)v6;
-  id v11 = objc_msgSend(a1, "bytes_not_microstackshots");
-  id v13 = objc_msgSend(a1, "num_microstackshots_filtered_out");
+  uint64_t v3 = (char *)[a1 total].bytes;
+  uint64_t v4 = &v3[[sub_10004C7B0() bytes_duplicate]];
+  id v5 = [sub_10004C7B0() bytes_out_of_order];
+  uint8_t v6 = &v4[(unint64_t)[sub_10004C7B0() bytes_missing_load_info] + (void)v5];
+  BOOL v9 = [(char *)a1 bytes_not_microstackshots] + v6;
+  id v11 = [a1 bytes_not_microstackshots];
+  id v13 = [a1 num_microstackshots_filtered_out];
   id v15 = [sub_10004C7B0() count];
   id v17 = [sub_10004C7B0() bytes];
-  id v19 = objc_msgSend(sub_10004C7B0(), "num_load_infos");
-  id v21 = objc_msgSend(sub_10004C7B0(), "num_frames");
-  id v23 = objc_msgSend(sub_10004C7B0(), "num_duplicate");
-  id v25 = objc_msgSend(sub_10004C7B0(), "bytes_duplicate");
-  id v27 = objc_msgSend(sub_10004C7B0(), "num_out_of_order");
-  id v29 = objc_msgSend(sub_10004C7B0(), "bytes_out_of_order");
-  id v31 = objc_msgSend(sub_10004C7B0(), "num_missing_load_info");
-  id v33 = objc_msgSend(sub_10004C7B0(), "bytes_missing_load_info");
+  id v19 = [sub_10004C7B0() num_load_infos];
+  id v21 = [sub_10004C7B0() num_frames];
+  id v23 = [sub_10004C7B0() num_duplicate];
+  id v25 = [sub_10004C7B0() bytes_duplicate];
+  id v27 = [sub_10004C7B0() num_out_of_order];
+  id v29 = [sub_10004C7B0() bytes_out_of_order];
+  id v31 = [sub_10004C7B0() num_missing_load_info];
+  id v33 = [sub_10004C7B0() bytes_missing_load_info];
   id v35 = [sub_10004C824() count];
   id v37 = [sub_10004C824() bytes];
-  id v39 = objc_msgSend(sub_10004C824(), "num_load_infos");
-  id v41 = objc_msgSend(sub_10004C824(), "num_frames");
-  id v43 = objc_msgSend(sub_10004C824(), "num_duplicate");
-  id v45 = objc_msgSend(sub_10004C824(), "bytes_duplicate");
-  id v47 = objc_msgSend(sub_10004C824(), "num_out_of_order");
-  id v49 = objc_msgSend(sub_10004C824(), "bytes_out_of_order");
-  id v51 = objc_msgSend(sub_10004C824(), "num_missing_load_info");
-  id v53 = objc_msgSend(sub_10004C824(), "bytes_missing_load_info");
+  id v39 = [sub_10004C824() num_load_infos];
+  id v41 = [sub_10004C824() num_frames];
+  id v43 = [sub_10004C824() num_duplicate];
+  id v45 = [sub_10004C824() bytes_duplicate];
+  id v47 = [sub_10004C824() num_out_of_order];
+  id v49 = [sub_10004C824() bytes_out_of_order];
+  id v51 = [sub_10004C824() num_missing_load_info];
+  id v53 = [sub_10004C824() bytes_missing_load_info];
   id v55 = [sub_10004C814() count];
   id v57 = [sub_10004C814() bytes];
-  id v59 = objc_msgSend(sub_10004C814(), "num_load_infos");
-  id v61 = objc_msgSend(sub_10004C814(), "num_frames");
-  id v63 = objc_msgSend(sub_10004C814(), "num_duplicate");
-  id v65 = objc_msgSend(sub_10004C814(), "bytes_duplicate");
-  id v67 = objc_msgSend(sub_10004C814(), "num_out_of_order");
-  id v69 = objc_msgSend(sub_10004C814(), "bytes_out_of_order");
-  id v71 = objc_msgSend(sub_10004C814(), "num_missing_load_info");
-  id v73 = objc_msgSend(sub_10004C814(), "bytes_missing_load_info");
+  id v59 = [sub_10004C814() num_load_infos];
+  id v61 = [sub_10004C814() num_frames];
+  id v63 = [sub_10004C814() num_duplicate];
+  id v65 = [sub_10004C814() bytes_duplicate];
+  id v67 = [sub_10004C814() num_out_of_order];
+  id v69 = [sub_10004C814() bytes_out_of_order];
+  id v71 = [sub_10004C814() num_missing_load_info];
+  id v73 = [sub_10004C814() bytes_missing_load_info];
   id v75 = [sub_10004C834() count];
   id v77 = [sub_10004C834() bytes];
-  id v79 = objc_msgSend(sub_10004C834(), "num_load_infos");
-  id v81 = objc_msgSend(sub_10004C834(), "num_frames");
-  id v83 = objc_msgSend(sub_10004C834(), "num_duplicate");
-  id v85 = objc_msgSend(sub_10004C834(), "bytes_duplicate");
-  id v87 = objc_msgSend(sub_10004C834(), "num_out_of_order");
-  id v89 = objc_msgSend(sub_10004C834(), "bytes_out_of_order");
-  id v91 = objc_msgSend(sub_10004C834(), "num_missing_load_info");
-  id v93 = objc_msgSend(sub_10004C834(), "bytes_missing_load_info");
+  id v79 = [sub_10004C834() num_load_infos];
+  id v81 = [sub_10004C834() num_frames];
+  id v83 = [sub_10004C834() num_duplicate];
+  id v85 = [sub_10004C834() bytes_duplicate];
+  id v87 = [sub_10004C834() num_out_of_order];
+  id v89 = [sub_10004C834() bytes_out_of_order];
+  id v91 = [sub_10004C834() num_missing_load_info];
+  id v93 = [sub_10004C834() bytes_missing_load_info];
   id v95 = [sub_10004C81C() count];
   *(_DWORD *)buf = 134236416;
   id v97 = [sub_10004C81C() bytes];
@@ -53546,61 +53546,61 @@ void sub_10007FB14(void *a1, os_log_s *a2)
   __int16 v94 = 2048;
   __int16 v96 = 2048;
   __int16 v98 = 2048;
-  id v99 = objc_msgSend(sub_10004C81C(), "num_load_infos");
+  id v99 = [sub_10004C81C() num_load_infos];
   __int16 v100 = 2048;
-  id v101 = objc_msgSend(sub_10004C81C(), "num_frames");
+  id v101 = [sub_10004C81C() num_frames];
   __int16 v102 = 2048;
-  id v103 = objc_msgSend(sub_10004C81C(), "num_duplicate");
+  id v103 = [sub_10004C81C() num_duplicate];
   __int16 v104 = 2048;
-  id v105 = objc_msgSend(sub_10004C81C(), "bytes_duplicate");
+  id v105 = [sub_10004C81C() bytes_duplicate];
   __int16 v106 = 2048;
-  id v107 = objc_msgSend(sub_10004C81C(), "num_out_of_order");
+  id v107 = [sub_10004C81C() num_out_of_order];
   __int16 v108 = 2048;
-  id v109 = objc_msgSend(sub_10004C81C(), "bytes_out_of_order");
+  id v109 = [sub_10004C81C() bytes_out_of_order];
   __int16 v110 = 2048;
-  id v111 = objc_msgSend(sub_10004C81C(), "num_missing_load_info");
+  id v111 = [sub_10004C81C() num_missing_load_info];
   __int16 v112 = 2048;
-  id v113 = objc_msgSend(sub_10004C81C(), "bytes_missing_load_info");
+  id v113 = [sub_10004C81C() bytes_missing_load_info];
   __int16 v114 = 2048;
   id v115 = [sub_10004C80C() count];
   __int16 v116 = 2048;
   id v117 = [sub_10004C80C() bytes];
   __int16 v118 = 2048;
-  id v119 = objc_msgSend(sub_10004C80C(), "num_load_infos");
+  id v119 = [sub_10004C80C() num_load_infos];
   __int16 v120 = 2048;
-  id v121 = objc_msgSend(sub_10004C80C(), "num_frames");
+  id v121 = [sub_10004C80C() num_frames];
   __int16 v122 = 2048;
-  id v123 = objc_msgSend(sub_10004C80C(), "num_duplicate");
+  id v123 = [sub_10004C80C() num_duplicate];
   __int16 v124 = 2048;
-  id v125 = objc_msgSend(sub_10004C80C(), "bytes_duplicate");
+  id v125 = [sub_10004C80C() bytes_duplicate];
   __int16 v126 = 2048;
-  id v127 = objc_msgSend(sub_10004C80C(), "num_out_of_order");
+  id v127 = [sub_10004C80C() num_out_of_order];
   __int16 v128 = 2048;
-  id v129 = objc_msgSend(sub_10004C80C(), "bytes_out_of_order");
+  id v129 = [sub_10004C80C() bytes_out_of_order];
   __int16 v130 = 2048;
-  id v131 = objc_msgSend(sub_10004C80C(), "num_missing_load_info");
+  id v131 = [sub_10004C80C() num_missing_load_info];
   __int16 v132 = 2048;
-  id v133 = objc_msgSend(sub_10004C80C(), "bytes_missing_load_info");
+  id v133 = [sub_10004C80C() bytes_missing_load_info];
   __int16 v134 = 2048;
   id v135 = [sub_10004C82C() count];
   __int16 v136 = 2048;
   id v137 = [sub_10004C82C() bytes];
   __int16 v138 = 2048;
-  id v139 = objc_msgSend(sub_10004C82C(), "num_load_infos");
+  id v139 = [sub_10004C82C() num_load_infos];
   __int16 v140 = 2048;
-  id v141 = objc_msgSend(sub_10004C82C(), "num_frames");
+  id v141 = [sub_10004C82C() num_frames];
   __int16 v142 = 2048;
-  id v143 = objc_msgSend(sub_10004C82C(), "num_duplicate");
+  id v143 = [sub_10004C82C() num_duplicate];
   __int16 v144 = 2048;
-  id v145 = objc_msgSend(sub_10004C82C(), "bytes_duplicate");
+  id v145 = [sub_10004C82C() bytes_duplicate];
   __int16 v146 = 2048;
-  id v147 = objc_msgSend(sub_10004C82C(), "num_out_of_order");
+  id v147 = [sub_10004C82C() num_out_of_order];
   __int16 v148 = 2048;
-  id v149 = objc_msgSend(sub_10004C82C(), "bytes_out_of_order");
+  id v149 = [sub_10004C82C() bytes_out_of_order];
   __int16 v150 = 2048;
-  id v151 = objc_msgSend(sub_10004C82C(), "num_missing_load_info");
+  id v151 = [sub_10004C82C() num_missing_load_info];
   __int16 v152 = 2048;
-  id v153 = objc_msgSend(sub_10004C82C(), "bytes_missing_load_info");
+  id v153 = [sub_10004C82C() bytes_missing_load_info];
   _os_log_fault_impl( (void *)&_mh_execute_header,  a2,  OS_LOG_TYPE_FAULT,  "Unable to format: Microstackshot statistics:\n %llu bytes parsed (%llu bytes invalid)\n %llu filtered out\n \n total     count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n interrupt count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n timer     count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n io        count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n pmi       count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n macf      count          %llu (%llu bytes)\n num_load_infos %llu\n num_frames     %llu\n duplicate      %llu (%llu bytes)\n out_of_order   %llu (%llu bytes)\n no_load_info   %llu (%llu bytes)\n \n"
     "unknown   count          %llu (%llu bytes)\n"
     "          num_load_infos %llu\n"
@@ -56775,8 +56775,8 @@ void sub_10008D714()
   uint64_t v7;
   uint8_t v8;
   sub_100037108();
-  objc_msgSend(sub_10007A440(v0, v1), "num_out_of_order");
-  objc_msgSend(sub_10004C7B0(), "num_missing_load_info");
+  [sub_10007A440(v0, v1) num_out_of_order];
+  [sub_10004C7B0() num_missing_load_info];
   sub_10007A3D0();
   sub_10007A354();
   sub_10007A3BC( (void *)&_mh_execute_header,  v2,  v3,  "Unable to format: cpu resource: some microstackshots with errors: %llu out-of-order microstackshots, %llu microstack shots missing load infos, %llu bytes invalid",  v4,  v5,  v6,  v7,  v8);
@@ -56797,8 +56797,8 @@ void sub_10008D8B0()
   uint64_t v7;
   uint8_t v8;
   sub_100037108();
-  objc_msgSend(sub_10007A440(v0, v1), "num_out_of_order");
-  objc_msgSend(sub_10004C7B0(), "num_missing_load_info");
+  [sub_10007A440(v0, v1) num_out_of_order];
+  [sub_10004C7B0() num_missing_load_info];
   sub_10007A3D0();
   sub_10007A354();
   sub_10007A3BC( (void *)&_mh_execute_header,  v2,  v3,  "Unable to format: cpu resource: no microstackshots: %llu out-of-order microstackshots, %llu microstackshots missing load infos, %llu bytes invalid",  v4,  v5,  v6,  v7,  v8);
@@ -56986,8 +56986,8 @@ void sub_10008E940()
   uint64_t v7;
   uint8_t v8;
   sub_100037108();
-  objc_msgSend(sub_10007A440(v0, v1), "num_out_of_order");
-  objc_msgSend(sub_10004C7B0(), "num_missing_load_info");
+  [sub_10007A440(v0, v1) num_out_of_order];
+  [sub_10004C7B0() num_missing_load_info];
   sub_10007A3D0();
   sub_10007A354();
   sub_10007A3BC( (void *)&_mh_execute_header,  v2,  v3,  "Unable to format: disk writes: some microstackshots with errors: %llu out-of-order microstackshots, %llu microstacks hots missing load infos, %llu bytes invalid",  v4,  v5,  v6,  v7,  v8);
@@ -57008,8 +57008,8 @@ void sub_10008EADC()
   uint64_t v7;
   uint8_t v8;
   sub_100037108();
-  objc_msgSend(sub_10007A440(v0, v1), "num_out_of_order");
-  objc_msgSend(sub_10004C7B0(), "num_missing_load_info");
+  [sub_10007A440(v0, v1) num_out_of_order];
+  [sub_10004C7B0() num_missing_load_info];
   sub_10007A3D0();
   sub_10007A354();
   sub_10007A3BC( (void *)&_mh_execute_header,  v2,  v3,  "Unable to format: disk writes: no microstackshots: %llu out-of-order microstackshots, %llu microstackshots missing l oad infos, %llu bytes invalid",  v4,  v5,  v6,  v7,  v8);
@@ -57224,45 +57224,45 @@ void sub_10008FB88()
 
 id objc_msgSend_addMicrostackshotsFromData_ofTypes_inTimeRangeStart_end_onlyPid_onlyTid_statistics_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "addMicrostackshotsFromData:ofTypes:inTimeRangeStart:end:onlyPid:onlyTid:statistics:");
+  return [a1 addMicrostackshotsFromData:ofTypes:inTimeRangeStart:end:onlyPid:onlyTid:statistics:];
 }
 
 id objc_msgSend_enumerateTaskStatesBetweenStartTime_startSampleIndex_endTime_endSampleIndex_reverseOrder_block_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "enumerateTaskStatesBetweenStartTime:startSampleIndex:endTime:endSampleIndex:reverseOrder:block:");
+  return [a1 enumerateTaskStatesBetweenStartTime:startTime:startSampleIndex:endTime:endSampleIndex:reverseOrder:block:];
 }
 
 id objc_msgSend_enumerateThreadStatesBetweenStartTime_startSampleIndex_endTime_endSampleIndex_reverseOrder_block_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "enumerateThreadStatesBetweenStartTime:startSampleIndex:endTime:endSampleIndex:reverseOrder:block:");
+  return [a1 enumerateThreadStatesBetweenStartTime:startTime startSampleIndex:startSampleIndex endTime:endTime endSampleIndex:endSampleIndex reverseOrder:block];
 }
 
 id objc_msgSend_initWithReportReason_reportedSignpostTracker_task_timeRange_thread_dispatchQueue_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "initWithReportReason:reportedSignpostTracker:task:timeRange:thread:dispatchQueue:");
+  return [a1 initWithReportReason:reportedSignpostTracker:task:timeRange:thread:dispatchQueue:];
 }
 
 id objc_msgSend_initWithStackshotProvider_timestamp_numSamples_numSamplesAvoidedDueToAudio_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "initWithStackshotProvider:timestamp:numSamples:numSamplesAvoidedDueToAudio:");
+  return [a1 initWithStackshotProvider:timestamp:numSamples:numSamplesAvoidedDueToAudio:];
 }
 
 id objc_msgSend_snapshotWithSamplingIntervalUs_andOccasionalDataIntervalSec_andOnlySampleProcesses_andOnlySampleMainThreads_andOmitSensitiveStrings_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "snapshotWithSamplingIntervalUs:andOccasionalDataIntervalSec:andOnlySampleProcesses:andOnlySampleMainThreads:a ndOmitSensitiveStrings:");
+  return [a1 snapshotWithSamplingIntervalUs:andOccasionalDataIntervalSec:andOnlySampleProcesses:andOnlySampleMainThreads:a ndOmitSensitiveStrings:];
 }
 
 id objc_msgSend_startWithSamplingIntervalUs_andOccasionalDataIntervalSec_andOnlySampleProcesses_andOnlySampleMainThreads_andOmitSensitiveStrings_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend( a1,  "startWithSamplingIntervalUs:andOccasionalDataIntervalSec:andOnlySampleProcesses:andOnlySampleMainThreads:andO mitSensitiveStrings:");
+  return [a1 startWithSamplingIntervalUs:andOccasionalDataIntervalSec:andOnlySampleProcesses:andOnlySampleMainThreads:andO mitSensitiveStrings:];
 }
 
 id objc_msgSend_stopAndWaitForAllSamplingToComplete_withCompletionCallbackOnQueue_withBlock_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "stopAndWaitForAllSamplingToComplete:withCompletionCallbackOnQueue:withBlock:");
+  return [a1 stopAndWaitForAllSamplingToComplete:withCompletionCallbackOnQueue:withBlock:];
 }
 
 id objc_msgSend_timestampWithMachAbsTime_machAbsTimeSec_machContTime_machContTimeSec_wallTime_( void *a1, const char *a2, ...)
 {
-  return objc_msgSend(a1, "timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:");
+  return [a1 timestampWithMachAbsTime:machAbsTimeSec:machContTime:machContTimeSec:wallTime:];
 }

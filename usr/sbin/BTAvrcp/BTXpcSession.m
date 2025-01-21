@@ -208,7 +208,7 @@
     }
 
     v16 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
-    objc_msgSend( v16,  "handleFailureInMethod:object:file:lineNumber:description:",  a2,  self,  @"BTXpcSession.m",  154,  @"Missing XPC value for key \"%s\"",  a3);
+    [v16 handleFailureInMethod:a2 object:self file:@"BTXpcSession.m" lineNumber:154 description:@"Missing XPC value for key \"%s\"" a3];
     v19 = 0LL;
   }
 

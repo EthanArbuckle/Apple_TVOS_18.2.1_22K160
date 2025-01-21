@@ -275,7 +275,7 @@ LABEL_21:
       v44 = 0LL;
       v45 = 0LL;
       id v9 = v40;
-      sub_10056AB04(&v44, [v9 bytes], (size_t)objc_msgSend(v9, "length"));
+      sub_10056AB04(&v44, [v9 bytes], (size_t)[v9 length]);
       uint64_t v10 = sub_10056AE48((uint64_t)&v44, 0LL);
       uint64_t v11 = sub_10056AE48((uint64_t)&v44, 1uLL);
       unsigned int v12 = sub_10056AE48((uint64_t)&v44, 2uLL);

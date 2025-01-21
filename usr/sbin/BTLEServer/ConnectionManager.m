@@ -1279,7 +1279,7 @@ LABEL_18:
       __int128 v61 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));
       [v16 setDate:v61];
 
-      objc_msgSend(v16, "setTryCount:", (char *)objc_msgSend(v16, "tryCount") + 1);
+      [v16 setTryCount:((char *)[v16 tryCount]) + 1];
     }
 
     goto LABEL_33;

@@ -497,7 +497,7 @@ void sub_10000C5B4(uint64_t a1, void *a2)
         if (*(void *)v13 != v8) {
           objc_enumerationMutation(v5);
         }
-        uint32_t v10 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(*((void *)&v12 + 1) + 8 * (void)v9), "stations", (void)v12));
+        uint32_t v10 = (void *)objc_claimAutoreleasedReturnValue([*(id *)(*((void *)&v12 + 1) + 8 * (void)v9) stations:v12]);
         [v4 addObjectsFromArray:v10];
 
         id v9 = (char *)v9 + 1;
@@ -654,7 +654,7 @@ uint64_t sub_10000DBC0(uint64_t a1, uint64_t a2)
 void sub_10000DC40(uint64_t a1)
 {
   id v1 = *(id *)(a1 + 40);
-  objc_msgSend(*(id *)(a1 + 32), "_supportedCommandsDidChange:");
+  [*(id *)(a1 + 32) _supportedCommandsDidChange:];
 }
 
 id sub_10000DC6C(uint64_t a1)
@@ -680,7 +680,7 @@ id sub_10000DE30(uint64_t a1, int a2)
 id *sub_10000DE98(id *result, int a2)
 {
   if (a2) {
-    return (id *)_objc_msgSend(result[4], "_activeOriginDidChange:");
+    return (id *)[result[4] _activeOriginDidChange:];
   }
   return result;
 }
@@ -921,32 +921,32 @@ id objc_msgSend_activeCategories(void *a1, const char *a2, ...)
 
 id objc_msgSend_addEntriesFromDictionary_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "addEntriesFromDictionary:");
+  return [a1 addEntriesFromDictionary:];
 }
 
 id objc_msgSend_addFilterPredicate_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "addFilterPredicate:");
+  return [a1 addFilterPredicate:];
 }
 
 id objc_msgSend_addObject_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "addObject:");
+  return [a1 addObject:];
 }
 
 id objc_msgSend_addObjectsFromArray_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "addObjectsFromArray:");
+  return [a1 addObjectsFromArray:];
 }
 
 id objc_msgSend_addObserver_selector_name_object_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "addObserver:selector:name:object:");
+  return [a1 addObserver:selector:name:object:];
 }
 
 id objc_msgSend_albumName_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "albumName:");
+  return [a1 albumName:];
 }
 
 id objc_msgSend_albumsQuery(void *a1, const char *a2, ...)
@@ -956,12 +956,12 @@ id objc_msgSend_albumsQuery(void *a1, const char *a2, ...)
 
 id objc_msgSend_applicationProxyForIdentifier_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "applicationProxyForIdentifier:");
+  return [a1 applicationProxyForIdentifier:];
 }
 
 id objc_msgSend_archivedDataWithRootObject_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "archivedDataWithRootObject:");
+  return [a1 archivedDataWithRootObject:];
 }
 
 id objc_msgSend_array(void *a1, const char *a2, ...)
@@ -971,17 +971,17 @@ id objc_msgSend_array(void *a1, const char *a2, ...)
 
 id objc_msgSend_arrayWithObjects_count_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "arrayWithObjects:count:");
+  return [a1 arrayWithObjects:count:];
 }
 
 id objc_msgSend_artistHasSingleAlbum_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "artistHasSingleAlbum:");
+  return [a1 artistHasSingleAlbum:];
 }
 
 id objc_msgSend_artistName_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "artistName:");
+  return [a1 artistName:];
 }
 
 id objc_msgSend_artistsQuery(void *a1, const char *a2, ...)
@@ -991,7 +991,7 @@ id objc_msgSend_artistsQuery(void *a1, const char *a2, ...)
 
 id objc_msgSend_attributeIDsFromArgs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "attributeIDsFromArgs:");
+  return [a1 attributeIDsFromArgs:];
 }
 
 id objc_msgSend_baseQuery(void *a1, const char *a2, ...)
@@ -1026,12 +1026,12 @@ id objc_msgSend_builtQuery(void *a1, const char *a2, ...)
 
 id objc_msgSend_cStringUsingEncoding_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "cStringUsingEncoding:");
+  return [a1 cStringUsingEncoding:];
 }
 
 id objc_msgSend_changePath_replyBlock_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "changePath:replyBlock:");
+  return [a1 changePath:replyBlock:];
 }
 
 id objc_msgSend_childrenCount(void *a1, const char *a2, ...)
@@ -1041,12 +1041,12 @@ id objc_msgSend_childrenCount(void *a1, const char *a2, ...)
 
 id objc_msgSend_collectionAtIndex_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "collectionAtIndex:");
+  return [a1 collectionAtIndex:];
 }
 
 id objc_msgSend_collectionWithUid_property_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "collectionWithUid:property:");
+  return [a1 collectionWithUid:property:];
 }
 
 id objc_msgSend_collections(void *a1, const char *a2, ...)
@@ -1056,7 +1056,7 @@ id objc_msgSend_collections(void *a1, const char *a2, ...)
 
 id objc_msgSend_composerHasSingleAlbum_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "composerHasSingleAlbum:");
+  return [a1 composerHasSingleAlbum];
 }
 
 id objc_msgSend_composersQuery(void *a1, const char *a2, ...)
@@ -1076,7 +1076,7 @@ id objc_msgSend_connection(void *a1, const char *a2, ...)
 
 id objc_msgSend_containsObject_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "containsObject:");
+  return [a1 containsObject:];
 }
 
 id objc_msgSend_copy(void *a1, const char *a2, ...)
@@ -1096,7 +1096,7 @@ id objc_msgSend_countByEnumeratingWithState_objects_count_(void *a1, const char 
 
 id objc_msgSend_createFolderWithUid_folder_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "createFolderWithUid:folder:");
+  return [a1 createFolderWithUid:folder:];
 }
 
 id objc_msgSend_createSwitcher(void *a1, const char *a2, ...)
@@ -1141,7 +1141,7 @@ id objc_msgSend_date(void *a1, const char *a2, ...)
 
 id objc_msgSend_dateWithTimeIntervalSinceNow_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "dateWithTimeIntervalSinceNow:");
+  return [a1 dateWithTimeIntervalSinceNow:];
 }
 
 id objc_msgSend_defaultCenter(void *a1, const char *a2, ...)
@@ -1176,12 +1176,12 @@ id objc_msgSend_dictionary(void *a1, const char *a2, ...)
 
 id objc_msgSend_dictionaryWithObjects_forKeys_count_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "dictionaryWithObjects:forKeys:count:");
+  return [a1 dictionaryWithObjects:forKeys:count:];
 }
 
 id objc_msgSend_doesNotRecognizeSelector_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "doesNotRecognizeSelector:");
+  return [a1 doesNotRecognizeSelector:];
 }
 
 id objc_msgSend_doubleValue(void *a1, const char *a2, ...)
@@ -1211,12 +1211,12 @@ id objc_msgSend_endTransaction(void *a1, const char *a2, ...)
 
 id objc_msgSend_enumerateAttributeIDs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "enumerateAttributeIDs:");
+  return [a1 enumerateAttributeIDs:];
 }
 
 id objc_msgSend_fetchRecentStations_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "fetchRecentStations:");
+  return [a1 fetchRecentStations:];
 }
 
 id objc_msgSend_firstObject(void *a1, const char *a2, ...)
@@ -1231,12 +1231,12 @@ id objc_msgSend_floatValue(void *a1, const char *a2, ...)
 
 id objc_msgSend_folderNameForUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "folderNameForUid:");
+  return [a1 folderNameForUid:];
 }
 
 id objc_msgSend_folderTypeForUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "folderTypeForUid:");
+  return [a1 folderTypeForUid:];
 }
 
 id objc_msgSend_genresQuery(void *a1, const char *a2, ...)
@@ -1246,7 +1246,7 @@ id objc_msgSend_genresQuery(void *a1, const char *a2, ...)
 
 id objc_msgSend_getCurrentPath_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getCurrentPath:");
+  return [a1 getCurrentPath:];
 }
 
 id objc_msgSend_getMediaPlayersFromStart_toEnd_replyBlock_(void *a1, const char *a2, ...)
@@ -1256,12 +1256,12 @@ id objc_msgSend_getMediaPlayersFromStart_toEnd_replyBlock_(void *a1, const char 
 
 id objc_msgSend_getNowPlayingAttributeIDs_reply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getNowPlayingAttributeIDs:reply:");
+  return [a1 getNowPlayingAttributeIDs:reply:];
 }
 
 id objc_msgSend_getNowPlayingItemWithUid_attributeIDs_reply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getNowPlayingItemWithUid:attributeIDs:reply:");
+  return [a1 getNowPlayingItemWithUid:attributeIDs:reply:];
 }
 
 id objc_msgSend_getNowPlayingItemsCount(void *a1, const char *a2, ...)
@@ -1271,17 +1271,17 @@ id objc_msgSend_getNowPlayingItemsCount(void *a1, const char *a2, ...)
 
 id objc_msgSend_getNowPlayingItemsFromStart_toEnd_attributeIDs_replyBlock_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getNowPlayingItemsFromStart:toEnd:attributeIDs:replyBlock:");
+  return [a1 getNowPlayingItemsFromStart:toEnd:attributeIDs:replyBlock:];
 }
 
 id objc_msgSend_getRecentStationGroupsWithCompletionHandler_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getRecentStationGroupsWithCompletionHandler:");
+  return [a1 getRecentStationGroupsWithCompletionHandler:];
 }
 
 id objc_msgSend_getSearchItemWithUid_attributeIDs_reply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getSearchItemWithUid:attributeIDs:reply:");
+  return [a1 getSearchItemWithUid:attributeIDs:reply:];
 }
 
 id objc_msgSend_getSearchItemsCount(void *a1, const char *a2, ...)
@@ -1291,12 +1291,12 @@ id objc_msgSend_getSearchItemsCount(void *a1, const char *a2, ...)
 
 id objc_msgSend_getSearchItemsFromStart_toEnd_attributeIDs_replyBlock_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getSearchItemsFromStart:toEnd:attributeIDs:replyBlock:");
+  return [a1 getSearchItemsFromStart:toEnd:attributeIDs:replyBlock:];
 }
 
 id objc_msgSend_getVFSItemWithUid_attributeIDs_reply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getVFSItemWithUid:attributeIDs:reply:");
+  return [a1 getVFSItemWithUid:attributeIDs:reply:];
 }
 
 id objc_msgSend_getVFSItemsCount(void *a1, const char *a2, ...)
@@ -1306,7 +1306,7 @@ id objc_msgSend_getVFSItemsCount(void *a1, const char *a2, ...)
 
 id objc_msgSend_getVFSItemsFromStart_toEnd_attributeIDs_replyBlock_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "getVFSItemsFromStart:toEnd:attributeIDs:replyBlock:");
+  return [a1 getVFSItemsFromStart:toEnd:attributeIDs:replyBlock:];
 }
 
 id objc_msgSend_handleFailureInMethod_object_file_lineNumber_description_(void *a1, const char *a2, ...)
@@ -1316,7 +1316,7 @@ id objc_msgSend_handleFailureInMethod_object_file_lineNumber_description_(void *
 
 id objc_msgSend_handleMsg_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "handleMsg:");
+  return [a1 handleMsg:];
 }
 
 id objc_msgSend_hasAlbums(void *a1, const char *a2, ...)
@@ -1391,42 +1391,42 @@ id objc_msgSend_indexOfObject_(void *a1, const char *a2, ...)
 
 id objc_msgSend_initWithArray_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithArray:");
+  return [a1 initWithArray:];
 }
 
 id objc_msgSend_initWithConnection_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithConnection:");
+  return [a1 initWithConnection:];
 }
 
 id objc_msgSend_initWithName_sessionClass_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithName:sessionClass:");
+  return [a1 initWithName:sessionClass:];
 }
 
 id objc_msgSend_initWithName_uid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithName:uid:");
+  return [a1 initWithName:uid:];
 }
 
 id objc_msgSend_initWithName_uid_isRecentlyAdded_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithName:uid:isRecentlyAdded:");
+  return [a1 initWithName:uid:isRecentlyAdded:];
 }
 
 id objc_msgSend_initWithName_uid_parentPlaylistID_isRecentlyAdded_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithName:uid:parentPlaylistID:isRecentlyAdded:");
+  return [a1 initWithName:uid:parentPlaylistID:isRecentlyAdded:];
 }
 
 id objc_msgSend_initWithObjects_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithObjects:");
+  return [a1 initWithObjects:];
 }
 
 id objc_msgSend_initWithPath_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "initWithPath:");
+  return [a1 initWithPath:];
 }
 
 id objc_msgSend_intValue(void *a1, const char *a2, ...)
@@ -1446,12 +1446,12 @@ id objc_msgSend_isEnabled(void *a1, const char *a2, ...)
 
 id objc_msgSend_isEqualToNumber_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "isEqualToNumber:");
+  return [a1 isEqualToNumber:];
 }
 
 id objc_msgSend_isEqualToString_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "isEqualToString:");
+  return [a1 isEqualToString:];
 }
 
 id objc_msgSend_isForwarding(void *a1, const char *a2, ...)
@@ -1486,12 +1486,12 @@ id objc_msgSend_isTransacting(void *a1, const char *a2, ...)
 
 id objc_msgSend_itemAtIndex_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "itemAtIndex:");
+  return [a1 itemAtIndex:];
 }
 
 id objc_msgSend_itemWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "itemWithUid:");
+  return [a1 itemWithUid:];
 }
 
 id objc_msgSend_items(void *a1, const char *a2, ...)
@@ -1536,7 +1536,7 @@ id objc_msgSend_localizedName(void *a1, const char *a2, ...)
 
 id objc_msgSend_localizedStringForKey_value_table_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "localizedStringForKey:value:table:");
+  return [a1 localizedStringForKey:value:table:];
 }
 
 id objc_msgSend_lock(void *a1, const char *a2, ...)
@@ -1591,7 +1591,7 @@ id objc_msgSend_nowPlayingItem(void *a1, const char *a2, ...)
 
 id objc_msgSend_nowPlayingItemAtIndex_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "nowPlayingItemAtIndex:");
+  return [a1 nowPlayingItemAtIndex:];
 }
 
 id objc_msgSend_numberOfItems(void *a1, const char *a2, ...)
@@ -1601,57 +1601,57 @@ id objc_msgSend_numberOfItems(void *a1, const char *a2, ...)
 
 id objc_msgSend_numberWithBool_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithBool:");
+  return [a1 numberWithBool:];
 }
 
 id objc_msgSend_numberWithDouble_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithDouble:");
+  return [a1 numberWithDouble:];
 }
 
 id objc_msgSend_numberWithInt_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithInt:");
+  return [a1 numberWithInt:];
 }
 
 id objc_msgSend_numberWithInteger_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithInteger:");
+  return [a1 numberWithInteger:];
 }
 
 id objc_msgSend_numberWithUnsignedChar_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithUnsignedChar:");
+  return [a1 numberWithUnsignedChar:];
 }
 
 id objc_msgSend_numberWithUnsignedInt_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithUnsignedInt:");
+  return [a1 numberWithUnsignedInt:];
 }
 
 id objc_msgSend_numberWithUnsignedInteger_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithUnsignedInteger:");
+  return [a1 numberWithUnsignedInteger:];
 }
 
 id objc_msgSend_numberWithUnsignedLongLong_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "numberWithUnsignedLongLong:");
+  return [a1 numberWithUnsignedLongLong:];
 }
 
 id objc_msgSend_objectAtIndex_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "objectAtIndex:");
+  return [a1 objectAtIndex:];
 }
 
 id objc_msgSend_objectAtIndexedSubscript_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "objectAtIndexedSubscript:");
+  return [a1 objectAtIndexedSubscript:];
 }
 
 id objc_msgSend_objectForKeyedSubscript_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "objectForKeyedSubscript:");
+  return [a1 objectForKeyedSubscript:];
 }
 
 id objc_msgSend_parentPlaylistID(void *a1, const char *a2, ...)
@@ -1676,22 +1676,22 @@ id objc_msgSend_play(void *a1, const char *a2, ...)
 
 id objc_msgSend_playItemWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playItemWithUid:");
+  return [a1 playItemWithUid:];
 }
 
 id objc_msgSend_playNowPlayingItemWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playNowPlayingItemWithUid:");
+  return [a1 playNowPlayingItemWithUid:];
 }
 
 id objc_msgSend_playSearchItemWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playSearchItemWithUid:");
+  return [a1 playSearchItemWithUid:];
 }
 
 id objc_msgSend_playVFSItemWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playVFSItemWithUid:");
+  return [a1 playVFSItemWithUid:];
 }
 
 id objc_msgSend_playbackQueueDidChange(void *a1, const char *a2, ...)
@@ -1706,12 +1706,12 @@ id objc_msgSend_playbackState(void *a1, const char *a2, ...)
 
 id objc_msgSend_playbackStateDidChange_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playbackStateDidChange:");
+  return [a1 playbackStateDidChange:];
 }
 
 id objc_msgSend_playerDidChange_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playerDidChange:");
+  return [a1 playerDidChange:];
 }
 
 id objc_msgSend_playerId(void *a1, const char *a2, ...)
@@ -1726,7 +1726,7 @@ id objc_msgSend_playerName(void *a1, const char *a2, ...)
 
 id objc_msgSend_playlistIsFolder_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "playlistIsFolder:");
+  return [a1 playlistIsFolder:];
 }
 
 id objc_msgSend_playlistsQuery(void *a1, const char *a2, ...)
@@ -1741,17 +1741,17 @@ id objc_msgSend_playlistsRecentlyAddedQuery(void *a1, const char *a2, ...)
 
 id objc_msgSend_predicateForProperty_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "predicateForProperty:");
+  return [a1 predicateForProperty:];
 }
 
 id objc_msgSend_predicateWithSearchString_forProperties_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "predicateWithSearchString:forProperties:");
+  return [a1 predicateWithSearchString:forProperties:];
 }
 
 id objc_msgSend_predicateWithValue_forProperty_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "predicateWithValue:forProperty:");
+  return [a1 predicateWithValue:forProperty:];
 }
 
 id objc_msgSend_predicates(void *a1, const char *a2, ...)
@@ -1771,7 +1771,7 @@ id objc_msgSend_query(void *a1, const char *a2, ...)
 
 id objc_msgSend_raise_format_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "raise:format:");
+  return [a1 raise:format:];
 }
 
 id objc_msgSend_recentStations(void *a1, const char *a2, ...)
@@ -1796,32 +1796,32 @@ id objc_msgSend_removeLastObject(void *a1, const char *a2, ...)
 
 id objc_msgSend_replyAttributesForIDs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyAttributesForIDs:");
+  return [a1 replyAttributesForIDs:];
 }
 
 id objc_msgSend_replyAttributesForUid_attributeIDs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyAttributesForUid:attributeIDs:");
+  return [a1 replyAttributesForUid:attributeIDs:];
 }
 
 id objc_msgSend_replyFolderWithType_uid_name_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyFolderWithType:uid:name:");
+  return [a1 replyFolderWithType:uid:name:];
 }
 
 id objc_msgSend_replyItemAtIndex_attributeIDs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyItemAtIndex:attributeIDs:");
+  return [a1 replyItemAtIndex:attributeIDs:];
 }
 
 id objc_msgSend_replyItemWithAttributeIDs_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyItemWithAttributeIDs:");
+  return [a1 replyItemWithAttributeIDs:];
 }
 
 id objc_msgSend_replyItemWithUid_name_attributes_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "replyItemWithUid:name:attributes:");
+  return [a1 replyItemWithUid:name:attributes:];
 }
 
 id objc_msgSend_representativeItem(void *a1, const char *a2, ...)
@@ -1836,22 +1836,22 @@ id objc_msgSend_run(void *a1, const char *a2, ...)
 
 id objc_msgSend_search_replyBlock_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "search:replyBlock:");
+  return [a1 search:replyBlock:];
 }
 
 id objc_msgSend_sendMsg_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "sendMsg:");
+  return [a1 sendMsg:];
 }
 
 id objc_msgSend_sendMsg_args_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "sendMsg:args:");
+  return [a1 sendMsg:args:];
 }
 
 id objc_msgSend_sendReply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "sendReply:");
+  return [a1 sendReply:];
 }
 
 id objc_msgSend_sessionClass(void *a1, const char *a2, ...)
@@ -1861,157 +1861,157 @@ id objc_msgSend_sessionClass(void *a1, const char *a2, ...)
 
 id objc_msgSend_setActiveCategories_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setActiveCategories:");
+  return [a1 setActiveCategories:];
 }
 
 id objc_msgSend_setBuiltQuery_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setBuiltQuery:");
+  return [a1 setBuiltQuery];
 }
 
 id objc_msgSend_setCloudFilteringType_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCloudFilteringType:");
+  return [a1 setCloudFilteringType:];
 }
 
 id objc_msgSend_setCurrentPlaybackState_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCurrentPlaybackState:");
+  return [a1 setCurrentPlaybackState:];
 }
 
 id objc_msgSend_setCurrentSearchQuery_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCurrentSearchQuery:");
+  return [a1 setCurrentSearchQuery:];
 }
 
 id objc_msgSend_setCurrentSettings_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCurrentSettings:");
+  return [a1 setCurrentSettings:];
 }
 
 id objc_msgSend_setCurrentTrackHash_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCurrentTrackHash:");
+  return [a1 setCurrentTrackHash:];
 }
 
 id objc_msgSend_setCurrentVFSPath_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setCurrentVFSPath:");
+  return [a1 setCurrentVFSPath:];
 }
 
 id objc_msgSend_setDelegate_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setDelegate:");
+  return [a1 setDelegate:];
 }
 
 id objc_msgSend_setFilteringDisabled_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setFilteringDisabled:");
+  return [a1 setFilteringDisabled:];
 }
 
 id objc_msgSend_setGroupingType_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setGroupingType:");
+  return [a1 setGroupingType:];
 }
 
 id objc_msgSend_setIsForwarding_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setIsForwarding:");
+  return [a1 setIsForwarding:];
 }
 
 id objc_msgSend_setIsRewinding_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setIsRewinding:");
+  return [a1 setIsRewinding:];
 }
 
 id objc_msgSend_setIsTransacting_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setIsTransacting:");
+  return [a1 setIsTransacting:];
 }
 
 id objc_msgSend_setLazyLibrary_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setLazyLibrary:");
+  return [a1 setLazyLibrary:];
 }
 
 id objc_msgSend_setLazyNowPlayingInfo_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setLazyNowPlayingInfo:");
+  return [a1 setLazyNowPlayingInfo:];
 }
 
 id objc_msgSend_setMrActiveOrigin_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setMrActiveOrigin:");
+  return [a1 setMrActiveOrigin];
 }
 
 id objc_msgSend_setMrAppIdentifier_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setMrAppIdentifier:");
+  return [a1 setMrAppIdentifier:];
 }
 
 id objc_msgSend_setMrAppIsPlaying_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setMrAppIsPlaying:");
+  return [a1 setMrAppIsPlaying:];
 }
 
 id objc_msgSend_setMrInfo_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setMrInfo:");
+  return [a1 setMrInfo:];
 }
 
 id objc_msgSend_setNowPlayingItem_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setNowPlayingItem:");
+  return [a1 setNowPlayingItem:];
 }
 
 id objc_msgSend_setPendingSwitchers_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setPendingSwitchers:");
+  return [a1 setPendingSwitchers:];
 }
 
 id objc_msgSend_setQueueWithQuery_firstItem_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setQueueWithQuery:firstItem:");
+  return [a1 setQueueWithQuery:firstItem:];
 }
 
 id objc_msgSend_setQueueWithRadioStation_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setQueueWithRadioStation:");
+  return [a1 setQueueWithRadioStation:];
 }
 
 id objc_msgSend_setShouldIncludeNonLibraryEntities_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setShouldIncludeNonLibraryEntities:");
+  return [a1 setShouldIncludeNonLibraryEntities:];
 }
 
 id objc_msgSend_setTimer_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setTimer:");
+  return [a1 setTimer:];
 }
 
 id objc_msgSend_setTimerTransactionCount_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setTimerTransactionCount:");
+  return [a1 setTimerTransactionCount:];
 }
 
 id objc_msgSend_setTransactionCount_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setTransactionCount:");
+  return [a1 setTransactionCount:];
 }
 
 id objc_msgSend_setValue_forKey_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setValue:forKey:");
+  return [a1 setValue:forKey:];
 }
 
 id objc_msgSend_setWithObject_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setWithObject:");
+  return [a1 setWithObject:];
 }
 
 id objc_msgSend_setWithObjects_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "setWithObjects:");
+  return [a1 setWithObjects:];
 }
 
 id objc_msgSend_settings(void *a1, const char *a2, ...)
@@ -2021,7 +2021,7 @@ id objc_msgSend_settings(void *a1, const char *a2, ...)
 
 id objc_msgSend_settingsDidChange_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "settingsDidChange:");
+  return [a1 settingsDidChange:];
 }
 
 id objc_msgSend_showRecentlyAddedFolder(void *a1, const char *a2, ...)
@@ -2041,12 +2041,12 @@ id objc_msgSend_signatureWithDomain_type_subType_subtypeContext_detectedProcess_
 
 id objc_msgSend_snapshotWithSignature_duration_events_payload_actions_reply_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "snapshotWithSignature:duration:events:payload:actions:reply:");
+  return [a1 snapshotWithSignature:duration:events:payload:actions:reply:];
 }
 
 id objc_msgSend_stationWithUid_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "stationWithUid:");
+  return [a1 stationWithUid:];
 }
 
 id objc_msgSend_stations(void *a1, const char *a2, ...)
@@ -2056,12 +2056,12 @@ id objc_msgSend_stations(void *a1, const char *a2, ...)
 
 id objc_msgSend_storePredicate_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "storePredicate:");
+  return [a1 storePredicate];
 }
 
 id objc_msgSend_storePredicates_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "storePredicates:");
+  return [a1 storePredicates:];
 }
 
 id objc_msgSend_storedPredicates(void *a1, const char *a2, ...)
@@ -2076,12 +2076,12 @@ id objc_msgSend_stringValue(void *a1, const char *a2, ...)
 
 id objc_msgSend_stringWithFormat_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "stringWithFormat:");
+  return [a1 stringWithFormat:];
 }
 
 id objc_msgSend_stringWithUTF8String_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "stringWithUTF8String:");
+  return [a1 stringWithUTF8String:];
 }
 
 id objc_msgSend_systemMusicPlayer(void *a1, const char *a2, ...)
@@ -2096,7 +2096,7 @@ id objc_msgSend_targetApp(void *a1, const char *a2, ...)
 
 id objc_msgSend_timeIntervalSinceDate_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "timeIntervalSinceDate:");
+  return [a1 timeIntervalSinceDate:];
 }
 
 id objc_msgSend_timer(void *a1, const char *a2, ...)
@@ -2121,7 +2121,7 @@ id objc_msgSend_trackArtist(void *a1, const char *a2, ...)
 
 id objc_msgSend_trackDidChange_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "trackDidChange:");
+  return [a1 trackDidChange:];
 }
 
 id objc_msgSend_trackDuration(void *a1, const char *a2, ...)
@@ -2176,7 +2176,7 @@ id objc_msgSend_uid(void *a1, const char *a2, ...)
 
 id objc_msgSend_unionSet_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "unionSet:");
+  return [a1 unionSet:];
 }
 
 id objc_msgSend_unlock(void *a1, const char *a2, ...)
@@ -2211,22 +2211,22 @@ id objc_msgSend_userInfo(void *a1, const char *a2, ...)
 
 id objc_msgSend_valueForProperty_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "valueForProperty:");
+  return [a1 valueForProperty:];
 }
 
 id objc_msgSend_valueWithPointer_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "valueWithPointer:");
+  return [a1 valueWithPointer:];
 }
 
 id objc_msgSend_wait_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "wait:");
+  return [a1 wait:];
 }
 
 id objc_msgSend_waitUntilDate_(void *a1, const char *a2, ...)
 {
-  return _objc_msgSend(a1, "waitUntilDate:");
+  return [a1 waitUntilDate:];
 }
 
 id objc_msgSend_watchdog(void *a1, const char *a2, ...)

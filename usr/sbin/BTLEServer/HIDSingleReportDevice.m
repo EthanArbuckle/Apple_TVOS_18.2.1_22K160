@@ -42,7 +42,7 @@
   {
     if ((unint64_t)[v9 length] <= *a4)
     {
-      objc_msgSend(v10, "getBytes:length:", a3);
+      [v10 getBytes:a3];
       int v8 = 0;
       *a4 = (int64_t)[v10 length];
     }

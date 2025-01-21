@@ -191,7 +191,7 @@ LABEL_6:
     {
       v12 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Enable Remote Hotspot Timeout",  "-[WiFiHotspotInterface newHotspot:error:]");
+        [qword_100219F60 WFLog:@"%s: Enable Remote Hotspot Timeout" message:3];
       }
       objc_autoreleasePoolPop(v12);
       id v13 = objc_alloc(&OBJC_CLASS___NSError);
@@ -240,7 +240,7 @@ LABEL_6:
   {
     v18 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "Cannot enable hotspot, missing SFRemoteHotspotDevice");
+      [qword_100219F60 WFLog:@"Cannot enable hotspot, missing SFRemoteHotspotDevice"];
     }
     objc_autoreleasePoolPop(v18);
     id v19 = 0LL;

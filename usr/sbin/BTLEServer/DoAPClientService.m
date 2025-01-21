@@ -1010,7 +1010,7 @@ LABEL_11:
   __int128 v41 = 0u;
   __int128 v38 = 0u;
   __int128 v39 = 0u;
-  id v19 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "descriptors", self));
+  id v19 = (void *)objc_claimAutoreleasedReturnValue([v9 descriptors]);
   id v20 = [v19 countByEnumeratingWithState:&v38 objects:v42 count:16];
   if (v20)
   {

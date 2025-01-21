@@ -345,7 +345,7 @@ LABEL_13:
           else {
             v22 = 0LL;
           }
-          objc_msgSend(self, v21, v22);
+          [self v21:v22];
         }
 
         goto LABEL_25;

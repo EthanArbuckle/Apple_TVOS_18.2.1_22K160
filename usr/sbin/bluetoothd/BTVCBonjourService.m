@@ -141,7 +141,7 @@
 - (id)getUniqueServiceNameForAdvertiser
 {
   v2 = (void *)objc_claimAutoreleasedReturnValue(-[NSString lowercaseString](self->_localAdvertiserUUIDString, "lowercaseString"));
-  v3 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v2, "substringWithRange:", 12, 12));
+  v3 = (void *)[v2 substringWithRange:12, 12];
 
   return v3;
 }

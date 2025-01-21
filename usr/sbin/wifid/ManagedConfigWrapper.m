@@ -44,7 +44,7 @@
 {
   v5 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: starting",  "-[ManagedConfigWrapper initializeWithHandler:]");
+    [qword_100219F60 WFLog:@"%s: starting" message:3];
   }
   objc_autoreleasePoolPop(v5);
   -[ManagedConfigWrapper setManager:](self, "setManager:", a3);
@@ -89,7 +89,7 @@
     if (v7) {
       v10 = "Enabled";
     }
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: MCNotification received. isWiFiWithAllowedNetworksOnlyEnforced (%s) WiFiPowerModification (%s) PersonalHotspot Modification (%s)",  "-[ManagedConfigWrapper MCSettingsDidChange:]",  v9,  v11,  v10);
+    [qword_100219F60 WFLog:@"MCNotification received. isWiFiWithAllowedNetworksOnlyEnforced (%s) WiFiPowerModification (%s) PersonalHotspot Modification (%s)",  "-[ManagedConfigWrapper MCSettingsDidChange:]",  v9,  v11,  v10];
   }
 
   objc_autoreleasePoolPop(v8);
@@ -110,7 +110,7 @@
   {
     v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: probably WiFiManager is in middle of closing.",  "-[ManagedConfigWrapper MCSettingsDidChange:]");
+      [qword_100219F60 WFLog:@"%s: probably WiFiManager is in middle of closing." message:4 "-[ManagedConfigWrapper MCSettingsDidChange:]"];
     }
     objc_autoreleasePoolPop(v12);
   }
@@ -168,7 +168,7 @@
   objc_super v3 = objc_autoreleasePoolPush();
   v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: adding observer",  "-[ManagedConfigWrapper startMonitoring]");
+    [qword_100219F60 WFLog:@"-[ManagedConfigWrapper startMonitoring] adding observer"];
   }
   objc_autoreleasePoolPop(v4);
   unsigned int v5 = +[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter");
@@ -182,7 +182,7 @@
   objc_super v3 = objc_autoreleasePoolPush();
   v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: removing observer",  "-[ManagedConfigWrapper stopMonitoring]");
+    [qword_100219F60 WFLog:@"%s: removing observer" message:3];
   }
   objc_autoreleasePoolPop(v4);
   unsigned int v5 = +[NSNotificationCenter defaultCenter](&OBJC_CLASS___NSNotificationCenter, "defaultCenter");
@@ -215,7 +215,7 @@
   v2 = objc_autoreleasePoolPush();
   objc_super v3 = +[NSDictionary dictionaryWithContentsOfFile:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithContentsOfFile:",  @"/Library/Managed Preferences/mobile/.GlobalPreferences.plist");
   BOOL v4 = v3
-    && objc_msgSend( -[NSDictionary objectForKeyedSubscript:]( v3,  "objectForKeyedSubscript:",  @"EAPCredentialShareDisable"),  "intValue");
+    && [v3 objectForKeyedSubscript:@"EAPCredentialShareDisable"] intValue];
   objc_autoreleasePoolPop(v2);
   return v4;
 }
@@ -223,7 +223,7 @@
 - (BOOL)isSupervisedDevice
 {
   v2 = objc_autoreleasePoolPush();
-  unsigned __int8 v3 = objc_msgSend( +[MCProfileConnection sharedConnection](MCProfileConnection, "sharedConnection"),  "isSupervised");
+  unsigned __int8 v3 = [MCProfileConnection sharedConnection].isSupervised;
   objc_autoreleasePoolPop(v2);
   return v3;
 }

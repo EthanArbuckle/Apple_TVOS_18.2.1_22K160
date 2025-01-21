@@ -1275,7 +1275,7 @@ LABEL_12:
   id v13 = v4;
   if (self->_peerID)
   {
-    objc_msgSend(v4, "setPeerID:");
+    [v4 setPeerID:];
     id v4 = v13;
   }
 
@@ -1295,7 +1295,7 @@ LABEL_12:
 
   if (self->_altDSID)
   {
-    objc_msgSend(v13, "setAltDSID:");
+    [v13 setAltDSID];
     id v4 = v13;
   }
 

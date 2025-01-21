@@ -135,7 +135,7 @@
   {
     v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s initWithNetworkRecord: without networkRecord",  "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]");
+      [qword_100219F60 WFLog:@"%s initWithNetworkRecord: without networkRecord" message:3 "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]"];
     }
     goto LABEL_12;
   }
@@ -144,7 +144,7 @@
   {
     v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s initWithNetworkRecord: without managerRef",  "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]");
+      [qword_100219F60 WFLog:@"%s initWithNetworkRecord: without managerRef" message:3 "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]"];
     }
     goto LABEL_12;
   }
@@ -153,7 +153,7 @@
   {
     v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s initWithNetworkRecord: without manager queue",  "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]");
+      [qword_100219F60 WFLog:@"%s initWithNetworkRecord: without manager queue" message:3 "-[WiFiPerfPerAssocSession initWithNetworkRecord:managerRef:andManagerQueue:]"];
     }
 LABEL_12:
     objc_autoreleasePoolPop(v22);
@@ -457,7 +457,7 @@ LABEL_5:
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without scorecard argument. Perhaps one wasn't received from Symptoms.",  "-[WiFiPerfPerAssocSession finalizeWithEndScorecard:]");
+      [qword_100219F60 WFLog:@"%s without scorecard argument. Perhaps one wasn't received from Symptoms." message:3 -[WiFiPerfPerAssocSession finalizeWithEndScorecard:]];
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -485,7 +485,7 @@ LABEL_5:
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Don't have WiFiManagerRef or the master queue, exit early",  "-[WiFiPerfPerAssocSession ingestCurrentNetwork:]");
+      [qword_100219F60 WFLog:@"message" message:@"%s Don't have WiFiManagerRef or the master queue, exit early" ];
     }
     objc_autoreleasePoolPop(v8);
   }
@@ -536,14 +536,14 @@ LABEL_5:
           [v28 setCaptiveFlag:sub_100097480((uint64_t)ValueAtIndex)];
           [v28 setIsHS2:sub_100095318((BOOL)ValueAtIndex)];
           [v28 setBand:sub_1000992D0((uint64_t)ValueAtIndex)];
-          objc_msgSend(v28, "setChannel:", objc_msgSend((id)sub_100096A74((uint64_t)ValueAtIndex), "integerValue"));
+          [v28 setChannel:[(id)sub_100096A74((uint64_t)ValueAtIndex) integerValue]];
           [v28 setChannelWidth:sub_10009A3FC((uint64_t)ValueAtIndex)];
           [v28 setPhyMode:sub_10009A3DC((uint64_t)ValueAtIndex)];
           [v28 setWasCaptive:sub_10009740C((uint64_t)ValueAtIndex)];
           [v28 setNetworkType:sub_10009F494((uint64_t)ValueAtIndex)];
           [v28 setNetworkOriginator:sub_10009EE28((uint64_t)ValueAtIndex)];
           v10 = sub_1000951FC((uint64_t)ValueAtIndex, @"BSSID");
-          objc_msgSend(v28, "setIsEdgeBSS:", sub_10009C030(ValueAtIndex, v10) != 0);
+          [v28 setIsEdgeBSS:sub_10009C030(ValueAtIndex, v10) != 0];
           [v28 setSsidHarvestStatus:sub_1000A0430((uint64_t)ValueAtIndex)];
           unsigned int v11 = sub_100095BC8(ValueAtIndex);
           v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
@@ -560,7 +560,7 @@ LABEL_5:
           {
             uint64_t v16 = v15;
             if (CFArrayGetCount(v15) >= 1) {
-              objc_msgSend(v28, "setAvgDLSpeed:", CFArrayGetValueAtIndex(v16, 0));
+              [v28 setAvgDLSpeed:CFArrayGetValueAtIndex(v16, 0)];
             }
           }
 
@@ -598,7 +598,7 @@ LABEL_5:
     {
       v12 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: invalid location (lat: %f, lng: %f) or accuracy (%f)",  "-[WiFiPerfPerAssocSession ingestLocationUpdateWithLat:andLon:andAccuracy:]",  *(void *)&a3,  *(void *)&a4,  *(void *)&a5);
+        [qword_100219F60 WFLog:@"-[WiFiPerfPerAssocSession ingestLocationUpdateWithLat:andLon:andAccuracy:] invalid location (lat: %f, lng: %f) or accuracy (%f)" message:3, *(void *)&a3, *(void *)&a4, *(void *)&a5];
       }
     }
 
@@ -614,7 +614,7 @@ LABEL_5:
 
       v12 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: invalid location accuracy %f",  "-[WiFiPerfPerAssocSession ingestLocationUpdateWithLat:andLon:andAccuracy:]",  *(void *)&a5,  v13,  v14);
+        [qword_100219F60 WFLog:@"%s: invalid location accuracy %f" message:3 v13, v14];
       }
     }
 
@@ -631,7 +631,7 @@ LABEL_5:
   {
     uint64_t v4 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without argument!",  "-[WiFiPerfPerAssocSession ingestLQMUpdate:]");
+      [qword_100219F60 WFLog:@"%s without argument!" message:3 "-[WiFiPerfPerAssocSession ingestLQMUpdate:]"];
     }
     objc_autoreleasePoolPop(v4);
     id v3 = 0LL;
@@ -744,7 +744,7 @@ LABEL_5:
   {
     double v9 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: epochAtAssoc is invalid, using current date for midpoint",  "-[WiFiPerfPerAssocSession calculateTimes]");
+      [qword_100219F60 WFLog:@"%s: epochAtAssoc is invalid, using current date for midpoint" message:4];
     }
     objc_autoreleasePoolPop(v9);
     double v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSDate date](&OBJC_CLASS___NSDate, "date"));

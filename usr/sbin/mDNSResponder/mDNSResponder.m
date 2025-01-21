@@ -64275,9 +64275,9 @@ LABEL_58:
         *((void *)&v133 + 1) = v60;
         uint64_t v61 = _http_task_create_data_task(v59, &applier);
         uint64_t v62 = (void *)objc_claimAutoreleasedReturnValue(v61);
-        objc_msgSend(v62, "set_hostOverride:", v124);
+        [v62 set_hostOverride:v124];
         if (v62 && *((void *)v143 + 5)) {
-          objc_msgSend(v62, "set_nw_activity:");
+          [v62 set_nw_activity:];
         }
         if (__size)
         {
@@ -64288,7 +64288,7 @@ LABEL_58:
           uint64_t v65 = (void *)objc_claimAutoreleasedReturnValue( +[NSArray arrayWithObjects:count:]( &OBJC_CLASS___NSArray,  "arrayWithObjects:count:",  &v139,  1LL));
           int v141 = v65;
           unsigned int v66 = (void *)objc_claimAutoreleasedReturnValue( +[NSDictionary dictionaryWithObjects:forKeys:count:]( &OBJC_CLASS___NSDictionary,  "dictionaryWithObjects:forKeys:count:",  &v141,  &v140,  1LL));
-          objc_msgSend(v64, "set_socketStreamProperties:", v66);
+          [v64 set_socketStreamProperties:v66];
 
           [v62 _adoptEffectiveConfiguration:v64];
         }

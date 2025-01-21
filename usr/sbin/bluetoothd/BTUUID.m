@@ -75,7 +75,7 @@
 + (id)UUIDWithData:(id)a3
 {
   id v4 = a3;
-  v5 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(a1, "UUIDWithBytes:length:", objc_msgSend(v4, "bytes"), objc_msgSend(v4, "length")));
+  v5 = (void *)objc_claimAutoreleasedReturnValue([a1 UUIDWithBytes:[v4 bytes] length:[v4 length]]);
 
   return v5;
 }

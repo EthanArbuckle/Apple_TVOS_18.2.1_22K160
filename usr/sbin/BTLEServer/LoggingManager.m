@@ -341,7 +341,7 @@
   __int128 v39 = 0u;
   __int128 v40 = 0u;
   __int128 v41 = 0u;
-  id obj = (id)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:", v6));
+  id obj = [v3 enumeratorAtURL:v6 includingPropertiesForKeys:nil options:0 errorHandler:nil];
   id v8 = [obj countByEnumeratingWithState:&v38 objects:v46 count:16];
   size_t v9 = (os_log_t *)&qword_100070CC8;
   if (v8)

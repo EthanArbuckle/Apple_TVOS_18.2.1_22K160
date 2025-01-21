@@ -28,7 +28,7 @@
   {
     v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without networkRecord",  "-[WiFiNWReliabilityMonitorSession initWithNetworkRecord:withMetrics:withMaxSamples:withMinSampleThresh:]");
+      [qword_100219F60 WFLog:@"%s without networkRecord" message:3 "-[WiFiNWReliabilityMonitorSession initWithNetworkRecord:withMetrics:withMaxSamples:withMinSampleThresh:]"];
     }
     objc_autoreleasePoolPop(v21);
     goto LABEL_14;
@@ -103,7 +103,7 @@ LABEL_14:
   {
     v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s without argument!",  "-[WiFiNWReliabilityMonitorSession ingestLQMUpdate:]");
+      [qword_100219F60 WFLog:@"%s without argument!" message:-[WiFiNWReliabilityMonitorSession ingestLQMUpdate:]];
     }
     objc_autoreleasePoolPop(v11);
   }
@@ -146,7 +146,7 @@ LABEL_14:
   }
   id v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Unsupported metric: %lu",  "-[WiFiNWReliabilityMonitorSession getSampleCount:]",  a3);
+    [qword_100219F60 WFLog:@"%s Unsupported metric: %lu" message:3, "-[WiFiNWReliabilityMonitorSession getSampleCount:]", a3];
   }
   objc_autoreleasePoolPop(v4);
   return 0LL;

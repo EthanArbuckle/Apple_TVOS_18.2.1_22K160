@@ -34,7 +34,7 @@ LABEL_8:
   {
     v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error: User Settings CWFKeyValueStore alloc failed",  "-[WiFiUserSettingsStore init]");
+      [qword_100219F60 WFLog:@"%s: Error: User Settings CWFKeyValueStore alloc failed" message:4];
     }
     objc_autoreleasePoolPop(v6);
     goto LABEL_8;
@@ -64,7 +64,7 @@ LABEL_8:
   {
     v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: KVS change disregarded, syncing not enabled",  "-[WiFiUserSettingsStore _kvsDidChangeWithKeys:isExternal:]",  v21);
+      [qword_100219F60 WFLog:@"%s: KVS change disregarded, syncing not enabled" message:3 v21];
     }
     goto LABEL_25;
   }
@@ -160,7 +160,7 @@ LABEL_20:
   {
     objc_super v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: auto hotspot mode change disregarded, syncing not enabled (new value: %ld)",  "-[WiFiUserSettingsStore setAutoInstantHotspotMode:]",  a3);
+      [qword_100219F60 WFLog:@"%s: auto hotspot mode change disregarded, syncing not enabled (new value: %ld)" message:3,  "-[WiFiUserSettingsStore setAutoInstantHotspotMode:]",  a3];
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -181,7 +181,7 @@ LABEL_20:
   {
     objc_super v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ask to join mode change disregarded, syncing not enabled (new value: %ld)",  "-[WiFiUserSettingsStore setAskToJoinMode:]",  a3);
+      [qword_100219F60 WFLog:@"%s: ask to join mode change disregarded, syncing not enabled (new value: %ld)" message:3,  "-[WiFiUserSettingsStore setAskToJoinMode:]",  a3];
     }
     objc_autoreleasePoolPop(v7);
   }

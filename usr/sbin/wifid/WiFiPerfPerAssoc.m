@@ -127,7 +127,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ignoring hidden network",  "-[WiFiPerfPerAssoc _networkSuitableForCollection:]");
+      [qword_100219F60 WFLog:@"%s: ignoring hidden network" message:3 "%s: ignoring hidden network" "-[WiFiPerfPerAssoc _networkSuitableForCollection:]"];
     }
   }
 
@@ -135,7 +135,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ignoring home network",  "-[WiFiPerfPerAssoc _networkSuitableForCollection:]");
+      [qword_100219F60 WFLog:@"%s: ignoring home network" message:3];
     }
   }
 
@@ -143,7 +143,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ignoring work network",  "-[WiFiPerfPerAssoc _networkSuitableForCollection:]");
+      [qword_100219F60 WFLog:@"%s: ignoring work network" message:3];
     }
   }
 
