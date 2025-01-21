@@ -665,7 +665,7 @@
             _os_log_impl((void *)&_mh_execute_header, v14, OS_LOG_TYPE_DEFAULT, "Send cached button 0x%04X", buf, 8u);
           }
 
-          -[HIDAppleSiriRemoteDevice sendButtonDataToUserDevice:withTimestamp:]( v6,  "sendButtonDataToUserDevice:withTimestamp:",  (unsigned __int16)[v12 unsignedIntValue],  [v13 unsignedLongLongValue]);
+          -[HIDAppleSiriRemoteDevice sendButtonDataToUserDevice:withTimestamp:]( v6,  "sendButtonDataToUserDevice:withTimestamp:",  (unsigned __int16)[v12 unsignedIntValue],  objc_msgSend(v13, "unsignedLongLongValue"));
         }
 
         id v8 = [v7 countByEnumeratingWithState:&v17 objects:v23 count:16];
@@ -787,8 +787,8 @@
     v24.super_class = (Class)&OBJC_CLASS___HIDAppleSiriRemoteDevice;
     id v11 = -[HIDBluetoothDevice desiredConnectionParameters](&v24, "desiredConnectionParameters");
     uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(v11);
-    [v12 setPreferredPeripheralLatency:[self latency]];
-    [v12 setMaxPeripheralLatency:[self latency]];
+    objc_msgSend(v12, "setPreferredPeripheralLatency:", -[HIDAppleSiriRemoteDevice latency](self, "latency"));
+    objc_msgSend(v12, "setMaxPeripheralLatency:", -[HIDAppleSiriRemoteDevice latency](self, "latency"));
     [v12 setMinCELength:6];
     [v12 setMaxDeferment:1];
     LODWORD(v13) = 15.0;
@@ -824,7 +824,7 @@
     unsigned int v22 = (void *)objc_claimAutoreleasedReturnValue([v21 objectForKey:@"ConnectionTimeout"]);
 
     if (v22) {
-      [v12 setTimeout:[v21 integerForKey:@"ConnectionTimeout"]];
+      objc_msgSend(v12, "setTimeout:", objc_msgSend(v21, "integerForKey:", @"ConnectionTimeout"));
     }
   }
 
@@ -1447,7 +1447,7 @@ LABEL_19:
   unsigned int v9 = (char *)&v12 - ((unint64_t)(v7 + 16) & 0xFFFFFFFFFFFFFFF0LL);
   bzero(v9, (size_t)(v7 + 1));
   *unsigned int v9 = v4;
-  [v6 getBytes:v9 + 1 length:[v6 length]];
+  objc_msgSend(v6, "getBytes:length:", v9 + 1, objc_msgSend(v6, "length"));
 
   switch(v4)
   {
@@ -1521,7 +1521,7 @@ LABEL_19:
       id v21 = &v22[-v20];
       bzero(&v22[-v20], (size_t)v19);
       _BYTE *v21 = -32;
-      [v7 getBytes:v21 + 1 length:[v7 length]];
+      objc_msgSend(v7, "getBytes:length:", v21 + 1, objc_msgSend(v7, "length"));
       -[HIDAppleSiriRemoteDevice handleDeviceManagementData:dataLength:]( self,  "handleDeviceManagementData:dataLength:",  v21,  v19);
       break;
     default:
@@ -1532,7 +1532,7 @@ LABEL_19:
         id v13 = &v22[-v12];
         bzero(&v22[-v12], (size_t)v11);
         _BYTE *v13 = 96;
-        [v7 getBytes:v13 + 1 length:[v7 length]];
+        objc_msgSend(v7, "getBytes:length:", v13 + 1, objc_msgSend(v7, "length"));
         int v14 = (void *)objc_claimAutoreleasedReturnValue(-[HIDAppleSiriRemoteDevice touchData](self, "touchData"));
         [v14 setLength:0];
 

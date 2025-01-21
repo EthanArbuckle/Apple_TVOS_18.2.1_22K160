@@ -272,7 +272,7 @@ LABEL_9:
   v9 = objc_alloc_init(&OBJC_CLASS___NSMutableData);
   v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", &v13, 1LL));
   -[NSMutableData appendData:](v9, "appendData:", v10);
-  v11 = (void *)[v8 subdataWithRange:a4, a5];
+  v11 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v8, "subdataWithRange:", a4, a5));
 
   -[NSMutableData appendData:](v9, "appendData:", v11);
   return v9;
@@ -319,7 +319,7 @@ LABEL_9:
 - (unsigned)_extractHeader:(id)a3
 {
   unsigned __int8 v6 = 0;
-  v3 = (void *)[a3 subdataWithRange:0, 1];
+  v3 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(a3, "subdataWithRange:", 0, 1));
   [v3 getBytes:&v6 length:1];
   unsigned __int8 v4 = v6;
 
@@ -329,7 +329,7 @@ LABEL_9:
 - (id)_extractPayload:(id)a3
 {
   id v3 = a3;
-  unsigned __int8 v4 = (void *)[v3 subdataWithRange:1, [v3 length] - 1];
+  unsigned __int8 v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "subdataWithRange:", 1, (char *)objc_msgSend(v3, "length") - 1));
 
   return v4;
 }
@@ -526,7 +526,7 @@ LABEL_9:
     uint64_t v13 = (void *)objc_claimAutoreleasedReturnValue( +[CBUUID UUIDWithString:]( &OBJC_CLASS___CBUUID,  "UUIDWithString:",  CBUUIDDeviceInformationServiceString));
     uint64_t v14 = (void *)objc_claimAutoreleasedReturnValue([v12 clientServiceForUUID:v13]);
 
-    id v15 = [UARPAccessoryHardwareBluetooth initWithVendorIDSource:1 vendorID:[v14 vendorID] productID:[v14 productID] productVersion:[v14 productVersion]];
+    id v15 = objc_msgSend( [UARPAccessoryHardwareBluetooth alloc],  "initWithVendorIDSource:vendorID:productID:productVersion:",  1,  objc_msgSend(v14, "vendorID"),  objc_msgSend(v14, "productID"),  objc_msgSend(v14, "productVersion"));
     uint64_t v16 = objc_alloc(&OBJC_CLASS___UARPAccessory);
     uint64_t v17 = (void *)objc_claimAutoreleasedReturnValue([v8 identifier]);
     unsigned int v18 = -[UARPAccessory initWithHardwareID:uuid:](v16, "initWithHardwareID:uuid:", v15, v17);

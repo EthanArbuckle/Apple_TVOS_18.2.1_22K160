@@ -128,7 +128,7 @@
     goto LABEL_22;
   }
 
-  [v4 getBytes:&v36 range:4];
+  objc_msgSend(v4, "getBytes:range:", &v36, 4, 1);
   if (-[GenericSiriRemoteListener state](self, "state") == 4) {
     goto LABEL_22;
   }

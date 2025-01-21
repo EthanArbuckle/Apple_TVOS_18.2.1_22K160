@@ -200,7 +200,7 @@
   }
   uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(-[DoAPAudioRelay hub](self, "hub"));
   uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(+[NSString stringWithUTF8String:](&OBJC_CLASS___NSString, "stringWithUTF8String:", a3));
-  [v8 sendMsgIfCheckedIn:v9 args:v7 forClient:[self deviceType]];
+  objc_msgSend(v8, "sendMsgIfCheckedIn:args:forClient:", v9, v7, -[DoAPAudioRelay deviceType](self, "deviceType"));
 }
 
 - (DoAPAudioRelaySource)delegate

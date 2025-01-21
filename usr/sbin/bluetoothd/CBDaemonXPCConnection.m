@@ -2565,7 +2565,7 @@ LABEL_14:
       id v31 = v6;
       id v9 = objc_alloc_init(&OBJC_CLASS___CBControllerSettings);
       uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[CBDaemonServer stackController](self->_daemon, "stackController"));
-      [v9 setDiscoverableState:[v10 discoverableState]];
+      objc_msgSend(v9, "setDiscoverableState:", objc_msgSend(v10, "discoverableState"));
 
       uint64_t v11 = (void *)CFPreferencesCopyValue( @"move3PPLEMSToLegacyMode",  @"com.apple.bluetooth",  kCFPreferencesAnyUser,  kCFPreferencesCurrentHost);
       uint64_t v12 = objc_opt_class(&OBJC_CLASS___NSNumber);
@@ -3662,7 +3662,7 @@ LABEL_131:
       }
     }
 
-    [v4 invalidate:v14];
+    objc_msgSend(v4, "invalidate", v14);
     -[CBDaemonServer setTestAdvertiser:](self->_daemon, "setTestAdvertiser:", 0LL);
   }
 
@@ -3765,7 +3765,7 @@ LABEL_131:
       }
     }
 
-    [v4 invalidate:v7];
+    objc_msgSend(v4, "invalidate", v7);
     -[CBDaemonServer setTestDiscovery:](self->_daemon, "setTestDiscovery:", 0LL);
   }
 
@@ -6154,7 +6154,7 @@ LABEL_32:
             unsigned __int8 v14 = objc_autoreleasePoolPush();
             if ([v13 verifyAuthTag:v7 data:v140 type:2 error:0])
             {
-              [v154 setInternalFlags:[v154 internalFlags] | 8];
+              objc_msgSend(v154, "setInternalFlags:", objc_msgSend(v154, "internalFlags") | 8);
               [v154 updateWithRPIdentity:v13];
               unsigned int v15 = -[CBSpatialInteractionSession matchesWithDevice:](v135, "matchesWithDevice:", v154);
               if (self->_isHomePod)
@@ -6207,7 +6207,7 @@ LABEL_32:
               if (os_log_type_enabled(v19, OS_LOG_TYPE_DEBUG))
               {
                 id v29 = v140;
-                uint64_t v30 = CUPrintHex([v29 bytes], [v29 length], 32, 0);
+                uint64_t v30 = CUPrintHex([v29 bytes], objc_msgSend(v29, "length"), 32, 0);
                 uint64_t v31 = (void *)objc_claimAutoreleasedReturnValue(v30);
                 id v32 = (void *)objc_claimAutoreleasedReturnValue([v13 deviceIRKData]);
                 uint64_t v33 = CUPrintNSObjectMasked(v32);
@@ -6232,7 +6232,7 @@ LABEL_32:
             }
             {
               id v21 = v140;
-              uint64_t v22 = CUPrintHex([v21 bytes], [v21 length], 32, 0);
+              uint64_t v22 = CUPrintHex([v21 bytes], objc_msgSend(v21, "length"), 32, 0);
               uint64_t v23 = (void *)objc_claimAutoreleasedReturnValue(v22);
               char v24 = (void *)objc_claimAutoreleasedReturnValue([v13 deviceIRKData]);
               uint64_t v25 = CUPrintNSObjectMasked(v24);
@@ -6435,7 +6435,7 @@ LABEL_69:
 
             if (!v62)
             {
-              [v154 setSpatialInteractionPeerID:[v151 peerID]];
+              objc_msgSend(v154, "setSpatialInteractionPeerID:", objc_msgSend(v151, "peerID"));
               int v55 = 1;
               char obja = 1;
             }

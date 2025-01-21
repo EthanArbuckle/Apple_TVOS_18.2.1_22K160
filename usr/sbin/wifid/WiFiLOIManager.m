@@ -60,7 +60,7 @@ LABEL_7:
   {
     id v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null _dispatchQueue" message:3];
+      objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: null _dispatchQueue", "-[WiFiLOIManager init]");
     }
     objc_autoreleasePoolPop(v5);
     goto LABEL_7;
@@ -86,7 +86,7 @@ LABEL_8:
 - (int)queryLOITypeAtLatestLocation
 {
   uint64_t v3 = objc_autoreleasePoolPush();
-  id v4 = [[[WiFiLocationManager sharedWiFiLocationManager] latestLocation] copy];
+  id v4 = objc_msgSend( objc_msgSend( +[WiFiLocationManager sharedWiFiLocationManager]( WiFiLocationManager,  "sharedWiFiLocationManager"),  "latestLocation"),  "copy");
   if (v4)
   {
     id v5 = v4;
@@ -99,7 +99,7 @@ LABEL_8:
     {
       v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s Current location is stale" message:3 "-[WiFiLOIManager queryLOITypeAtLatestLocation]" ];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Current location is stale",  "-[WiFiLOIManager queryLOITypeAtLatestLocation]");
       }
       objc_autoreleasePoolPop(v9);
       int v6 = 0;
@@ -112,7 +112,7 @@ LABEL_8:
   {
     v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s Location unavailable for LOI query" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Location unavailable for LOI query",  "-[WiFiLOIManager queryLOITypeAtLatestLocation]");
     }
     objc_autoreleasePoolPop(v8);
     int v6 = 0;
@@ -139,7 +139,7 @@ LABEL_8:
   {
     v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s Location NULL" message:3 "-[WiFiLOIManager queryLOITypeAtLocationAndMaxDistance:andMaximumDistanceInMeters:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s Location NULL",  "-[WiFiLOIManager queryLOITypeAtLocationAndMaxDistance:andMaximumDistanceInMeters:]");
     }
     objc_autoreleasePoolPop(v10);
     int v8 = 0;
@@ -196,14 +196,14 @@ LABEL_8:
     v18[7] = &v23;
     v18[4] = v7;
     v18[5] = &v35;
-    [+[RTRoutineManager defaultManager] fetchLocationsOfInterestWithinDistance:a3 ofLocation:v18 withHandler:a4];
+    objc_msgSend( +[RTRoutineManager defaultManager](RTRoutineManager, "defaultManager"),  "fetchLocationsOfInterestWithinDistance:ofLocation:withHandler:",  a3,  v18,  a4);
     dispatch_time_t v8 = dispatch_time(0LL, 6000000000LL);
     if (dispatch_semaphore_wait(v7, v8))
     {
       *((_BYTE *)v24 + 24) = 1;
       v9 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s gave up waiting for a CoreRoutine. Bailing to avoid a hang" message:3 "%s gave up waiting for a CoreRoutine. Bailing to avoid a hang" "-[WiFiLOIManager query:andMaximumDistanceInMeters:]"];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s gave up waiting for a CoreRoutine. Bailing to avoid a hang",  "-[WiFiLOIManager query:andMaximumDistanceInMeters:]");
       }
       objc_autoreleasePoolPop(v9);
     }
@@ -217,14 +217,14 @@ LABEL_8:
     v17[5] = &v27;
     v17[6] = &v19;
     v17[4] = v10;
-    [+[RTRoutineManager defaultManager] fetchLocationsOfInterestVisitedSinceDate:[NSDate dateWithTimeIntervalSince1970:0.0] withHandler:v17];
+    objc_msgSend( +[RTRoutineManager defaultManager](RTRoutineManager, "defaultManager"),  "fetchLocationsOfInterestVisitedSinceDate:withHandler:",  +[NSDate dateWithTimeIntervalSince1970:](NSDate, "dateWithTimeIntervalSince1970:", 0.0),  v17);
     dispatch_time_t v11 = dispatch_time(0LL, 6000000000LL);
     if (dispatch_semaphore_wait(v10, v11))
     {
       *((_BYTE *)v20 + 24) = 1;
       v12 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s gave up waiting for a CoreRoutine. Bailing to avoid a hang" message:3 "%s gave up waiting for a CoreRoutine. Bailing to avoid a hang" "-[WiFiLOIManager query:andMaximumDistanceInMeters:]"];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s gave up waiting for a CoreRoutine. Bailing to avoid a hang",  "-[WiFiLOIManager query:andMaximumDistanceInMeters:]");
       }
       objc_autoreleasePoolPop(v12);
     }
@@ -234,7 +234,7 @@ LABEL_8:
 
   else if (qword_100219F60)
   {
-    [qword_100219F60 WFLog:@"%s location required to query CR LOIs with" message:3 "-[WiFiLOIManager query:andMaximumDistanceInMeters:]"];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s location required to query CR LOIs with",  "-[WiFiLOIManager query:andMaximumDistanceInMeters:]");
   }
 
   objc_autoreleasePoolPop(v6);

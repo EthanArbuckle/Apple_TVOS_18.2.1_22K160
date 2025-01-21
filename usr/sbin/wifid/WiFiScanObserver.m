@@ -50,7 +50,7 @@
     v13 = objc_alloc_init(&OBJC_CLASS___NSMutableSet);
     v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: ingested %lu networks" message:3,  "-[WiFiScanObserver ingestScanResults:ofType:clientName:directed:]",  [a3 count]];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: ingested %lu networks",  "-[WiFiScanObserver ingestScanResults:ofType:clientName:directed:]",  objc_msgSend(a3, "count"));
     }
     objc_autoreleasePoolPop(v14);
     __int128 v37 = 0u;
@@ -88,7 +88,7 @@
     {
       v27 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: no networks to provide" message:3 "-[WiFiScanObserver ingestScanResults:ofType:clientName:directed:]"];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no networks to provide",  "-[WiFiScanObserver ingestScanResults:ofType:clientName:directed:]");
       }
       objc_autoreleasePoolPop(v27);
       v11 = v30;

@@ -284,7 +284,7 @@
   id v21 = v13;
   v22 = (const char *)[v21 UTF8String];
   id v23 = v15;
-  printf( "%s%s hw:'%s' name:'%s' serial: '%s' os:'%s' epoch:%d\n",  v25,  v24,  v18,  v20,  v22,  (const char *)[v23 UTF8String],  [v26 intValue]);
+  printf( "%s%s hw:'%s' name:'%s' serial: '%s' os:'%s' epoch:%d\n",  v25,  v24,  v18,  v20,  v22,  (const char *)[v23 UTF8String],  objc_msgSend(v26, "intValue"));
 }
 
 - (void)printCRKWithPeer:(id)a3 information:(id)a4 prefix:(id)a5
@@ -869,7 +869,7 @@ LABEL_9:
                     }
                     id v30 = *(void **)(*((void *)&v45 + 1) + 8LL * (void)j);
                     id v31 = objc_claimAutoreleasedReturnValue([v13 recordId]);
-                    printf( "%s has recoverable view: %s\n", (const char *)[v31 UTF8String], (const char *)[v30 UTF8String]);
+                    printf( "%s has recoverable view: %s\n", (const char *)[v31 UTF8String], (const char *)objc_msgSend(v30, "UTF8String"));
                   }
 
                   id v27 = [v18 countByEnumeratingWithState:&v45 objects:v55 count:16];

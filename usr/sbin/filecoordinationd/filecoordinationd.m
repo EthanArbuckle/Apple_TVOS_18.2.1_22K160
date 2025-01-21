@@ -9,12 +9,12 @@ int main(int argc, const char **argv, const char **envp)
   -[NSXPCListener setDelegate:](v3, "setDelegate:", mainArbiter);
   -[NSXPCListener resume](v3, "resume");
   v4 = -[NSXPCListener initWithMachServiceName:]( objc_alloc(&OBJC_CLASS___NSXPCListener),  "initWithMachServiceName:",  @"com.apple.ProgressReporting");
-  -[NSXPCListener setDelegate:[objc_alloc(NSClassFromString(@"NSProgressRegistrar")) initWithQueue:&_dispatch_main_q rootFileAccessNode:[mainArbiter rootNode]]];
+  -[NSXPCListener setDelegate:]( v4,  "setDelegate:",  objc_msgSend( objc_alloc(NSClassFromString(@"NSProgressRegistrar")),  "initWithQueue:rootFileAccessNode:",  &_dispatch_main_q,  objc_msgSend((id)mainArbiter, "rootNode")));
   -[NSXPCListener resume](v4, "resume");
   dispatch_main();
 }
 
 id objc_msgSend_setDelegate_(void *a1, const char *a2, ...)
 {
-  return [a1 setDelegate:];
+  return objc_msgSend(a1, "setDelegate:");
 }

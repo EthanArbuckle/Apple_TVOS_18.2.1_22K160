@@ -40,7 +40,7 @@
   {
     v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: super-init failed!" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: super-init failed!",  "-[WiFiSoftErrorContext initWithErrorType:deviceContext:]");
     }
     objc_autoreleasePoolPop(v14);
   }
@@ -72,7 +72,7 @@
       if (qword_100219F60)
       {
         context = v7;
-        [qword_100219F60 WFLog:@"%s: Couldn't allocate contextData" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Couldn't allocate contextData",  "-[WiFiSoftErrorContext fetchSoftErrorContextData]");
         v7 = context;
       }
 

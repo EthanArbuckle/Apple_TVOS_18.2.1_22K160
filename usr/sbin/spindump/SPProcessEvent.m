@@ -843,8 +843,8 @@ LABEL_3:
 
   -[SASamplePrinter setHeaderNote:]( v6,  "setHeaderNote:",  sub_10006E098((int)-[SASamplePrintOptions printHeavyStacks](self->_printOptions, "printHeavyStacks"), v7));
 LABEL_19:
-  [v6 options].setPrintTargetThreadOnly:self->_headerOnly;
-  [v6 setShareWithAppDevs:AppAnalyticsEnabled([v6 options] setDisplayFooter:!self->_headerOnly)];
+  objc_msgSend(-[SASamplePrinter options](v6, "options"), "setPrintTargetThreadOnly:", self->_headerOnly);
+  -[SASamplePrinter setShareWithAppDevs:]( v6,  "setShareWithAppDevs:",  AppAnalyticsEnabled(objc_msgSend(-[SASamplePrinter options](v6, "options"), "setDisplayFooter:", !self->_headerOnly)));
   if (*(_OWORD *)&self->_startTimeIndex == 0LL)
   {
     if (*(_OWORD *)&self->_reportTimeStart != 0LL) {
@@ -857,7 +857,7 @@ LABEL_19:
     -[SASamplePrinter filterToDisplayTimeIndexStart:end:](v6, "filterToDisplayTimeIndexStart:end:");
   }
 
-  [v6 options].setForceOneBasedTimeIndexes:self->_forceOneBasedTimeIndexes;
+  objc_msgSend( -[SASamplePrinter options](v6, "options"),  "setForceOneBasedTimeIndexes:",  self->_forceOneBasedTimeIndexes);
   if (self->_incidentUUID) {
     -[SASamplePrinter setIncidentUUID:](v6, "setIncidentUUID:");
   }
@@ -869,7 +869,7 @@ LABEL_19:
   int v7 = objc_autoreleasePoolPush();
   -[SPProcessEvent _setupSampleStore:](self, "_setupSampleStore:", a4);
   if (self->_includeTextualFormatInReport) {
-    [ -[SPProcessEvent _samplePrinterForSampleStore:](self, "_samplePrinterForSampleStore:", a4) printToStream:a3];
+    objc_msgSend( -[SPProcessEvent _samplePrinterForSampleStore:](self, "_samplePrinterForSampleStore:", a4),  "printToStream:",  a3);
   }
   if (self->_includeBinaryFormatInReport)
   {

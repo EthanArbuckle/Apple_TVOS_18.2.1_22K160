@@ -27,7 +27,7 @@
   __int128 v23 = 0u;
   __int128 v24 = 0u;
   __int128 v25 = 0u;
-  id v4 = [[self mutableFields] allValues];
+  id v4 = objc_msgSend(-[WAMessageAWD mutableFields](self, "mutableFields"), "allValues");
   id v5 = [v4 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v5)
   {
@@ -91,7 +91,7 @@ LABEL_22:
                 id v16 = objc_msgSend(objc_msgSend(v10, "repeatableValues"), "objectAtIndex:", v15);
                 uint64_t v17 = objc_opt_class(&OBJC_CLASS___WAMessageAWD);
                 if ((objc_opt_isKindOfClass(v16, v17) & 1) != 0) {
-                  [v14 addObject:[v16 dictionaryRepresentation]];
+                  objc_msgSend(v14, "addObject:", objc_msgSend(v16, "dictionaryRepresentation"));
                 }
                 ++v15;
               }
@@ -99,7 +99,7 @@ LABEL_22:
               while (v15 < (unint64_t)objc_msgSend(objc_msgSend(v10, "repeatableValues"), "count"));
             }
 
-            [v3 setValue:v14 forKey:[v10 key]];
+            objc_msgSend(v3, "setValue:forKey:", v14, objc_msgSend(v10, "key"));
             self = v13;
             v7 = v12;
             id v4 = v21;
@@ -109,7 +109,7 @@ LABEL_22:
           {
             v11 = (NSNumber *)objc_msgSend(objc_msgSend(v10, "subMessageValue"), "dictionaryRepresentation");
 LABEL_23:
-            [v3 setValue:v11 forKey:[v10 key]];
+            objc_msgSend(v3, "setValue:forKey:", v11, objc_msgSend(v10, "key"));
           }
 
 @end

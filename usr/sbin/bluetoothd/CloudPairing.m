@@ -2293,7 +2293,7 @@ LABEL_479:
   __int128 v8 = (os_log_s *)(id)qword_1008F7588;
   if (os_log_type_enabled(v8, OS_LOG_TYPE_DEFAULT))
   {
-    id v9 = [v7 componentsJoinedByString:@", "];
+    id v9 = objc_claimAutoreleasedReturnValue(objc_msgSend(v7, "componentsJoinedByString:", @", "));
     *(_DWORD *)buf = 136315138;
     *(void *)&uint8_t buf[4] = [v9 UTF8String];
     _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "Locally paired iCloud identifiers: [ %s ]",  buf,  0xCu);
@@ -2302,7 +2302,7 @@ LABEL_479:
   BOOL v10 = (os_log_s *)(id)qword_1008F7588;
   if (os_log_type_enabled(v10, OS_LOG_TYPE_DEFAULT))
   {
-    id v11 = [v6 componentsJoinedByString:@","];
+    id v11 = objc_claimAutoreleasedReturnValue(objc_msgSend(v6, "componentsJoinedByString:", @", "));
     id v12 = [v11 UTF8String];
     *(_DWORD *)buf = 136315138;
     *(void *)&uint8_t buf[4] = v12;

@@ -10230,7 +10230,7 @@ uint64_t sub_100018E28(uint64_t a1, void *a2)
   id v4 = [(id)qword_1001616E8 objectForKey:v3];
   if (v4)
   {
-    memcpy(a2, [v4 bytes], (size_t)[v4 length]);
+    memcpy(a2, [v4 bytes], (size_t)objc_msgSend(v4, "length"));
     return 0LL;
   }
 
@@ -20033,5 +20033,5 @@ void sub_10002D884(void *a1, os_log_s *a2)
 
 id objc_msgSend_stringWithUTF8String_(void *a1, const char *a2, ...)
 {
-  return [a1 stringWithUTF8String:];
+  return objc_msgSend(a1, "stringWithUTF8String:");
 }

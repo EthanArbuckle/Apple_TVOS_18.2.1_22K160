@@ -166,7 +166,7 @@
     id v11 = -[NSDictionary objectForKey:](self->_roamScanStart, "objectForKey:", @"ROAM_SCAN_REASON");
     v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:3, "%s: Status:%u Reason:%d (%@)", "-[WiFiRoamManager setRoamStart:forInterface:]", (unint64_t)[v10 unsignedIntValue] & 0x1FF, (unint64_t)[v11 unsignedIntValue] & 0x1FF, +[WiFiRoamManager stringRepresentationWithReason:]( WiFiRoamManager, "stringRepresentationWithReason:", [v11 unsignedIntValue]) message];
+      [(id)qword_100219F60 WFLog:3, "%s: Status:%u Reason:%d (%@)", "-[WiFiRoamManager setRoamStart:forInterface:]", (unint64_t)objc_msgSend(v10, "unsignedIntValue") & 0x1FF, (unint64_t)objc_msgSend(v11, "unsignedIntValue") & 0x1FF, +[WiFiRoamManager stringRepresentationWithReason:]( WiFiRoamManager, "stringRepresentationWithReason:", objc_msgSend(v11, "unsignedIntValue")) message];
     }
     objc_autoreleasePoolPop(v12);
     -[WiFiUsageMonitor setRoamingState:withReason:asString:andStatus:asString:andLatency:andRoamData:andPingPongSequence:forInterface:]( +[WiFiUsageMonitor sharedInstance](WiFiUsageMonitor, "sharedInstance"),  "setRoamingState:withReason:asString:andStatus:asString:andLatency:andRoamData:andPingPongSequence:forInterface:",  1,  [v11 unsignedIntValue],  +[WiFiRoamManager stringRepresentationWithReason:]( WiFiRoamManager,  "stringRepresentationWithReason:",  objc_msgSend(v11, "unsignedIntValue")),  objc_msgSend(v10, "unsignedIntValue"),  +[WiFiRoamManager stringRepresentationWithStatus:]( WiFiRoamManager,  "stringRepresentationWithStatus:",  objc_msgSend(v10, "unsignedIntValue")),  0,  self->_roamScanStart,  0,  a4);
@@ -210,7 +210,7 @@
             if (*(void *)v38 != v12) {
               objc_enumerationMutation(obj);
             }
-            [v36 appendFormat:@" {%@, %@, %@, %@} ", [v37 objectForKey:@"BSSID"], [v37 objectForKey:@"RSSI"], [v37 objectForKey:@"CHANNEL"], [v37 objectForKey:@"CHANNEL_FLAGS"]];
+            [v36 appendFormat:@" {%@, %@, %@, %@} ", objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"BSSID"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"RSSI"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"CHANNEL"), objc_msgSend(*(id *)(*((void *)&v37 + 1) + 8 * (void)i), "objectForKey:", @"CHANNEL_FLAGS")];
           }
 
           id v11 = [obj countByEnumeratingWithState:&v37 objects:v41 count:16];
@@ -233,7 +233,7 @@
     if (qword_100219F60)
     {
       v14 = v34;
-      [qword_100219F60 WFLog:3, "%s: Rssi: %d Count: %d Age: %d LastStatus: %d Reason: %d Flags:%lX RoamCache: %lu - %@", "-[WiFiRoamManager setRoamEndState:forInterface:]", [v34->_roamState objectForKey:@"RSSI"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_COUNT"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_AGE"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_LAST_STATUS"] unsignedIntValue], [v34->_roamState objectForKey:@"ROAM_SCAN_REASON"] unsignedIntValue], [v16 unsignedIntegerValue], v31, v36 message];
+      [(id)qword_100219F60 WFLog:3, "%s: Rssi: %d Count: %d Age: %d LastStatus: %d Reason: %d Flags:%lX RoamCache: %lu - %@", "-[WiFiRoamManager setRoamEndState:forInterface:]", objc_msgSend(-[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"RSSI"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_COUNT"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_AGE"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_LAST_STATUS"), "unsignedIntValue"), objc_msgSend( -[NSDictionary objectForKey:](v34->_roamState, "objectForKey:", @"ROAM_SCAN_REASON"), "unsignedIntValue"), objc_msgSend(v16, "unsignedIntegerValue"), v31, v36 message];
     }
 
     objc_autoreleasePoolPop(v20);
@@ -306,7 +306,7 @@
     +[NSDate timeIntervalSinceReferenceDate](&OBJC_CLASS___NSDate, "timeIntervalSinceReferenceDate");
     self->_roamScanEndTimestamp = v11;
     id v12 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_TIME_STARTED");
-    v13 = [[self->_roamStatus objectForKey:@"ROAMEDEVENT_TIME_ENDED"] unsignedLongValue];
+    v13 = objc_msgSend( -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_TIME_ENDED"),  "unsignedLongValue");
     v14 = [v12 unsignedLongValue];
     id v15 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_STATUS");
     id v32 = -[NSDictionary objectForKey:](self->_roamStatus, "objectForKey:", @"ROAMEDEVENT_REASON");
@@ -420,7 +420,7 @@
   objc_super v3 = objc_autoreleasePoolPush();
   id v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"-[WiFiRoamManager reset]"];
+    objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s", "-[WiFiRoamManager reset]");
   }
   objc_autoreleasePoolPop(v4);
 
@@ -474,7 +474,7 @@
   {
     double v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Not allowed for environment:%ld" message:4 v39];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Not allowed for environment:%ld",  "-[WiFiRoamManager allowRoam]",  -[WiFiRoamManager bssEnvironment](self, "bssEnvironment"),  v39);
     }
     goto LABEL_10;
   }
@@ -484,7 +484,7 @@
   {
     __int128 v37 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Not allowed as link not up" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Not allowed as link not up",  "-[WiFiRoamManager allowRoam]");
     }
     goto LABEL_35;
   }
@@ -493,7 +493,7 @@
   {
     __int128 v37 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Not allowed as awdl realtime traffic active" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Not allowed as awdl realtime traffic active",  "-[WiFiRoamManager allowRoam]");
     }
     goto LABEL_35;
   }
@@ -502,7 +502,7 @@
   {
     __int128 v37 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Not allowed as IP addr hasn't been assigned yet" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Not allowed as IP addr hasn't been assigned yet",  "-[WiFiRoamManager allowRoam]");
     }
 LABEL_35:
     id v15 = v37;
@@ -525,7 +525,7 @@ LABEL_35:
     {
       BOOL v27 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: Resetting window" message:3];
+        objc_msgSend((id)qword_100219F60, "WFLog:message:", 3, "%s: Resetting window", "-[WiFiRoamManager allowRoam]");
       }
       objc_autoreleasePoolPop(v27);
       -[WiFiRoamManager setWindowTimestamp:](self, "setWindowTimestamp:", v7);
@@ -605,7 +605,7 @@ LABEL_35:
     double v38 = v7 - v13;
     v14 = "%s: Not allowed as link up was %2.2f sec ago";
 LABEL_9:
-    [v12 WFLog:3 v14:@"-[WiFiRoamManager allowRoam]" *(void *)&v38 v39];
+    objc_msgSend(v12, "WFLog:message:", 3, v14, "-[WiFiRoamManager allowRoam]", *(void *)&v38, v39);
   }
 
 - (BOOL)roamWithReason:(unint64_t)a3 bandPreference:(int)a4
@@ -616,7 +616,7 @@ LABEL_9:
   {
     double v13 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"Invalid band preference: %d. Exiting" message:0];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Invalid band preference: %d. Exiting",  "-[WiFiRoamManager roamWithReason:bandPreference:]",  0);
     }
     objc_autoreleasePoolPop(v13);
     goto LABEL_10;
@@ -631,7 +631,7 @@ LABEL_10:
 
   double v8 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: Host triggered roam allowed for reason: %lu with bandPref: %d " message:3,  "-[WiFiRoamManager roamWithReason:bandPreference:]",  a3,  v4];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Host triggered roam allowed for reason: %lu with bandPref: %d ",  "-[WiFiRoamManager roamWithReason:bandPreference:]",  a3,  v4);
   }
   objc_autoreleasePoolPop(v8);
   -[WiFiRoamManager setLastHostTriggeredRoamReason:](self, "setLastHostTriggeredRoamReason:", a3);
@@ -691,13 +691,13 @@ LABEL_6:
     goto LABEL_44;
   }
 
-  unsigned int v29 = [[self->_roamState objectForKey:@"RSSI"] unsignedIntValue];
+  unsigned int v29 = objc_msgSend( -[NSDictionary objectForKey:](self->_roamState, "objectForKey:", @"RSSI"),  "unsignedIntValue");
   id v7 = -[NSDictionary objectForKey:](self->_roamState, "objectForKey:", @"ROAM_CACHE");
   if (!v7)
   {
     double v25 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: no roam cache" message:4];
+      objc_msgSend((id)qword_100219F60, "WFLog:message:", 4, "%s: no roam cache", "-[WiFiRoamManager detectLateRoam]");
     }
     objc_autoreleasePoolPop(v25);
     goto LABEL_42;
@@ -751,7 +751,7 @@ LABEL_42:
       {
         double v17 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: Roam candidate %d has weak RSSI %d " message:3 v13 + v11 v16];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Roam candidate %d has weak RSSI %d ",  "-[WiFiRoamManager detectLateRoam]",  (char *)v13 + v11,  v16);
         }
 LABEL_19:
         objc_autoreleasePoolPop(v17);
@@ -822,7 +822,7 @@ LABEL_29:
   __int128 v23 = 0u;
   __int128 v24 = 0u;
   __int128 v25 = 0u;
-  id v10 = [self->_previousRoams reverseObjectEnumerator].allObjects;
+  id v10 = objc_msgSend( -[NSMutableArray reverseObjectEnumerator](self->_previousRoams, "reverseObjectEnumerator"),  "allObjects");
   id v11 = [v10 countByEnumeratingWithState:&v22 objects:v26 count:16];
   if (v11)
   {

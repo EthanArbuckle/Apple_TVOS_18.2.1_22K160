@@ -7908,11 +7908,11 @@ void ___http_task_create_data_task_block_invoke(void *a1)
     [v3 setURLCache:0];
     [v3 setURLCredentialStorage:0];
     id v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSSet setWithObjects:]( &OBJC_CLASS___NSSet,  "setWithObjects:",  @"User-Agent",  @"Accept-Language",  0LL));
-    [v3 set_suppressedAutoAddedHTTPHeaders:v4];
+    objc_msgSend(v3, "set_suppressedAutoAddedHTTPHeaders:", v4);
 
-    [v3 set_allowsTLSSessionTickets:1];
-    [v3 set_allowsTCPFastOpen:1];
-    [v3 set_disableAPWakeOnIdleConnections:1];
+    objc_msgSend(v3, "set_allowsTLSSessionTickets:", 1);
+    objc_msgSend(v3, "set_allowsTCPFastOpen:", 1);
+    objc_msgSend(v3, "set_disableAPWakeOnIdleConnections:", 1);
     id v5 = objc_alloc_init(&OBJC_CLASS___NSOperationQueue);
     if (_mdns_resolver_queue_s_once != -1) {
       dispatch_once(&_mdns_resolver_queue_s_once, &__block_literal_global_138);
@@ -7986,7 +7986,7 @@ void *http_task_create_pvd_query(void *a1, uint64_t a2, uint64_t a3, void *a4)
   if (v17 && v25[5])
   {
     CFIndex v18 = (void *)nw_activity_create(33LL, 3LL);
-    [v17 set_nw_activity:v18];
+    objc_msgSend(v17, "set_nw_activity:", v18);
   }
 
   _Block_object_dispose(&v24, 8);
@@ -46728,7 +46728,7 @@ void _mdns_ne_dns_proxy_state_watch_check_for_collective_state_change()
         if (*(void *)v14 != v5) {
           objc_enumerationMutation(v1);
         }
-        unsigned int v7 = [*(id *)(*((void *)&v13 + 1) + 8 * (void)i) unsignedIntValue:v13];
+        unsigned int v7 = objc_msgSend( *(id *)(*((void *)&v13 + 1) + 8 * (void)i),  "unsignedIntValue",  (void)v13);
         if (v7)
         {
           if (v7 == 2)
@@ -70134,7 +70134,7 @@ uint64_t _unicast_assist_data_to_addr(void *a1, int *a2)
     int v4 = 4;
 LABEL_5:
     id v5 = v3;
-    memcpy(a2 + 1, [v5 bytes], (size_t)[v5 length]);
+    memcpy(a2 + 1, [v5 bytes], (size_t)objc_msgSend(v5, "length"));
     uint64_t v6 = 0LL;
     *a2 = v4;
     goto LABEL_9;

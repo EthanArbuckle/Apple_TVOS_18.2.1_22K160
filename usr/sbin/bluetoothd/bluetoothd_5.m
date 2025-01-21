@@ -2868,7 +2868,7 @@ uint64_t sub_100239230(uint64_t a1, uint64_t a2, uint64_t a3, void *a4)
             [v105 setObject:v57 forKeyedSubscript:@"UtpConnected"];
 
             v58 = @"UNKNOWN";
-            [v105 setObject:v58 forKeyedSubscript:@"AudioState" v102];
+            objc_msgSend(v105, "setObject:forKeyedSubscript:", v58, @"AudioState", v102);
             v59 = (void *)objc_claimAutoreleasedReturnValue( +[NSNumber numberWithUnsignedChar:]( &OBJC_CLASS___NSNumber,  "numberWithUnsignedChar:",  __p[18]));
             [v105 setObject:v59 forKeyedSubscript:@"PendingCrashReport"];
 
@@ -11293,7 +11293,7 @@ uint64_t sub_100247BC4(uint64_t a1)
                 objc_enumerationMutation(v7);
               }
               id v11 = *(void **)(*((void *)&v25 + 1) + 8LL * (void)v10);
-              unsigned int v12 = (void *)[v11 identifier:v21];
+              unsigned int v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v11, "identifier", v21));
               unsigned __int8 v13 = [v2 containsObject:v12];
 
               if ((v13 & 1) == 0)
@@ -35214,7 +35214,7 @@ uint64_t sub_1002753CC(uint64_t a1)
     *(int64x2_t *)(a1 + 56) = v5;
     uint64_t v6 = *(void **)(a1 + 80);
     id v18 = 0LL;
-    uint64_t v7 = (const char *)[v6 addUserFilteredClockWithMachInterval:*(_OWORD *)&v5 domainInterval:4 filterShift:0 isAdaptive:&v18 error:];
+    uint64_t v7 = (const char *)objc_msgSend( v6,  "addUserFilteredClockWithMachInterval:domainInterval:usingFilterShift:isAdaptive:error:",  *(_OWORD *)&v5,  4,  0,  &v18);
     id v2 = v18;
     *(void *)(a1 + sub_100242E28(v1 + 96) = v7;
     int v8 = (os_log_s *)qword_1008F7570;
@@ -37309,7 +37309,7 @@ void sub_10027B07C(uint64_t a1, void *a2, int a3)
     id v8 = v5;
     id v19 = v8;
     dispatch_block_t v9 = dispatch_block_create(DISPATCH_BLOCK_ASSIGN_CURRENT, &v15);
-    uint64_t v10 = (void *)[*(id *)(a1 + 304) objectForKey:v8, v15, v16, v17, v18];
+    uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 304), "objectForKey:", v8, v15, v16, v17, v18));
     id v11 = v10;
     if (v10) {
       dispatch_block_cancel(v10);
@@ -41022,7 +41022,7 @@ void sub_100281810(uint64_t a1, unint64_t a2, void *a3, void *a4)
     if (v15)
     {
       int v16 = (void *)objc_claimAutoreleasedReturnValue([v10[27] objectForKeyedSubscript:v7]);
-      [v16 setOpportunistic:[v8 opportunistic]];
+      objc_msgSend(v16, "setOpportunistic:", objc_msgSend(v8, "opportunistic"));
       [v10[27] removeObjectForKey:v7];
       sub_100391320((uint64_t)v10, a2, v7, v16);
       sub_100278BE4(a1);
@@ -41034,7 +41034,7 @@ void sub_100281810(uint64_t a1, unint64_t a2, void *a3, void *a4)
     if (v17)
     {
       int v16 = (void *)objc_claimAutoreleasedReturnValue([v10[28] objectForKeyedSubscript:v7]);
-      [v16 setOpportunistic:[v8 opportunistic]];
+      objc_msgSend(v16, "setOpportunistic:", objc_msgSend(v8, "opportunistic"));
       [v10[28] setObject:v16 forKeyedSubscript:v7];
 LABEL_19:
 
@@ -42828,7 +42828,7 @@ void sub_1002844D8(uint64_t a1, void *a2, unsigned int a3, unsigned int a4, int 
                   if (*(void *)v81 != v31) {
                     objc_enumerationMutation(v29);
                   }
-                  uint64_t v33 = (void *)[*(id *)(v28 + 216) objectForKeyedSubscript:*(void *)(*((void *)&v80 + 1) + 8 * (void)i) v61];
+                  uint64_t v33 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(v28 + 216),  "objectForKeyedSubscript:",  *(void *)(*((void *)&v80 + 1) + 8 * (void)i),  v61));
                   [v33 removeObjectForKey:v7];
                 }
 
@@ -49340,7 +49340,7 @@ void sub_10028F93C(uint64_t a1)
                   objc_enumerationMutation(obja);
                 }
                 id v143 = *(id *)(*((void *)&v181 + 1) + 8LL * (void)v21);
-                uint64_t v22 = (void *)[v11[27] objectForKeyedSubscript:];
+                uint64_t v22 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v11[27], "objectForKeyedSubscript:"));
                 uint64_t v23 = (os_log_s *)qword_1008F7628;
                 if (os_log_type_enabled((os_log_t)qword_1008F7628, OS_LOG_TYPE_DEFAULT))
                 {
@@ -49893,7 +49893,7 @@ void sub_10028F93C(uint64_t a1)
     _os_log_impl( (void *)&_mh_execute_header,  v94,  OS_LOG_TYPE_DEFAULT,  "statedump: Apps Interested in FindMy devices:",  buf,  2u);
   }
 
-  [*(id *)(a1 + 320) enumerateKeysAndObjectsUsingBlock:&stru_10088BA80];
+  objc_msgSend(*(id *)(a1 + 320), "enumerateKeysAndObjectsUsingBlock:", &stru_10088BA80, v132);
   __int16 v95 = (os_log_s *)qword_1008F7628;
   if (os_log_type_enabled((os_log_t)qword_1008F7628, OS_LOG_TYPE_DEFAULT))
   {

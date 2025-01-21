@@ -140,7 +140,7 @@ void sub_100068B18(_Unwind_Exception *a1)
 void sub_100068B7C(uint64_t a1, void *a2)
 {
   id v3 = a2;
-  [*(id *)(a1 + 40) removeObject:];
+  objc_msgSend(*(id *)(a1 + 40), "removeObject:");
   if (*(_BYTE *)(a1 + 48) && ![*(id *)(a1 + 40) count])
   {
     if (dword_1008D66A0 <= 30
@@ -257,7 +257,7 @@ void sub_100069E30(uint64_t a1)
     uint64_t v5 = *(void **)(v6 + 8);
     uint64_t v7 = CBErrorF(4294960574LL, "Timed out");
     id v8 = (id)objc_claimAutoreleasedReturnValue(v7);
-    [v5 _connectDeviceCompleteRequest:v4];
+    objc_msgSend(v5, "_connectDeviceCompleteRequest:error:", v4);
   }
 
 void sub_100069EBC( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)
@@ -464,7 +464,7 @@ void sub_10006D764(uint64_t a1)
     uint64_t v5 = *(void **)(v6 + 8);
     uint64_t v7 = CBErrorF(4294960574LL, "Timed out");
     id v8 = (id)objc_claimAutoreleasedReturnValue(v7);
-    [v5 _modifyDeviceCompleteRequest:v4];
+    objc_msgSend(v5, "_modifyDeviceCompleteRequest:error:", v4);
   }
 
 void sub_10006D7F0( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)
@@ -1866,7 +1866,7 @@ void sub_10007124C(uint64_t a1)
     uint64_t v5 = *(void **)(v6 + 8);
     uint64_t v7 = CBErrorF(4294960574LL, "Timed out");
     id v8 = (id)objc_claimAutoreleasedReturnValue(v7);
-    [v5 _completePerformDeviceRequest:v4];
+    objc_msgSend(v5, "_completePerformDeviceRequest:error:", v4);
   }
 
 void sub_1000712D8( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)
@@ -3491,7 +3491,7 @@ void sub_10007799C( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a
 void sub_100077A7C(uint64_t a1, void *a2)
 {
   id v3 = a2;
-  [*(id *)(a1 + 24) removeObject:];
+  objc_msgSend(*(id *)(a1 + 24), "removeObject:");
   if (*(_BYTE *)(a1 + 32) && ![*(id *)(a1 + 24) count])
   {
     if (dword_1008D67F0 <= 30
@@ -4019,7 +4019,7 @@ void sub_100079878( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a
 void sub_10007988C(uint64_t a1, void *a2)
 {
   id v3 = a2;
-  [*(id *)(a1 + 8) removeObject:];
+  objc_msgSend(*(id *)(a1 + 8), "removeObject:");
   if (*(_BYTE *)(a1 + 16) && ![*(id *)(a1 + 8) count])
   {
     if (qword_1008D5F10 != -1) {

@@ -108,14 +108,14 @@ LABEL_5:
   -[WiFiUserInteractionMonitorNetworkAgent setAssertCount:]( self,  "setAssertCount:",  (char *)-[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount") + 1);
   id v6 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: received AVC assert, assertCount=%lu" message:3, "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]", -[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount")];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: received AVC assert, assertCount=%lu",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]",  -[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount"));
   }
   objc_autoreleasePoolPop(v6);
   if (!v4)
   {
     v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null userInfo" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null userInfo",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
     }
     goto LABEL_18;
   }
@@ -125,7 +125,7 @@ LABEL_5:
   {
     v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null clientUUID" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null clientUUID",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
     }
 LABEL_18:
     objc_autoreleasePoolPop(v17);
@@ -143,7 +143,7 @@ LABEL_18:
   {
     v18 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null clientPath" message:3 "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null clientPath",  "-[WiFiUserInteractionMonitorNetworkAgent assertAgentWithOptions:]");
     }
     objc_autoreleasePoolPop(v18);
   }
@@ -178,7 +178,7 @@ LABEL_8:
   }
   id v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: received AVC unassert, assertCount=%lu" message:3, "-[WiFiUserInteractionMonitorNetworkAgent unassertAgentWithOptions:]", -[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount")];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: received AVC unassert, assertCount=%lu",  "-[WiFiUserInteractionMonitorNetworkAgent unassertAgentWithOptions:]",  -[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount"));
   }
   objc_autoreleasePoolPop(v4);
   if (!-[WiFiUserInteractionMonitorNetworkAgent assertCount](self, "assertCount"))

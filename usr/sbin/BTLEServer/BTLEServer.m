@@ -610,7 +610,7 @@ void sub_1000068CC(uint64_t a1)
 
   v7.receiver = *(id *)(a1 + 32);
   v7.super_class = (Class)&OBJC_CLASS___HIDAppleSiriRemoteDevice;
-  [super notifyDidStart];
+  objc_msgSendSuper2(&v7, "notifyDidStart");
   [*(id *)(a1 + 32) logHwFwVersions];
   id location = 0LL;
   objc_initWeak(&location, *(id *)(a1 + 32));
@@ -1409,7 +1409,7 @@ void sub_1000113A4(uint64_t a1)
   __int128 v12 = 0u;
   __int128 v13 = 0u;
   __int128 v14 = 0u;
-  uint64_t v4 = (void *)[*(id *)(a1 + 32) audioBuffer];
+  uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 32), "audioBuffer", 0));
   id v5 = [v4 countByEnumeratingWithState:&v11 objects:v15 count:16];
   if (v5)
   {
@@ -2810,7 +2810,7 @@ id sub_10002BE3C(uint64_t a1)
 {
   v2.receiver = *(id *)(a1 + 32);
   v2.super_class = (Class)&OBJC_CLASS___DoAPSoundSensorRemoteDevice;
-  return [super notifyDidStart];
+  return objc_msgSendSuper2(&v2, "notifyDidStart");
 }
 
 void sub_10002C104(_Unwind_Exception *a1)
@@ -2917,7 +2917,7 @@ id sub_10002F640(uint64_t a1)
 {
   v2.receiver = *(id *)(a1 + 32);
   v2.super_class = (Class)&OBJC_CLASS___DoAPSiriRemoteDevice;
-  return [super notifyDidStart];
+  return objc_msgSendSuper2(&v2, "notifyDidStart");
 }
 
 void sub_10002F908(_Unwind_Exception *a1)
@@ -4240,7 +4240,7 @@ void sub_10003BA20(void *a1, void *a2)
 {
   id v3 = sub_100017128(a1);
   objc_claimAutoreleasedReturnValue([a2 UUID]);
-  id v4 = [sub_10002A11C() uuidToString];
+  id v4 = objc_msgSend((id)sub_10002A11C(), "uuidToString:");
   uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
   sub_10002A108( (void *)&_mh_execute_header,  v6,  v7,  "DoAP Started notifications on %@ characteristic",  v8,  v9,  v10,  v11,  2u);
 
@@ -4251,7 +4251,7 @@ void sub_10003BAC0(void *a1, void *a2)
 {
   id v3 = (os_log_s *)sub_100017128(a1);
   objc_claimAutoreleasedReturnValue([a2 UUID]);
-  id v4 = [sub_10002A11C() uuidToString:];
+  id v4 = objc_msgSend((id)sub_10002A11C(), "uuidToString:");
   uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
   int v6 = 138412290;
   uint64_t v7 = v5;
@@ -4264,7 +4264,7 @@ void sub_10003BB70(void *a1, void *a2)
 {
   id v3 = sub_100017128(a1);
   objc_claimAutoreleasedReturnValue([a2 UUID]);
-  id v4 = [sub_10002A11C() uuidToString];
+  id v4 = objc_msgSend((id)sub_10002A11C(), "uuidToString:");
   uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(v4);
   sub_10002A108((void *)&_mh_execute_header, v6, v7, "DoAP Found CCCD for %@ chracteristic", v8, v9, v10, v11, 2u);
 
@@ -4825,7 +4825,7 @@ id objc_msgSend_ID(void *a1, const char *a2, ...)
 
 id objc_msgSend_JSONObjectWithData_options_error_(void *a1, const char *a2, ...)
 {
-  return [a1 JSONObjectWithData:options:error:];
+  return _objc_msgSend(a1, "JSONObjectWithData:options:error:");
 }
 
 id objc_msgSend_L2CAPChannels(void *a1, const char *a2, ...)
@@ -4860,7 +4860,7 @@ id objc_msgSend_SupportedCodecsCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_URLByAppendingPathComponent_isDirectory_(void *a1, const char *a2, ...)
 {
-  return [a1 URLByAppendingPathComponent:isDirectory:];
+  return _objc_msgSend(a1, "URLByAppendingPathComponent:isDirectory:");
 }
 
 id objc_msgSend_URLByDeletingLastPathComponent(void *a1, const char *a2, ...)
@@ -4870,7 +4870,7 @@ id objc_msgSend_URLByDeletingLastPathComponent(void *a1, const char *a2, ...)
 
 id objc_msgSend_UTF8DataWithMaxLength_ellipsis_isTruncated_(void *a1, const char *a2, ...)
 {
-  return [a1 UTF8DataWithMaxLength:ellipsis:isTruncated:];
+  return _objc_msgSend(a1, "UTF8DataWithMaxLength:ellipsis:isTruncated:");
 }
 
 id objc_msgSend_UTF8String(void *a1, const char *a2, ...)
@@ -4890,7 +4890,7 @@ id objc_msgSend_UUIDString(void *a1, const char *a2, ...)
 
 id objc_msgSend_UUIDWithString_(void *a1, const char *a2, ...)
 {
-  return [a1 UUIDWithString:];
+  return _objc_msgSend(a1, "UUIDWithString:");
 }
 
 id objc_msgSend__createPacket_payloadOffset_payloadLength_payload_(void *a1, const char *a2, ...)
@@ -4905,7 +4905,7 @@ id objc_msgSend__createUARPLogPath(void *a1, const char *a2, ...)
 
 id objc_msgSend__extractHeader_(void *a1, const char *a2, ...)
 {
-  return [a1 _extractHeader:];
+  return _objc_msgSend(a1, "_extractHeader:");
 }
 
 id objc_msgSend__extractPayload_(void *a1, const char *a2, ...)
@@ -4920,12 +4920,12 @@ id objc_msgSend__getUARPLogPath(void *a1, const char *a2, ...)
 
 id objc_msgSend__packetizeData_(void *a1, const char *a2, ...)
 {
-  return [a1 _packetizeData:];
+  return _objc_msgSend(a1, "_packetizeData:");
 }
 
 id objc_msgSend__parseRecvdData_(void *a1, const char *a2, ...)
 {
-  return [a1 _parseRecvdData:];
+  return _objc_msgSend(a1, "_parseRecvdData:");
 }
 
 id objc_msgSend__prepareForFirmwareDownload(void *a1, const char *a2, ...)
@@ -4940,12 +4940,12 @@ id objc_msgSend_accessoryCategoryCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_accessoryReachable_(void *a1, const char *a2, ...)
 {
-  return [a1 accessoryReachable:];
+  return _objc_msgSend(a1, "accessoryReachable:");
 }
 
 id objc_msgSend_accessoryUnreachable_(void *a1, const char *a2, ...)
 {
-  return [a1 accessoryUnreachable:];
+  return _objc_msgSend(a1, "accessoryUnreachable:");
 }
 
 id objc_msgSend_activate(void *a1, const char *a2, ...)
@@ -4960,7 +4960,7 @@ id objc_msgSend_activateHIDPolicy(void *a1, const char *a2, ...)
 
 id objc_msgSend_activateSiri_(void *a1, const char *a2, ...)
 {
-  return [a1 activateSiri:];
+  return _objc_msgSend(a1, "activateSiri:");
 }
 
 id objc_msgSend_activeHIDDeviceCount(void *a1, const char *a2, ...)
@@ -4970,62 +4970,62 @@ id objc_msgSend_activeHIDDeviceCount(void *a1, const char *a2, ...)
 
 id objc_msgSend_activeHIDDeviceCountDidChange_(void *a1, const char *a2, ...)
 {
-  return [a1 activeHIDDeviceCountDidChange:];
+  return _objc_msgSend(a1, "activeHIDDeviceCountDidChange:");
 }
 
 id objc_msgSend_addAccessory_assetID_(void *a1, const char *a2, ...)
 {
-  return [a1 addAccessory:assetID:];
+  return _objc_msgSend(a1, "addAccessory:assetID:");
 }
 
 id objc_msgSend_addCodec_(void *a1, const char *a2, ...)
 {
-  return [a1 addCodec:];
+  return _objc_msgSend(a1, "addCodec:");
 }
 
 id objc_msgSend_addEntriesFromDictionary_(void *a1, const char *a2, ...)
 {
-  return [a1 addEntriesFromDictionary:];
+  return _objc_msgSend(a1, "addEntriesFromDictionary:");
 }
 
 id objc_msgSend_addObject_(void *a1, const char *a2, ...)
 {
-  return [a1 addObject:];
+  return _objc_msgSend(a1, "addObject:");
 }
 
 id objc_msgSend_addObjectsFromArray_(void *a1, const char *a2, ...)
 {
-  return [a1 addObjectsFromArray:];
+  return _objc_msgSend(a1, "addObjectsFromArray:");
 }
 
 id objc_msgSend_addObserver_forKeyPath_options_context_(void *a1, const char *a2, ...)
 {
-  return [a1 addObserver:forKeyPath:options:context:];
+  return _objc_msgSend(a1, "addObserver:forKeyPath:options:context:");
 }
 
 id objc_msgSend_addObserver_selector_name_object_(void *a1, const char *a2, ...)
 {
-  return [a1 addObserver:selector:name:object:];
+  return _objc_msgSend(a1, "addObserver:selector:name:object:");
 }
 
 id objc_msgSend_addObserverForName_object_queue_usingBlock_(void *a1, const char *a2, ...)
 {
-  return [a1 addObserverForName:object:queue:usingBlock:];
+  return _objc_msgSend(a1, "addObserverForName:object:queue:usingBlock:");
 }
 
 id objc_msgSend_addPipe_(void *a1, const char *a2, ...)
 {
-  return [a1 addPipe:];
+  return _objc_msgSend(a1, "addPipe:");
 }
 
 id objc_msgSend_addService_(void *a1, const char *a2, ...)
 {
-  return [a1 addService:];
+  return _objc_msgSend(a1, "addService:");
 }
 
 id objc_msgSend_addUARPTransportDict_UARPAACPSupported_(void *a1, const char *a2, ...)
 {
-  return [a1 addUARPTransportDict:UARPAACPSupported:];
+  return _objc_msgSend(a1, "addUARPTransportDict:UARPAACPSupported:");
 }
 
 id objc_msgSend_allInputReportsReady(void *a1, const char *a2, ...)
@@ -5055,7 +5055,7 @@ id objc_msgSend_allocQueue(void *a1, const char *a2, ...)
 
 id objc_msgSend_allowInRestrictedMode_(void *a1, const char *a2, ...)
 {
-  return [a1 allowInRestrictedMode:];
+  return _objc_msgSend(a1, "allowInRestrictedMode:");
 }
 
 id objc_msgSend_amdNotification(void *a1, const char *a2, ...)
@@ -5065,47 +5065,47 @@ id objc_msgSend_amdNotification(void *a1, const char *a2, ...)
 
 id objc_msgSend_analyzeConnectionError_peripheral_info_(void *a1, const char *a2, ...)
 {
-  return [a1 analyzeConnectionError:peripheral:info:];
+  return _objc_msgSend(a1, "analyzeConnectionError:peripheral:info:");
 }
 
 id objc_msgSend_analyzeError_(void *a1, const char *a2, ...)
 {
-  return [a1 analyzeError:];
+  return _objc_msgSend(a1, "analyzeError:");
 }
 
 id objc_msgSend_appendBytes_length_(void *a1, const char *a2, ...)
 {
-  return [a1 appendBytes:length:];
+  return _objc_msgSend(a1, "appendBytes:length:");
 }
 
 id objc_msgSend_appendData_(void *a1, const char *a2, ...)
 {
-  return [a1 appendData:];
+  return _objc_msgSend(a1, "appendData:");
 }
 
 id objc_msgSend_appendFormat_(void *a1, const char *a2, ...)
 {
-  return [a1 appendFormat:];
+  return _objc_msgSend(a1, "appendFormat:");
 }
 
 id objc_msgSend_appendString_(void *a1, const char *a2, ...)
 {
-  return [a1 appendString:];
+  return _objc_msgSend(a1, "appendString:");
 }
 
 id objc_msgSend_appleMultitouchDeviceArrived_(void *a1, const char *a2, ...)
 {
-  return [a1 appleMultitouchDeviceArrived:];
+  return _objc_msgSend(a1, "appleMultitouchDeviceArrived:");
 }
 
 id objc_msgSend_applicationIDIsSiri_(void *a1, const char *a2, ...)
 {
-  return [a1 applicationIDIsSiri];
+  return _objc_msgSend(a1, "applicationIDIsSiri:");
 }
 
 id objc_msgSend_applicationIDIsSoundSensor_(void *a1, const char *a2, ...)
 {
-  return [a1 applicationIDIsSoundSensor:];
+  return _objc_msgSend(a1, "applicationIDIsSoundSensor:");
 }
 
 id objc_msgSend_applyStagedFirmwareOnAccessoryList_withUserIntent_(void *a1, const char *a2, ...)
@@ -5120,12 +5120,12 @@ id objc_msgSend_array(void *a1, const char *a2, ...)
 
 id objc_msgSend_arrayByAddingObject_(void *a1, const char *a2, ...)
 {
-  return [a1 arrayByAddingObject:];
+  return _objc_msgSend(a1, "arrayByAddingObject:");
 }
 
 id objc_msgSend_arrayWithObjects_count_(void *a1, const char *a2, ...)
 {
-  return [a1 arrayWithObjects:count:];
+  return _objc_msgSend(a1, "arrayWithObjects:count:");
 }
 
 id objc_msgSend_assetSolicitationComplete(void *a1, const char *a2, ...)
@@ -5190,7 +5190,7 @@ id objc_msgSend_batteryPowerStateCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_batteryPowerStateString_(void *a1, const char *a2, ...)
 {
-  return [a1 batteryPowerStateString];
+  return _objc_msgSend(a1, "batteryPowerStateString:");
 }
 
 id objc_msgSend_BOOLValue(void *a1, const char *a2, ...)
@@ -5240,12 +5240,12 @@ id objc_msgSend_cancel(void *a1, const char *a2, ...)
 
 id objc_msgSend_cancelPeripheralConnection_force_(void *a1, const char *a2, ...)
 {
-  return [a1 cancelPeripheralConnection:force:];
+  return _objc_msgSend(a1, "cancelPeripheralConnection:force:");
 }
 
 id objc_msgSend_cancelPeripheralConnection_options_(void *a1, const char *a2, ...)
 {
-  return [a1 cancelPeripheralConnection:options:];
+  return _objc_msgSend(a1, "cancelPeripheralConnection:options:");
 }
 
 id objc_msgSend_cancelSiri(void *a1, const char *a2, ...)
@@ -5305,7 +5305,7 @@ id objc_msgSend_challengeResponseCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_characterAtIndex_(void *a1, const char *a2, ...)
 {
-  return [a1 characterAtIndex:];
+  return _objc_msgSend(a1, "characterAtIndex:");
 }
 
 id objc_msgSend_characteristic(void *a1, const char *a2, ...)
@@ -5315,7 +5315,7 @@ id objc_msgSend_characteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_characteristicForReportID_reportType_(void *a1, const char *a2, ...)
 {
-  return [a1 characteristicForReportID:reportType:];
+  return _objc_msgSend(a1, "characteristicForReportID:reportType:");
 }
 
 id objc_msgSend_characteristics(void *a1, const char *a2, ...)
@@ -5355,17 +5355,17 @@ id objc_msgSend_clearState(void *a1, const char *a2, ...)
 
 id objc_msgSend_clientService_desiresConnectionParameters_(void *a1, const char *a2, ...)
 {
-  return [a1 clientService:desiresConnectionParameters:];
+  return _objc_msgSend(a1, "clientService:desiresConnectionParameters:");
 }
 
 id objc_msgSend_clientServiceDidStart_(void *a1, const char *a2, ...)
 {
-  return [a1 clientServiceDidStart:];
+  return _objc_msgSend(a1, "clientServiceDidStart:");
 }
 
 id objc_msgSend_clientServiceForUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 clientServiceForUUID:];
+  return _objc_msgSend(a1, "clientServiceForUUID:");
 }
 
 id objc_msgSend_clientServiceManagerMap(void *a1, const char *a2, ...)
@@ -5425,7 +5425,7 @@ id objc_msgSend_commandValue(void *a1, const char *a2, ...)
 
 id objc_msgSend_connectAlways_(void *a1, const char *a2, ...)
 {
-  return [a1 connectAlways:];
+  return _objc_msgSend(a1, "connectAlways:");
 }
 
 id objc_msgSend_connectAlwaysIdentifiersMap(void *a1, const char *a2, ...)
@@ -5435,12 +5435,12 @@ id objc_msgSend_connectAlwaysIdentifiersMap(void *a1, const char *a2, ...)
 
 id objc_msgSend_connectDevice_quickDisconnectEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 connectDevice:quickDisconnectEnabled:];
+  return _objc_msgSend(a1, "connectDevice:quickDisconnectEnabled:");
 }
 
 id objc_msgSend_connectOnce_(void *a1, const char *a2, ...)
 {
-  return [a1 connectOnce:];
+  return _objc_msgSend(a1, "connectOnce:");
 }
 
 id objc_msgSend_connectOnceIdentifiersMap(void *a1, const char *a2, ...)
@@ -5455,12 +5455,12 @@ id objc_msgSend_connectOnceNoTimeoutIdentifiers(void *a1, const char *a2, ...)
 
 id objc_msgSend_connectPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 connectPeripheral:];
+  return _objc_msgSend(a1, "connectPeripheral:");
 }
 
 id objc_msgSend_connectPeripheral_options_(void *a1, const char *a2, ...)
 {
-  return [a1 connectPeripheral:options:];
+  return _objc_msgSend(a1, "connectPeripheral:options:");
 }
 
 id objc_msgSend_connectedStandbyToken(void *a1, const char *a2, ...)
@@ -5485,12 +5485,12 @@ id objc_msgSend_connectionUUID(void *a1, const char *a2, ...)
 
 id objc_msgSend_containsObject_(void *a1, const char *a2, ...)
 {
-  return [a1 containsObject:];
+  return _objc_msgSend(a1, "containsObject:");
 }
 
 id objc_msgSend_contentsOfDirectoryAtPath_error_(void *a1, const char *a2, ...)
 {
-  return [a1 contentsOfDirectoryAtPath:error:];
+  return _objc_msgSend(a1, "contentsOfDirectoryAtPath:error:");
 }
 
 id objc_msgSend_count(void *a1, const char *a2, ...)
@@ -5500,22 +5500,22 @@ id objc_msgSend_count(void *a1, const char *a2, ...)
 
 id objc_msgSend_countByEnumeratingWithState_objects_count_(void *a1, const char *a2, ...)
 {
-  return [a1 countByEnumeratingWithState:objects:count:];
+  return _objc_msgSend(a1, "countByEnumeratingWithState:objects:count:");
 }
 
 id objc_msgSend_createConnectionWithType_andIdentifier_(void *a1, const char *a2, ...)
 {
-  return [a1 createConnectionWithType:andIdentifier:];
+  return _objc_msgSend(a1, "createConnectionWithType:andIdentifier:");
 }
 
 id objc_msgSend_createDirectoryAtPath_withIntermediateDirectories_attributes_error_(void *a1, const char *a2, ...)
 {
-  return [a1 createDirectoryAtPath:withIntermediateDirectories:attributes:error:];
+  return _objc_msgSend(a1, "createDirectoryAtPath:withIntermediateDirectories:attributes:error:");
 }
 
 id objc_msgSend_createDirectoryAtURL_withIntermediateDirectories_attributes_error_(void *a1, const char *a2, ...)
 {
-  return [a1 createDirectoryAtURL:withIntermediateDirectories:attributes:error:];
+  return _objc_msgSend(a1, "createDirectoryAtURL:withIntermediateDirectories:attributes:error:");
 }
 
 id objc_msgSend_createDoAPDevice(void *a1, const char *a2, ...)
@@ -5535,7 +5535,7 @@ id objc_msgSend_createHIDDeviceIfEverythingReady(void *a1, const char *a2, ...)
 
 id objc_msgSend_createReportInfo_(void *a1, const char *a2, ...)
 {
-  return [a1 createReportInfo];
+  return _objc_msgSend(a1, "createReportInfo:");
 }
 
 id objc_msgSend_createServices(void *a1, const char *a2, ...)
@@ -5560,22 +5560,22 @@ id objc_msgSend_dataValue(void *a1, const char *a2, ...)
 
 id objc_msgSend_dataWithBytes_length_(void *a1, const char *a2, ...)
 {
-  return [a1 dataWithBytes:length:];
+  return _objc_msgSend(a1, "dataWithBytes:length:");
 }
 
 id objc_msgSend_dataWithBytesNoCopy_length_freeWhenDone_(void *a1, const char *a2, ...)
 {
-  return [a1 dataWithBytesNoCopy:length:freeWhenDone:];
+  return _objc_msgSend(a1, "dataWithBytesNoCopy:length:freeWhenDone:");
 }
 
 id objc_msgSend_dataWithData_(void *a1, const char *a2, ...)
 {
-  return [a1 dataWithData:];
+  return _objc_msgSend(a1, "dataWithData:");
 }
 
 id objc_msgSend_dataWithJSONObject_options_error_(void *a1, const char *a2, ...)
 {
-  return [a1 dataWithJSONObject:options:error:];
+  return _objc_msgSend(a1, "dataWithJSONObject:options:error:");
 }
 
 id objc_msgSend_date(void *a1, const char *a2, ...)
@@ -5585,7 +5585,7 @@ id objc_msgSend_date(void *a1, const char *a2, ...)
 
 id objc_msgSend_dateWithTimeIntervalSinceNow_(void *a1, const char *a2, ...)
 {
-  return [a1 dateWithTimeIntervalSinceNow:];
+  return _objc_msgSend(a1, "dateWithTimeIntervalSinceNow:");
 }
 
 id objc_msgSend_deactivateHIDPolicy(void *a1, const char *a2, ...)
@@ -5600,7 +5600,7 @@ id objc_msgSend_decOpportunisticConnection(void *a1, const char *a2, ...)
 
 id objc_msgSend_decomposeToURL_error_(void *a1, const char *a2, ...)
 {
-  return [a1 decomposeToURL:error:];
+  return _objc_msgSend(a1, "decomposeToURL:error:");
 }
 
 id objc_msgSend_defaultCenter(void *a1, const char *a2, ...)
@@ -5650,7 +5650,7 @@ id objc_msgSend_desiredConnectionParameters(void *a1, const char *a2, ...)
 
 id objc_msgSend_destroyConnectionWithUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 destroyConnectionWithUUID:];
+  return _objc_msgSend(a1, "destroyConnectionWithUUID:");
 }
 
 id objc_msgSend_destroyDoAPDevice(void *a1, const char *a2, ...)
@@ -5685,7 +5685,7 @@ id objc_msgSend_deviceManagementEndpoint(void *a1, const char *a2, ...)
 
 id objc_msgSend_deviceMgtDriverArrived_(void *a1, const char *a2, ...)
 {
-  return [a1 deviceMgtDriverArrived];
+  return _objc_msgSend(a1, "deviceMgtDriverArrived:");
 }
 
 id objc_msgSend_deviceMgtNotification(void *a1, const char *a2, ...)
@@ -5705,42 +5705,42 @@ id objc_msgSend_dictionary(void *a1, const char *a2, ...)
 
 id objc_msgSend_dictionaryWithObject_forKey_(void *a1, const char *a2, ...)
 {
-  return [a1 dictionaryWithObject:forKey:];
+  return _objc_msgSend(a1, "dictionaryWithObject:forKey:");
 }
 
 id objc_msgSend_dictionaryWithObjects_forKeys_count_(void *a1, const char *a2, ...)
 {
-  return [a1 dictionaryWithObjects:forKeys:count:];
+  return _objc_msgSend(a1, "dictionaryWithObjects:forKeys:count:");
 }
 
 id objc_msgSend_disconnectDevice_(void *a1, const char *a2, ...)
 {
-  return [a1 disconnectDevice:];
+  return _objc_msgSend(a1, "disconnectDevice:");
 }
 
 id objc_msgSend_disconnectPeripheral_force_(void *a1, const char *a2, ...)
 {
-  return [a1 disconnectPeripheral:force:];
+  return _objc_msgSend(a1, "disconnectPeripheral:force:");
 }
 
 id objc_msgSend_discoverCharacteristics_forService_(void *a1, const char *a2, ...)
 {
-  return [a1 discoverCharacteristics:forService:];
+  return _objc_msgSend(a1, "discoverCharacteristics:forService:");
 }
 
 id objc_msgSend_discoverDescriptorsForCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 discoverDescriptorsForCharacteristic:];
+  return _objc_msgSend(a1, "discoverDescriptorsForCharacteristic:");
 }
 
 id objc_msgSend_discoverServices_(void *a1, const char *a2, ...)
 {
-  return [a1 discoverServices:];
+  return _objc_msgSend(a1, "discoverServices:");
 }
 
 id objc_msgSend_doapAudioDidStop_(void *a1, const char *a2, ...)
 {
-  return [a1 doapAudioDidStop:];
+  return _objc_msgSend(a1, "doapAudioDidStop:");
 }
 
 id objc_msgSend_doapAudioRelay(void *a1, const char *a2, ...)
@@ -5765,7 +5765,7 @@ id objc_msgSend_doapAudioStop(void *a1, const char *a2, ...)
 
 id objc_msgSend_doapAudioWillStart_(void *a1, const char *a2, ...)
 {
-  return [a1 doapAudioWillStart:];
+  return _objc_msgSend(a1, "doapAudioWillStart:");
 }
 
 id objc_msgSend_doapDeviceDidStart(void *a1, const char *a2, ...)
@@ -5780,7 +5780,7 @@ id objc_msgSend_doapDeviceDidStop(void *a1, const char *a2, ...)
 
 id objc_msgSend_doapDeviceWithCodecs_streamID_(void *a1, const char *a2, ...)
 {
-  return [a1 doapDeviceWithCodecs:streamID:];
+  return _objc_msgSend(a1, "doapDeviceWithCodecs:streamID:");
 }
 
 id objc_msgSend_doapDevices(void *a1, const char *a2, ...)
@@ -5790,17 +5790,17 @@ id objc_msgSend_doapDevices(void *a1, const char *a2, ...)
 
 id objc_msgSend_doapStateNameFor_(void *a1, const char *a2, ...)
 {
-  return [a1 doapStateNameFor:];
+  return _objc_msgSend(a1, "doapStateNameFor:");
 }
 
 id objc_msgSend_doapStateSet_(void *a1, const char *a2, ...)
 {
-  return [a1 doapStateSet];
+  return _objc_msgSend(a1, "doapStateSet:");
 }
 
 id objc_msgSend_doesNotRecognizeSelector_(void *a1, const char *a2, ...)
 {
-  return [a1 doesNotRecognizeSelector:];
+  return _objc_msgSend(a1, "doesNotRecognizeSelector:");
 }
 
 id objc_msgSend_domain(void *a1, const char *a2, ...)
@@ -5810,12 +5810,12 @@ id objc_msgSend_domain(void *a1, const char *a2, ...)
 
 id objc_msgSend_downloadAvailableFirmwareUpdate_assetID_withUserIntent_(void *a1, const char *a2, ...)
 {
-  return [a1 downloadAvailableFirmwareUpdate:assetID:withUserIntent:];
+  return _objc_msgSend(a1, "downloadAvailableFirmwareUpdate:assetID:withUserIntent:");
 }
 
 id objc_msgSend_encodeObject_forKey_(void *a1, const char *a2, ...)
 {
-  return [a1 encodeObject:forKey:];
+  return _objc_msgSend(a1, "encodeObject:forKey:");
 }
 
 id objc_msgSend_encodedData(void *a1, const char *a2, ...)
@@ -5825,7 +5825,7 @@ id objc_msgSend_encodedData(void *a1, const char *a2, ...)
 
 id objc_msgSend_endpointForPipe_(void *a1, const char *a2, ...)
 {
-  return [a1 endpointForPipe:];
+  return _objc_msgSend(a1, "endpointForPipe:");
 }
 
 id objc_msgSend_endpointUUID(void *a1, const char *a2, ...)
@@ -5835,7 +5835,7 @@ id objc_msgSend_endpointUUID(void *a1, const char *a2, ...)
 
 id objc_msgSend_enumerateKeysAndObjectsUsingBlock_(void *a1, const char *a2, ...)
 {
-  return [a1 enumerateKeysAndObjectsUsingBlock:];
+  return _objc_msgSend(a1, "enumerateKeysAndObjectsUsingBlock:");
 }
 
 id objc_msgSend_enumeratorAtURL_includingPropertiesForKeys_options_errorHandler_(void *a1, const char *a2, ...)
@@ -5850,17 +5850,17 @@ id objc_msgSend_error(void *a1, const char *a2, ...)
 
 id objc_msgSend_errorWithDomain_code_userInfo_(void *a1, const char *a2, ...)
 {
-  return [a1 errorWithDomain:code:userInfo:];
+  return _objc_msgSend(a1, "errorWithDomain:code:userInfo:");
 }
 
 id objc_msgSend_eventIndicator_(void *a1, const char *a2, ...)
 {
-  return [a1 eventIndicator:];
+  return _objc_msgSend(a1, "eventIndicator:");
 }
 
 id objc_msgSend_eventIndicator_eventValue_(void *a1, const char *a2, ...)
 {
-  return [a1 eventIndicator:eventValue:];
+  return _objc_msgSend(a1, "eventIndicator:eventValue:");
 }
 
 id objc_msgSend_eventQueue(void *a1, const char *a2, ...)
@@ -5880,7 +5880,7 @@ id objc_msgSend_extractBatteryPowerState(void *a1, const char *a2, ...)
 
 id objc_msgSend_extractButtonDataFromReport_buttonIndex_(void *a1, const char *a2, ...)
 {
-  return [a1 extractButtonDataFromReport:buttonIndex:];
+  return _objc_msgSend(a1, "extractButtonDataFromReport:buttonIndex:");
 }
 
 id objc_msgSend_extractIDs(void *a1, const char *a2, ...)
@@ -5890,7 +5890,7 @@ id objc_msgSend_extractIDs(void *a1, const char *a2, ...)
 
 id objc_msgSend_fileURLWithPath_isDirectory_(void *a1, const char *a2, ...)
 {
-  return [a1 fileURLWithPath:isDirectory:];
+  return _objc_msgSend(a1, "fileURLWithPath:isDirectory:");
 }
 
 id objc_msgSend_firmwareRevision(void *a1, const char *a2, ...)
@@ -5915,7 +5915,7 @@ id objc_msgSend_fwRevisionCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_getAndRemoveFromUARPTransportDict_(void *a1, const char *a2, ...)
 {
-  return [a1 getAndRemoveFromUARPTransportDict];
+  return _objc_msgSend(a1, "getAndRemoveFromUARPTransportDict:");
 }
 
 id objc_msgSend_getAudioHIDReportDescriptor(void *a1, const char *a2, ...)
@@ -5925,22 +5925,22 @@ id objc_msgSend_getAudioHIDReportDescriptor(void *a1, const char *a2, ...)
 
 id objc_msgSend_getButtonsHIDReportDescriptor_(void *a1, const char *a2, ...)
 {
-  return [a1 getButtonsHIDReportDescriptor];
+  return _objc_msgSend(a1, "getButtonsHIDReportDescriptor:");
 }
 
 id objc_msgSend_getBytes_length_(void *a1, const char *a2, ...)
 {
-  return [a1 getBytes:length:];
+  return _objc_msgSend(a1, "getBytes:length:");
 }
 
 id objc_msgSend_getBytes_maxLength_usedLength_encoding_options_range_remainingRange_(void *a1, const char *a2, ...)
 {
-  return [a1 getBytes:maxLength:usedLength:encoding:options:range:remainingRange:];
+  return _objc_msgSend(a1, "getBytes:maxLength:usedLength:encoding:options:range:remainingRange:");
 }
 
 id objc_msgSend_getBytes_range_(void *a1, const char *a2, ...)
 {
-  return [a1 getBytes:range:];
+  return _objc_msgSend(a1, "getBytes:range:");
 }
 
 id objc_msgSend_getDeviceManagementHIDReportDescriptor(void *a1, const char *a2, ...)
@@ -5970,7 +5970,7 @@ id objc_msgSend_getRadioHIDReportDescriptor(void *a1, const char *a2, ...)
 
 id objc_msgSend_getReport_reportLength_reportID_reportType_keyholeID_(void *a1, const char *a2, ...)
 {
-  return [a1 getReport:reportLength:reportID:reportType:keyholeID:];
+  return _objc_msgSend(a1, "getReport:reportLength:reportID:reportType:keyholeID:");
 }
 
 id objc_msgSend_getReportData_reportID_reportType_error_(void *a1, const char *a2, ...)
@@ -5990,7 +5990,7 @@ id objc_msgSend_getTouchHIDReportDescriptor(void *a1, const char *a2, ...)
 
 id objc_msgSend_getUUIDBytes_(void *a1, const char *a2, ...)
 {
-  return [a1 getUUIDBytes:];
+  return _objc_msgSend(a1, "getUUIDBytes:");
 }
 
 id objc_msgSend_gotDeviceExtendedInfoReport(void *a1, const char *a2, ...)
@@ -6030,12 +6030,12 @@ id objc_msgSend_groupTouch(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleAudioData_(void *a1, const char *a2, ...)
 {
-  return [a1 handleAudioData:];
+  return _objc_msgSend(a1, "handleAudioData:");
 }
 
 id objc_msgSend_handleAudioData_dataLength_(void *a1, const char *a2, ...)
 {
-  return [a1 handleAudioData:dataLength:];
+  return _objc_msgSend(a1, "handleAudioData:dataLength:");
 }
 
 id objc_msgSend_handleButtonData(void *a1, const char *a2, ...)
@@ -6045,17 +6045,17 @@ id objc_msgSend_handleButtonData(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleCheckInMsg_applicationID_(void *a1, const char *a2, ...)
 {
-  return [a1 handleCheckInMsg:applicationID:];
+  return _objc_msgSend(a1, "handleCheckInMsg:applicationID:");
 }
 
 id objc_msgSend_handleConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 handleConnection:];
+  return _objc_msgSend(a1, "handleConnection:");
 }
 
 id objc_msgSend_handleDeviceManagementData_dataLength_(void *a1, const char *a2, ...)
 {
-  return [a1 handleDeviceManagementData:dataLength:];
+  return _objc_msgSend(a1, "handleDeviceManagementData:dataLength:");
 }
 
 id objc_msgSend_handleDisconnection(void *a1, const char *a2, ...)
@@ -6065,12 +6065,12 @@ id objc_msgSend_handleDisconnection(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleDisconnection_(void *a1, const char *a2, ...)
 {
-  return [a1 handleDisconnection:];
+  return _objc_msgSend(a1, "handleDisconnection:");
 }
 
 id objc_msgSend_handleEventIndicator_eventValue_(void *a1, const char *a2, ...)
 {
-  return [a1 handleEventIndicator:eventValue:];
+  return _objc_msgSend(a1, "handleEventIndicator:eventValue:");
 }
 
 id objc_msgSend_handleInertialData(void *a1, const char *a2, ...)
@@ -6080,37 +6080,37 @@ id objc_msgSend_handleInertialData(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleInputData_targetDevice_(void *a1, const char *a2, ...)
 {
-  return [a1 handleInputData:targetDevice:];
+  return _objc_msgSend(a1, "handleInputData:targetDevice:");
 }
 
 id objc_msgSend_handleInputReportData_reportID_timestamp_(void *a1, const char *a2, ...)
 {
-  return [a1 handleInputReportData:reportID:timestamp:];
+  return _objc_msgSend(a1, "handleInputReportData:reportID:timestamp:");
 }
 
 id objc_msgSend_handleInputReportDataV1_reportID_(void *a1, const char *a2, ...)
 {
-  return [a1 handleInputReportDataV1:reportID:];
+  return _objc_msgSend(a1, "handleInputReportDataV1:reportID:");
 }
 
 id objc_msgSend_handleInputReportDataV2_reportID_(void *a1, const char *a2, ...)
 {
-  return [a1 handleInputReportDataV2:reportID:];
+  return _objc_msgSend(a1, "handleInputReportDataV2:reportID:");
 }
 
 id objc_msgSend_handleLogRetrievalRequest_(void *a1, const char *a2, ...)
 {
-  return [a1 handleLogRetrievalRequest:];
+  return _objc_msgSend(a1, "handleLogRetrievalRequest:");
 }
 
 id objc_msgSend_handleMsg_(void *a1, const char *a2, ...)
 {
-  return [a1 handleMsg:];
+  return _objc_msgSend(a1, "handleMsg:");
 }
 
 id objc_msgSend_handlePowerManagementNotification_notificationID_(void *a1, const char *a2, ...)
 {
-  return [a1 handlePowerManagementNotification:notificationID:];
+  return _objc_msgSend(a1, "handlePowerManagementNotification:notificationID:");
 }
 
 id objc_msgSend_handleProximityData(void *a1, const char *a2, ...)
@@ -6140,7 +6140,7 @@ id objc_msgSend_handleStopStream(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleStopStreaming_(void *a1, const char *a2, ...)
 {
-  return [a1 handleStopStreaming:];
+  return _objc_msgSend(a1, "handleStopStreaming:");
 }
 
 id objc_msgSend_handleTouchData(void *a1, const char *a2, ...)
@@ -6150,7 +6150,7 @@ id objc_msgSend_handleTouchData(void *a1, const char *a2, ...)
 
 id objc_msgSend_handleXpcDisconnection_(void *a1, const char *a2, ...)
 {
-  return [a1 handleXpcDisconnection:];
+  return _objc_msgSend(a1, "handleXpcDisconnection:");
 }
 
 id objc_msgSend_hardwareRevision(void *a1, const char *a2, ...)
@@ -6165,12 +6165,12 @@ id objc_msgSend_hasIDs(void *a1, const char *a2, ...)
 
 id objc_msgSend_hasPrefix_(void *a1, const char *a2, ...)
 {
-  return [a1 hasPrefix:];
+  return _objc_msgSend(a1, "hasPrefix:");
 }
 
 id objc_msgSend_hasTag_(void *a1, const char *a2, ...)
 {
-  return [a1 hasTag:];
+  return _objc_msgSend(a1, "hasTag:");
 }
 
 id objc_msgSend_hidControlPointCharacteristic(void *a1, const char *a2, ...)
@@ -6205,7 +6205,7 @@ id objc_msgSend_hidDeviceProperties(void *a1, const char *a2, ...)
 
 id objc_msgSend_hidDeviceWithProperties_reports_(void *a1, const char *a2, ...)
 {
-  return [a1 hidDeviceWithProperties:reports:];
+  return _objc_msgSend(a1, "hidDeviceWithProperties:reports:");
 }
 
 id objc_msgSend_hidInformationCharacteristic(void *a1, const char *a2, ...)
@@ -6235,7 +6235,7 @@ id objc_msgSend_identifier(void *a1, const char *a2, ...)
 
 id objc_msgSend_identifierForConnectionWithUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 identifierForConnectionWithUUID];
+  return _objc_msgSend(a1, "identifierForConnectionWithUUID:");
 }
 
 id objc_msgSend_incOpportunisticConnection(void *a1, const char *a2, ...)
@@ -6265,162 +6265,162 @@ id objc_msgSend_infrared(void *a1, const char *a2, ...)
 
 id objc_msgSend_initWithByteOrder_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithByteOrder:];
+  return _objc_msgSend(a1, "initWithByteOrder:");
 }
 
 id objc_msgSend_initWithBytes_length_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithBytes:length:];
+  return _objc_msgSend(a1, "initWithBytes:length:");
 }
 
 id objc_msgSend_initWithBytes_length_encoding_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithBytes:length:encoding:];
+  return _objc_msgSend(a1, "initWithBytes:length:encoding:");
 }
 
 id objc_msgSend_initWithCapacity_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithCapacity:];
+  return _objc_msgSend(a1, "initWithCapacity:");
 }
 
 id objc_msgSend_initWithCodecs_streamID_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithCodecs:streamID:];
+  return _objc_msgSend(a1, "initWithCodecs:streamID:");
 }
 
 id objc_msgSend_initWithConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithConnection:];
+  return _objc_msgSend(a1, "initWithConnection:");
 }
 
 id objc_msgSend_initWithData_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithData:];
+  return _objc_msgSend(a1, "initWithData:");
 }
 
 id objc_msgSend_initWithData_encoding_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithData:encoding:];
+  return _objc_msgSend(a1, "initWithData:encoding:");
 }
 
 id objc_msgSend_initWithDelegate_pipe_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithDelegate:pipe:];
+  return _objc_msgSend(a1, "initWithDelegate:pipe:");
 }
 
 id objc_msgSend_initWithDelegate_queue_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithDelegate:queue:];
+  return _objc_msgSend(a1, "initWithDelegate:queue:");
 }
 
 id objc_msgSend_initWithDelegate_queue_options_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithDelegate:queue:options:];
+  return _objc_msgSend(a1, "initWithDelegate:queue:options:");
 }
 
 id objc_msgSend_initWithDictionary_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithDictionary:];
+  return _objc_msgSend(a1, "initWithDictionary:");
 }
 
 id objc_msgSend_initWithFormat_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithFormat:];
+  return _objc_msgSend(a1, "initWithFormat:");
 }
 
 id objc_msgSend_initWithHardwareID_uuid_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithHardwareID:uuid];
+  return _objc_msgSend(a1, "initWithHardwareID:uuid:");
 }
 
 id objc_msgSend_initWithID_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithID:];
+  return _objc_msgSend(a1, "initWithID:");
 }
 
 id objc_msgSend_initWithID_type_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithID:type:];
+  return _objc_msgSend(a1, "initWithID:type:");
 }
 
 id objc_msgSend_initWithIdentifier_deviceType_properties_codecType_hub_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithIdentifier:deviceType:properties:codecType:hub:];
+  return _objc_msgSend(a1, "initWithIdentifier:deviceType:properties:codecType:hub:");
 }
 
 id objc_msgSend_initWithLocationType_remoteURL_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithLocationType:remoteURL:];
+  return _objc_msgSend(a1, "initWithLocationType:remoteURL:");
 }
 
 id objc_msgSend_initWithManager_peripheral_service_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithManager:peripheral:service:];
+  return _objc_msgSend(a1, "initWithManager:peripheral:service:");
 }
 
 id objc_msgSend_initWithName_options_queue_delegate_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithName:options:queue:delegate:];
+  return _objc_msgSend(a1, "initWithName:options:queue:delegate:");
 }
 
 id objc_msgSend_initWithObjects_count_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithObjects:count:];
+  return _objc_msgSend(a1, "initWithObjects:count:");
 }
 
 id objc_msgSend_initWithObjects_forKeys_count_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithObjects:forKeys:count:];
+  return _objc_msgSend(a1, "initWithObjects:forKeys:count:");
 }
 
 id objc_msgSend_initWithPath_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithPath:];
+  return _objc_msgSend(a1, "initWithPath:");
 }
 
 id objc_msgSend_initWithPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithPeripheral:];
+  return _objc_msgSend(a1, "initWithPeripheral:");
 }
 
 id objc_msgSend_initWithProperties_reports_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithProperties:reports:];
+  return _objc_msgSend(a1, "initWithProperties:reports:");
 }
 
 id objc_msgSend_initWithURL_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithURL:];
+  return _objc_msgSend(a1, "initWithURL:");
 }
 
 id objc_msgSend_initWithUTF8String_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithUTF8String:];
+  return _objc_msgSend(a1, "initWithUTF8String:");
 }
 
 id objc_msgSend_initWithUUIDBytes_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithUUIDBytes:];
+  return _objc_msgSend(a1, "initWithUUIDBytes:");
 }
 
 id objc_msgSend_initWithUUIDString_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithUUIDString:];
+  return _objc_msgSend(a1, "initWithUUIDString:");
 }
 
 id objc_msgSend_initWithValue_byteOrder_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithValue:byteOrder:];
+  return _objc_msgSend(a1, "initWithValue:byteOrder:");
 }
 
 id objc_msgSend_initWithValue_characteristic_centrals_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithValue:characteristic:centrals:];
+  return _objc_msgSend(a1, "initWithValue:characteristic:centrals:");
 }
 
 id objc_msgSend_initWithVendorIDSource_vendorID_productID_productVersion_(void *a1, const char *a2, ...)
 {
-  return [a1 initWithVendorIDSource:vendorID:productID:productVersion:];
+  return _objc_msgSend(a1, "initWithVendorIDSource:vendorID:productID:productVersion:");
 }
 
 id objc_msgSend_input(void *a1, const char *a2, ...)
@@ -6440,12 +6440,12 @@ id objc_msgSend_inputStream(void *a1, const char *a2, ...)
 
 id objc_msgSend_inputStreamWithData_(void *a1, const char *a2, ...)
 {
-  return [a1 inputStreamWithData:];
+  return _objc_msgSend(a1, "inputStreamWithData:");
 }
 
 id objc_msgSend_inputStreamWithData_byteOrder_(void *a1, const char *a2, ...)
 {
-  return [a1 inputStreamWithData:byteOrder:];
+  return _objc_msgSend(a1, "inputStreamWithData:byteOrder:");
 }
 
 id objc_msgSend_instance(void *a1, const char *a2, ...)
@@ -6465,7 +6465,7 @@ id objc_msgSend_intValue(void *a1, const char *a2, ...)
 
 id objc_msgSend_integerForKey_(void *a1, const char *a2, ...)
 {
-  return [a1 integerForKey:];
+  return _objc_msgSend(a1, "integerForKey:");
 }
 
 id objc_msgSend_invalidate(void *a1, const char *a2, ...)
@@ -6475,32 +6475,32 @@ id objc_msgSend_invalidate(void *a1, const char *a2, ...)
 
 id objc_msgSend_isAccessoryCategoryPencil_(void *a1, const char *a2, ...)
 {
-  return [a1 isAccessoryCategoryPencil:];
+  return _objc_msgSend(a1, "isAccessoryCategoryPencil:");
 }
 
 id objc_msgSend_isAlwaysConnecting_(void *a1, const char *a2, ...)
 {
-  return [a1 isAlwaysConnecting:];
+  return _objc_msgSend(a1, "isAlwaysConnecting:");
 }
 
 id objc_msgSend_isEqual_(void *a1, const char *a2, ...)
 {
-  return [a1 isEqual:];
+  return _objc_msgSend(a1, "isEqual:");
 }
 
 id objc_msgSend_isEqualToArray_(void *a1, const char *a2, ...)
 {
-  return [a1 isEqualToArray:];
+  return _objc_msgSend(a1, "isEqualToArray:");
 }
 
 id objc_msgSend_isEqualToData_(void *a1, const char *a2, ...)
 {
-  return [a1 isEqualToData:];
+  return _objc_msgSend(a1, "isEqualToData:");
 }
 
 id objc_msgSend_isEqualToString_(void *a1, const char *a2, ...)
 {
-  return [a1 isEqualToString:];
+  return _objc_msgSend(a1, "isEqualToString:");
 }
 
 id objc_msgSend_isEventIndicatorNotificationEnabled(void *a1, const char *a2, ...)
@@ -6555,7 +6555,7 @@ id objc_msgSend_isStopStreamingNotificationEnabled(void *a1, const char *a2, ...
 
 id objc_msgSend_isSupportingService_(void *a1, const char *a2, ...)
 {
-  return [a1 isSupportingService:];
+  return _objc_msgSend(a1, "isSupportingService:");
 }
 
 id objc_msgSend_isValid(void *a1, const char *a2, ...)
@@ -6565,7 +6565,7 @@ id objc_msgSend_isValid(void *a1, const char *a2, ...)
 
 id objc_msgSend_isXpcConnectedForDeviceType_(void *a1, const char *a2, ...)
 {
-  return [a1 isXpcConnectedForDeviceType:];
+  return _objc_msgSend(a1, "isXpcConnectedForDeviceType:");
 }
 
 id objc_msgSend_issueChallenge(void *a1, const char *a2, ...)
@@ -6595,7 +6595,7 @@ id objc_msgSend_length(void *a1, const char *a2, ...)
 
 id objc_msgSend_lengthOfBytesUsingEncoding_(void *a1, const char *a2, ...)
 {
-  return [a1 lengthOfBytesUsingEncoding:];
+  return _objc_msgSend(a1, "lengthOfBytesUsingEncoding:");
 }
 
 id objc_msgSend_localizedDescription(void *a1, const char *a2, ...)
@@ -6610,7 +6610,7 @@ id objc_msgSend_lock(void *a1, const char *a2, ...)
 
 id objc_msgSend_logBlock_(void *a1, const char *a2, ...)
 {
-  return [a1 logBlock:];
+  return _objc_msgSend(a1, "logBlock:");
 }
 
 id objc_msgSend_logHwFwVersions(void *a1, const char *a2, ...)
@@ -6635,7 +6635,7 @@ id objc_msgSend_manufacturerNameCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_matchInstanceIDInHidEventDriver_(void *a1, const char *a2, ...)
 {
-  return [a1 matchInstanceIDInHidEventDriver:];
+  return _objc_msgSend(a1, "matchInstanceIDInHidEventDriver:");
 }
 
 id objc_msgSend_maxCELength(void *a1, const char *a2, ...)
@@ -6665,7 +6665,7 @@ id objc_msgSend_maxPeripheralLatency(void *a1, const char *a2, ...)
 
 id objc_msgSend_maximumWriteValueLengthForType_(void *a1, const char *a2, ...)
 {
-  return [a1 maximumWriteValueLengthForType:];
+  return _objc_msgSend(a1, "maximumWriteValueLengthForType:");
 }
 
 id objc_msgSend_mfiAuthChannel(void *a1, const char *a2, ...)
@@ -6720,7 +6720,7 @@ id objc_msgSend_name(void *a1, const char *a2, ...)
 
 id objc_msgSend_nameForCentral_(void *a1, const char *a2, ...)
 {
-  return [a1 nameForCentral:];
+  return _objc_msgSend(a1, "nameForCentral:");
 }
 
 id objc_msgSend_notificationPort(void *a1, const char *a2, ...)
@@ -6755,62 +6755,62 @@ id objc_msgSend_notifyListeners_(void *a1, const char *a2, ...)
 
 id objc_msgSend_notifyPrimaryBudSide_device_(void *a1, const char *a2, ...)
 {
-  return [a1 notifyPrimaryBudSide:device:];
+  return _objc_msgSend(a1, "notifyPrimaryBudSide:device:");
 }
 
 id objc_msgSend_numberWithBool_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithBool:];
+  return _objc_msgSend(a1, "numberWithBool:");
 }
 
 id objc_msgSend_numberWithDouble_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithDouble:];
+  return _objc_msgSend(a1, "numberWithDouble:");
 }
 
 id objc_msgSend_numberWithFloat_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithFloat:];
+  return _objc_msgSend(a1, "numberWithFloat:");
 }
 
 id objc_msgSend_numberWithInt_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithInt:];
+  return _objc_msgSend(a1, "numberWithInt:");
 }
 
 id objc_msgSend_numberWithInteger_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithInteger:];
+  return _objc_msgSend(a1, "numberWithInteger:");
 }
 
 id objc_msgSend_numberWithLongLong_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithLongLong:];
+  return _objc_msgSend(a1, "numberWithLongLong:");
 }
 
 id objc_msgSend_numberWithUnsignedChar_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithUnsignedChar:];
+  return _objc_msgSend(a1, "numberWithUnsignedChar:");
 }
 
 id objc_msgSend_numberWithUnsignedInt_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithUnsignedInt:];
+  return _objc_msgSend(a1, "numberWithUnsignedInt:");
 }
 
 id objc_msgSend_numberWithUnsignedInteger_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithUnsignedInteger:];
+  return _objc_msgSend(a1, "numberWithUnsignedInteger:");
 }
 
 id objc_msgSend_numberWithUnsignedLongLong_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithUnsignedLongLong:];
+  return _objc_msgSend(a1, "numberWithUnsignedLongLong:");
 }
 
 id objc_msgSend_numberWithUnsignedShort_(void *a1, const char *a2, ...)
 {
-  return [a1 numberWithUnsignedShort:];
+  return _objc_msgSend(a1, "numberWithUnsignedShort:");
 }
 
 id objc_msgSend_object(void *a1, const char *a2, ...)
@@ -6820,7 +6820,7 @@ id objc_msgSend_object(void *a1, const char *a2, ...)
 
 id objc_msgSend_objectAtIndexedSubscript_(void *a1, const char *a2, ...)
 {
-  return [a1 objectAtIndexedSubscript:];
+  return _objc_msgSend(a1, "objectAtIndexedSubscript:");
 }
 
 id objc_msgSend_objectEnumerator(void *a1, const char *a2, ...)
@@ -6830,12 +6830,12 @@ id objc_msgSend_objectEnumerator(void *a1, const char *a2, ...)
 
 id objc_msgSend_objectForKey_(void *a1, const char *a2, ...)
 {
-  return [a1 objectForKey:];
+  return _objc_msgSend(a1, "objectForKey:");
 }
 
 id objc_msgSend_objectForKeyedSubscript_(void *a1, const char *a2, ...)
 {
-  return [a1 objectForKeyedSubscript:];
+  return _objc_msgSend(a1, "objectForKeyedSubscript:");
 }
 
 id objc_msgSend_offset(void *a1, const char *a2, ...)
@@ -6850,7 +6850,7 @@ id objc_msgSend_open(void *a1, const char *a2, ...)
 
 id objc_msgSend_openL2CAPChannel_(void *a1, const char *a2, ...)
 {
-  return [a1 openL2CAPChannel:];
+  return _objc_msgSend(a1, "openL2CAPChannel:");
 }
 
 id objc_msgSend_opportunisticRefCount(void *a1, const char *a2, ...)
@@ -6875,7 +6875,7 @@ id objc_msgSend_outputStream(void *a1, const char *a2, ...)
 
 id objc_msgSend_parseTLVCodecList_dataLength_streamID_(void *a1, const char *a2, ...)
 {
-  return [a1 parseTLVCodecList:dataLength:streamID:];
+  return _objc_msgSend(a1, "parseTLVCodecList:dataLength:streamID:");
 }
 
 id objc_msgSend_parseTLVCodecValue_dataLength_codecStruct_(void *a1, const char *a2, ...)
@@ -6905,7 +6905,7 @@ id objc_msgSend_pendingUpdates(void *a1, const char *a2, ...)
 
 id objc_msgSend_performMFiAuth_(void *a1, const char *a2, ...)
 {
-  return [a1 performMFiAuth:];
+  return _objc_msgSend(a1, "performMFiAuth:");
 }
 
 id objc_msgSend_peripheral(void *a1, const char *a2, ...)
@@ -6925,22 +6925,22 @@ id objc_msgSend_peripheral_didDiscoverDescriptorsForCharacteristic_error_(void *
 
 id objc_msgSend_peripheral_didDiscoverServices_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheral:didDiscoverServices:];
+  return _objc_msgSend(a1, "peripheral:didDiscoverServices:");
 }
 
 id objc_msgSend_peripheral_didModifyServices_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheral:didModifyServices:];
+  return _objc_msgSend(a1, "peripheral:didModifyServices:");
 }
 
 id objc_msgSend_peripheral_didUpdateNotificationStateForCharacteristic_error_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheral:didUpdateNotificationStateForCharacteristic:error:];
+  return _objc_msgSend(a1, "peripheral:didUpdateNotificationStateForCharacteristic:error:");
 }
 
 id objc_msgSend_peripheral_didUpdateValueForCharacteristic_error_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheral:didUpdateValueForCharacteristic:error:];
+  return _objc_msgSend(a1, "peripheral:didUpdateValueForCharacteristic:error:");
 }
 
 id objc_msgSend_peripheral_didUpdateValueForDescriptor_error_(void *a1, const char *a2, ...)
@@ -6950,12 +6950,12 @@ id objc_msgSend_peripheral_didUpdateValueForDescriptor_error_(void *a1, const ch
 
 id objc_msgSend_peripheral_didWriteValueForCharacteristic_error_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheral:didWriteValueForCharacteristic:error:];
+  return _objc_msgSend(a1, "peripheral:didWriteValueForCharacteristic:error:");
 }
 
 id objc_msgSend_peripheralForIdentifier_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheralForIdentifier:];
+  return _objc_msgSend(a1, "peripheralForIdentifier:");
 }
 
 id objc_msgSend_peripheralManager(void *a1, const char *a2, ...)
@@ -6965,12 +6965,12 @@ id objc_msgSend_peripheralManager(void *a1, const char *a2, ...)
 
 id objc_msgSend_peripheralManager_central_didSubscribeToCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheralManager:central:didSubscribeToCharacteristic:];
+  return _objc_msgSend(a1, "peripheralManager:central:didSubscribeToCharacteristic:");
 }
 
 id objc_msgSend_peripheralManager_central_didUnsubscribeFromCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheralManager:central:didUnsubscribeFromCharacteristic:];
+  return _objc_msgSend(a1, "peripheralManager:central:didUnsubscribeFromCharacteristic:");
 }
 
 id objc_msgSend_peripheralManager_central_didUpdateANCSAuthorization_(void *a1, const char *a2, ...)
@@ -6985,12 +6985,12 @@ id objc_msgSend_peripheralManager_didAddService_error_(void *a1, const char *a2,
 
 id objc_msgSend_peripheralManager_didReceiveReadRequest_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheralManager:didReceiveReadRequest:];
+  return _objc_msgSend(a1, "peripheralManager:didReceiveReadRequest:");
 }
 
 id objc_msgSend_peripheralManager_didReceiveWriteRequests_(void *a1, const char *a2, ...)
 {
-  return [a1 peripheralManager:didReceiveWriteRequests:];
+  return _objc_msgSend(a1, "peripheralManager:didReceiveWriteRequests:");
 }
 
 id objc_msgSend_peripheralManagerStateString(void *a1, const char *a2, ...)
@@ -7015,7 +7015,7 @@ id objc_msgSend_pipe(void *a1, const char *a2, ...)
 
 id objc_msgSend_pipe_didReceiveMessage_(void *a1, const char *a2, ...)
 {
-  return [a1 pipe:didReceiveMessage:];
+  return _objc_msgSend(a1, "pipe:didReceiveMessage:");
 }
 
 id objc_msgSend_pipeManager(void *a1, const char *a2, ...)
@@ -7050,12 +7050,12 @@ id objc_msgSend_pnpIDCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_postNotificationName_object_(void *a1, const char *a2, ...)
 {
-  return [a1 postNotificationName:object:];
+  return _objc_msgSend(a1, "postNotificationName:object:");
 }
 
 id objc_msgSend_postNotificationName_object_userInfo_(void *a1, const char *a2, ...)
 {
-  return [a1 postNotificationName:object:userInfo:];
+  return _objc_msgSend(a1, "postNotificationName:object:userInfo:");
 }
 
 id objc_msgSend_powerSourceDetails(void *a1, const char *a2, ...)
@@ -7085,7 +7085,7 @@ id objc_msgSend_priority(void *a1, const char *a2, ...)
 
 id objc_msgSend_processIncomingData_forEndpointWithUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 processIncomingData:forEndpointWithUUID:];
+  return _objc_msgSend(a1, "processIncomingData:forEndpointWithUUID:");
 }
 
 id objc_msgSend_productID(void *a1, const char *a2, ...)
@@ -7105,12 +7105,12 @@ id objc_msgSend_properties(void *a1, const char *a2, ...)
 
 id objc_msgSend_properties_locationIdOffset_hidDescriptor_extendedData_(void *a1, const char *a2, ...)
 {
-  return [a1 properties:locationIdOffset:hidDescriptor:extendedData:];
+  return _objc_msgSend(a1, "properties:locationIdOffset:hidDescriptor:extendedData:");
 }
 
 id objc_msgSend_propertyForKey_(void *a1, const char *a2, ...)
 {
-  return [a1 propertyForKey:];
+  return _objc_msgSend(a1, "propertyForKey:");
 }
 
 id objc_msgSend_proximity(void *a1, const char *a2, ...)
@@ -7145,42 +7145,42 @@ id objc_msgSend_radio(void *a1, const char *a2, ...)
 
 id objc_msgSend_raise_format_(void *a1, const char *a2, ...)
 {
-  return [a1 raise:format:];
+  return _objc_msgSend(a1, "raise:format:");
 }
 
 id objc_msgSend_read_maxLength_(void *a1, const char *a2, ...)
 {
-  return [a1 read:maxLength:];
+  return _objc_msgSend(a1, "read:maxLength:");
 }
 
 id objc_msgSend_readReportData_reportID_reportType_error_(void *a1, const char *a2, ...)
 {
-  return [a1 readReportData:reportID:reportType:error:];
+  return _objc_msgSend(a1, "readReportData:reportID:reportType:error:");
 }
 
 id objc_msgSend_readUint16_(void *a1, const char *a2, ...)
 {
-  return [a1 readUint16:];
+  return _objc_msgSend(a1, "readUint16:");
 }
 
 id objc_msgSend_readUint8_(void *a1, const char *a2, ...)
 {
-  return [a1 readUint8:];
+  return _objc_msgSend(a1, "readUint8:");
 }
 
 id objc_msgSend_readValueForCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 readValueForCharacteristic:];
+  return _objc_msgSend(a1, "readValueForCharacteristic:");
 }
 
 id objc_msgSend_readValueForDescriptor_(void *a1, const char *a2, ...)
 {
-  return [a1 readValueForDescriptor:];
+  return _objc_msgSend(a1, "readValueForDescriptor:");
 }
 
 id objc_msgSend_receiveMessage_length_(void *a1, const char *a2, ...)
 {
-  return [a1 receiveMessage:length:];
+  return _objc_msgSend(a1, "receiveMessage:length:");
 }
 
 id objc_msgSend_receivedMessage(void *a1, const char *a2, ...)
@@ -7190,7 +7190,7 @@ id objc_msgSend_receivedMessage(void *a1, const char *a2, ...)
 
 id objc_msgSend_recvDataFromAccessory_data_error_(void *a1, const char *a2, ...)
 {
-  return [a1 recvDataFromAccessory:data:error:];
+  return _objc_msgSend(a1, "recvDataFromAccessory:data:error:");
 }
 
 id objc_msgSend_recvDataMessage(void *a1, const char *a2, ...)
@@ -7200,7 +7200,7 @@ id objc_msgSend_recvDataMessage(void *a1, const char *a2, ...)
 
 id objc_msgSend_recvDataOverAACP_(void *a1, const char *a2, ...)
 {
-  return [a1 recvDataOverAACP];
+  return _objc_msgSend(a1, "recvDataOverAACP:");
 }
 
 id objc_msgSend_refreshConnectionAssertion(void *a1, const char *a2, ...)
@@ -7220,12 +7220,12 @@ id objc_msgSend_refreshPersistanceAssertion(void *a1, const char *a2, ...)
 
 id objc_msgSend_registerEndpoint_type_priority_(void *a1, const char *a2, ...)
 {
-  return [a1 registerEndpoint:type:priority:];
+  return _objc_msgSend(a1, "registerEndpoint:type:priority:");
 }
 
 id objc_msgSend_registerForConnectionEventsWithOptions_(void *a1, const char *a2, ...)
 {
-  return [a1 registerForConnectionEventsWithOptions:];
+  return _objc_msgSend(a1, "registerForConnectionEventsWithOptions:");
 }
 
 id objc_msgSend_registerForPowerManagementEvents(void *a1, const char *a2, ...)
@@ -7240,22 +7240,22 @@ id objc_msgSend_registerServices(void *a1, const char *a2, ...)
 
 id objc_msgSend_registerUARPService_withUARPAccessory_withUARPAssetID_(void *a1, const char *a2, ...)
 {
-  return [a1 registerUARPService:withUARPAccessory:withUARPAssetID:];
+  return _objc_msgSend(a1, "registerUARPService:withUARPAccessory:withUARPAssetID:");
 }
 
 id objc_msgSend_relayAACPUARP_uarpMsg_error_(void *a1, const char *a2, ...)
 {
-  return [a1 relayAACPUARP:uarpMsg:error:];
+  return _objc_msgSend(a1, "relayAACPUARP:uarpMsg:error:");
 }
 
 id objc_msgSend_relayForIdentifier_(void *a1, const char *a2, ...)
 {
-  return [a1 relayForIdentifier:];
+  return _objc_msgSend(a1, "relayForIdentifier:");
 }
 
 id objc_msgSend_relayWithIdentifier_deviceType_properties_codecType_(void *a1, const char *a2, ...)
 {
-  return [a1 relayWithIdentifier:deviceType:properties:codecType:];
+  return _objc_msgSend(a1, "relayWithIdentifier:deviceType:properties:codecType:");
 }
 
 id objc_msgSend_removeAccessory_(void *a1, const char *a2, ...)
@@ -7270,12 +7270,12 @@ id objc_msgSend_removeAllObjects(void *a1, const char *a2, ...)
 
 id objc_msgSend_removeFromRunLoop_forMode_(void *a1, const char *a2, ...)
 {
-  return [a1 removeFromRunLoop:forMode:];
+  return _objc_msgSend(a1, "removeFromRunLoop:forMode:");
 }
 
 id objc_msgSend_removeItemAtURL_error_(void *a1, const char *a2, ...)
 {
-  return [a1 removeItemAtURL:error:];
+  return _objc_msgSend(a1, "removeItemAtURL:error:");
 }
 
 id objc_msgSend_removeObject_(void *a1, const char *a2, ...)
@@ -7285,17 +7285,17 @@ id objc_msgSend_removeObject_(void *a1, const char *a2, ...)
 
 id objc_msgSend_removeObjectAtIndex_(void *a1, const char *a2, ...)
 {
-  return [a1 removeObjectAtIndex:];
+  return _objc_msgSend(a1, "removeObjectAtIndex:");
 }
 
 id objc_msgSend_removeObjectForKey_(void *a1, const char *a2, ...)
 {
-  return [a1 removeObjectForKey:];
+  return _objc_msgSend(a1, "removeObjectForKey:");
 }
 
 id objc_msgSend_removeObserver_(void *a1, const char *a2, ...)
 {
-  return [a1 removeObserver:];
+  return _objc_msgSend(a1, "removeObserver:");
 }
 
 id objc_msgSend_removeOpportunisticConnection_(void *a1, const char *a2, ...)
@@ -7305,12 +7305,12 @@ id objc_msgSend_removeOpportunisticConnection_(void *a1, const char *a2, ...)
 
 id objc_msgSend_removePipe_(void *a1, const char *a2, ...)
 {
-  return [a1 removePipe:];
+  return _objc_msgSend(a1, "removePipe:");
 }
 
 id objc_msgSend_removeService_(void *a1, const char *a2, ...)
 {
-  return [a1 removeService:];
+  return _objc_msgSend(a1, "removeService:");
 }
 
 id objc_msgSend_reportMapCharacteristic(void *a1, const char *a2, ...)
@@ -7320,42 +7320,42 @@ id objc_msgSend_reportMapCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_reportTypeToString_(void *a1, const char *a2, ...)
 {
-  return [a1 reportTypeToString:];
+  return _objc_msgSend(a1, "reportTypeToString:");
 }
 
 id objc_msgSend_reportsHaveMultipleReportIDs_(void *a1, const char *a2, ...)
 {
-  return [a1 reportsHaveMultipleReportIDs:];
+  return _objc_msgSend(a1, "reportsHaveMultipleReportIDs:");
 }
 
 id objc_msgSend_requestLeaEasyPair_deviceIdentifier_deviceTags_(void *a1, const char *a2, ...)
 {
-  return [a1 requestLeaEasyPair:deviceIdentifier:deviceTags:];
+  return _objc_msgSend(a1, "requestLeaEasyPair:deviceIdentifier:deviceTags:");
 }
 
 id objc_msgSend_requestLeaStoreBondingInfo_rand_ltk_irk_name_device_(void *a1, const char *a2, ...)
 {
-  return [a1 requestLeaStoreBondingInfo:rand:ltk:irk:name:device:];
+  return _objc_msgSend(a1, "requestLeaStoreBondingInfo:rand:ltk:irk:name:device:");
 }
 
 id objc_msgSend_requestPairStateForDevice_(void *a1, const char *a2, ...)
 {
-  return [a1 requestPairStateForDevice:];
+  return _objc_msgSend(a1, "requestPairStateForDevice:");
 }
 
 id objc_msgSend_requestStoreLinkKey_name_device_(void *a1, const char *a2, ...)
 {
-  return [a1 requestStoreLinkKey:name:device:];
+  return _objc_msgSend(a1, "requestStoreLinkKey:name:device:");
 }
 
 id objc_msgSend_requestStoreLinkKeyExtended_name_device_deviceServiceMask_classOfDevice_(void *a1, const char *a2, ...)
 {
-  return [a1 requestStoreLinkKeyExtended:name:device:deviceServiceMask:classOfDevice:];
+  return _objc_msgSend(a1, "requestStoreLinkKeyExtended:name:device:deviceServiceMask:classOfDevice:");
 }
 
 id objc_msgSend_requestVersionInfo_cloudAccount_(void *a1, const char *a2, ...)
 {
-  return [a1 requestVersionInfo:cloudAccount:];
+  return _objc_msgSend(a1, "requestVersionInfo:cloudAccount:");
 }
 
 id objc_msgSend_requestedUUIDs(void *a1, const char *a2, ...)
@@ -7365,47 +7365,47 @@ id objc_msgSend_requestedUUIDs(void *a1, const char *a2, ...)
 
 id objc_msgSend_requireServicesAndMFi_(void *a1, const char *a2, ...)
 {
-  return [a1 requireServicesAndMFi:];
+  return _objc_msgSend(a1, "requireServicesAndMFi:");
 }
 
 id objc_msgSend_respondToLeaEasyPair_device_(void *a1, const char *a2, ...)
 {
-  return [a1 respondToLeaEasyPair:device:];
+  return _objc_msgSend(a1, "respondToLeaEasyPair:device:");
 }
 
 id objc_msgSend_respondToLeaStoreBondingInfo_device_(void *a1, const char *a2, ...)
 {
-  return [a1 respondToLeaStoreBondingInfo:device:];
+  return _objc_msgSend(a1, "respondToLeaStoreBondingInfo:device:");
 }
 
 id objc_msgSend_respondToPairState_device_(void *a1, const char *a2, ...)
 {
-  return [a1 respondToPairState:device:];
+  return _objc_msgSend(a1, "respondToPairState:device:");
 }
 
 id objc_msgSend_respondToRequest_withResult_(void *a1, const char *a2, ...)
 {
-  return [a1 respondToRequest:withResult:];
+  return _objc_msgSend(a1, "respondToRequest:withResult:");
 }
 
 id objc_msgSend_respondToStoreLinkKey_device_(void *a1, const char *a2, ...)
 {
-  return [a1 respondToStoreLinkKey:device:];
+  return _objc_msgSend(a1, "respondToStoreLinkKey:device:");
 }
 
 id objc_msgSend_respondVersionInfo_cloudAccount_easyPairingStatus_(void *a1, const char *a2, ...)
 {
-  return [a1 respondVersionInfo:cloudAccount:easyPairingStatus:];
+  return _objc_msgSend(a1, "respondVersionInfo:cloudAccount:easyPairingStatus:");
 }
 
 id objc_msgSend_retrieveConnectedPeripheralsWithServices_(void *a1, const char *a2, ...)
 {
-  return [a1 retrieveConnectedPeripheralsWithServices:];
+  return _objc_msgSend(a1, "retrieveConnectedPeripheralsWithServices:");
 }
 
 id objc_msgSend_retrieveConnectedPeripheralsWithServices_allowAll_(void *a1, const char *a2, ...)
 {
-  return [a1 retrieveConnectedPeripheralsWithServices:allowAll:];
+  return _objc_msgSend(a1, "retrieveConnectedPeripheralsWithServices:allowAll:");
 }
 
 id objc_msgSend_retrievePairedPeers(void *a1, const char *a2, ...)
@@ -7415,12 +7415,12 @@ id objc_msgSend_retrievePairedPeers(void *a1, const char *a2, ...)
 
 id objc_msgSend_retrievePairingInfoForPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 retrievePairingInfoForPeripheral];
+  return _objc_msgSend(a1, "retrievePairingInfoForPeripheral:");
 }
 
 id objc_msgSend_retrievePeripheralsWithIdentifiers_(void *a1, const char *a2, ...)
 {
-  return [a1 retrievePeripheralsWithIdentifiers:];
+  return _objc_msgSend(a1, "retrievePeripheralsWithIdentifiers:");
 }
 
 id objc_msgSend_run(void *a1, const char *a2, ...)
@@ -7435,57 +7435,57 @@ id objc_msgSend_scalablePipeManagerStateString(void *a1, const char *a2, ...)
 
 id objc_msgSend_scheduleInRunLoop_forMode_(void *a1, const char *a2, ...)
 {
-  return [a1 scheduleInRunLoop:forMode:];
+  return _objc_msgSend(a1, "scheduleInRunLoop:forMode:");
 }
 
 id objc_msgSend_scheduledTimerWithTimeInterval_target_selector_userInfo_repeats_(void *a1, const char *a2, ...)
 {
-  return [a1 scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:];
+  return _objc_msgSend(a1, "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:");
 }
 
 id objc_msgSend_selectCodec_(void *a1, const char *a2, ...)
 {
-  return [a1 selectCodec:];
+  return _objc_msgSend(a1, "selectCodec:");
 }
 
 id objc_msgSend_sendAudioFrame_(void *a1, const char *a2, ...)
 {
-  return [a1 sendAudioFrame:];
+  return _objc_msgSend(a1, "sendAudioFrame:");
 }
 
 id objc_msgSend_sendButtonDataToUserDevice_withTimestamp_(void *a1, const char *a2, ...)
 {
-  return [a1 sendButtonDataToUserDevice:withTimestamp:];
+  return _objc_msgSend(a1, "sendButtonDataToUserDevice:withTimestamp:");
 }
 
 id objc_msgSend_sendData_(void *a1, const char *a2, ...)
 {
-  return [a1 sendData:];
+  return _objc_msgSend(a1, "sendData:");
 }
 
 id objc_msgSend_sendDevMgmtPipeConnectedMsg_(void *a1, const char *a2, ...)
 {
-  return [a1 sendDevMgmtPipeConnectedMsg];
+  return _objc_msgSend(a1, "sendDevMgmtPipeConnectedMsg:");
 }
 
 id objc_msgSend_sendDevMgmtPipeDisconnectedMsg_(void *a1, const char *a2, ...)
 {
-  return [a1 sendDevMgmtPipeDisconnectedMsg];
+  return _objc_msgSend(a1, "sendDevMgmtPipeDisconnectedMsg:");
 }
 
 id objc_msgSend_sendMessage_(void *a1, const char *a2, ...)
 {
-  return [a1 sendMessage:];
+  return _objc_msgSend(a1, "sendMessage:");
 }
 
 id objc_msgSend_sendMsg_args_(void *a1, const char *a2, ...)
 {
-  return [a1 sendMsg:args:];
+  return _objc_msgSend(a1, "sendMsg:args:");
 }
 
 id objc_msgSend_sendMsgIfCheckedIn_args_forClient_(void *a1, const char *a2, ...)
 {
-  return [a1 sendMsgIfCheckedIn:args:forClient:];
+  return _objc_msgSend(a1, "sendMsgIfCheckedIn:args:forClient:");
 }
 
 id objc_msgSend_sendNextQueuedMessage(void *a1, const char *a2, ...)
@@ -7540,372 +7540,372 @@ id objc_msgSend_set(void *a1, const char *a2, ...)
 
 id objc_msgSend_setAccessoryCategoryCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setAccessoryCategoryCharacteristic];
+  return _objc_msgSend(a1, "setAccessoryCategoryCharacteristic:");
 }
 
 id objc_msgSend_setActiveHIDDeviceCount_(void *a1, const char *a2, ...)
 {
-  return [a1 setActiveHIDDeviceCount:];
+  return _objc_msgSend(a1, "setActiveHIDDeviceCount:");
 }
 
 id objc_msgSend_setAudio_(void *a1, const char *a2, ...)
 {
-  return [a1 setAudio:];
+  return _objc_msgSend(a1, "setAudio:");
 }
 
 id objc_msgSend_setAudioBuffer_(void *a1, const char *a2, ...)
 {
-  return [a1 setAudioBuffer:];
+  return _objc_msgSend(a1, "setAudioBuffer:");
 }
 
 id objc_msgSend_setAuthInProgress_(void *a1, const char *a2, ...)
 {
-  return [a1 setAuthInProgress:];
+  return _objc_msgSend(a1, "setAuthInProgress:");
 }
 
 id objc_msgSend_setAuthState_(void *a1, const char *a2, ...)
 {
-  return [a1 setAuthState:];
+  return _objc_msgSend(a1, "setAuthState:");
 }
 
 id objc_msgSend_setAuthTimer_(void *a1, const char *a2, ...)
 {
-  return [a1 setAuthTimer:];
+  return _objc_msgSend(a1, "setAuthTimer:");
 }
 
 id objc_msgSend_setAutoDownloadAllowed_(void *a1, const char *a2, ...)
 {
-  return [a1 setAutoDownloadAllowed:];
+  return _objc_msgSend(a1, "setAutoDownloadAllowed:");
 }
 
 id objc_msgSend_setBatteryLevelCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setBatteryLevelCharacteristic];
+  return _objc_msgSend(a1, "setBatteryLevelCharacteristic:");
 }
 
 id objc_msgSend_setBatteryPowerStateCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setBatteryPowerStateCharacteristic];
+  return _objc_msgSend(a1, "setBatteryPowerStateCharacteristic:");
 }
 
 id objc_msgSend_setButtonData_(void *a1, const char *a2, ...)
 {
-  return [a1 setButtonData:];
+  return _objc_msgSend(a1, "setButtonData:");
 }
 
 id objc_msgSend_setButtons_(void *a1, const char *a2, ...)
 {
-  return [a1 setButtons:];
+  return _objc_msgSend(a1, "setButtons:");
 }
 
 id objc_msgSend_setCachedButtonsAndTimestamps_(void *a1, const char *a2, ...)
 {
-  return [a1 setCachedButtonsAndTimestamps:];
+  return _objc_msgSend(a1, "setCachedButtonsAndTimestamps:");
 }
 
 id objc_msgSend_setCertificate1Characteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setCertificate1Characteristic];
+  return _objc_msgSend(a1, "setCertificate1Characteristic:");
 }
 
 id objc_msgSend_setCertificate2Characteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setCertificate2Characteristic];
+  return _objc_msgSend(a1, "setCertificate2Characteristic:");
 }
 
 id objc_msgSend_setChallengeResponseCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setChallengeResponseCharacteristic:];
+  return _objc_msgSend(a1, "setChallengeResponseCharacteristic:");
 }
 
 id objc_msgSend_setCodec_(void *a1, const char *a2, ...)
 {
-  return [a1 setCodec:];
+  return _objc_msgSend(a1, "setCodec:");
 }
 
 id objc_msgSend_setCommandError_(void *a1, const char *a2, ...)
 {
-  return [a1 setCommandError:];
+  return _objc_msgSend(a1, "setCommandError:");
 }
 
 id objc_msgSend_setCommandPending_(void *a1, const char *a2, ...)
 {
-  return [a1 setCommandPending:];
+  return _objc_msgSend(a1, "setCommandPending:");
 }
 
 id objc_msgSend_setCommandValue_(void *a1, const char *a2, ...)
 {
-  return [a1 setCommandValue:];
+  return _objc_msgSend(a1, "setCommandValue:");
 }
 
 id objc_msgSend_setConnectAlwaysIdentifiersMap_(void *a1, const char *a2, ...)
 {
-  return [a1 setConnectAlwaysIdentifiersMap:];
+  return _objc_msgSend(a1, "setConnectAlwaysIdentifiersMap:");
 }
 
 id objc_msgSend_setConnectionAssertion_(void *a1, const char *a2, ...)
 {
-  return [a1 setConnectionAssertion:];
+  return _objc_msgSend(a1, "setConnectionAssertion:");
 }
 
 id objc_msgSend_setConnectionAuthenticated_state_(void *a1, const char *a2, ...)
 {
-  return [a1 setConnectionAuthenticated:state:];
+  return _objc_msgSend(a1, "setConnectionAuthenticated:state:");
 }
 
 id objc_msgSend_setConnectionUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 setConnectionUUID];
+  return _objc_msgSend(a1, "setConnectionUUID:");
 }
 
 id objc_msgSend_setDate_(void *a1, const char *a2, ...)
 {
-  return [a1 setDate:];
+  return _objc_msgSend(a1, "setDate:");
 }
 
 id objc_msgSend_setDelegate_(void *a1, const char *a2, ...)
 {
-  return [a1 setDelegate:];
+  return _objc_msgSend(a1, "setDelegate:");
 }
 
 id objc_msgSend_setDenylistedIdentifiers_(void *a1, const char *a2, ...)
 {
-  return [a1 setDenylistedIdentifiers:];
+  return _objc_msgSend(a1, "setDenylistedIdentifiers:");
 }
 
 id objc_msgSend_setDesiredConnectionLatency_forPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 setDesiredConnectionLatency:forPeripheral:];
+  return _objc_msgSend(a1, "setDesiredConnectionLatency:forPeripheral:");
 }
 
 id objc_msgSend_setDeviceManagement_(void *a1, const char *a2, ...)
 {
-  return [a1 setDeviceManagement:];
+  return _objc_msgSend(a1, "setDeviceManagement:");
 }
 
 id objc_msgSend_setDeviceManagementEndpoint_(void *a1, const char *a2, ...)
 {
-  return [a1 setDeviceManagementEndpoint];
+  return _objc_msgSend(a1, "setDeviceManagementEndpoint:");
 }
 
 id objc_msgSend_setDeviceMatching_(void *a1, const char *a2, ...)
 {
-  return [a1 setDeviceMatching:];
+  return _objc_msgSend(a1, "setDeviceMatching:");
 }
 
 id objc_msgSend_setDeviceNotificationHandler_(void *a1, const char *a2, ...)
 {
-  return [a1 setDeviceNotificationHandler:];
+  return _objc_msgSend(a1, "setDeviceNotificationHandler:");
 }
 
 id objc_msgSend_setDispatchQueue_(void *a1, const char *a2, ...)
 {
-  return [a1 setDispatchQueue:];
+  return _objc_msgSend(a1, "setDispatchQueue:");
 }
 
 id objc_msgSend_setDoapAudioRelay_(void *a1, const char *a2, ...)
 {
-  return [a1 setDoapAudioRelay];
+  return _objc_msgSend(a1, "setDoapAudioRelay:");
 }
 
 id objc_msgSend_setDoapAudioStop_(void *a1, const char *a2, ...)
 {
-  return [a1 setDoapAudioStop:];
+  return _objc_msgSend(a1, "setDoapAudioStop:");
 }
 
 id objc_msgSend_setEndpointUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 setEndpointUUID];
+  return _objc_msgSend(a1, "setEndpointUUID:");
 }
 
 id objc_msgSend_setEventIndicatorCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setEventIndicatorCharacteristic:];
+  return _objc_msgSend(a1, "setEventIndicatorCharacteristic:");
 }
 
 id objc_msgSend_setFirstButton_(void *a1, const char *a2, ...)
 {
-  return [a1 setFirstButton:];
+  return _objc_msgSend(a1, "setFirstButton:");
 }
 
 id objc_msgSend_setFwRevisionCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setFwRevisionCharacteristic];
+  return _objc_msgSend(a1, "setFwRevisionCharacteristic:");
 }
 
 id objc_msgSend_setHidControlPointCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setHidControlPointCharacteristic:];
+  return _objc_msgSend(a1, "setHidControlPointCharacteristic:");
 }
 
 id objc_msgSend_setHidDevice_(void *a1, const char *a2, ...)
 {
-  return [a1 setHidDevice];
+  return _objc_msgSend(a1, "setHidDevice:");
 }
 
 id objc_msgSend_setHidInformationCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setHidInformationCharacteristic];
+  return _objc_msgSend(a1, "setHidInformationCharacteristic:");
 }
 
 id objc_msgSend_setHighPriorityLink_burstTime_(void *a1, const char *a2, ...)
 {
-  return [a1 setHighPriorityLink:burstTime:];
+  return _objc_msgSend(a1, "setHighPriorityLink:burstTime:");
 }
 
 id objc_msgSend_setHighPriorityStream_duration_(void *a1, const char *a2, ...)
 {
-  return [a1 setHighPriorityStream:duration:];
+  return _objc_msgSend(a1, "setHighPriorityStream:duration:");
 }
 
 id objc_msgSend_setHwRevisionCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setHwRevisionCharacteristic];
+  return _objc_msgSend(a1, "setHwRevisionCharacteristic:");
 }
 
 id objc_msgSend_setInertial_(void *a1, const char *a2, ...)
 {
-  return [a1 setInertial:];
+  return _objc_msgSend(a1, "setInertial:");
 }
 
 id objc_msgSend_setInfrared_(void *a1, const char *a2, ...)
 {
-  return [a1 setInfrared:];
+  return _objc_msgSend(a1, "setInfrared:");
 }
 
 id objc_msgSend_setInputElementHandler_(void *a1, const char *a2, ...)
 {
-  return [a1 setInputElementHandler:];
+  return _objc_msgSend(a1, "setInputElementHandler:");
 }
 
 id objc_msgSend_setInputElementMatching_(void *a1, const char *a2, ...)
 {
-  return [a1 setInputElementMatching:];
+  return _objc_msgSend(a1, "setInputElementMatching:");
 }
 
 id objc_msgSend_setInputReportTimestamp_(void *a1, const char *a2, ...)
 {
-  return [a1 setInputReportTimestamp:];
+  return _objc_msgSend(a1, "setInputReportTimestamp:");
 }
 
 id objc_msgSend_setIsEventIndicatorNotificationEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsEventIndicatorNotificationEnabled:];
+  return _objc_msgSend(a1, "setIsEventIndicatorNotificationEnabled:");
 }
 
 id objc_msgSend_setIsPrimary_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsPrimary:];
+  return _objc_msgSend(a1, "setIsPrimary:");
 }
 
 id objc_msgSend_setIsSendDataNotificationEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsSendDataNotificationEnabled:];
+  return _objc_msgSend(a1, "setIsSendDataNotificationEnabled:");
 }
 
 id objc_msgSend_setIsSendingData_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsSendingData:];
+  return _objc_msgSend(a1, "setIsSendingData:");
 }
 
 id objc_msgSend_setIsStartStreamingNotificationEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsStartStreamingNotificationEnabled:];
+  return _objc_msgSend(a1, "setIsStartStreamingNotificationEnabled:");
 }
 
 id objc_msgSend_setIsStarted_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsStarted:];
+  return _objc_msgSend(a1, "setIsStarted:");
 }
 
 id objc_msgSend_setIsStopStreamingNotificationEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsStopStreamingNotificationEnabled:];
+  return _objc_msgSend(a1, "setIsStopStreamingNotificationEnabled:");
 }
 
 id objc_msgSend_setIsStreaming_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsStreaming:];
+  return _objc_msgSend(a1, "setIsStreaming:");
 }
 
 id objc_msgSend_setIsValid_(void *a1, const char *a2, ...)
 {
-  return [a1 setIsValid:];
+  return _objc_msgSend(a1, "setIsValid:");
 }
 
 id objc_msgSend_setLastAudioDate_(void *a1, const char *a2, ...)
 {
-  return [a1 setLastAudioDate:];
+  return _objc_msgSend(a1, "setLastAudioDate:");
 }
 
 id objc_msgSend_setLatency_(void *a1, const char *a2, ...)
 {
-  return [a1 setLatency:];
+  return _objc_msgSend(a1, "setLatency:");
 }
 
 id objc_msgSend_setLength_(void *a1, const char *a2, ...)
 {
-  return [a1 setLength:];
+  return _objc_msgSend(a1, "setLength:");
 }
 
 id objc_msgSend_setManufacturerNameCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setManufacturerNameCharacteristic];
+  return _objc_msgSend(a1, "setManufacturerNameCharacteristic:");
 }
 
 id objc_msgSend_setMaxCELength_(void *a1, const char *a2, ...)
 {
-  return [a1 setMaxCELength:];
+  return _objc_msgSend(a1, "setMaxCELength:");
 }
 
 id objc_msgSend_setMaxDeferment_(void *a1, const char *a2, ...)
 {
-  return [a1 setMaxDeferment:];
+  return _objc_msgSend(a1, "setMaxDeferment:");
 }
 
 id objc_msgSend_setMaxInterval_(void *a1, const char *a2, ...)
 {
-  return [a1 setMaxInterval:];
+  return _objc_msgSend(a1, "setMaxInterval:");
 }
 
 id objc_msgSend_setMaxPayloadSize_(void *a1, const char *a2, ...)
 {
-  return [a1 setMaxPayloadSize:];
+  return _objc_msgSend(a1, "setMaxPayloadSize:");
 }
 
 id objc_msgSend_setMaxPeripheralLatency_(void *a1, const char *a2, ...)
 {
-  return [a1 setMaxPeripheralLatency:];
+  return _objc_msgSend(a1, "setMaxPeripheralLatency:");
 }
 
 id objc_msgSend_setMfiAuthChannel_(void *a1, const char *a2, ...)
 {
-  return [a1 setMfiAuthChannel:];
+  return _objc_msgSend(a1, "setMfiAuthChannel:");
 }
 
 id objc_msgSend_setMfiPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 setMfiPeripheral:];
+  return _objc_msgSend(a1, "setMfiPeripheral:");
 }
 
 id objc_msgSend_setMfiVoucher_(void *a1, const char *a2, ...)
 {
-  return [a1 setMfiVoucher:];
+  return _objc_msgSend(a1, "setMfiVoucher:");
 }
 
 id objc_msgSend_setMinCELength_(void *a1, const char *a2, ...)
 {
-  return [a1 setMinCELength:];
+  return _objc_msgSend(a1, "setMinCELength:");
 }
 
 id objc_msgSend_setMinInterval_(void *a1, const char *a2, ...)
 {
-  return [a1 setMinInterval:];
+  return _objc_msgSend(a1, "setMinInterval:");
 }
 
 id objc_msgSend_setModelNumberCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setModelNumberCharacteristic];
+  return _objc_msgSend(a1, "setModelNumberCharacteristic:");
 }
 
 id objc_msgSend_setNormalPeripheralLatency(void *a1, const char *a2, ...)
@@ -7915,202 +7915,202 @@ id objc_msgSend_setNormalPeripheralLatency(void *a1, const char *a2, ...)
 
 id objc_msgSend_setNotificationEnabled_(void *a1, const char *a2, ...)
 {
-  return [a1 setNotificationEnabled:];
+  return _objc_msgSend(a1, "setNotificationEnabled:");
 }
 
 id objc_msgSend_setNotificationPort_(void *a1, const char *a2, ...)
 {
-  return [a1 setNotificationPort:];
+  return _objc_msgSend(a1, "setNotificationPort:");
 }
 
 id objc_msgSend_setNotify_forCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setNotify:forCharacteristic:];
+  return _objc_msgSend(a1, "setNotify:forCharacteristic:");
 }
 
 id objc_msgSend_setNotifyValue_forCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setNotifyValue:forCharacteristic:];
+  return _objc_msgSend(a1, "setNotifyValue:forCharacteristic:");
 }
 
 id objc_msgSend_setObject_forKey_(void *a1, const char *a2, ...)
 {
-  return [a1 setObject:forKey:];
+  return _objc_msgSend(a1, "setObject:forKey:");
 }
 
 id objc_msgSend_setObject_forKeyedSubscript_(void *a1, const char *a2, ...)
 {
-  return [a1 setObject:forKeyedSubscript:];
+  return _objc_msgSend(a1, "setObject:forKeyedSubscript:");
 }
 
 id objc_msgSend_setOffset_(void *a1, const char *a2, ...)
 {
-  return [a1 setOffset:];
+  return _objc_msgSend(a1, "setOffset:");
 }
 
 id objc_msgSend_setOpportunisticConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 setOpportunisticConnection:];
+  return _objc_msgSend(a1, "setOpportunisticConnection:");
 }
 
 id objc_msgSend_setOpportunisticConnection_forAccessoryUUID_(void *a1, const char *a2, ...)
 {
-  return [a1 setOpportunisticConnection:forAccessoryUUID:];
+  return _objc_msgSend(a1, "setOpportunisticConnection:forAccessoryUUID:");
 }
 
 id objc_msgSend_setOpportunisticRefCount_(void *a1, const char *a2, ...)
 {
-  return [a1 setOpportunisticRefCount:];
+  return _objc_msgSend(a1, "setOpportunisticRefCount:");
 }
 
 id objc_msgSend_setPeerChannel_(void *a1, const char *a2, ...)
 {
-  return [a1 setPeerChannel:];
+  return _objc_msgSend(a1, "setPeerChannel:");
 }
 
 id objc_msgSend_setPeripheral_(void *a1, const char *a2, ...)
 {
-  return [a1 setPeripheral:];
+  return _objc_msgSend(a1, "setPeripheral:");
 }
 
 id objc_msgSend_setPeripherals_(void *a1, const char *a2, ...)
 {
-  return [a1 setPeripherals:];
+  return _objc_msgSend(a1, "setPeripherals:");
 }
 
 id objc_msgSend_setPersist_(void *a1, const char *a2, ...)
 {
-  return [a1 setPersist:];
+  return _objc_msgSend(a1, "setPersist:");
 }
 
 id objc_msgSend_setPersistanceAssertion_(void *a1, const char *a2, ...)
 {
-  return [a1 setPersistanceAssertion:];
+  return _objc_msgSend(a1, "setPersistanceAssertion:");
 }
 
 id objc_msgSend_setPmIsSuspended_(void *a1, const char *a2, ...)
 {
-  return [a1 setPmIsSuspended:];
+  return _objc_msgSend(a1, "setPmIsSuspended:");
 }
 
 id objc_msgSend_setPmNotifier_(void *a1, const char *a2, ...)
 {
-  return [a1 setPmNotifier:];
+  return _objc_msgSend(a1, "setPmNotifier:");
 }
 
 id objc_msgSend_setPmService_(void *a1, const char *a2, ...)
 {
-  return [a1 setPmService:];
+  return _objc_msgSend(a1, "setPmService:");
 }
 
 id objc_msgSend_setPnpIDCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setPnpIDCharacteristic];
+  return _objc_msgSend(a1, "setPnpIDCharacteristic:");
 }
 
 id objc_msgSend_setPowerSourceDetails_(void *a1, const char *a2, ...)
 {
-  return [a1 setPowerSourceDetails:];
+  return _objc_msgSend(a1, "setPowerSourceDetails:");
 }
 
 id objc_msgSend_setPreferredInterval_(void *a1, const char *a2, ...)
 {
-  return [a1 setPreferredInterval:];
+  return _objc_msgSend(a1, "setPreferredInterval:");
 }
 
 id objc_msgSend_setPreferredPeripheralLatency_(void *a1, const char *a2, ...)
 {
-  return [a1 setPreferredPeripheralLatency:];
+  return _objc_msgSend(a1, "setPreferredPeripheralLatency:");
 }
 
 id objc_msgSend_setPriority_(void *a1, const char *a2, ...)
 {
-  return [a1 setPriority:];
+  return _objc_msgSend(a1, "setPriority:");
 }
 
 id objc_msgSend_setProximity_(void *a1, const char *a2, ...)
 {
-  return [a1 setProximity:];
+  return _objc_msgSend(a1, "setProximity:");
 }
 
 id objc_msgSend_setProximityData_(void *a1, const char *a2, ...)
 {
-  return [a1 setProximityData:];
+  return _objc_msgSend(a1, "setProximityData:");
 }
 
 id objc_msgSend_setQueue_(void *a1, const char *a2, ...)
 {
-  return [a1 setQueue:];
+  return _objc_msgSend(a1, "setQueue:");
 }
 
 id objc_msgSend_setRadio_(void *a1, const char *a2, ...)
 {
-  return [a1 setRadio:];
+  return _objc_msgSend(a1, "setRadio:");
 }
 
 id objc_msgSend_setReceivedMessage_(void *a1, const char *a2, ...)
 {
-  return [a1 setReceivedMessage:];
+  return _objc_msgSend(a1, "setReceivedMessage:");
 }
 
 id objc_msgSend_setRecvDataMessage_(void *a1, const char *a2, ...)
 {
-  return [a1 setRecvDataMessage:];
+  return _objc_msgSend(a1, "setRecvDataMessage:");
 }
 
 id objc_msgSend_setReport_reportLength_reportID_reportType_keyholeID_(void *a1, const char *a2, ...)
 {
-  return [a1 setReport:reportLength:reportID:reportType:keyholeID:];
+  return _objc_msgSend(a1, "setReport:reportLength:reportID:reportType:keyholeID:");
 }
 
 id objc_msgSend_setReport_reportLength_reportID_reportType_keyholeID_error_(void *a1, const char *a2, ...)
 {
-  return [a1 setReport:reportLength:reportID:reportType:keyholeID:error:];
+  return _objc_msgSend(a1, "setReport:reportLength:reportID:reportType:keyholeID:error:");
 }
 
 id objc_msgSend_setReportData_reportID_reportType_error_(void *a1, const char *a2, ...)
 {
-  return [a1 setReportData:reportID:reportType:error:];
+  return _objc_msgSend(a1, "setReportData:reportID:reportType:error:");
 }
 
 id objc_msgSend_setReportMapCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setReportMapCharacteristic:];
+  return _objc_msgSend(a1, "setReportMapCharacteristic:");
 }
 
 id objc_msgSend_setSelectedCodecCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setSelectedCodecCharacteristic];
+  return _objc_msgSend(a1, "setSelectedCodecCharacteristic:");
 }
 
 id objc_msgSend_setSendDataCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setSendDataCharacteristic:];
+  return _objc_msgSend(a1, "setSendDataCharacteristic:");
 }
 
 id objc_msgSend_setSerialNumberCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setSerialNumberCharacteristic];
+  return _objc_msgSend(a1, "setSerialNumberCharacteristic:");
 }
 
 id objc_msgSend_setServerConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 setServerConnection:];
+  return _objc_msgSend(a1, "setServerConnection:");
 }
 
 id objc_msgSend_setService_(void *a1, const char *a2, ...)
 {
-  return [a1 setService:];
+  return _objc_msgSend(a1, "setService:");
 }
 
 id objc_msgSend_setShouldPersist_(void *a1, const char *a2, ...)
 {
-  return [a1 setShouldPersist:];
+  return _objc_msgSend(a1, "setShouldPersist:");
 }
 
 id objc_msgSend_setSiriXpcConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 setSiriXpcConnection];
+  return _objc_msgSend(a1, "setSiriXpcConnection:");
 }
 
 id objc_msgSend_setSleepPeripheralLatency(void *a1, const char *a2, ...)
@@ -8120,117 +8120,117 @@ id objc_msgSend_setSleepPeripheralLatency(void *a1, const char *a2, ...)
 
 id objc_msgSend_setSoundSensorXpcConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 setSoundSensorXpcConnection];
+  return _objc_msgSend(a1, "setSoundSensorXpcConnection:");
 }
 
 id objc_msgSend_setStartPriority_(void *a1, const char *a2, ...)
 {
-  return [a1 setStartPriority:];
+  return _objc_msgSend(a1, "setStartPriority:");
 }
 
 id objc_msgSend_setStartStreamingCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setStartStreamingCharacteristic:];
+  return _objc_msgSend(a1, "setStartStreamingCharacteristic:");
 }
 
 id objc_msgSend_setStartTimeout_(void *a1, const char *a2, ...)
 {
-  return [a1 setStartTimeout:];
+  return _objc_msgSend(a1, "setStartTimeout:");
 }
 
 id objc_msgSend_setStartTimer_(void *a1, const char *a2, ...)
 {
-  return [a1 setStartTimer:];
+  return _objc_msgSend(a1, "setStartTimer:");
 }
 
 id objc_msgSend_setState_(void *a1, const char *a2, ...)
 {
-  return [a1 setState:];
+  return _objc_msgSend(a1, "setState:");
 }
 
 id objc_msgSend_setStopStreamingCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setStopStreamingCharacteristic:];
+  return _objc_msgSend(a1, "setStopStreamingCharacteristic:");
 }
 
 id objc_msgSend_setSupportedCodecsCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setSupportedCodecsCharacteristic];
+  return _objc_msgSend(a1, "setSupportedCodecsCharacteristic:");
 }
 
 id objc_msgSend_setSwRevisionCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setSwRevisionCharacteristic:];
+  return _objc_msgSend(a1, "setSwRevisionCharacteristic:");
 }
 
 id objc_msgSend_setTimeout_(void *a1, const char *a2, ...)
 {
-  return [a1 setTimeout:];
+  return _objc_msgSend(a1, "setTimeout:");
 }
 
 id objc_msgSend_setTouch_(void *a1, const char *a2, ...)
 {
-  return [a1 setTouch:];
+  return _objc_msgSend(a1, "setTouch:");
 }
 
 id objc_msgSend_setTryCount_(void *a1, const char *a2, ...)
 {
-  return [a1 setTryCount:];
+  return _objc_msgSend(a1, "setTryCount:");
 }
 
 id objc_msgSend_setTxDataQueue_(void *a1, const char *a2, ...)
 {
-  return [a1 setTxDataQueue:];
+  return _objc_msgSend(a1, "setTxDataQueue:");
 }
 
 id objc_msgSend_setType_(void *a1, const char *a2, ...)
 {
-  return [a1 setType:];
+  return _objc_msgSend(a1, "setType:");
 }
 
 id objc_msgSend_setUarpAccessory_(void *a1, const char *a2, ...)
 {
-  return [a1 setUarpAccessory:];
+  return _objc_msgSend(a1, "setUarpAccessory:");
 }
 
 id objc_msgSend_setUarpAssetID_(void *a1, const char *a2, ...)
 {
-  return [a1 setUarpAssetID:];
+  return _objc_msgSend(a1, "setUarpAssetID:");
 }
 
 id objc_msgSend_setUarpDataControlPointCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setUarpDataControlPointCharacteristic];
+  return _objc_msgSend(a1, "setUarpDataControlPointCharacteristic:");
 }
 
 id objc_msgSend_setUarpOverAACP_(void *a1, const char *a2, ...)
 {
-  return [a1 setUarpOverAACP:];
+  return _objc_msgSend(a1, "setUarpOverAACP:");
 }
 
 id objc_msgSend_setUdiForMedicalDevicesCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setUdiForMedicalDevicesCharacteristic];
+  return _objc_msgSend(a1, "setUdiForMedicalDevicesCharacteristic:");
 }
 
 id objc_msgSend_setValue_forKey_(void *a1, const char *a2, ...)
 {
-  return [a1 setValue:forKey:];
+  return _objc_msgSend(a1, "setValue:forKey:");
 }
 
 id objc_msgSend_setVersionCharacteristic_(void *a1, const char *a2, ...)
 {
-  return [a1 setVersionCharacteristic:];
+  return _objc_msgSend(a1, "setVersionCharacteristic:");
 }
 
 id objc_msgSend_setWithObjects_(void *a1, const char *a2, ...)
 {
-  return [a1 setWithObjects:];
+  return _objc_msgSend(a1, "setWithObjects:");
 }
 
 id objc_msgSend_setXpcConnection_(void *a1, const char *a2, ...)
 {
-  return [a1 setXpcConnection:];
+  return _objc_msgSend(a1, "setXpcConnection:");
 }
 
 id objc_msgSend_sharedClient(void *a1, const char *a2, ...)
@@ -8280,7 +8280,7 @@ id objc_msgSend_soundSensorXpcConnection(void *a1, const char *a2, ...)
 
 id objc_msgSend_stageFirmwareUpdateOnAccessoryList_withUserIntent_(void *a1, const char *a2, ...)
 {
-  return [a1 stageFirmwareUpdateOnAccessoryList:withUserIntent:];
+  return _objc_msgSend(a1, "stageFirmwareUpdateOnAccessoryList:withUserIntent:");
 }
 
 id objc_msgSend_standardUserDefaults(void *a1, const char *a2, ...)
@@ -8300,7 +8300,7 @@ id objc_msgSend_startClientServices(void *a1, const char *a2, ...)
 
 id objc_msgSend_startPersonalizationHelperService_entitlement_(void *a1, const char *a2, ...)
 {
-  return [a1 startPersonalizationHelperService:entitlement:];
+  return _objc_msgSend(a1, "startPersonalizationHelperService:entitlement:");
 }
 
 id objc_msgSend_startPriority(void *a1, const char *a2, ...)
@@ -8310,7 +8310,7 @@ id objc_msgSend_startPriority(void *a1, const char *a2, ...)
 
 id objc_msgSend_startStream_(void *a1, const char *a2, ...)
 {
-  return [a1 startStream:];
+  return _objc_msgSend(a1, "startStream:");
 }
 
 id objc_msgSend_startStreaming(void *a1, const char *a2, ...)
@@ -8320,7 +8320,7 @@ id objc_msgSend_startStreaming(void *a1, const char *a2, ...)
 
 id objc_msgSend_startStreaming_(void *a1, const char *a2, ...)
 {
-  return [a1 startStreaming:];
+  return _objc_msgSend(a1, "startStreaming:");
 }
 
 id objc_msgSend_startTapToRadar(void *a1, const char *a2, ...)
@@ -8330,7 +8330,7 @@ id objc_msgSend_startTapToRadar(void *a1, const char *a2, ...)
 
 id objc_msgSend_startTapToRadar_(void *a1, const char *a2, ...)
 {
-  return [a1 startTapToRadar:];
+  return _objc_msgSend(a1, "startTapToRadar:");
 }
 
 id objc_msgSend_startTimeout(void *a1, const char *a2, ...)
@@ -8360,12 +8360,12 @@ id objc_msgSend_stop(void *a1, const char *a2, ...)
 
 id objc_msgSend_stopStream_(void *a1, const char *a2, ...)
 {
-  return [a1 stopStream:];
+  return _objc_msgSend(a1, "stopStream:");
 }
 
 id objc_msgSend_stopStreaming_(void *a1, const char *a2, ...)
 {
-  return [a1 stopStreaming:];
+  return _objc_msgSend(a1, "stopStreaming:");
 }
 
 id objc_msgSend_stopTapToRadar(void *a1, const char *a2, ...)
@@ -8375,7 +8375,7 @@ id objc_msgSend_stopTapToRadar(void *a1, const char *a2, ...)
 
 id objc_msgSend_storeDeviceSettings_inEarEnable_doubleTapMode_deviceSettings_deviceName_device_( void *a1, const char *a2, ...)
 {
-  return [a1 storeDeviceSettings:inEarEnable:doubleTapMode:deviceSettings:deviceName:device:];
+  return _objc_msgSend(a1, "storeDeviceSettings:inEarEnable:doubleTapMode:deviceSettings:deviceName:device:");
 }
 
 id objc_msgSend_stream(void *a1, const char *a2, ...)
@@ -8395,22 +8395,22 @@ id objc_msgSend_streamID(void *a1, const char *a2, ...)
 
 id objc_msgSend_stringByReplacingOccurrencesOfString_withString_(void *a1, const char *a2, ...)
 {
-  return [a1 stringByReplacingOccurrencesOfString:withString:];
+  return _objc_msgSend(a1, "stringByReplacingOccurrencesOfString:withString:");
 }
 
 id objc_msgSend_stringWithCString_encoding_(void *a1, const char *a2, ...)
 {
-  return [a1 stringWithCString:encoding:];
+  return _objc_msgSend(a1, "stringWithCString:encoding:");
 }
 
 id objc_msgSend_stringWithFormat_(void *a1, const char *a2, ...)
 {
-  return [a1 stringWithFormat:];
+  return _objc_msgSend(a1, "stringWithFormat:");
 }
 
 id objc_msgSend_stringWithUTF8String_(void *a1, const char *a2, ...)
 {
-  return [a1 stringWithUTF8String:];
+  return _objc_msgSend(a1, "stringWithUTF8String:");
 }
 
 id objc_msgSend_strongToStrongObjectsMapTable(void *a1, const char *a2, ...)
@@ -8420,12 +8420,12 @@ id objc_msgSend_strongToStrongObjectsMapTable(void *a1, const char *a2, ...)
 
 id objc_msgSend_subdataWithRange_(void *a1, const char *a2, ...)
 {
-  return [a1 subdataWithRange:];
+  return _objc_msgSend(a1, "subdataWithRange:");
 }
 
 id objc_msgSend_substringToIndex_(void *a1, const char *a2, ...)
 {
-  return [a1 substringToIndex:];
+  return _objc_msgSend(a1, "substringToIndex:");
 }
 
 id objc_msgSend_supportedCommands(void *a1, const char *a2, ...)
@@ -8445,7 +8445,7 @@ id objc_msgSend_tag(void *a1, const char *a2, ...)
 
 id objc_msgSend_tag_(void *a1, const char *a2, ...)
 {
-  return [a1 tag:];
+  return _objc_msgSend(a1, "tag:");
 }
 
 id objc_msgSend_tapToRadarIsOngoing(void *a1, const char *a2, ...)
@@ -8455,7 +8455,7 @@ id objc_msgSend_tapToRadarIsOngoing(void *a1, const char *a2, ...)
 
 id objc_msgSend_timeIntervalSinceDate_(void *a1, const char *a2, ...)
 {
-  return [a1 timeIntervalSinceDate:];
+  return _objc_msgSend(a1, "timeIntervalSinceDate:");
 }
 
 id objc_msgSend_timeIntervalSinceNow(void *a1, const char *a2, ...)
@@ -8535,7 +8535,7 @@ id objc_msgSend_uarpOverAACP(void *a1, const char *a2, ...)
 
 id objc_msgSend_uarpServiceForAccessoryUuid_(void *a1, const char *a2, ...)
 {
-  return [a1 uarpServiceForAccessoryUuid:];
+  return _objc_msgSend(a1, "uarpServiceForAccessoryUuid:");
 }
 
 id objc_msgSend_udiForMedicalDevices(void *a1, const char *a2, ...)
@@ -8550,7 +8550,7 @@ id objc_msgSend_udiForMedicalDevicesCharacteristic(void *a1, const char *a2, ...
 
 id objc_msgSend_unexpectedDisconnection_(void *a1, const char *a2, ...)
 {
-  return [a1 unexpectedDisconnection:];
+  return _objc_msgSend(a1, "unexpectedDisconnection:");
 }
 
 id objc_msgSend_unlock(void *a1, const char *a2, ...)
@@ -8565,7 +8565,7 @@ id objc_msgSend_unregisterAllEndpoints(void *a1, const char *a2, ...)
 
 id objc_msgSend_unregisterUARPService_withUARPAccessory_(void *a1, const char *a2, ...)
 {
-  return [a1 unregisterUARPService:withUARPAccessory:];
+  return _objc_msgSend(a1, "unregisterUARPService:withUARPAccessory:");
 }
 
 id objc_msgSend_unsignedCharValue(void *a1, const char *a2, ...)
@@ -8605,22 +8605,22 @@ id objc_msgSend_updateAvailabilityStatus(void *a1, const char *a2, ...)
 
 id objc_msgSend_updatePeripheral_options_(void *a1, const char *a2, ...)
 {
-  return [a1 updatePeripheral:options:];
+  return _objc_msgSend(a1, "updatePeripheral:options:");
 }
 
 id objc_msgSend_updatePowerSource_(void *a1, const char *a2, ...)
 {
-  return [a1 updatePowerSource:];
+  return _objc_msgSend(a1, "updatePowerSource:");
 }
 
 id objc_msgSend_updateValue_forCharacteristic_onSubscribedCentrals_(void *a1, const char *a2, ...)
 {
-  return [a1 updateValue:forCharacteristic:onSubscribedCentrals:];
+  return _objc_msgSend(a1, "updateValue:forCharacteristic:onSubscribedCentrals:");
 }
 
 id objc_msgSend_updateWithValue_characteristic_centrals_(void *a1, const char *a2, ...)
 {
-  return [a1 updateWithValue:characteristic:centrals:];
+  return _objc_msgSend(a1, "updateWithValue:characteristic:centrals:");
 }
 
 id objc_msgSend_userInfo(void *a1, const char *a2, ...)
@@ -8635,7 +8635,7 @@ id objc_msgSend_uuid(void *a1, const char *a2, ...)
 
 id objc_msgSend_uuidToString_(void *a1, const char *a2, ...)
 {
-  return [a1 uuidToString];
+  return _objc_msgSend(a1, "uuidToString:");
 }
 
 id objc_msgSend_value(void *a1, const char *a2, ...)
@@ -8645,7 +8645,7 @@ id objc_msgSend_value(void *a1, const char *a2, ...)
 
 id objc_msgSend_valueForKey_(void *a1, const char *a2, ...)
 {
-  return [a1 valueForKey:];
+  return _objc_msgSend(a1, "valueForKey:");
 }
 
 id objc_msgSend_valueTimestamp(void *a1, const char *a2, ...)
@@ -8690,12 +8690,12 @@ id objc_msgSend_versionCharacteristic(void *a1, const char *a2, ...)
 
 id objc_msgSend_waitForSiriAudioToStop_(void *a1, const char *a2, ...)
 {
-  return [a1 waitForSiriAudioToStop:];
+  return _objc_msgSend(a1, "waitForSiriAudioToStop:");
 }
 
 id objc_msgSend_waitUntilDate_(void *a1, const char *a2, ...)
 {
-  return [a1 waitUntilDate:];
+  return _objc_msgSend(a1, "waitUntilDate:");
 }
 
 id objc_msgSend_wasUUIDRequestedForLogRetrieval_(void *a1, const char *a2, ...)
@@ -8710,27 +8710,27 @@ id objc_msgSend_weakObjectsHashTable(void *a1, const char *a2, ...)
 
 id objc_msgSend_write_maxLength_(void *a1, const char *a2, ...)
 {
-  return [a1 write:maxLength:];
+  return _objc_msgSend(a1, "write:maxLength:");
 }
 
 id objc_msgSend_writeControlPointCommand_(void *a1, const char *a2, ...)
 {
-  return [a1 writeControlPointCommand:];
+  return _objc_msgSend(a1, "writeControlPointCommand:");
 }
 
 id objc_msgSend_writeData_forCharacteristic_withResponse_(void *a1, const char *a2, ...)
 {
-  return [a1 writeData:forCharacteristic:withResponse:];
+  return _objc_msgSend(a1, "writeData:forCharacteristic:withResponse:");
 }
 
 id objc_msgSend_writeReportData_reportID_reportType_withResponse_error_(void *a1, const char *a2, ...)
 {
-  return [a1 writeReportData:reportID:reportType:withResponse:error:];
+  return _objc_msgSend(a1, "writeReportData:reportID:reportType:withResponse:error:");
 }
 
 id objc_msgSend_writeValue_forCharacteristic_type_(void *a1, const char *a2, ...)
 {
-  return [a1 writeValue:forCharacteristic:type:];
+  return _objc_msgSend(a1, "writeValue:forCharacteristic:type:");
 }
 
 id objc_msgSend_xpcConnection(void *a1, const char *a2, ...)

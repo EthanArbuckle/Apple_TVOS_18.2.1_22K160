@@ -761,7 +761,7 @@ LABEL_17:
       }
       v23 = (void *)objc_claimAutoreleasedReturnValue(-[HIDService hidDevice](self, "hidDevice"));
       unsigned int v24 = (void *)objc_claimAutoreleasedReturnValue([v7 value]);
-      [v23 handleInputReportData:v24 reportID:[v10 ID] timestamp:v21];
+      objc_msgSend(v23, "handleInputReportData:reportID:timestamp:", v24, objc_msgSend(v10, "ID"), v21);
     }
   }
 

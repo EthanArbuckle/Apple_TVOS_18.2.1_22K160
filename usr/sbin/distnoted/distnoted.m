@@ -24,7 +24,7 @@ id sub_100002174(os_log_s *a1, uint64_t a2)
         uint64_t v8 = *(void *)(*((void *)&v22 + 1) + 8LL * (void)v7);
         if (os_log_type_enabled(a1, OS_LOG_TYPE_DEBUG))
         {
-          id v14 = [[v8 processName] UTF8String];
+          id v14 = objc_msgSend(objc_msgSend((id)v8, "processName"), "UTF8String");
           int v15 = *(_DWORD *)(v8 + 72);
           *(_DWORD *)buf = 136446466;
           id v27 = v14;
@@ -304,7 +304,7 @@ LABEL_53:
 
       else
       {
-        id v18 = [*(id *)(*(void *)(a1 + 40) + 8) allClients:v32];
+        id v18 = objc_msgSend(*(id *)(*(void *)(a1 + 40) + 8), "allClients", v32);
         __int128 v37 = 0u;
         __int128 v38 = 0u;
         __int128 v35 = 0u;
@@ -495,7 +495,7 @@ void sub_100003FF4(uint64_t a1, _xpc_connection_s *object)
     id v8 = v7;
     if (v22[5])
     {
-      [*(id *)(*(void *)(a1 + 32) + 32) addObject:];
+      objc_msgSend(*(id *)(*(void *)(a1 + 32) + 32), "addObject:");
       uint64_t v9 = (void *)v22[5];
       v20[0] = _NSConcreteStackBlock;
       v20[1] = 3221225472LL;
@@ -550,7 +550,7 @@ LABEL_4:
     }
 
     *(void *)(v10 + 8) = 0LL;
-    id v12 = [*(id *)(a1 + 32) __invalidate];
+    id v12 = objc_msgSend(*(id *)(a1 + 32), "__invalidate");
     __int128 v16 = 0u;
     __int128 v17 = 0u;
     __int128 v18 = 0u;
@@ -683,7 +683,7 @@ void sub_100004D84(uint64_t a1, xpc_object_t object)
       }
 
       *(void *)(v8 + 8) = 0LL;
-      id v10 = [*(id *)(a1 + 40) __invalidate];
+      id v10 = objc_msgSend(*(id *)(a1 + 40), "__invalidate");
       __int128 v16 = 0u;
       __int128 v17 = 0u;
       __int128 v18 = 0u;
@@ -723,7 +723,7 @@ void sub_100004D84(uint64_t a1, xpc_object_t object)
 
     else if (object == &_xpc_error_termination_imminent)
     {
-      [*(id *)(a1 + 40) __terminationImminent];
+      objc_msgSend(*(id *)(a1 + 40), "__terminationImminent");
       CFLog(6LL, @"Connection %p received termination imminent");
     }
 
@@ -786,5 +786,5 @@ void sub_10000516C(id *a1, os_log_s *a2)
 
 id objc_msgSend_start_(void *a1, const char *a2, ...)
 {
-  return [a1 start:];
+  return objc_msgSend(a1, "start:");
 }

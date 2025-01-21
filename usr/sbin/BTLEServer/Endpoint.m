@@ -129,7 +129,7 @@ LABEL_12:
           __int128 v15 = (NSString *)objc_claimAutoreleasedReturnValue( +[NSString stringWithFormat:]( &OBJC_CLASS___NSString,  "stringWithFormat:",  @"handle%@Command:message:",  v13));
           __int128 v16 = NSSelectorFromString(v15);
 
-          [self v16:v6 v14];
+          objc_msgSend(self, v16, v6, v14);
         }
       }
 

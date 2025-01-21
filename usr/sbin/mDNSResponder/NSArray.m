@@ -43,7 +43,7 @@
           if (*(void *)v13 != v8) {
             objc_enumerationMutation(v4);
           }
-          [v3 appendFormat:@"%x" [*(id *)(*((void *)&v12 + 1) + 8 * (void)v9) unsignedIntValue]];
+          objc_msgSend( v3,  "appendFormat:",  @"%x",  objc_msgSend(*(id *)(*((void *)&v12 + 1) + 8 * (void)v9), "unsignedIntValue"));
           id v9 = (char *)v9 + 1;
         }
 

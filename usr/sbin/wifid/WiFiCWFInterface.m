@@ -38,14 +38,14 @@
         -[WiFiCWFInterface set_homeManager:]( v2,  "set_homeManager:",  +[CWFHomeManager cwfHomeManagerWithDelegate:](&OBJC_CLASS___CWFHomeManager, "cwfHomeManagerWithDelegate:", v2));
         v3 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s:CWFHomeManager instance %p" message:3 "-[WiFiCWFInterface init]" _homeManager:[v2 _homeManager]];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s:CWFHomeManager instance %p",  "-[WiFiCWFInterface init]",  -[WiFiCWFInterface _homeManager](v2, "_homeManager"));
         }
         goto LABEL_6;
       }
 
       v3 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: OS does not support sensing, don't create this interface\n" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: OS does not support sensing, don't create this interface\n",  "-[WiFiCWFInterface init]");
       }
     }
 
@@ -53,7 +53,7 @@
     {
       v3 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: Non internal build, don't create this interface\n" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Non internal build, don't create this interface\n",  "-[WiFiCWFInterface init]");
       }
     }
 
@@ -88,7 +88,7 @@ LABEL_6:
         {
           v11 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            [qword_100219F60 WFLog:@"%s: event already exists in handler" message:3];
+            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: event already exists in handler",  "-[WiFiCWFInterface startMonitoringSupportedEvents:]");
           }
           objc_autoreleasePoolPop(v11);
           return (id)-3900LL;

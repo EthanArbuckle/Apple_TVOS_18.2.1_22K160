@@ -2281,7 +2281,7 @@ LABEL_22:
                 objc_enumerationMutation(v12);
               }
               uint64_t v16 = *(void *)(*((void *)&v19 + 1) + 8LL * (void)i);
-              id v17 = (void *)[v9 allKeys];
+              id v17 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v9, "allKeys", (void)v19));
               LOBYTE(v16) = [v17 containsObject:v16];
 
               if ((v16 & 1) != 0)
@@ -3205,7 +3205,7 @@ LABEL_35:
         if ([v58 length])
         {
           __int128 v43 = sub_1001FD17C(buf, (uint64_t)", Tags: ", 8LL);
-          id v44 = [v58 stringByReplacingOccurrencesOfString:@"," withString:@","];
+          id v44 = objc_claimAutoreleasedReturnValue( objc_msgSend( v58, "stringByReplacingOccurrencesOfString:withString:", @",", @", "));
           id v45 = (const char *)[v44 UTF8String];
           size_t v46 = strlen(v45);
           sub_1001FD17C(v43, (uint64_t)v45, v46);

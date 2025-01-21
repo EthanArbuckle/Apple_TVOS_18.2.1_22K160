@@ -73,7 +73,7 @@
   {
     v25 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : unable to super initialize WiFiBatteryManagerClient." message:3 "-[WiFiBatteryManager initWithContext:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : unable to super initialize WiFiBatteryManagerClient.",  "-[WiFiBatteryManager initWithContext:]");
     }
     goto LABEL_23;
   }
@@ -83,7 +83,7 @@
   {
     v25 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : null wifi manager ref!?.", @"-[WiFiBatteryManager initWithContext:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : null wifi manager ref!?.",  "-[WiFiBatteryManager initWithContext:]");
     }
     goto LABEL_23;
   }
@@ -102,7 +102,7 @@
     -[WiFiBatteryManager setCpmsActive:](v5, "setCpmsActive:", 0LL);
     v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Error! CPMS FWK does not exist!" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Error! CPMS FWK does not exist! ",  "-[WiFiBatteryManager initWithContext:]");
     }
     objc_autoreleasePoolPop(v12);
     goto LABEL_17;
@@ -116,7 +116,7 @@
     {
       v11 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : cpms agent exists " message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : cpms agent exists ",  "-[WiFiBatteryManager initWithContext:]");
       }
       objc_autoreleasePoolPop(v11);
     }
@@ -131,7 +131,7 @@
       {
         v25 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Error: couldn't get sharedCPMSAgent" message:3 "-[WiFiBatteryManager initWithContext:]"];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Error: couldn't get sharedCPMSAgent",  "-[WiFiBatteryManager initWithContext:]");
         }
         goto LABEL_23;
       }
@@ -147,7 +147,7 @@
 
       v25 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Error: cpms is active but [CPMSClientDescription class] fails!" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Error: cpms is active but [CPMSClientDescription class] fails!",  "-[WiFiBatteryManager initWithContext:]");
       }
       goto LABEL_23;
     }
@@ -162,7 +162,7 @@
       {
         v25 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Error: unable to alloc and init CPMSClientDescription" message:3 "-[WiFiBatteryManager initWithContext:]"];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Error: unable to alloc and init CPMSClientDescription",  "-[WiFiBatteryManager initWithContext:]");
         }
         goto LABEL_23;
       }
@@ -180,7 +180,7 @@
   {
     uint64_t v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : null wifi device manager ref!?.", "-[WiFiBatteryManager setupDevice:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : null wifi device manager ref!?.",  "-[WiFiBatteryManager setupDevice:]");
     }
     goto LABEL_37;
   }
@@ -197,7 +197,7 @@
       {
         uint64_t v6 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Error! Failed to read power duty cyle table from driver. Using presets." message:3];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Error! Failed to read power duty cyle table from driver. Using presets. ",  "-[WiFiBatteryManager setupDevice:]");
         }
         objc_autoreleasePoolPop(v6);
         *(_DWORD *)&self->_wifiChipPowerTable.dutyCycleTable[10] = 0;
@@ -214,7 +214,7 @@
       {
         v9 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Continous CPMS power budget issupported  " message:3 "-[WiFiBatteryManager setupDevice:]"];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Continous CPMS power budget issupported  ",  "-[WiFiBatteryManager setupDevice:]");
         }
         objc_autoreleasePoolPop(v9);
         unint64_t v10 = self->_wifiChipPowerTable.dutyCycleTable[9];
@@ -240,7 +240,7 @@
       {
         uint64_t v15 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Power : %d    Duty Cycle : %d" message:3, "-[WiFiBatteryManager setupDevice:]", self->_wifiChipPowerTable.powerTable[i], self->_wifiChipPowerTable.dutyCycleTable[i]];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Power : %d    Duty Cycle : %d",  "-[WiFiBatteryManager setupDevice:]",  self->_wifiChipPowerTable.powerTable[i],  self->_wifiChipPowerTable.dutyCycleTable[i]);
         }
         objc_autoreleasePoolPop(v15);
       }
@@ -255,7 +255,7 @@
 
     uint64_t v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  init done and got cpms/ppm handle But registering with battery module fails!?", "-[WiFiBatteryManager setupDevice:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  init done and got cpms/ppm handle But registering with battery module fails!?",  "-[WiFiBatteryManager setupDevice:]");
     }
 LABEL_37:
     BOOL v20 = 0;
@@ -271,7 +271,7 @@ LABEL_37:
   {
     uint64_t v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"-[WiFiBatteryManager configureWiFiClientAndRegisterWithBatteryModule::::]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  self unintialized.?",  "-[WiFiBatteryManager configureWiFiClientAndRegisterWithBatteryModule::::]");
     }
     goto LABEL_12;
   }
@@ -288,7 +288,7 @@ LABEL_37:
   {
     uint64_t v19 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  WiFiClient Configuration failed!" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  WiFiClient Configuration failed!",  "-[WiFiBatteryManager configureWiFiClientAndRegisterWithBatteryModule::::]");
     }
 LABEL_12:
     objc_autoreleasePoolPop(v19);
@@ -328,7 +328,7 @@ LABEL_6:
   {
     v21 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Registration with CPMS/PPM failed!" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Registration with CPMS/PPM failed!",  "-[WiFiBatteryManager configureWiFiClientAndRegisterWithBatteryModule::::]");
     }
     objc_autoreleasePoolPop(v21);
   }
@@ -479,7 +479,7 @@ LABEL_14:
   {
     BOOL v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  Self uninitialized." message:3 "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  Self uninitialized.",  "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]");
     }
     goto LABEL_27;
   }
@@ -488,7 +488,7 @@ LABEL_14:
   {
     unint64_t v12 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Changed budget from battery module. Previous value :%lu and new value :%lu " message:3, @"-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]", -[WiFiBatteryManager availableResource], a3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Changed budget from battery module. Previous value :%lu and new value :%lu ",  "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]",  -[WiFiBatteryManager availableResource](self, "availableResource"),  a3);
     }
     objc_autoreleasePoolPop(v12);
     -[WiFiBatteryManager setAvailableResource:](self, "setAvailableResource:", a3);
@@ -511,7 +511,7 @@ LABEL_14:
   {
     BOOL v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : No Pending Admission Request" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : No Pending Admission Request",  "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]");
     }
 LABEL_27:
     objc_autoreleasePoolPop(v20);
@@ -531,7 +531,7 @@ LABEL_27:
       -[WiFiBatteryManager setClaimedResource:]( self,  "setClaimedResource:",  -[WiFiBatteryManager availableResource](self, "availableResource"));
       id v11 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Claimed resource is %lu" message:3, "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]", -[WiFiBatteryManager claimedResource](self, "claimedResource")];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Claimed resource is %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]",  -[WiFiBatteryManager claimedResource](self, "claimedResource"));
       }
       objc_autoreleasePoolPop(v11);
       -[WiFiBatteryManager WiFiDeviceManagerHandlePowerUnchangedPowerBudget::]( self,  "WiFiDeviceManagerHandlePowerUnchangedPowerBudget::",  -[WiFiBatteryManager availableResource](self, "availableResource"),  v10);
@@ -558,7 +558,7 @@ LABEL_15:
 
   uint64_t v19 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : NULL Request" message:3];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : NULL Request",  "-[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]");
   }
   objc_autoreleasePoolPop(v19);
 }
@@ -636,7 +636,7 @@ LABEL_15:
       }
       id v11 = v10;
       unint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiBatteryManager pendingRequests](self, "pendingRequests"));
-      [v9 WFLog:3, "WiFiBatteryMgmt : %s: Power resource request for %@ added. Pending=%lu.", "-[WiFiBatteryManager requestPowerResource:withDetails:]", v11, [v12 count]];
+      [v9 WFLog:3, "WiFiBatteryMgmt : %s: Power resource request for %@ added. Pending=%lu.", "-[WiFiBatteryManager requestPowerResource:withDetails:]", v11, objc_msgSend(v12, "count") message];
     }
 
     objc_autoreleasePoolPop(v8);
@@ -663,7 +663,7 @@ LABEL_15:
   {
     BOOL v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : null dataRef." message:3 "-[WiFiBatteryManager requestPowerResource:withDetails:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : null dataRef.",  "-[WiFiBatteryManager requestPowerResource:withDetails:]");
     }
     objc_autoreleasePoolPop(v17);
     int v15 = -3901;
@@ -725,7 +725,7 @@ LABEL_15:
         unint64_t v17 = -[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]( self,  "WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:",  v16);
         id v18 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : WiFiBatteryMgmt Admission Handler being called properly! and minvalue is %lu" message:3, "-[WiFiBatteryManager admissionCheck]", v17];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : WiFiBatteryMgmt Admission Handler being called properly! and minvalue is %lu",  "-[WiFiBatteryManager admissionCheck]",  v17);
         }
         objc_autoreleasePoolPop(v18);
         -[WiFiBatteryManager WiFiBatteryManagerHandlePowerAdmissionResponse:]( self,  "WiFiBatteryManagerHandlePowerAdmissionResponse:",  v17);
@@ -770,7 +770,7 @@ LABEL_21:
   {
     id v23 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt :  No pending requests, exiting" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt :  No pending requests, exiting",  "-[WiFiBatteryManager admissionCheck]");
     }
     objc_autoreleasePoolPop(v23);
     int v12 = 0;
@@ -785,7 +785,7 @@ LABEL_21:
   }
   id v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Releasing battery power resource because of disassoc" message:3];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Releasing battery power resource because of disassoc",  "-[WiFiBatteryManager releasePowerResources]");
   }
   objc_autoreleasePoolPop(v4);
   if (-[WiFiBatteryManager cpmsActive](self, "cpmsActive"))
@@ -809,7 +809,7 @@ LABEL_21:
     else
     {
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Fatal error. No power modules active!? self should have been nil" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Fatal error. No power modules active!? self should have been nil",  "-[WiFiBatteryManager releasePowerResources]");
       }
       objc_autoreleasePoolPop(v6);
     }
@@ -886,7 +886,7 @@ LABEL_21:
   {
     id v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Ignoring invalid power value (%lu) and using max power instead." message:3, @"-[WiFiBatteryManager getClosestAllowedLowerPowerNumber:]", a3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Ignoring invalid power value (%lu) and using max power instead.",  "-[WiFiBatteryManager getClosestAllowedLowerPowerNumber:]",  a3);
     }
     objc_autoreleasePoolPop(v7);
     id v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiBatteryManager getPowerNumberForDutyCycle:](self, "getPowerNumberForDutyCycle:", 100LL));
@@ -905,7 +905,7 @@ LABEL_21:
 
   id v8 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : budget100ms : %lu" message:3 v7];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : budget100ms : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v7);
   }
   objc_autoreleasePoolPop(v8);
   uint64_t v9 = kCPMSPowerTimeScale1s;
@@ -914,7 +914,7 @@ LABEL_21:
 
   int v12 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : budget1s : %lu" message:3,  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v11];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : budget1s : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v11);
   }
   objc_autoreleasePoolPop(v12);
   if (!(_DWORD)v11)
@@ -960,13 +960,13 @@ LABEL_21:
     {
       BOOL v20 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Illegal budget100ms value : %lu" message:4 v7];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: WiFiBatteryMgmt : Illegal budget100ms value : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v7);
       }
       objc_autoreleasePoolPop(v20);
       unint64_t v7 = -[WiFiBatteryManager getClosestAllowedLowerPowerNumber:](self, "getClosestAllowedLowerPowerNumber:", v7);
       id v21 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Closest lower legal budget100ms value : %lu" message:3 v7];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Closest lower legal budget100ms value : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v7);
       }
       objc_autoreleasePoolPop(v21);
     }
@@ -978,13 +978,13 @@ LABEL_21:
     {
       uint64_t v24 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Illegal budget1s value : %lu" message:4 v11];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: WiFiBatteryMgmt : Illegal budget1s value : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v11);
       }
       objc_autoreleasePoolPop(v24);
       unint64_t v11 = -[WiFiBatteryManager getClosestAllowedLowerPowerNumber:](self, "getClosestAllowedLowerPowerNumber:", v11);
       v25 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: WiFiBatteryMgmt : Closest lower legal budget1s value : %lu" message:3 v11];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFiBatteryMgmt : Closest lower legal budget1s value : %lu",  "-[WiFiBatteryManager WiFiBatteryManagerHandleCpmsAllocatedBudgetReturnIndex:]",  v11);
       }
       objc_autoreleasePoolPop(v25);
     }

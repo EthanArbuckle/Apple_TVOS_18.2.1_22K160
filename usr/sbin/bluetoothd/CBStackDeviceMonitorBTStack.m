@@ -648,7 +648,7 @@ LABEL_12:
               uint64_t v16 = v15;
               if (v15 && ([v15 connectedServices] & 0x400000) != 0)
               {
-                [v16 setChangeFlags:[v16 changeFlags] | [v16 updateWithPowerSourceDescription:v13]];
+                objc_msgSend( v16,  "setChangeFlags:",  (unint64_t)objc_msgSend(v16, "changeFlags") | (unint64_t)objc_msgSend( v16,  "updateWithPowerSourceDescription:",  v13));
                 ++v20;
               }
 

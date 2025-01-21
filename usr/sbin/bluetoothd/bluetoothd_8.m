@@ -28089,7 +28089,7 @@ double sub_10042FB88(double a1)
   uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSCalendar currentCalendar](&OBJC_CLASS___NSCalendar, "currentCalendar"));
   char v5 = (void *)objc_claimAutoreleasedReturnValue([v4 components:60 fromDate:v3]);
   [v5 setHour:5];
-  [v5 setDay:[v5 day] + 1];
+  objc_msgSend(v5, "setDay:", (char *)objc_msgSend(v5, "day") + 1);
   uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v4 dateFromComponents:v5]);
   [v6 timeIntervalSinceReferenceDate];
   double v8 = v7;
@@ -37319,7 +37319,7 @@ uint64_t sub_10044008C(void *a1)
   else if ([v1 isNSData])
   {
     id v4 = v1;
-    xpc_object_t v3 = xpc_data_create([v4 bytes], (size_t)[v4 length]);
+    xpc_object_t v3 = xpc_data_create([v4 bytes], (size_t)objc_msgSend(v4, "length"));
   }
 
   else
@@ -68302,7 +68302,7 @@ void sub_1004785E4(uint64_t a1, void *a2)
           objc_enumerationMutation(v7);
         }
         unint64_t v11 = *(void **)(*((void *)&v15 + 1) + 8LL * (void)i);
-        float v12 = [v11 UUIDString];
+        float v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v11, "UUIDString", (void)v15));
         [v5 addObject:v12];
 
         float v13 = (void *)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:v11]);

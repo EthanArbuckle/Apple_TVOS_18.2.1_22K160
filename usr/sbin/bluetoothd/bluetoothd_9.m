@@ -2407,7 +2407,7 @@ void *sub_10048EE44(os_unfair_lock_s *a1)
       }
 
       while (v19 != v22);
-      id v19 = [obj countByEnumeratingWithState:&v50 objects:v60 count:16 v32];
+      id v19 = objc_msgSend(obj, "countByEnumeratingWithState:objects:count:", &v50, v60, 16, v32);
     }
 
     while (v19);
@@ -12235,10 +12235,10 @@ void sub_1004A0BB4(uint64_t a1, unsigned __int16 *a2, uint64_t a3)
     [v5 appendString:@"UNII-5D "];
   }
   for (uint64_t i = 2LL; i != 12; ++i)
-    [v6 appendFormat:@"%02X "];
+    objc_msgSend(v6, "appendFormat:", @"%02X ", *((unsigned __int8 *)a2 + i));
   do
   {
-    [v7 appendFormat:@"%d ", *(unsigned __int16 *)((char *)a2 + i)];
+    objc_msgSend(v7, "appendFormat:", @"%d ", *(unsigned __int16 *)((char *)a2 + i));
     i += 2LL;
   }
 
@@ -14759,7 +14759,7 @@ void sub_1004A50E4(uint64_t a1)
   {
     uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "tailspin_config_t BT::soft_tailspin_config_create_with_current_state()"));
-    [v8 handleFailureInFunction:v9 file:@"AudioLinkManager.mm" lineNumber:94 description:@"%s" dlerror()];
+    objc_msgSend( v8,  "handleFailureInFunction:file:lineNumber:description:",  v9,  @"AudioLinkManager.mm",  94,  @"%s",  dlerror());
 LABEL_12:
 
     __break(1u);
@@ -14790,7 +14790,7 @@ LABEL_12:
   {
     uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "void BT::soft_tailspin_enabled_set(tailspin_config_t, BOOL)"));
-    [v8 handleFailureInFunction:v9 file:@"AudioLinkManager.mm" lineNumber:106 description:@"%s" dlerror()];
+    objc_msgSend( v8,  "handleFailureInFunction:file:lineNumber:description:",  v9,  @"AudioLinkManager.mm",  106,  @"%s",  dlerror());
     goto LABEL_12;
   }
 
@@ -15183,7 +15183,7 @@ void sub_1004A5DE4(uint64_t a1)
   {
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "tailspin_config_t BT::soft_tailspin_config_create_with_default_config()"));
-    [v6 handleFailureInFunction:v7 file:@"AudioLinkManager.mm" lineNumber:100 description:@"%s" dlerror()];
+    objc_msgSend( v6,  "handleFailureInFunction:file:lineNumber:description:",  v7,  @"AudioLinkManager.mm",  100,  @"%s",  dlerror());
 
     __break(1u);
   }
@@ -17071,7 +17071,7 @@ void sub_1004A902C(uint64_t a1, uint64_t a2, void *a3)
   {
     unint64_t v8 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     BOOL v9 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "int BT::soft_tailspin_dump_output_with_options(int, NSDictionary * _Nullable __strong, dispatch_que ue_t _Nullable, void (^ _Nullable __strong)(BOOL))"));
-    [v8 handleFailureInFunction:v9 file:@"AudioLinkManager.mm" lineNumber:131 description:@"%s" dlerror()];
+    objc_msgSend( v8,  "handleFailureInFunction:file:lineNumber:description:",  v9,  @"AudioLinkManager.mm",  131,  @"%s",  dlerror());
 
     __break(1u);
   }
@@ -21455,7 +21455,7 @@ void sub_1004B0FBC(uint64_t a1, uint64_t a2)
   {
     uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "void BT::soft_tailspin_kdbg_filter_subclass_set(tailspin_config_t, uint8_t, uint8_t, BOOL)"));
-    [v6 handleFailureInFunction:@"AudioLinkManager.mm" lineNumber:112 description:@"%s" dlerror()];
+    objc_msgSend( v6,  "handleFailureInFunction:file:lineNumber:description:",  v7,  @"AudioLinkManager.mm",  112,  @"%s",  dlerror());
 
     __break(1u);
   }
@@ -21489,7 +21489,7 @@ void sub_1004B10EC(uint64_t a1)
   {
     int v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "BOOL BT::soft_tailspin_config_apply_sync(const tailspin_config_t)"));
-    [v4 handleFailureInFunction:v5 file:@"AudioLinkManager.mm" lineNumber:124 description:@"%s" dlerror()];
+    objc_msgSend( v4,  "handleFailureInFunction:file:lineNumber:description:",  v5,  @"AudioLinkManager.mm",  124,  @"%s",  dlerror());
 
     __break(1u);
   }
@@ -21523,7 +21523,7 @@ void sub_1004B120C(uint64_t a1)
   {
     int v4 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     unsigned int v5 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "void BT::soft_tailspin_config_free(tailspin_config_t)"));
-    [v4 handleFailureInFunction:v5 file:@"AudioLinkManager.mm" lineNumber:118 description:@"%s" dlerror()];
+    objc_msgSend( v4,  "handleFailureInFunction:file:lineNumber:description:",  v5,  @"AudioLinkManager.mm",  118,  @"%s",  dlerror());
 
     __break(1u);
   }
@@ -25073,7 +25073,7 @@ void *sub_1004B6B64()
   {
     uint64_t v1 = (void *)objc_claimAutoreleasedReturnValue(+[NSAssertionHandler currentHandler](&OBJC_CLASS___NSAssertionHandler, "currentHandler"));
     uint64_t v4 = (void *)objc_claimAutoreleasedReturnValue( +[NSString stringWithUTF8String:]( &OBJC_CLASS___NSString,  "stringWithUTF8String:",  "void *BT::libtailspinLibrary()"));
-    [v1 handleFailureInFunction:v4 file:@"AudioLinkManager.mm" lineNumber:88 description:@"%s" v5];
+    objc_msgSend( v1,  "handleFailureInFunction:file:lineNumber:description:",  v4,  @"AudioLinkManager.mm",  88,  @"%s",  v5);
 
     __break(1u);
     goto LABEL_5;
@@ -34068,8 +34068,8 @@ void sub_1004C542C(uint64_t a1, void *a2)
     else {
       uint64_t v29 = (uint64_t)[v28 length];
     }
-    id v30 = [v28 rangeOfComposedCharacterSequencesForRange:0, v29];
-    uint64_t v32 = (void *)[v28 substringWithRange:v30, v31];
+    id v30 = objc_msgSend(v28, "rangeOfComposedCharacterSequencesForRange:", 0, v29);
+    uint64_t v32 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v28, "substringWithRange:", v30, v31));
 
     uint64_t v33 = sub_1001FD17C(v90, (uint64_t)"(", 1LL);
     id v28 = v32;
@@ -36362,7 +36362,7 @@ void sub_1004CB608(uint64_t a1, xpc_object_t xdict)
         [v6 getBytes:v19 length:1];
       }
 
-      [v6 getBytes:&v19[1] range:v8];
+      objc_msgSend(v6, "getBytes:range:", &v19[1], v8, 6);
       if (*(_DWORD *)(a1 + 80) == 2)
       {
         uint64_t v9 = v19[1];
@@ -37585,7 +37585,7 @@ LABEL_37:
           }
 
           if (![v22 initPHYs]) {
-            [v22 setInitPHYs:[v22 initPHYs] | 1];
+            objc_msgSend(v22, "setInitPHYs:", (unint64_t)objc_msgSend(v22, "initPHYs") | 1);
           }
           if (v131 == 1)
           {
@@ -37596,7 +37596,7 @@ LABEL_37:
               _os_log_impl( (void *)&_mh_execute_header,  v32,  OS_LOG_TYPE_DEFAULT,  "Enable coded PHY from first approach",  buf,  2u);
             }
 
-            [v22 setInitPHYs:[v22 initPHYs] | 4];
+            objc_msgSend(v22, "setInitPHYs:", (unint64_t)objc_msgSend(v22, "initPHYs") | 4);
           }
 
           if (v130 == 1)
@@ -37901,7 +37901,7 @@ void sub_1004D0214(uint64_t a1, xpc_object_t xdict)
     [v7 getBytes:v41 length:1];
   }
 
-  [v7 getBytes:&v41[1] range:v10];
+  objc_msgSend(v7, "getBytes:range:", &v41[1], v10, 6);
   if (v9)
   {
     if (qword_1008D5F30 != -1) {
@@ -41168,7 +41168,7 @@ void sub_1004D7E0C(uint64_t a1, xpc_object_t xdict)
                 uint64_t v31 = v30;
                 if (v30)
                 {
-                  [v20 setConnectionUseCase:[v30 longLongValue]];
+                  objc_msgSend(v20, "setConnectionUseCase:", objc_msgSend(v30, "longLongValue"));
                   uint64_t v32 = (os_log_s *)qword_1008F75F0;
                   if (os_log_type_enabled((os_log_t)qword_1008F75F0, OS_LOG_TYPE_DEFAULT))
                   {
@@ -41790,7 +41790,7 @@ void sub_1004D9578(uint64_t a1, void *a2)
             if (v12)
             {
               id v14 = v12;
-              xpc_dictionary_set_data( reply,  "kCBMsgArgIdentityIRK",  [v14 bytes],  (size_t)[v14 length]);
+              xpc_dictionary_set_data( reply,  "kCBMsgArgIdentityIRK",  [v14 bytes],  (size_t)objc_msgSend(v14, "length"));
             }
 
             uint64_t v15 = (void *)objc_claimAutoreleasedReturnValue([(id)v22[5] objectForKeyedSubscript:@"address"]);
@@ -41802,7 +41802,7 @@ void sub_1004D9578(uint64_t a1, void *a2)
               {
                 id v18 = sub_1005C0604((unint64_t)v17);
                 id v19 = objc_claimAutoreleasedReturnValue(v18);
-                xpc_dictionary_set_data( reply,  "kCBMsgArgIdentityAddress",  [v19 bytes],  (size_t)[v19 length]);
+                xpc_dictionary_set_data( reply,  "kCBMsgArgIdentityAddress",  [v19 bytes],  (size_t)objc_msgSend(v19, "length"));
               }
             }
           }
@@ -42224,7 +42224,7 @@ LABEL_30:
             objc_enumerationMutation(v20);
           }
           id v24 = *(id *)(*((void *)&v27 + 1) + 8LL * (void)i);
-          xpc_array_set_string(v19, 0xFFFFFFFFFFFFFFFFLL, (const char *)[v24 UTF8String]);
+          xpc_array_set_string(v19, 0xFFFFFFFFFFFFFFFFLL, (const char *)objc_msgSend(v24, "UTF8String", (void)v27));
         }
 
         id v21 = -[NSMutableArray countByEnumeratingWithState:objects:count:]( v20,  "countByEnumeratingWithState:objects:count:",  &v27,  v34,  16LL);
@@ -42671,7 +42671,7 @@ void sub_1004DB744(int a1, xpc_object_t xdict)
       dispatch_once(&qword_1008D9278, &stru_10089D9B0);
     }
     uint64_t v9 = qword_1008D9270;
-    unsigned __int16 v10 = [v8 intValue];
+    unsigned __int16 v10 = (unsigned __int16)objc_msgSend(v8, "intValue", sub_100241F90(v11, v4).n128_f64[0]);
     sub_1004138B8(v9, v11, v5, v10);
   }
 
@@ -44223,7 +44223,7 @@ void sub_1004DF490(uint64_t a1, int a2, void *a3, unsigned int a4)
       xpc_dictionary_set_int64( *(xpc_object_t *)(*(void *)(*(void *)(a1 + 32) + 8) + 24),  "kCBFastLeConnectionInfoLength",  (int64_t)[v11 length]);
       int v9 = *(void **)(*(void *)(*(void *)(a1 + 32) + 8LL) + 24LL);
       id v10 = v11;
-      xpc_dictionary_set_data( v9,  "kCBFastLeConnectionInfoData",  [v10 bytes],  (size_t)[v10 length]);
+      xpc_dictionary_set_data( v9,  "kCBFastLeConnectionInfoData",  [v10 bytes],  (size_t)objc_msgSend(v10, "length"));
     }
 
     xpc_connection_send_message( *(xpc_connection_t *)(v8 + 16),  *(xpc_object_t *)(*(void *)(*(void *)(a1 + 32) + 8LL) + 24LL));
@@ -44324,7 +44324,7 @@ void sub_1004DF7E4(uint64_t a1)
     }
     BOOL v4 = sub_1005CC2D8((uint64_t)off_1008D5F28, *(void **)(a1 + 32));
     uint64_t v5 = sub_1002E6E9C();
-    int64_t v6 = (*(int (**)(uint64_t, uint64_t, BOOL, void, id))(*(void *)v5 + 1832))(v5, v3, v4, [*(id *)(a1 + 40) length], [*(id *)(a1 + 40) bytes]);
+    int64_t v6 = (*(int (**)(uint64_t, uint64_t, BOOL, void, id))(*(void *)v5 + 1832))( v5, v3, v4, [*(id *)(a1 + 40) length], objc_msgSend(*(id *)(a1 + 40), "bytes"));
   }
 
   else
@@ -46575,8 +46575,8 @@ BOOL sub_1004E3A38(uint64_t a1, int a2, xpc_object_t object)
           id v10 = *(id *)(*((void *)&v21 + 1) + 8LL * (void)i);
           *(_OWORD *)__int128 buf = 0u;
           memset(v26, 0, sizeof(v26));
-          [v10 getBytes:buf range:0, 6];
-          [v10 getBytes:&buf[13] range:6, 22];
+          objc_msgSend(v10, "getBytes:range:", buf, 0, 6);
+          objc_msgSend(v10, "getBytes:range:", &buf[13], 6, 22);
           *(_DWORD *)&buf[9] = 1643008;
           *(_DWORD *)&buf[6] = 5046046;
           v26[19] = v26[19] & 0xFC | (buf[0] >> 6);
@@ -46600,7 +46600,7 @@ BOOL sub_1004E3A38(uint64_t a1, int a2, xpc_object_t object)
     uint64_t v15 = *(void *)(*(void *)(v18 + 32) + 8LL);
     unsigned int v16 = *(unsigned __int8 *)(v15 + 24);
     *(_BYTE *)(v15 + 24) = v16 + 1;
-    sub_1001FC020(v14, v16, obj, [v13 intValue]);
+    sub_1001FC020(v14, v16, obj, (int)objc_msgSend(v13, "intValue", v18));
   }
 
   else
@@ -48338,7 +48338,7 @@ uint64_t sub_1004E7858(uint64_t a1)
         dispatch_once(&qword_1008D5F30, &stru_10089D810);
       }
       int v5 = off_1008D5F28;
-      char v6 = (void *)[*(id *)(a1 + 32) objectAtIndexedSubscript:v3, v10, v11, v12, v13];
+      char v6 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 32), "objectAtIndexedSubscript:", v3, v10, v11, v12, v13));
       unint64_t v7 = sub_1005CC198((uint64_t)v5, v6, 0);
       uint64_t v8 = sub_1001BCDB0(v7);
       *(_DWORD *)xpc_object_t v4 = v8;
@@ -49314,7 +49314,7 @@ void sub_1004E9B1C(uint64_t a1)
               objc_enumerationMutation(v11);
             }
             id v15 = *(id *)(*((void *)&v16 + 1) + 8LL * (void)i);
-            xpc_array_set_string(v10, 0xFFFFFFFFFFFFFFFFLL, (const char *)[v15 UTF8String]);
+            xpc_array_set_string(v10, 0xFFFFFFFFFFFFFFFFLL, (const char *)objc_msgSend(v15, "UTF8String", (void)v16));
           }
 
           id v12 = [v11 countByEnumeratingWithState:&v16 objects:v20 count:16];
@@ -57178,7 +57178,7 @@ LABEL_31:
           else {
             uint64_t v59 = (const __CFString *)*((void *)&off_10089DE50 + v58);
           }
-          [v35 setObject:v59 forKeyedSubscript:@"AudioState" v68];
+          objc_msgSend(v35, "setObject:forKeyedSubscript:", v59, @"AudioState", v68);
           if (v70 != 255)
           {
             uint64_t v60 = (void *)objc_claimAutoreleasedReturnValue(+[NSNumber numberWithInt:](&OBJC_CLASS___NSNumber, "numberWithInt:", v70 & 0x7F));
@@ -58095,7 +58095,7 @@ void sub_1004F9D84( _Unwind_Exception *a1, uint64_t a2, uint64_t a3, uint64_t a4
 void sub_1004F9DC4(uint64_t a1, void *a2)
 {
   id v3 = a2;
-  [ *(id *)(*(void *)(a1 + 32) + 40) btvcBonjourLink:didLosePeer:type: *(void *)(a1 + 32) *(void *)(a1 + 40) [v3 unsignedIntValue]];
+  objc_msgSend( *(id *)(*(void *)(a1 + 32) + 40),  "btvcBonjourLink:didLosePeer:type:",  *(void *)(a1 + 32),  *(void *)(a1 + 40),  objc_msgSend(v3, "unsignedIntValue"));
 }
 
 void sub_1004F9E1C( _Unwind_Exception *a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, uint64_t a9, id a10)
@@ -58149,7 +58149,7 @@ void sub_1004F9F84(uint64_t a1, void *a2, void *a3)
 
   else if ((objc_opt_respondsToSelector(v6, "btvcBonjourLink:didStopAdvertisingType:withError:") & 1) != 0)
   {
-    [ *(id *)(*(void *)(a1 + 32) + 40) btvcBonjourLink:didStopAdvertisingType:withError: *(void *)(a1 + 32),  [v7 unsignedIntValue],  *(void *)(a1 + 40)];
+    objc_msgSend( *(id *)(*(void *)(a1 + 32) + 40),  "btvcBonjourLink:didStopAdvertisingType:withError:",  *(void *)(a1 + 32),  objc_msgSend(v7, "unsignedIntValue"),  *(void *)(a1 + 40));
   }
 }
 
@@ -62012,7 +62012,7 @@ LABEL_32:
 
       if (sub_100503CA4(a1, v80))
       {
-        uint64_t v41 = sub_100503EC0( a1,  0,  (uint64_t)[v80 rssiIncreaseScanThreshold],  (uint64_t)[v80 rssiIncreaseScanWindowThreshold],  (uint64_t)[v80 rssiIncreaseScanIntervalThreshold],  (uint64_t)[v80 rssiIncreaseScanTimeoutThreshold],  (uint64_t)[v80 sensorTimeoutBetweenIncreaseScan]);
+        uint64_t v41 = sub_100503EC0( a1,  0,  (uint64_t)[v80 rssiIncreaseScanThreshold],  (uint64_t)objc_msgSend(v80, "rssiIncreaseScanWindowThreshold"),  (uint64_t)objc_msgSend(v80, "rssiIncreaseScanIntervalThreshold"),  (uint64_t)objc_msgSend(v80, "rssiIncreaseScanTimeoutThreshold"),  (uint64_t)objc_msgSend(v80, "sensorTimeoutBetweenIncreaseScan"));
         if ((_DWORD)v41)
         {
           if (os_log_type_enabled((os_log_t)qword_1008F76E8, OS_LOG_TYPE_ERROR)) {
@@ -62048,7 +62048,7 @@ id sub_100503A88(uint64_t a1, void *a2, void *a3)
           objc_enumerationMutation(v6);
         }
         id v10 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)i);
-        __int16 v11 = [v10 deviceUUID];
+        __int16 v11 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v10, "deviceUUID", (void)v14));
         unsigned __int8 v12 = [v11 isEqual:v5];
 
         if ((v12 & 1) != 0)
@@ -62656,7 +62656,7 @@ void sub_100504EB0(uint64_t a1, uint64_t a2)
       }
       if (v22)
       {
-        uint64_t v5 = (void *)[*(id *)(a1 + 48) objectForKeyedSubscript:];
+        uint64_t v5 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 48), "objectForKeyedSubscript:"));
         uint64_t v6 = (void *)objc_claimAutoreleasedReturnValue([v5 allObjects]);
 
         uint64_t v7 = (os_log_s *)qword_1008F76E8;
@@ -62694,7 +62694,7 @@ void sub_100504EB0(uint64_t a1, uint64_t a2)
               __int128 v27 = 0u;
               __int128 v28 = 0u;
               __int128 v29 = 0u;
-              size_t v12 = (void *)[v11 appleTypes];
+              size_t v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v11, "appleTypes", v22));
               int v13 = (void *)objc_claimAutoreleasedReturnValue([v12 allObjects]);
 
               id v14 = [v13 countByEnumeratingWithState:&v26 objects:v34 count:16];
@@ -62863,11 +62863,11 @@ void sub_1005054BC(uint64_t a1, uint64_t a2, void *a3)
     while (v5);
   }
 
-  [ *(id *)(a1 + 32) setRssiIncreaseScanThreshold:[ *(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) rssiIncreaseScanThreshold]];
-  [*(id *)(a1 + 32) setRssiIncreaseScanWindowThreshold:[*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) rssiIncreaseScanWindowThreshold]];
-  [*(id *)(a1 + 32) setRssiIncreaseScanIntervalThreshold:[*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) rssiIncreaseScanIntervalThreshold]];
-  [ *(id *)(a1 + 32) setRssiIncreaseScanTimeoutThreshold:[ *(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) rssiIncreaseScanTimeoutThreshold]];
-  [ *(id *)(a1 + 32) setSensorTimeoutBetweenIncreaseScan:[ *(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40) sensorTimeoutBetweenIncreaseScan]];
+  objc_msgSend( *(id *)(a1 + 32),  "setRssiIncreaseScanThreshold:",  objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40), "rssiIncreaseScanThreshold"));
+  objc_msgSend( *(id *)(a1 + 32),  "setRssiIncreaseScanWindowThreshold:",  objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40), "rssiIncreaseScanWindowThreshold"));
+  objc_msgSend( *(id *)(a1 + 32),  "setRssiIncreaseScanIntervalThreshold:",  objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40), "rssiIncreaseScanIntervalThreshold"));
+  objc_msgSend( *(id *)(a1 + 32),  "setRssiIncreaseScanTimeoutThreshold:",  objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40), "rssiIncreaseScanTimeoutThreshold"));
+  objc_msgSend( *(id *)(a1 + 32),  "setSensorTimeoutBetweenIncreaseScan:",  objc_msgSend(*(id *)(*(void *)(*(void *)(a1 + 40) + 8) + 40), "sensorTimeoutBetweenIncreaseScan"));
 }
 
 void sub_100505690(_Unwind_Exception *a1)

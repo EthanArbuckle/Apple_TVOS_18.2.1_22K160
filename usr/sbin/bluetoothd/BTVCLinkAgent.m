@@ -424,7 +424,7 @@
 
     if (v7)
     {
-      id v21 = [+[NSMutableArray array] init];
+      id v21 = objc_msgSend( (id)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](NSMutableArray, "array")),  "init");
       if (v21)
       {
         for (int j = 0; j != 6; ++j)
@@ -672,7 +672,7 @@ LABEL_60:
         goto LABEL_63;
       }
 
-      uint64_t v10 = [v60 objectAtIndex:];
+      uint64_t v10 = objc_claimAutoreleasedReturnValue(objc_msgSend(v60, "objectAtIndex:"));
 
       v72 = (void *)v10;
       if (!v10)

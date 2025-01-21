@@ -491,7 +491,7 @@ LABEL_16:
   {
     unsigned __int8 v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: setting override state to %llu" message:3, "-[WiFiUserInteractionMonitor setOverrideApplicationState:]", a3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setting override state to %llu",  "-[WiFiUserInteractionMonitor setOverrideApplicationState:]",  a3);
     }
     objc_autoreleasePoolPop(v5);
     self->_overrideApplicationState = a3;
@@ -649,7 +649,7 @@ LABEL_5:
         -[WiFiUserInteractionMonitor setWifiIfTotalPackets:](self, "setWifiIfTotalPackets:", v18);
         __int128 v26 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: WiFi data did %llu(input:%llu output:%llu) bytes, %llu(input:%llu output:%llu) packets over %.3f seconds" message:3 v25, v39 - v38, v37 - v36, v18 - v20, v35 - v23, v34 - v24, *(void *)&v6];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: WiFi data did %llu(input:%llu output:%llu) bytes, %llu(input:%llu output:%llu) packets over %.3f seconds",  "-[WiFiUserInteractionMonitor runPeriodicTasks]",  v25,  v39 - v38,  v37 - v36,  v18 - v20,  v35 - v23,  v34 - v24,  *(void *)&v6);
         }
       }
 
@@ -657,7 +657,7 @@ LABEL_5:
       {
         __int128 v26 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: failed to find if_data for WiFi interface." message:3 v27, v28, v29, v30, v31, v32, v33];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed to find if_data for WiFi interface.",  "-[WiFiUserInteractionMonitor runPeriodicTasks]",  v27,  v28,  v29,  v30,  v31,  v32,  v33);
         }
       }
 
@@ -688,7 +688,7 @@ LABEL_27:
 
     __int128 v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden isPriorityNetwork state as 0x%llx" message:3 v13];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden isPriorityNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isPriorityNetwork:]",  v13);
     }
     objc_autoreleasePoolPop(v14);
     BOOL v15 = v13 & 1;
@@ -723,7 +723,7 @@ LABEL_27:
 
     __int128 v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden isPublicNetwork state as 0x%llx" message:3,  "%s: using overridden isPublicNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isPublicNetwork:]",  v13];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden isPublicNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isPublicNetwork:]",  v13);
     }
     objc_autoreleasePoolPop(v14);
     v3 = (CFDictionaryRef *)((v13 >> 1) & 1);
@@ -758,7 +758,7 @@ LABEL_27:
 
     __int128 v14 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden isLowQualityNetwork state as 0x%llx" message:3 v13];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden isLowQualityNetwork state as 0x%llx",  "-[WiFiUserInteractionMonitor isLowQualityNetwork:]",  v13);
     }
     objc_autoreleasePoolPop(v14);
     uint64_t v3 = (v13 >> 2) & 1;
@@ -786,7 +786,7 @@ LABEL_27:
       if (v5) {
         double v6 = "completed";
       }
-      [v4 WFLog:@"%s: Setup is %s" message:3, "-[WiFiUserInteractionMonitor isSetupCompleted]", v6];
+      objc_msgSend(v4, "WFLog:message:", 3, "%s: Setup is %s", "-[WiFiUserInteractionMonitor isSetupCompleted]", v6);
     }
 
     objc_autoreleasePoolPop(v3);
@@ -831,7 +831,7 @@ LABEL_27:
       if (v7) {
         id v8 = "completed";
       }
-      [v6 WFLog:@"%s: Initial setup is %s" message:3 "%s: Initial setup is %s" "-[WiFiUserInteractionMonitor isInitialSetupCompleted]" v8];
+      objc_msgSend( v6,  "WFLog:message:",  3,  "%s: Initial setup is %s",  "-[WiFiUserInteractionMonitor isInitialSetupCompleted]",  v8);
     }
 
     objc_autoreleasePoolPop(v5);
@@ -875,7 +875,7 @@ LABEL_27:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden inexpensive cellular state as 0x%llx" message:3,  "-[WiFiUserInteractionMonitor isCellularInexpensive5G]",  -[WiFiUserInteractionMonitor overrideApplicationState](v2, "overrideApplicationState")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden inexpensive cellular state as 0x%llx",  "-[WiFiUserInteractionMonitor isCellularInexpensive5G]",  -[WiFiUserInteractionMonitor overrideApplicationState](v2, "overrideApplicationState"));
     }
     objc_autoreleasePoolPop(v3);
     return (-[WiFiUserInteractionMonitor overrideApplicationState](v2, "overrideApplicationState") >> 7) & 1;
@@ -915,7 +915,7 @@ LABEL_27:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: setup not completed. Not allowing ask-to-join." message:3 v6 v7];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setup not completed. Not allowing ask-to-join.",  "-[WiFiUserInteractionMonitor isAskToJoinAllowed]",  v6,  v7);
     }
     goto LABEL_8;
   }
@@ -925,7 +925,7 @@ LABEL_27:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: navigating(%d) or in call(%d). Not allowing ask-to-join." message:3, "-[WiFiUserInteractionMonitor isAskToJoinAllowed]", -[WiFiUserInteractionMonitor navigating](self, "navigating"), -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: navigating(%d) or in call(%d). Not allowing ask-to-join.",  "-[WiFiUserInteractionMonitor isAskToJoinAllowed]",  -[WiFiUserInteractionMonitor navigating](self, "navigating"),  -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress"));
     }
 LABEL_8:
     BOOL v4 = 0;
@@ -937,7 +937,7 @@ LABEL_8:
   }
   double v3 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: in FG networking app. Allowing atj." message:3 "%s: in FG networking app. Allowing atj." "-[WiFiUserInteractionMonitor isAskToJoinAllowed]"];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in FG networking app. Allowing atj.",  "-[WiFiUserInteractionMonitor isAskToJoinAllowed]");
   }
   BOOL v4 = 1;
 LABEL_9:
@@ -951,7 +951,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: setup not completed. Not allowing recommendation." message:3, "%s: setup not completed. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]", v6, v7];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setup not completed. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]",  v6,  v7);
     }
     goto LABEL_8;
   }
@@ -961,7 +961,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: navigating(%d) or in call(%d). Not allowing recommendation." message:3, "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]", -[WiFiUserInteractionMonitor navigating](self, "navigating"), -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: navigating(%d) or in call(%d). Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]",  -[WiFiUserInteractionMonitor navigating](self, "navigating"),  -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress"));
     }
 LABEL_8:
     BOOL v4 = 0;
@@ -972,7 +972,7 @@ LABEL_8:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: cellular is 5G and inexpensive. Not allowing recommendation." message:3 v6 v7];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: cellular is 5G and inexpensive. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]",  v6,  v7);
     }
     goto LABEL_8;
   }
@@ -981,7 +981,7 @@ LABEL_8:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: in active cellular data usage. Allowing recommendation." message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in active cellular data usage. Allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]");
     }
   }
 
@@ -989,7 +989,7 @@ LABEL_8:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: in FG networking app. Allowing recommendation." message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in FG networking app. Allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]");
     }
   }
 
@@ -1004,7 +1004,7 @@ LABEL_8:
 
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: in an app and no cellular. Allowing recommendation." message:3 "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]" ];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: in an app and no cellular. Allowing recommendation.",  "-[WiFiUserInteractionMonitor isNetworkRecommendationAllowed]");
     }
   }
 
@@ -1020,7 +1020,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: setup not completed. Not allowing recommendation." message:3, "%s: setup not completed. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]", v5, v6];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: setup not completed. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]",  v5,  v6);
     }
     goto LABEL_8;
   }
@@ -1030,7 +1030,7 @@ LABEL_9:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: navigating(%d) or in call(%d). Not allowing recommendation." message:3, @"-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]", -[WiFiUserInteractionMonitor navigating](self, "navigating"), -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: navigating(%d) or in call(%d). Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]",  -[WiFiUserInteractionMonitor navigating](self, "navigating"),  -[WiFiUserInteractionMonitor anyCallInProgress](self, "anyCallInProgress"));
     }
 LABEL_8:
     objc_autoreleasePoolPop(v3);
@@ -1041,7 +1041,7 @@ LABEL_8:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: cellular is 5G and inexpensive. Not allowing recommendation." message:3, "%s: cellular is 5G and inexpensive. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]", v5, v6];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: cellular is 5G and inexpensive. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]",  v5,  v6);
     }
     goto LABEL_8;
   }
@@ -1051,7 +1051,7 @@ LABEL_8:
   {
     double v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Device locked or Display is OFF. Not allowing recommendation." message:3, "%s: Device locked or Display is OFF. Not allowing recommendation.", "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]", v5, v6];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Device locked or Display is OFF. Not allowing recommendation.",  "-[WiFiUserInteractionMonitor isPersonalHotspotRecommendationAllowed]",  v5,  v6);
     }
     goto LABEL_8;
   }
@@ -1084,7 +1084,7 @@ LABEL_8:
           objc_enumerationMutation(v4);
         }
         uint64_t v8 = *(void *)(*((void *)&v11 + 1) + 8LL * (void)i);
-        uint64_t v9 = (void *)[v3 lowercaseString];
+        uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "lowercaseString", (void)v11));
         LOBYTE(v8) = [v9 containsString:v8];
 
         if ((v8 & 1) != 0)
@@ -1157,7 +1157,7 @@ LABEL_9:
   {
     id v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden application state as %llu" message:3, "-[WiFiUserInteractionMonitor isInHomeScreen]", -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden application state as %llu",  "-[WiFiUserInteractionMonitor isInHomeScreen]",  -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState"));
     }
     objc_autoreleasePoolPop(v3);
     return (-[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState") >> 2) & 1;
@@ -1212,7 +1212,7 @@ LABEL_16:
     {
       __int128 v13 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: no runningForegroundApps" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: no runningForegroundApps",  "-[WiFiUserInteractionMonitor isInHomeScreen]");
       }
       objc_autoreleasePoolPop(v13);
       LOBYTE(v4) = 1;
@@ -1228,7 +1228,7 @@ LABEL_16:
   {
     id v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden application state as %llu" message:3,  "-[WiFiUserInteractionMonitor isNetworkingAppInForeground]",  -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState")];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden application state as %llu",  "-[WiFiUserInteractionMonitor isNetworkingAppInForeground]",  -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState"));
     }
     objc_autoreleasePoolPop(v3);
     return -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState") & 1;
@@ -1317,7 +1317,7 @@ LABEL_7:
         {
           __int128 v17 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            [qword_100219F60 WFLog:@"%s: timed out waiting for LSApplicationRecord" message:3];
+            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: timed out waiting for LSApplicationRecord",  "-[WiFiUserInteractionMonitor hasRealTimeAppProperty:]");
           }
           objc_autoreleasePoolPop(v17);
         }
@@ -1345,7 +1345,7 @@ LABEL_7:
   {
     id v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: using overridden application state as %llu" message:3 "%s: using overridden application state as %llu" "-[WiFiUserInteractionMonitor isRealTimeAppActive]" -[WiFiUserInteractionMonitor overrideApplicationState]];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: using overridden application state as %llu",  "-[WiFiUserInteractionMonitor isRealTimeAppActive]",  -[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState"));
     }
     objc_autoreleasePoolPop(v3);
     return (-[WiFiUserInteractionMonitor overrideApplicationState](self, "overrideApplicationState") >> 6) & 1;
@@ -1455,7 +1455,7 @@ LABEL_17:
 
         __int128 v14 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: currently no networking app is in the foreground" message:3];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: currently no networking app is in the foreground",  "-[WiFiUserInteractionMonitor isInNonNetworkingApp]");
         }
         objc_autoreleasePoolPop(v14);
       }
@@ -1618,7 +1618,7 @@ LABEL_17:
   {
     BOOL v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: notify token is null" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: notify token is null",  "-[WiFiUserInteractionMonitor _notifyCaptiveWithApplicationState:]");
     }
     objc_autoreleasePoolPop(v6);
   }

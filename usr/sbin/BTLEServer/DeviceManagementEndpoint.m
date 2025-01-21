@@ -57,7 +57,7 @@
   v7.super_class = (Class)&OBJC_CLASS___DeviceManagementEndpoint;
   id v3 = a3;
   -[Endpoint addPipe:](&v7, "addPipe:", v3);
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 peer]);
+  v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "peer", v7.receiver, v7.super_class));
 
   v5 = (void *)objc_claimAutoreleasedReturnValue([v4 identifier]);
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))
@@ -82,7 +82,7 @@ LABEL_3:
   v7.super_class = (Class)&OBJC_CLASS___DeviceManagementEndpoint;
   id v3 = a3;
   -[Endpoint removePipe:](&v7, "removePipe:", v3);
-  v4 = (void *)objc_claimAutoreleasedReturnValue([v3 peer]);
+  v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "peer", v7.receiver, v7.super_class));
 
   v5 = (void *)objc_claimAutoreleasedReturnValue([v4 identifier]);
   if (os_log_type_enabled((os_log_t)qword_100070CC8, OS_LOG_TYPE_DEBUG))

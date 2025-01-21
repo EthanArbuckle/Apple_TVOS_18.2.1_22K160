@@ -75,13 +75,13 @@ LABEL_13:
 - (void)start
 {
   id v2 = (id)objc_claimAutoreleasedReturnValue(+[PolicyManager instance](&OBJC_CLASS___PolicyManager, "instance"));
-  [v2 setActiveHIDDeviceCount:[v2 activeHIDDeviceCount] + 1];
+  objc_msgSend(v2, "setActiveHIDDeviceCount:", (char *)objc_msgSend(v2, "activeHIDDeviceCount") + 1);
 }
 
 - (void)stop
 {
   id v2 = (id)objc_claimAutoreleasedReturnValue(+[PolicyManager instance](&OBJC_CLASS___PolicyManager, "instance"));
-  [v2 setActiveHIDDeviceCount:[v2 activeHIDDeviceCount] - 1];
+  objc_msgSend(v2, "setActiveHIDDeviceCount:", (char *)objc_msgSend(v2, "activeHIDDeviceCount") - 1);
 }
 
 - (id)desiredConnectionParameters
@@ -223,7 +223,7 @@ LABEL_13:
         if (*(void *)v11 != v5) {
           objc_enumerationMutation(v3);
         }
-        unsigned int v8 = [*(id *)(*((void *)&v10 + 1) + 8 * (void)i) ID:v10];
+        unsigned int v8 = objc_msgSend(*(id *)(*((void *)&v10 + 1) + 8 * (void)i), "ID", (void)v10);
         if (v6 == 0x7FFFFFFFFFFFFFFFLL)
         {
           uint64_t v6 = v8;

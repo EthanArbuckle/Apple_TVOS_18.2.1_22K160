@@ -72,7 +72,7 @@
           if (v18)
           {
             dispatch_set_context(v18, v9);
-            dispatch_set_finalizer_f( (dispatch_object_t)v9->_queue,  (dispatch_function_t)[self notifyDidStop]);
+            dispatch_set_finalizer_f( (dispatch_object_t)v9->_queue,  (dispatch_function_t)j__objc_msgSend_notifyDidStop_0);
             v19 = objc_alloc(&OBJC_CLASS___AFNotifyObserver);
             v20 = -[NSString initWithUTF8String:]( objc_alloc(&OBJC_CLASS___NSString),  "initWithUTF8String:",  "com.apple.siri.client-state-changed");
             v21 = -[AFNotifyObserver initWithName:options:queue:delegate:]( v19,  "initWithName:options:queue:delegate:",  v20,  1LL,  &_dispatch_main_q,  v9);

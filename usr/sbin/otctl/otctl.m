@@ -1679,7 +1679,7 @@ LABEL_60:
       id v53 = v131;
       if (v53 || !v52)
       {
-        [objc_claimAutoreleasedReturnValue([v53 description]) UTF8String];
+        objc_msgSend( objc_claimAutoreleasedReturnValue(objc_msgSend(v53, "description")), "UTF8String");
         errx(1, "no OTControl failed: %s");
       }
 
@@ -1819,7 +1819,7 @@ LABEL_60:
 
       if (v72)
       {
-        [objc_claimAutoreleasedReturnValue([v72 description]) UTF8String];
+        objc_msgSend( objc_claimAutoreleasedReturnValue(objc_msgSend(v72, "description")), "UTF8String");
         errx(1, "SecEscrowRequest failed: %s");
       }
 
@@ -2880,7 +2880,7 @@ id sub_10000D9B4(void *a1)
     __int128 v13 = 0u;
     __int128 v14 = 0u;
     __int128 v15 = 0u;
-    unint64_t v2 = (void *)[v1 allKeys];
+    unint64_t v2 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v1, "allKeys", 0));
     id v3 = [v2 countByEnumeratingWithState:&v12 objects:v16 count:16];
     if (v3)
     {
@@ -3007,7 +3007,7 @@ LABEL_9:
         }
         uint64_t v30 = sub_10000DAF8(*(void *)(*((void *)&v33 + 1) + 8LL * (void)i));
         __int128 v31 = (void *)objc_claimAutoreleasedReturnValue(v30);
-        [v8 addObject:v31];
+        objc_msgSend(v8, "addObject:", v31, (void)v33);
       }
 
       id v27 = [v25 countByEnumeratingWithState:&v33 objects:v37 count:16];
@@ -4463,7 +4463,7 @@ LABEL_10:
         if (*(void *)v31 != v21) {
           objc_enumerationMutation(v18);
         }
-        id v23 = [v30 copyWithZone:a3];
+        id v23 = objc_msgSend(*(id *)(*((void *)&v30 + 1) + 8 * (void)i), "copyWithZone:", a3, (void)v30);
         [v5 addTlkSharesForVouchedIdentity:v23];
       }
 
@@ -4717,13 +4717,13 @@ LABEL_13:
 
 LABEL_14:
   if (self->_syncingPolicy) {
-    [v13 setSyncingPolicy:];
+    objc_msgSend(v13, "setSyncingPolicy:");
   }
   if (self->_voucher) {
-    [v13 setVoucher:];
+    objc_msgSend(v13, "setVoucher:");
   }
   if (self->_voucherSignature) {
-    [v13 setVoucherSignature:];
+    objc_msgSend(v13, "setVoucherSignature:");
   }
   if (-[OTAccountMetadataClassC tlkSharesForVouchedIdentitysCount](self, "tlkSharesForVouchedIdentitysCount"))
   {
@@ -4741,7 +4741,7 @@ LABEL_14:
   }
 
   if (self->_secureElementIdentity) {
-    [v13 setSecureElementIdentity:];
+    objc_msgSend(v13, "setSecureElementIdentity:");
   }
   double v11 = (__int16)self->_has;
   BOOL v12 = v13;
@@ -4912,7 +4912,7 @@ LABEL_30:
 LABEL_31:
   if (self->_oldPeerID)
   {
-    [v13 setOldPeerID:];
+    objc_msgSend(v13, "setOldPeerID:");
     BOOL v12 = v13;
   }
 }
@@ -4969,72 +4969,72 @@ LABEL_12:
 
 id objc_msgSend_createInheritanceKeyWithClaimTokenAndWrappingKey_uuidString_claimToken_wrappingKey_json_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 createInheritanceKeyWithClaimTokenAndWrappingKey:uuidString:claimToken:wrappingKey:json:timeout:];
+  return objc_msgSend( a1,  "createInheritanceKeyWithClaimTokenAndWrappingKey:uuidString:claimToken:wrappingKey:json:timeout:");
 }
 
 id objc_msgSend_joinWithCustodianRecoveryKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 joinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
+  return objc_msgSend(a1, "joinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
 }
 
 id objc_msgSend_joinWithInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 joinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
+  return objc_msgSend(a1, "joinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
 }
 
 id objc_msgSend_performEscrowRecovery_recordID_appleID_secret_overrideForAccountScript_overrideEscrowCache_( void *a1, const char *a2, ...)
 {
-  return [a1 performEscrowRecovery:recordID:appleID:secret:overrideForAccountScript:overrideEscrowCache:];
+  return objc_msgSend(a1, "performEscrowRecovery:recordID:appleID:secret:overrideForAccountScript:overrideEscrowCache:");
 }
 
 id objc_msgSend_preflightJoinWithCustodianRecoveryKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 preflightJoinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
+  return objc_msgSend( a1,  "preflightJoinWithCustodianRecoveryKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
 }
 
 id objc_msgSend_preflightJoinWithInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 preflightJoinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
+  return objc_msgSend(a1, "preflightJoinWithInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
 }
 
 id objc_msgSend_recreateInheritanceKeyWithArguments_uuidString_wrappingKey_wrappedKey_claimToken_json_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 recreateInheritanceKeyWithArguments:uuidString:wrappingKey:wrappedKey:claimToken:json:timeout:];
+  return objc_msgSend( a1,  "recreateInheritanceKeyWithArguments:uuidString:wrappingKey:wrappedKey:claimToken:json:timeout:");
 }
 
 id objc_msgSend_resetAccountCDPContents_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_reply_( void *a1, const char *a2, ...)
 {
-  return [a1 resetAccountCDPContents:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:reply:];
+  return objc_msgSend(a1, "resetAccountCDPContents:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:reply:");
 }
 
 id objc_msgSend_resetAccountCDPContentsWithArguments_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_( void *a1, const char *a2, ...)
 {
-  return [a1 resetAccountCDPContentsWithArguments:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:];
+  return objc_msgSend(a1, "resetAccountCDPContentsWithArguments:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:");
 }
 
 id objc_msgSend_resetAndEstablish_resetReason_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_accountSettings_isGuitarfish_reply_( void *a1, const char *a2, ...)
 {
-  return [a1 resetAndEstablish:resetReason:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:accountSettings:isGuitarfish:reply:];
+  return objc_msgSend( a1,  "resetAndEstablish:resetReason:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:accountSettings:isGuitarfish:reply:");
 }
 
 id objc_msgSend_resetOctagon_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_isGuitarfish_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 resetOctagon:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:isGuitarfish:timeout:];
+  return objc_msgSend(a1, "resetOctagon:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:isGuitarfish:timeout:");
 }
 
 id objc_msgSend_resetProtectedData_appleID_dsid_idmsTargetContext_idmsCuttlefishPassword_isGuitarfish_notifyIdMS_( void *a1, const char *a2, ...)
 {
-  return [a1 resetProtectedData:appleID:dsid:idmsTargetContext:idmsCuttlefishPassword:isGuitarfish:notifyIdMS:];
+  return objc_msgSend( a1,  "resetProtectedData:appleID:dsid:idmsTargetContext:idmsCuttlefishPassword:isGuitarfish:notifyIdMS:");
 }
 
 id objc_msgSend_resetProtectedData_idmsTargetContext_idmsCuttlefishPassword_notifyIdMS_error_( void *a1, const char *a2, ...)
 {
-  return [a1 resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:];
+  return objc_msgSend(a1, "resetProtectedData:idmsTargetContext:idmsCuttlefishPassword:notifyIdMS:error:");
 }
 
 id objc_msgSend_storeInheritanceKeyWithArguments_wrappingKey_wrappedKey_uuidString_timeout_( void *a1, const char *a2, ...)
 {
-  return [a1 storeInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:];
+  return objc_msgSend(a1, "storeInheritanceKeyWithArguments:wrappingKey:wrappedKey:uuidString:timeout:");
 }
 
 id objc_msgSend_webAccess(void *a1, const char *a2, ...)

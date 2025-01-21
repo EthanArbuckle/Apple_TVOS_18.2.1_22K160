@@ -13840,7 +13840,7 @@ LABEL_24:
 
     uint64_t v75 = (uint64_t)v8;
     __int128 v78 = v7;
-    id v76 = [*v11 mutableCopy];
+    id v76 = objc_msgSend(*v11, "mutableCopy", *(_OWORD *)&v73);
     int v21 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array"));
     __int128 v92 = 0u;
     __int128 v93 = 0u;
@@ -16108,7 +16108,7 @@ uint64_t sub_10038ABC8(uint64_t a1)
           objc_enumerationMutation(v50);
         }
         std::string::size_type v54 = *(void *)(*((void *)&v88 + 1) + 8LL * (void)k);
-        id v55 = [*(id *)(a1 + 504) objectForKey:v54 v82];
+        id v55 = objc_msgSend(*(id *)(a1 + 504), "objectForKey:", v54, v82);
         __int128 v56 = (os_log_s *)qword_1008F75B0;
         if (os_log_type_enabled((os_log_t)qword_1008F75B0, OS_LOG_TYPE_DEFAULT))
         {
@@ -18327,7 +18327,7 @@ void sub_10038F728(void *a1)
           _os_log_impl( (void *)&_mh_execute_header,  v8,  OS_LOG_TYPE_DEFAULT,  "(CBSR) Sending classic %lu queued messages to application %{public}@",  buf,  0x16u);
         }
 
-        id v11 = [v6 msgId:v17];
+        id v11 = objc_msgSend(v6, "msgId", v17);
         uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v6 arguments]);
         sub_10043F394(v7, (int64_t)v11, v12);
         goto LABEL_12;
@@ -18348,7 +18348,7 @@ void sub_10038F728(void *a1)
         _os_log_impl( (void *)&_mh_execute_header,  v13,  OS_LOG_TYPE_DEFAULT,  "(CBSR) Sending %lu queued messages to application %{public}@",  buf,  0x16u);
       }
 
-      id v16 = [v6 msgId:v17];
+      id v16 = objc_msgSend(v6, "msgId", v17);
       uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue([v6 arguments]);
       sub_10043F394(v7 - 144, (int64_t)v16, v12);
 LABEL_12:
@@ -18928,7 +18928,7 @@ void sub_100390A7C(uint64_t a1, uint64_t a2, void *a3, void *a4)
     uint64_t v13 = sub_10024F00C();
     char v14 = v28;
     id v15 = v8;
-    uint64_t v16 = sub_100252358(v13, v14, [v15 bytes], [v15 length]);
+    uint64_t v16 = sub_100252358(v13, v14, [v15 bytes], objc_msgSend(v15, "length"));
     if ((_DWORD)v16)
     {
       uint64_t v17 = (os_log_s *)qword_1008F7628;
@@ -19010,7 +19010,7 @@ void sub_100390DB4(uint64_t a1, void *a2, void *a3)
     [v5 getUUIDBytes:v11];
     xpc_dictionary_set_uuid(v9, "kCBMsgArgDeviceUUID", (const unsigned __int8 *)v11);
     id v10 = v6;
-    xpc_dictionary_set_data( v9,  "kCBMsgArgObjectDiscoveryData",  [v10 bytes],  (size_t)[v10 length]);
+    xpc_dictionary_set_data( v9,  "kCBMsgArgObjectDiscoveryData",  [v10 bytes],  (size_t)objc_msgSend(v10, "length"));
     sub_10043F1F4(v7 - 144, 139LL, v9, 1);
   }
 }
@@ -21899,7 +21899,7 @@ void sub_100397664(_Unwind_Exception *a1)
 
 BOOL sub_100397674(uint64_t a1)
 {
-  return [*(id *)(a1 + 312) count] || [*(id *)(a1 + 304) count] != 0;
+  return [*(id *)(a1 + 312) count] || objc_msgSend(*(id *)(a1 + 304), "count") != 0;
 }
 
 void sub_1003976B4(uint64_t a1, void *a2)
@@ -22933,7 +22933,7 @@ id sub_100399AE0(uint64_t a1)
         BOOL v9 = *(void **)(*((void *)&v19 + 1) + 8LL * (void)i);
         *(void *)__int128 buf = 0LL;
         *(void *)&uint8_t buf[8] = 0LL;
-        [v9 getUUIDBytes:buf];
+        objc_msgSend(v9, "getUUIDBytes:", buf, (void)v19);
         uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(+[NSData dataWithBytes:length:](&OBJC_CLASS___NSData, "dataWithBytes:length:", buf, 16LL));
         -[NSMutableSet addObject:](v3, "addObject:", v10);
       }
@@ -23117,7 +23117,7 @@ void sub_10039A7B4(uint64_t a1, unint64_t a2)
               objc_enumerationMutation(obj);
             }
             id v7 = *(id *)(*((void *)&v37 + 1) + 8LL * (void)i);
-            sub_1006343C4( (uint64_t)&v45,  (int8x16_t *)[v7 bytes],  [v7 length]);
+            sub_1006343C4( (uint64_t)&v45,  (int8x16_t *)[v7 bytes],  objc_msgSend(v7, "length"));
             id v8 = v42;
             if ((unint64_t)v42 >= v43)
             {
@@ -23288,11 +23288,11 @@ id sub_10039AC34(uint64_t a1, unint64_t a2)
             dispatch_once(&qword_1008D92A8, &stru_1008945B0);
           }
           uint64_t v10 = qword_1008D92A0;
-          unint64_t v11 = (void *)[*(id *)(a1 + 216) objectForKeyedSubscript:v9, v35];
+          unint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 216), "objectForKeyedSubscript:", v9, v35));
           sub_10064C568(v10, a2, v9, v11);
         }
 
-        unint64_t v12 = (void *)[*(id *)(a1 + 216) objectForKeyedSubscript:v9, v35];
+        unint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(*(id *)(a1 + 216), "objectForKeyedSubscript:", v9, v35));
         unsigned int v13 = [v12 isLatencyCritical];
 
         if (v13) {
@@ -23664,7 +23664,7 @@ LABEL_22:
               dispatch_once(&qword_1008D5F30, &stru_100894630);
             }
             uint64_t v29 = off_1008D5F28;
-            __int128 v30 = (void *)objc_claimAutoreleasedReturnValue([v24 subdataWithRange:1, [v24 length] - 1]);
+            __int128 v30 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v24, "subdataWithRange:", 1, (char *)objc_msgSend(v24, "length") - 1));
             uint64_t v12 = sub_1005D9384((uint64_t)v29, v7, v26, v30, 3);
 
             if ((_DWORD)v12)
@@ -25239,7 +25239,7 @@ uint64_t sub_10039EEE8(uint64_t a1, unint64_t a2)
         if (*(void *)v13 != v8) {
           objc_enumerationMutation(v6);
         }
-        id v10 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(a1 + 216) objectForKeyedSubscript: *(void *)(*((void *)&v12 + 1) + 8 * (void)v9) v12]);
+        id v10 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(a1 + 216),  "objectForKeyedSubscript:",  *(void *)(*((void *)&v12 + 1) + 8 * (void)v9),  (void)v12));
         [v10 removeAllObjects];
 
         id v9 = (char *)v9 + 1;
@@ -39593,7 +39593,7 @@ uint64_t sub_1003BA8FC(uint64_t a1, unint64_t a2, void *a3, void *a4, unint64_t 
         else if ((unint64_t)[v28 length] <= a5)
         {
           id v32 = v28;
-          memcpy(a3, [v32 bytes], (size_t)[v32 length]);
+          memcpy(a3, [v32 bytes], (size_t)objc_msgSend(v32, "length"));
           uint64_t v26 = 0LL;
           *a4 = [v32 length];
         }
@@ -41532,7 +41532,7 @@ uint64_t sub_1003BE678(uint64_t a1, uint64_t a2, void *a3, void *a4, unint64_t a
   else if ((unint64_t)[v22 length] <= a5)
   {
     id v27 = v22;
-    memcpy(a3, [v27 bytes], (size_t)[v27 length]);
+    memcpy(a3, [v27 bytes], (size_t)objc_msgSend(v27, "length"));
     uint64_t v26 = 0LL;
     *a4 = [v27 length];
   }
@@ -41646,7 +41646,7 @@ uint64_t sub_1003BE9B8(uint64_t a1, uint64_t a2, uint64_t a3, void *a4, void *a5
   else if ((unint64_t)[v25 length] <= a6)
   {
     id v30 = v25;
-    memcpy(a4, [v30 bytes], (size_t)[v30 length]);
+    memcpy(a4, [v30 bytes], (size_t)objc_msgSend(v30, "length"));
     uint64_t v29 = 0LL;
     *a5 = [v30 length];
   }
@@ -61659,7 +61659,7 @@ id sub_1003E36CC(uint64_t a1, int a2)
           objc_enumerationMutation(v3);
         }
         unint64_t v7 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)i);
-        int v8 = (void *)[v7 objectForKeyedSubscript:@"kCBMsgArgPSM"];
+        int v8 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v7, "objectForKeyedSubscript:", @"kCBMsgArgPSM", (void)v12));
         int v9 = v8;
         if (v8 && [v8 intValue] == a2)
         {
@@ -61707,7 +61707,7 @@ id sub_1003E3854(uint64_t a1, int a2)
           objc_enumerationMutation(v3);
         }
         unint64_t v7 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)i);
-        int v8 = (void)objc_claimAutoreleasedReturnValue([v7 objectForKeyedSubscript:@"kCBMsgArgRFCOMMChannelID"]);
+        int v8 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v7, "objectForKeyedSubscript:", @"kCBMsgArgRFCOMMChannelID", (void)v12));
         int v9 = v8;
         if (v8 && [v8 intValue] == a2)
         {
@@ -71227,7 +71227,7 @@ void sub_1003FAF10(uint64_t a1, uint64_t a2)
       __p[1] = 0LL;
       uint64_t v21 = 0LL;
       sub_1003FE1B4(buf, __p);
-      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( [v4 substringToIndex:[v4 length] - [@" - Find My" length]]);
+      uint64_t v8 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( v4,  "substringToIndex:",  (_BYTE *)objc_msgSend(v4, "length") - (_BYTE *)objc_msgSend(@" - Find My", "length")));
       id v9 = objc_alloc_init(&OBJC_CLASS___SPOwnerInterface);
       std::string::size_type v10 = (void *)objc_claimAutoreleasedReturnValue([v9 ownerSession]);
       v14[0] = _NSConcreteStackBlock;

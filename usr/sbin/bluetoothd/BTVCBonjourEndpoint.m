@@ -269,7 +269,7 @@ LABEL_13:
   if (self->_connection)
   {
     id v8 = v6;
-    id v9 = dispatch_data_create([v8 bytes], (size_t)[v8 length], 0, 0);
+    id v9 = dispatch_data_create([v8 bytes], (size_t)objc_msgSend(v8, "length"), 0, 0);
     metadata = nw_ws_create_metadata(nw_ws_opcode_binary);
     id v11 = nw_content_context_create("send");
     nw_content_context_set_metadata_for_protocol(v11, metadata);

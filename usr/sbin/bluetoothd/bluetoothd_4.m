@@ -41499,11 +41499,11 @@ LABEL_9:
   {
     __int16 v18 = 0;
     int v17 = 0;
-    [v14 getBytes:&v17 range:0, 6];
+    objc_msgSend(v14, "getBytes:range:", &v17, 0, 6);
     sub_1001F0050((uint64_t)&v4[v10 + 5], (uint64_t)&v17, 6uLL);
     unsigned __int8 v15 = [v14 length];
     v4[v10 + 11] = v15 - 6;
-    [v14 getBytes:&v4[v10 + 12] range:6, (v15 - 6)];
+    objc_msgSend(v14, "getBytes:range:", &v4[v10 + 12], 6, (v15 - 6));
     ++v11;
     LOWORD(v9) = v9 + 1;
     goto LABEL_9;
@@ -42476,8 +42476,8 @@ uint64_t sub_1001FC1FC(uint64_t a1, void *a2)
                 }
                 uint64_t v10 = *(void **)(*((void *)&v24 + 1) + 8LL * (void)j);
                 memset(v32, 0, 37);
-                [v10 getBytes:v32 range:0, 6, v14];
-                [v10 getBytes:((char *)v32 + 13) range:NSMakeRange(22, 6)];
+                objc_msgSend(v10, "getBytes:range:", v32, 0, 6, v14);
+                objc_msgSend(v10, "getBytes:range:", (char *)v32 + 13, 6, 22);
                 *(_DWORD *)((char *)v32 + 9) = 1643008;
                 *(_DWORD *)((char *)v32 + 6) = 5046046;
                 BYTE3(v32[2]) = BYTE3(v32[2]) & 0xFC | (LOBYTE(v32[0]) >> 6);
@@ -43923,7 +43923,7 @@ uint64_t sub_1001FE6AC(uint64_t a1, void *a2)
   *(_DWORD *)&v12[15] = -1073577627;
   *(void *)(a1 + 304) = a1;
   *(_BYTE *)(a1 + 312) = -16;
-  id v3 = [a2 mutableCopy:v8, v9, v10, v11, *(_OWORD *)v12, *(void *)&v12[16]];
+  id v3 = objc_msgSend(a2, "mutableCopy", v8, v9, v10, v11, *(_OWORD *)v12, *(void *)&v12[16]);
   [v3 setObject:@"Keyboard" forKeyedSubscript:@"Accessory Category"];
   [v3 setObject:&off_1008C3138 forKeyedSubscript:@"ExtendedData"];
   uint64_t v4 = sub_10043A400(a1, v3, (uint64_t)&v8, 83LL, *(unsigned __int8 *)(a1 + 312), 0LL);
@@ -43985,7 +43985,7 @@ uint64_t sub_1001FE85C(uint64_t a1, void *a2, void *a3)
   *(void *)(a1 + 320) = a1;
   *(_BYTE *)(a1 + 32std::iostream::~basic_iostream(v2, v3 + 8) = -15;
   id v6 = v5;
-  uint64_t v7 = sub_10043A400(a1, a2, (uint64_t)[v6 bytes], (uint64_t)[v6 length], *(unsigned __int8 *)(a1 + 328), 1);
+  uint64_t v7 = sub_10043A400( a1,  a2,  (uint64_t)[v6 bytes],  (uint64_t)objc_msgSend(v6, "length"),  *(unsigned __int8 *)(a1 + 328),  1);
   uint64_t v8 = v7;
   if (v7)
   {
@@ -46508,7 +46508,7 @@ void sub_10020513C(uint64_t a1)
     id v4 = (void *)objc_claimAutoreleasedReturnValue([WeakRetained _endpointForUniqueID:*(void *)(a1 + 32)]);
     if (v4 && *(void *)(a1 + 40) && *(void *)(a1 + 48))
     {
-      [v3 _sendMessage:withType:toEndpoint:completionCallback:];
+      objc_msgSend(v3, "_sendMessage:withType:toEndpoint:completionCallback:");
     }
 
     else
@@ -50381,7 +50381,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
         uint64_t v11 = (void *)objc_claimAutoreleasedReturnValue(v10);
         uint64_t v37 = v11;
         if (v11) {
-          sub_1003DD65C((uint64_t)v7, (uint64_t)[v11 charValue:v11, v38]);
+          sub_1003DD65C((uint64_t)v7, (uint64_t)objc_msgSend(v11, "charValue", v11, v38));
         }
         sub_1003DD9C4((uint64_t)v7);
         id v12 = sub_10025E254(v3, "kCBMsgArgInEarDetectionEnabled");
@@ -50391,7 +50391,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D5F40 != -1) {
             dispatch_once(&qword_1008D5F40, &stru_100887BA0);
           }
-          sub_1003B3534(off_1008D5F38, v7, [v46 BOOLValue:v37]);
+          sub_1003B3534((uint64_t)off_1008D5F38, (uint64_t)v7, (int)objc_msgSend(v46, "BOOLValue", v37));
         }
 
         id v13 = sub_10025E254(v3, "kCBMsgArgMicMode");
@@ -50401,7 +50401,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D5F40 != -1) {
             dispatch_once(&qword_1008D5F40, &stru_100887BA0);
           }
-          sub_1003B2740((uint64_t)off_1008D5F38, (uint64_t)v7, (uint64_t)[v45 unsignedIntValue]);
+          sub_1003B2740((uint64_t)off_1008D5F38, (uint64_t)v7, (uint64_t)objc_msgSend(v45, "unsignedIntValue", v37));
         }
 
         id v14 = sub_10025E254(v3, "kCBMsgArgDoubleTapAction");
@@ -50411,7 +50411,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D5F40 != -1) {
             dispatch_once(&qword_1008D5F40, &stru_100887BA0);
           }
-          sub_1003B279C(off_1008D5F38, v7, [v44 unsignedIntValue]);
+          sub_1003B279C((uint64_t)off_1008D5F38, (uint64_t)v7, (uint64_t)objc_msgSend(v44, "unsignedIntValue", v37));
         }
 
         id v15 = sub_10025E254(v3, "kCBMsgArgDoubleTapActionEx");
@@ -50434,7 +50434,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  13,  (uint64_t)[v42 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  13,  (uint64_t)objc_msgSend(v42, "unsignedIntValue", v37),  2u);
         }
 
         id v20 = sub_10025E254(v3, "kCBMsgArgListeningConfigs");
@@ -50444,7 +50444,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  26,  (uint64_t)[v41 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  26,  (uint64_t)objc_msgSend(v41, "unsignedIntValue", v37),  2u);
         }
 
         id v21 = sub_10025E254(v3, "kCBMsgArgAutoAnswerCalls");
@@ -50468,7 +50468,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  28,  (uint64_t)[v39 unsignedCharValue:v37],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  28,  (uint64_t)objc_msgSend(v39, "unsignedCharValue", v37),  2u);
         }
 
         id v25 = sub_10025E254(v3, "kCBMsgArgSingleClickMode");
@@ -50478,7 +50478,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  20,  (uint64_t)[v26 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  20,  (uint64_t)objc_msgSend(v26, "unsignedIntValue", v37),  2u);
         }
 
         id v27 = sub_10025E254(v3, "kCBMsgArgDoubleClickMode");
@@ -50488,7 +50488,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  21,  (uint64_t)[v28 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  21,  (uint64_t)objc_msgSend(v28, "unsignedIntValue", v37),  2u);
         }
 
         id v29 = sub_10025E254(v3, "kCBMsgArgClickHoldMode");
@@ -50498,7 +50498,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  22,  (uint64_t)[v30 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  22,  (uint64_t)objc_msgSend(v30, "unsignedIntValue", v37),  2u);
         }
 
         id v31 = sub_10025E254(v3, "kCBMsgArgDoubleClickInterval");
@@ -50508,7 +50508,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  23,  (uint64_t)[v32 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  23,  (uint64_t)objc_msgSend(v32, "unsignedIntValue", v37),  2u);
         }
 
         id v33 = sub_10025E254(v3, "kCBMsgArgClickHoldInterval");
@@ -50518,7 +50518,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  24,  (uint64_t)[v34 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  24,  (uint64_t)objc_msgSend(v34, "unsignedIntValue", v37),  2u);
         }
 
         id v35 = sub_10025E254(v3, "kCBMsgArgOneBudANCMode");
@@ -50528,7 +50528,7 @@ void sub_10020BFF0(int a1, xpc_object_t xdict)
           if (qword_1008D60E0 != -1) {
             dispatch_once(&qword_1008D60E0, &stru_100887BC0);
           }
-          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  27,  (uint64_t)[v36 unsignedIntValue],  2u);
+          sub_100215778( (uint64_t)off_1008D60D8,  (uint64_t)v7,  27,  (uint64_t)objc_msgSend(v36, "unsignedIntValue", v37),  2u);
         }
       }
 
@@ -50915,7 +50915,7 @@ void sub_10020D1BC(uint64_t a1, xpc_object_t xdict)
     xpc_object_t v22 = xpc_dictionary_create(0LL, 0LL, 0LL);
     xpc_dictionary_set_int64(v22, "kCBMsgArgResult", v18);
     id v23 = v16;
-    xpc_dictionary_set_data( v22,  "kCBMsgArgServiceUUID",  [v23 bytes],  (size_t)[v23 length]);
+    xpc_dictionary_set_data( v22,  "kCBMsgArgServiceUUID",  [v23 bytes],  (size_t)objc_msgSend(v23, "length"));
     sub_10043F1F4(a1, 46LL, v22, 1);
 
 LABEL_23:
@@ -53265,7 +53265,7 @@ void sub_100212C64( uint64_t a1, void *a2, int a3, unsigned int a4, unsigned int
     if (v23)
     {
       id v25 = v23;
-      xpc_dictionary_set_data( v17,  "kCBMsgArgServiceUUID",  [v25 bytes],  (size_t)[v25 length]);
+      xpc_dictionary_set_data( v17,  "kCBMsgArgServiceUUID",  [v25 bytes],  (size_t)objc_msgSend(v25, "length"));
     }
   }
 

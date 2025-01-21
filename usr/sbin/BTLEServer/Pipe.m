@@ -137,7 +137,7 @@
 
     else
     {
-      [v4 setOffset:[v4 offset] + v13];
+      objc_msgSend(v4, "setOffset:", (char *)objc_msgSend(v4, "offset") + v13);
       id v14 = [v4 offset];
       v15 = (void *)objc_claimAutoreleasedReturnValue([v4 data]);
       id v16 = [v15 length];

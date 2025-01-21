@@ -61,7 +61,7 @@
   {
     v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: failed in super-init" message:3 "+[WiFiAnalyticsManager sharedWiFiAnalyticsManager]" ];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed in super-init",  "+[WiFiAnalyticsManager sharedWiFiAnalyticsManager]");
     }
     objc_autoreleasePoolPop(v3);
   }
@@ -90,7 +90,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: failed in super-init" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: failed in super-init",  "-[WiFiAnalyticsManager init]");
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -147,7 +147,7 @@
   {
     v5 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: NULL WiFiManager" message:3 "-[WiFiAnalyticsManager setWiFiManager:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: NULL WiFiManager",  "-[WiFiAnalyticsManager setWiFiManager:]");
     }
     objc_autoreleasePoolPop(v5);
   }
@@ -160,7 +160,7 @@
     {
       v3 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: attempting to initialize deviceAnalyticsClient" message:3];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: attempting to initialize deviceAnalyticsClient",  "-[WiFiAnalyticsManager deviceAnalyticsClient]");
       }
       objc_autoreleasePoolPop(v3);
       if (_os_feature_enabled_impl("WiFiPolicy", "HND_AnalyticsProcessor")) {
@@ -175,7 +175,7 @@
         -[WiFiAnalyticsManager _cleanupExistingRetiredStores](self, "_cleanupExistingRetiredStores");
         v5 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient initialized successfully" message:3];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: deviceAnalyticsClient initialized successfully",  "-[WiFiAnalyticsManager deviceAnalyticsClient]");
         }
       }
 
@@ -183,7 +183,7 @@
       {
         v5 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: unable to init deviceAnalyticsClient" message:4];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: unable to init deviceAnalyticsClient",  "-[WiFiAnalyticsManager deviceAnalyticsClient]");
         }
       }
 
@@ -196,7 +196,7 @@
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: WADeviceAnalyticsClient class not present" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: WADeviceAnalyticsClient class not present",  "-[WiFiAnalyticsManager deviceAnalyticsClient]");
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -207,8 +207,8 @@
 - (void)_cleanupExistingRetiredStores
 {
   id v2 = +[NSMutableArray array](&OBJC_CLASS___NSMutableArray, "array");
-  [v2 addObject:[NSURL URLWithString:@"/System/Library/PrivateFrameworks/MobileWiFi.framework/WiFiNetworkStoreModel.momd"]];
-  [v2 addObject:[NSURL URLWithString:@"/usr/sbin/WiFiNetworkStoreModel.momd"]];
+  objc_msgSend( v2,  "addObject:",  +[NSURL URLWithString:]( NSURL,  "URLWithString:",  @"/System/Library/PrivateFrameworks/MobileWiFi.framework/WiFiNetworkStoreModel.momd"));
+  objc_msgSend( v2,  "addObject:",  +[NSURL URLWithString:](NSURL, "URLWithString:", @"/usr/sbin/WiFiNetworkStoreModel.momd"));
   v3 = &ACAccountStoreDidChangeNotification_ptr;
   v4 = -[NSFileManager URLForDirectory:inDomain:appropriateForURL:create:error:]( +[NSFileManager defaultManager](&OBJC_CLASS___NSFileManager, "defaultManager"),  "URLForDirectory:inDomain:appropriateForURL:create:error:",  14LL,  1LL,  0LL,  1LL,  0LL);
   v36 = -[NSURL URLByAppendingPathComponent:](v4, "URLByAppendingPathComponent:", @"WiFiNetworkStoreModel.sqlite");
@@ -216,7 +216,7 @@
   {
     v32 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Error getting storeURL" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error getting storeURL",  "-[WiFiAnalyticsManager _cleanupExistingRetiredStores]");
     }
     goto LABEL_55;
   }
@@ -226,7 +226,7 @@
   {
     v32 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Error getting storeWalURL" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error getting storeWalURL",  "-[WiFiAnalyticsManager _cleanupExistingRetiredStores]");
     }
     goto LABEL_55;
   }
@@ -237,7 +237,7 @@
   {
     v32 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: Error getting storeShmURL" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: Error getting storeShmURL",  "-[WiFiAnalyticsManager _cleanupExistingRetiredStores]");
     }
 LABEL_55:
     objc_autoreleasePoolPop(v32);
@@ -394,7 +394,7 @@ LABEL_55:
   {
     uint64_t v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null ssid" message:3 "-[WiFiAnalyticsManager _copyCreateEquivalentWiFiNetwork:authFlags:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null ssid",  "-[WiFiAnalyticsManager _copyCreateEquivalentWiFiNetwork:authFlags:]");
     }
     goto LABEL_17;
   }
@@ -405,7 +405,7 @@ LABEL_55:
   {
     uint64_t v11 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: null networkRecord" message:3];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: null networkRecord",  "-[WiFiAnalyticsManager _copyCreateEquivalentWiFiNetwork:authFlags:]");
     }
 LABEL_17:
     objc_autoreleasePoolPop(v11);
@@ -451,7 +451,7 @@ LABEL_17:
   {
     v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: query already pending" message:4 "-[WiFiAnalyticsManager getAdaptiveRoamParams:ssid:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: query already pending",  "-[WiFiAnalyticsManager getAdaptiveRoamParams:ssid:]");
     }
     objc_autoreleasePoolPop(v7);
   }
@@ -480,7 +480,7 @@ LABEL_17:
   {
     id v23 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyStoredNetworksAvailableAtLocationWithinDistanceInBand:distance:band:]");
     }
     goto LABEL_22;
   }
@@ -489,7 +489,7 @@ LABEL_17:
   {
     id v23 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: location is nil" message:4 "-[WiFiAnalyticsManager copyStoredNetworksAvailableAtLocationWithinDistanceInBand:distance:band:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: location is nil",  "-[WiFiAnalyticsManager copyStoredNetworksAvailableAtLocationWithinDistanceInBand:distance:band:]");
     }
 LABEL_22:
     objc_autoreleasePoolPop(v23);
@@ -562,7 +562,7 @@ LABEL_22:
 LABEL_17:
     uint64_t v15 = 4LL;
 LABEL_23:
-    [v13 WFLog:v15 message:v14];
+    objc_msgSend( v13,  "WFLog:message:",  v15,  v14,  "-[WiFiAnalyticsManager copyHigherBandNetworksAvailableAtLocation:intoArray:]");
     goto LABEL_24;
   }
 
@@ -602,7 +602,7 @@ LABEL_22:
       }
       double v10 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: ssid is nil" message:4 "-[WiFiAnalyticsManager isWithin:fromLocation:forNetwork:]"];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: ssid is nil",  "-[WiFiAnalyticsManager isWithin:fromLocation:forNetwork:]");
       }
     }
 
@@ -610,7 +610,7 @@ LABEL_22:
     {
       double v10 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: location is nil" message:4 "-[WiFiAnalyticsManager isWithin:fromLocation:forNetwork:]"];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: location is nil",  "-[WiFiAnalyticsManager isWithin:fromLocation:forNetwork:]");
       }
     }
   }
@@ -619,7 +619,7 @@ LABEL_22:
   {
     double v10 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager isWithin:fromLocation:forNetwork:]");
     }
   }
 
@@ -633,7 +633,7 @@ LABEL_22:
   {
     v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4 "-[WiFiAnalyticsManager copyScoreSortedNetworksAvailableAtLocation:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyScoreSortedNetworksAvailableAtLocation:]");
     }
     goto LABEL_25;
   }
@@ -642,7 +642,7 @@ LABEL_22:
   {
     v20 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: location is nil" message:4 "-[WiFiAnalyticsManager copyScoreSortedNetworksAvailableAtLocation:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: location is nil",  "-[WiFiAnalyticsManager copyScoreSortedNetworksAvailableAtLocation:]");
     }
 LABEL_25:
     objc_autoreleasePoolPop(v20);
@@ -756,7 +756,7 @@ LABEL_25:
     }
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: location is nil" message:4 "-[WiFiAnalyticsManager copyNetworksAvailableAtLocation:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: location is nil",  "-[WiFiAnalyticsManager copyNetworksAvailableAtLocation:]");
     }
   }
 
@@ -764,7 +764,7 @@ LABEL_25:
   {
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyNetworksAvailableAtLocation:]");
     }
   }
 
@@ -786,7 +786,7 @@ LABEL_25:
         }
         id v8 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"ssid is nil" message:4 "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]"];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: ssid is nil",  "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]");
         }
       }
 
@@ -794,7 +794,7 @@ LABEL_25:
       {
         id v8 = objc_autoreleasePoolPush();
         if (qword_100219F60) {
-          [qword_100219F60 WFLog:@"%s: location is nil" message:4 "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]"];
+          objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: location is nil",  "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]");
         }
       }
     }
@@ -803,7 +803,7 @@ LABEL_25:
     {
       id v8 = objc_autoreleasePoolPush();
       if (qword_100219F60) {
-        [qword_100219F60 WFLog:@"%s: network is nil" message:4];
+        objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]");
       }
     }
   }
@@ -812,7 +812,7 @@ LABEL_25:
   {
     id v8 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyGeoTagsForNetworkAtLocation:location:]");
     }
   }
 
@@ -832,7 +832,7 @@ LABEL_25:
   {
     v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager updateNetworkTraitsCache]");
     }
     goto LABEL_9;
   }
@@ -841,7 +841,7 @@ LABEL_25:
   {
     v3 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: cache updates already in progress" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: cache updates already in progress",  "-[WiFiAnalyticsManager updateNetworkTraitsCache]");
     }
 LABEL_9:
     objc_autoreleasePoolPop(v3);
@@ -899,7 +899,7 @@ LABEL_8:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager isMovingNetwork:]");
     }
     goto LABEL_9;
   }
@@ -908,7 +908,7 @@ LABEL_8:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: network is nil" message:4 "-[WiFiAnalyticsManager isMovingNetwork:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager isMovingNetwork:]");
     }
 LABEL_9:
     objc_autoreleasePoolPop(v7);
@@ -928,7 +928,7 @@ LABEL_9:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager isOmnipresentNetwork:]");
     }
     goto LABEL_9;
   }
@@ -937,7 +937,7 @@ LABEL_9:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: network is nil" message:4 "-[WiFiAnalyticsManager isOmnipresentNetwork:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager isOmnipresentNetwork:]");
     }
 LABEL_9:
     objc_autoreleasePoolPop(v7);
@@ -957,7 +957,7 @@ LABEL_9:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager isHistoricallyBadLinkQualityNetwork:]");
     }
     goto LABEL_9;
   }
@@ -966,7 +966,7 @@ LABEL_9:
   {
     char v7 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: network is nil" message:4 "-[WiFiAnalyticsManager isHistoricallyBadLinkQualityNetwork:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager isHistoricallyBadLinkQualityNetwork:]");
     }
 LABEL_9:
     objc_autoreleasePoolPop(v7);
@@ -987,7 +987,7 @@ LABEL_9:
   }
   double v4 = objc_autoreleasePoolPush();
   if (qword_100219F60) {
-    [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+    objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyAllStoredNetworkSsids]");
   }
   objc_autoreleasePoolPop(v4);
   return 0LL;
@@ -1002,7 +1002,7 @@ LABEL_9:
     }
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: colocatedScopeIdStr is nil" message:4 "-[WiFiAnalyticsManager copyAllStoredNetworkSsidsWithColocatedScopeId:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: colocatedScopeIdStr is nil",  "-[WiFiAnalyticsManager copyAllStoredNetworkSsidsWithColocatedScopeId:]");
     }
   }
 
@@ -1010,7 +1010,7 @@ LABEL_9:
   {
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyAllStoredNetworkSsidsWithColocatedScopeId:]");
     }
   }
 
@@ -1028,7 +1028,7 @@ LABEL_9:
     }
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: ssid is nil" message:4 "-[WiFiAnalyticsManager copyColocatedScopeIdForNetwork:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: ssid is nil",  "-[WiFiAnalyticsManager copyColocatedScopeIdForNetwork:]");
     }
   }
 
@@ -1036,7 +1036,7 @@ LABEL_9:
   {
     id v6 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyColocatedScopeIdForNetwork:]");
     }
   }
 
@@ -1053,7 +1053,7 @@ LABEL_9:
   {
     __int128 v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4 v23, v24, v25, v26];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager copyColocatedScopeTransitionNetwork:minRssi:maxRssi:band:]",  v23,  v24,  v25,  v26);
     }
     goto LABEL_23;
   }
@@ -1062,7 +1062,7 @@ LABEL_9:
   {
     __int128 v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: network is nil" message:4 v23, v24, v25, v26];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager copyColocatedScopeTransitionNetwork:minRssi:maxRssi:band:]",  v23,  v24,  v25,  v26);
     }
     goto LABEL_23;
   }
@@ -1073,7 +1073,7 @@ LABEL_9:
   {
     __int128 v22 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: bssid is nil" message:4 v23, v24, v25, v26];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: bssid is nil",  "-[WiFiAnalyticsManager copyColocatedScopeTransitionNetwork:minRssi:maxRssi:band:]",  v23,  v24,  v25,  v26);
     }
     goto LABEL_23;
   }
@@ -1102,7 +1102,7 @@ LABEL_23:
       if ([v15 objectForKey:v18])
       {
         if ([v15 objectForKey:v16]) {
-          signed int v19 = -[WiFiAnalyticsManager _copyCreateEquivalentWiFiNetwork:authFlags:]( self,  "_copyCreateEquivalentWiFiNetwork:authFlags:",  [v15 objectForKey:v16],  (int)[v15 objectForKey:v18].intValue);
+          signed int v19 = -[WiFiAnalyticsManager _copyCreateEquivalentWiFiNetwork:authFlags:]( self,  "_copyCreateEquivalentWiFiNetwork:authFlags:",  [v15 objectForKey:v16],  (int)objc_msgSend(objc_msgSend(v15, "objectForKey:", v18), "intValue"));
         }
         else {
           signed int v19 = 0LL;
@@ -1175,7 +1175,7 @@ LABEL_13:
   {
     uint64_t v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: deviceAnalyticsClient is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: deviceAnalyticsClient is nil",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]");
     }
     goto LABEL_29;
   }
@@ -1184,7 +1184,7 @@ LABEL_13:
   {
     uint64_t v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: network is nil" message:4];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: network is nil",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]");
     }
     goto LABEL_29;
   }
@@ -1194,7 +1194,7 @@ LABEL_13:
   {
     uint64_t v17 = objc_autoreleasePoolPush();
     if (qword_100219F60) {
-      [qword_100219F60 WFLog:@"%s: givenSsid is nil" message:4 "-[WiFiAnalyticsManager getNetworkUsageDictionary:]"];
+      objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: givenSsid is nil",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]");
     }
 LABEL_29:
     objc_autoreleasePoolPop(v17);
@@ -1245,7 +1245,7 @@ LABEL_29:
         {
           id v12 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            [qword_100219F60 WFLog:@"No objects to remove from full usageCache!?"];
+            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  4,  "%s: No objects to remove from full usageCache!?",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]");
           }
           objc_autoreleasePoolPop(v12);
         }
@@ -1255,7 +1255,7 @@ LABEL_29:
           -[NSMutableArray removeObjectsAtIndexes:]( -[WiFiAnalyticsManager usageCache](self, "usageCache"),  "removeObjectsAtIndexes:",  v6);
           uint64_t v13 = objc_autoreleasePoolPush();
           if (qword_100219F60) {
-            [qword_100219F60 WFLog:@"%s: Removed %u objects from usageCache. CurrSize: %u " message:3,  "%s: Removed %u objects from usageCache. CurrSize: %u ",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]",  [v6 count],  -[NSMutableArray count](-[WiFiAnalyticsManager usageCache](self, "usageCache"), "count"));
+            objc_msgSend( (id)qword_100219F60,  "WFLog:message:",  3,  "%s: Removed %u objects from usageCache. CurrSize: %u ",  "-[WiFiAnalyticsManager getNetworkUsageDictionary:]",  objc_msgSend(v6, "count"),  -[NSMutableArray count](-[WiFiAnalyticsManager usageCache](self, "usageCache"), "count"));
           }
           objc_autoreleasePoolPop(v13);
         }

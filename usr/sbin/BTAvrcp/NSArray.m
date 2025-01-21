@@ -25,7 +25,7 @@
         if (*(void *)v11 != v8) {
           objc_enumerationMutation(v5);
         }
-        v4[2](v4, [*(id *)(*((void *)&v10 + 1) + 8 * (void)v9) unsignedIntegerValue:(void)v10]);
+        v4[2](v4, objc_msgSend(*(id *)(*((void *)&v10 + 1) + 8 * (void)v9), "unsignedIntegerValue", (void)v10));
         v9 = (char *)v9 + 1;
       }
 

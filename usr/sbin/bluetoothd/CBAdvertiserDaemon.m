@@ -581,7 +581,7 @@ LABEL_33:
   id v18 = [v16 length];
   id v19 = v13;
   id v20 = v13;
-  CryptoHKDF(v15, v17, v18, [v20 bytes], [v20 length], a7, a8, 32, v35);
+  CryptoHKDF(v15, v17, v18, [v20 bytes], objc_msgSend(v20, "length"), a7, a8, 32, v35);
   __int16 v34 = 0;
   uint64_t v21 = __memcpy_chk(&v34, a3, a4, 2LL);
   uint64_t v22 = ccaes_ecb_encrypt_mode(v21);
@@ -1427,7 +1427,7 @@ LABEL_19:
           objc_enumerationMutation(v5);
         }
         id v10 = *(void **)(*((void *)&v21 + 1) + 8LL * (void)i);
-        unsigned int v11 = [v10 airplayTargetFlags:(void)v21];
+        unsigned int v11 = objc_msgSend(v10, "airplayTargetFlags", (void)v21);
         if (v11)
         {
           unsigned __int8 v15 = v11;
@@ -1981,7 +1981,7 @@ LABEL_76:
           objc_enumerationMutation(v5);
         }
         unsigned int v10 = *(void **)(*((void *)&v20 + 1) + 8LL * (void)i);
-        unsigned int v11 = [v10 heySiriDeviceClass];
+        unsigned int v11 = objc_msgSend(v10, "heySiriDeviceClass", (void)v20);
         if (v11)
         {
           __int16 v14 = v11;
@@ -2404,7 +2404,7 @@ LABEL_11:
           objc_enumerationMutation(obj);
         }
         unsigned int v11 = *(void **)(*((void *)&v42 + 1) + 8LL * (void)i);
-        v6 |= [v11 nearbyInfoV2DecryptedFlags:v34];
+        v6 |= objc_msgSend(v11, "nearbyInfoV2DecryptedFlags", v34);
         HIBYTE(v47) = v6;
         if (([v11 nearbyInfoV2Flags] & 4) != 0)
         {
@@ -3180,7 +3180,7 @@ LABEL_42:
           objc_enumerationMutation(v5);
         }
         id v10 = *(void **)(*((void *)&v18 + 1) + 8LL * (void)i);
-        unsigned int v11 = [v10 nearbyActionNoWakeType];
+        unsigned int v11 = objc_msgSend(v10, "nearbyActionNoWakeType", (void)v18);
         LOBYTE(v22) = v11;
         if (v11)
         {

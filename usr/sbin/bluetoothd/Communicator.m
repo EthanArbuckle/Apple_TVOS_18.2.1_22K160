@@ -498,7 +498,7 @@ LABEL_43:
   __int128 v15 = 0u;
   __int128 v12 = 0u;
   __int128 v13 = 0u;
-  v4 = [v3 subscriptions];
+  v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "subscriptions", 0));
   id v5 = [v4 countByEnumeratingWithState:&v12 objects:v16 count:16];
   if (v5)
   {
@@ -736,7 +736,7 @@ LABEL_43:
   __int128 v15 = 0u;
   __int128 v12 = 0u;
   __int128 v13 = 0u;
-  id v4 = [v3 subscriptions];
+  id v4 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v3, "subscriptions", 0));
   id v5 = [v4 countByEnumeratingWithState:&v12 objects:v16 count:16];
   if (v5)
   {

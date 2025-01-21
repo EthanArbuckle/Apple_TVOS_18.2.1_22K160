@@ -316,7 +316,7 @@
   {
     -[BTAVRCP_NowPlayingInfo setMrAppIdentifier:](self, "setMrAppIdentifier:", v7);
     uint64_t v10 = (void *)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    [v10 playerDidChange:[self playerId]];
+    objc_msgSend(v10, "playerDidChange:", -[BTAVRCP_NowPlayingInfo playerId](self, "playerId"));
   }
 }
 
@@ -793,7 +793,7 @@ LABEL_7:
   {
     -[BTAVRCP_NowPlayingInfo setCurrentTrackHash:](self, "setCurrentTrackHash:", v3);
     id v4 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    [v4 trackDidChange:[self trackId]];
+    objc_msgSend(v4, "trackDidChange:", -[BTAVRCP_NowPlayingInfo trackId](self, "trackId"));
   }
 
 - (void)_settingsDidChange:(id)a3
@@ -803,7 +803,7 @@ LABEL_7:
   {
     -[BTAVRCP_NowPlayingInfo setCurrentSettings:](self, "setCurrentSettings:", a3);
     id v5 = (id)objc_claimAutoreleasedReturnValue(-[BTAVRCP_NowPlayingInfo delegate](self, "delegate"));
-    [v5 settingsDidChange:[self currentSettings]];
+    objc_msgSend(v5, "settingsDidChange:", -[BTAVRCP_NowPlayingInfo currentSettings](self, "currentSettings"));
   }
 
 - (BOOL)isLocalOrigin

@@ -872,7 +872,7 @@ LABEL_49:
         if (*(void *)v32 != v8) {
           objc_enumerationMutation(v5);
         }
-        [*(id *)(*((void *)&v31 + 1) + 8 * (void)i) invalidate:v31];
+        objc_msgSend(*(id *)(*((void *)&v31 + 1) + 8 * (void)i), "invalidate", (void)v31);
       }
 
       id v7 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v5,  "countByEnumeratingWithState:objects:count:",  &v31,  v35,  16LL);
@@ -1206,7 +1206,7 @@ LABEL_49:
         }
         uint64_t v10 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)v9);
         v11 = objc_autoreleasePoolPush();
-        uint64_t v12 = (void)[v10 activatedDiscovery];
+        uint64_t v12 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v10, "activatedDiscovery", (void)v14));
         uint64_t v13 = v12;
 
         objc_autoreleasePoolPop(v11);
@@ -1246,7 +1246,7 @@ LABEL_49:
         }
         uint64_t v10 = *(void **)(*((void *)&v12 + 1) + 8LL * (void)v9);
         v11 = objc_autoreleasePoolPush();
-        [v10 reportDeviceLost:v4, v12];
+        objc_msgSend(v10, "reportDeviceLost:", v4, (void)v12);
         objc_autoreleasePoolPop(v11);
         BOOL v9 = (char *)v9 + 1;
       }
@@ -1316,7 +1316,7 @@ LABEL_49:
         if (*(void *)v20 != v17) {
           objc_enumerationMutation(v14);
         }
-        [*(id *)(*((void *)&v19 + 1) + 8 * (void)v18) changedTypesRemoveAll:v19];
+        objc_msgSend(*(id *)(*((void *)&v19 + 1) + 8 * (void)v18), "changedTypesRemoveAll", (void)v19);
         uint64_t v18 = (char *)v18 + 1;
       }
 
@@ -2449,7 +2449,7 @@ LABEL_27:
           objc_enumerationMutation(obj);
         }
         uint64_t v7 = *(void **)(*((void *)&v55 + 1) + 8LL * (void)v6);
-        int v8 = (void *)[v7 activatedDiscovery:v37];
+        int v8 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v7, "activatedDiscovery", v37));
         unsigned int v9 = v8;
         if (v8)
         {
@@ -2889,9 +2889,9 @@ LABEL_34:
           if ((_DWORD)v24 != v22)
           {
             [v16 setBleScanRateOverride:v24];
-            [v16 setSystemOverrideFlags:((unint64_t)[v16 systemOverrideFlags]) & 0xFFFFFFFC];
+            objc_msgSend( v16,  "setSystemOverrideFlags:",  (unint64_t)objc_msgSend(v16, "systemOverrideFlags") & 0xFFFFFFFC);
             if ((_DWORD)v24) {
-              [v16 setSystemOverrideFlags:[v16 systemOverrideFlags] | v25];
+              objc_msgSend(v16, "setSystemOverrideFlags:", objc_msgSend(v16, "systemOverrideFlags") | v25);
             }
             uint64_t v28 = objc_claimAutoreleasedReturnValue([v16 systemOverrideHandler]);
             __int128 v29 = (void *)v28;
@@ -3137,7 +3137,7 @@ LABEL_35:
   unint64_t v7 = v5 ^ v4;
   if (v7)
   {
-    [v8 setChangeFlags:[v8 changeFlags] | v7];
+    objc_msgSend(v8, "setChangeFlags:", (unint64_t)objc_msgSend(v8, "changeFlags") | v7);
     [v8 setDiscoveryFlags:v5];
     id v6 = v8;
   }
@@ -3243,7 +3243,7 @@ LABEL_35:
           if (*(void *)v11 != v5) {
             objc_enumerationMutation(v3);
           }
-          uint64_t v7 = (void *)[*(id *)(*((void *)&v10 + 1) + 8 * (void)i) activatedDiscovery:v10];
+          uint64_t v7 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v10 + 1) + 8 * (void)i),  "activatedDiscovery",  (void)v10));
           unint64_t v8 = (unint64_t)[v7 discoveryFlags];
 
           if ((v8 & 0x4000000000000LL) != 0)
@@ -3370,7 +3370,7 @@ LABEL_35:
     uint64_t v15 = self;
     id v9 = v8;
     [v9 setRelayMessageHandler:&v10];
-    [v9 activate:v10, v11, v12, v13];
+    objc_msgSend(v9, "activate", v10, v11, v12, v13);
   }
 
 - (void)_stackControllerEnsureStopped
@@ -3506,7 +3506,7 @@ LABEL_35:
               if (*(void *)v16 != v9) {
                 objc_enumerationMutation(v5);
               }
-              __int128 v11 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*((void *)&v15 + 1) + 8 * (void)i) activatedDiscovery:v15]);
+              __int128 v11 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v15 + 1) + 8 * (void)i),  "activatedDiscovery",  (void)v15));
               unint64_t v12 = (unint64_t)[v11 discoveryFlags];
 
               if ((v12 & 0xA00000) != 0) {
@@ -3731,7 +3731,7 @@ LABEL_7:
           objc_enumerationMutation(v3);
         }
         unint64_t v8 = *(void **)(*((void *)&v15 + 1) + 8LL * (void)i);
-        id v9 = [v8 activatedDiscovery];
+        id v9 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v8, "activatedDiscovery", (void)v15));
         id v10 = (void *)objc_claimAutoreleasedReturnValue([v8 activatedSpatialInteractionSession]);
         if (([v10 controlFlags] & 0x3E0) != 0
           || (__int128 v11 = (void *)objc_claimAutoreleasedReturnValue([v8 activatedAdvertiser]),
@@ -3858,7 +3858,7 @@ LABEL_16:
     if (v11)
     {
       [v3 updateWithCBDeviceIdentity:v11];
-      [v3 setInternalFlags:[v3 internalFlags] | 8];
+      objc_msgSend(v3, "setInternalFlags:", objc_msgSend(v3, "internalFlags") | 8);
       if (dword_1008D5FD8 <= 20
         && (dword_1008D5FD8 != -1 || _LogCategory_Initialize(&dword_1008D5FD8, 20LL)))
       {
@@ -3945,7 +3945,7 @@ LABEL_83:
               else
               {
                 uint64_t v25 = (void *)objc_claimAutoreleasedReturnValue([v16 btAddress]);
-                id v26 = (void *)objc_claimAutoreleasedReturnValue([v25 subdataWithRange:1, 6]);
+                id v26 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v25, "subdataWithRange:", 1, 6));
 
                 __int128 v27 = (void *)objc_claimAutoreleasedReturnValue([v3 btAddressData]);
                 LODWORD(v25) = [v26 isEqualToData:v27];
@@ -3969,7 +3969,7 @@ LABEL_42:
                   {
 LABEL_46:
                     [v3 updateWithRPIdentity:v16];
-                    [v3 setInternalFlags:[v3 internalFlags] | 8];
+                    objc_msgSend(v3, "setInternalFlags:", objc_msgSend(v3, "internalFlags") | 8);
                     if (dword_1008D5FD8 <= 20
                       && (dword_1008D5FD8 != -1 || _LogCategory_Initialize(&dword_1008D5FD8, 20LL)))
                     {
@@ -4830,7 +4830,7 @@ LABEL_14:
           if (*(void *)v16 != v13) {
             objc_enumerationMutation(v10);
           }
-          [*(id *)(*((void *)&v15 + 1) + 8 * (void)j) whbStop:v15];
+          objc_msgSend(*(id *)(*((void *)&v15 + 1) + 8 * (void)j), "whbStop", (void)v15);
         }
 
         id v12 = -[NSMutableSet countByEnumeratingWithState:objects:count:]( v10,  "countByEnumeratingWithState:objects:count:",  &v15,  v23,  16LL);
@@ -4877,7 +4877,7 @@ LABEL_14:
           if (*(void *)v14 != v10) {
             objc_enumerationMutation(v7);
           }
-          id v12 = (void *)objc_claimAutoreleasedReturnValue( [*(id *)(*((void *)&v13 + 1) + 8 * (void)i) activatedDiscoveryWHB:v13]);
+          id v12 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( *(id *)(*((void *)&v13 + 1) + 8 * (void)i),  "activatedDiscoveryWHB",  (void)v13));
           if (v12)
           {
             if (!v6) {
@@ -4953,7 +4953,7 @@ LABEL_14:
             objc_enumerationMutation(v11);
           }
           __int128 v16 = *(void **)(*((void *)&v19 + 1) + 8LL * (void)i);
-          __int128 v17 = (void)[v16 activatedDiscoveryWHB];
+          __int128 v17 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v16, "activatedDiscoveryWHB", (void)v19));
           __int128 v18 = v17;
         }
 
@@ -4995,7 +4995,7 @@ LABEL_14:
               objc_enumerationMutation(v7);
             }
             id v12 = *(void **)(*((void *)&v14 + 1) + 8LL * (void)i);
-            id v13 = (void *)objc_claimAutoreleasedReturnValue([v12 activatedDiscoveryWHB]);
+            id v13 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v12, "activatedDiscoveryWHB", (void)v14));
             if (v13) {
               [v12 reportDeviceLost:v6];
             }

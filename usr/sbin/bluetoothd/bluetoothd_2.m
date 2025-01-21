@@ -6383,7 +6383,7 @@ LABEL_175:
 LABEL_186:
   *(_DWORD *)(v7 + 3216) = v304;
   v309 = (v310 != 0) & v303;
-  v308 = (void *)[v14[391] stringWithFormat:@"AD:%d RD:%d AS:%d PHYS:%d MSL:%d (%d/%d) PSV:%d Rg:%d Cri:%d pBT:%d pWiFi:%d pCfg:%d type:%d" , v297 & 1, *(unsigned __int8 *)(v7 + 2352), v283, a2[15], v291, v15, v290, *a2, v309, v307 & 1, v313 & 1, v293 & 1, a2[17], v304];
+  v308 = (void *)objc_claimAutoreleasedReturnValue( objc_msgSend( v14[391],  "stringWithFormat:",  @"AD:%d RD:%d AS:%d PHYS:%d MSL:%d (%d/%d) PSV:%d Rg:%d Cri:%d pBT:%d pWiFi:%d pCfg:%d type:%d",  v297 & 1,  *(unsigned __int8 *)(v7 + 2352),  v283,  a2[15],  v291,  v15,  v290,  *a2,  v309,  v307 & 1,  v313 & 1,  v293 & 1,  a2[17],  v304));
   v135 = (os_log_s *)qword_1008F75B8;
   if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
   {
@@ -6412,7 +6412,7 @@ LABEL_186:
       else {
         v143 = v141;
       }
-      v144 = (void *)objc_claimAutoreleasedReturnValue([v312 subarrayWithRange:v138, v143 + v142]);
+      v144 = (void *)objc_claimAutoreleasedReturnValue(objc_msgSend(v312, "subarrayWithRange:", v138, v143 + v142));
       v145 = (os_log_s *)qword_1008F75B8;
       if (os_log_type_enabled((os_log_t)qword_1008F75B8, OS_LOG_TYPE_DEFAULT))
       {
@@ -54710,10 +54710,10 @@ LABEL_123:
             {
               uint64_t v117 = *(void *)(j + 88);
               if ((v117 & 2) != 0) {
-                uint64_t v114 = [v166 compare:v163 options:v117 range:[v166 length]] == 0;
+                uint64_t v114 = objc_msgSend(v166, "compare:options:range:", v163, v117, 0, objc_msgSend(v166, "length")) == 0;
               }
               else {
-                uint64_t v114 = [v166 rangeOfString:v163 options:v117 range:[v166 length]] != (id)0x7FFFFFFFFFFFFFFFLL;
+                uint64_t v114 = objc_msgSend(v166, "rangeOfString:options:range:", v163, v117, 0, objc_msgSend(v166, "length")) != (id)0x7FFFFFFFFFFFFFFFLL;
               }
             }
 

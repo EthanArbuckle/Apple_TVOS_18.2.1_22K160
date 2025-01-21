@@ -123,10 +123,10 @@
   v7 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest networkName](self, "networkName"));
   [v6 appendFormat:@"SSID='%@' ", v7];
 
-  [v6 appendFormat:@"Channel=%d ",  -[WiFiFindAndJoinRequest channelNumber](self, "channelNumber")];
-  [v6 appendFormat:@"Band=%d ", [self channelBand]];
+  objc_msgSend( v6,  "appendFormat:",  @"Channel=%d ",  -[WiFiFindAndJoinRequest channelNumber](self, "channelNumber"));
+  objc_msgSend(v6, "appendFormat:", @"Band=%d ", -[WiFiFindAndJoinRequest channelBand](self, "channelBand"));
   -[WiFiFindAndJoinRequest timeout](self, "timeout");
-  [v6 appendFormat:@"Timeout=%d ", (int)v8];
+  objc_msgSend(v6, "appendFormat:", @"Timeout=%d ", (int)v8);
   [v6 appendString:@">"];
   return v6;
 }
@@ -314,7 +314,7 @@ LABEL_13:
 - (id)_printSupportedChannels
 {
   double v3 = (void *)objc_claimAutoreleasedReturnValue(+[NSMutableString string](&OBJC_CLASS___NSMutableString, "string"));
-  [v3 appendFormat:@"6GHz:("];
+  objc_msgSend(v3, "appendFormat:", @"6GHz:(");
   double v4 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported6GHzChannels](self, "supported6GHzChannels"));
   id v5 = (void *)objc_claimAutoreleasedReturnValue([v4 allObjects]);
   id v6 = (void *)objc_claimAutoreleasedReturnValue([v5 valueForKey:@"description"]);
@@ -322,7 +322,7 @@ LABEL_13:
   [v3 appendFormat:@"%@, ", v7];
 
   [v3 appendFormat:@","]);
-  [v3 appendFormat:@"5GHz:("];
+  objc_msgSend(v3, "appendFormat:", @"5GHz:(");
   id v8 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported5GHzChannels](self, "supported5GHzChannels"));
   uint64_t v9 = (void *)objc_claimAutoreleasedReturnValue([v8 allObjects]);
   double v10 = (void *)objc_claimAutoreleasedReturnValue([v9 valueForKey:@"description"]);
@@ -330,7 +330,7 @@ LABEL_13:
   [v3 appendFormat:@"%@, ", v11];
 
   [v3 appendFormat:@","]);
-  [v3 appendFormat:@"2.4GHz:("];
+  objc_msgSend(v3, "appendFormat:", @"2.4GHz:(");
   double v12 = (void *)objc_claimAutoreleasedReturnValue(-[WiFiFindAndJoinRequest supported2GHzChannels](self, "supported2GHzChannels"));
   char v13 = (void *)objc_claimAutoreleasedReturnValue([v12 allObjects]);
   unsigned int v14 = (void *)objc_claimAutoreleasedReturnValue([v13 valueForKey:@"description"]);
